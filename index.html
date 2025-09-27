@@ -12,6 +12,49 @@
 <link rel="manifest" href="/site.webmanifest" />
 
 <style>
+
+/* Alternating row backgrounds in the inventory modal */
+.inv-list .inv-row:nth-child(odd){
+  background:#fafbfc;
+}
+.inv-list .inv-row:nth-child(even){
+  background:#f2f5f8;
+}
+
+/* Each row: name + attune pill */
+.inv-row{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  padding:6px 10px;
+  cursor:pointer;
+  border-radius:8px;
+  transition:background .2s;
+}
+.inv-row.active{
+  background:#e8f0ff;       /* highlight active */
+  font-weight:600;
+}
+
+/* Attune pill only visible on active items */
+.attune-pill{
+  display:inline-block;
+  border:1px solid #cfe0ff;
+  background:#eef4ff;
+  color:#1a73e8;
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:11px;
+  user-select:none;
+  cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.attune-pill.on{
+  background:#1a73e8;
+  color:#fff;
+}
+
+
 /* Activity cards (non-adventures): gray + compact one-line header */
 .card.activity{
   background:#f7f8fa;
@@ -557,44 +600,32 @@ function openInventoryModal(charKey){
   const rest = kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
   const ordered = active.concat(rest);
   invList.innerHTML = '';
-  ordered.forEach(name=>{
-    const rowName = document.createElement('div');
-    rowName.className = 'inv-name';
-    rowName.textContent = name;
-    const rowActive = document.createElement('div');
-    rowActive.className = 'toggle';
-    const ac = document.createElement('input'); ac.type='checkbox';
-    ac.checked = activeSet.has(name.toLowerCase());
-    const acl = document.createElement('label'); acl.textContent='Active';
-    rowActive.append(ac, acl);
-    const rowAttune = document.createElement('div');
-    rowAttune.className = 'toggle';
-    const at = document.createElement('input'); at.type='checkbox';
-    at.checked = attunedSet.has(name.toLowerCase());
-    const atl = document.createElement('label'); atl.textContent='Attuned';
-    rowAttune.append(at, atl);
-    ac.addEventListener('change', ()=>{
-      const isOn = ac.checked;
-      let cur = loadActive(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-      if (isOn){
-        if (cur.length >= cap){
-          ac.checked = false;
-          alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
-          return;
-        }
-        cur.push(name);
-      } else {
-        cur = cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
-      }
-      saveActive(charKey, cur);
-      openInventoryModal(charKey);
-    });
-    at.addEventListener('change', ()=>{
-      const isOn = at.checked;
+const activeSet = new Set(active.map(a=>a.toLowerCase()));
+const attunedSet = new Set(attuned.map(a=>a.toLowerCase()));
+const rest = kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
+const ordered = active.concat(rest);
+
+ordered.forEach(name=>{
+  const row = document.createElement('div');
+  row.className = 'inv-row' + (activeSet.has(name.toLowerCase()) ? ' active' : '');
+  row.dataset.name = name;
+
+  const nameDiv = document.createElement('div');
+  nameDiv.className = 'inv-name';
+  nameDiv.textContent = name;
+
+  // attunement pill only for active items
+  let attuneDiv = document.createElement('div');
+  if (activeSet.has(name.toLowerCase())){
+    const pill = document.createElement('span');
+    pill.className = 'attune-pill' + (attunedSet.has(name.toLowerCase()) ? ' on' : '');
+    pill.textContent = attunedSet.has(name.toLowerCase()) ? 'Attuned' : 'Attune';
+    pill.addEventListener('click',(ev)=>{
+      ev.stopPropagation(); // don't toggle active when clicking pill
       let cur = loadAttuned(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-      if (isOn){
+      const isOn = attunedSet.has(name.toLowerCase());
+      if (!isOn){
         if (cur.length >= 3){
-          at.checked = false;
           alert('You can only be attuned to 3 items at a time.');
           return;
         }
@@ -603,20 +634,33 @@ function openInventoryModal(charKey){
         cur = cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
       }
       saveAttuned(charKey, cur);
-      updateSummary();
+      openInventoryModal(charKey);
     });
-    invList.appendChild(rowName);
-    invList.appendChild(rowActive);
-    invList.appendChild(rowAttune);
-  });
-  function updateSummary(){
-    const aCount = loadActive(charKey).length;
-    const tCount = loadAttuned(charKey).length;
-    invSummary.textContent = `Kept: ${kept.length} • Active: ${aCount}/${cap} • Attuned: ${tCount}/3`;
+    attuneDiv.appendChild(pill);
   }
-  updateSummary();
-  invModal.classList.add('open');
-}
+
+  row.appendChild(nameDiv);
+  row.appendChild(attuneDiv);
+
+  // clicking row toggles active highlight and moves it up
+  row.addEventListener('click',()=>{
+    let cur = loadActive(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+    const isOn = activeSet.has(name.toLowerCase());
+    if (!isOn){
+      if (cur.length >= cap){
+        alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
+        return;
+      }
+      cur.push(name);
+    } else {
+      cur = cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
+    }
+    saveActive(charKey, cur);
+    openInventoryModal(charKey); // re-render with updated ordering
+  });
+
+  invList.appendChild(row);
+});
 
 /* ================================
    Card factory
