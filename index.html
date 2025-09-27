@@ -388,23 +388,52 @@ function setHeader(key){
 }
 
 /* --- masonry --- */
-let __lastCols=null, __lastWidth=window.innerWidth||document.documentElement.clientWidth||0;
-function columnizeGrid(mode){
-  if(!grid.classList.contains('cols')) return;
-  if(mode==='relayout') return;
-  const GAP=14, MIN=320;
-  const cw=grid.clientWidth||grid.offsetWidth||1200;
-  const cols=Math.max(1,Math.floor((cw+GAP)/(MIN+GAP)));
-  if(__lastCols===cols) return; __lastCols=cols;
-  const y=window.scrollY||document.documentElement.scrollTop||0;
-  const cards=Array.from(grid.querySelectorAll('.card'));
-  Array.from(grid.children).filter(el=>el.classList&&el.classList.contains('col')).forEach(c=>c.remove());
-  const colEls=[]; for(let i=0;i<cols;i++){ const col=document.createElement('div'); col.className='col'; grid.appendChild(col); colEls.push(col); }
-  cards.sort((a,b)=>parseInt(a.dataset.idx||'0',10)-parseInt(b.dataset.idx||'0',10));
-  cards.forEach((card,i)=>colEls[i%cols].appendChild(card));
-  window.scrollTo(0,y);
-}
+let __lastCols = null, __lastWidth = window.innerWidth || document.documentElement.clientWidth || 0;
 
+function columnizeGrid(mode){
+  if (!grid.classList.contains('cols')) return;
+  if (mode === 'relayout') return;
+
+  const GAP = 14, MIN = 320;
+  const cw  = grid.clientWidth || grid.offsetWidth || 1200;
+  const cols = Math.max(1, Math.floor((cw + GAP) / (MIN + GAP)));
+
+  // NEW: if grid currently contains direct .card children, we must wrap them
+  const hasDirectCards = Array.from(grid.children).some(el => el.classList && el.classList.contains('card'));
+  const hasColumns     = Array.from(grid.children).some(el => el.classList && el.classList.contains('col'));
+
+  // Only skip when columns exist AND count hasn't changed
+  if (hasColumns && !hasDirectCards && __lastCols === cols) return;
+
+  __lastCols = cols;
+
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+
+  // Collect whatever cards exist (either direct children or inside old columns)
+  const cards = hasDirectCards
+    ? Array.from(grid.querySelectorAll(':scope > .card'))
+    : Array.from(grid.querySelectorAll('.col .card'));
+
+  // Remove old columns
+  Array.from(grid.children)
+    .filter(el => el.classList && el.classList.contains('col'))
+    .forEach(c => c.remove());
+
+  // Create new columns
+  const colEls = [];
+  for (let i = 0; i < cols; i++) {
+    const col = document.createElement('div');
+    col.className = 'col';
+    grid.appendChild(col);
+    colEls.push(col);
+  }
+
+  // Stable order by data-idx
+  cards.sort((a,b) => parseInt(a.dataset.idx||'0',10) - parseInt(b.dataset.idx||'0',10));
+  cards.forEach((card,i) => colEls[i % cols].appendChild(card));
+
+  window.scrollTo(0, y);
+}
 /* --- rendering --- */
 function filterAndRender(){
   const key=charSel.value;
