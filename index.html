@@ -268,6 +268,12 @@ h1{ margin:0; font-size:18px; font-weight:700 }
 .badge{ font-size:11px; border:1px solid var(--border); border-radius:999px; padding:2px 6px; background:#f9fafb; color:#475569; }
 .badge.primary{ border-color:#cfe0ff; background:#eef4ff; color:#1a73e8; }
 .toggle{ display:flex; align-items:center; gap:6px; white-space:nowrap; }
+
+/* Avoid browser scroll anchoring surprises when columns/cards change */
+html, body { overflow-anchor: none; }
+.grid, .grid .col, .card-bd { overflow-anchor: none; }
+
+
 </style>
 </head>
 <body>
@@ -730,20 +736,41 @@ function setHeader(key){
 /* ================================
    Masonry columnizer (stable)
    ================================ */
+
+let __lastCols = null;
+let __lastWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+
+
 function columnizeGrid(mode){
   if(!grid.classList.contains('cols')) return;
-  const directCards = Array.from(grid.children).filter(el=>el.classList && el.classList.contains('card'));
-  const colCards    = Array.from(grid.querySelectorAll('.col .card'));
-  let cards = directCards.concat(colCards);
-  if (mode === 'relayout') return;
-  Array.from(grid.children).filter(el=>el.classList && el.classList.contains('col')).forEach(c=>c.remove());
-  cards.sort((a,b)=>parseInt(a.dataset.idx||'0',10)-parseInt(b.dataset.idx||'0',10));
+  if (mode === 'relayout') return; // keep your lightweight path
+
   const GAP=14, MIN=320;
   const cw = grid.clientWidth || grid.offsetWidth || 1200;
   const cols = Math.max(1, Math.floor((cw + GAP) / (MIN + GAP)));
+
+  // Skip rebuild if columns are unchanged
+  if (__lastCols === cols) return;
+  __lastCols = cols;
+
+  // Preserve scroll position during the rare rebuild
+  const y = window.scrollY || document.documentElement.scrollTop || 0;
+
+  // Collect current cards (no need to rebuild card DOM)
+  const allCards = Array.from(grid.querySelectorAll('.card'));
+  // Remove any existing columns
+  Array.from(grid.children).filter(el => el.classList && el.classList.contains('col')).forEach(c=>c.remove());
+
+  // Create columns
   const colEls=[];
   for (let i=0;i<cols;i++){ const col=document.createElement('div'); col.className='col'; grid.appendChild(col); colEls.push(col); }
-  cards.forEach((card,i)=> colEls[i % cols].appendChild(card));
+
+  // Stable order by original index
+  allCards.sort((a,b)=>parseInt(a.dataset.idx||'0',10)-parseInt(b.dataset.idx||'0',10));
+  allCards.forEach((card,i)=> colEls[i % cols].appendChild(card));
+
+  // Restore scroll to where user was
+  window.scrollTo(0, y);
 }
 
 /* ================================
@@ -784,9 +811,12 @@ document.getElementById('collapseAll').addEventListener('click', ()=>{
 qEl.addEventListener('input', filterAndRender);
 charSel.addEventListener('change', ()=>{ refillYears(charSel.value); filterAndRender(); });
 yearEl.addEventListener('change', filterAndRender);
-window.addEventListener('resize', ()=>{
+window.addEventListener('resize', () => {
+  const w = window.innerWidth || document.documentElement.clientWidth || 0;
+  if (Math.abs(w - __lastWidth) < 8) return; // ignore height-only or tiny changes
+  __lastWidth = w;
   clearTimeout(window.__colize);
-  window.__colize = setTimeout(()=>{ columnizeGrid('build'); }, 120);
+  window.__colize = setTimeout(() => { columnizeGrid('build'); }, 120);
 });
 
 /* ================================
