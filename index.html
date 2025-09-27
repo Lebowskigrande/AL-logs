@@ -3,320 +3,93 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adventure Log Dashboard — Fixed</title>
-
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
-
+<title>Adventure Log Dashboard</title>
 <style>
-
-/* Alternating row backgrounds in the inventory modal */
-.inv-list .inv-row:nth-child(odd){
-  background:#fafbfc;
-}
-.inv-list .inv-row:nth-child(even){
-  background:#f2f5f8;
-}
-
-/* Each row: name + attune pill */
-.inv-row{
-  display:grid;
-  grid-template-columns: 1fr auto;
-  align-items:center;
-  padding:6px 10px;
-  cursor:pointer;
-  border-radius:8px;
-  transition:background .2s;
-}
-.inv-row.active{
-  background:#e8f0ff;       /* highlight active */
-  font-weight:600;
-}
-
-/* Attune pill only visible on active items */
-.attune-pill{
-  display:inline-block;
-  border:1px solid #cfe0ff;
-  background:#eef4ff;
-  color:#1a73e8;
-  border-radius:999px;
-  padding:2px 8px;
-  font-size:11px;
-  user-select:none;
-  cursor:pointer;
-  transition:background .2s,color .2s;
-}
-.attune-pill.on{
-  background:#1a73e8;
-  color:#fff;
-}
-
-
-/* Activity cards (non-adventures): gray + compact one-line header */
-.card.activity{
-  background:#f7f8fa;
-  border-color:#e6e9f2;
-}
-/* Compact activity header */
-.card.activity .card-hd{
-  padding: 6px 12px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-}
-/* Two-column header: left = date+name, right = chips */
-.activity-line{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:nowrap;
-  width:100%;
-  gap:8px;
-}
-.activity-left{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  min-width:0;
-  flex:1 1 auto;
-  white-space:nowrap;
-}
-.activity-date{ font-size:12px; line-height:16px; color:var(--muted); }
-.activity-name{
-  font-weight:600; font-size:14px; line-height:18px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-/* Chips on far right */
-.card.activity .chips{
-  display:flex; flex:0 0 auto; align-items:center;
-  gap:6px; margin:0; white-space:nowrap;
-}
-.card.activity .pill{
-  height:22px; line-height:22px; padding:0 8px;
-  max-width:160px; overflow:hidden; text-overflow:ellipsis;
-}
-/* Muted activity chips */
-.pill.muted{ background:#eef1f6; color:#475569; border-color:#dce2ee; }
-
-/* ================================
-   Design tokens (theme variables)
-   ================================ */
 :root{
-  --bg:#f6f8fb;
-  --surface:#fff;
-  --ink:#0f172a;
-  --muted:#64748b;
-  --primary:#1a73e8;
-  --border:#e5eaf3;
+  --bg:#f6f8fb; --surface:#fff; --ink:#0f172a; --muted:#64748b; --primary:#1a73e8; --border:#e5eaf3;
+  --radius:16px; --shadow1:0 2px 10px rgba(16,24,40,.06); --shadow2:0 20px 40px rgba(16,24,40,.12);
+  --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --gap:14px; --min-card:320px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
+.container{max-width:1200px;margin:28px auto 80px;padding:0 20px}
+.header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
+h1{margin:0;font-size:18px;font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+.select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1)}
+.btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.btn.primary{background:var(--primary);color:#fff;border-color:transparent}
+.search{position:relative}
+.search input{padding-left:36px;outline:none}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-width:120px}
+.stat .k{font-weight:700;font-size:18px}
+.stat .v{color:var(--muted);font-size:12px}
+.grid{margin-top:24px}
+.grid.cols{display:flex;gap:var(--gap);align-items:flex-start}
+.grid.cols .col{display:flex;flex-direction:column;gap:var(--gap);flex:1 1 0;min-width:var(--min-card)}
+.card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+.card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px;cursor:pointer;min-height:96px}
+.titleLine{display:flex;flex-direction:column}
+.date{color:var(--muted);line-height:16px}
+.title{font-weight:700;line-height:20px;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.subtitle{color:var(--muted);font-size:12px;margin-top:2px;line-height:16px;min-height:16px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;min-height:22px}
+.pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
+.card-bd{height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--dur) var(--ease),opacity var(--dur) linear;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
+.bd-in{padding:12px 0 16px}
+@media (prefers-reduced-motion:reduce){.card-bd{transition:none}}
+.field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.field .k{color:var(--muted);font-size:12px;font-weight:400}
+.field .v{width:100%}
+.kv2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+.kvsingle{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin:6px 0}
+.kvsingle .k{color:var(--muted);font-size:12px;font-weight:400}
+.kvsingle .v{font-weight:400}
+.scrollbox{background:#f9fafb;border:1px dashed var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
+.scrollbox .item{margin:2px 0}
+.notesbox{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
 
-  --radius:16px;
-  --shadow1:0 2px 10px rgba(16,24,40,.06);
-  --shadow2:0 20px 40px rgba(16,24,40,.12);
-
-  --dur:220ms;
-  --ease:cubic-bezier(.2,.8,.2,1);
-
-  --gap:14px;
-  --min-card:320px;
-}
-
-/* ================================
-   Base
-   ================================ */
-*{ box-sizing:border-box }
-html,body{
-  margin:0; padding:0;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  color:var(--ink);
-  background:var(--bg);
-  scrollbar-gutter: stable;
-}
-
-/* ================================
-   Page shell
-   ================================ */
-.container{ max-width:1200px; margin:28px auto 80px; padding:0 20px }
-.header{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:16px;
-  box-shadow:var(--shadow1);
-}
-.row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap }
-.avatar{
-  width:56px; height:56px; border-radius:14px;
-  background:linear-gradient(135deg,var(--primary),#34a853);
-  box-shadow:var(--shadow1);
-}
-h1{ margin:0; font-size:18px; font-weight:700 }
-.muted{ color:var(--muted); font-size:13px }
-
-/* ================================
-   Toolbar
-   ================================ */
-.toolbar{ margin-top:10px; display:flex; gap:10px; flex-wrap:wrap }
-.select,.btn,.search input{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:12px;
-  padding:10px 12px;
-  font-weight:600;
-  box-shadow:var(--shadow1);
-}
-.btn{
-  cursor:pointer;
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-}
-.btn:hover{ transform:translateY(-1px); box-shadow:var(--shadow2) }
-.btn.primary{ background:var(--primary); color:#fff; border-color:transparent }
-
-.search{ position:relative }
-.search input{ padding-left:36px; outline:none }
-.search svg{
-  position:absolute; left:10px; top:50%; transform:translateY(-50%);
-  width:18px; height:18px; opacity:.6
-}
-
-/* ================================
-   Stats
-   ================================ */
-.stats{ display:flex; gap:10px; flex-wrap:wrap }
-.stat{
-  background:#f9fafb;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:10px 12px;
-  min-width:120px;
-}
-.stat .k{ font-weight:700; font-size:18px }
-.stat .v{ color:var(--muted); font-size:12px }
-
-/* ================================
-   Masonry layout (independent columns)
-   ================================ */
-.grid{ margin-top:24px; }
-.grid.cols{
-  display:flex;
-  gap:var(--gap);
-  align-items:flex-start;
-}
-.grid.cols .col{
-  display:flex;
-  flex-direction:column;
-  gap:var(--gap);
-  flex:1 1 0;
-  min-width:var(--min-card);
-}
-
-/* ================================
-   Cards
-   ================================ */
-.card{
-  display:block;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  box-shadow:var(--shadow1);
-  overflow:hidden;
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-}
-.card:hover{ transform:translateY(-3px); box-shadow:var(--shadow2) }
-
-.card-hd{
-  display:flex; align-items:flex-start; justify-content:space-between;
-  gap:10px; padding:14px; cursor:pointer; min-height:96px;
-}
-.titleLine{ display:flex; flex-direction:column }
-.date{ color:var(--muted); line-height:16px }
-.title{
-  font-weight:700;
-  line-height:20px; height:20px;
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%;
-}
-.subtitle{ color:var(--muted); font-size:12px; margin-top:2px; line-height:16px; min-height:16px }
-.chips{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; min-height:22px }
-.pill{
-  background:#fff7e6; color:#a05a00;
-  border:1px solid #ffe3b0;
-  border-radius:999px;
-  padding:4px 8px;
-  font-weight:700; font-size:11px;
-}
-
-/* ================================
-   Collapsible body — smooth height animation
-   ================================ */
-.card-bd{
-  height:0; overflow:hidden;
-  border-top:1px solid var(--border);
-  transition: height var(--dur) var(--ease), opacity var(--dur) linear;
-  padding:0 14px;
-  opacity:0;
-  will-change: height, opacity;
-  contain: layout paint;
-}
-.bd-in{ padding:12px 0 16px; }
-
-@media (prefers-reduced-motion: reduce){
-  .card-bd{ transition:none; }
-}
-
-/* ================================
-   Full-width stacked fields for long text sections
-   ================================ */
-.field{ display:flex; flex-direction:column; gap:6px; margin:10px 0 }
-.field .k{ color:var(--muted); font-size:12px; font-weight:400 }
-.field .v{ width:100% }
-
-/* ================================
-   Key-value rows (two-column compact)
-   ================================ */
-.kv2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:8px 0 }
-.kvsingle{ display:grid; grid-template-columns:110px 1fr; gap:10px; align-items:center; margin:6px 0 }
-.kvsingle .k{ color:var(--muted); font-size:12px; font-weight:400 }
-.kvsingle .v{ font-weight:400 }
-
-/* ================================
-   Scrollable content blocks
-   ================================ */
-.scrollbox{
-  background:#f9fafb; border:1px dashed var(--border);
-  border-radius:12px; padding:10px;
-  max-height:160px; overflow:auto;
-}
-.scrollbox .item{ margin:2px 0 }
-.notesbox{
-  background:#f9fafb; border:1px solid var(--border);
-  border-radius:12px; padding:10px;
-  max-height:160px; overflow:auto;
-}
-
-/* Empty-state label */
-.empty{ text-align:center; color:var(--muted); padding:40px 0 }
+/* Activity cards (compact header) */
+.card.activity{background:#f7f8fa;border-color:#e6e9f2}
+.card.activity .card-hd{padding:6px 12px;min-height:44px;display:flex;align-items:center}
+.activity-line{display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;width:100%;gap:8px}
+.activity-left{display:flex;align-items:center;gap:6px;min-width:0;flex:1 1 auto;white-space:nowrap}
+.activity-date{font-size:12px;line-height:16px;color:var(--muted)}
+.activity-name{font-weight:600;font-size:14px;line-height:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card.activity .chips{display:flex;flex:0 0 auto;align-items:center;gap:6px;margin:0;white-space:nowrap}
+.card.activity .pill{height:22px;line-height:22px;padding:0 8px;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.pill.muted{background:#eef1f6;color:#475569;border-color:#dce2ee}
 
 /* Inventory modal */
-.modal{ position:fixed; inset:0; display:none; place-items:center; background:rgba(15,23,42,.4); z-index:50; }
-.modal.open{ display:grid; }
-.modal-card{ width:min(92vw,800px); max-height:80vh; background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow2); display:flex; flex-direction:column; overflow:hidden; }
-.modal-hd{ padding:14px 16px; border-bottom:1px solid var(--border); font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:8px; }
-.modal-body{ padding:12px 16px; overflow:auto; }
-.modal-actions{ padding:12px 16px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:8px; }
-.inv-meta{ color:var(--muted); font-size:12px; }
-.inv-list{ display:grid; grid-template-columns: 1fr auto auto; gap:8px 12px; align-items:center; }
-.inv-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.badge{ font-size:11px; border:1px solid var(--border); border-radius:999px; padding:2px 6px; background:#f9fafb; color:#475569; }
-.badge.primary{ border-color:#cfe0ff; background:#eef4ff; color:#1a73e8; }
-.toggle{ display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(15,23,42,.4);z-index:50}
+.modal.open{display:grid}
+.modal-card{width:min(92vw,800px);max-height:80vh;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
+.modal-hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.modal-body{padding:12px 16px;overflow:auto}
+.modal-actions{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.inv-meta{color:var(--muted);font-size:12px}
+.inv-list{display:flex;flex-direction:column;gap:6px}
 
-/* Avoid browser scroll anchoring surprises when columns/cards change */
-html, body { overflow-anchor: none; }
-.grid, .grid .col, .card-bd { overflow-anchor: none; }
+/* Alternating rows + active highlight */
+.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .2s}
+.inv-row:nth-child(odd){background:#fafbfc}
+.inv-row:nth-child(even){background:#f2f5f8}
+.inv-row.active{background:#e8f0ff;font-weight:600}
 
+/* Attunement pill (only for active rows) */
+.attune-pill{display:inline-block;border:1px solid #cfe0ff;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;user-select:none;cursor:pointer;transition:background .2s,color .2s}
+.attune-pill.on{background:#1a73e8;color:#fff}
 
+/* Reduce scroll anchoring jumps */
+html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
 </style>
 </head>
 <body>
@@ -333,9 +106,7 @@ html, body { overflow-anchor: none; }
     <div class="toolbar">
       <select id="charSel" class="select"></select>
       <div class="search">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" placeholder="Search adventures (name, code, notes, DM)"/>
       </div>
       <select id="year" class="select"><option value="">All years</option></select>
@@ -345,12 +116,11 @@ html, body { overflow-anchor: none; }
     </div>
     <div class="stats" id="stats" style="margin-top:10px;"></div>
   </section>
-
   <section id="grid" class="grid cols"></section>
   <div id="empty" class="empty" style="display:none;">No adventures match your filters.</div>
 </div>
 
-<!-- Inventory Modal moved ABOVE the script so elements exist when JS runs -->
+<!-- Inventory Modal (placed BEFORE script so IDs exist when JS runs) -->
 <div id="invModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="invTitle">
   <div class="modal-card">
     <div class="modal-hd">
@@ -368,21 +138,15 @@ html, body { overflow-anchor: none; }
 </div>
 
 <script src="data.js"></script>
-
 <script>
-/* ================================
-   Data boot
-   ================================ */
-const DATA = (typeof window !== 'undefined' && window.DATA) ? window.DATA : null;
+/* --- data boot --- */
+const DATA = window.DATA || null;
 if (!DATA || !DATA.characters) {
-  document.getElementById('empty').style.display='block';
-  document.getElementById('empty').innerHTML='Could not load <code>data.js</code>.';
-  throw new Error('DATA missing');
+  const e = document.getElementById('empty');
+  e.style.display='block'; e.innerHTML='Could not load <code>data.js</code>.'; throw new Error('DATA missing');
 }
 
-/* ================================
-   DOM handles
-   ================================ */
+/* --- DOM handles --- */
 const charSel  = document.getElementById('charSel');
 const yearEl   = document.getElementById('year');
 const qEl      = document.getElementById('q');
@@ -393,491 +157,292 @@ const titleEl  = document.getElementById('charTitle');
 const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
 
-/* ================================
-   Character selector
-   ================================ */
-Object.entries(DATA.characters).forEach(([key, obj]) => {
-  const opt   = document.createElement('option');
-  const disp  = (obj.display_name && obj.display_name !== key) ? (obj.display_name + ' (' + obj.sheet + ')') : obj.sheet;
-  opt.value   = key;
-  opt.textContent = disp;   // no session numbers
-  charSel.appendChild(opt);
+/* --- character selector (no session counts) --- */
+Object.entries(DATA.characters).forEach(([key,obj])=>{
+  const opt=document.createElement('option');
+  const disp=(obj.display_name&&obj.display_name!==key)?(obj.display_name+' ('+obj.sheet+')'):obj.sheet;
+  opt.value=key; opt.textContent=disp; charSel.appendChild(opt);
 });
 
-/* ================================
-   Utilities
-   ================================ */
-function fmtDate(iso){
-  if(!iso) return '—';
-  const d=new Date(iso);
-  if(isNaN(d.getTime())) return String(iso);
-  return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
-}
-function pill(label){
-  const s=document.createElement('span');
-  s.className='pill';
-  s.textContent=label;
-  return s;
-}
+/* --- utils --- */
+function fmtDate(iso){ if(!iso)return'—'; const d=new Date(iso); if(isNaN(d))return String(iso); return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }
+function pill(label){ const s=document.createElement('span'); s.className='pill'; s.textContent=label; return s; }
 function sanitizeTitle(title){
-  if (!title) return '';
-  return String(title)
-    .replace(/\bdown\s*time\s*activity\b/gi, '')
-    .replace(/\s{2,}/g, ' ')
-    .replace(/^[\s:,.–—-]+|[\s:,.–—-]+$/g, '')  // safe class (hyphen at end)
-    .trim();
+  if(!title) return '';
+  return String(title).replace(/\bdown\s*time\s*activity\b/gi,'').replace(/\s{2,}/g,' ').replace(/^[\s:,.–—-]+|[\s:,.–—-]+$/g,'').trim();
 }
 function listBox(items){
-  const wrap = document.createElement('div');
-  wrap.className = 'scrollbox';
-  if (!items || !items.length){
-    wrap.innerHTML = '<div class="muted">—</div>';
-    return wrap;
-  }
-  items.forEach(name=>{
-    const row = document.createElement('div');
-    row.className = 'item';
-    row.textContent = '• ' + String(name);
-    wrap.appendChild(row);
-  });
+  const wrap=document.createElement('div'); wrap.className='scrollbox';
+  if(!items||!items.length){ wrap.innerHTML='<div class="muted">—</div>'; return wrap; }
+  items.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent='• '+String(name); wrap.appendChild(row); });
   return wrap;
 }
 function getMostRecentCharacter(){
   let latestKey=null, latestDate=0;
-  for (const [key,obj] of Object.entries(DATA.characters)) {
-    if (!obj.adventures || !obj.adventures.length) continue;
-    const maxDate = Math.max(...obj.adventures.map(a=>{ const t=new Date(a.date).getTime(); return isNaN(t)?0:t; }));
-    if (maxDate>latestDate) { latestDate=maxDate; latestKey=key; }
+  for (const [key,obj] of Object.entries(DATA.characters)){
+    if(!obj.adventures||!obj.adventures.length) continue;
+    const maxDate=Math.max(...obj.adventures.map(a=>{ const t=new Date(a.date).getTime(); return isNaN(t)?0:t; }));
+    if(maxDate>latestDate){ latestDate=maxDate; latestKey=key; }
   }
   return latestKey || Object.keys(DATA.characters)[0];
 }
-function isActivityEntry(a){ return a && a.kind && a.kind !== 'adventure'; }
+function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
-function fmtSigned(n){ if (!n) return '0'; return (n>0?'+':'') + (Math.round(n*100)/100); }
+function fmtSigned(n){ if(!n) return '0'; return (n>0?'+':'')+(Math.round(n*100)/100); }
 
-/* ================================
-   Smooth expand/collapse helpers
-   ================================ */
-function isAnimating(card){ return card.dataset.anim === '1'; }
+/* --- smooth expand/collapse --- */
+function isAnimating(card){ return card.dataset.anim==='1'; }
 function setAnimating(card,on){ if(on) card.dataset.anim='1'; else delete card.dataset.anim; }
-function afterTransition(el, prop, msFallback, cb){
-  let done=false;
-  const onEnd = (e)=>{ if(e.propertyName!==prop) return; if(done) return; done=true; el.removeEventListener('transitionend', onEnd); cb(); };
-  el.addEventListener('transitionend', onEnd);
-  setTimeout(()=>{ if(done) return; done=true; el.removeEventListener('transitionend', onEnd); cb(); }, msFallback);
-}
-function expandCard(card){
-  if (isAnimating(card)) return;
-  const bd = card.querySelector('.card-bd'); if (!bd) return;
-  setAnimating(card,true);
-  bd.style.height = bd.offsetHeight + 'px';
-  bd.style.opacity = '0';
-  card.classList.add('open');
-  requestAnimationFrame(() => {
-    const target = bd.scrollHeight;
-    bd.style.height = target + 'px';
-    bd.style.opacity = '1';
-  });
-  afterTransition(bd, 'height', 450, () => {
-    bd.style.height = 'auto';
-    setAnimating(card,false);
-    columnizeGrid('relayout');
-  });
-}
-function collapseCard(card){
-  if (isAnimating(card)) return;
-  const bd = card.querySelector('.card-bd'); if (!bd) return;
-  setAnimating(card,true);
-  const current = bd.offsetHeight || bd.scrollHeight;
-  bd.style.height = current + 'px';
-  bd.style.opacity = '1';
-  void bd.offsetHeight;
-  requestAnimationFrame(() => {
-    bd.style.height = '0px';
-    bd.style.opacity = '0';
-  });
-  afterTransition(bd, 'height', 450, () => {
-    card.classList.remove('open');
-    setAnimating(card,false);
-    columnizeGrid('relayout');
-  });
-}
-function toggleCard(card){ if (card.classList.contains('open')) collapseCard(card); else expandCard(card); }
+function afterTransition(el,prop,ms,cb){ let done=false; const onEnd=e=>{ if(e.propertyName!==prop||done)return; done=true; el.removeEventListener('transitionend',onEnd); cb(); }; el.addEventListener('transitionend',onEnd); setTimeout(()=>{ if(done)return; done=true; el.removeEventListener('transitionend',onEnd); cb(); },ms); }
+function expandCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); bd.style.height=bd.offsetHeight+'px'; bd.style.opacity='0'; card.classList.add('open'); requestAnimationFrame(()=>{ bd.style.height=bd.scrollHeight+'px'; bd.style.opacity='1'; }); afterTransition(bd,'height',450,()=>{ bd.style.height='auto'; setAnimating(card,false); columnizeGrid('relayout'); }); }
+function collapseCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); const h=bd.offsetHeight||bd.scrollHeight; bd.style.height=h+'px'; bd.style.opacity='1'; void bd.offsetHeight; requestAnimationFrame(()=>{ bd.style.height='0px'; bd.style.opacity='0'; }); afterTransition(bd,'height',450,()=>{ card.classList.remove('open'); setAnimating(card,false); columnizeGrid('relayout'); }); }
+function toggleCard(card){ card.classList.contains('open')?collapseCard(card):expandCard(card); }
 
-/* ---------- Inventory helpers ---------- */
+/* --- inventory helpers --- */
 function normItemName(s){ return (s||'').trim(); }
-function parseAcquisitionName(s){
-  const t = String(s||'').trim();
-  const m = t.match(/^\((.*)\)$/);
-  if (m) return { name: m[1].trim(), acquired: false };
-  return { name: t, acquired: true };
-}
-function looksLikeLossEntry(entry){
-  const t = ((entry.title||'') + ' ' + (entry.notes||'')).toLowerCase();
-  return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t);
-}
+function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
+function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
 function buildPermanentInventory(charKey){
-  const ch = DATA.characters[charKey];
-  if (!ch || !ch.adventures) return [];
-  const sorted = [...ch.adventures].sort((a,b)=>{
-    const ta = new Date(a.date||'1900-01-01').getTime();
-    const tb = new Date(b.date||'1900-01-01').getTime();
-    return ta - tb;
-  });
-  const kept = [];
-  function addItem(name){
-    name = normItemName(name);
-    if (!name) return;
-    if (!kept.some(n=>n.toLowerCase()===name.toLowerCase())) kept.push(name);
-  }
-  function removeItemByMention(name){
-    name = normItemName(name);
-    if (!name) return;
-    const idx = kept.findIndex(n=>n.toLowerCase()===name.toLowerCase());
-    if (idx>=0) kept.splice(idx,1);
-  }
-  sorted.forEach(entry=>{
-    const items = entry.perm_items || [];
-    const isLoss = (entry.kind && entry.kind!=='adventure') ? looksLikeLossEntry(entry) : false;
-    if (isLoss){
-      if (items.length){
-        items.forEach(raw => removeItemByMention(raw.replace(/^\(|\)$/g,'')));
-      } else if (entry.notes){
-        kept.slice().forEach(existing=>{
-          if (new RegExp('\\b'+existing.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(entry.notes)){
-            removeItemByMention(existing);
-          }
-        });
-      }
+  const ch=DATA.characters[charKey]; if(!ch||!ch.adventures) return [];
+  const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
+  const kept=[];
+  function add(name){ name=normItemName(name); if(!name) return; if(!kept.some(n=>n.toLowerCase()===name.toLowerCase())) kept.push(name); }
+  function remove(name){ name=normItemName(name); const i=kept.findIndex(n=>n.toLowerCase()===name.toLowerCase()); if(i>=0) kept.splice(i,1); }
+  sorted.forEach(e=>{
+    const items=e.perm_items||[];
+    const isLoss=(e.kind&&e.kind!=='adventure')?looksLikeLossEntry(e):false;
+    if(isLoss){
+      if(items.length) items.forEach(raw=>remove(raw.replace(/^\(|\)$/g,'')));
+      else if(e.notes){ kept.slice().forEach(ex=>{ if(new RegExp('\\b'+ex.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(e.notes)) remove(ex); }); }
       return;
     }
-    items.forEach(raw=>{
-      const {name, acquired} = parseAcquisitionName(raw);
-      if (acquired) addItem(name);
-    });
+    items.forEach(raw=>{ const {name,acquired}=parseAcquisitionName(raw); if(acquired) add(name); });
   });
   return kept;
 }
 function currentLevelFor(charKey){
-  const ch = DATA.characters[charKey];
-  const lvl = 1 + Math.floor((ch.adventures||[]).reduce((s,a)=> s + (+a.level_plus||0), 0));
-  return Math.max(1, lvl);
+  const ch=DATA.characters[charKey]; const lvl=1+Math.floor((ch.adventures||[]).reduce((s,a)=>s+(+a.level_plus||0),0)); return Math.max(1,lvl);
 }
-function activeSlotsFor(level){
-  if (level <= 4) return 1;
-  if (level <= 10) return 3;
-  if (level <= 16) return 6;
-  return 10;
-}
+function activeSlotsFor(level){ if(level<=4)return 1; if(level<=10)return 3; if(level<=16)return 6; return 10; }
 function activeKey(k){ return 'ACTIVE_INV__'+k; }
 function attuneKey(k){ return 'ATTUNED__'+k; }
-function loadActive(k){ try{ return JSON.parse(localStorage.getItem(activeKey(k))||'[]'); }catch(_){ return []; } }
-function saveActive(k,arr){ localStorage.setItem(activeKey(k), JSON.stringify(arr||[])); }
-function loadAttuned(k){ try{ return JSON.parse(localStorage.getItem(attuneKey(k))||'[]'); }catch(_){ return []; } }
-function saveAttuned(k,arr){ localStorage.setItem(attuneKey(k), JSON.stringify(arr||[])); }
+function loadActive(k){ try{return JSON.parse(localStorage.getItem(activeKey(k))||'[]')}catch(_){return[]} }
+function saveActive(k,a){ localStorage.setItem(activeKey(k),JSON.stringify(a||[])) }
+function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k))||'[]')}catch(_){return[]} }
+function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
 
-/* ---------- Inventory modal UI ---------- */
-const invModal   = document.getElementById('invModal');
-const invTitle   = document.getElementById('invTitle');
-const invMeta    = document.getElementById('invMeta');
-const invList    = document.getElementById('invList');
-const invSummary = document.getElementById('invSummary');
-document.getElementById('invClose').addEventListener('click', ()=> invModal.classList.remove('open'));
-invModal.addEventListener('click', (e)=>{ if(e.target===invModal) invModal.classList.remove('open'); });
+/* --- inventory modal UI --- */
+const invModal=document.getElementById('invModal');
+const invTitle=document.getElementById('invTitle');
+const invMeta=document.getElementById('invMeta');
+const invList=document.getElementById('invList');
+const invSummary=document.getElementById('invSummary');
+document.getElementById('invClose').addEventListener('click',()=>invModal.classList.remove('open'));
+invModal.addEventListener('click',(e)=>{ if(e.target===invModal) invModal.classList.remove('open'); });
+
 function openInventoryModal(charKey){
-  const ch = DATA.characters[charKey];
-  const level = currentLevelFor(charKey);
-  const cap = activeSlotsFor(level);
-  const kept = buildPermanentInventory(charKey);
-  let active = loadActive(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-  let attuned = loadAttuned(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-  if (active.length > cap) active = active.slice(0, cap);
-  if (attuned.length > 3) attuned = attuned.slice(0, 3);
-  invTitle.textContent = (ch.display_name || ch.sheet || 'Character') + ' — Permanent Items';
-  invMeta.textContent  = `Level ${level} • Active slots: ${cap} • Attunement max: 3`;
-  const activeSet = new Set(active.map(a=>a.toLowerCase()));
-  const attunedSet = new Set(attuned.map(a=>a.toLowerCase()));
-  const rest = kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
-  const ordered = active.concat(rest);
-  invList.innerHTML = '';
-const activeSet = new Set(active.map(a=>a.toLowerCase()));
-const attunedSet = new Set(attuned.map(a=>a.toLowerCase()));
-const rest = kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
-const ordered = active.concat(rest);
+  const ch=DATA.characters[charKey];
+  const level=currentLevelFor(charKey);
+  const cap=activeSlotsFor(level);
+  const kept=buildPermanentInventory(charKey);
+  let active=loadActive(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+  let attuned=loadAttuned(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+  if(active.length>cap) active=active.slice(0,cap);
+  if(attuned.length>3) attuned=attuned.slice(0,3);
 
-ordered.forEach(name=>{
-  const row = document.createElement('div');
-  row.className = 'inv-row' + (activeSet.has(name.toLowerCase()) ? ' active' : '');
-  row.dataset.name = name;
+  invTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Permanent Items';
+  invMeta.textContent=`Level ${level} • Active slots: ${cap} • Attunement max: 3`;
 
-  const nameDiv = document.createElement('div');
-  nameDiv.className = 'inv-name';
-  nameDiv.textContent = name;
+  const activeSet=new Set(active.map(a=>a.toLowerCase()));
+  const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
+  const rest=kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
+  const ordered=active.concat(rest);
 
-  // attunement pill only for active items
-  let attuneDiv = document.createElement('div');
-  if (activeSet.has(name.toLowerCase())){
-    const pill = document.createElement('span');
-    pill.className = 'attune-pill' + (attunedSet.has(name.toLowerCase()) ? ' on' : '');
-    pill.textContent = attunedSet.has(name.toLowerCase()) ? 'Attuned' : 'Attune';
-    pill.addEventListener('click',(ev)=>{
-      ev.stopPropagation(); // don't toggle active when clicking pill
-      let cur = loadAttuned(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-      const isOn = attunedSet.has(name.toLowerCase());
-      if (!isOn){
-        if (cur.length >= 3){
-          alert('You can only be attuned to 3 items at a time.');
-          return;
+  invList.innerHTML='';
+  ordered.forEach(name=>{
+    const isActive=activeSet.has(name.toLowerCase());
+    const row=document.createElement('div');
+    row.className='inv-row'+(isActive?' active':'');
+    row.dataset.name=name;
+
+    const nameDiv=document.createElement('div');
+    nameDiv.className='inv-name';
+    nameDiv.textContent=name;
+
+    const rightDiv=document.createElement('div');
+    if(isActive){
+      const pill=document.createElement('span');
+      pill.className='attune-pill'+(attunedSet.has(name.toLowerCase())?' on':'');
+      pill.textContent=attunedSet.has(name.toLowerCase())?'Attuned':'Attune';
+      pill.title='Toggle attunement (max 3)';
+      pill.addEventListener('click',(ev)=>{
+        ev.stopPropagation();
+        let cur=loadAttuned(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+        const on=attunedSet.has(name.toLowerCase());
+        if(!on){
+          if(cur.length>=3){ alert('You can only be attuned to 3 items at a time.'); return; }
+          cur.push(name);
+        }else{
+          cur=cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
         }
+        saveAttuned(charKey,cur);
+        openInventoryModal(charKey);
+      });
+      rightDiv.appendChild(pill);
+    }
+
+    row.appendChild(nameDiv);
+    row.appendChild(rightDiv);
+
+    // clicking row toggles active and re-renders (moves to top)
+    row.addEventListener('click',()=>{
+      let cur=loadActive(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+      const on=cur.some(n=>n.toLowerCase()===name.toLowerCase());
+      if(!on){
+        if(cur.length>=cap){ alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`); return; }
         cur.push(name);
-      } else {
-        cur = cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
+      }else{
+        // remove from active AND clear attunement if present
+        cur=cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
+        saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==name.toLowerCase()));
       }
-      saveAttuned(charKey, cur);
+      saveActive(charKey,cur);
       openInventoryModal(charKey);
     });
-    attuneDiv.appendChild(pill);
-  }
 
-  row.appendChild(nameDiv);
-  row.appendChild(attuneDiv);
-
-  // clicking row toggles active highlight and moves it up
-  row.addEventListener('click',()=>{
-    let cur = loadActive(charKey).filter(n => kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-    const isOn = activeSet.has(name.toLowerCase());
-    if (!isOn){
-      if (cur.length >= cap){
-        alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
-        return;
-      }
-      cur.push(name);
-    } else {
-      cur = cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
-    }
-    saveActive(charKey, cur);
-    openInventoryModal(charKey); // re-render with updated ordering
+    invList.appendChild(row);
   });
 
-  invList.appendChild(row);
-});
+  function updateSummary(){
+    const aCount=loadActive(charKey).length;
+    const tCount=loadAttuned(charKey).length;
+    invSummary.textContent=`Kept: ${kept.length} • Active: ${aCount}/${cap} • Attuned: ${tCount}/3`;
+  }
+  updateSummary();
+  invModal.classList.add('open');
+}
 
-/* ================================
-   Card factory
-   ================================ */
-function makeCard(a, idx){
-  const act = isActivityEntry(a);
-  const { gp, dtd } = netVals(a);
-  const card = document.createElement('article');
-  card.className = 'card' + (act ? ' activity' : '');
-  card.dataset.idx = String(idx);
-  const hd = document.createElement('div');
-  hd.className = 'card-hd';
-  if (act) {
-    hd.innerHTML =
-      '<div class="activity-line">' +
-        '<div class="activity-left">' +
-          '<span class="activity-date">'+ fmtDate(a.date) +'</span>' +
-          '<span class="activity-name">'+ sanitizeTitle(a.title || 'Activity') +'</span>' +
-        '</div>' +
-        '<div class="chips"></div>' +
-      '</div>';
-    const chips = hd.querySelector('.chips');
-    if (gp)  { const p=pill('GP '+fmtSigned(gp));  p.classList.add('muted'); chips.appendChild(p); }
-    if (dtd) { const p=pill('DTD '+fmtSigned(dtd)); p.classList.add('muted'); chips.appendChild(p); }
-  } else {
-    hd.innerHTML =
-      '<div class="titleLine">' +
-        '<div class="date">' + fmtDate(a.date) + '</div>' +
-        '<div class="title">' + sanitizeTitle(a.title || 'Untitled Adventure') + '</div>' +
-        '<div class="subtitle">' + (a.code ? a.code : '') + '</div>' +
-        '<div class="chips"></div>' +
-      '</div>';
-    const chips = hd.querySelector('.chips');
-    const netGP = (a.gp_net == null ? gp : a.gp_net);
-    chips.appendChild(pill('GP ' + fmtSigned(Number(netGP))));
+/* --- cards --- */
+function makeCard(a,idx){
+  const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
+  const card=document.createElement('article'); card.className='card'+(act?' activity':''); card.dataset.idx=String(idx);
+  const hd=document.createElement('div'); hd.className='card-hd';
+  if(act){
+    hd.innerHTML = '<div class="activity-line"><div class="activity-left">'
+      + '<span class="activity-date">'+fmtDate(a.date)+'</span>'
+      + '<span class="activity-name">'+sanitizeTitle(a.title||'Activity')+'</span>'
+      + '</div><div class="chips"></div></div>';
+    const chips=hd.querySelector('.chips');
+    if(gp){ const p=pill('GP '+fmtSigned(gp)); p.classList.add('muted'); chips.appendChild(p); }
+    if(dtd){ const p=pill('DTD '+fmtSigned(dtd)); p.classList.add('muted'); chips.appendChild(p); }
+  }else{
+    hd.innerHTML = '<div class="titleLine">'
+      + '<div class="date">'+fmtDate(a.date)+'</div>'
+      + '<div class="title">'+sanitizeTitle(a.title||'Untitled Adventure')+'</div>'
+      + '<div class="subtitle">'+(a.code?a.code:'')+'</div>'
+      + '<div class="chips"></div></div>';
+    const chips=hd.querySelector('.chips');
+    const netGP=(a.gp_net==null?gp:a.gp_net);
+    chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
   }
-  hd.addEventListener('click', ()=> toggleCard(card));
-  const bd = document.createElement('div');
-  bd.className = 'card-bd';
-  let body = '<div class="bd-in">';
-  if (!act) {
-    body += '<div class="kvsingle"><div class="k">DM</div><div class="v">' + (a.dm || '—') + '</div></div>';
-  }
-  body +=
-    '<div class="kv2">' +
-      '<div class="kvsingle"><div class="k">Gold earned</div><div class="v">' + (a.gp_plus == null ? 0 : a.gp_plus) + '</div></div>' +
-      '<div class="kvsingle"><div class="k">Gold spent</div><div class="v">'  + (a.gp_minus == null ? 0 : a.gp_minus) + '</div></div>' +
-    '</div>' +
-    '<div class="kv2">' +
-      '<div class="kvsingle"><div class="k">Downtime earned</div><div class="v">' + (a.dtd_plus == null ? 0 : a.dtd_plus) + '</div></div>' +
-      '<div class="kvsingle"><div class="k">Downtime spent</div><div class="v">'  + (a.dtd_minus == null ? 0 : a.dtd_minus) + '</div></div>' +
-    '</div>' +
-    (a.level_plus ? ('<div class="kvsingle"><div class="k">Levels gained</div><div class="v">' + a.level_plus + '</div></div>') : '') +
-    '<div class="field mi"><div class="k">Magic Items</div><div class="v"></div></div>' +
-    '<div class="field cons"><div class="k">Consumables</div><div class="v"></div></div>' +
-    '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">' + ((a.notes || '').trim() || '—') + '</div></div></div>' +
-    '<div class="chips" style="margin-top:8px;">' + (a.season ? ('<span class="pill">Season: ' + a.season + '</span>') : '') + '</div>' +
-  '</div>';
-  bd.innerHTML = body;
-  const miV   = bd.querySelector('.mi .v');
-  const consV = bd.querySelector('.cons .v');
-  if (miV)   miV.appendChild(listBox(a.perm_items));
-  if (consV) consV.appendChild(listBox(a.consumable_items));
-  card.appendChild(hd);
-  card.appendChild(bd);
+  hd.addEventListener('click',()=>toggleCard(card));
+
+  const bd=document.createElement('div'); bd.className='card-bd';
+  let body='<div class="bd-in">';
+  if(!act){ body+='<div class="kvsingle"><div class="k">DM</div><div class="v">'+(a.dm||'—')+'</div></div>'; }
+  body+=
+    '<div class="kv2"><div class="kvsingle"><div class="k">Gold earned</div><div class="v">'+(a.gp_plus??0)+'</div></div>'
+    + '<div class="kvsingle"><div class="k">Gold spent</div><div class="v">'+(a.gp_minus??0)+'</div></div></div>'
+    + '<div class="kv2"><div class="kvsingle"><div class="k">Downtime earned</div><div class="v">'+(a.dtd_plus??0)+'</div></div>'
+    + '<div class="kvsingle"><div class="k">Downtime spent</div><div class="v">'+(a.dtd_minus??0)+'</div></div></div>'
+    + (a.level_plus?('<div class="kvsingle"><div class="k">Levels gained</div><div class="v">'+a.level_plus+'</div></div>'):'')
+    + '<div class="field mi"><div class="k">Magic Items</div><div class="v"></div></div>'
+    + '<div class="field cons"><div class="k">Consumables</div><div class="v"></div></div>'
+    + '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">'+((a.notes||'').trim()||'—')+'</div></div></div>'
+    + '<div class="chips" style="margin-top:8px;">'+(a.season?('<span class="pill">Season: '+a.season+'</span>'):'')+'</div></div>';
+  bd.innerHTML=body;
+  const miV=bd.querySelector('.mi .v'); const consV=bd.querySelector('.cons .v');
+  if(miV) miV.appendChild(listBox(a.perm_items));
+  if(consV) consV.appendChild(listBox(a.consumable_items));
+  card.appendChild(hd); card.appendChild(bd);
   return card;
 }
 
-/* ================================
-   Stats & header
-   ================================ */
-function refillYears(key){
-  yearEl.innerHTML='<option value="">All years</option>';
-  (DATA.years[key]||[]).forEach(y=>{
-    const opt=document.createElement('option'); opt.value=String(y); opt.textContent=String(y);
-    yearEl.appendChild(opt);
-  });
-}
+/* --- stats & header --- */
+function refillYears(key){ yearEl.innerHTML='<option value="">All years</option>'; (DATA.years[key]||[]).forEach(y=>{ const o=document.createElement('option'); o.value=String(y); o.textContent=String(y); yearEl.appendChild(o); }); }
 function renderStats(key){
   statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
-  const rows = [
-    ['Sessions', s.sessions||0, 'sessions'],
-    ['Current Gold', Math.round(((s.net_gp||0)*100))/100, 'net_gp'],
-    ['Downtime Days',  Math.round(((s.net_dtd||0)*100))/100, 'net_dtd'],
-    ['Level',  1 + Math.round(((s.level_ups||0)*100))/100, 'level_ups'],
-    ['Magic Items', s.perm_count||0, 'perm_items'],
-    ['Consumables',     s.cons_count||0, 'consumables']
-  ];
-  rows.forEach(([label,val,keyname])=>{
-    const el=document.createElement('div');
-    el.className='stat';
-    el.dataset.key = keyname;
-    el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>';
-    statsEl.appendChild(el);
-  });
-  // open inventory on click
-  const permTile = statsEl.querySelector('[data-key="perm_items"]');
-  if (permTile){
-    permTile.style.cursor='pointer';
-    permTile.title = 'Click to view cumulative permanent inventory';
-    permTile.addEventListener('click', ()=> openInventoryModal(charSel.value));
-  }
+  const rows=[['Sessions',s.sessions||0,'sessions'],['Net Gold',Math.round(((s.net_gp||0)*100))/100,'net_gp'],['Net DTD',Math.round(((s.net_dtd||0)*100))/100,'net_dtd'],['Level +',Math.round(((s.level_ups||0)*100))/100,'level_ups'],['Permanent Items',s.perm_count||0,'perm_items'],['Consumables',s.cons_count||0,'consumables']];
+  rows.forEach(([label,val,name])=>{ const el=document.createElement('div'); el.className='stat'; el.dataset.key=name; el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>'; statsEl.appendChild(el); });
+  const permTile=statsEl.querySelector('[data-key="perm_items"]');
+  if(permTile){ permTile.style.cursor='pointer'; permTile.title='Click to view cumulative permanent inventory'; permTile.addEventListener('click',()=>openInventoryModal(charSel.value)); }
 }
 function setHeader(key){
   const obj=DATA.characters[key];
   titleEl.textContent=(obj&&obj.display_name)||(obj&&obj.sheet)||key;
-  metaEl.textContent =(obj&&obj.sheet)||'';
+  metaEl.textContent=(obj&&obj.sheet)||'';
   badgesEl.innerHTML='';
   const count=(obj&&obj.adventures?obj.adventures.length:0);
-  const chip=document.createElement('span');
-  chip.className='pill';
-  chip.textContent=count+' session'+(count===1?'':'s');
-  badgesEl.appendChild(chip);
+  const chip=document.createElement('span'); chip.className='pill'; chip.textContent=count+' session'+(count===1?'':'s'); badgesEl.appendChild(chip);
 }
 
-/* ================================
-   Masonry columnizer (stable)
-   ================================ */
-
-let __lastCols = null;
-let __lastWidth = window.innerWidth || document.documentElement.clientWidth || 0;
-
-
+/* --- masonry --- */
+let __lastCols=null, __lastWidth=window.innerWidth||document.documentElement.clientWidth||0;
 function columnizeGrid(mode){
   if(!grid.classList.contains('cols')) return;
-  if (mode === 'relayout') return; // keep your lightweight path
-
+  if(mode==='relayout') return;
   const GAP=14, MIN=320;
-  const cw = grid.clientWidth || grid.offsetWidth || 1200;
-  const cols = Math.max(1, Math.floor((cw + GAP) / (MIN + GAP)));
-
-  // Skip rebuild if columns are unchanged
-  if (__lastCols === cols) return;
-  __lastCols = cols;
-
-  // Preserve scroll position during the rare rebuild
-  const y = window.scrollY || document.documentElement.scrollTop || 0;
-
-  // Collect current cards (no need to rebuild card DOM)
-  const allCards = Array.from(grid.querySelectorAll('.card'));
-  // Remove any existing columns
-  Array.from(grid.children).filter(el => el.classList && el.classList.contains('col')).forEach(c=>c.remove());
-
-  // Create columns
-  const colEls=[];
-  for (let i=0;i<cols;i++){ const col=document.createElement('div'); col.className='col'; grid.appendChild(col); colEls.push(col); }
-
-  // Stable order by original index
-  allCards.sort((a,b)=>parseInt(a.dataset.idx||'0',10)-parseInt(b.dataset.idx||'0',10));
-  allCards.forEach((card,i)=> colEls[i % cols].appendChild(card));
-
-  // Restore scroll to where user was
-  window.scrollTo(0, y);
+  const cw=grid.clientWidth||grid.offsetWidth||1200;
+  const cols=Math.max(1,Math.floor((cw+GAP)/(MIN+GAP)));
+  if(__lastCols===cols) return; __lastCols=cols;
+  const y=window.scrollY||document.documentElement.scrollTop||0;
+  const cards=Array.from(grid.querySelectorAll('.card'));
+  Array.from(grid.children).filter(el=>el.classList&&el.classList.contains('col')).forEach(c=>c.remove());
+  const colEls=[]; for(let i=0;i<cols;i++){ const col=document.createElement('div'); col.className='col'; grid.appendChild(col); colEls.push(col); }
+  cards.sort((a,b)=>parseInt(a.dataset.idx||'0',10)-parseInt(b.dataset.idx||'0',10));
+  cards.forEach((card,i)=>colEls[i%cols].appendChild(card));
+  window.scrollTo(0,y);
 }
 
-/* ================================
-   Rendering
-   ================================ */
+/* --- rendering --- */
 function filterAndRender(){
   const key=charSel.value;
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
-  const q=(qEl.value||'').toLowerCase();
-  const yr=yearEl.value;
+  const q=(qEl.value||'').toLowerCase(); const yr=yearEl.value;
   const filtered=advs.filter(a=>{
     if(yr){ const y=a.date?(new Date(a.date)).getFullYear():null; if(String(y)!==yr) return false; }
-    const blob=[a.title,a.code,a.notes,a.dm,a.location]
-      .concat(a.perm_items||[]).concat(a.consumable_items||[])
-      .map(x=>(x||'').toString().toLowerCase()).join(' ');
-    return !q || blob.indexOf(q)!==-1;
+    const blob=[a.title,a.code,a.notes,a.dm,a.location].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
+    return !q||blob.indexOf(q)!==-1;
   });
   grid.innerHTML='';
-  if(!filtered.length){ emptyEl.style.display='block'; }
-  else {
-    emptyEl.style.display='none';
-    filtered.forEach((a,i)=> grid.appendChild(makeCard(a,i)));
-  }
-  renderStats(key);
-  setHeader(key);
-  columnizeGrid('build');
+  if(!filtered.length){ emptyEl.style.display='block'; } else { emptyEl.style.display='none'; filtered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
+  renderStats(key); setHeader(key); columnizeGrid('build');
 }
 
-/* ================================
-   Events
-   ================================ */
-document.getElementById('expandAll').addEventListener('click', ()=>{
-  grid.querySelectorAll('.card').forEach(c=>{ if(!c.classList.contains('open')) expandCard(c); });
-});
-document.getElementById('collapseAll').addEventListener('click', ()=>{
-  grid.querySelectorAll('.card').forEach(c=>{ if(c.classList.contains('open')) collapseCard(c); });
-});
-qEl.addEventListener('input', filterAndRender);
-charSel.addEventListener('change', ()=>{ refillYears(charSel.value); filterAndRender(); });
-yearEl.addEventListener('change', filterAndRender);
-window.addEventListener('resize', () => {
-  const w = window.innerWidth || document.documentElement.clientWidth || 0;
-  if (Math.abs(w - __lastWidth) < 8) return; // ignore height-only or tiny changes
-  __lastWidth = w;
-  clearTimeout(window.__colize);
-  window.__colize = setTimeout(() => { columnizeGrid('build'); }, 120);
+/* --- events --- */
+document.getElementById('expandAll').addEventListener('click',()=>{ grid.querySelectorAll('.card').forEach(c=>{ if(!c.classList.contains('open')) expandCard(c); }); });
+document.getElementById('collapseAll').addEventListener('click',()=>{ grid.querySelectorAll('.card').forEach(c=>{ if(c.classList.contains('open')) collapseCard(c); }); });
+qEl.addEventListener('input',filterAndRender);
+charSel.addEventListener('change',()=>{ refillYears(charSel.value); filterAndRender(); });
+yearEl.addEventListener('change',filterAndRender);
+window.addEventListener('resize',()=>{
+  const w=window.innerWidth||document.documentElement.clientWidth||0;
+  if(Math.abs(w-__lastWidth)<8) return; __lastWidth=w;
+  clearTimeout(window.__colize); window.__colize=setTimeout(()=>{ columnizeGrid('build'); },120);
 });
 
-/* ================================
-   Init (default to most recent character)
-   ================================ */
-const firstKey = getMostRecentCharacter();
-charSel.value = firstKey;
-refillYears(firstKey);
-filterAndRender();
+/* --- init --- */
+const firstKey=getMostRecentCharacter(); charSel.value=firstKey; refillYears(firstKey); filterAndRender();
 
-/* Download JSON helper */
-document.getElementById('downloadJson').addEventListener('click', ()=>{
-  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(DATA, null, 2));
-  const a = document.createElement('a'); a.href = dataStr; a.download = 'adventure_log_dashboard.json'; a.click();
+/* prevent accidental jump-to-top for href="#" */
+document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
+
+/* download JSON */
+document.getElementById('downloadJson').addEventListener('click',()=>{
+  const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
+  const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
 });
 </script>
 </body>
 </html>
-
-
