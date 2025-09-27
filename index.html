@@ -694,10 +694,10 @@ function renderStats(key){
   const s=DATA.stats[key]||{};
   const rows = [
     ['Sessions', s.sessions||0, 'sessions'],
-    ['Net Gold', Math.round(((s.net_gp||0)*100))/100, 'net_gp'],
-    ['Net DTD',  Math.round(((s.net_dtd||0)*100))/100, 'net_dtd'],
-    ['Level +',  Math.round(((s.level_ups||0)*100))/100, 'level_ups'],
-    ['Permanent Items', s.perm_count||0, 'perm_items'],
+    ['Current Gold', Math.round(((s.net_gp||0)*100))/100, 'net_gp'],
+    ['Downtime Days',  Math.round(((s.net_dtd||0)*100))/100, 'net_dtd'],
+    ['Level',  1 + Math.round(((s.level_ups||0)*100))/100, 'level_ups'],
+    ['Magic Items', s.perm_count||0, 'perm_items'],
     ['Consumables',     s.cons_count||0, 'consumables']
   ];
   rows.forEach(([label,val,keyname])=>{
@@ -805,4 +805,5 @@ document.getElementById('downloadJson').addEventListener('click', ()=>{
 </script>
 </body>
 </html>
+
 
