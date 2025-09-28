@@ -838,19 +838,19 @@ function makeCard(a,idx){
     view.appendChild(makeKVS('DM', makeValue(a.dm,'—')));
   }
 
-  const gpRow=document.createElement('div'); gpRow.className='kv2';
+  const gpRowView=document.createElement('div'); gpRowView.className='kv2';
   const gpEarn=Number(a.gp_plus??0);
-  if(!act || gpEarn!==0){ gpRow.appendChild(makeKVS('Gold earned', String(gpEarn))); }
+  if(!act || gpEarn!==0){ gpRowView.appendChild(makeKVS('Gold earned', String(gpEarn))); }
   const gpSpend=Number(a.gp_minus??0);
-  if(!act || gpSpend!==0){ gpRow.appendChild(makeKVS('Gold spent', String(gpSpend))); }
-  if(gpRow.children.length) view.appendChild(gpRow);
+  if(!act || gpSpend!==0){ gpRowView.appendChild(makeKVS('Gold spent', String(gpSpend))); }
+  if(gpRowView.children.length) view.appendChild(gpRowView);
 
-  const dtRow=document.createElement('div'); dtRow.className='kv2';
-  const dtEarn=Number(a.dtd_plus??0);
-  if(!act || dtEarn!==0){ dtRow.appendChild(makeKVS('Downtime earned', String(dtEarn))); }
-  const dtSpend=Number(a.dtd_minus??0);
-  if(!act || dtSpend!==0){ dtRow.appendChild(makeKVS('Downtime spent', String(dtSpend))); }
-  if(dtRow.children.length) view.appendChild(dtRow);
+  const dtRowView=document.createElement('div'); dtRowView.className='kv2';
+  const dtEarnVal=Number(a.dtd_plus??0);
+  if(!act || dtEarnVal!==0){ dtRowView.appendChild(makeKVS('Downtime earned', String(dtEarnVal))); }
+  const dtSpendVal=Number(a.dtd_minus??0);
+  if(!act || dtSpendVal!==0){ dtRowView.appendChild(makeKVS('Downtime spent', String(dtSpendVal))); }
+  if(dtRowView.children.length) view.appendChild(dtRowView);
 
   const lvlVal=Number(a.level_plus||0);
   if((!act && lvlVal) || (act && lvlVal!==0)){
@@ -901,7 +901,7 @@ function makeCard(a,idx){
   controls.kind=addField('Kind', makeKindSelect());
   controls.traded_item=addField('Item traded away', makeInput('text'));
 
-  const gpRow=document.createElement('div'); gpRow.className='kv2';
+  const gpRowForm=document.createElement('div'); gpRowForm.className='kv2';
   const gpEarnField=document.createElement('div'); gpEarnField.className='kvsingle';
   gpEarnField.innerHTML='<div class="k">Gold earned</div>';
   controls.gp_plus=makeInput('number');
@@ -912,18 +912,18 @@ function makeCard(a,idx){
   controls.gp_minus=makeInput('number');
   const gpSpendWrap=document.createElement('div'); gpSpendWrap.className='v'; gpSpendWrap.appendChild(controls.gp_minus); gpSpendField.appendChild(gpSpendWrap);
 
-  gpRow.appendChild(gpEarnField); gpRow.appendChild(gpSpendField); form.appendChild(gpRow);
+  gpRowForm.appendChild(gpEarnField); gpRowForm.appendChild(gpSpendField); form.appendChild(gpRowForm);
 
-  const dtRow=document.createElement('div'); dtRow.className='kv2';
-  const dtEarn=document.createElement('div'); dtEarn.className='kvsingle';
-  dtEarn.innerHTML='<div class="k">Downtime earned</div>';
+  const dtRowForm=document.createElement('div'); dtRowForm.className='kv2';
+  const dtEarnField=document.createElement('div'); dtEarnField.className='kvsingle';
+  dtEarnField.innerHTML='<div class="k">Downtime earned</div>';
   controls.dtd_plus=makeInput('number');
-  const dtEarnWrap=document.createElement('div'); dtEarnWrap.className='v'; dtEarnWrap.appendChild(controls.dtd_plus); dtEarn.appendChild(dtEarnWrap);
-  const dtSpend=document.createElement('div'); dtSpend.className='kvsingle';
-  dtSpend.innerHTML='<div class="k">Downtime spent</div>';
+  const dtEarnWrap=document.createElement('div'); dtEarnWrap.className='v'; dtEarnWrap.appendChild(controls.dtd_plus); dtEarnField.appendChild(dtEarnWrap);
+  const dtSpendField=document.createElement('div'); dtSpendField.className='kvsingle';
+  dtSpendField.innerHTML='<div class="k">Downtime spent</div>';
   controls.dtd_minus=makeInput('number');
-  const dtSpendWrap=document.createElement('div'); dtSpendWrap.className='v'; dtSpendWrap.appendChild(controls.dtd_minus); dtSpend.appendChild(dtSpendWrap);
-  dtRow.appendChild(dtEarn); dtRow.appendChild(dtSpend); form.appendChild(dtRow);
+  const dtSpendWrap=document.createElement('div'); dtSpendWrap.className='v'; dtSpendWrap.appendChild(controls.dtd_minus); dtSpendField.appendChild(dtSpendWrap);
+  dtRowForm.appendChild(dtEarnField); dtRowForm.appendChild(dtSpendField); form.appendChild(dtRowForm);
 
   controls.level_plus=addField('Levels gained', makeInput('number'));
 
