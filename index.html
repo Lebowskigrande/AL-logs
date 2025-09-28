@@ -59,6 +59,11 @@ h1{margin:0;font-size:18px;font-weight:700}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
 .card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px;cursor:pointer;min-height:96px}
 .card-hd .card-tools{display:flex;align-items:center;gap:6px}
+.card .card-tools .icon-btn{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-4px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.card:hover .card-tools .icon-btn,
+.card.open .card-tools .icon-btn,
+.card.editing .card-tools .icon-btn,
+.card .card-tools .icon-btn:focus-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .card.editing .card-hd{cursor:default}
 .card.editing{border-color:rgba(26,115,232,.35);box-shadow:0 0 0 2px rgba(26,115,232,.08)}
 .titleLine{display:flex;flex-direction:column}
