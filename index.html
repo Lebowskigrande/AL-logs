@@ -179,7 +179,7 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
       <select id="year" class="select"><option value="">All years</option></select>
       <button id="expandAll" class="btn">Expand All</button>
       <button id="collapseAll" class="btn">Collapse All</button>
-      <button id="downloadJson" class="btn primary">Download JSON</button>
+      <button id="downloadJson" class="btn primary save-data-btn" data-base-label="Download data.js" data-requires-dirty="0">Download data.js</button>
     </div>
     <div class="stats" id="stats" style="margin-top:10px;"></div>
   </section>
@@ -245,13 +245,17 @@ const titleEl  = document.getElementById('charTitle');
 const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
 const addCardBtn = document.getElementById('addCard');
+const downloadToolbarBtn = document.getElementById('downloadJson');
 
 let pendingChanges=false;
 
 function updateSaveButtons(){
   document.querySelectorAll('.save-data-btn').forEach(btn=>{
-    btn.disabled=!pendingChanges;
-    btn.textContent=pendingChanges?'Download data.js*':'Download data.js';
+    const baseLabel=btn.dataset.baseLabel || btn.textContent.replace(/\*$/, '');
+    btn.dataset.baseLabel=baseLabel;
+    const needsDirty=btn.dataset.requiresDirty!=='0';
+    btn.disabled=!!(needsDirty && !pendingChanges);
+    btn.textContent=pendingChanges?`${baseLabel}*`:baseLabel;
   });
 }
 
@@ -275,6 +279,15 @@ function downloadData(){
   downloadFile('data.js','application/javascript',payload);
   clearDirty();
 }
+
+if(downloadToolbarBtn){
+  downloadToolbarBtn.addEventListener('click',(ev)=>{
+    ev.preventDefault();
+    downloadData();
+  });
+}
+
+updateSaveButtons();
 
 /* --- character selector (no session counts) --- */
 Object.entries(DATA.characters).forEach(([key,obj])=>{
@@ -878,6 +891,9 @@ function makeCard(a,idx){
   cancelBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); ev.stopPropagation(); exitEditMode(card,true); });
   const saveBtn=document.createElement('button'); saveBtn.type='submit'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
   const downloadBtn=document.createElement('button'); downloadBtn.type='button'; downloadBtn.className='btn small save-data-btn'; downloadBtn.title='Download updated data.js';
+  downloadBtn.dataset.requiresDirty='1';
+  downloadBtn.dataset.baseLabel='Download data.js';
+  downloadBtn.textContent='Download data.js';
   downloadBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); ev.stopPropagation(); if(!pendingChanges) return; downloadData(); });
   actionsRight.appendChild(cancelBtn);
   actionsRight.appendChild(saveBtn);
@@ -1145,11 +1161,6 @@ clearDirty();
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
 
-/* download JSON */
-document.getElementById('downloadJson').addEventListener('click',()=>{
-  const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
-  const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
-});
 if(addCardBtn){
   addCardBtn.addEventListener('click',()=>{
     const key=charSel.value;
