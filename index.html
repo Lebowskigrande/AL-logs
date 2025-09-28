@@ -14,10 +14,11 @@
   --bg:#f6f8fb; --surface:#fff; --ink:#0f172a; --muted:#64748b; --primary:#1a73e8; --border:#e5eaf3;
   --radius:16px; --shadow1:0 2px 10px rgba(16,24,40,.06); --shadow2:0 20px 40px rgba(16,24,40,.12);
   --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --gap:14px; --min-card:320px;
+  --danger:#dc2626;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
-.container{max-width:1200px;margin:28px auto 80px;padding:0 20px}
+.container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
 .header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
@@ -30,7 +31,11 @@ h1{margin:0;font-size:18px;font-weight:700}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
 .btn.primary{background:var(--primary);color:#fff;border-color:transparent}
-.btn.small{padding:6px 10px;font-size:12px;border-radius:10px}
+.btn-icon{display:inline-flex;align-items:center;justify-content:center;margin-right:6px}
+.btn-icon svg{width:14px;height:14px}
+.btn.danger{border:1px solid rgba(220,38,38,.2);background:rgba(254,226,226,1);color:var(--danger);}
+.btn.danger:hover{background:#fecaca;border-color:rgba(220,38,38,.35)}
+.btn.small{padding:6px 10px;font-size:12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
 .search{position:relative}
 .search input{padding-left:36px;outline:none}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
@@ -39,6 +44,8 @@ h1{margin:0;font-size:18px;font-weight:700}
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .icon-btn svg{width:14px;height:14px;pointer-events:none}
 .icon-btn:hover{color:var(--primary);background:#eef4ff;box-shadow:var(--shadow1)}
+.icon-btn.danger{border-color:rgba(220,38,38,.2);background:#fee2e2;color:var(--danger)}
+.icon-btn.danger:hover{color:#991b1b;background:#fecaca;box-shadow:var(--shadow1)}
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover{box-shadow:var(--shadow2)}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
@@ -95,15 +102,52 @@ h1{margin:0;font-size:18px;font-weight:700}
 .scrollbox .item{margin:2px 0}
 .notesbox{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
-.list-editor{display:flex;flex-direction:column;gap:6px}
-.list-editor .list{display:flex;flex-direction:column;gap:6px}
-.list-editor .list-row{display:flex;align-items:center;gap:6px}
-.list-editor .list-row input{flex:1 1 auto;font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
-.list-editor .list-row button{border:1px solid #f87171;background:#fee2e2;color:#991b1b;border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
-.list-editor .list-row button:hover{background:#fecaca}
+.list-editor{display:flex;flex-direction:column;gap:8px}
+.list-editor .list{display:flex;flex-direction:column;gap:8px}
+.list-editor .list-row{display:flex;align-items:center;gap:8px}
+.list-editor .list-row input{flex:1 1 auto;font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;min-width:0}
+.list-editor .list-row button{width:32px;height:32px;border-radius:10px;border:1px solid rgba(220,38,38,.25);background:#fee2e2;color:var(--danger);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.list-editor .list-row button:hover{background:#fecaca;color:#991b1b}
+.list-editor .list-row button svg{width:16px;height:16px}
 .list-editor .add-row{align-self:flex-start;border:1px dashed var(--border);background:#f8fafc;color:var(--primary);border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
 .list-editor .add-row:hover{background:#eef4ff}
-.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.edit-actions .delete-btn{margin-right:auto}
+
+.edit-form form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.edit-form .field{margin:0}
+.edit-form .field.full{grid-column:1 / -1}
+.edit-form .field .v input,.edit-form .field .v select,.edit-form .field .v textarea{width:100%}
+.edit-form input[type=number]{max-width:140px}
+.edit-form .kv2{grid-column:1 / -1;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0}
+.edit-form .kv2 .kvsingle{margin:0}
+.edit-form .kv2 .v{display:flex}
+.edit-form .kv2 .v input{flex:1 1 auto}
+.edit-form .list-editor{grid-column:1 / -1}
+.edit-form .edit-actions{grid-column:1 / -1;margin-top:4px}
+
+#addCard{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(135deg,#ff8a5c,#ff3d71);
+  color:#fff;
+  box-shadow:0 16px 30px rgba(255,61,113,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+  z-index:60;
+}
+#addCard svg{width:28px;height:28px}
+#addCard:hover{transform:translateY(-2px);box-shadow:0 24px 40px rgba(255,61,113,.45)}
+#addCard:focus-visible{outline:3px solid rgba(255,61,113,.4);outline-offset:4px}
+.toolbar #addCard{margin-left:auto}
 
 /* Activity cards (compact header) */
 .card.activity{background:#f7f8fa;border-color:#e6e9f2}
@@ -238,6 +282,7 @@ const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
 const addCardBtn = document.getElementById('addCard');
 const saveDataBtn = document.getElementById('saveData');
+const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
 
 let pendingChanges=false;
 
@@ -687,7 +732,6 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
-    if(a.location){ const loc=pill('Location: '+a.location); loc.classList.add('muted'); chips.appendChild(loc); }
     if(a.kind&&a.kind!=='adventure'){ const kind=pill(a.kind); kind.classList.add('muted'); chips.appendChild(kind); }
     main.appendChild(dateDiv);
     main.appendChild(titleDiv);
@@ -728,8 +772,7 @@ function makeCard(a,idx){
     + (a.level_plus?('<div class="kvsingle"><div class="k">Levels gained</div><div class="v">'+a.level_plus+'</div></div>'):'')
     + '<div class="field mi"><div class="k">Magic Items</div><div class="v"></div></div>'
     + '<div class="field cons"><div class="k">Consumables</div><div class="v"></div></div>'
-    + '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">'+((a.notes||'').trim()||'—')+'</div></div></div>'
-    + '<div class="chips" style="margin-top:8px;">'+(a.season?('<span class="pill">Season: '+a.season+'</span>'):'')+'</div>';
+    + '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">'+((a.notes||'').trim()||'—')+'</div></div></div>';
   view.innerHTML=body;
   const miV=view.querySelector('.mi .v'); const consV=view.querySelector('.cons .v');
   if(miV) miV.appendChild(listBox(a.perm_items));
@@ -756,8 +799,6 @@ function makeCard(a,idx){
   controls.date=addField('Date', makeInput('date'));
   controls.code=addField('Code', makeInput('text'));
   controls.dm=addField('DM', makeInput('text'));
-  controls.location=addField('Location', makeInput('text'));
-  controls.season=addField('Season', makeInput('text'));
   controls.kind=addField('Kind', makeInput('text'));
 
   const gpRow=document.createElement('div'); gpRow.className='kv2';
@@ -792,7 +833,7 @@ function makeCard(a,idx){
     function addRow(val){
       const row=document.createElement('div'); row.className='list-row';
       const input=document.createElement('input'); input.type='text'; input.value=val||'';
-      const btn=document.createElement('button'); btn.type='button'; btn.textContent='Remove';
+      const btn=document.createElement('button'); btn.type='button'; btn.innerHTML=ICON_TRASH; btn.setAttribute('aria-label','Remove item');
       btn.addEventListener('click',()=>row.remove());
       row.appendChild(input); row.appendChild(btn); list.appendChild(row);
     }
@@ -810,11 +851,21 @@ function makeCard(a,idx){
   controls.consumable_items=createListEditor(a.consumable_items||[]);
   addField('Consumables', controls.consumable_items);
   controls.notes=addField('Notes', makeTextarea());
+  if(controls.notes){ controls.notes.rows=4; }
+  const notesField=controls.notes.closest('.field');
+  if(notesField){ notesField.classList.add('full','notes-field'); }
+  const permField=controls.perm_items.closest('.field');
+  if(permField){ permField.classList.add('full'); }
+  const consField=controls.consumable_items.closest('.field');
+  if(consField){ consField.classList.add('full'); }
 
   const actions=document.createElement('div'); actions.className='edit-actions';
+  const deleteBtn=document.createElement('button'); deleteBtn.type='button'; deleteBtn.className='btn small danger delete-btn'; deleteBtn.innerHTML='<span class="btn-icon">'+ICON_TRASH+'</span><span>Delete entry</span>';
+  deleteBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); deleteCard(card); });
   const cancelBtn=document.createElement('button'); cancelBtn.type='button'; cancelBtn.className='btn small'; cancelBtn.textContent='Cancel';
   cancelBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); exitEditMode(card,true); });
   const saveBtn=document.createElement('button'); saveBtn.type='submit'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
+  actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
   form.appendChild(actions);
 
@@ -823,8 +874,6 @@ function makeCard(a,idx){
     controls.date.value=a.date?String(a.date).slice(0,10):'';
     controls.code.value=a.code||'';
     controls.dm.value=a.dm||'';
-    controls.location.value=a.location||'';
-    controls.season.value=a.season||'';
     controls.kind.value=a.kind||'adventure';
     controls.gp_plus.value=a.gp_plus!=null?a.gp_plus:'';
     controls.gp_minus.value=a.gp_minus!=null?a.gp_minus:'';
@@ -842,8 +891,6 @@ function makeCard(a,idx){
       date:controls.date.value||'',
       code:(controls.code.value||'').trim(),
       dm:(controls.dm.value||'').trim(),
-      location:(controls.location.value||'').trim(),
-      season:(controls.season.value||'').trim(),
       kind:(controls.kind.value||'').trim()||'adventure',
       gp_plus:Number(controls.gp_plus.value||0),
       gp_minus:Number(controls.gp_minus.value||0),
@@ -909,8 +956,6 @@ function saveCardChanges(card){
   data.date=updates.date||null;
   data.code=updates.code||'';
   data.dm=updates.dm||null;
-  data.location=updates.location||null;
-  data.season=updates.season||'';
   data.kind=updates.kind||'adventure';
   data.gp_plus=Number.isFinite(updates.gp_plus)?updates.gp_plus:0;
   data.gp_minus=Number.isFinite(updates.gp_minus)?updates.gp_minus:0;
@@ -926,6 +971,20 @@ function saveCardChanges(card){
   markDirty();
   exitEditMode(card);
   applyDataMutation(charSel.value);
+}
+
+function deleteCard(card){
+  if(!card||!card.__dataRef) return;
+  const key=charSel.value;
+  const ch=DATA.characters[key];
+  if(!ch||!Array.isArray(ch.adventures)) return;
+  const idx=ch.adventures.indexOf(card.__dataRef);
+  if(idx===-1) return;
+  const confirmed=window.confirm('Delete this entry?');
+  if(!confirmed) return;
+  ch.adventures.splice(idx,1);
+  markDirty();
+  applyDataMutation(key);
 }
 
 function updateDerivedDataFor(key){
@@ -1047,7 +1106,7 @@ function filterAndRender(){
   const q=(qEl.value||'').toLowerCase(); const yr=yearEl.value;
   const filtered=advs.filter(a=>{
     if(yr){ const y=a.date?(new Date(a.date)).getFullYear():null; if(String(y)!==yr) return false; }
-    const blob=[a.title,a.code,a.notes,a.dm,a.location].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
+    const blob=[a.title,a.code,a.notes,a.dm].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
   });
   grid.innerHTML='';
@@ -1097,8 +1156,6 @@ if(addCardBtn){
       title:'New Adventure',
       code:'',
       dm:'',
-      location:'',
-      season:'',
       gp_plus:0,
       gp_minus:0,
       dtd_plus:0,
