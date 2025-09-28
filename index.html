@@ -272,14 +272,46 @@ function saveActive(k,a){ localStorage.setItem(activeKey(k),JSON.stringify(a||[]
 function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k))||'[]')}catch(_){return[]} }
 function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
 
+function parseConsumableName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
+function consumedKey(k){ return 'CONSUMED__'+k; }
+function loadConsumed(k){ try{ return JSON.parse(localStorage.getItem(consumedKey(k))||'{}'); }catch(_){ return {}; } }
+function saveConsumed(k,obj){ localStorage.setItem(consumedKey(k), JSON.stringify(obj||{})); }
+function buildConsumableInventory(charKey){
+  const ch=DATA.characters[charKey]; if (!ch || !ch.adventures) return new Map();
+  const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
+  const counts=new Map();
+  const add=(n,k=1)=>{ n=n.trim(); if(!n) return; counts.set(n,(counts.get(n)||0)+k); };
+  const sub=(n,k=1)=>{ n=n.trim(); if(!n) return; const cur=(counts.get(n)||0)-k; counts.set(n,Math.max(0,cur)); if(counts.get(n)===0) counts.delete(n); };
+  sorted.forEach(e=>{
+    const items=e.consumable_items||[];
+    const isLoss=(e.kind&&e.kind!=='adventure')?looksLikeLossEntry(e):false;
+    if(isLoss){
+      if(items.length) items.forEach(raw=>sub(raw.replace(/^\(|\)$/g,'')));
+      else if(e.notes){ [...counts.keys()].forEach(name=>{ if(new RegExp('\\b'+name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(e.notes)) sub(name); }); }
+      return;
+    }
+    items.forEach(raw=>{ const {name,acquired}=parseConsumableName(raw); if(acquired) add(name); });
+  });
+  const used=loadConsumed(charKey);
+  Object.entries(used).forEach(([n,c])=>sub(n,c||0));
+  return counts;
+}
+
 /* --- inventory modal UI --- */
 const invModal=document.getElementById('invModal');
 const invTitle=document.getElementById('invTitle');
 const invMeta=document.getElementById('invMeta');
 const invList=document.getElementById('invList');
 const invSummary=document.getElementById('invSummary');
+const consModal=document.getElementById('consModal');
+const consTitle=document.getElementById('consTitle');
+const consMeta=document.getElementById('consMeta');
+const consList=document.getElementById('consList');
+const consSummary=document.getElementById('consSummary');
 document.getElementById('invClose').addEventListener('click',()=>invModal.classList.remove('open'));
+document.getElementById('consClose').addEventListener('click',()=>consModal.classList.remove('open'));
 invModal.addEventListener('click',(e)=>{ if(e.target===invModal) invModal.classList.remove('open'); });
+consModal.addEventListener('click',(e)=>{ if(e.target===consModal) consModal.classList.remove('open'); });
 
 function openInventoryModal(charKey){
   const ch=DATA.characters[charKey];
@@ -363,6 +395,113 @@ function openInventoryModal(charKey){
   invModal.classList.add('open');
 }
 
+function openConsumableModal(charKey){
+  const ch=DATA.characters[charKey];
+  const counts=buildConsumableInventory(charKey);
+  const consumed=loadConsumed(charKey);
+  const names=new Set([...counts.keys(), ...Object.keys(consumed||{})]);
+  const ordered=[...names].sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+
+  consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
+  consMeta.textContent='Use the controls below to track consumable usage (stored locally).';
+  consList.innerHTML='';
+
+  const states=[];
+  function updateSummary(){
+    if(!states.length){
+      consSummary.textContent='No consumables tracked yet.';
+      return;
+    }
+    const remainingTotal=states.reduce((sum,state)=>sum+state.remaining,0);
+    const stocked=states.filter(state=>state.remaining>0).length;
+    const tracked=states.length;
+    const itemLabel=tracked===1?'item':'items';
+    consSummary.textContent=`Remaining uses: ${remainingTotal} • ${stocked}/${tracked} ${itemLabel} with stock`;
+  }
+
+  ordered.forEach(name=>{
+    const remaining=counts.get(name)||0;
+    const used=Math.max(0, consumed[name]||0);
+    const total=remaining+used;
+    if(total<=0) return;
+
+    const state={name,remaining,used,total};
+    states.push(state);
+
+    const row=document.createElement('div');
+    row.className='inv-row';
+
+    const nameDiv=document.createElement('div');
+    nameDiv.className='inv-name';
+    nameDiv.textContent=name;
+
+    const qtyDiv=document.createElement('div');
+    qtyDiv.className='qty';
+
+    const minus=document.createElement('button');
+    minus.type='button';
+    minus.className='qty-btn';
+    minus.textContent='−';
+
+    const pill=document.createElement('span');
+    pill.className='qty-pill';
+
+    const useBtn=document.createElement('button');
+    useBtn.type='button';
+    useBtn.className='qty-btn use';
+    useBtn.textContent='Use';
+
+    function sync(){
+      pill.textContent=state.total?`${state.remaining}/${state.total}`:String(state.remaining);
+      minus.disabled=state.used<=0;
+      useBtn.disabled=state.remaining<=0;
+    }
+
+    minus.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      if(state.used<=0) return;
+      state.used-=1;
+      state.remaining+=1;
+      if(state.used<=0) delete consumed[name];
+      else consumed[name]=state.used;
+      saveConsumed(charKey,consumed);
+      sync();
+      updateSummary();
+    });
+
+    useBtn.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      if(state.remaining<=0) return;
+      state.remaining-=1;
+      state.used+=1;
+      consumed[name]=state.used;
+      saveConsumed(charKey,consumed);
+      sync();
+      updateSummary();
+    });
+
+    qtyDiv.appendChild(minus);
+    qtyDiv.appendChild(pill);
+    qtyDiv.appendChild(useBtn);
+
+    row.appendChild(nameDiv);
+    row.appendChild(qtyDiv);
+
+    consList.appendChild(row);
+    sync();
+  });
+
+  if(!states.length){
+    const empty=document.createElement('div');
+    empty.className='muted';
+    empty.textContent='No consumables tracked yet.';
+    consList.appendChild(empty);
+  }
+
+  updateSummary();
+  consModal.classList.add('open');
+}
+
 /* --- cards --- */
 function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
@@ -418,6 +557,8 @@ function renderStats(key){
   rows.forEach(([label,val,name])=>{ const el=document.createElement('div'); el.className='stat'; el.dataset.key=name; el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>'; statsEl.appendChild(el); });
   const permTile=statsEl.querySelector('[data-key="perm_items"]');
   if(permTile){ permTile.style.cursor='pointer'; permTile.title='Click to view cumulative permanent inventory'; permTile.addEventListener('click',()=>openInventoryModal(charSel.value)); }
+  const consTile=statsEl.querySelector('[data-key="consumables"]');
+  if(consTile){ consTile.style.cursor='pointer'; consTile.title='Click to view consumables summary'; consTile.addEventListener('click',()=>openConsumableModal(charSel.value)); }
 }
 function setHeader(key){
   const obj=DATA.characters[key];
