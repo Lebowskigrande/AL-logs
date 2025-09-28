@@ -52,7 +52,7 @@ h1{margin:0;font-size:18px;font-weight:700}
 
 /* Stats */
 .stats{display:flex;gap:10px;flex-wrap:wrap}
-.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-width:120px}
+.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:12px;min-width:100px;flex:1 1 140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
 .stat .k{font-weight:700;font-size:18px}
 .stat .v{color:var(--muted);font-size:12px}
 
@@ -383,7 +383,6 @@ function getMostRecentCharacter(){
   return latestKey || Object.keys(DATA.characters)[0];
 }
 function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
-function displayKindLabel(kind){ if(!kind||kind==='adventure') return null; if(/downtime/i.test(kind)) return 'Downtime Activity'; return kind; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
 function fmtSigned(n){ if(!n) return '0'; return (n>0?'+':'')+(Math.round(n*100)/100); }
 
@@ -810,8 +809,6 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     if(gp){ const p=pill('GP '+fmtSigned(gp)); p.classList.add('muted'); chips.appendChild(p); }
     if(dtd){ const p=pill('DTD '+fmtSigned(dtd)); p.classList.add('muted'); chips.appendChild(p); }
-    const kindLabel=displayKindLabel(a.kind);
-    if(kindLabel){ const p=pill(kindLabel); p.classList.add('muted'); chips.appendChild(p); }
     main.appendChild(left); main.appendChild(chips);
   }else{
     main.className='titleLine';
@@ -821,8 +818,6 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
-    const kindLabel=displayKindLabel(a.kind);
-    if(kindLabel){ const kind=pill(kindLabel); kind.classList.add('muted'); chips.appendChild(kind); }
     main.appendChild(dateDiv);
     main.appendChild(titleDiv);
     main.appendChild(subtitleDiv);
@@ -1231,7 +1226,16 @@ function refillYears(key){ yearEl.innerHTML='<option value="">All years</option>
 function renderStats(key){
   statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
-  const rows=[['Sessions',s.sessions||0,'sessions'],['Net Gold',Math.round(((s.net_gp||0)*100))/100,'net_gp'],['Net DTD',Math.round(((s.net_dtd||0)*100))/100,'net_dtd'],['Level +',Math.round(((s.level_ups||0)*100))/100,'level_ups'],['Permanent Items',s.perm_count||0,'perm_items'],['Consumables',s.cons_count||0,'consumables']];
+  const levelUps=Number(s.level_ups||0);
+  const currentLevel=(Number.isFinite(levelUps)?Math.round(levelUps):0)+1;
+  const rows=[
+    ['Sessions',s.sessions||0,'sessions'],
+    ['Gold Pieces',Math.round(((s.net_gp||0)*100))/100,'net_gp'],
+    ['Downtime Days',Math.round(((s.net_dtd||0)*100))/100,'net_dtd'],
+    ['Level',currentLevel,'level'],
+    ['Magic Items',s.perm_count||0,'perm_items'],
+    ['Consumables',s.cons_count||0,'consumables']
+  ];
   rows.forEach(([label,val,name])=>{ const el=document.createElement('div'); el.className='stat'; el.dataset.key=name; el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>'; statsEl.appendChild(el); });
   const permTile=statsEl.querySelector('[data-key="perm_items"]');
   if(permTile){ permTile.style.cursor='pointer'; permTile.title='Click to view cumulative permanent inventory'; permTile.addEventListener('click',()=>openInventoryModal(charSel.value)); }
@@ -1243,8 +1247,6 @@ function setHeader(key){
   titleEl.textContent=(obj&&obj.display_name)||(obj&&obj.sheet)||key;
   metaEl.textContent=(obj&&obj.sheet)||'';
   badgesEl.innerHTML='';
-  const count=(obj&&obj.adventures?obj.adventures.length:0);
-  const chip=document.createElement('span'); chip.className='pill'; chip.textContent=count+' session'+(count===1?'':'s'); badgesEl.appendChild(chip);
 }
 
 /* --- masonry --- */
