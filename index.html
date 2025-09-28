@@ -30,9 +30,18 @@ h1{margin:0;font-size:18px;font-weight:700}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
 .btn.primary{background:var(--primary);color:#fff;border-color:transparent}
+.btn.small{padding:6px 10px;font-size:12px;border-radius:10px}
 .search{position:relative}
 .search input{padding-left:36px;outline:none}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
+.toolbar .spacer{flex:1 1 auto}
+
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.icon-btn svg{width:14px;height:14px;pointer-events:none}
+.icon-btn:hover{color:var(--primary);background:#eef4ff;box-shadow:var(--shadow1)}
+.icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.icon-btn.primary:hover{box-shadow:var(--shadow2)}
+.icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
 
 /* Stats */
 .stats{display:flex;gap:10px;flex-wrap:wrap}
@@ -49,6 +58,9 @@ h1{margin:0;font-size:18px;font-weight:700}
 .card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
 .card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px;cursor:pointer;min-height:96px}
+.card-hd .card-tools{display:flex;align-items:center;gap:6px}
+.card.editing .card-hd{cursor:default}
+.card.editing{border-color:rgba(26,115,232,.35);box-shadow:0 0 0 2px rgba(26,115,232,.08)}
 .titleLine{display:flex;flex-direction:column}
 .date{color:var(--muted);line-height:16px}
 .title{font-weight:700;line-height:20px;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
@@ -59,12 +71,17 @@ h1{margin:0;font-size:18px;font-weight:700}
 /* Collapsible */
 .card-bd{height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--ease),opacity var(--card-dur,var(--dur)) linear;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
 .bd-in{padding:12px 0 16px}
+.edit-form{padding:12px 0 16px;display:none}
+.card.editing .edit-form{display:block}
+.card.editing .bd-in{display:none}
 @media (prefers-reduced-motion:reduce){.card-bd{transition:none}}
 
 /* Fields */
 .field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
 .field .k{color:var(--muted);font-size:12px;font-weight:400}
 .field .v{width:100%}
+.field input,.field textarea,.field select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;resize:vertical}
+.field textarea{min-height:80px}
 .kv2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
 .kvsingle{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin:6px 0}
 .kvsingle .k{color:var(--muted);font-size:12px;font-weight:400}
@@ -73,6 +90,15 @@ h1{margin:0;font-size:18px;font-weight:700}
 .scrollbox .item{margin:2px 0}
 .notesbox{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
+.list-editor{display:flex;flex-direction:column;gap:6px}
+.list-editor .list{display:flex;flex-direction:column;gap:6px}
+.list-editor .list-row{display:flex;align-items:center;gap:6px}
+.list-editor .list-row input{flex:1 1 auto;font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.list-editor .list-row button{border:1px solid #f87171;background:#fee2e2;color:#991b1b;border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
+.list-editor .list-row button:hover{background:#fecaca}
+.list-editor .add-row{align-self:flex-start;border:1px dashed var(--border);background:#f8fafc;color:var(--primary);border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
+.list-editor .add-row:hover{background:#eef4ff}
+.edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
 
 /* Activity cards (compact header) */
 .card.activity{background:#f7f8fa;border-color:#e6e9f2}
@@ -94,6 +120,10 @@ h1{margin:0;font-size:18px;font-weight:700}
 .modal-actions{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 .inv-meta{color:var(--muted);font-size:12px}
 .inv-list{display:flex;flex-direction:column;gap:6px}
+.modal-add{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.modal-add input,.modal-add select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.modal-add button{border:1px solid var(--primary);background:rgba(26,115,232,.1);color:var(--primary);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.modal-add button:hover{background:rgba(26,115,232,.2)}
 
 /* Inventory row styles */
 .inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .2s}
@@ -137,6 +167,10 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
       <button id="expandAll" class="btn">Expand All</button>
       <button id="collapseAll" class="btn">Collapse All</button>
       <button id="downloadJson" class="btn primary">Download JSON</button>
+      <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button id="saveData" class="btn primary" disabled>Save data.js</button>
     </div>
     <div class="stats" id="stats" style="margin-top:10px;"></div>
   </section>
@@ -197,6 +231,25 @@ const statsEl  = document.getElementById('stats');
 const titleEl  = document.getElementById('charTitle');
 const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
+const addCardBtn = document.getElementById('addCard');
+const saveDataBtn = document.getElementById('saveData');
+
+let pendingChanges=false;
+
+function markDirty(){
+  pendingChanges=true;
+  if(saveDataBtn){ saveDataBtn.disabled=false; saveDataBtn.textContent='Save data.js*'; }
+}
+function clearDirty(){
+  pendingChanges=false;
+  if(saveDataBtn){ saveDataBtn.disabled=true; saveDataBtn.textContent='Save data.js'; }
+}
+function downloadFile(name,mime,content){
+  const link=document.createElement('a');
+  link.href=`data:${mime};charset=utf-8,`+encodeURIComponent(content);
+  link.download=name;
+  link.click();
+}
 
 /* --- character selector (no session counts) --- */
 Object.entries(DATA.characters).forEach(([key,obj])=>{
@@ -246,23 +299,42 @@ function toggleCard(card){ card.classList.contains('open')?collapseCard(card):ex
 function normItemName(s){ return (s||'').trim(); }
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
 function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
-function buildPermanentInventory(charKey){
-  const ch=DATA.characters[charKey]; if(!ch||!ch.adventures) return [];
-  const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
-  const kept=[];
-  function add(name){ name=normItemName(name); if(!name) return; if(!kept.some(n=>n.toLowerCase()===name.toLowerCase())) kept.push(name); }
-  function remove(name){ name=normItemName(name); const i=kept.findIndex(n=>n.toLowerCase()===name.toLowerCase()); if(i>=0) kept.splice(i,1); }
-  sorted.forEach(e=>{
-    const items=e.perm_items||[];
-    const isLoss=(e.kind&&e.kind!=='adventure')?looksLikeLossEntry(e):false;
+function collectPermanentInventory(charKey){
+  const ch=DATA.characters[charKey]; if(!ch||!ch.adventures) return {kept:[], map:new Map()};
+  const entries=ch.adventures.map((adv,index)=>({adv,index})).sort((a,b)=>new Date(a.adv.date||'1900-01-01')-new Date(b.adv.date||'1900-01-01'));
+  const keptMap=new Map();
+  entries.forEach(({adv,index})=>{
+    const items=adv.perm_items||[];
+    const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
     if(isLoss){
-      if(items.length) items.forEach(raw=>remove(raw.replace(/^\(|\)$/g,'')));
-      else if(e.notes){ kept.slice().forEach(ex=>{ if(new RegExp('\\b'+ex.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(e.notes)) remove(ex); }); }
+      if(items.length){
+        items.forEach(raw=>{
+          const cleaned=normItemName(raw.replace(/^\(|\)$/g,''));
+          if(!cleaned) return;
+          keptMap.delete(cleaned.toLowerCase());
+        });
+      }else if(adv.notes){
+        [...keptMap.values()].forEach(meta=>{
+          const regex=new RegExp('\\b'+meta.name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i');
+          if(regex.test(adv.notes)) keptMap.delete(meta.name.toLowerCase());
+        });
+      }
       return;
     }
-    items.forEach(raw=>{ const {name,acquired}=parseAcquisitionName(raw); if(acquired) add(name); });
+    items.forEach(raw=>{
+      const {name,acquired}=parseAcquisitionName(raw);
+      const cleaned=normItemName(name);
+      if(!cleaned) return;
+      const key=cleaned.toLowerCase();
+      if(!acquired){
+        keptMap.delete(key);
+        return;
+      }
+      keptMap.set(key,{name:cleaned,index,adv});
+    });
   });
-  return kept;
+  const kept=[...keptMap.values()].sort((a,b)=>a.name.localeCompare(b.name));
+  return {kept,map:keptMap};
 }
 function currentLevelFor(charKey){
   const ch=DATA.characters[charKey]; const lvl=1+Math.floor((ch.adventures||[]).reduce((s,a)=>s+(+a.level_plus||0),0)); return Math.max(1,lvl);
@@ -320,9 +392,10 @@ function openInventoryModal(charKey){
   const ch=DATA.characters[charKey];
   const level=currentLevelFor(charKey);
   const cap=activeSlotsFor(level);
-  const kept=buildPermanentInventory(charKey);
-  let active=loadActive(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-  let attuned=loadAttuned(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
+  const {kept:keptMeta}=collectPermanentInventory(charKey);
+  const keptNames=keptMeta.map(item=>item.name);
+  let active=loadActive(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
+  let attuned=loadAttuned(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
   if(active.length>cap) active=active.slice(0,cap);
   if(attuned.length>3) attuned=attuned.slice(0,3);
 
@@ -331,35 +404,76 @@ function openInventoryModal(charKey){
 
   const activeSet=new Set(active.map(a=>a.toLowerCase()));
   const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
-  const rest=kept.filter(n=>!activeSet.has(n.toLowerCase())).sort((a,b)=>a.localeCompare(b));
-  const ordered=active.concat(rest);
+  const metaByName=new Map(keptMeta.map(item=>[item.name.toLowerCase(),item]));
+  const rest=keptMeta.filter(item=>!activeSet.has(item.name.toLowerCase())).sort((a,b)=>a.name.localeCompare(b.name));
+  const ordered=active.map(name=>metaByName.get(name.toLowerCase())).filter(Boolean).concat(rest);
 
   invList.innerHTML='';
-  ordered.forEach(name=>{
-    const isActive=activeSet.has(name.toLowerCase());
+  const addWrap=document.createElement('div');
+  addWrap.className='modal-add';
+  const adventureSelect=document.createElement('select');
+  ch.adventures.forEach((adv,index)=>{
+    const opt=document.createElement('option');
+    const when=fmtDate(adv.date);
+    opt.value=String(index);
+    opt.textContent=`${when} — ${sanitizeTitle(adv.title||'Adventure')}`;
+    adventureSelect.appendChild(opt);
+  });
+  const addInput=document.createElement('input');
+  addInput.placeholder='Magic item name';
+  const addBtn=document.createElement('button');
+  addBtn.type='button';
+  addBtn.textContent='Add item';
+  addBtn.addEventListener('click',()=>{
+    const advIndex=parseInt(adventureSelect.value,10);
+    const target=ch.adventures[advIndex];
+    const name=normItemName(addInput.value);
+    if(!target||!name) return;
+    target.perm_items=Array.isArray(target.perm_items)?target.perm_items.slice():[];
+    target.perm_items.push(name);
+    addInput.value='';
+    markDirty();
+    applyDataMutation(charKey);
+    openInventoryModal(charKey);
+  });
+  addWrap.appendChild(adventureSelect);
+  addWrap.appendChild(addInput);
+  addWrap.appendChild(addBtn);
+  if(!ch.adventures.length){
+    adventureSelect.disabled=true;
+    addInput.disabled=true;
+    addBtn.disabled=true;
+    addBtn.textContent='Add an adventure first';
+  }
+  invList.appendChild(addWrap);
+
+  ordered.forEach(item=>{
+    const label=item&&item.name?item.name:String(item||'');
+    const lower=label.toLowerCase();
+    const isActive=activeSet.has(lower);
     const row=document.createElement('div');
     row.className='inv-row'+(isActive?' active':'');
-    row.dataset.name=name;
+    row.dataset.name=label;
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
-    nameDiv.textContent=name;
+    nameDiv.textContent=label;
 
     const rightDiv=document.createElement('div');
     if(isActive){
       const pill=document.createElement('span');
-      pill.className='attune-pill'+(attunedSet.has(name.toLowerCase())?' on':'');
-      pill.textContent=attunedSet.has(name.toLowerCase())?'Attuned':'Attune';
+      pill.className='attune-pill'+(attunedSet.has(lower)?' on':'');
+      pill.textContent=attunedSet.has(lower)?'Attuned':'Attune';
       pill.title='Toggle attunement (max 3)';
       pill.addEventListener('click',(ev)=>{
         ev.stopPropagation();
-        let cur=loadAttuned(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-        const on=attunedSet.has(name.toLowerCase());
+        let cur=loadAttuned(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
+        const on=attunedSet.has(lower);
         if(!on){
           if(cur.length>=3){ alert('You can only be attuned to 3 items at a time.'); return; }
-          cur.push(name);
+          cur.push(label);
         }else{
-          cur=cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
+          cur=cur.filter(n=>n.toLowerCase()!==lower);
         }
         saveAttuned(charKey,cur);
         openInventoryModal(charKey);
@@ -370,17 +484,15 @@ function openInventoryModal(charKey){
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
 
-    // clicking row toggles active and re-renders (moves to top)
     row.addEventListener('click',()=>{
-      let cur=loadActive(charKey).filter(n=>kept.some(k=>k.toLowerCase()===n.toLowerCase()));
-      const on=cur.some(n=>n.toLowerCase()===name.toLowerCase());
+      let cur=loadActive(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
+      const on=cur.some(n=>n.toLowerCase()===lower);
       if(!on){
         if(cur.length>=cap){ alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`); return; }
-        cur.push(name);
+        cur.push(label);
       }else{
-        // remove from active AND clear attunement if present
-        cur=cur.filter(n=>n.toLowerCase()!==name.toLowerCase());
-        saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==name.toLowerCase()));
+        cur=cur.filter(n=>n.toLowerCase()!==lower);
+        saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lower));
       }
       saveActive(charKey,cur);
       openInventoryModal(charKey);
@@ -392,7 +504,7 @@ function openInventoryModal(charKey){
   function updateSummary(){
     const aCount=loadActive(charKey).length;
     const tCount=loadAttuned(charKey).length;
-    invSummary.textContent=`Kept: ${kept.length} • Active: ${aCount}/${cap} • Attuned: ${tCount}/3`;
+    invSummary.textContent=`Kept: ${keptMeta.length} • Active: ${aCount}/${cap} • Attuned: ${tCount}/3`;
   }
   updateSummary();
   invModal.classList.add('open');
@@ -408,6 +520,45 @@ function openConsumableModal(charKey){
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
   consMeta.textContent='Use the controls below to track consumable usage (stored locally).';
   consList.innerHTML='';
+
+  const addWrap=document.createElement('div');
+  addWrap.className='modal-add';
+  const advSelect=document.createElement('select');
+  ch.adventures.forEach((adv,index)=>{
+    const opt=document.createElement('option');
+    const when=fmtDate(adv.date);
+    opt.value=String(index);
+    opt.textContent=`${when} — ${sanitizeTitle(adv.title||'Adventure')}`;
+    advSelect.appendChild(opt);
+  });
+  const addInput=document.createElement('input'); addInput.placeholder='Consumable name';
+  const qtyInput=document.createElement('input'); qtyInput.type='number'; qtyInput.min='1'; qtyInput.value='1'; qtyInput.style.width='80px';
+  const addBtn=document.createElement('button'); addBtn.type='button'; addBtn.textContent='Add consumable';
+  addBtn.addEventListener('click',()=>{
+    const advIndex=parseInt(advSelect.value,10);
+    const target=ch.adventures[advIndex];
+    const name=normItemName(addInput.value);
+    let qty=Math.max(1,parseInt(qtyInput.value,10)||1);
+    if(!target||!name) return;
+    target.consumable_items=Array.isArray(target.consumable_items)?target.consumable_items.slice():[];
+    while(qty-->0){ target.consumable_items.push(name); }
+    addInput.value=''; qtyInput.value='1';
+    markDirty();
+    applyDataMutation(charKey);
+    openConsumableModal(charKey);
+  });
+  addWrap.appendChild(advSelect);
+  addWrap.appendChild(addInput);
+  addWrap.appendChild(qtyInput);
+  addWrap.appendChild(addBtn);
+  if(!ch.adventures.length){
+    advSelect.disabled=true;
+    addInput.disabled=true;
+    qtyInput.disabled=true;
+    addBtn.disabled=true;
+    addBtn.textContent='Add an adventure first';
+  }
+  consList.appendChild(addWrap);
 
   const states=[];
   function updateSummary(){
@@ -509,29 +660,60 @@ function openConsumableModal(charKey){
 function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
   const card=document.createElement('article'); card.className='card'+(act?' activity':''); card.dataset.idx=String(idx);
+  card.__dataRef=a;
+
   const hd=document.createElement('div'); hd.className='card-hd';
+  const main=document.createElement('div');
   if(act){
-    hd.innerHTML = '<div class="activity-line"><div class="activity-left">'
-      + '<span class="activity-date">'+fmtDate(a.date)+'</span>'
-      + '<span class="activity-name">'+sanitizeTitle(a.title||'Activity')+'</span>'
-      + '</div><div class="chips"></div></div>';
-    const chips=hd.querySelector('.chips');
+    main.className='activity-line';
+    const left=document.createElement('div'); left.className='activity-left';
+    const dateSpan=document.createElement('span'); dateSpan.className='activity-date'; dateSpan.textContent=fmtDate(a.date);
+    const nameSpan=document.createElement('span'); nameSpan.className='activity-name'; nameSpan.textContent=sanitizeTitle(a.title||'Activity');
+    left.appendChild(dateSpan); left.appendChild(nameSpan);
+    const chips=document.createElement('div'); chips.className='chips';
     if(gp){ const p=pill('GP '+fmtSigned(gp)); p.classList.add('muted'); chips.appendChild(p); }
     if(dtd){ const p=pill('DTD '+fmtSigned(dtd)); p.classList.add('muted'); chips.appendChild(p); }
+    main.appendChild(left); main.appendChild(chips);
   }else{
-    hd.innerHTML = '<div class="titleLine">'
-      + '<div class="date">'+fmtDate(a.date)+'</div>'
-      + '<div class="title">'+sanitizeTitle(a.title||'Untitled Adventure')+'</div>'
-      + '<div class="subtitle">'+(a.code?a.code:'')+'</div>'
-      + '<div class="chips"></div></div>';
-    const chips=hd.querySelector('.chips');
+    main.className='titleLine';
+    const dateDiv=document.createElement('div'); dateDiv.className='date'; dateDiv.textContent=fmtDate(a.date);
+    const titleDiv=document.createElement('div'); titleDiv.className='title'; titleDiv.textContent=sanitizeTitle(a.title||'Untitled Adventure');
+    const subtitleDiv=document.createElement('div'); subtitleDiv.className='subtitle'; subtitleDiv.textContent=a.code||'';
+    const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
+    if(a.location){ const loc=pill('Location: '+a.location); loc.classList.add('muted'); chips.appendChild(loc); }
+    if(a.kind&&a.kind!=='adventure'){ const kind=pill(a.kind); kind.classList.add('muted'); chips.appendChild(kind); }
+    main.appendChild(dateDiv);
+    main.appendChild(titleDiv);
+    main.appendChild(subtitleDiv);
+    main.appendChild(chips);
   }
-  hd.addEventListener('click',()=>toggleCard(card));
+  hd.appendChild(main);
+
+  const tools=document.createElement('div'); tools.className='card-tools';
+  const editBtn=document.createElement('button');
+  editBtn.type='button';
+  editBtn.className='icon-btn';
+  editBtn.setAttribute('aria-label','Toggle edit mode');
+  editBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.1 5.1 5 12.2V19h6.8l7.1-7.1-6.8-6.8Z"/><path d="M3 21h18"/></svg>';
+  editBtn.title='Edit entry';
+  editBtn.addEventListener('click',(ev)=>{
+    ev.stopPropagation();
+    if(card.classList.contains('editing')){
+      exitEditMode(card);
+    }else{
+      enterEditMode(card);
+    }
+  });
+  tools.appendChild(editBtn);
+  hd.appendChild(tools);
+
+  hd.addEventListener('click',(ev)=>{ if(card.classList.contains('editing')) return; toggleCard(card); });
 
   const bd=document.createElement('div'); bd.className='card-bd';
-  let body='<div class="bd-in">';
+  const view=document.createElement('div'); view.className='bd-in';
+  let body='';
   if(!act){ body+='<div class="kvsingle"><div class="k">DM</div><div class="v">'+(a.dm||'—')+'</div></div>'; }
   body+=
     '<div class="kv2"><div class="kvsingle"><div class="k">Gold earned</div><div class="v">'+(a.gp_plus??0)+'</div></div>'
@@ -542,13 +724,247 @@ function makeCard(a,idx){
     + '<div class="field mi"><div class="k">Magic Items</div><div class="v"></div></div>'
     + '<div class="field cons"><div class="k">Consumables</div><div class="v"></div></div>'
     + '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">'+((a.notes||'').trim()||'—')+'</div></div></div>'
-    + '<div class="chips" style="margin-top:8px;">'+(a.season?('<span class="pill">Season: '+a.season+'</span>'):'')+'</div></div>';
-  bd.innerHTML=body;
-  const miV=bd.querySelector('.mi .v'); const consV=bd.querySelector('.cons .v');
+    + '<div class="chips" style="margin-top:8px;">'+(a.season?('<span class="pill">Season: '+a.season+'</span>'):'')+'</div>';
+  view.innerHTML=body;
+  const miV=view.querySelector('.mi .v'); const consV=view.querySelector('.cons .v');
   if(miV) miV.appendChild(listBox(a.perm_items));
   if(consV) consV.appendChild(listBox(a.consumable_items));
-  card.appendChild(hd); card.appendChild(bd);
+
+  const formWrap=document.createElement('div'); formWrap.className='edit-form';
+  const form=document.createElement('form');
+  form.addEventListener('submit',(ev)=>{ ev.preventDefault(); saveCardChanges(card); });
+  formWrap.appendChild(form);
+
+  const controls={};
+  function addField(label, element){
+    const field=document.createElement('div'); field.className='field';
+    const k=document.createElement('div'); k.className='k'; k.textContent=label;
+    const v=document.createElement('div'); v.className='v'; v.appendChild(element);
+    field.appendChild(k); field.appendChild(v);
+    form.appendChild(field);
+    return element;
+  }
+  function makeInput(type){ const input=document.createElement('input'); input.type=type; if(type==='number'){ input.step='any'; } return input; }
+  function makeTextarea(){ const t=document.createElement('textarea'); return t; }
+
+  controls.title=addField('Title', makeInput('text'));
+  controls.date=addField('Date', makeInput('date'));
+  controls.code=addField('Code', makeInput('text'));
+  controls.dm=addField('DM', makeInput('text'));
+  controls.location=addField('Location', makeInput('text'));
+  controls.season=addField('Season', makeInput('text'));
+  controls.kind=addField('Kind', makeInput('text'));
+
+  const gpRow=document.createElement('div'); gpRow.className='kv2';
+  const gpEarnField=document.createElement('div'); gpEarnField.className='kvsingle';
+  gpEarnField.innerHTML='<div class="k">Gold earned</div>';
+  controls.gp_plus=makeInput('number');
+  const gpEarnWrap=document.createElement('div'); gpEarnWrap.className='v'; gpEarnWrap.appendChild(controls.gp_plus); gpEarnField.appendChild(gpEarnWrap);
+
+  const gpSpendField=document.createElement('div'); gpSpendField.className='kvsingle';
+  gpSpendField.innerHTML='<div class="k">Gold spent</div>';
+  controls.gp_minus=makeInput('number');
+  const gpSpendWrap=document.createElement('div'); gpSpendWrap.className='v'; gpSpendWrap.appendChild(controls.gp_minus); gpSpendField.appendChild(gpSpendWrap);
+
+  gpRow.appendChild(gpEarnField); gpRow.appendChild(gpSpendField); form.appendChild(gpRow);
+
+  const dtRow=document.createElement('div'); dtRow.className='kv2';
+  const dtEarn=document.createElement('div'); dtEarn.className='kvsingle';
+  dtEarn.innerHTML='<div class="k">Downtime earned</div>';
+  controls.dtd_plus=makeInput('number');
+  const dtEarnWrap=document.createElement('div'); dtEarnWrap.className='v'; dtEarnWrap.appendChild(controls.dtd_plus); dtEarn.appendChild(dtEarnWrap);
+  const dtSpend=document.createElement('div'); dtSpend.className='kvsingle';
+  dtSpend.innerHTML='<div class="k">Downtime spent</div>';
+  controls.dtd_minus=makeInput('number');
+  const dtSpendWrap=document.createElement('div'); dtSpendWrap.className='v'; dtSpendWrap.appendChild(controls.dtd_minus); dtSpend.appendChild(dtSpendWrap);
+  dtRow.appendChild(dtEarn); dtRow.appendChild(dtSpend); form.appendChild(dtRow);
+
+  controls.level_plus=addField('Levels gained', makeInput('number'));
+
+  function createListEditor(items){
+    const wrap=document.createElement('div'); wrap.className='list-editor';
+    const list=document.createElement('div'); list.className='list'; wrap.appendChild(list);
+    function addRow(val){
+      const row=document.createElement('div'); row.className='list-row';
+      const input=document.createElement('input'); input.type='text'; input.value=val||'';
+      const btn=document.createElement('button'); btn.type='button'; btn.textContent='Remove';
+      btn.addEventListener('click',()=>row.remove());
+      row.appendChild(input); row.appendChild(btn); list.appendChild(row);
+    }
+    (items||[]).forEach(item=>addRow(item));
+    const addBtn=document.createElement('button'); addBtn.type='button'; addBtn.className='add-row'; addBtn.textContent='Add item';
+    addBtn.addEventListener('click',()=>addRow(''));
+    wrap.appendChild(addBtn);
+    wrap.getValues=()=>Array.from(list.querySelectorAll('input')).map(el=>el.value.trim()).filter(Boolean);
+    wrap.setValues=(vals)=>{ list.innerHTML=''; (vals||[]).forEach(item=>addRow(item)); };
+    return wrap;
+  }
+
+  controls.perm_items=createListEditor(a.perm_items||[]);
+  addField('Magic items', controls.perm_items);
+  controls.consumable_items=createListEditor(a.consumable_items||[]);
+  addField('Consumables', controls.consumable_items);
+  controls.notes=addField('Notes', makeTextarea());
+
+  const actions=document.createElement('div'); actions.className='edit-actions';
+  const cancelBtn=document.createElement('button'); cancelBtn.type='button'; cancelBtn.className='btn small'; cancelBtn.textContent='Cancel';
+  cancelBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); exitEditMode(card,true); });
+  const saveBtn=document.createElement('button'); saveBtn.type='submit'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
+  actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
+  form.appendChild(actions);
+
+  function populate(){
+    controls.title.value=a.title||'';
+    controls.date.value=a.date?String(a.date).slice(0,10):'';
+    controls.code.value=a.code||'';
+    controls.dm.value=a.dm||'';
+    controls.location.value=a.location||'';
+    controls.season.value=a.season||'';
+    controls.kind.value=a.kind||'adventure';
+    controls.gp_plus.value=a.gp_plus!=null?a.gp_plus:'';
+    controls.gp_minus.value=a.gp_minus!=null?a.gp_minus:'';
+    controls.dtd_plus.value=a.dtd_plus!=null?a.dtd_plus:'';
+    controls.dtd_minus.value=a.dtd_minus!=null?a.dtd_minus:'';
+    controls.level_plus.value=a.level_plus!=null?a.level_plus:'';
+    controls.perm_items.setValues(a.perm_items||[]);
+    controls.consumable_items.setValues(a.consumable_items||[]);
+    controls.notes.value=a.notes||'';
+  }
+
+  function collect(){
+    return {
+      title:(controls.title.value||'').trim(),
+      date:controls.date.value||'',
+      code:(controls.code.value||'').trim(),
+      dm:(controls.dm.value||'').trim(),
+      location:(controls.location.value||'').trim(),
+      season:(controls.season.value||'').trim(),
+      kind:(controls.kind.value||'').trim()||'adventure',
+      gp_plus:Number(controls.gp_plus.value||0),
+      gp_minus:Number(controls.gp_minus.value||0),
+      dtd_plus:Number(controls.dtd_plus.value||0),
+      dtd_minus:Number(controls.dtd_minus.value||0),
+      level_plus:Number(controls.level_plus.value||0),
+      perm_items:controls.perm_items.getValues(),
+      consumable_items:controls.consumable_items.getValues(),
+      notes:controls.notes.value||''
+    };
+  }
+
+  formWrap.populate=populate;
+  formWrap.collect=collect;
+
+  bd.appendChild(view);
+  bd.appendChild(formWrap);
+  card.appendChild(hd);
+  card.appendChild(bd);
+
+  card.__edit={button:editBtn, form:formWrap, populate, collect};
+
+  if(a && a.__openEdit){
+    delete a.__openEdit;
+    requestAnimationFrame(()=>enterEditMode(card));
+  }
+
   return card;
+}
+
+function enterEditMode(card){
+  if(!card||!card.__edit) return;
+  card.__edit.populate();
+  card.classList.add('editing');
+  card.classList.add('open');
+  const bd=card.querySelector('.card-bd');
+  if(bd){
+    bd.style.height='auto';
+    bd.style.opacity='1';
+  }
+  if(card.__edit.button){
+    card.__edit.button.setAttribute('aria-pressed','true');
+    card.__edit.button.title='Exit edit mode';
+  }
+}
+
+function exitEditMode(card,reset){
+  if(!card||!card.__edit) return;
+  if(reset){ card.__edit.populate(); }
+  card.classList.remove('editing');
+  if(card.__edit.button){
+    card.__edit.button.setAttribute('aria-pressed','false');
+    card.__edit.button.title='Edit entry';
+  }
+}
+
+function saveCardChanges(card){
+  if(!card||!card.__edit) return;
+  const data=card.__dataRef;
+  if(!data) return;
+  const updates=card.__edit.collect();
+  data.title=updates.title||null;
+  data.date=updates.date||null;
+  data.code=updates.code||'';
+  data.dm=updates.dm||null;
+  data.location=updates.location||null;
+  data.season=updates.season||'';
+  data.kind=updates.kind||'adventure';
+  data.gp_plus=Number.isFinite(updates.gp_plus)?updates.gp_plus:0;
+  data.gp_minus=Number.isFinite(updates.gp_minus)?updates.gp_minus:0;
+  data.gp_net=data.gp_plus-data.gp_minus;
+  data.dtd_plus=Number.isFinite(updates.dtd_plus)?updates.dtd_plus:0;
+  data.dtd_minus=Number.isFinite(updates.dtd_minus)?updates.dtd_minus:0;
+  data.dtd_net=data.dtd_plus-data.dtd_minus;
+  data.level_plus=Number.isFinite(updates.level_plus)?updates.level_plus:0;
+  data.perm_items=[...updates.perm_items];
+  data.consumable_items=[...updates.consumable_items];
+  const trimmedNotes=(updates.notes||'').trim();
+  data.notes=trimmedNotes||'';
+  markDirty();
+  exitEditMode(card);
+  applyDataMutation(charSel.value);
+}
+
+function updateDerivedDataFor(key){
+  const ch=DATA.characters[key];
+  if(!ch) return;
+  const advs=ch.adventures||[];
+  const years=new Set();
+  let sessions=0, netGP=0, netDTD=0, levelUps=0;
+  advs.forEach(entry=>{
+    if(entry.date){
+      const year=new Date(entry.date).getFullYear();
+      if(!Number.isNaN(year)) years.add(year);
+    }
+    const {gp,dtd}=netVals(entry);
+    netGP+=gp;
+    netDTD+=dtd;
+    levelUps+=Number(entry.level_plus||0);
+    if(!isActivityEntry(entry)) sessions++;
+  });
+  DATA.years[key]=Array.from(years).sort((a,b)=>a-b);
+  const perm=collectPermanentInventory(key);
+  const cons=buildConsumableInventory(key);
+  DATA.stats[key]={
+    sessions,
+    net_gp:netGP,
+    net_dtd:netDTD,
+    level_ups:levelUps,
+    perm_count:(perm.kept||[]).length,
+    cons_count:cons.size||0
+  };
+}
+
+function refreshYearOptions(key){
+  const prev=yearEl.value;
+  refillYears(key);
+  if(prev && Array.from(yearEl.options).some(opt=>opt.value===prev)){
+    yearEl.value=prev;
+  }
+}
+
+function applyDataMutation(key){
+  updateDerivedDataFor(key);
+  refreshYearOptions(key);
+  filterAndRender();
 }
 
 /* --- stats & header --- */
@@ -648,6 +1064,7 @@ window.addEventListener('resize',()=>{
 
 /* --- init --- */
 const firstKey=getMostRecentCharacter(); charSel.value=firstKey; refillYears(firstKey); filterAndRender();
+clearDirty();
 
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
@@ -657,6 +1074,42 @@ document.getElementById('downloadJson').addEventListener('click',()=>{
   const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
   const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
 });
+if(saveDataBtn){
+  saveDataBtn.addEventListener('click',()=>{
+    const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
+    downloadFile('data.js','application/javascript',payload);
+    clearDirty();
+  });
+}
+if(addCardBtn){
+  addCardBtn.addEventListener('click',()=>{
+    const key=charSel.value;
+    const ch=DATA.characters[key];
+    if(!ch) return;
+    const today=new Date().toISOString().slice(0,10);
+    const template={
+      date:today,
+      title:'New Adventure',
+      code:'',
+      dm:'',
+      location:'',
+      season:'',
+      gp_plus:0,
+      gp_minus:0,
+      dtd_plus:0,
+      dtd_minus:0,
+      level_plus:0,
+      perm_items:[],
+      consumable_items:[],
+      notes:'',
+      kind:'adventure',
+      __openEdit:true
+    };
+    ch.adventures=Array.isArray(ch.adventures)?[template,...ch.adventures]:[template];
+    markDirty();
+    applyDataMutation(key);
+  });
+}
 </script>
 </body>
 </html>
