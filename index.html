@@ -198,6 +198,7 @@ body.modal-open #addCard{display:none;}
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:6px;white-space:nowrap}
 .qty-pill{display:inline-block;min-width:28px;padding:2px 8px;text-align:center;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-size:11px;color:#475569}
+.qty-input{width:64px;padding:4px 8px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:12px;text-align:center;background:#fff}
 .qty-btn{border:1px solid #dbe4f3;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;cursor:pointer;min-width:28px;display:inline-flex;align-items:center;justify-content:center}
 .qty-btn.plus{background:#1a73e8;color:#fff;border-color:#1a73e8}
 
@@ -272,6 +273,7 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
       <div id="consList" class="inv-list"></div>
     </div>
     <div class="modal-actions">
+      <button class="btn primary" id="consSave" style="display:none;">Save data.js</button>
       <button class="btn" id="consClose">Close</button>
     </div>
   </div>
@@ -449,10 +451,7 @@ function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k)
 function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
 
 function parseConsumableName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
-function consumedKey(k){ return 'CONSUMED__'+k; }
-function loadConsumed(k){ try{ return JSON.parse(localStorage.getItem(consumedKey(k))||'{}'); }catch(_){ return {}; } }
-function saveConsumed(k,obj){ localStorage.setItem(consumedKey(k), JSON.stringify(obj||{})); }
-function buildConsumableInventory(charKey){
+function deriveConsumableInventory(charKey){
   const ch=DATA.characters[charKey]; if (!ch || !ch.adventures) return new Map();
   const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
   const counts=new Map();
@@ -468,9 +467,20 @@ function buildConsumableInventory(charKey){
     }
     items.forEach(raw=>{ const {name,acquired}=parseConsumableName(raw); if(acquired) add(name); });
   });
-  const used=loadConsumed(charKey);
-  Object.entries(used).forEach(([n,c])=>sub(n,c||0));
   return counts;
+}
+function buildConsumableInventory(charKey){
+  const base=deriveConsumableInventory(charKey);
+  const ch=DATA.characters[charKey];
+  const manual=(ch&&typeof ch.consumables==='object'&&ch.consumables)?ch.consumables:null;
+  if(manual){
+    Object.entries(manual).forEach(([name,val])=>{
+      const num=Math.max(0,Number(val)||0);
+      if(num>0) base.set(name,num);
+      else base.delete(name);
+    });
+  }
+  return base;
 }
 
 /* --- inventory modal UI --- */
@@ -484,10 +494,17 @@ const consTitle=document.getElementById('consTitle');
 const consMeta=document.getElementById('consMeta');
 const consList=document.getElementById('consList');
 const consSummary=document.getElementById('consSummary');
+const consSaveBtn=document.getElementById('consSave');
+let currentConsumableContext=null;
 document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
-document.getElementById('consClose').addEventListener('click',()=>{ consModal.classList.remove('open'); refreshModalState(); });
+function closeConsumableModal(){
+  consModal.classList.remove('open');
+  refreshModalState();
+  currentConsumableContext=null;
+}
+document.getElementById('consClose').addEventListener('click',closeConsumableModal);
 invModal.addEventListener('click',(e)=>{ if(e.target===invModal){ invModal.classList.remove('open','editing'); refreshModalState(); } });
-consModal.addEventListener('click',(e)=>{ if(e.target===consModal){ consModal.classList.remove('open'); refreshModalState(); } });
+consModal.addEventListener('click',(e)=>{ if(e.target===consModal) closeConsumableModal(); });
 
 function openInventoryModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
@@ -638,39 +655,36 @@ function openInventoryModal(charKey, opts={}){
 
 function openConsumableModal(charKey){
   const ch=DATA.characters[charKey];
+  const baseCounts=deriveConsumableInventory(charKey);
+  const manual=(ch&&typeof ch.consumables==='object'&&ch.consumables)?ch.consumables:{};
   const counts=buildConsumableInventory(charKey);
-  const consumed=loadConsumed(charKey);
-  const names=new Set([...counts.keys(), ...Object.keys(consumed||{})]);
+  const names=new Set([...counts.keys(), ...baseCounts.keys(), ...Object.keys(manual)]);
   const ordered=[...names].sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
 
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
-  consMeta.textContent='Use the controls below to track consumable usage (stored locally).';
+  consMeta.textContent='';
+  consSummary.textContent='';
   consList.innerHTML='';
+  if(consSaveBtn){ consSaveBtn.style.display='none'; }
 
   const states=[];
-  function updateSummary(){
-    if(!states.length){
-      consSummary.textContent='No consumables tracked yet.';
-      return;
-    }
-    const remainingTotal=states.reduce((sum,state)=>sum+state.remaining,0);
-    const stocked=states.filter(state=>state.remaining>0).length;
-    const tracked=states.length;
-    const itemLabel=tracked===1?'item':'items';
-    consSummary.textContent=`Remaining uses: ${remainingTotal} • ${stocked}/${tracked} ${itemLabel} with stock`;
-  }
+  const updateSaveVisibility=()=>{
+    const dirty=states.some(state=>state.value!==state.initial);
+    if(consSaveBtn){ consSaveBtn.style.display=dirty?'inline-flex':'none'; }
+    if(dirty){ consSummary.textContent=''; }
+  };
 
   ordered.forEach(name=>{
-    const remaining=counts.get(name)||0;
-    const used=Math.max(0, consumed[name]||0);
-    const total=remaining+used;
-    if(total<=0) return;
+    const value=counts.get(name)||0;
+    const base=baseCounts.get(name)||0;
+    if(value<=0 && base<=0) return;
 
-    const state={name,remaining,used,total};
+    const state={name,value,initial:value,base};
     states.push(state);
 
     const row=document.createElement('div');
     row.className='inv-row';
+    row.style.cursor='default';
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
@@ -684,52 +698,58 @@ function openConsumableModal(charKey){
     minus.className='qty-btn';
     minus.textContent='−';
 
-    const pill=document.createElement('span');
-    pill.className='qty-pill';
+    const input=document.createElement('input');
+    input.type='number';
+    input.min='0';
+    input.step='1';
+    input.inputMode='numeric';
+    input.className='qty-input';
+    input.value=String(state.value);
 
     const plus=document.createElement('button');
     plus.type='button';
     plus.className='qty-btn plus';
     plus.textContent='+';
 
-    function sync(){
-      pill.textContent=String(state.remaining);
-      minus.disabled=state.remaining<=0;
-      plus.disabled=state.used<=0;
-    }
+    const sync=()=>{
+      input.value=String(state.value);
+      minus.disabled=state.value<=0;
+    };
+    const adjust=(delta)=>{
+      state.value=Math.max(0,state.value+delta);
+      sync();
+      updateSaveVisibility();
+    };
 
     minus.addEventListener('click',(ev)=>{
       ev.stopPropagation();
-      if(state.remaining<=0) return;
-      state.remaining-=1;
-      state.used+=1;
-      consumed[name]=state.used;
-      saveConsumed(charKey,consumed);
-      sync();
-      updateSummary();
+      adjust(-1);
     });
-
     plus.addEventListener('click',(ev)=>{
       ev.stopPropagation();
-      if(state.used<=0) return;
-      state.used-=1;
-      state.remaining+=1;
-      if(state.used<=0) delete consumed[name];
-      else consumed[name]=state.used;
-      saveConsumed(charKey,consumed);
-      sync();
-      updateSummary();
+      adjust(1);
     });
 
+    const handleInput=()=>{
+      let next=parseInt(input.value,10);
+      if(Number.isNaN(next)) next=0;
+      if(next<0) next=0;
+      state.value=next;
+      sync();
+      updateSaveVisibility();
+    };
+    input.addEventListener('change',handleInput);
+    input.addEventListener('input',handleInput);
+
+    sync();
     qtyDiv.appendChild(minus);
-    qtyDiv.appendChild(pill);
+    qtyDiv.appendChild(input);
     qtyDiv.appendChild(plus);
 
     row.appendChild(nameDiv);
     row.appendChild(qtyDiv);
 
     consList.appendChild(row);
-    sync();
   });
 
   if(!states.length){
@@ -739,9 +759,38 @@ function openConsumableModal(charKey){
     consList.appendChild(empty);
   }
 
-  updateSummary();
+  currentConsumableContext={charKey,states,updateSaveVisibility};
+  updateSaveVisibility();
   consModal.classList.add('open');
   refreshModalState();
+}
+
+if(consSaveBtn){
+  consSaveBtn.addEventListener('click',()=>{
+    if(!currentConsumableContext) return;
+    const {charKey,states,updateSaveVisibility}=currentConsumableContext;
+    const ch=DATA.characters[charKey];
+    if(!ch) return;
+    const next={};
+    states.forEach(state=>{
+      const raw=Number(state.value);
+      const count=Number.isFinite(raw)?Math.max(0,Math.round(raw)):0;
+      if(count>0){
+        if(count!==state.base) next[state.name]=count;
+      }else if(state.base>0){
+        next[state.name]=0;
+      }
+    });
+    if(Object.keys(next).length) ch.consumables=next;
+    else delete ch.consumables;
+    applyDataMutation(charKey);
+    states.forEach(state=>{ state.initial=state.value; });
+    if(typeof updateSaveVisibility==='function') updateSaveVisibility();
+    consSummary.textContent='Consumable counts saved to data.js.';
+    if(consSaveBtn) consSaveBtn.style.display='none';
+    const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
+    downloadFile('data.js','application/javascript',payload);
+  });
 }
 
 /* --- cards --- */
