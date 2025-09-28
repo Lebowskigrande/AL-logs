@@ -126,6 +126,9 @@ h1{margin:0;font-size:18px;font-weight:700}
 .edit-form .list-editor{grid-column:1 / -1}
 .edit-form .edit-actions{grid-column:1 / -1;margin-top:4px}
 
+body.modal-open{overflow:hidden;}
+body.modal-open #addCard{display:none;}
+
 #addCard{
   position:fixed;
   bottom:24px;
@@ -180,6 +183,13 @@ h1{margin:0;font-size:18px;font-weight:700}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{background:#e8f0ff;font-weight:600}
 .inv-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inv-tools{display:flex;align-items:center;gap:6px}
+.inv-row .delete-btn{display:none;margin-left:8px}
+.modal.editing .inv-row{cursor:default}
+.modal.editing .inv-row .delete-btn{display:inline-flex}
+.modal.editing .inv-row .attune-pill{pointer-events:none;opacity:.6}
+.modal.editing .inv-row .qty-btn{pointer-events:none;opacity:.6}
+.modal.editing .inv-row .qty-pill{opacity:.6}
 
 /* Attunement pill (perm modal, active rows only) */
 .attune-pill{display:inline-block;border:1px solid #cfe0ff;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;user-select:none;cursor:pointer;transition:background .2s,color .2s}
@@ -188,11 +198,17 @@ h1{margin:0;font-size:18px;font-weight:700}
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:6px;white-space:nowrap}
 .qty-pill{display:inline-block;min-width:28px;padding:2px 8px;text-align:center;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-size:11px;color:#475569}
-.qty-btn{border:1px solid #dbe4f3;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;cursor:pointer}
-.qty-btn.use{background:#1a73e8;color:#fff;border-color:#1a73e8}
+.qty-btn{border:1px solid #dbe4f3;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;cursor:pointer;min-width:28px;display:inline-flex;align-items:center;justify-content:center}
+.qty-btn.plus{background:#1a73e8;color:#fff;border-color:#1a73e8}
 
 /* Reduce scroll anchoring jumps */
 html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
+
+/* New entry overlay */
+.card-overlay{position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;background:rgba(15,23,42,.4);backdrop-filter:blur(2px);z-index:70;padding:48px 16px;overflow:auto}
+.card-overlay.open{display:flex}
+.card-overlay .card{max-width:720px;width:100%;box-shadow:var(--shadow2);margin:0 auto}
+.card-overlay .card .card-tools{display:none}
 </style>
 </head>
 <body>
@@ -261,6 +277,8 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
   </div>
 </div>
 
+<div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-hidden="true"></div>
+
 <script src="data.js"></script>
 <script>
 /* --- data boot --- */
@@ -282,9 +300,41 @@ const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
 const addCardBtn = document.getElementById('addCard');
 const saveDataBtn = document.getElementById('saveData');
+const cardOverlay=document.getElementById('cardOverlay');
+let overlayCard=null;
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
 
 let pendingChanges=false;
+
+function anyModalOpen(){
+  return (invModal && invModal.classList.contains('open'))
+    || (consModal && consModal.classList.contains('open'))
+    || (cardOverlay && cardOverlay.classList.contains('open'));
+}
+
+function refreshModalState(){
+  if(anyModalOpen()){ document.body.classList.add('modal-open'); }
+  else{ document.body.classList.remove('modal-open'); }
+}
+
+function openCardOverlay(card){
+  if(!cardOverlay || !card) return;
+  cardOverlay.innerHTML='';
+  cardOverlay.appendChild(card);
+  cardOverlay.classList.add('open');
+  cardOverlay.setAttribute('aria-hidden','false');
+  overlayCard=card;
+  refreshModalState();
+}
+
+function closeCardOverlay(){
+  if(!cardOverlay) return;
+  cardOverlay.classList.remove('open');
+  cardOverlay.setAttribute('aria-hidden','true');
+  overlayCard=null;
+  cardOverlay.innerHTML='';
+  refreshModalState();
+}
 
 function markDirty(){
   pendingChanges=true;
@@ -331,6 +381,7 @@ function getMostRecentCharacter(){
   return latestKey || Object.keys(DATA.characters)[0];
 }
 function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
+function displayKindLabel(kind){ if(!kind||kind==='adventure') return null; if(/downtime/i.test(kind)) return 'Downtime Activity'; return kind; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
 function fmtSigned(n){ if(!n) return '0'; return (n>0?'+':'')+(Math.round(n*100)/100); }
 
@@ -433,12 +484,12 @@ const consTitle=document.getElementById('consTitle');
 const consMeta=document.getElementById('consMeta');
 const consList=document.getElementById('consList');
 const consSummary=document.getElementById('consSummary');
-document.getElementById('invClose').addEventListener('click',()=>invModal.classList.remove('open'));
-document.getElementById('consClose').addEventListener('click',()=>consModal.classList.remove('open'));
-invModal.addEventListener('click',(e)=>{ if(e.target===invModal) invModal.classList.remove('open'); });
-consModal.addEventListener('click',(e)=>{ if(e.target===consModal) consModal.classList.remove('open'); });
+document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
+document.getElementById('consClose').addEventListener('click',()=>{ consModal.classList.remove('open'); refreshModalState(); });
+invModal.addEventListener('click',(e)=>{ if(e.target===invModal){ invModal.classList.remove('open','editing'); refreshModalState(); } });
+consModal.addEventListener('click',(e)=>{ if(e.target===consModal){ consModal.classList.remove('open'); refreshModalState(); } });
 
-function openInventoryModal(charKey){
+function openInventoryModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
   const level=currentLevelFor(charKey);
   const cap=activeSlotsFor(level);
@@ -459,43 +510,34 @@ function openInventoryModal(charKey){
   const ordered=active.map(name=>metaByName.get(name.toLowerCase())).filter(Boolean).concat(rest);
 
   invList.innerHTML='';
-  const addWrap=document.createElement('div');
-  addWrap.className='modal-add';
-  const adventureSelect=document.createElement('select');
-  ch.adventures.forEach((adv,index)=>{
-    const opt=document.createElement('option');
-    const when=fmtDate(adv.date);
-    opt.value=String(index);
-    opt.textContent=`${when} — ${sanitizeTitle(adv.title||'Adventure')}`;
-    adventureSelect.appendChild(opt);
-  });
-  const addInput=document.createElement('input');
-  addInput.placeholder='Magic item name';
-  const addBtn=document.createElement('button');
-  addBtn.type='button';
-  addBtn.textContent='Add item';
-  addBtn.addEventListener('click',()=>{
-    const advIndex=parseInt(adventureSelect.value,10);
-    const target=ch.adventures[advIndex];
-    const name=normItemName(addInput.value);
-    if(!target||!name) return;
-    target.perm_items=Array.isArray(target.perm_items)?target.perm_items.slice():[];
-    target.perm_items.push(name);
-    addInput.value='';
-    markDirty();
-    applyDataMutation(charKey);
-    openInventoryModal(charKey);
-  });
-  addWrap.appendChild(adventureSelect);
-  addWrap.appendChild(addInput);
-  addWrap.appendChild(addBtn);
-  if(!ch.adventures.length){
-    adventureSelect.disabled=true;
-    addInput.disabled=true;
-    addBtn.disabled=true;
-    addBtn.textContent='Add an adventure first';
+  const actions=invModal.querySelector('.modal-actions');
+  let editToggle=actions?actions.querySelector('.edit-toggle'):null;
+  if(actions && !editToggle){
+    editToggle=document.createElement('button');
+    editToggle.type='button';
+    editToggle.className='btn small edit-toggle';
+    editToggle.textContent='Edit items';
+    editToggle.setAttribute('aria-pressed','false');
+    editToggle.style.marginRight='auto';
+    actions.insertBefore(editToggle, actions.firstChild);
   }
-  invList.appendChild(addWrap);
+  let editing=!!(opts && opts.editing);
+  if(!ordered.length){ editing=false; }
+  function syncEditing(){
+    const activeEditing=editing && ordered.length>0;
+    invModal.classList.toggle('editing', activeEditing);
+    if(editToggle){
+      editToggle.textContent=activeEditing?'Done':'Edit items';
+      editToggle.setAttribute('aria-pressed', activeEditing?'true':'false');
+    }
+  }
+  if(editToggle){
+    editToggle.onclick=()=>{
+      if(!ordered.length) return;
+      openInventoryModal(charKey,{editing:!editing});
+    };
+    editToggle.style.display=ordered.length?'':'none';
+  }
 
   ordered.forEach(item=>{
     const label=item&&item.name?item.name:String(item||'');
@@ -510,12 +552,14 @@ function openInventoryModal(charKey){
     nameDiv.textContent=label;
 
     const rightDiv=document.createElement('div');
+    rightDiv.className='inv-tools';
     if(isActive){
       const pill=document.createElement('span');
       pill.className='attune-pill'+(attunedSet.has(lower)?' on':'');
       pill.textContent=attunedSet.has(lower)?'Attuned':'Attune';
       pill.title='Toggle attunement (max 3)';
       pill.addEventListener('click',(ev)=>{
+        if(editing) return;
         ev.stopPropagation();
         let cur=loadAttuned(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
         const on=attunedSet.has(lower);
@@ -526,15 +570,44 @@ function openInventoryModal(charKey){
           cur=cur.filter(n=>n.toLowerCase()!==lower);
         }
         saveAttuned(charKey,cur);
-        openInventoryModal(charKey);
+        openInventoryModal(charKey,{editing});
       });
       rightDiv.appendChild(pill);
     }
+
+    const deleteBtn=document.createElement('button');
+    deleteBtn.type='button';
+    deleteBtn.className='icon-btn danger delete-btn';
+    deleteBtn.innerHTML=ICON_TRASH;
+    deleteBtn.setAttribute('aria-label',`Remove ${label}`);
+    deleteBtn.title='Remove this item';
+    deleteBtn.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
+      const adv=item&&item.adv;
+      if(adv){
+        const lowerName=lower;
+        const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
+        adv.perm_items=source.filter(raw=>{
+          const parsed=parseAcquisitionName(raw);
+          const cleaned=normItemName(parsed.name).toLowerCase();
+          return cleaned!==lowerName;
+        });
+      }
+      const lc=lower;
+      saveActive(charKey, loadActive(charKey).filter(n=>n.toLowerCase()!==lc));
+      saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lc));
+      markDirty();
+      applyDataMutation(charKey);
+      openInventoryModal(charKey,{editing:true});
+    });
+    rightDiv.appendChild(deleteBtn);
 
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
 
     row.addEventListener('click',()=>{
+      if(editing) return;
       let cur=loadActive(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
       const on=cur.some(n=>n.toLowerCase()===lower);
       if(!on){
@@ -545,11 +618,13 @@ function openInventoryModal(charKey){
         saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lower));
       }
       saveActive(charKey,cur);
-      openInventoryModal(charKey);
+      openInventoryModal(charKey,{editing});
     });
 
     invList.appendChild(row);
   });
+
+  syncEditing();
 
   function updateSummary(){
     const aCount=loadActive(charKey).length;
@@ -558,6 +633,7 @@ function openInventoryModal(charKey){
   }
   updateSummary();
   invModal.classList.add('open');
+  refreshModalState();
 }
 
 function openConsumableModal(charKey){
@@ -570,45 +646,6 @@ function openConsumableModal(charKey){
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
   consMeta.textContent='Use the controls below to track consumable usage (stored locally).';
   consList.innerHTML='';
-
-  const addWrap=document.createElement('div');
-  addWrap.className='modal-add';
-  const advSelect=document.createElement('select');
-  ch.adventures.forEach((adv,index)=>{
-    const opt=document.createElement('option');
-    const when=fmtDate(adv.date);
-    opt.value=String(index);
-    opt.textContent=`${when} — ${sanitizeTitle(adv.title||'Adventure')}`;
-    advSelect.appendChild(opt);
-  });
-  const addInput=document.createElement('input'); addInput.placeholder='Consumable name';
-  const qtyInput=document.createElement('input'); qtyInput.type='number'; qtyInput.min='1'; qtyInput.value='1'; qtyInput.style.width='80px';
-  const addBtn=document.createElement('button'); addBtn.type='button'; addBtn.textContent='Add consumable';
-  addBtn.addEventListener('click',()=>{
-    const advIndex=parseInt(advSelect.value,10);
-    const target=ch.adventures[advIndex];
-    const name=normItemName(addInput.value);
-    let qty=Math.max(1,parseInt(qtyInput.value,10)||1);
-    if(!target||!name) return;
-    target.consumable_items=Array.isArray(target.consumable_items)?target.consumable_items.slice():[];
-    while(qty-->0){ target.consumable_items.push(name); }
-    addInput.value=''; qtyInput.value='1';
-    markDirty();
-    applyDataMutation(charKey);
-    openConsumableModal(charKey);
-  });
-  addWrap.appendChild(advSelect);
-  addWrap.appendChild(addInput);
-  addWrap.appendChild(qtyInput);
-  addWrap.appendChild(addBtn);
-  if(!ch.adventures.length){
-    advSelect.disabled=true;
-    addInput.disabled=true;
-    qtyInput.disabled=true;
-    addBtn.disabled=true;
-    addBtn.textContent='Add an adventure first';
-  }
-  consList.appendChild(addWrap);
 
   const states=[];
   function updateSummary(){
@@ -650,18 +687,29 @@ function openConsumableModal(charKey){
     const pill=document.createElement('span');
     pill.className='qty-pill';
 
-    const useBtn=document.createElement('button');
-    useBtn.type='button';
-    useBtn.className='qty-btn use';
-    useBtn.textContent='Use';
+    const plus=document.createElement('button');
+    plus.type='button';
+    plus.className='qty-btn plus';
+    plus.textContent='+';
 
     function sync(){
-      pill.textContent=state.total?`${state.remaining}/${state.total}`:String(state.remaining);
-      minus.disabled=state.used<=0;
-      useBtn.disabled=state.remaining<=0;
+      pill.textContent=String(state.remaining);
+      minus.disabled=state.remaining<=0;
+      plus.disabled=state.used<=0;
     }
 
     minus.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      if(state.remaining<=0) return;
+      state.remaining-=1;
+      state.used+=1;
+      consumed[name]=state.used;
+      saveConsumed(charKey,consumed);
+      sync();
+      updateSummary();
+    });
+
+    plus.addEventListener('click',(ev)=>{
       ev.stopPropagation();
       if(state.used<=0) return;
       state.used-=1;
@@ -673,20 +721,9 @@ function openConsumableModal(charKey){
       updateSummary();
     });
 
-    useBtn.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      if(state.remaining<=0) return;
-      state.remaining-=1;
-      state.used+=1;
-      consumed[name]=state.used;
-      saveConsumed(charKey,consumed);
-      sync();
-      updateSummary();
-    });
-
     qtyDiv.appendChild(minus);
     qtyDiv.appendChild(pill);
-    qtyDiv.appendChild(useBtn);
+    qtyDiv.appendChild(plus);
 
     row.appendChild(nameDiv);
     row.appendChild(qtyDiv);
@@ -704,6 +741,7 @@ function openConsumableModal(charKey){
 
   updateSummary();
   consModal.classList.add('open');
+  refreshModalState();
 }
 
 /* --- cards --- */
@@ -723,6 +761,8 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     if(gp){ const p=pill('GP '+fmtSigned(gp)); p.classList.add('muted'); chips.appendChild(p); }
     if(dtd){ const p=pill('DTD '+fmtSigned(dtd)); p.classList.add('muted'); chips.appendChild(p); }
+    const kindLabel=displayKindLabel(a.kind);
+    if(kindLabel){ const p=pill(kindLabel); p.classList.add('muted'); chips.appendChild(p); }
     main.appendChild(left); main.appendChild(chips);
   }else{
     main.className='titleLine';
@@ -732,7 +772,8 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
-    if(a.kind&&a.kind!=='adventure'){ const kind=pill(a.kind); kind.classList.add('muted'); chips.appendChild(kind); }
+    const kindLabel=displayKindLabel(a.kind);
+    if(kindLabel){ const kind=pill(kindLabel); kind.classList.add('muted'); chips.appendChild(kind); }
     main.appendChild(dateDiv);
     main.appendChild(titleDiv);
     main.appendChild(subtitleDiv);
@@ -762,21 +803,70 @@ function makeCard(a,idx){
 
   const bd=document.createElement('div'); bd.className='card-bd';
   const view=document.createElement('div'); view.className='bd-in';
-  let body='';
-  if(!act){ body+='<div class="kvsingle"><div class="k">DM</div><div class="v">'+(a.dm||'—')+'</div></div>'; }
-  body+=
-    '<div class="kv2"><div class="kvsingle"><div class="k">Gold earned</div><div class="v">'+(a.gp_plus??0)+'</div></div>'
-    + '<div class="kvsingle"><div class="k">Gold spent</div><div class="v">'+(a.gp_minus??0)+'</div></div></div>'
-    + '<div class="kv2"><div class="kvsingle"><div class="k">Downtime earned</div><div class="v">'+(a.dtd_plus??0)+'</div></div>'
-    + '<div class="kvsingle"><div class="k">Downtime spent</div><div class="v">'+(a.dtd_minus??0)+'</div></div></div>'
-    + (a.level_plus?('<div class="kvsingle"><div class="k">Levels gained</div><div class="v">'+a.level_plus+'</div></div>'):'')
-    + '<div class="field mi"><div class="k">Magic Items</div><div class="v"></div></div>'
-    + '<div class="field cons"><div class="k">Consumables</div><div class="v"></div></div>'
-    + '<div class="field"><div class="k">Notes</div><div class="v"><div class="notesbox">'+((a.notes||'').trim()||'—')+'</div></div></div>';
-  view.innerHTML=body;
-  const miV=view.querySelector('.mi .v'); const consV=view.querySelector('.cons .v');
-  if(miV) miV.appendChild(listBox(a.perm_items));
-  if(consV) consV.appendChild(listBox(a.consumable_items));
+  view.innerHTML='';
+
+  function makeValue(val, empty='—'){
+    if(val==null) return empty;
+    const text=String(val).trim();
+    return text?text:empty;
+  }
+
+  function makeKVS(label,value){
+    const cell=document.createElement('div');
+    cell.className='kvsingle';
+    const k=document.createElement('div'); k.className='k'; k.textContent=label;
+    const v=document.createElement('div'); v.className='v'; v.textContent=value;
+    cell.appendChild(k); cell.appendChild(v);
+    return cell;
+  }
+
+  function appendField(label, content, extraClass){
+    const field=document.createElement('div');
+    field.className='field'+(extraClass?(' '+extraClass):'');
+    const k=document.createElement('div'); k.className='k'; k.textContent=label;
+    const v=document.createElement('div'); v.className='v';
+    if(content instanceof Node){ v.appendChild(content); }
+    else{ v.textContent=makeValue(content); }
+    field.appendChild(k); field.appendChild(v);
+    view.appendChild(field);
+    return field;
+  }
+
+  if(!act){
+    view.appendChild(makeKVS('DM', makeValue(a.dm,'—')));
+  }else if(a.dm){
+    view.appendChild(makeKVS('DM', makeValue(a.dm,'—')));
+  }
+
+  const gpRow=document.createElement('div'); gpRow.className='kv2';
+  const gpEarn=Number(a.gp_plus??0);
+  if(!act || gpEarn!==0){ gpRow.appendChild(makeKVS('Gold earned', String(gpEarn))); }
+  const gpSpend=Number(a.gp_minus??0);
+  if(!act || gpSpend!==0){ gpRow.appendChild(makeKVS('Gold spent', String(gpSpend))); }
+  if(gpRow.children.length) view.appendChild(gpRow);
+
+  const dtRow=document.createElement('div'); dtRow.className='kv2';
+  const dtEarn=Number(a.dtd_plus??0);
+  if(!act || dtEarn!==0){ dtRow.appendChild(makeKVS('Downtime earned', String(dtEarn))); }
+  const dtSpend=Number(a.dtd_minus??0);
+  if(!act || dtSpend!==0){ dtRow.appendChild(makeKVS('Downtime spent', String(dtSpend))); }
+  if(dtRow.children.length) view.appendChild(dtRow);
+
+  const lvlVal=Number(a.level_plus||0);
+  if((!act && lvlVal) || (act && lvlVal!==0)){
+    view.appendChild(makeKVS('Levels gained', String(lvlVal)));
+  }
+
+  if(act && a.traded_item){
+    appendField('Item traded away', makeValue(a.traded_item,'—'));
+  }
+
+  appendField('Magic Items', listBox(a.perm_items),'mi');
+  appendField('Consumables', listBox(a.consumable_items),'cons');
+  const notesBox=document.createElement('div');
+  notesBox.className='notesbox';
+  notesBox.textContent=makeValue((a.notes||'').trim(),'—');
+  appendField('Notes', notesBox);
 
   const formWrap=document.createElement('div'); formWrap.className='edit-form';
   const form=document.createElement('form');
@@ -799,7 +889,17 @@ function makeCard(a,idx){
   controls.date=addField('Date', makeInput('date'));
   controls.code=addField('Code', makeInput('text'));
   controls.dm=addField('DM', makeInput('text'));
-  controls.kind=addField('Kind', makeInput('text'));
+  function makeKindSelect(){
+    const select=document.createElement('select');
+    const options=[
+      {value:'adventure',label:'Adventure'},
+      {value:'Downtime Activity',label:'Downtime Activity'}
+    ];
+    options.forEach(opt=>{ const o=document.createElement('option'); o.value=opt.value; o.textContent=opt.label; select.appendChild(o); });
+    return select;
+  }
+  controls.kind=addField('Kind', makeKindSelect());
+  controls.traded_item=addField('Item traded away', makeInput('text'));
 
   const gpRow=document.createElement('div'); gpRow.className='kv2';
   const gpEarnField=document.createElement('div'); gpEarnField.className='kvsingle';
@@ -826,6 +926,14 @@ function makeCard(a,idx){
   dtRow.appendChild(dtEarn); dtRow.appendChild(dtSpend); form.appendChild(dtRow);
 
   controls.level_plus=addField('Levels gained', makeInput('number'));
+
+  const tradeField=controls.traded_item.closest('.field');
+  function syncKindVisibility(){
+    const isActivity=controls.kind.value!=='adventure';
+    if(tradeField){ tradeField.style.display=isActivity?'':'none'; }
+  }
+  controls.kind.addEventListener('change', syncKindVisibility);
+  syncKindVisibility();
 
   function createListEditor(items){
     const wrap=document.createElement('div'); wrap.className='list-editor';
@@ -863,7 +971,14 @@ function makeCard(a,idx){
   const deleteBtn=document.createElement('button'); deleteBtn.type='button'; deleteBtn.className='btn small danger delete-btn'; deleteBtn.innerHTML='<span class="btn-icon">'+ICON_TRASH+'</span><span>Delete entry</span>';
   deleteBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); deleteCard(card); });
   const cancelBtn=document.createElement('button'); cancelBtn.type='button'; cancelBtn.className='btn small'; cancelBtn.textContent='Cancel';
-  cancelBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); exitEditMode(card,true); });
+  cancelBtn.addEventListener('click',(ev)=>{
+    ev.preventDefault();
+    if(card.__dataRef && card.__dataRef.__isNew){
+      closeCardOverlay();
+      return;
+    }
+    exitEditMode(card,true);
+  });
   const saveBtn=document.createElement('button'); saveBtn.type='submit'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
   actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
@@ -874,7 +989,11 @@ function makeCard(a,idx){
     controls.date.value=a.date?String(a.date).slice(0,10):'';
     controls.code.value=a.code||'';
     controls.dm.value=a.dm||'';
-    controls.kind.value=a.kind||'adventure';
+    const kindRaw=(a.kind||'').toString();
+    const kindVal=kindRaw && kindRaw.toLowerCase()!=='adventure'?'Downtime Activity':'adventure';
+    controls.kind.value=kindVal;
+    controls.traded_item.value=a.traded_item||'';
+    syncKindVisibility();
     controls.gp_plus.value=a.gp_plus!=null?a.gp_plus:'';
     controls.gp_minus.value=a.gp_minus!=null?a.gp_minus:'';
     controls.dtd_plus.value=a.dtd_plus!=null?a.dtd_plus:'';
@@ -886,12 +1005,15 @@ function makeCard(a,idx){
   }
 
   function collect(){
+    const selectedKind=(controls.kind.value||'').trim();
+    const normalizedKind=selectedKind==='Downtime Activity'?'Downtime Activity':'adventure';
+    const isActivity=normalizedKind!=='adventure';
     return {
       title:(controls.title.value||'').trim(),
       date:controls.date.value||'',
       code:(controls.code.value||'').trim(),
       dm:(controls.dm.value||'').trim(),
-      kind:(controls.kind.value||'').trim()||'adventure',
+      kind:normalizedKind,
       gp_plus:Number(controls.gp_plus.value||0),
       gp_minus:Number(controls.gp_minus.value||0),
       dtd_plus:Number(controls.dtd_plus.value||0),
@@ -899,7 +1021,8 @@ function makeCard(a,idx){
       level_plus:Number(controls.level_plus.value||0),
       perm_items:controls.perm_items.getValues(),
       consumable_items:controls.consumable_items.getValues(),
-      notes:controls.notes.value||''
+      notes:controls.notes.value||'',
+      traded_item:isActivity?(controls.traded_item.value||'').trim():''
     };
   }
 
@@ -968,13 +1091,36 @@ function saveCardChanges(card){
   data.consumable_items=[...updates.consumable_items];
   const trimmedNotes=(updates.notes||'').trim();
   data.notes=trimmedNotes||'';
+  data.traded_item=data.kind!=='adventure'?(updates.traded_item||''):'';
+  const keyOverride=data.__charKey||null;
+  const wasNew=!!data.__isNew;
+  const targetKey=keyOverride||charSel.value;
+  if(wasNew){
+    const targetChar=DATA.characters[targetKey];
+    if(targetChar){
+      targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
+      targetChar.adventures.unshift(data);
+    }
+    delete data.__isNew;
+    delete data.__charKey;
+  }
   markDirty();
   exitEditMode(card);
+  if(wasNew){
+    closeCardOverlay();
+    applyDataMutation(targetKey);
+    return;
+  }
   applyDataMutation(charSel.value);
 }
 
 function deleteCard(card){
   if(!card||!card.__dataRef) return;
+  if(card.__dataRef.__isNew){
+    const confirmed=window.confirm('Discard this new entry?');
+    if(confirmed) closeCardOverlay();
+    return;
+  }
   const key=charSel.value;
   const ch=DATA.characters[key];
   if(!ch||!Array.isArray(ch.adventures)) return;
@@ -1106,7 +1252,7 @@ function filterAndRender(){
   const q=(qEl.value||'').toLowerCase(); const yr=yearEl.value;
   const filtered=advs.filter(a=>{
     if(yr){ const y=a.date?(new Date(a.date)).getFullYear():null; if(String(y)!==yr) return false; }
-    const blob=[a.title,a.code,a.notes,a.dm].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
+    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
   });
   grid.innerHTML='';
@@ -1165,11 +1311,14 @@ if(addCardBtn){
       consumable_items:[],
       notes:'',
       kind:'adventure',
-      __openEdit:true
+      traded_item:'',
+      __openEdit:true,
+      __isNew:true,
+      __charKey:key
     };
-    ch.adventures=Array.isArray(ch.adventures)?[template,...ch.adventures]:[template];
-    markDirty();
-    applyDataMutation(key);
+    const card=makeCard(template,-1);
+    card.classList.add('overlay-card');
+    openCardOverlay(card);
   });
 }
 </script>
