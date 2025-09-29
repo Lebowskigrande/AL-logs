@@ -692,7 +692,7 @@ async function saveDataJs(options={}){
     clearDirty();
     setSaveResult('success');
     try{
-      await refreshDataJsCache();
+      await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800 });
     }catch(err){
       console.warn('Unable to refresh data.js cache after save', err);
     }
@@ -779,15 +779,59 @@ function applyDataJs(text){
   filterAndRender();
 }
 
-async function refreshDataJsCache(){
-  const version=String(Date.now());
-  const response=await fetch(buildDataUrl(version),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
-  if(!response.ok){
-    throw new Error('HTTP '+response.status);
+function extractDataPayload(text){
+  if(typeof text!=='string') return null;
+  const match=text.match(/window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
+  return match && match[1]?match[1]:null;
+}
+
+function parseDataPayload(text){
+  const payload=extractDataPayload(text);
+  if(!payload) return null;
+  try{
+    return JSON.parse(payload);
+  }catch(err){
+    return null;
   }
-  const text=await response.text();
-  applyDataJs(text);
-  setDataVersion(version);
+}
+
+function dataPayloadsMatch(a,b){
+  const parsedA=parseDataPayload(a);
+  const parsedB=parseDataPayload(b);
+  if(parsedA && parsedB){
+    return JSON.stringify(parsedA)===JSON.stringify(parsedB);
+  }
+  if(typeof a==='string' && typeof b==='string'){
+    return a.trim()===b.trim();
+  }
+  return false;
+}
+
+function wait(ms){
+  return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500 }={}){
+  let attempt=0;
+  while(attempt<=retries){
+    const version=String(Date.now());
+    const response=await fetch(buildDataUrl(version),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+    if(!response.ok){
+      throw new Error('HTTP '+response.status);
+    }
+    const text=await response.text();
+    if(!expectedDataJs || dataPayloadsMatch(text, expectedDataJs)){
+      applyDataJs(text);
+      setDataVersion(version);
+      return true;
+    }
+    if(attempt===retries){
+      console.warn('Latest data.js did not match newly saved content; skipping cache refresh to avoid overwriting edits.');
+      return false;
+    }
+    attempt+=1;
+    await wait(retryDelay);
+  }
 }
 
 /* --- character selector (no session counts) --- */
