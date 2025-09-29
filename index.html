@@ -1233,10 +1233,10 @@ function renderStats(key){
   const levelUps=Number(s.level_ups||0);
   const currentLevel=(Number.isFinite(levelUps)?Math.round(levelUps):0)+1;
   const rows=[
-    ['Sessions',s.sessions||0,'sessions'],
+    ['Level',currentLevel,'level'],
     ['Gold Pieces',Math.round(((s.net_gp||0)*100))/100,'net_gp'],
     ['Downtime Days',Math.round(((s.net_dtd||0)*100))/100,'net_dtd'],
-    ['Level',currentLevel,'level'],
+    ['Sessions',s.sessions||0,'sessions'],
     ['Magic Items',s.perm_count||0,'perm_items'],
     ['Consumables',s.cons_count||0,'consumables']
   ];
