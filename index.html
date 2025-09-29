@@ -19,7 +19,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
 .container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
-.header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1);padding-right:76px}
+.header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
@@ -60,7 +60,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover{box-shadow:var(--shadow2)}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
-.download-btn{position:absolute;top:16px;right:16px;width:auto;height:auto;padding:0;border:none;border-radius:0;background:transparent;box-shadow:none;color:var(--primary)}
+.download-btn{margin-left:auto;align-self:flex-start;width:auto;height:auto;padding:0;border:none;border-radius:0;background:transparent;box-shadow:none;color:var(--primary)}
 .download-btn svg{width:20px;height:20px}
 .download-btn::after{content:none}
 .download-btn:hover{color:#1257b3}
@@ -69,18 +69,17 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .download-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 
 /* Stats */
-.stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));grid-auto-rows:1fr}
-.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;min-width:0}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;min-width:140px;flex:1 1 140px}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
   .title-select-wrap{padding-right:18px;flex:1 1 auto}
   .title-select{font-size:clamp(18px,5vw,22px)}
-  .download-btn{position:static;margin-left:auto}
 }
 @media (max-width:480px){
-  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .stat{padding:10px}
+  .stats{gap:8px}
+  .stat{padding:10px;min-width:120px;flex:1 1 120px}
 }
 .stat .k{font-weight:700;font-size:18px}
 .stat .v{color:var(--muted);font-size:12px}
@@ -408,6 +407,22 @@ function fmtNumber(n,{signed=false}={}){
   }
   return formatted;
 }
+function normalizeDisplayValue(val){
+  if(val==null) return '';
+  if(typeof val==='number'){
+    if(!Number.isFinite(val)) return '';
+    return String(val);
+  }
+  const text=String(val).trim();
+  if(!text) return '';
+  const simple=text.replace(/[\s._\-\/?]/g,'').toLowerCase();
+  if(!simple) return '';
+  if(simple==='na'||simple==='none'||simple==='null'||simple==='tbd') return '';
+  return text;
+}
+function hasMeaningfulValue(val){
+  return normalizeDisplayValue(val)!=='';
+}
 function pill(label){ const s=document.createElement('span'); s.className='pill'; s.textContent=label; return s; }
 function formatRace(value){
   if(!value) return '';
@@ -493,8 +508,9 @@ function sanitizeTitle(title){
 }
 function listBox(items){
   const wrap=document.createElement('div'); wrap.className='scrollbox';
-  if(!items||!items.length){ wrap.innerHTML='<div class="muted">—</div>'; return wrap; }
-  items.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent='• '+String(name); wrap.appendChild(row); });
+  const normalized=Array.isArray(items)?items.map(normalizeDisplayValue).filter(Boolean):[];
+  if(!normalized.length){ wrap.innerHTML='<div class="muted">—</div>'; return wrap; }
+  normalized.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent='• '+name; wrap.appendChild(row); });
   return wrap;
 }
 function getMostRecentCharacter(){
@@ -974,8 +990,7 @@ function makeCard(a,idx){
   view.innerHTML='';
 
   function makeValue(val, empty='—'){
-    if(val==null) return empty;
-    const text=String(val).trim();
+    const text=normalizeDisplayValue(val);
     return text?text:empty;
   }
 
@@ -1000,12 +1015,6 @@ function makeCard(a,idx){
     return field;
   }
 
-  if(!act){
-    view.appendChild(makeKVS('DM', makeValue(a.dm,'—')));
-  }else if(a.dm){
-    view.appendChild(makeKVS('DM', makeValue(a.dm,'—')));
-  }
-
   const gpRowView=document.createElement('div'); gpRowView.className='kv2';
   const gpEarn=Number(a.gp_plus??0);
   if(!act || gpEarn!==0){ gpRowView.appendChild(makeKVS('Gold earned', fmtNumber(gpEarn))); }
@@ -1026,33 +1035,51 @@ function makeCard(a,idx){
   }
 
   const hasTradeMeta = act && (('itemTraded' in a) || ('itemReceived' in a));
-  if(hasTradeMeta){
-    if('itemTraded' in a){ appendField('Item traded away', makeValue(a.itemTraded,'—')); }
-    if('itemReceived' in a){ appendField('Item received', makeValue(a.itemReceived,'—')); }
-    if('player' in a || 'character' in a){
-      const metaRow=document.createElement('div');
-      metaRow.className='kv2';
-      if('player' in a){ metaRow.appendChild(makeKVS('Player', makeValue(a.player,'—'))); }
-      if('character' in a){ metaRow.appendChild(makeKVS('Character', makeValue(a.character,'—'))); }
-      if(metaRow.children.length){ view.appendChild(metaRow); }
-    }
-  }else if(act && a.traded_item){
-    appendField('Item traded away', makeValue(a.traded_item,'—'));
+  const dmDisplay=normalizeDisplayValue(a.dm);
+  const playerRaw=normalizeDisplayValue(a.player);
+  const characterDisplay=normalizeDisplayValue(a.character);
+  const tradePlayer=hasTradeMeta?(playerRaw||dmDisplay):playerRaw;
+  const usedDmAsPlayer=hasTradeMeta && !playerRaw && !!dmDisplay && tradePlayer===dmDisplay;
+
+  if(!act){
+    view.appendChild(makeKVS('DM', dmDisplay||'—'));
+  }else if(dmDisplay && !usedDmAsPlayer){
+    view.appendChild(makeKVS('DM', dmDisplay));
   }
 
-  const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>String(item||'').trim());
+  if(hasTradeMeta){
+    const tradedAway=normalizeDisplayValue(a.itemTraded);
+    const received=normalizeDisplayValue(a.itemReceived);
+    if(tradedAway){ appendField('Item traded away', tradedAway); }
+    if(received){ appendField('Item received', received); }
+    if(tradePlayer || characterDisplay){
+      const metaRow=document.createElement('div');
+      metaRow.className='kv2';
+      if(tradePlayer){ metaRow.appendChild(makeKVS('Player', tradePlayer)); }
+      if(characterDisplay){ metaRow.appendChild(makeKVS('Character', characterDisplay)); }
+      if(metaRow.children.length){ view.appendChild(metaRow); }
+    }
+  }else if(act){
+    const tradedItem=normalizeDisplayValue(a.traded_item);
+    if(tradedItem){ appendField('Item traded away', tradedItem); }
+  }
+
+  const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>hasMeaningfulValue(item));
   if(!act || (!hasTradeMeta && hasPermItems)){
     appendField('Magic Items', listBox(a.perm_items),'mi');
   }
-  const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>String(item||'').trim());
+  const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>hasMeaningfulValue(item));
   if(!act || hasConsumables){
     appendField('Consumables', listBox(a.consumable_items),'cons');
   }
   if(!hasTradeMeta){
-    const notesBox=document.createElement('div');
-    notesBox.className='notesbox';
-    notesBox.textContent=makeValue((a.notes||'').trim(),'—');
-    appendField('Notes', notesBox);
+    const noteText=normalizeDisplayValue(a.notes);
+    if(!act || noteText){
+      const notesBox=document.createElement('div');
+      notesBox.className='notesbox';
+      notesBox.textContent=noteText||'—';
+      appendField('Notes', notesBox);
+    }
   }
 
   const formWrap=document.createElement('div'); formWrap.className='edit-form';
