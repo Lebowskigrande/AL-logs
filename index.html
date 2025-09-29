@@ -118,6 +118,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .title{font-weight:700;line-height:20px;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .subtitle{color:var(--muted);font-size:12px;margin-top:2px;line-height:16px;min-height:16px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;min-height:22px}
+.card:not(.open) .titleLine .chips{align-self:flex-end;margin-left:auto;text-align:right}
+.card.open .titleLine .chips{align-self:flex-start;margin-left:0;text-align:left}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
 
 /* Collapsible */
