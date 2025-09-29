@@ -50,7 +50,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .btn.danger:hover{background:#fecaca;border-color:rgba(220,38,38,.35)}
 .btn.small{padding:6px 10px;font-size:12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
 .search{position:relative}
-.search input{padding-left:36px;outline:none}
+.search input{padding-left:36px;outline:none;width:220px;max-width:100%}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
 .toolbar .spacer{flex:1 1 auto}
 
@@ -104,10 +104,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
-.card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px;cursor:pointer;min-height:96px}
+.card-hd{display:flex;align-items:flex-start;justify-content:flex-start;gap:10px;padding:14px;cursor:pointer;min-height:96px}
 .card-hd .titleLine,.card-hd .activity-line{flex:1 1 auto;min-width:0}
 .card-hd .titleLine{width:100%}
-.card-hd .card-tools{display:flex;align-items:center;gap:6px}
+.card-hd .card-tools{display:flex;align-items:center;gap:6px;margin-left:auto}
 .card .card-tools .icon-btn{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-4px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
 .card:hover .card-tools .icon-btn,
 .card.open .card-tools .icon-btn,
@@ -118,10 +118,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .titleLine{display:flex;flex-direction:column}
 .date{color:var(--muted);line-height:16px}
 .title{font-weight:700;line-height:20px;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;width:100%}
-.subtitle{color:var(--muted);font-size:12px;margin-top:2px;line-height:16px;min-height:16px}
+.subtitle{color:var(--muted);font-size:12px;line-height:16px;min-height:16px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;min-height:22px}
-.card:not(.open) .titleLine .chips{align-self:flex-end;margin-left:auto;text-align:right}
-.card.open .titleLine .chips{align-self:flex-start;margin-left:0;text-align:left}
+.subtitle-row{display:flex;align-items:center;gap:10px;margin-top:4px;width:100%;min-height:22px}
+.subtitle-row .subtitle{margin-top:0}
+.subtitle-row .chips{margin-top:0;margin-left:auto;justify-content:flex-end}
+.card.open .subtitle-row{flex-wrap:wrap;gap:6px}
+.card.open .subtitle-row .chips{margin-left:0;justify-content:flex-start}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
 
 /* Collapsible */
@@ -1008,10 +1011,12 @@ function makeCard(a,idx){
     const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
+    const subtitleRow=document.createElement('div'); subtitleRow.className='subtitle-row';
+    subtitleRow.appendChild(subtitleDiv);
+    subtitleRow.appendChild(chips);
     main.appendChild(dateDiv);
     main.appendChild(titleDiv);
-    main.appendChild(subtitleDiv);
-    main.appendChild(chips);
+    main.appendChild(subtitleRow);
   }
   hd.appendChild(main);
 
