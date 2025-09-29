@@ -373,10 +373,31 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
-<script src="data.js"></script>
+<script>
+(function(){
+  var KEY='al_logs_data_version';
+  window.AL_DATA_VERSION_KEY=KEY;
+  var version='';
+  try{
+    version=localStorage.getItem(KEY)||'';
+  }catch(err){
+    version='';
+  }
+  if(!version){
+    try{
+      version=sessionStorage.getItem(KEY)||'';
+    }catch(err){
+      version='';
+    }
+  }
+  window.AL_DATA_VERSION=version;
+  var src=version?('data.js?v='+encodeURIComponent(version)):'data.js';
+  document.write('<script src="'+src+'" id="dataScript" data-version="'+(version||'')+'"><\\/script>');
+})();
+</script>
 <script>
 /* --- data boot --- */
-const DATA = window.DATA || null;
+let DATA = window.DATA || null;
 if (!DATA || !DATA.characters) {
   const e = document.getElementById('empty');
   e.style.display='block'; e.innerHTML='Could not load <code>data.js</code>.'; throw new Error('DATA missing');
@@ -398,6 +419,10 @@ const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
 const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
+const dataScriptEl=document.getElementById('dataScript');
+const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
+let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||window.AL_DATA_VERSION||'';
+window.AL_DATA_VERSION=dataVersion;
 if(avatarEl){
   avatarEl.tabIndex=-1;
   avatarEl.addEventListener('click',evt=>{
@@ -642,20 +667,110 @@ async function saveDataJs(options={}){
   }
 }
 
+function buildDataUrl(version){
+  const v=(version||'').trim();
+  return v?`data.js?v=${encodeURIComponent(v)}`:'data.js';
+}
+
+function persistDataVersion(version){
+  try{
+    if(version){
+      localStorage.setItem(DATA_VERSION_KEY, version);
+    }else{
+      localStorage.removeItem(DATA_VERSION_KEY);
+    }
+  }catch(err){
+    /* no-op */
+  }
+  try{
+    if(version){
+      sessionStorage.setItem(DATA_VERSION_KEY, version);
+    }else{
+      sessionStorage.removeItem(DATA_VERSION_KEY);
+    }
+  }catch(err){
+    /* no-op */
+  }
+}
+
+function setDataVersion(version){
+  dataVersion=version||'';
+  window.AL_DATA_VERSION=dataVersion;
+  persistDataVersion(dataVersion);
+  if(dataScriptEl){
+    dataScriptEl.setAttribute('data-version', dataVersion);
+    const desired=buildDataUrl(dataVersion);
+    try{
+      const absolute=new URL(desired, window.location.href).href;
+      if(dataScriptEl.src!==absolute){
+        dataScriptEl.src=desired;
+      }
+    }catch(err){
+      dataScriptEl.src=desired;
+    }
+  }
+}
+
+function applyDataJs(text){
+  if(typeof text!=='string' || !text.trim()) return;
+  try{
+    const fn=new Function(text+'\n//# sourceURL=data.js');
+    fn();
+  }catch(err){
+    console.error('Failed to evaluate data.js', err);
+    throw err;
+  }
+  const next=window.DATA||null;
+  if(!next || !next.characters){
+    throw new Error('DATA missing after applying data.js');
+  }
+  DATA=next;
+  rebuildCharacterOptions({preserveSelection:true});
+  filterAndRender();
+}
+
 async function refreshDataJsCache(){
-  const response=await fetch('data.js',{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+  const version=String(Date.now());
+  const response=await fetch(buildDataUrl(version),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
   if(!response.ok){
     throw new Error('HTTP '+response.status);
   }
-  await response.text();
+  const text=await response.text();
+  applyDataJs(text);
+  setDataVersion(version);
 }
 
 /* --- character selector (no session counts) --- */
-Object.entries(DATA.characters).forEach(([key,obj])=>{
-  const opt=document.createElement('option');
-  const disp=(obj.display_name&&obj.display_name!==key)?(obj.display_name+' ('+obj.sheet+')'):obj.sheet;
-  opt.value=key; opt.textContent=disp; charSel.appendChild(opt);
-});
+function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={}){
+  if(!charSel) return null;
+  const hasData=DATA && DATA.characters && typeof DATA.characters==='object';
+  const previous=preferredKey??(preserveSelection?charSel.value:null);
+  const scrollTop=charSel.scrollTop||0;
+  charSel.innerHTML='';
+  if(!hasData){
+    return null;
+  }
+  Object.entries(DATA.characters).forEach(([key,obj])=>{
+    const opt=document.createElement('option');
+    const disp=(obj.display_name&&obj.display_name!==key)?(obj.display_name+' ('+obj.sheet+')'):obj.sheet;
+    opt.value=key;
+    opt.textContent=disp;
+    charSel.appendChild(opt);
+  });
+  let nextKey=null;
+  if(previous && DATA.characters[previous]){
+    nextKey=previous;
+  }else{
+    nextKey=getMostRecentCharacter();
+  }
+  if(nextKey){
+    charSel.value=nextKey;
+  }
+  if(typeof charSel.scrollTop==='number'){
+    charSel.scrollTop=scrollTop;
+  }
+  return charSel.value||nextKey||null;
+}
 
 /* --- utils --- */
 function fmtDate(iso){ if(!iso)return'—'; const d=new Date(iso); if(isNaN(d))return String(iso); return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }
@@ -943,13 +1058,17 @@ function listBox(items){
   return wrap;
 }
 function getMostRecentCharacter(){
+  if(!DATA || !DATA.characters){
+    return '';
+  }
   let latestKey=null, latestDate=0;
   for (const [key,obj] of Object.entries(DATA.characters)){
     if(!obj.adventures||!obj.adventures.length) continue;
     const maxDate=Math.max(...obj.adventures.map(a=>{ const t=new Date(a.date).getTime(); return isNaN(t)?0:t; }));
     if(maxDate>latestDate){ latestDate=maxDate; latestKey=key; }
   }
-  return latestKey || Object.keys(DATA.characters)[0];
+  const keys=Object.keys(DATA.characters);
+  return latestKey || (keys.length?keys[0]:'');
 }
 function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
@@ -1955,7 +2074,19 @@ function columnizeGrid(mode){
 }
 /* --- rendering --- */
 function filterAndRender(){
-  const key=charSel.value;
+  if(!DATA || !DATA.characters || !charSel) return;
+  let key=charSel.value;
+  if(!key || !DATA.characters[key]){
+    const fallback=getMostRecentCharacter();
+    if(fallback){
+      charSel.value=fallback;
+      key=fallback;
+    }else{
+      grid.innerHTML='';
+      emptyEl.style.display='block';
+      return;
+    }
+  }
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
   const q=(qEl.value||'').toLowerCase();
   const filtered=advs.filter(a=>{
@@ -2001,7 +2132,11 @@ window.addEventListener('resize',()=>{
 /* --- init --- */
 updateActivityToggle();
 updateOrderToggle();
-const firstKey=getMostRecentCharacter(); charSel.value=firstKey; filterAndRender();
+const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
+if(initialKey && charSel){
+  charSel.value=initialKey;
+}
+filterAndRender();
 clearDirty();
 
 /* prevent accidental jump-to-top for href="#" */
