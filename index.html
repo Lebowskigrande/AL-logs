@@ -21,7 +21,9 @@ html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-sy
 .container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
 .header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:none;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
+.avatar{width:72px;height:72px;border-radius:50%;background:none;box-shadow:0 10px 28px rgba(15,23,42,.22);background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden;transition:transform var(--dur) var(--ease)}
+.avatar.has-avatar{cursor:zoom-in;}
+.avatar:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
 .title-select-wrap{display:flex;align-items:center;gap:8px;position:relative;padding-right:16px;max-width:100%;min-width:0}
@@ -255,13 +257,19 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
 .card-overlay.open{display:flex}
 .card-overlay .card{max-width:720px;width:100%;box-shadow:var(--shadow2);margin:0 auto}
 .card-overlay .card .card-tools{display:none}
+.avatar-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(15,23,42,.7);backdrop-filter:blur(2px);z-index:80;padding:24px}
+.avatar-overlay.open{display:flex}
+.avatar-overlay .avatar-preview{display:flex;align-items:center;justify-content:center}
+.avatar-overlay .avatar-preview img{display:block;width:auto;height:auto;max-width:min(90vw,90vh);max-height:min(90vw,90vh);filter:drop-shadow(0 40px 90px rgba(15,23,42,.5))}
+.avatar-overlay{cursor:zoom-out}
+body.avatar-overlay-open{overflow:hidden}
 </style>
 </head>
 <body>
 <div class="container">
   <section class="header">
     <div class="row">
-      <div id="charAvatar" class="avatar" aria-hidden="true"></div>
+      <div id="charAvatar" class="avatar" role="button" tabindex="0" aria-label="View character avatar"></div>
       <div class="header-main">
         <h1 class="title-select-wrap" id="charTitle">
           <label for="charSel" class="sr-only">Select a sheet or character</label>
@@ -366,6 +374,11 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
 </div>
 
 <div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-hidden="true"></div>
+<div id="avatarOverlay" class="avatar-overlay" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+  <div class="avatar-preview">
+    <img class="avatar-preview-image" alt="Character avatar"/>
+  </div>
+</div>
 
 <script src="data.js"></script>
 <script>
@@ -389,6 +402,9 @@ const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
 const orderToggleBtn = document.getElementById('orderToggle');
 const cardOverlay=document.getElementById('cardOverlay');
+const avatarOverlay=document.getElementById('avatarOverlay');
+const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
+const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
 const goldMetricEl=document.getElementById('goldMetric');
 const goldValueEl=document.getElementById('goldValue');
 const downtimeMetricEl=document.getElementById('downtimeMetric');
@@ -632,11 +648,69 @@ function makeAvatarFileCandidates(name){
   if(collapsed) variants.add(collapsed.toLowerCase());
   return Array.from(variants).map(v=>`${v}.png`);
 }
+function closeAvatarOverlay({returnFocus=true}={}){
+  if(!avatarOverlay) return;
+  if(!avatarOverlay.classList.contains('open')) return;
+  avatarOverlay.classList.remove('open');
+  avatarOverlay.setAttribute('aria-hidden','true');
+  avatarOverlay.removeAttribute('aria-label');
+  document.body.classList.remove('avatar-overlay-open');
+  if(avatarPreview){
+    avatarPreview.removeAttribute('data-avatar-src');
+  }
+  if(avatarPreviewImage){
+    avatarPreviewImage.removeAttribute('src');
+    avatarPreviewImage.setAttribute('alt','Character avatar');
+  }
+  document.removeEventListener('keydown', onAvatarOverlayKeydown);
+  if(returnFocus && avatarEl){
+    avatarEl.focus({preventScroll:true});
+  }
+}
+
+function onAvatarOverlayKeydown(evt){
+  if(evt.key==='Escape'){
+    evt.preventDefault();
+    closeAvatarOverlay();
+  }
+}
+
+function openAvatarOverlay(){
+  if(!avatarEl || !avatarOverlay || !avatarPreview) return;
+  if(!avatarEl.classList.contains('has-avatar')) return;
+  const src=avatarEl.getAttribute('data-avatar-src');
+  if(!src) return;
+  avatarPreview.setAttribute('data-avatar-src',src);
+  const selectedOption=charSel && charSel.options && charSel.selectedIndex>=0 ? charSel.options[charSel.selectedIndex] : null;
+  const optionLabel=selectedOption?selectedOption.textContent.trim():'';
+  const label=optionLabel?`${optionLabel} avatar`:'Character avatar';
+  if(avatarPreviewImage){
+    avatarPreviewImage.src=src;
+    avatarPreviewImage.setAttribute('alt',label);
+  }
+  avatarOverlay.setAttribute('aria-label',label);
+  avatarOverlay.classList.add('open');
+  avatarOverlay.setAttribute('aria-hidden','false');
+  document.body.classList.add('avatar-overlay-open');
+  avatarOverlay.focus({preventScroll:true});
+  document.addEventListener('keydown', onAvatarOverlayKeydown);
+}
+
+if(avatarOverlay){
+  avatarOverlay.addEventListener('click',()=>closeAvatarOverlay());
+}
+
+if(avatarEl){
+  bindButtonLike(avatarEl, openAvatarOverlay);
+}
+
 function resetAvatar(){
   if(!avatarEl) return;
   avatarEl.style.removeProperty('background-image');
   avatarEl.classList.remove('has-avatar');
   avatarEl.removeAttribute('data-avatar-src');
+  avatarEl.setAttribute('aria-label','View character avatar');
+  closeAvatarOverlay({returnFocus:false});
 }
 function applyAvatar(path,token){
   if(!avatarEl || token!==avatarLoadToken) return;
@@ -644,6 +718,10 @@ function applyAvatar(path,token){
   avatarEl.style.backgroundImage=`url('${safePath}')`;
   avatarEl.classList.add('has-avatar');
   avatarEl.setAttribute('data-avatar-src',path);
+  const selectedOption=charSel && charSel.options && charSel.selectedIndex>=0 ? charSel.options[charSel.selectedIndex] : null;
+  const optionLabel=selectedOption?selectedOption.textContent.trim():'';
+  const label=optionLabel?`View ${optionLabel} avatar`:'View character avatar';
+  avatarEl.setAttribute('aria-label',label);
 }
 function updateAvatar(key,obj){
   if(!avatarEl){
