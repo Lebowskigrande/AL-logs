@@ -918,22 +918,35 @@ function makeCard(a,idx){
     view.appendChild(makeKVS('Levels gained', fmtNumber(lvlVal)));
   }
 
-  if(act && a.traded_item){
+  const hasTradeMeta = act && (('itemTraded' in a) || ('itemReceived' in a));
+  if(hasTradeMeta){
+    if('itemTraded' in a){ appendField('Item traded away', makeValue(a.itemTraded,'—')); }
+    if('itemReceived' in a){ appendField('Item received', makeValue(a.itemReceived,'—')); }
+    if('player' in a || 'character' in a){
+      const metaRow=document.createElement('div');
+      metaRow.className='kv2';
+      if('player' in a){ metaRow.appendChild(makeKVS('Player', makeValue(a.player,'—'))); }
+      if('character' in a){ metaRow.appendChild(makeKVS('Character', makeValue(a.character,'—'))); }
+      if(metaRow.children.length){ view.appendChild(metaRow); }
+    }
+  }else if(act && a.traded_item){
     appendField('Item traded away', makeValue(a.traded_item,'—'));
   }
 
   const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>String(item||'').trim());
-  if(!act || hasPermItems){
+  if(!act || (!hasTradeMeta && hasPermItems)){
     appendField('Magic Items', listBox(a.perm_items),'mi');
   }
   const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>String(item||'').trim());
   if(!act || hasConsumables){
     appendField('Consumables', listBox(a.consumable_items),'cons');
   }
-  const notesBox=document.createElement('div');
-  notesBox.className='notesbox';
-  notesBox.textContent=makeValue((a.notes||'').trim(),'—');
-  appendField('Notes', notesBox);
+  if(!hasTradeMeta){
+    const notesBox=document.createElement('div');
+    notesBox.className='notesbox';
+    notesBox.textContent=makeValue((a.notes||'').trim(),'—');
+    appendField('Notes', notesBox);
+  }
 
   const formWrap=document.createElement('div'); formWrap.className='edit-form';
   const form=document.createElement('form');
@@ -1326,7 +1339,10 @@ function filterAndRender(){
   const q=(qEl.value||'').toLowerCase(); const yr=yearEl.value;
   const filtered=advs.filter(a=>{
     if(yr){ const y=a.date?(new Date(a.date)).getFullYear():null; if(String(y)!==yr) return false; }
-    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item].concat(a.perm_items||[]).concat(a.consumable_items||[]).map(x=>(x||'').toString().toLowerCase()).join(' ');
+    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character]
+      .concat(a.perm_items||[])
+      .concat(a.consumable_items||[])
+      .map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
   });
   grid.innerHTML='';
