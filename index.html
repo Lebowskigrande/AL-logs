@@ -76,10 +76,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .metric .metric-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
 .metric .metric-value{font-size:22px;font-weight:700;letter-spacing:-0.01em;color:var(--ink)}
 .inventory-buttons{display:flex;align-items:center;gap:12px;margin-left:auto}
-.inventory-btn{position:relative;width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:#fff;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);box-shadow:var(--shadow1);cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),color var(--dur) var(--ease)}
-.inventory-btn svg{width:22px;height:22px;pointer-events:none}
-.inventory-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2);color:var(--primary)}
-.inventory-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
+.inventory-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:6px;border-radius:12px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease);background:transparent;line-height:0;outline:none}
+.inventory-btn svg{width:26px;height:26px;pointer-events:none}
+.inventory-btn:hover{color:var(--primary);background:rgba(26,115,232,.08)}
+.inventory-btn:focus-visible{box-shadow:0 0 0 2px rgba(26,115,232,.35);background:rgba(26,115,232,.1)}
 .inventory-btn .badge{position:absolute;top:-6px;right:-6px;min-width:22px;padding:2px 6px;border-radius:999px;background:var(--primary);color:#fff;font-size:11px;font-weight:700;line-height:1;text-align:center;box-shadow:0 6px 16px rgba(26,115,232,.35);}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
@@ -229,7 +229,7 @@ body.modal-open #addCard{display:none;}
 .modal.editing .inv-row{cursor:default}
 .modal.editing .inv-row .delete-btn{display:inline-flex}
 .modal.editing .inv-row .attune-pill{pointer-events:none;opacity:.6}
-.modal.editing .inv-row .qty-btn{pointer-events:none;opacity:.6}
+.modal.editing .inv-row .qty-icon{pointer-events:none;opacity:.6}
 .modal.editing .inv-row .qty-pill{opacity:.6}
 
 /* Attunement pill (perm modal, active rows only) */
@@ -237,11 +237,15 @@ body.modal-open #addCard{display:none;}
 .attune-pill.on{background:#1a73e8;color:#fff}
 
 /* Consumables qty controls */
-.inv-row .qty{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.inv-row .qty{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .qty-pill{display:inline-block;min-width:28px;padding:2px 8px;text-align:center;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-size:11px;color:#475569}
 .qty-input{width:64px;padding:4px 8px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:12px;text-align:center;background:#fff}
-.qty-btn{border:1px solid #dbe4f3;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;cursor:pointer;min-width:28px;display:inline-flex;align-items:center;justify-content:center}
-.qty-btn.plus{background:#1a73e8;color:#fff;border-color:#1a73e8}
+.qty-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:#1e3a8a;background:transparent;cursor:pointer;transition:color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.qty-icon svg{width:22px;height:22px;stroke-width:1.8}
+.qty-icon:hover{color:#1a73e8;transform:translateY(-1px)}
+.qty-icon:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
+.qty-icon.disabled{opacity:.35;cursor:not-allowed;transform:none}
+.qty-icon.disabled:hover{color:inherit}
 
 /* Reduce scroll anchoring jumps */
 html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
@@ -292,24 +296,24 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
         </div>
       </div>
       <div class="inventory-buttons">
-        <button id="magicItemsBtn" class="inventory-btn" type="button" title="View permanent magic items">
+        <div id="magicItemsBtn" class="inventory-btn" role="button" tabindex="0" title="View permanent magic items" aria-label="View permanent magic items">
           <span class="sr-only">View permanent magic items</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3 4 7v5c0 5 4 9 8 9s8-4 8-9V7l-8-4Z"/>
-            <path d="M8.5 12.5 12 11l3.5 1.5"/>
-            <path d="M12 11v5"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m12 3 1.76 3.57 3.94.57-2.85 2.78.67 3.9L12 12.97l-3.52 1.85.67-3.9-2.85-2.78 3.94-.57L12 3Z"/>
+            <path d="M6 20c1.2-.8 3.4-1.6 6-1.6s4.8.8 6 1.6"/>
           </svg>
           <span class="badge" id="magicItemsCount" aria-hidden="true">0</span>
-        </button>
-        <button id="consumablesBtn" class="inventory-btn" type="button" title="View consumables">
+        </div>
+        <div id="consumablesBtn" class="inventory-btn" role="button" tabindex="0" title="View consumables" aria-label="View consumables">
           <span class="sr-only">View consumables</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 3h6"/>
-            <path d="M9 3v3.5a3 3 0 0 1-.88 2.12l-1.5 1.5A5 5 0 0 0 5 13.04V17a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3.96a5 5 0 0 0-1.62-3.58l-1.5-1.5A3 3 0 0 1 15 6.5V3"/>
-            <path d="M9 10h6"/>
+            <path d="M9 3v2.5l-1.9 1.9A4.5 4.5 0 0 0 6.8 9.6L6 11h12l-.8-1.4a4.5 4.5 0 0 0-.3-.2l-1.9-1.9V3"/>
+            <path d="M6 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5"/>
+            <path d="M9.5 15.5h5"/>
           </svg>
           <span class="badge" id="consumablesCount" aria-hidden="true">0</span>
-        </button>
+        </div>
       </div>
     </div>
   </section>
@@ -382,13 +386,22 @@ const magicItemsCountEl=document.getElementById('magicItemsCount');
 const consumablesCountEl=document.getElementById('consumablesCount');
 let overlayCard=null;
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
+const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
+const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
 
-if(magicItemsBtn){
-  magicItemsBtn.addEventListener('click',()=>openInventoryModal(charSel.value));
+function bindButtonLike(el, handler){
+  if(!el) return;
+  el.addEventListener('click', handler);
+  el.addEventListener('keydown', evt => {
+    if(evt.key==='Enter' || evt.key===' '){
+      evt.preventDefault();
+      handler(evt);
+    }
+  });
 }
-if(consumablesBtn){
-  consumablesBtn.addEventListener('click',()=>openConsumableModal(charSel.value));
-}
+
+bindButtonLike(magicItemsBtn, () => openInventoryModal(charSel.value));
+bindButtonLike(consumablesBtn, () => openConsumableModal(charSel.value));
 
 let pendingChanges=false;
 const STORAGE_KEYS={
@@ -922,10 +935,12 @@ function openConsumableModal(charKey){
     const qtyDiv=document.createElement('div');
     qtyDiv.className='qty';
 
-    const minus=document.createElement('button');
-    minus.type='button';
-    minus.className='qty-btn';
-    minus.textContent='−';
+    const minus=document.createElement('span');
+    minus.className='qty-icon';
+    minus.innerHTML=ICON_MINUS;
+    minus.setAttribute('role','button');
+    minus.setAttribute('aria-label',`Decrease ${name}`);
+    minus.tabIndex=0;
 
     const input=document.createElement('input');
     input.type='number';
@@ -935,14 +950,18 @@ function openConsumableModal(charKey){
     input.className='qty-input';
     input.value=String(state.value);
 
-    const plus=document.createElement('button');
-    plus.type='button';
-    plus.className='qty-btn plus';
-    plus.textContent='+';
+    const plus=document.createElement('span');
+    plus.className='qty-icon';
+    plus.innerHTML=ICON_PLUS;
+    plus.setAttribute('role','button');
+    plus.setAttribute('aria-label',`Increase ${name}`);
+    plus.tabIndex=0;
 
     const sync=()=>{
       input.value=String(state.value);
-      minus.disabled=state.value<=0;
+      const isMin=state.value<=0;
+      minus.classList.toggle('disabled',isMin);
+      minus.setAttribute('aria-disabled',isMin?'true':'false');
     };
     const adjust=(delta)=>{
       state.value=Math.max(0,state.value+delta);
@@ -950,14 +969,18 @@ function openConsumableModal(charKey){
       updateSaveVisibility();
     };
 
-    minus.addEventListener('click',(ev)=>{
+    const handleIcon=(delta)=>(ev)=>{
+      if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+      ev.preventDefault();
       ev.stopPropagation();
-      adjust(-1);
-    });
-    plus.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      adjust(1);
-    });
+      if(delta<0 && state.value<=0){ return; }
+      adjust(delta);
+    };
+
+    minus.addEventListener('click',handleIcon(-1));
+    minus.addEventListener('keydown',handleIcon(-1));
+    plus.addEventListener('click',handleIcon(1));
+    plus.addEventListener('keydown',handleIcon(1));
 
     const handleInput=()=>{
       let next=parseInt(input.value,10);
