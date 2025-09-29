@@ -19,10 +19,21 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
 .container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
-.header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
-.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1);padding-right:76px}
+.row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
 .avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
-h1{margin:0;font-size:18px;font-weight:700}
+h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
+.header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
+.title-select-wrap{display:inline-flex;align-items:center;gap:10px;position:relative;padding-right:22px;max-width:100%}
+.title-select-wrap::after{content:"";width:12px;height:8px;clip-path:polygon(0 0,100% 0,50% 100%);background:currentColor;opacity:.55;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.title-select-wrap:focus-within::after{opacity:1;transform:translateY(-40%)}
+.title-select{appearance:none;border:none;background:transparent;font:inherit;color:var(--ink);padding:0;margin:0;cursor:pointer;line-height:1.1;font-weight:800;letter-spacing:-0.01em;max-width:100%}
+.title-select:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px;border-radius:6px}
+.title-select option{color:var(--ink)}
+.char-badges{margin-top:4px;display:none;gap:8px;flex-wrap:wrap;align-items:center}
+.char-badges .identity-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;color:#1e293b;font-weight:600;font-size:12px}
+.char-badges .identity-badge .label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .muted{color:var(--muted);font-size:13px}
 
 /* Toolbar */
@@ -49,6 +60,14 @@ h1{margin:0;font-size:18px;font-weight:700}
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover{box-shadow:var(--shadow2)}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
+.download-btn{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:12px;box-shadow:var(--shadow1);color:var(--muted);background:#fff}
+.download-btn svg{width:18px;height:18px}
+.download-btn::after{content:"";position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--primary);opacity:0;transform:scale(.6);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.download-btn:hover{box-shadow:var(--shadow2)}
+.download-btn.dirty{color:#fff;background:var(--primary);border-color:var(--primary)}
+.download-btn.dirty:hover{background:var(--primary);color:#fff}
+.download-btn.dirty::after{opacity:1;transform:scale(1)}
+.download-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 
 /* Stats */
 .stats{display:flex;gap:10px;flex-wrap:wrap}
@@ -221,26 +240,27 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
   <section class="header">
     <div class="row">
       <div class="avatar" aria-hidden="true"></div>
-      <div>
-        <h1 id="charTitle">Adventure Log</h1>
-        <div class="muted" id="charMeta">Select a sheet/character.</div>
-        <div id="charBadges" style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;"></div>
+      <div class="header-main">
+        <h1 class="title-select-wrap" id="charTitle">
+          <label for="charSel" class="sr-only">Select a sheet or character</label>
+          <select id="charSel" class="title-select"></select>
+        </h1>
+        <div id="charBadges" class="char-badges" aria-live="polite"></div>
       </div>
+      <button id="downloadData" class="icon-btn download-btn" title="Download adventure log JSON" aria-label="Download adventure log JSON">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
+      </button>
     </div>
     <div class="toolbar">
-      <select id="charSel" class="select"></select>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" placeholder="Search adventures (name, code, notes, DM)"/>
       </div>
-      <select id="year" class="select"><option value="">All years</option></select>
       <button id="expandAll" class="btn">Expand All</button>
       <button id="collapseAll" class="btn">Collapse All</button>
-      <button id="downloadJson" class="btn primary">Download JSON</button>
       <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
-      <button id="saveData" class="btn primary" disabled>Save data.js</button>
     </div>
     <div class="stats" id="stats" style="margin-top:10px;"></div>
   </section>
@@ -296,21 +316,26 @@ if (!DATA || !DATA.characters) {
 
 /* --- DOM handles --- */
 const charSel  = document.getElementById('charSel');
-const yearEl   = document.getElementById('year');
+const downloadBtn = document.getElementById('downloadData');
 const qEl      = document.getElementById('q');
 const grid     = document.getElementById('grid');
 const emptyEl  = document.getElementById('empty');
 const statsEl  = document.getElementById('stats');
-const titleEl  = document.getElementById('charTitle');
-const metaEl   = document.getElementById('charMeta');
 const badgesEl = document.getElementById('charBadges');
 const addCardBtn = document.getElementById('addCard');
-const saveDataBtn = document.getElementById('saveData');
 const cardOverlay=document.getElementById('cardOverlay');
 let overlayCard=null;
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
 
 let pendingChanges=false;
+
+function updateDownloadState(){
+  if(!downloadBtn) return;
+  const label=pendingChanges?'Download updated data.js':'Download adventure log JSON';
+  downloadBtn.classList.toggle('dirty',pendingChanges);
+  downloadBtn.setAttribute('aria-label',label);
+  downloadBtn.title=label;
+}
 
 function anyModalOpen(){
   return (invModal && invModal.classList.contains('open'))
@@ -344,11 +369,11 @@ function closeCardOverlay(){
 
 function markDirty(){
   pendingChanges=true;
-  if(saveDataBtn){ saveDataBtn.disabled=false; saveDataBtn.textContent='Save data.js*'; }
+  updateDownloadState();
 }
 function clearDirty(){
   pendingChanges=false;
-  if(saveDataBtn){ saveDataBtn.disabled=true; saveDataBtn.textContent='Save data.js'; }
+  updateDownloadState();
 }
 function downloadFile(name,mime,content){
   const link=document.createElement('a');
@@ -380,6 +405,84 @@ function fmtNumber(n,{signed=false}={}){
   return formatted;
 }
 function pill(label){ const s=document.createElement('span'); s.className='pill'; s.textContent=label; return s; }
+function formatRace(value){
+  if(!value) return '';
+  if(Array.isArray(value)){
+    return value.map(formatRace).filter(Boolean).join(' / ');
+  }
+  if(typeof value==='object'){
+    const parts=[];
+    if(value.lineage) parts.push(String(value.lineage));
+    if(value.race) parts.push(String(value.race));
+    if(value.ancestry) parts.push(String(value.ancestry));
+    if(value.subrace) parts.push(String(value.subrace));
+    if(value.variant) parts.push(String(value.variant));
+    if(value.name && !parts.length) parts.push(String(value.name));
+    return parts.filter(Boolean).join(' ');
+  }
+  return String(value);
+}
+function formatClassEntry(entry){
+  if(!entry) return '';
+  if(typeof entry==='string') return entry;
+  if(typeof entry==='number') return String(entry);
+  if(Array.isArray(entry)){
+    return entry.map(formatClassEntry).filter(Boolean).join(' / ');
+  }
+  const parts=[];
+  if(entry.name) parts.push(String(entry.name));
+  if(entry.subclass) parts.push(String(entry.subclass));
+  if(entry.level!=null && entry.level!=='') parts.push(String(entry.level));
+  if(entry.title && !parts.length) parts.push(String(entry.title));
+  return parts.filter(Boolean).join(' ');
+}
+function formatClasses(value){
+  if(!value) return '';
+  if(Array.isArray(value)){
+    return value.map(formatClassEntry).filter(Boolean).join(' / ');
+  }
+  if(typeof value==='object'){
+    return formatClassEntry(value);
+  }
+  return String(value);
+}
+function extractCharacterIdentity(obj){
+  const identity={race:'',classes:''};
+  if(!obj) return identity;
+  const sheet=obj.sheet;
+  if(sheet && typeof sheet==='object'){
+    identity.race = identity.race || formatRace(sheet.race || sheet.ancestry || sheet.lineage);
+    identity.classes = identity.classes || formatClasses(sheet.classes || sheet.class || sheet.archetype);
+  }
+  if((!identity.race || !identity.classes) && Array.isArray(obj.adventures)){
+    const source=obj.adventures.find(entry=>entry && typeof entry.character==='object');
+    if(source && source.character){
+      const ch=source.character;
+      identity.race = identity.race || formatRace(ch.race || ch.ancestry || ch.lineage);
+      identity.classes = identity.classes || formatClasses(ch.classes || ch.class || ch.archetype);
+    }
+  }
+  if(typeof obj.identity==='object'){
+    identity.race = identity.race || formatRace(obj.identity.race || obj.identity.ancestry);
+    identity.classes = identity.classes || formatClasses(obj.identity.classes || obj.identity.class);
+  }
+  return {
+    race:identity.race && identity.race.trim()?identity.race.trim():'',
+    classes:identity.classes && identity.classes.trim()?identity.classes.trim():''
+  };
+}
+function identityBadge(label,value){
+  const chip=document.createElement('span');
+  chip.className='identity-badge';
+  const labelEl=document.createElement('span');
+  labelEl.className='label';
+  labelEl.textContent=label;
+  const valueEl=document.createElement('span');
+  valueEl.className='value';
+  valueEl.textContent=value;
+  chip.append(labelEl,valueEl);
+  return chip;
+}
 function sanitizeTitle(title){
   if(!title) return '';
   return String(title).replace(/\bdown\s*time\s*activity\b/gi,'').replace(/\s{2,}/g,' ').replace(/^[\s:,.–—-]+|[\s:,.–—-]+$/g,'').trim();
@@ -1243,22 +1346,12 @@ function updateDerivedDataFor(key){
   };
 }
 
-function refreshYearOptions(key){
-  const prev=yearEl.value;
-  refillYears(key);
-  if(prev && Array.from(yearEl.options).some(opt=>opt.value===prev)){
-    yearEl.value=prev;
-  }
-}
-
 function applyDataMutation(key){
   updateDerivedDataFor(key);
-  refreshYearOptions(key);
   filterAndRender();
 }
 
 /* --- stats & header --- */
-function refillYears(key){ yearEl.innerHTML='<option value="">All years</option>'; (DATA.years[key]||[]).forEach(y=>{ const o=document.createElement('option'); o.value=String(y); o.textContent=fmtNumber(y); yearEl.appendChild(o); }); }
 function renderStats(key){
   statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
@@ -1280,9 +1373,21 @@ function renderStats(key){
 }
 function setHeader(key){
   const obj=DATA.characters[key];
-  titleEl.textContent=(obj&&obj.display_name)||(obj&&obj.sheet)||key;
-  metaEl.textContent=(obj&&obj.sheet)||'';
+  if(!badgesEl) return;
   badgesEl.innerHTML='';
+  if(!obj){
+    badgesEl.style.display='none';
+    badgesEl.setAttribute('aria-hidden','true');
+    return;
+  }
+  const identity=extractCharacterIdentity(obj);
+  const chips=[];
+  if(identity.race){ chips.push(identityBadge('Race', identity.race)); }
+  if(identity.classes){ chips.push(identityBadge('Classes', identity.classes)); }
+  chips.forEach(chip=>badgesEl.appendChild(chip));
+  const show=chips.length>0;
+  badgesEl.style.display=show?'flex':'none';
+  badgesEl.setAttribute('aria-hidden', show?'false':'true');
 }
 
 /* --- masonry --- */
@@ -1336,9 +1441,8 @@ function columnizeGrid(mode){
 function filterAndRender(){
   const key=charSel.value;
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
-  const q=(qEl.value||'').toLowerCase(); const yr=yearEl.value;
+  const q=(qEl.value||'').toLowerCase();
   const filtered=advs.filter(a=>{
-    if(yr){ const y=a.date?(new Date(a.date)).getFullYear():null; if(String(y)!==yr) return false; }
     const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character]
       .concat(a.perm_items||[])
       .concat(a.consumable_items||[])
@@ -1354,8 +1458,7 @@ function filterAndRender(){
 document.getElementById('expandAll').addEventListener('click',()=>{ grid.querySelectorAll('.card').forEach(c=>{ if(!c.classList.contains('open')) expandCard(c); }); });
 document.getElementById('collapseAll').addEventListener('click',()=>{ grid.querySelectorAll('.card').forEach(c=>{ if(c.classList.contains('open')) collapseCard(c); }); });
 qEl.addEventListener('input',filterAndRender);
-charSel.addEventListener('change',()=>{ refillYears(charSel.value); filterAndRender(); });
-yearEl.addEventListener('change',filterAndRender);
+charSel.addEventListener('change',filterAndRender);
 window.addEventListener('resize',()=>{
   const w=window.innerWidth||document.documentElement.clientWidth||0;
   if(Math.abs(w-__lastWidth)<8) return; __lastWidth=w;
@@ -1363,22 +1466,23 @@ window.addEventListener('resize',()=>{
 });
 
 /* --- init --- */
-const firstKey=getMostRecentCharacter(); charSel.value=firstKey; refillYears(firstKey); filterAndRender();
+const firstKey=getMostRecentCharacter(); charSel.value=firstKey; filterAndRender();
 clearDirty();
 
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
 
-/* download JSON */
-document.getElementById('downloadJson').addEventListener('click',()=>{
-  const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
-  const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
-});
-if(saveDataBtn){
-  saveDataBtn.addEventListener('click',()=>{
-    const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
-    downloadFile('data.js','application/javascript',payload);
-    clearDirty();
+/* download JSON / data.js */
+if(downloadBtn){
+  downloadBtn.addEventListener('click',()=>{
+    if(pendingChanges){
+      const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
+      downloadFile('data.js','application/javascript',payload);
+      clearDirty();
+    }else{
+      const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
+      const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
+    }
   });
 }
 if(addCardBtn){
