@@ -22,7 +22,7 @@ html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-sy
 .header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
-.avatar.has-avatar{cursor:default;}
+.avatar.has-avatar{cursor:zoom-in;}
 .avatar:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
@@ -259,8 +259,8 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
 .card-overlay .card .card-tools{display:none}
 .avatar-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(15,23,42,.7);backdrop-filter:blur(2px);z-index:80;padding:24px}
 .avatar-overlay.open{display:flex}
-.avatar-overlay .avatar-preview{display:flex;align-items:center;justify-content:center}
-.avatar-overlay .avatar-preview img{display:block;width:auto;height:auto;max-width:min(90vw,90vh);max-height:min(90vw,90vh);filter:drop-shadow(0 40px 90px rgba(15,23,42,.5))}
+.avatar-overlay .avatar-preview{display:flex;align-items:center;justify-content:center;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
+.avatar-overlay .avatar-preview img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;filter:drop-shadow(0 40px 90px rgba(15,23,42,.6))}
 .avatar-overlay{cursor:zoom-out}
 body.avatar-overlay-open{overflow:hidden}
 </style>
@@ -405,6 +405,21 @@ const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
 const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
+if(avatarEl){
+  avatarEl.tabIndex=-1;
+  avatarEl.addEventListener('click',evt=>{
+    if(!avatarEl.classList.contains('has-avatar')) return;
+    evt.preventDefault();
+    openAvatarOverlay();
+  });
+  avatarEl.addEventListener('keydown',evt=>{
+    if(!avatarEl.classList.contains('has-avatar')) return;
+    if(evt.key==='Enter'||evt.key===' '){
+      evt.preventDefault();
+      openAvatarOverlay();
+    }
+  });
+}
 const goldMetricEl=document.getElementById('goldMetric');
 const goldValueEl=document.getElementById('goldValue');
 const downtimeMetricEl=document.getElementById('downtimeMetric');
@@ -655,6 +670,9 @@ function closeAvatarOverlay({returnFocus=true}={}){
   avatarOverlay.setAttribute('aria-hidden','true');
   avatarOverlay.removeAttribute('aria-label');
   document.body.classList.remove('avatar-overlay-open');
+  if(avatarEl){
+    avatarEl.setAttribute('aria-expanded','false');
+  }
   if(avatarPreview){
     avatarPreview.removeAttribute('data-avatar-src');
   }
@@ -693,6 +711,9 @@ function openAvatarOverlay(){
   avatarOverlay.setAttribute('aria-hidden','false');
   document.body.classList.add('avatar-overlay-open');
   avatarOverlay.focus({preventScroll:true});
+  if(avatarEl){
+    avatarEl.setAttribute('aria-expanded','true');
+  }
   document.addEventListener('keydown', onAvatarOverlayKeydown);
 }
 
@@ -706,6 +727,10 @@ function resetAvatar(){
   avatarEl.classList.remove('has-avatar');
   avatarEl.removeAttribute('data-avatar-src');
   avatarEl.alt='Character avatar';
+  avatarEl.removeAttribute('role');
+  avatarEl.removeAttribute('aria-haspopup');
+  avatarEl.removeAttribute('aria-expanded');
+  avatarEl.tabIndex=-1;
   closeAvatarOverlay({returnFocus:false});
 }
 function applyAvatar(path,token){
@@ -717,6 +742,10 @@ function applyAvatar(path,token){
   const optionLabel=selectedOption?selectedOption.textContent.trim():'';
   const label=optionLabel?`${optionLabel} avatar`:'Character avatar';
   avatarEl.alt=label;
+  avatarEl.setAttribute('role','button');
+  avatarEl.setAttribute('aria-haspopup','dialog');
+  avatarEl.setAttribute('aria-expanded','false');
+  avatarEl.tabIndex=0;
 }
 function updateAvatar(key,obj){
   if(!avatarEl){
