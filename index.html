@@ -21,7 +21,7 @@ html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-sy
 .container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
 .header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
+.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1);background-size:cover;background-position:center;background-repeat:no-repeat}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
 .title-select-wrap{display:flex;align-items:center;gap:8px;position:relative;padding-right:16px;max-width:100%;min-width:0}
@@ -261,7 +261,7 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
 <div class="container">
   <section class="header">
     <div class="row">
-      <div class="avatar" aria-hidden="true"></div>
+      <div id="charAvatar" class="avatar" aria-hidden="true"></div>
       <div class="header-main">
         <h1 class="title-select-wrap" id="charTitle">
           <label for="charSel" class="sr-only">Select a sheet or character</label>
@@ -395,6 +395,7 @@ if (!DATA || !DATA.characters) {
 
 /* --- DOM handles --- */
 const charSel  = document.getElementById('charSel');
+const avatarEl = document.getElementById('charAvatar');
 const downloadBtn = document.getElementById('downloadData');
 const qEl      = document.getElementById('q');
 const grid     = document.getElementById('grid');
@@ -412,6 +413,8 @@ const consumablesBtn=document.getElementById('consumablesBtn');
 const magicItemsCountEl=document.getElementById('magicItemsCount');
 const consumablesCountEl=document.getElementById('consumablesCount');
 let overlayCard=null;
+const avatarCache=new Map();
+let avatarLoadToken=0;
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
 const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
 const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
@@ -616,6 +619,99 @@ function formatClasses(value){
     return formatClassEntry(value);
   }
   return String(value);
+}
+function collectAvatarNames(obj,key){
+  const names=[];
+  if(obj){
+    if(typeof obj.sheet==='string' && obj.sheet.trim()) names.push(obj.sheet);
+    if(typeof obj.display_name==='string' && obj.display_name.trim()) names.push(obj.display_name);
+    if(obj.identity && typeof obj.identity.name==='string' && obj.identity.name.trim()) names.push(obj.identity.name);
+  }
+  if(typeof key==='string' && key.trim()) names.push(key);
+  return names
+    .map(name=>String(name).trim())
+    .filter((value,index,self)=>value && self.indexOf(value)===index);
+}
+function makeAvatarFileCandidates(name){
+  if(!name) return [];
+  const trimmed=String(name).trim();
+  if(!trimmed) return [];
+  const variants=new Set();
+  variants.add(trimmed);
+  variants.add(trimmed.toLowerCase());
+  const dashed=trimmed.replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  if(dashed) variants.add(dashed);
+  if(dashed) variants.add(dashed.toLowerCase());
+  const collapsed=trimmed.replace(/[^a-zA-Z0-9]+/g,'');
+  if(collapsed) variants.add(collapsed);
+  if(collapsed) variants.add(collapsed.toLowerCase());
+  return Array.from(variants).map(v=>`${v}.png`);
+}
+function resetAvatar(){
+  if(!avatarEl) return;
+  avatarEl.style.removeProperty('background-image');
+  avatarEl.classList.remove('has-avatar');
+  avatarEl.removeAttribute('data-avatar-src');
+}
+function applyAvatar(path,token){
+  if(!avatarEl || token!==avatarLoadToken) return;
+  const safePath=String(path).replace(/(["'\\)])/g,'\\$1');
+  avatarEl.style.backgroundImage=`url('${safePath}')`;
+  avatarEl.classList.add('has-avatar');
+  avatarEl.setAttribute('data-avatar-src',path);
+}
+function updateAvatar(key,obj){
+  if(!avatarEl){
+    return;
+  }
+  const names=collectAvatarNames(obj,key);
+  if(!names.length){
+    avatarLoadToken++;
+    resetAvatar();
+    return;
+  }
+  const candidates=[];
+  names.forEach(name=>{
+    makeAvatarFileCandidates(name).forEach(file=>{
+      if(file && !candidates.includes(file)) candidates.push(file);
+    });
+  });
+  if(!candidates.length){
+    avatarLoadToken++;
+    resetAvatar();
+    return;
+  }
+  const token=++avatarLoadToken;
+  resetAvatar();
+  const tryNext=(index)=>{
+    if(token!==avatarLoadToken) return;
+    if(index>=candidates.length){
+      resetAvatar();
+      return;
+    }
+    const path=candidates[index];
+    if(avatarCache.has(path)){
+      if(avatarCache.get(path)){
+        applyAvatar(path,token);
+      }else{
+        tryNext(index+1);
+      }
+      return;
+    }
+    const img=new Image();
+    img.onload=()=>{
+      if(token!==avatarLoadToken) return;
+      avatarCache.set(path,true);
+      applyAvatar(path,token);
+    };
+    img.onerror=()=>{
+      if(token!==avatarLoadToken) return;
+      avatarCache.set(path,false);
+      tryNext(index+1);
+    };
+    img.src=path;
+  };
+  tryNext(0);
 }
 function extractCharacterIdentity(obj){
   const identity={race:'',classes:''};
@@ -1596,6 +1692,7 @@ function renderStats(key){
 }
 function setHeader(key){
   const obj=DATA.characters[key];
+  updateAvatar(key,obj);
   if(metaEl&&!obj){
     metaEl.textContent='';
     metaEl.style.display='none';
