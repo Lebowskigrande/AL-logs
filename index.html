@@ -14,7 +14,6 @@
   --bg:#f6f8fb; --surface:#fff; --ink:#0f172a; --muted:#64748b; --primary:#1a73e8; --border:#e5eaf3;
   --radius:16px; --shadow1:0 2px 10px rgba(16,24,40,.06); --shadow2:0 20px 40px rgba(16,24,40,.12);
   --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --gap:14px; --min-card:320px;
-  --stat-min:170px; --stat-max:240px; --stat-gap:12px;
   --danger:#dc2626;
 }
 *{box-sizing:border-box}
@@ -70,31 +69,26 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .download-btn.dirty:hover{color:#0a3572}
 .download-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 
-/* Stats */
-/* Stat layout */
-.stats{display:flex;gap:var(--stat-gap);align-items:stretch;justify-content:flex-start;flex-wrap:wrap;overflow:visible;scrollbar-width:thin}
-.stats::-webkit-scrollbar{height:6px}
-.stats::-webkit-scrollbar-thumb{background:rgba(100,116,139,.4);border-radius:999px}
-.stats::-webkit-scrollbar-track{background:transparent}
-.stat{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:8px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;min-width:var(--stat-min);max-width:var(--stat-max);flex:0 0 auto}
+/* Header metrics */
+.header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.header-metrics{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.metric{display:flex;flex-direction:column;gap:2px;min-width:120px}
+.metric .metric-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.metric .metric-value{font-size:22px;font-weight:700;letter-spacing:-0.01em;color:var(--ink)}
+.inventory-buttons{display:flex;align-items:center;gap:12px;margin-left:auto}
+.inventory-btn{position:relative;width:44px;height:44px;border-radius:12px;border:1px solid var(--border);background:#fff;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);box-shadow:var(--shadow1);cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),color var(--dur) var(--ease)}
+.inventory-btn svg{width:22px;height:22px;pointer-events:none}
+.inventory-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2);color:var(--primary)}
+.inventory-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
+.inventory-btn .badge{position:absolute;top:-6px;right:-6px;min-width:22px;padding:2px 6px;border-radius:999px;background:var(--primary);color:#fff;font-size:11px;font-weight:700;line-height:1;text-align:center;box-shadow:0 6px 16px rgba(26,115,232,.35);}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
   .title-select-wrap{padding-right:18px;flex:1 1 auto}
   .title-select{font-size:clamp(18px,5vw,22px)}
+  .header-quick{flex-direction:column;align-items:flex-start;gap:12px}
+  .inventory-buttons{margin-left:0}
 }
-@media (max-width:600px){
-  :root{--stat-min:150px}
-}
-@media (max-width:520px){
-  .stats{gap:10px}
-}
-@media (max-width:480px){
-  :root{--stat-gap:8px;--stat-min:120px}
-  .stat{padding:8px}
-}
-.stat .k{font-weight:700;font-size:18px}
-.stat .v{color:var(--muted);font-size:12px;white-space:normal;word-break:break-word}
 
 /* Grid / masonry columns */
 .grid{margin-top:24px}
@@ -286,7 +280,38 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
-    <div class="stats" id="stats" style="margin-top:10px;"></div>
+    <div class="header-quick" id="headerQuick">
+      <div class="header-metrics">
+        <div class="metric" id="goldMetric">
+          <span class="metric-label">Gold Pieces</span>
+          <span class="metric-value" id="goldValue">0</span>
+        </div>
+        <div class="metric" id="downtimeMetric">
+          <span class="metric-label">Downtime Days</span>
+          <span class="metric-value" id="downtimeValue">0</span>
+        </div>
+      </div>
+      <div class="inventory-buttons">
+        <button id="magicItemsBtn" class="inventory-btn" type="button" title="View permanent magic items">
+          <span class="sr-only">View permanent magic items</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3 4 7v5c0 5 4 9 8 9s8-4 8-9V7l-8-4Z"/>
+            <path d="M8.5 12.5 12 11l3.5 1.5"/>
+            <path d="M12 11v5"/>
+          </svg>
+          <span class="badge" id="magicItemsCount" aria-hidden="true">0</span>
+        </button>
+        <button id="consumablesBtn" class="inventory-btn" type="button" title="View consumables">
+          <span class="sr-only">View consumables</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 3h6"/>
+            <path d="M9 3v3.5a3 3 0 0 1-.88 2.12l-1.5 1.5A5 5 0 0 0 5 13.04V17a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3.96a5 5 0 0 0-1.62-3.58l-1.5-1.5A3 3 0 0 1 15 6.5V3"/>
+            <path d="M9 10h6"/>
+          </svg>
+          <span class="badge" id="consumablesCount" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
   </section>
   <section id="grid" class="grid cols"></section>
   <div id="empty" class="empty" style="display:none;">No adventures match your filters.</div>
@@ -344,14 +369,26 @@ const downloadBtn = document.getElementById('downloadData');
 const qEl      = document.getElementById('q');
 const grid     = document.getElementById('grid');
 const emptyEl  = document.getElementById('empty');
-const statsEl  = document.getElementById('stats');
 const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
 const cardOverlay=document.getElementById('cardOverlay');
+const goldValueEl=document.getElementById('goldValue');
+const downtimeValueEl=document.getElementById('downtimeValue');
+const magicItemsBtn=document.getElementById('magicItemsBtn');
+const consumablesBtn=document.getElementById('consumablesBtn');
+const magicItemsCountEl=document.getElementById('magicItemsCount');
+const consumablesCountEl=document.getElementById('consumablesCount');
 let overlayCard=null;
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
+
+if(magicItemsBtn){
+  magicItemsBtn.addEventListener('click',()=>openInventoryModal(charSel.value));
+}
+if(consumablesBtn){
+  consumablesBtn.addEventListener('click',()=>openConsumableModal(charSel.value));
+}
 
 let pendingChanges=false;
 const STORAGE_KEYS={
@@ -1464,20 +1501,26 @@ function updateCharMeta(key){
 }
 
 function renderStats(key){
-  statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
   updateCharMeta(key);
-  const rows=[
-    ['Gold Pieces',fmtNumber(s.net_gp||0),'net_gp'],
-    ['Downtime Days',fmtNumber(s.net_dtd||0),'net_dtd'],
-    ['Magic Items',fmtNumber(s.perm_count||0),'perm_items'],
-    ['Consumables',fmtNumber(s.cons_count||0),'consumables']
-  ];
-  rows.forEach(([label,val,name])=>{ const el=document.createElement('div'); el.className='stat'; el.dataset.key=name; el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>'; statsEl.appendChild(el); });
-  const permTile=statsEl.querySelector('[data-key="perm_items"]');
-  if(permTile){ permTile.style.cursor='pointer'; permTile.title='Click to view cumulative permanent inventory'; permTile.addEventListener('click',()=>openInventoryModal(charSel.value)); }
-  const consTile=statsEl.querySelector('[data-key="consumables"]');
-  if(consTile){ consTile.style.cursor='pointer'; consTile.title='Click to view consumables summary'; consTile.addEventListener('click',()=>openConsumableModal(charSel.value)); }
+  const goldVal=fmtNumber(s.net_gp||0);
+  if(goldValueEl) goldValueEl.textContent=goldVal;
+  const dtdVal=fmtNumber(s.net_dtd||0);
+  if(downtimeValueEl) downtimeValueEl.textContent=dtdVal;
+  const permCount=Number(s.perm_count||0);
+  const consCount=Number(s.cons_count||0);
+  if(magicItemsCountEl) magicItemsCountEl.textContent=fmtNumber(permCount);
+  if(consumablesCountEl) consumablesCountEl.textContent=fmtNumber(consCount);
+  if(magicItemsBtn){
+    const label=`View permanent magic items (${fmtNumber(permCount)} total)`;
+    magicItemsBtn.setAttribute('aria-label',label);
+    magicItemsBtn.title=label;
+  }
+  if(consumablesBtn){
+    const label=`View consumables (${fmtNumber(consCount)} total)`;
+    consumablesBtn.setAttribute('aria-label',label);
+    consumablesBtn.title=label;
+  }
 }
 function setHeader(key){
   const obj=DATA.characters[key];
