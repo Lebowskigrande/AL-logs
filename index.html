@@ -274,7 +274,7 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" placeholder="Search adventures (name, code, notes, DM)"/>
       </div>
-      <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide downtime activities</button>
+      <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
       <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
@@ -370,7 +370,7 @@ function persistActivityVisibility(){
 function updateActivityToggle(){
   if(!activityToggleBtn) return;
   const hiding=!showActivities;
-  activityToggleBtn.textContent=hiding?'Show downtime activities':'Hide downtime activities';
+  activityToggleBtn.textContent=hiding?'Show activities':'Hide activities';
   activityToggleBtn.setAttribute('aria-pressed', hiding?'true':'false');
   activityToggleBtn.classList.toggle('primary', hiding);
   const label=hiding?'Show downtime activities':'Hide downtime activities';
