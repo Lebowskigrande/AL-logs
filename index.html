@@ -392,16 +392,26 @@ body.avatar-overlay-open{overflow:hidden}
   }
   window.AL_DATA_VERSION=version;
   var src=version?('data.js?v='+encodeURIComponent(version)):'data.js';
-  document.write('<script src="'+src+'" id="dataScript" data-version="'+(version||'')+'"><\\/script>');
+  try {
+    var script=document.createElement('script');
+    script.src=src;
+    script.id='dataScript';
+    script.async=false;
+    script.setAttribute('data-version', version||'');
+    var parent=document.currentScript&&document.currentScript.parentNode;
+    (parent||document.head||document.body||document.documentElement).appendChild(script);
+  } catch(err){
+    var fallback=document.createElement('script');
+    fallback.src='data.js';
+    fallback.id='dataScript';
+    fallback.async=false;
+    (document.head||document.body||document.documentElement).appendChild(fallback);
+  }
 })();
 </script>
 <script>
 /* --- data boot --- */
 let DATA = window.DATA || null;
-if (!DATA || !DATA.characters) {
-  const e = document.getElementById('empty');
-  e.style.display='block'; e.innerHTML='Could not load <code>data.js</code>.'; throw new Error('DATA missing');
-}
 
 /* --- DOM handles --- */
 const charSel  = document.getElementById('charSel');
@@ -665,6 +675,12 @@ async function saveDataJs(options={}){
     savingData=false;
     updateSaveButtonState();
   }
+}
+
+function showDataLoadError(message){
+  if(!emptyEl) return;
+  emptyEl.style.display='block';
+  emptyEl.innerHTML=message||'Could not load <code>data.js</code>.';
 }
 
 function buildDataUrl(version){
@@ -2130,14 +2146,61 @@ window.addEventListener('resize',()=>{
 });
 
 /* --- init --- */
-updateActivityToggle();
-updateOrderToggle();
-const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
-if(initialKey && charSel){
-  charSel.value=initialKey;
+function initApp(){
+  DATA=window.DATA||null;
+  if(!DATA || !DATA.characters){
+    showDataLoadError('Could not load <code>data.js</code>.');
+    return false;
+  }
+  if(emptyEl){
+    emptyEl.style.display='none';
+  }
+  updateActivityToggle();
+  updateOrderToggle();
+  const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
+  if(initialKey && charSel){
+    charSel.value=initialKey;
+  }
+  filterAndRender();
+  clearDirty();
+  return true;
 }
-filterAndRender();
-clearDirty();
+
+let __appInitialized=false;
+function ensureAppInitialized(){
+  if(__appInitialized) return;
+  __appInitialized=initApp();
+}
+
+function tryInitApp(){
+  if(window.DATA && window.DATA.characters){
+    DATA=window.DATA;
+    ensureAppInitialized();
+    return __appInitialized;
+  }
+  return false;
+}
+
+if(!tryInitApp()){
+  if(dataScriptEl){
+    const onLoad=()=>{
+      if(!tryInitApp()){
+        showDataLoadError('Could not load <code>data.js</code>.');
+      }
+    };
+    dataScriptEl.addEventListener('load', onLoad, {once:true});
+    dataScriptEl.addEventListener('error',()=>{
+      showDataLoadError('Could not load <code>data.js</code>.');
+    },{once:true});
+    const state=dataScriptEl.readyState;
+    if(state==='loaded'||state==='complete'){
+      tryInitApp();
+    }
+    [0,50,200].forEach(delay=>{ setTimeout(()=>{ tryInitApp(); },delay); });
+  }else{
+    showDataLoadError('Could not load <code>data.js</code>.');
+  }
+}
 
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
