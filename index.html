@@ -113,7 +113,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .card-tools .icon-btn,
 .card .card-tools .icon-btn:focus-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .card.editing .card-hd{cursor:default}
-.card.editing{border-color:rgba(26,115,232,.35);box-shadow:0 0 0 2px rgba(26,115,232,.08)}
+.card.editing{border-color:rgba(26,115,232,.35);box-shadow:0 0 0 2px rgba(26,115,232,.08);background:#e8f0ff}
 .titleLine{display:flex;flex-direction:column}
 .date{color:var(--muted);line-height:16px}
 .title{font-weight:700;line-height:20px;height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;width:100%}
@@ -130,14 +130,27 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-bd{height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--ease),opacity var(--card-dur,var(--dur)) linear;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
 .bd-in{padding:12px 0 16px}
 .edit-form{padding:12px 0 16px;display:none}
-.card.editing .edit-form{display:block}
-.card.editing .bd-in{display:none}
+.card.editing .edit-form{display:none}
 @media (prefers-reduced-motion:reduce){.card-bd{transition:none}}
 
 /* Fields */
 .field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
 .field .k{color:var(--muted);font-size:12px;font-weight:400}
 .field .v{width:100%}
+.field .display{display:block}
+.field .editor{display:none}
+.card.editing .field .display{display:none}
+.card.editing .field .editor{display:block}
+.show-when-editing{display:none}
+.card.editing .show-when-editing{display:block}
+.field.show-when-editing{display:none}
+.card.editing .field.show-when-editing{display:flex}
+.editable-inline .display{display:inline}
+.editable-inline .editor{display:none}
+.card.editing .editable-inline .display{display:none}
+.card.editing .editable-inline .editor{display:inline}
+.editable-inline .editor input,.editable-inline .editor select{font:inherit;padding:4px 6px;border:1px solid var(--border);border-radius:8px;}
+.editable-inline .editor input{min-width:160px;max-width:100%}
 .field input,.field textarea,.field select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;resize:vertical}
 .field textarea{min-height:80px}
 .kv2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
@@ -158,6 +171,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .list-editor .add-row{align-self:flex-start;border:1px dashed var(--border);background:#f8fafc;color:var(--primary);border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
 .list-editor .add-row:hover{background:#eef4ff}
 .edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.card.editing .edit-actions{display:flex}
 .edit-actions .delete-btn{margin-right:auto}
 
 .edit-form form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -1522,11 +1536,23 @@ function makeCard(a,idx){
 
   const hd=document.createElement('div'); hd.className='card-hd';
   const main=document.createElement('div');
+  let titleEditorSlot=null, titleDisplayEl=null;
+  let dateEditorSlot=null, dateDisplayEl=null;
+  let codeEditorSlot=null, codeDisplayEl=null;
+  let codeFieldView=null;
   if(act){
     main.className='activity-line';
     const left=document.createElement('div'); left.className='activity-left';
-    const dateSpan=document.createElement('span'); dateSpan.className='activity-date'; dateSpan.textContent=fmtDate(a.date);
-    const nameSpan=document.createElement('span'); nameSpan.className='activity-name'; nameSpan.textContent=sanitizeTitle(a.title||'Activity');
+    const dateSpan=document.createElement('span'); dateSpan.className='activity-date editable-inline';
+    const actDateDisplay=document.createElement('span'); actDateDisplay.className='display'; actDateDisplay.textContent=fmtDate(a.date);
+    const actDateEditor=document.createElement('span'); actDateEditor.className='editor';
+    dateSpan.append(actDateDisplay,actDateEditor); dateSpan.__display=actDateDisplay; dateSpan.__editor=actDateEditor;
+    dateEditorSlot=actDateEditor; dateDisplayEl=actDateDisplay;
+    const nameSpan=document.createElement('span'); nameSpan.className='activity-name editable-inline';
+    const actNameDisplay=document.createElement('span'); actNameDisplay.className='display'; actNameDisplay.textContent=sanitizeTitle(a.title||'Activity');
+    const actNameEditor=document.createElement('span'); actNameEditor.className='editor';
+    nameSpan.append(actNameDisplay,actNameEditor); nameSpan.__display=actNameDisplay; nameSpan.__editor=actNameEditor;
+    titleEditorSlot=actNameEditor; titleDisplayEl=actNameDisplay;
     left.appendChild(dateSpan); left.appendChild(nameSpan);
     const chips=document.createElement('div'); chips.className='chips';
     if(gp){ const p=pill('GP '+fmtSigned(gp)); p.classList.add('muted'); chips.appendChild(p); }
@@ -1534,9 +1560,21 @@ function makeCard(a,idx){
     main.appendChild(left); main.appendChild(chips);
   }else{
     main.className='titleLine';
-    const dateDiv=document.createElement('div'); dateDiv.className='date'; dateDiv.textContent=fmtDate(a.date);
-    const titleDiv=document.createElement('div'); titleDiv.className='title'; titleDiv.textContent=sanitizeTitle(a.title||'Untitled Adventure');
-    const subtitleDiv=document.createElement('div'); subtitleDiv.className='subtitle'; subtitleDiv.textContent=a.code||'';
+    const dateDiv=document.createElement('div'); dateDiv.className='date editable-inline';
+    const dateDisplay=document.createElement('span'); dateDisplay.className='display'; dateDisplay.textContent=fmtDate(a.date);
+    const dateEditor=document.createElement('span'); dateEditor.className='editor';
+    dateDiv.append(dateDisplay,dateEditor); dateDiv.__display=dateDisplay; dateDiv.__editor=dateEditor;
+    dateEditorSlot=dateEditor; dateDisplayEl=dateDisplay;
+    const titleDiv=document.createElement('div'); titleDiv.className='title editable-inline';
+    const titleDisplay=document.createElement('span'); titleDisplay.className='display'; titleDisplay.textContent=sanitizeTitle(a.title||'Untitled Adventure');
+    const titleEditor=document.createElement('span'); titleEditor.className='editor';
+    titleDiv.append(titleDisplay,titleEditor); titleDiv.__display=titleDisplay; titleDiv.__editor=titleEditor;
+    titleEditorSlot=titleEditor; titleDisplayEl=titleDisplay;
+    const subtitleDiv=document.createElement('div'); subtitleDiv.className='subtitle editable-inline';
+    const subtitleDisplay=document.createElement('span'); subtitleDisplay.className='display'; subtitleDisplay.textContent=a.code||'';
+    const subtitleEditor=document.createElement('span'); subtitleEditor.className='editor';
+    subtitleDiv.append(subtitleDisplay,subtitleEditor); subtitleDiv.__display=subtitleDisplay; subtitleDiv.__editor=subtitleEditor;
+    codeEditorSlot=subtitleEditor; codeDisplayEl=subtitleDisplay;
     const chips=document.createElement('div'); chips.className='chips';
     const netGP=(a.gp_net==null?gp:a.gp_net);
     chips.appendChild(pill('GP '+fmtSigned(Number(netGP))));
@@ -1582,8 +1620,13 @@ function makeCard(a,idx){
     const cell=document.createElement('div');
     cell.className='kvsingle';
     const k=document.createElement('div'); k.className='k'; k.textContent=label;
-    const v=document.createElement('div'); v.className='v'; v.textContent=value;
+    const v=document.createElement('div'); v.className='v';
+    const display=document.createElement('div'); display.className='display'; display.textContent=value;
+    const editor=document.createElement('div'); editor.className='editor';
+    v.appendChild(display); v.appendChild(editor);
     cell.appendChild(k); cell.appendChild(v);
+    cell.__display=display;
+    cell.__editor=editor;
     return cell;
   }
 
@@ -1592,31 +1635,47 @@ function makeCard(a,idx){
     field.className='field'+(extraClass?(' '+extraClass):'');
     const k=document.createElement('div'); k.className='k'; k.textContent=label;
     const v=document.createElement('div'); v.className='v';
-    if(content instanceof Node){ v.appendChild(content); }
-    else{ v.textContent=makeValue(content); }
+    const display=document.createElement('div'); display.className='display';
+    if(content instanceof Node){ display.appendChild(content); }
+    else{ display.textContent=makeValue(content); }
+    const editor=document.createElement('div'); editor.className='editor';
+    v.appendChild(display); v.appendChild(editor);
     field.appendChild(k); field.appendChild(v);
     view.appendChild(field);
+    field.__display=display;
+    field.__editor=editor;
     return field;
   }
 
   const gpRowView=document.createElement('div'); gpRowView.className='kv2';
   const gpEarn=Number(a.gp_plus??0);
-  if(!act || gpEarn!==0){ gpRowView.appendChild(makeKVS('Gold earned', fmtNumber(gpEarn))); }
+  const gpEarnCell=makeKVS('Gold earned', fmtNumber(gpEarn)); gpRowView.appendChild(gpEarnCell);
   const gpSpend=Number(a.gp_minus??0);
-  if(!act || gpSpend!==0){ gpRowView.appendChild(makeKVS('Gold spent', fmtNumber(gpSpend))); }
-  if(gpRowView.children.length) view.appendChild(gpRowView);
+  const gpSpendCell=makeKVS('Gold spent', fmtNumber(gpSpend)); gpRowView.appendChild(gpSpendCell);
+  const showGpEarn=(!act || gpEarn!==0);
+  const showGpSpend=(!act || gpSpend!==0);
+  gpEarnCell.style.display=showGpEarn?'':'none';
+  gpSpendCell.style.display=showGpSpend?'':'none';
+  if(!(showGpEarn||showGpSpend)){ gpRowView.style.display='none'; }
+  view.appendChild(gpRowView);
 
   const dtRowView=document.createElement('div'); dtRowView.className='kv2';
   const dtEarnVal=Number(a.dtd_plus??0);
-  if(!act || dtEarnVal!==0){ dtRowView.appendChild(makeKVS('Downtime earned', fmtNumber(dtEarnVal))); }
+  const dtEarnCell=makeKVS('Downtime earned', fmtNumber(dtEarnVal)); dtRowView.appendChild(dtEarnCell);
   const dtSpendVal=Number(a.dtd_minus??0);
-  if(!act || dtSpendVal!==0){ dtRowView.appendChild(makeKVS('Downtime spent', fmtNumber(dtSpendVal))); }
-  if(dtRowView.children.length) view.appendChild(dtRowView);
+  const dtSpendCell=makeKVS('Downtime spent', fmtNumber(dtSpendVal)); dtRowView.appendChild(dtSpendCell);
+  const showDtEarn=(!act || dtEarnVal!==0);
+  const showDtSpend=(!act || dtSpendVal!==0);
+  dtEarnCell.style.display=showDtEarn?'':'none';
+  dtSpendCell.style.display=showDtSpend?'':'none';
+  if(!(showDtEarn||showDtSpend)){ dtRowView.style.display='none'; }
+  view.appendChild(dtRowView);
 
   const lvlVal=Number(a.level_plus||0);
-  if((!act && lvlVal) || (act && lvlVal!==0)){
-    view.appendChild(makeKVS('Levels gained', fmtNumber(lvlVal)));
-  }
+  const levelField=makeKVS('Levels gained', fmtNumber(lvlVal));
+  const showLevel=(!act && lvlVal) || (act && lvlVal!==0);
+  if(!showLevel){ levelField.style.display='none'; }
+  view.appendChild(levelField);
 
   const hasTradeMeta = act && (('itemTraded' in a) || ('itemReceived' in a));
   const dmDisplay=normalizeDisplayValue(a.dm);
@@ -1625,11 +1684,20 @@ function makeCard(a,idx){
   const tradePlayer=hasTradeMeta?(playerRaw||dmDisplay):playerRaw;
   const usedDmAsPlayer=hasTradeMeta && !playerRaw && !!dmDisplay && tradePlayer===dmDisplay;
 
-  if(!act){
-    view.appendChild(makeKVS('DM', dmDisplay||'—'));
-  }else if(dmDisplay && !usedDmAsPlayer){
-    view.appendChild(makeKVS('DM', dmDisplay));
+  const kindField=appendField('Entry type', act?'Downtime Activity':'Adventure');
+  kindField.classList.add('show-when-editing');
+  kindField.style.display='none';
+
+  if(act){
+    codeFieldView=appendField('Adventure Code', a.code||'');
+    codeFieldView.classList.add('show-when-editing');
+    if(!(a.code||'').trim()){ codeFieldView.style.display='none'; }
   }
+
+  const dmField=makeKVS('DM', dmDisplay||'—');
+  const showDM=!act || (dmDisplay && !usedDmAsPlayer);
+  if(!showDM){ dmField.style.display='none'; }
+  view.appendChild(dmField);
 
   if(hasTradeMeta){
     const tradedAway=normalizeDisplayValue(a.itemTraded);
@@ -1643,28 +1711,30 @@ function makeCard(a,idx){
       if(characterDisplay){ metaRow.appendChild(makeKVS('Character', characterDisplay)); }
       if(metaRow.children.length){ view.appendChild(metaRow); }
     }
-  }else if(act){
+  }
+
+  let tradedItemField=null;
+  if(!hasTradeMeta && act){
     const tradedItem=normalizeDisplayValue(a.traded_item);
-    if(tradedItem){ appendField('Item traded away', tradedItem); }
+    tradedItemField=appendField('Item traded away', tradedItem);
+    if(!tradedItem){ tradedItemField.style.display='none'; }
   }
 
   const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>hasMeaningfulValue(item));
-  if(!act || (!hasTradeMeta && hasPermItems)){
-    appendField('Magic Items', listBox(a.perm_items),'mi');
-  }
+  const permField=appendField('Magic Items', listBox(a.perm_items),'mi');
+  const showPerm=(!act || (!hasTradeMeta && hasPermItems));
+  if(!showPerm){ permField.style.display='none'; }
   const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>hasMeaningfulValue(item));
-  if(!act || hasConsumables){
-    appendField('Consumables', listBox(a.consumable_items),'cons');
-  }
-  if(!hasTradeMeta){
-    const noteText=normalizeDisplayValue(a.notes);
-    if(!act || noteText){
-      const notesBox=document.createElement('div');
-      notesBox.className='notesbox';
-      notesBox.textContent=noteText||'—';
-      appendField('Notes', notesBox);
-    }
-  }
+  const consField=appendField('Consumables', listBox(a.consumable_items),'cons');
+  const showCons=(!act || hasConsumables);
+  if(!showCons){ consField.style.display='none'; }
+  const noteText=normalizeDisplayValue(a.notes);
+  const notesBox=document.createElement('div');
+  notesBox.className='notesbox';
+  notesBox.textContent=noteText||'—';
+  const notesField=appendField('Notes', notesBox);
+  const showNotes=(!hasTradeMeta && (!act || noteText));
+  if(!showNotes){ notesField.style.display='none'; }
 
   const formWrap=document.createElement('div'); formWrap.className='edit-form';
   const form=document.createElement('form');
@@ -1725,7 +1795,7 @@ function makeCard(a,idx){
 
   controls.level_plus=addField('Levels gained', makeInput('number'));
 
-  const tradeField=controls.traded_item.closest('.field');
+  let tradeField=controls.traded_item.closest('.field');
   function syncKindVisibility(){
     const isActivity=controls.kind.value!=='adventure';
     if(tradeField){ tradeField.style.display=isActivity?'':'none'; }
@@ -1758,14 +1828,38 @@ function makeCard(a,idx){
   addField('Consumables', controls.consumable_items);
   controls.notes=addField('Notes', makeTextarea());
   if(controls.notes){ controls.notes.rows=4; }
-  const notesField=controls.notes.closest('.field');
-  if(notesField){ notesField.classList.add('full','notes-field'); }
-  const permField=controls.perm_items.closest('.field');
-  if(permField){ permField.classList.add('full'); }
-  const consField=controls.consumable_items.closest('.field');
-  if(consField){ consField.classList.add('full'); }
+
+  form.querySelectorAll('.field,.kv2').forEach(el=>el.remove());
+
+  function mountControl(control,target){
+    if(!control||!target) return;
+    target.appendChild(control);
+  }
+
+  mountControl(controls.title,titleEditorSlot);
+  mountControl(controls.date,dateEditorSlot);
+  mountControl(controls.code, codeEditorSlot || (codeFieldView && codeFieldView.__editor));
+  mountControl(controls.dm, dmField.__editor);
+  mountControl(controls.kind, kindField.__editor);
+  if(tradedItemField && controls.traded_item){
+    mountControl(controls.traded_item, tradedItemField.__editor);
+    tradeField=controls.traded_item.closest('.field');
+  }
+  mountControl(controls.gp_plus, gpEarnCell.__editor);
+  mountControl(controls.gp_minus, gpSpendCell.__editor);
+  mountControl(controls.dtd_plus, dtEarnCell.__editor);
+  mountControl(controls.dtd_minus, dtSpendCell.__editor);
+  mountControl(controls.level_plus, levelField.__editor);
+  mountControl(controls.perm_items, permField.__editor);
+  mountControl(controls.consumable_items, consField.__editor);
+  mountControl(controls.notes, notesField.__editor);
+
+  permField.classList.add('full');
+  consField.classList.add('full');
+  notesField.classList.add('full','notes-field');
 
   const actions=document.createElement('div'); actions.className='edit-actions';
+  actions.classList.add('show-when-editing');
   const deleteBtn=document.createElement('button'); deleteBtn.type='button'; deleteBtn.className='btn small danger delete-btn'; deleteBtn.innerHTML='<span class="btn-icon">'+ICON_TRASH+'</span><span>Delete entry</span>';
   deleteBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); deleteCard(card); });
   const cancelBtn=document.createElement('button'); cancelBtn.type='button'; cancelBtn.className='btn small'; cancelBtn.textContent='Cancel';
@@ -1777,29 +1871,111 @@ function makeCard(a,idx){
     }
     exitEditMode(card,true);
   });
-  const saveBtn=document.createElement('button'); saveBtn.type='submit'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
+  const saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
+  saveBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); saveCardChanges(card); });
   actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
-  form.appendChild(actions);
+  view.appendChild(actions);
 
-  function populate(){
-    controls.title.value=a.title||'';
-    controls.date.value=a.date?String(a.date).slice(0,10):'';
-    controls.code.value=a.code||'';
-    controls.dm.value=a.dm||'';
+  function populate(editing=false){
     const kindRaw=(a.kind||'').toString();
     const kindVal=kindRaw && kindRaw.toLowerCase()!=='adventure'?'Downtime Activity':'adventure';
     controls.kind.value=kindVal;
-    controls.traded_item.value=a.traded_item||'';
+    const isActivityMode=(controls.kind.value||'adventure')!=='adventure';
+
+    const titleRaw=a.title||'';
+    controls.title.value=titleRaw;
+    if(titleDisplayEl){
+      const fallback=isActivityMode?'Activity':'Untitled Adventure';
+      titleDisplayEl.textContent=sanitizeTitle(titleRaw||fallback);
+    }
+
+    const dateValue=a.date?String(a.date).slice(0,10):'';
+    controls.date.value=dateValue;
+    if(dateDisplayEl){ dateDisplayEl.textContent=fmtDate(a.date); }
+
+    const codeRaw=a.code||'';
+    controls.code.value=codeRaw;
+    if(codeDisplayEl){ codeDisplayEl.textContent=codeRaw||''; }
+    if(codeFieldView){
+      codeFieldView.__display.textContent=makeValue(codeRaw);
+      codeFieldView.style.display=(editing||codeRaw)?'':'none';
+    }
+
+    const kindLabel=(controls.kind.value||'adventure')==='adventure'?'Adventure':'Downtime Activity';
+    kindField.__display.textContent=kindLabel;
+    kindField.style.display=editing?'':'none';
+
+    const dmRaw=a.dm||'';
+    controls.dm.value=dmRaw;
+    const dmDisplayVal=normalizeDisplayValue(dmRaw)||'—';
+    if(dmField && dmField.__display){ dmField.__display.textContent=dmDisplayVal; }
+    if(dmField){
+      const showDM=editing || !isActivityMode || dmDisplayVal!=='—';
+      dmField.style.display=showDM?'':'none';
+    }
+
+    if(tradedItemField && controls.traded_item){
+      const tradeVal=a.traded_item||'';
+      controls.traded_item.value=tradeVal;
+      tradedItemField.__display.textContent=makeValue(tradeVal);
+      tradedItemField.style.display=(editing||tradeVal.trim())?'':'none';
+    }
+
+    const gpEarn=Number(a.gp_plus??0);
+    controls.gp_plus.value=a.gp_plus!=null&&a.gp_plus!==''?a.gp_plus:'';
+    gpEarnCell.__display.textContent=fmtNumber(gpEarn);
+    const gpSpend=Number(a.gp_minus??0);
+    controls.gp_minus.value=a.gp_minus!=null&&a.gp_minus!==''?a.gp_minus:'';
+    gpSpendCell.__display.textContent=fmtNumber(gpSpend);
+    const showGpEarn=!isActivityMode || gpEarn!==0 || editing;
+    const showGpSpend=!isActivityMode || gpSpend!==0 || editing;
+    gpEarnCell.style.display=showGpEarn?'':'none';
+    gpSpendCell.style.display=showGpSpend?'':'none';
+    gpRowView.style.display=(editing||showGpEarn||showGpSpend)?'':'none';
+
+    const dtEarn=Number(a.dtd_plus??0);
+    controls.dtd_plus.value=a.dtd_plus!=null&&a.dtd_plus!==''?a.dtd_plus:'';
+    dtEarnCell.__display.textContent=fmtNumber(dtEarn);
+    const dtSpend=Number(a.dtd_minus??0);
+    controls.dtd_minus.value=a.dtd_minus!=null&&a.dtd_minus!==''?a.dtd_minus:'';
+    dtSpendCell.__display.textContent=fmtNumber(dtSpend);
+    const showDtEarn=!isActivityMode || dtEarn!==0 || editing;
+    const showDtSpend=!isActivityMode || dtSpend!==0 || editing;
+    dtEarnCell.style.display=showDtEarn?'':'none';
+    dtSpendCell.style.display=showDtSpend?'':'none';
+    dtRowView.style.display=(editing||showDtEarn||showDtSpend)?'':'none';
+
+    const levelVal=Number(a.level_plus||0);
+    controls.level_plus.value=a.level_plus!=null&&a.level_plus!==''?a.level_plus:'';
+    levelField.__display.textContent=fmtNumber(levelVal);
+    const showLevel=(editing||(!isActivityMode && levelVal) || (isActivityMode && levelVal!==0));
+    levelField.style.display=showLevel?'':'none';
+
+    const permValues=Array.isArray(a.perm_items)?a.perm_items:[];
+    controls.perm_items.setValues(permValues);
+    permField.__display.innerHTML='';
+    permField.__display.appendChild(listBox(permValues));
+    const hasPermItemsNow=permValues.some(item=>hasMeaningfulValue(item));
+    permField.style.display=(editing || (!hasTradeMeta && (!isActivityMode || hasPermItemsNow)))?'':'none';
+
+    const consValues=Array.isArray(a.consumable_items)?a.consumable_items:[];
+    controls.consumable_items.setValues(consValues);
+    consField.__display.innerHTML='';
+    consField.__display.appendChild(listBox(consValues));
+    const hasConsNow=consValues.some(item=>hasMeaningfulValue(item));
+    consField.style.display=(editing || (!isActivityMode || hasConsNow))?'':'none';
+
+    const notesRaw=a.notes||'';
+    controls.notes.value=notesRaw;
+    const notesDisplay=normalizeDisplayValue(notesRaw)||'—';
+    notesField.__display.innerHTML='';
+    const notesNode=document.createElement('div'); notesNode.className='notesbox'; notesNode.textContent=notesDisplay;
+    notesField.__display.appendChild(notesNode);
+    const showNotes=(editing || (!hasTradeMeta && (!isActivityMode || notesDisplay!=='—')));
+    notesField.style.display=showNotes?'':'none';
+
     syncKindVisibility();
-    controls.gp_plus.value=a.gp_plus!=null?a.gp_plus:'';
-    controls.gp_minus.value=a.gp_minus!=null?a.gp_minus:'';
-    controls.dtd_plus.value=a.dtd_plus!=null?a.dtd_plus:'';
-    controls.dtd_minus.value=a.dtd_minus!=null?a.dtd_minus:'';
-    controls.level_plus.value=a.level_plus!=null?a.level_plus:'';
-    controls.perm_items.setValues(a.perm_items||[]);
-    controls.consumable_items.setValues(a.consumable_items||[]);
-    controls.notes.value=a.notes||'';
   }
 
   function collect(){
@@ -1844,9 +2020,9 @@ function makeCard(a,idx){
 
 function enterEditMode(card){
   if(!card||!card.__edit) return;
-  card.__edit.populate();
   card.classList.add('editing');
   card.classList.add('open');
+  card.__edit.populate(true);
   const bd=card.querySelector('.card-bd');
   if(bd){
     bd.style.height='auto';
@@ -1860,8 +2036,8 @@ function enterEditMode(card){
 
 function exitEditMode(card,reset){
   if(!card||!card.__edit) return;
-  if(reset){ card.__edit.populate(); }
   card.classList.remove('editing');
+  if(reset){ card.__edit.populate(false); }
   if(card.__edit.button){
     card.__edit.button.setAttribute('aria-pressed','false');
     card.__edit.button.title='Edit entry';
