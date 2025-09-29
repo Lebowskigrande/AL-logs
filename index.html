@@ -70,6 +70,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .download-btn.dirty{color:#0b3f88;background:transparent}
 .download-btn.dirty:hover{color:#0a3572}
 .download-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
+.download-btn.saving{color:var(--muted);cursor:progress}
+.download-btn.success{color:#15803d}
+.download-btn.error{color:var(--danger)}
 
 /* Header metrics */
 .header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -278,7 +281,7 @@ body.avatar-overlay-open{overflow:hidden}
         <div id="charMeta" class="char-meta muted" aria-live="polite"></div>
         <div id="charBadges" class="char-badges" aria-live="polite"></div>
       </div>
-      <button id="downloadData" class="icon-btn download-btn" title="Download adventure log JSON" aria-label="Download adventure log JSON">
+      <button id="downloadData" class="icon-btn download-btn" type="button" title="Save data.js" aria-label="Save data.js">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg>
       </button>
     </div>
@@ -450,6 +453,11 @@ bindButtonLike(magicItemsBtn, () => openInventoryModal(charSel.value));
 bindButtonLike(consumablesBtn, () => openConsumableModal(charSel.value));
 
 let pendingChanges=false;
+let savingData=false;
+let lastSaveResult=null;
+let saveFeedbackTimeout=null;
+const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
+const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
   showActivities:'al_logs_show_activities',
   reverseOrder:'al_logs_reverse_order'
@@ -503,12 +511,39 @@ function updateOrderToggle(){
   orderToggleBtn.title=label;
 }
 
-function updateDownloadState(){
+function updateSaveButtonState(){
   if(!downloadBtn) return;
-  const label=pendingChanges?'Download updated data.js':'Download adventure log JSON';
-  downloadBtn.classList.toggle('dirty',pendingChanges);
+  const baseLabel=pendingChanges?'Save changes to data.js':'All changes saved';
+  let label=baseLabel;
+  downloadBtn.classList.toggle('dirty',pendingChanges && !savingData);
+  downloadBtn.classList.toggle('saving',savingData);
+  downloadBtn.classList.toggle('success',!pendingChanges && lastSaveResult==='success');
+  downloadBtn.classList.toggle('error',lastSaveResult==='error');
+  downloadBtn.disabled=!!savingData;
+  downloadBtn.setAttribute('aria-busy',savingData?'true':'false');
+  if(savingData){
+    label='Saving data.js...';
+  }else if(lastSaveResult==='error'){
+    label='Last save failed — try again';
+  }else if(lastSaveResult==='success' && !pendingChanges){
+    label='Changes saved to data.js';
+  }
   downloadBtn.setAttribute('aria-label',label);
   downloadBtn.title=label;
+}
+
+function setSaveResult(state){
+  lastSaveResult=state;
+  clearTimeout(saveFeedbackTimeout);
+  if(state==='success'){
+    saveFeedbackTimeout=setTimeout(()=>{
+      if(lastSaveResult==='success'){
+        lastSaveResult=null;
+        updateSaveButtonState();
+      }
+    },2500);
+  }
+  updateSaveButtonState();
 }
 
 function anyModalOpen(){
@@ -543,17 +578,73 @@ function closeCardOverlay(){
 
 function markDirty(){
   pendingChanges=true;
-  updateDownloadState();
+  lastSaveResult=null;
+  clearTimeout(saveFeedbackTimeout);
+  updateSaveButtonState();
 }
 function clearDirty(){
   pendingChanges=false;
-  updateDownloadState();
+  lastSaveResult=null;
+  clearTimeout(saveFeedbackTimeout);
+  updateSaveButtonState();
 }
-function downloadFile(name,mime,content){
-  const link=document.createElement('a');
-  link.href=`data:${mime};charset=utf-8,`+encodeURIComponent(content);
-  link.download=name;
-  link.click();
+
+async function saveDataJs(options={}){
+  const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
+  const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
+  const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
+  const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
+  const headers={
+    'content-type':'application/json',
+    ...baseHeaders,
+    ...extraHeaders
+  };
+  if(!endpoint){
+    const err=new Error('Save endpoint not configured.');
+    if(!silent){
+      window.alert(err.message);
+    }
+    throw err;
+  }
+  if(savingData){
+    return;
+  }
+  savingData=true;
+  updateSaveButtonState();
+  try{
+    const response=await fetch(endpoint,{
+      method:'POST',
+      headers,
+      body:JSON.stringify({ dataJs:payload })
+    });
+    const contentType=response.headers.get('content-type')||'';
+    let body=null;
+    if(contentType.includes('application/json')){
+      try{ body=await response.json(); }
+      catch(err){ body=null; }
+    }else{
+      const text=await response.text();
+      body=text?{ message:text }:null;
+    }
+    if(!response.ok){
+      const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
+      throw new Error(message);
+    }
+    clearDirty();
+    setSaveResult('success');
+    return body;
+  }catch(err){
+    console.error('Failed to save data.js', err);
+    setSaveResult('error');
+    if(!silent){
+      const message=(err && err.message)?err.message:String(err);
+      window.alert('Failed to save data.js: '+message);
+    }
+    throw err;
+  }finally{
+    savingData=false;
+    updateSaveButtonState();
+  }
 }
 
 /* --- character selector (no session counts) --- */
@@ -1250,7 +1341,7 @@ function openConsumableModal(charKey){
 }
 
 if(consSaveBtn){
-  consSaveBtn.addEventListener('click',()=>{
+  consSaveBtn.addEventListener('click',async()=>{
     if(!currentConsumableContext) return;
     const {charKey,states,updateSaveVisibility}=currentConsumableContext;
     const ch=DATA.characters[charKey];
@@ -1270,10 +1361,18 @@ if(consSaveBtn){
     applyDataMutation(charKey);
     states.forEach(state=>{ state.initial=state.value; });
     if(typeof updateSaveVisibility==='function') updateSaveVisibility();
-    consSummary.textContent='Consumable counts saved to data.js.';
-    if(consSaveBtn) consSaveBtn.style.display='none';
-    const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
-    downloadFile('data.js','application/javascript',payload);
+    consSummary.textContent='Saving consumable counts…';
+    consSaveBtn.disabled=true;
+    try{
+      await saveDataJs({ silent:true });
+      consSummary.textContent='Consumable counts saved to data.js.';
+      if(consSaveBtn) consSaveBtn.style.display='none';
+    }catch(err){
+      const message=(err && err.message)?err.message:String(err);
+      consSummary.textContent='Could not save consumable counts: '+message;
+    }finally{
+      consSaveBtn.disabled=false;
+    }
   });
 }
 
@@ -1905,16 +2004,13 @@ clearDirty();
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
 
-/* download JSON / data.js */
+/* save data.js */
 if(downloadBtn){
-  downloadBtn.addEventListener('click',()=>{
-    if(pendingChanges){
-      const payload='window.DATA = '+JSON.stringify(DATA,null,2)+';';
-      downloadFile('data.js','application/javascript',payload);
-      clearDirty();
-    }else{
-      const dataStr='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(DATA,null,2));
-      const a=document.createElement('a'); a.href=dataStr; a.download='adventure_log_dashboard.json'; a.click();
+  downloadBtn.addEventListener('click',async()=>{
+    try{
+      await saveDataJs();
+    }catch(err){
+      /* saveDataJs already handles user feedback */
     }
   });
 }
