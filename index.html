@@ -79,8 +79,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .inventory-link:active{color:#0b57d0;background:#d7e4ff}
 .inventory-link:focus-visible{outline:none}
 .inventory-metric{display:inline-flex;align-items:center;gap:8px;padding:6px 0;color:var(--muted);font-weight:600}
-.inventory-metric .icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px}
 .inventory-metric .text{white-space:nowrap}
+.inventory-metric .amount{font-weight:700;color:var(--ink)}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
@@ -302,7 +302,6 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
               <path d="M9 13h6"/>
             </svg>
           </span>
-          <span class="text">Magic Items</span>
           <span class="sr-only" id="magicItemsCount">0</span>
         </button>
         <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
@@ -314,31 +313,15 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
               <path d="M9.5 15.5h5"/>
             </svg>
           </span>
-          <span class="text">Consumables</span>
           <span class="sr-only" id="consumablesCount">0</span>
         </button>
         <div class="inventory-metric" id="goldMetric" role="group" aria-label="Gold pieces total">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="6.5"/>
-              <path d="M12 8.5v7"/>
-              <path d="M9.5 10.5h5"/>
-            </svg>
-          </span>
           <span class="text">Gold</span>
-          <span class="sr-only" id="goldValue">0</span>
+          <span class="amount" id="goldValue">0</span>
         </div>
         <div class="inventory-metric" id="downtimeMetric" role="group" aria-label="Downtime days total">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 2h10"/>
-              <path d="M12 2v5"/>
-              <rect x="5" y="7" width="14" height="12" rx="2"/>
-              <path d="M9 11h6"/>
-            </svg>
-          </span>
           <span class="text">Downtime</span>
-          <span class="sr-only" id="downtimeValue">0</span>
+          <span class="amount" id="downtimeValue">0</span>
         </div>
       </div>
     </div>
@@ -406,7 +389,9 @@ const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
 const orderToggleBtn = document.getElementById('orderToggle');
 const cardOverlay=document.getElementById('cardOverlay');
+const goldMetricEl=document.getElementById('goldMetric');
 const goldValueEl=document.getElementById('goldValue');
+const downtimeMetricEl=document.getElementById('downtimeMetric');
 const downtimeValueEl=document.getElementById('downtimeValue');
 const magicItemsBtn=document.getElementById('magicItemsBtn');
 const consumablesBtn=document.getElementById('consumablesBtn');
@@ -1672,9 +1657,11 @@ function renderStats(key){
   const s=DATA.stats[key]||{};
   updateCharMeta(key);
   const goldVal=fmtNumber(s.net_gp||0);
-  if(goldValueEl) goldValueEl.textContent=`${goldVal} gold pieces total`;
+  if(goldValueEl) goldValueEl.textContent=goldVal;
+  if(goldMetricEl) goldMetricEl.setAttribute('aria-label', `Gold: ${goldVal} gold pieces total`);
   const dtdVal=fmtNumber(s.net_dtd||0);
-  if(downtimeValueEl) downtimeValueEl.textContent=`${dtdVal} downtime days total`;
+  if(downtimeValueEl) downtimeValueEl.textContent=dtdVal;
+  if(downtimeMetricEl) downtimeMetricEl.setAttribute('aria-label', `Downtime: ${dtdVal} downtime days total`);
   const permCount=Number(s.perm_count||0);
   const consCount=Number(s.cons_count||0);
   if(magicItemsCountEl) magicItemsCountEl.textContent=`${fmtNumber(permCount)} permanent items`;
