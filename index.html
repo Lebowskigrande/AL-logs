@@ -71,16 +71,16 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Header metrics */
 .header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.inventory-buttons{display:flex;align-items:stretch;gap:12px;margin-left:auto;flex-wrap:wrap}
-.inventory-pill{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:var(--shadow1);font-weight:700;color:var(--ink);position:relative;min-height:52px}
-.inventory-stat{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px}
-.inventory-stat .label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.inventory-stat .value{font-size:18px;letter-spacing:-0.01em}
-.inventory-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease);line-height:0;outline:none}
-.inventory-btn svg{width:26px;height:26px;pointer-events:none}
-.inventory-btn:hover{color:var(--primary);box-shadow:var(--shadow2);transform:translateY(-1px)}
-.inventory-btn:focus-visible{box-shadow:0 0 0 2px rgba(26,115,232,.35),var(--shadow1)}
-.inventory-btn .badge{position:absolute;top:-6px;right:-6px;min-width:22px;padding:2px 6px;border-radius:999px;background:var(--primary);color:#fff;font-size:11px;font-weight:700;line-height:1;text-align:center;box-shadow:0 6px 16px rgba(26,115,232,.35);}
+.inventory-buttons{display:flex;align-items:center;gap:18px;margin-left:auto;flex-wrap:wrap}
+.inventory-link{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.inventory-link .icon svg,.inventory-metric .icon svg{width:24px;height:24px;display:block}
+.inventory-link .text,.inventory-metric .text{letter-spacing:.02em}
+.inventory-link:hover,.inventory-link:focus-visible{color:var(--primary);background:#eef4ff;box-shadow:0 8px 16px rgba(26,115,232,.18)}
+.inventory-link:active{color:#0b57d0;background:#d7e4ff}
+.inventory-link:focus-visible{outline:none}
+.inventory-metric{display:inline-flex;align-items:center;gap:8px;padding:6px 0;color:var(--muted);font-weight:600}
+.inventory-metric .icon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px}
+.inventory-metric .text{white-space:nowrap}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
@@ -293,33 +293,52 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
     </div>
     <div class="header-quick" id="headerQuick">
       <div class="inventory-buttons">
-        <div id="magicItemsBtn" class="inventory-btn inventory-pill" role="button" tabindex="0" title="View permanent magic items" aria-label="View permanent magic items">
-          <span class="sr-only">View permanent magic items</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 10V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/>
-            <path d="M4 10h16v9H4z"/>
-            <path d="M12 10v3"/>
-            <path d="M9 13h6"/>
-          </svg>
-          <span class="badge" id="magicItemsCount" aria-hidden="true">0</span>
+        <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 10V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/>
+              <path d="M4 10h16v9H4z"/>
+              <path d="M12 10v3"/>
+              <path d="M9 13h6"/>
+            </svg>
+          </span>
+          <span class="text">Magic Items</span>
+          <span class="sr-only" id="magicItemsCount">0</span>
+        </button>
+        <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6"/>
+              <path d="M9 3v2.5l-1.9 1.9A4.5 4.5 0 0 0 6.8 9.6L6 11h12l-.8-1.4a4.5 4.5 0 0 0-.3-.2l-1.9-1.9V3"/>
+              <path d="M6 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5"/>
+              <path d="M9.5 15.5h5"/>
+            </svg>
+          </span>
+          <span class="text">Consumables</span>
+          <span class="sr-only" id="consumablesCount">0</span>
+        </button>
+        <div class="inventory-metric" id="goldMetric" role="group" aria-label="Gold pieces total">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="6.5"/>
+              <path d="M12 8.5v7"/>
+              <path d="M9.5 10.5h5"/>
+            </svg>
+          </span>
+          <span class="text">Gold</span>
+          <span class="sr-only" id="goldValue">0</span>
         </div>
-        <div id="consumablesBtn" class="inventory-btn inventory-pill" role="button" tabindex="0" title="View consumables" aria-label="View consumables">
-          <span class="sr-only">View consumables</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 3h6"/>
-            <path d="M9 3v2.5l-1.9 1.9A4.5 4.5 0 0 0 6.8 9.6L6 11h12l-.8-1.4a4.5 4.5 0 0 0-.3-.2l-1.9-1.9V3"/>
-            <path d="M6 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5"/>
-            <path d="M9.5 15.5h5"/>
-          </svg>
-          <span class="badge" id="consumablesCount" aria-hidden="true">0</span>
-        </div>
-        <div class="inventory-stat inventory-pill" id="goldMetric" role="group" aria-label="Gold pieces total">
-          <span class="label">Gold</span>
-          <span class="value" id="goldValue">0</span>
-        </div>
-        <div class="inventory-stat inventory-pill" id="downtimeMetric" role="group" aria-label="Downtime days total">
-          <span class="label">Downtime</span>
-          <span class="value" id="downtimeValue">0</span>
+        <div class="inventory-metric" id="downtimeMetric" role="group" aria-label="Downtime days total">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 2h10"/>
+              <path d="M12 2v5"/>
+              <rect x="5" y="7" width="14" height="12" rx="2"/>
+              <path d="M9 11h6"/>
+            </svg>
+          </span>
+          <span class="text">Downtime</span>
+          <span class="sr-only" id="downtimeValue">0</span>
         </div>
       </div>
     </div>
@@ -1557,13 +1576,13 @@ function renderStats(key){
   const s=DATA.stats[key]||{};
   updateCharMeta(key);
   const goldVal=fmtNumber(s.net_gp||0);
-  if(goldValueEl) goldValueEl.textContent=goldVal;
+  if(goldValueEl) goldValueEl.textContent=`${goldVal} gold pieces total`;
   const dtdVal=fmtNumber(s.net_dtd||0);
-  if(downtimeValueEl) downtimeValueEl.textContent=dtdVal;
+  if(downtimeValueEl) downtimeValueEl.textContent=`${dtdVal} downtime days total`;
   const permCount=Number(s.perm_count||0);
   const consCount=Number(s.cons_count||0);
-  if(magicItemsCountEl) magicItemsCountEl.textContent=fmtNumber(permCount);
-  if(consumablesCountEl) consumablesCountEl.textContent=fmtNumber(consCount);
+  if(magicItemsCountEl) magicItemsCountEl.textContent=`${fmtNumber(permCount)} permanent items`;
+  if(consumablesCountEl) consumablesCountEl.textContent=`${fmtNumber(consCount)} consumables`;
   if(magicItemsBtn){
     const label=`View permanent magic items (${fmtNumber(permCount)} total)`;
     magicItemsBtn.setAttribute('aria-label',label);
