@@ -147,16 +147,32 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .field.show-when-editing{display:flex}
 .editable-inline .display{display:inline}
 .editable-inline .editor{display:none}
+.card:not(.editing) .editable-inline .editor{display:none!important}
+.card.editing .editable-inline{width:100%;min-width:0}
 .card.editing .editable-inline .display{display:none}
-.card.editing .editable-inline .editor{display:inline}
-.editable-inline .editor input,.editable-inline .editor select{font:inherit;padding:4px 6px;border:1px solid var(--border);border-radius:8px;}
-.editable-inline .editor input{min-width:160px;max-width:100%}
+.card.editing .editable-inline .editor{display:flex;width:100%}
+.card.editing .editable-inline .editor > *{flex:1 1 auto;width:100%;min-width:0}
+.editable-inline .editor input,.editable-inline .editor select{font:inherit;padding:4px 6px;border:1px solid var(--border);border-radius:10px;outline:none;background:#fff;max-width:100%;min-width:0;box-shadow:none}
+.editable-inline .editor input{min-width:0;max-width:100%}
+.card.editing .subtitle-row{flex-wrap:wrap;align-items:flex-start;gap:6px}
+.card.editing .subtitle-row .subtitle{width:100%;min-width:0}
+.card.editing .subtitle-row .chips{margin-left:0;width:100%;justify-content:flex-start}
+.card.editing .activity-line{flex-wrap:wrap;gap:6px}
+.card.editing .activity-left{flex-wrap:wrap;white-space:normal;min-width:0}
+.card.editing .activity-left .editable-inline{flex:1 1 100%;width:100%}
+.card.editing .activity-line .chips{margin-left:0;width:100%;justify-content:flex-start}
 .field input,.field textarea,.field select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;resize:vertical}
 .field textarea{min-height:80px}
 .kv2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
 .kvsingle{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin:6px 0}
 .kvsingle .k{color:var(--muted);font-size:12px;font-weight:400}
-.kvsingle .v{font-weight:400}
+.kvsingle .v{font-weight:400;min-width:0}
+.kvsingle .display{display:block}
+.kvsingle .editor{display:none;width:100%}
+.card.editing .kvsingle .display{display:none}
+.card.editing .kvsingle .editor{display:flex}
+.card.editing .kvsingle .editor > *{flex:1 1 auto;width:100%;min-width:0}
+.kvsingle .editor input,.kvsingle .editor select{font:inherit;padding:4px 6px;border:1px solid var(--border);border-radius:10px;outline:none;background:#fff;max-width:100%;min-width:0;box-shadow:none}
 .scrollbox{background:#f9fafb;border:1px dashed var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
 .scrollbox .item{margin:2px 0}
 .notesbox{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
@@ -185,6 +201,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .edit-form .kv2 .v input{flex:1 1 auto}
 .edit-form .list-editor{grid-column:1 / -1}
 .edit-form .edit-actions{grid-column:1 / -1;margin-top:4px}
+
+.card.editing input,.card.editing textarea,.card.editing select,.card.editing .list-editor .list-row input{outline:none;box-shadow:none;border-radius:10px;background:#fff}
+.card.editing input:focus,.card.editing textarea:focus,.card.editing select:focus,.card.editing .editable-inline .editor input:focus,.card.editing .editable-inline .editor select:focus{outline:none;box-shadow:0 0 0 2px rgba(26,115,232,.2)}
 
 body.modal-open{overflow:hidden;}
 body.modal-open #addCard{display:none;}
