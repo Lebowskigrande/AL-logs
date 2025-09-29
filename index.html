@@ -78,7 +78,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .inventory-buttons{display:flex;align-items:center;gap:18px;margin-left:auto;flex-wrap:wrap}
 .inventory-link{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
-.inventory-link .icon svg,.inventory-metric .icon svg{width:24px;height:24px;display:block}
+.inventory-link .icon svg,.inventory-link .icon img,.inventory-metric .icon svg{width:24px;height:24px;display:block}
 .inventory-link .text,.inventory-metric .text{letter-spacing:.02em}
 .inventory-link:hover,.inventory-link:focus-visible{color:var(--primary);background:#eef4ff;box-shadow:0 8px 16px rgba(26,115,232,.18)}
 .inventory-link:active{color:#0b57d0;background:#d7e4ff}
@@ -306,23 +306,13 @@ body.avatar-overlay-open{overflow:hidden}
       <div class="inventory-buttons">
         <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
           <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 10V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/>
-              <path d="M4 10h16v9H4z"/>
-              <path d="M12 10v3"/>
-              <path d="M9 13h6"/>
-            </svg>
+            <img src="chest.png" alt="" width="24" height="24"/>
           </span>
           <span class="sr-only" id="magicItemsCount">0</span>
         </button>
         <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
           <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3h6"/>
-              <path d="M9 3v2.5l-1.9 1.9A4.5 4.5 0 0 0 6.8 9.6L6 11h12l-.8-1.4a4.5 4.5 0 0 0-.3-.2l-1.9-1.9V3"/>
-              <path d="M6 11v5a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-5"/>
-              <path d="M9.5 15.5h5"/>
-            </svg>
+            <img src="potion.png" alt="" width="24" height="24"/>
           </span>
           <span class="sr-only" id="consumablesCount">0</span>
         </button>
