@@ -25,8 +25,8 @@ html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-sy
 .avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#34a853);box-shadow:var(--shadow1)}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
-.title-select-wrap{display:flex;align-items:center;gap:10px;position:relative;padding-right:22px;max-width:100%;min-width:0}
-.title-select-wrap::after{content:"";width:12px;height:8px;clip-path:polygon(0 0,100% 0,50% 100%);background:currentColor;opacity:.55;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.title-select-wrap{display:flex;align-items:center;gap:8px;position:relative;padding-right:16px;max-width:100%;min-width:0}
+.title-select-wrap::after{content:"";width:12px;height:8px;clip-path:polygon(0 0,100% 0,50% 100%);background:currentColor;opacity:.55;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;position:absolute;right:2px;top:50%;transform:translateY(-50%)}
 .title-select-wrap:focus-within::after{opacity:1;transform:translateY(-40%)}
 .title-select{appearance:none;border:none;background:transparent;font:inherit;color:var(--ink);padding:0;margin:0;cursor:pointer;line-height:1.1;font-weight:800;letter-spacing:-0.01em;max-width:100%;min-width:0;font-size:clamp(20px,4vw,28px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .title-select:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px;border-radius:6px}
@@ -36,6 +36,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .char-badges .identity-badge .label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .muted{color:var(--muted);font-size:13px}
+.char-meta{display:none;margin-top:4px;font-size:14px;font-weight:600;color:var(--muted)}
 
 /* Toolbar */
 .toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
@@ -261,6 +262,7 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
           <label for="charSel" class="sr-only">Select a sheet or character</label>
           <select id="charSel" class="title-select"></select>
         </h1>
+        <div id="charMeta" class="char-meta muted" aria-live="polite"></div>
         <div id="charBadges" class="char-badges" aria-live="polite"></div>
       </div>
       <button id="downloadData" class="icon-btn download-btn" title="Download adventure log JSON" aria-label="Download adventure log JSON">
@@ -336,6 +338,7 @@ const grid     = document.getElementById('grid');
 const emptyEl  = document.getElementById('empty');
 const statsEl  = document.getElementById('stats');
 const badgesEl = document.getElementById('charBadges');
+const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const cardOverlay=document.getElementById('cardOverlay');
 let overlayCard=null;
@@ -1394,16 +1397,38 @@ function applyDataMutation(key){
 }
 
 /* --- stats & header --- */
+function updateCharMeta(key){
+  if(!metaEl) return;
+  const stats=DATA.stats[key];
+  if(!stats){
+    metaEl.textContent='';
+    metaEl.style.display='none';
+    metaEl.setAttribute('aria-hidden','true');
+    return;
+  }
+  const levelUps=Number(stats.level_ups||0);
+  const currentLevel=(Number.isFinite(levelUps)?Math.round(levelUps):0)+1;
+  const sessionsRaw=Number(stats.sessions||0);
+  const parts=[];
+  if(Number.isFinite(currentLevel)) parts.push(`Level ${fmtNumber(currentLevel)}`);
+  if(Number.isFinite(sessionsRaw)){
+    const label=sessionsRaw===1?'Session':'Sessions';
+    parts.push(`${fmtNumber(sessionsRaw)} ${label}`);
+  }
+  const text=parts.join(' • ');
+  metaEl.textContent=text;
+  const show=Boolean(text);
+  metaEl.style.display=show?'block':'none';
+  metaEl.setAttribute('aria-hidden',show?'false':'true');
+}
+
 function renderStats(key){
   statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
-  const levelUps=Number(s.level_ups||0);
-  const currentLevel=(Number.isFinite(levelUps)?Math.round(levelUps):0)+1;
+  updateCharMeta(key);
   const rows=[
-    ['Level',fmtNumber(currentLevel),'level'],
     ['Gold Pieces',fmtNumber(s.net_gp||0),'net_gp'],
     ['Downtime Days',fmtNumber(s.net_dtd||0),'net_dtd'],
-    ['Sessions',fmtNumber(s.sessions||0),'sessions'],
     ['Magic Items',fmtNumber(s.perm_count||0),'perm_items'],
     ['Consumables',fmtNumber(s.cons_count||0),'consumables']
   ];
@@ -1415,6 +1440,11 @@ function renderStats(key){
 }
 function setHeader(key){
   const obj=DATA.characters[key];
+  if(metaEl&&!obj){
+    metaEl.textContent='';
+    metaEl.style.display='none';
+    metaEl.setAttribute('aria-hidden','true');
+  }
   if(!badgesEl) return;
   badgesEl.innerHTML='';
   if(!obj){
