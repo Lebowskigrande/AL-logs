@@ -3646,7 +3646,7 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-09-24",
-          "title": "Of Books and Men - An Overdue Adventure",
+          "title": "55Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
           "dm": "Simon R.",
           "gp_plus": 1000,
