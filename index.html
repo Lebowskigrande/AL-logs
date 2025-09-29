@@ -366,6 +366,19 @@ Object.entries(DATA.characters).forEach(([key,obj])=>{
 
 /* --- utils --- */
 function fmtDate(iso){ if(!iso)return'—'; const d=new Date(iso); if(isNaN(d))return String(iso); return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }
+function fmtNumber(n,{signed=false}={}){
+  if(n==null) return '0';
+  const num=Number(n);
+  if(!Number.isFinite(num)) return String(n);
+  let rounded=Math.round(num*100)/100;
+  if(Object.is(rounded,-0)) rounded=0;
+  const formatted=rounded.toLocaleString(undefined,{maximumFractionDigits:2});
+  if(signed){
+    if(rounded===0) return '0';
+    if(rounded>0) return '+'+formatted;
+  }
+  return formatted;
+}
 function pill(label){ const s=document.createElement('span'); s.className='pill'; s.textContent=label; return s; }
 function sanitizeTitle(title){
   if(!title) return '';
@@ -388,7 +401,7 @@ function getMostRecentCharacter(){
 }
 function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
-function fmtSigned(n){ if(!n) return '0'; return (n>0?'+':'')+(Math.round(n*100)/100); }
+function fmtSigned(n){ return fmtNumber(n,{signed:true}); }
 
 /* --- smooth expand/collapse --- */
 function isAnimating(card){ return card.dataset.anim==='1'; }
@@ -888,29 +901,35 @@ function makeCard(a,idx){
 
   const gpRowView=document.createElement('div'); gpRowView.className='kv2';
   const gpEarn=Number(a.gp_plus??0);
-  if(!act || gpEarn!==0){ gpRowView.appendChild(makeKVS('Gold earned', String(gpEarn))); }
+  if(!act || gpEarn!==0){ gpRowView.appendChild(makeKVS('Gold earned', fmtNumber(gpEarn))); }
   const gpSpend=Number(a.gp_minus??0);
-  if(!act || gpSpend!==0){ gpRowView.appendChild(makeKVS('Gold spent', String(gpSpend))); }
+  if(!act || gpSpend!==0){ gpRowView.appendChild(makeKVS('Gold spent', fmtNumber(gpSpend))); }
   if(gpRowView.children.length) view.appendChild(gpRowView);
 
   const dtRowView=document.createElement('div'); dtRowView.className='kv2';
   const dtEarnVal=Number(a.dtd_plus??0);
-  if(!act || dtEarnVal!==0){ dtRowView.appendChild(makeKVS('Downtime earned', String(dtEarnVal))); }
+  if(!act || dtEarnVal!==0){ dtRowView.appendChild(makeKVS('Downtime earned', fmtNumber(dtEarnVal))); }
   const dtSpendVal=Number(a.dtd_minus??0);
-  if(!act || dtSpendVal!==0){ dtRowView.appendChild(makeKVS('Downtime spent', String(dtSpendVal))); }
+  if(!act || dtSpendVal!==0){ dtRowView.appendChild(makeKVS('Downtime spent', fmtNumber(dtSpendVal))); }
   if(dtRowView.children.length) view.appendChild(dtRowView);
 
   const lvlVal=Number(a.level_plus||0);
   if((!act && lvlVal) || (act && lvlVal!==0)){
-    view.appendChild(makeKVS('Levels gained', String(lvlVal)));
+    view.appendChild(makeKVS('Levels gained', fmtNumber(lvlVal)));
   }
 
   if(act && a.traded_item){
     appendField('Item traded away', makeValue(a.traded_item,'—'));
   }
 
-  appendField('Magic Items', listBox(a.perm_items),'mi');
-  appendField('Consumables', listBox(a.consumable_items),'cons');
+  const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>String(item||'').trim());
+  if(!act || hasPermItems){
+    appendField('Magic Items', listBox(a.perm_items),'mi');
+  }
+  const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>String(item||'').trim());
+  if(!act || hasConsumables){
+    appendField('Consumables', listBox(a.consumable_items),'cons');
+  }
   const notesBox=document.createElement('div');
   notesBox.className='notesbox';
   notesBox.textContent=makeValue((a.notes||'').trim(),'—');
@@ -1226,19 +1245,19 @@ function applyDataMutation(key){
 }
 
 /* --- stats & header --- */
-function refillYears(key){ yearEl.innerHTML='<option value="">All years</option>'; (DATA.years[key]||[]).forEach(y=>{ const o=document.createElement('option'); o.value=String(y); o.textContent=String(y); yearEl.appendChild(o); }); }
+function refillYears(key){ yearEl.innerHTML='<option value="">All years</option>'; (DATA.years[key]||[]).forEach(y=>{ const o=document.createElement('option'); o.value=String(y); o.textContent=fmtNumber(y); yearEl.appendChild(o); }); }
 function renderStats(key){
   statsEl.innerHTML='';
   const s=DATA.stats[key]||{};
   const levelUps=Number(s.level_ups||0);
   const currentLevel=(Number.isFinite(levelUps)?Math.round(levelUps):0)+1;
   const rows=[
-    ['Level',currentLevel,'level'],
-    ['Gold Pieces',Math.round(((s.net_gp||0)*100))/100,'net_gp'],
-    ['Downtime Days',Math.round(((s.net_dtd||0)*100))/100,'net_dtd'],
-    ['Sessions',s.sessions||0,'sessions'],
-    ['Magic Items',s.perm_count||0,'perm_items'],
-    ['Consumables',s.cons_count||0,'consumables']
+    ['Level',fmtNumber(currentLevel),'level'],
+    ['Gold Pieces',fmtNumber(s.net_gp||0),'net_gp'],
+    ['Downtime Days',fmtNumber(s.net_dtd||0),'net_dtd'],
+    ['Sessions',fmtNumber(s.sessions||0),'sessions'],
+    ['Magic Items',fmtNumber(s.perm_count||0),'perm_items'],
+    ['Consumables',fmtNumber(s.cons_count||0),'consumables']
   ];
   rows.forEach(([label,val,name])=>{ const el=document.createElement('div'); el.className='stat'; el.dataset.key=name; el.innerHTML='<div class="k">'+val+'</div><div class="v">'+label+'</div>'; statsEl.appendChild(el); });
   const permTile=statsEl.querySelector('[data-key="perm_items"]');
