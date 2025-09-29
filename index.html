@@ -632,6 +632,11 @@ async function saveDataJs(options={}){
     }
     clearDirty();
     setSaveResult('success');
+    try{
+      await refreshDataJsCache();
+    }catch(err){
+      console.warn('Unable to refresh data.js cache after save', err);
+    }
     return body;
   }catch(err){
     console.error('Failed to save data.js', err);
@@ -645,6 +650,14 @@ async function saveDataJs(options={}){
     savingData=false;
     updateSaveButtonState();
   }
+}
+
+async function refreshDataJsCache(){
+  const response=await fetch('data.js',{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+  if(!response.ok){
+    throw new Error('HTTP '+response.status);
+  }
+  await response.text();
 }
 
 /* --- character selector (no session counts) --- */

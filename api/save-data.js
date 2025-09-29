@@ -1,26 +1,47 @@
 // Vercel Edge Function – commits data.js to your repo via GitHub API
 export const config = { runtime: 'edge' };
 
+const corsHeaders = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-headers': 'content-type,x-save-key',
+  'access-control-allow-methods': 'POST,OPTIONS'
+};
+
+const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
+  const responseHeaders = { ...corsHeaders, ...headers };
+  if (json) {
+    if (!('content-type' in responseHeaders)) {
+      responseHeaders['content-type'] = 'application/json; charset=utf-8';
+    }
+    return new Response(JSON.stringify(body), { status, headers: responseHeaders });
+  }
+  return new Response(body, { status, headers: responseHeaders });
+};
+
 export default async function handler(req) {
+  if (req.method === 'OPTIONS') {
+    return respond(null, { json: false });
+  }
+
   if (req.method !== 'POST') {
-    return new Response('Use POST', { status: 405 });
+    return respond({ error: 'Use POST' }, { status: 405 });
   }
 
   try {
     const { dataJs, branch = process.env.GH_BRANCH || 'main', path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
-      return Response.json({ error: 'dataJs (string) required' }, { status: 400 });
+      return respond({ error: 'dataJs (string) required' }, { status: 400 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
-    if (!repo)  return Response.json({ error: 'GH_REPO not set' },  { status: 500 });
+    if (!repo)  return respond({ error: 'GH_REPO not set' },  { status: 500 });
     const token = process.env.GH_TOKEN; // fine-grained PAT or GitHub App token
-    if (!token) return Response.json({ error: 'GH_TOKEN not set' }, { status: 500 });
+    if (!token) return respond({ error: 'GH_TOKEN not set' }, { status: 500 });
 
     // Optional: simple shared secret for client -> function
     const clientKey = req.headers.get('x-save-key');
     if (process.env.SAVE_KEY && clientKey !== process.env.SAVE_KEY) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+      return respond({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const base = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(path)}`;
@@ -53,21 +74,14 @@ export default async function handler(req) {
 
     if (!putRes.ok) {
       const text = await putRes.text();
-      return Response.json({ error: text }, { status: putRes.status });
+      return respond({ error: text }, { status: putRes.status });
     }
 
     const out = await putRes.json();
 
     // CORS for your site(s)
-    return new Response(JSON.stringify({ ok: true, commit: out.commit?.sha }), {
-      status: 200,
-      headers: {
-        'content-type': 'application/json; charset=utf-8',
-        'access-control-allow-origin': '*',             // or your domain
-        'access-control-allow-headers': 'content-type,x-save-key'
-      }
-    });
+    return respond({ ok: true, commit: out.commit?.sha });
   } catch (e) {
-    return Response.json({ error: String(e) }, { status: 500 });
+    return respond({ error: String(e) }, { status: 500 });
   }
 }
