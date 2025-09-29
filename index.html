@@ -325,13 +325,6 @@ body.avatar-overlay-open{overflow:hidden}
         <input id="q" placeholder="Search adventures"/>
       </div>
       <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
-      <button id="orderToggle" class="icon-btn" type="button" aria-pressed="false" title="Toggle card order" aria-label="Toggle card order">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m8 7 4-4 4 4"/>
-          <path d="m16 17-4 4-4-4"/>
-          <path d="M12 3v18"/>
-        </svg>
-      </button>
       <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
@@ -458,7 +451,6 @@ const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
-const orderToggleBtn = document.getElementById('orderToggle');
 const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
@@ -518,17 +510,13 @@ let saveFeedbackTimeout=null;
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
-  showActivities:'al_logs_show_activities',
-  reverseOrder:'al_logs_reverse_order'
+  showActivities:'al_logs_show_activities'
 };
 
 let showActivities=true;
-let reverseOrder=false;
 try{
   const saved=localStorage.getItem(STORAGE_KEYS.showActivities);
   if(saved==='0'||saved==='false') showActivities=false;
-  const savedOrder=localStorage.getItem(STORAGE_KEYS.reverseOrder);
-  if(savedOrder==='1'||savedOrder==='true') reverseOrder=true;
 }catch(err){
   /* no-op */
 }
@@ -536,14 +524,6 @@ try{
 function persistActivityVisibility(){
   try{
     localStorage.setItem(STORAGE_KEYS.showActivities, showActivities?'1':'0');
-  }catch(err){
-    /* no-op */
-  }
-}
-
-function persistOrderPreference(){
-  try{
-    localStorage.setItem(STORAGE_KEYS.reverseOrder, reverseOrder?'1':'0');
   }catch(err){
     /* no-op */
   }
@@ -558,16 +538,6 @@ function updateActivityToggle(){
   const label=hiding?'Show downtime activities':'Hide downtime activities';
   activityToggleBtn.setAttribute('aria-label', label);
   activityToggleBtn.title=label;
-}
-
-function updateOrderToggle(){
-  if(!orderToggleBtn) return;
-  orderToggleBtn.setAttribute('aria-pressed', reverseOrder?'true':'false');
-  orderToggleBtn.classList.toggle('primary', reverseOrder);
-  const state=reverseOrder?'reversed order':'original order';
-  const label=`Toggle card order (currently ${state})`;
-  orderToggleBtn.setAttribute('aria-label', label);
-  orderToggleBtn.title=label;
 }
 
 function updateSaveButtonState(){
@@ -2357,10 +2327,9 @@ function filterAndRender(){
       .map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
   });
-  const ordered=reverseOrder?[...filtered].reverse():filtered;
   grid.innerHTML='';
-  if(!ordered.length){ emptyEl.style.display='block'; }
-  else { emptyEl.style.display='none'; ordered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
+  if(!filtered.length){ emptyEl.style.display='block'; }
+  else { emptyEl.style.display='none'; filtered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
   renderStats(key); setHeader(key); columnizeGrid('build');
 }
 
@@ -2372,14 +2341,6 @@ if(activityToggleBtn){
     showActivities=!showActivities;
     persistActivityVisibility();
     updateActivityToggle();
-    filterAndRender();
-  });
-}
-if(orderToggleBtn){
-  orderToggleBtn.addEventListener('click',()=>{
-    reverseOrder=!reverseOrder;
-    persistOrderPreference();
-    updateOrderToggle();
     filterAndRender();
   });
 }
@@ -2400,7 +2361,6 @@ function initApp(){
     emptyEl.style.display='none';
   }
   updateActivityToggle();
-  updateOrderToggle();
   const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
   if(initialKey && charSel){
     charSel.value=initialKey;
