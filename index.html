@@ -71,11 +71,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Header metrics */
 .header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.header-metrics{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.metric{display:flex;flex-direction:column;gap:2px;min-width:120px}
-.metric .metric-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
-.metric .metric-value{font-size:22px;font-weight:700;letter-spacing:-0.01em;color:var(--ink)}
-.inventory-buttons{display:flex;align-items:center;gap:12px;margin-left:auto}
+.inventory-buttons{display:flex;align-items:center;gap:12px;margin-left:auto;flex-wrap:wrap}
+.inventory-stat{display:flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--border);border-radius:12px;background:#fff;box-shadow:var(--shadow1);font-weight:700;color:var(--ink)}
+.inventory-stat .label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.inventory-stat .value{font-size:18px;letter-spacing:-0.01em}
 .inventory-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:6px;border-radius:12px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease);background:transparent;line-height:0;outline:none}
 .inventory-btn svg{width:26px;height:26px;pointer-events:none}
 .inventory-btn:hover{color:var(--primary);background:rgba(26,115,232,.08)}
@@ -280,21 +279,18 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
         <input id="q" placeholder="Search adventures"/>
       </div>
       <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
+      <button id="orderToggle" class="icon-btn" type="button" aria-pressed="false" title="Toggle card order" aria-label="Toggle card order">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m8 7 4-4 4 4"/>
+          <path d="m16 17-4 4-4-4"/>
+          <path d="M12 3v18"/>
+        </svg>
+      </button>
       <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
     <div class="header-quick" id="headerQuick">
-      <div class="header-metrics">
-        <div class="metric" id="goldMetric">
-          <span class="metric-label">Gold Pieces</span>
-          <span class="metric-value" id="goldValue">0</span>
-        </div>
-        <div class="metric" id="downtimeMetric">
-          <span class="metric-label">Downtime Days</span>
-          <span class="metric-value" id="downtimeValue">0</span>
-        </div>
-      </div>
       <div class="inventory-buttons">
         <div id="magicItemsBtn" class="inventory-btn" role="button" tabindex="0" title="View permanent magic items" aria-label="View permanent magic items">
           <span class="sr-only">View permanent magic items</span>
@@ -313,6 +309,14 @@ html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
             <path d="M9.5 15.5h5"/>
           </svg>
           <span class="badge" id="consumablesCount" aria-hidden="true">0</span>
+        </div>
+        <div class="inventory-stat" id="goldMetric" role="group" aria-label="Gold pieces total">
+          <span class="label">Gold</span>
+          <span class="value" id="goldValue">0</span>
+        </div>
+        <div class="inventory-stat" id="downtimeMetric" role="group" aria-label="Downtime days total">
+          <span class="label">Downtime</span>
+          <span class="value" id="downtimeValue">0</span>
         </div>
       </div>
     </div>
@@ -377,6 +381,7 @@ const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
+const orderToggleBtn = document.getElementById('orderToggle');
 const cardOverlay=document.getElementById('cardOverlay');
 const goldValueEl=document.getElementById('goldValue');
 const downtimeValueEl=document.getElementById('downtimeValue');
@@ -405,13 +410,17 @@ bindButtonLike(consumablesBtn, () => openConsumableModal(charSel.value));
 
 let pendingChanges=false;
 const STORAGE_KEYS={
-  showActivities:'al_logs_show_activities'
+  showActivities:'al_logs_show_activities',
+  reverseOrder:'al_logs_reverse_order'
 };
 
 let showActivities=true;
+let reverseOrder=false;
 try{
   const saved=localStorage.getItem(STORAGE_KEYS.showActivities);
   if(saved==='0'||saved==='false') showActivities=false;
+  const savedOrder=localStorage.getItem(STORAGE_KEYS.reverseOrder);
+  if(savedOrder==='1'||savedOrder==='true') reverseOrder=true;
 }catch(err){
   /* no-op */
 }
@@ -419,6 +428,14 @@ try{
 function persistActivityVisibility(){
   try{
     localStorage.setItem(STORAGE_KEYS.showActivities, showActivities?'1':'0');
+  }catch(err){
+    /* no-op */
+  }
+}
+
+function persistOrderPreference(){
+  try{
+    localStorage.setItem(STORAGE_KEYS.reverseOrder, reverseOrder?'1':'0');
   }catch(err){
     /* no-op */
   }
@@ -433,6 +450,16 @@ function updateActivityToggle(){
   const label=hiding?'Show downtime activities':'Hide downtime activities';
   activityToggleBtn.setAttribute('aria-label', label);
   activityToggleBtn.title=label;
+}
+
+function updateOrderToggle(){
+  if(!orderToggleBtn) return;
+  orderToggleBtn.setAttribute('aria-pressed', reverseOrder?'true':'false');
+  orderToggleBtn.classList.toggle('primary', reverseOrder);
+  const state=reverseOrder?'reversed order':'original order';
+  const label=`Toggle card order (currently ${state})`;
+  orderToggleBtn.setAttribute('aria-label', label);
+  orderToggleBtn.title=label;
 }
 
 function updateDownloadState(){
@@ -1629,8 +1656,10 @@ function filterAndRender(){
       .map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
   });
+  const ordered=reverseOrder?[...filtered].reverse():filtered;
   grid.innerHTML='';
-  if(!filtered.length){ emptyEl.style.display='block'; } else { emptyEl.style.display='none'; filtered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
+  if(!ordered.length){ emptyEl.style.display='block'; }
+  else { emptyEl.style.display='none'; ordered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
   renderStats(key); setHeader(key); columnizeGrid('build');
 }
 
@@ -1645,6 +1674,14 @@ if(activityToggleBtn){
     filterAndRender();
   });
 }
+if(orderToggleBtn){
+  orderToggleBtn.addEventListener('click',()=>{
+    reverseOrder=!reverseOrder;
+    persistOrderPreference();
+    updateOrderToggle();
+    filterAndRender();
+  });
+}
 window.addEventListener('resize',()=>{
   const w=window.innerWidth||document.documentElement.clientWidth||0;
   if(Math.abs(w-__lastWidth)<8) return; __lastWidth=w;
@@ -1653,6 +1690,7 @@ window.addEventListener('resize',()=>{
 
 /* --- init --- */
 updateActivityToggle();
+updateOrderToggle();
 const firstKey=getMostRecentCharacter(); charSel.value=firstKey; filterAndRender();
 clearDirty();
 
