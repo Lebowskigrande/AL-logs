@@ -1758,7 +1758,7 @@ function makeCard(a,idx){
 
   const formWrap=document.createElement('div'); formWrap.className='edit-form';
   const form=document.createElement('form');
-  form.addEventListener('submit',(ev)=>{ ev.preventDefault(); saveCardChanges(card); });
+  form.addEventListener('submit',async(ev)=>{ ev.preventDefault(); await saveCardChanges(card); });
   formWrap.appendChild(form);
 
   const controls={};
@@ -1892,7 +1892,7 @@ function makeCard(a,idx){
     exitEditMode(card,true);
   });
   const saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
-  saveBtn.addEventListener('click',(ev)=>{ ev.preventDefault(); saveCardChanges(card); });
+  saveBtn.addEventListener('click',async(ev)=>{ ev.preventDefault(); await saveCardChanges(card); });
   actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
   view.appendChild(actions);
@@ -2064,7 +2064,7 @@ function exitEditMode(card,reset){
   }
 }
 
-function saveCardChanges(card){
+async function saveCardChanges(card){
   if(!card||!card.__edit) return;
   const data=card.__dataRef;
   if(!data) return;
@@ -2102,10 +2102,14 @@ function saveCardChanges(card){
   exitEditMode(card);
   if(wasNew){
     closeCardOverlay();
-    applyDataMutation(targetKey);
-    return;
   }
-  applyDataMutation(charSel.value);
+  const mutationKey=wasNew?targetKey:charSel.value;
+  applyDataMutation(mutationKey);
+  try{
+    await saveDataJs();
+  }catch(err){
+    /* saveDataJs already handles user feedback */
+  }
 }
 
 function deleteCard(card){
