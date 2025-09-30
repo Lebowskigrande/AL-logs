@@ -3645,23 +3645,6 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
-          "date": "2025-10-01",
-          "title": "Playwright Test",
-          "code": "PW-1",
-          "dm": "Test DM",
-          "kind": "adventure",
-          "gp_plus": 100,
-          "gp_minus": 10,
-          "gp_net": 90,
-          "dtd_plus": 5,
-          "dtd_minus": 0,
-          "dtd_net": 5,
-          "level_plus": 1,
-          "perm_items": [],
-          "consumable_items": [],
-          "notes": "Added via test"
-        },
-        {
           "date": "2025-09-24",
           "title": "55Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
@@ -21294,10 +21277,10 @@ window.DATA = {
       "cons_count": 11
     },
     "Ecthelion": {
-      "sessions": 6,
-      "net_gp": 5040,
-      "net_dtd": 38,
-      "level_ups": 7,
+      "sessions": 5,
+      "net_gp": 4950,
+      "net_dtd": 33,
+      "level_ups": 6,
       "perm_count": 26,
       "cons_count": 12
     },
