@@ -3645,6 +3645,24 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
+          "date": "2025-09-30",
+          "title": "Test Adventure",
+          "code": "CODE-123",
+          "dm": null,
+          "gp_plus": 100,
+          "gp_minus": 0,
+          "dtd_plus": 5,
+          "dtd_minus": 0,
+          "level_plus": 1,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "",
+          "kind": "adventure",
+          "traded_item": "",
+          "gp_net": 100,
+          "dtd_net": 5
+        },
+        {
           "date": "2025-09-24",
           "title": "55Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
@@ -21277,10 +21295,10 @@ window.DATA = {
       "cons_count": 11
     },
     "Ecthelion": {
-      "sessions": 5,
-      "net_gp": 4950,
-      "net_dtd": 33,
-      "level_ups": 6,
+      "sessions": 6,
+      "net_gp": 5050,
+      "net_dtd": 38,
+      "level_ups": 7,
       "perm_count": 26,
       "cons_count": 12
     },
