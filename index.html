@@ -529,8 +529,104 @@ const consumablesBtn=document.getElementById('consumablesBtn');
 const magicItemsCountEl=document.getElementById('magicItemsCount');
 const consumablesCountEl=document.getElementById('consumablesCount');
 let overlayCard=null;
+if(avatarEl){
+  try{ avatarEl.decoding='async'; }catch(err){ /* no-op */ }
+  try{ avatarEl.loading='eager'; }catch(err){ /* no-op */ }
+  try{ avatarEl.fetchPriority='high'; }catch(err){ /* no-op */ }
+}
+if(avatarPreviewImage){
+  try{ avatarPreviewImage.decoding='async'; }catch(err){ /* no-op */ }
+}
+const AVATAR_PATH_STORAGE_PREFIX='al_logs_avatar_paths_v1';
+const avatarPathStorageKey=`${AVATAR_PATH_STORAGE_PREFIX}_${dataVersion||'0'}`;
+const AVATAR_MANIFEST=Object.freeze({
+  'Ecthelion':'Ecthelion.png',
+  'Gnat':'gnat.png',
+  'Squelch':'squelch.png',
+  'Squelch (prequel)':'squelch (prequel).png',
+  'Norixius':'norixius.png',
+  'Madam Renata':'madam renata.png',
+  'Goblert Godfrey':'goblert godfrey.png',
+  'Lyrielle':'lyrielle.png',
+  'Sentient Hat':'sentient hat.png',
+  'Arvistan Brightwave':'arvistan.png',
+  'Agatha':'agatha.png',
+  'Darrendrian':'darrendrian.png',
+  'Copy of Darrendrian':'darrendrian.png',
+  'Morty':'morty.png',
+  'Zandarax':'zandarax.png',
+  'Zandaraxs Inventory':'zandarax.png',
+  'Zandaraxs Bastion':'zandarax.png'
+});
 const avatarCache=new Map();
 let avatarLoadToken=0;
+let persistedAvatarPaths={};
+let avatarPathsDirty=false;
+let avatarPathsSaveTimeout=null;
+try{
+  const raw=localStorage.getItem(avatarPathStorageKey);
+  if(raw){
+    const parsed=JSON.parse(raw);
+    if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed)){
+      persistedAvatarPaths=parsed;
+    }
+  }
+}catch(err){
+  persistedAvatarPaths={};
+}
+function schedulePersistAvatarPaths(){
+  if(!avatarPathsDirty) return;
+  if(avatarPathsSaveTimeout) return;
+  avatarPathsSaveTimeout=setTimeout(()=>{
+    avatarPathsSaveTimeout=null;
+    if(!avatarPathsDirty) return;
+    try{
+      localStorage.setItem(avatarPathStorageKey,JSON.stringify(persistedAvatarPaths));
+      avatarPathsDirty=false;
+    }catch(err){
+      /* no-op */
+      avatarPathsDirty=false;
+    }
+  },200);
+}
+function persistAvatarPathsImmediately(){
+  if(!avatarPathsDirty) return;
+  try{
+    localStorage.setItem(avatarPathStorageKey,JSON.stringify(persistedAvatarPaths));
+    avatarPathsDirty=false;
+  }catch(err){
+    /* no-op */
+    avatarPathsDirty=false;
+  }
+}
+if(typeof window!=='undefined'){
+  window.addEventListener('pagehide',persistAvatarPathsImmediately);
+  window.addEventListener('beforeunload',persistAvatarPathsImmediately);
+}
+function getPersistedAvatarPath(key){
+  if(!key) return '';
+  const normalized=String(key);
+  return persistedAvatarPaths[normalized]||'';
+}
+function rememberAvatarPath(key,path){
+  if(!key) return;
+  const normalized=String(key);
+  if(!path){
+    if(Object.prototype.hasOwnProperty.call(persistedAvatarPaths,normalized)){
+      delete persistedAvatarPaths[normalized];
+      avatarPathsDirty=true;
+      schedulePersistAvatarPaths();
+    }
+    return;
+  }
+  if(persistedAvatarPaths[normalized]===path) return;
+  persistedAvatarPaths[normalized]=path;
+  avatarPathsDirty=true;
+  schedulePersistAvatarPaths();
+}
+function forgetAvatarPath(key){
+  rememberAvatarPath(key,null);
+}
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
 const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
 const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
@@ -1134,7 +1230,7 @@ function resetAvatar(){
   avatarEl.tabIndex=-1;
   closeAvatarOverlay({returnFocus:false});
 }
-function applyAvatar(path,token){
+function applyAvatar(path,token,key){
   if(!avatarEl || token!==avatarLoadToken) return;
   avatarEl.src=path;
   avatarEl.classList.add('has-avatar');
@@ -1147,6 +1243,7 @@ function applyAvatar(path,token){
   avatarEl.setAttribute('aria-haspopup','dialog');
   avatarEl.setAttribute('aria-expanded','false');
   avatarEl.tabIndex=0;
+  rememberAvatarPath(key,path);
 }
 function updateAvatar(key,obj){
   if(!avatarEl){
@@ -1156,9 +1253,14 @@ function updateAvatar(key,obj){
   if(!names.length){
     avatarLoadToken++;
     resetAvatar();
+    forgetAvatarPath(key);
     return;
   }
   const candidates=[];
+  const persistedPath=getPersistedAvatarPath(key);
+  if(persistedPath) candidates.push(persistedPath);
+  const manifestPath=AVATAR_MANIFEST[String(key)]||'';
+  if(manifestPath && !candidates.includes(manifestPath)) candidates.push(manifestPath);
   names.forEach(name=>{
     makeAvatarFileCandidates(name).forEach(file=>{
       if(file && !candidates.includes(file)) candidates.push(file);
@@ -1167,6 +1269,7 @@ function updateAvatar(key,obj){
   if(!candidates.length){
     avatarLoadToken++;
     resetAvatar();
+    forgetAvatarPath(key);
     return;
   }
   const token=++avatarLoadToken;
@@ -1175,12 +1278,13 @@ function updateAvatar(key,obj){
     if(token!==avatarLoadToken) return;
     if(index>=candidates.length){
       resetAvatar();
+      forgetAvatarPath(key);
       return;
     }
     const path=candidates[index];
     if(avatarCache.has(path)){
       if(avatarCache.get(path)){
-        applyAvatar(path,token);
+        applyAvatar(path,token,key);
       }else{
         tryNext(index+1);
       }
@@ -1190,7 +1294,7 @@ function updateAvatar(key,obj){
     img.onload=()=>{
       if(token!==avatarLoadToken) return;
       avatarCache.set(path,true);
-      applyAvatar(path,token);
+      applyAvatar(path,token,key);
     };
     img.onerror=()=>{
       if(token!==avatarLoadToken) return;
