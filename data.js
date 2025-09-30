@@ -3707,13 +3707,14 @@ window.DATA = {
             "Clockwork Amulet",
             "Cloak of Many Fashions",
             "Ring of Jumping",
-            "+1 Spear",
+            "Spear +1",
             "Stone of Controlling Earth Elementals",
             "Bag of Devouring"
           ],
           "consumable_items": [],
           "notes": "Spent 30 days training in Nature under the tutelage of Youngster Joey during journey to Aglarond. Killed the young brass dragon Ylagan in his lair and steeped all four of my hoard items to Stirring.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "traded_item": ""
         },
         {
           "date": "2025-08-13",
@@ -21683,7 +21684,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T16:13:20.685Z",
+    "generated": "2025-09-30T16:26:49.321Z",
     "problems": []
   }
 };
