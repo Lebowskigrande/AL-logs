@@ -28,9 +28,14 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
+    const { dataJs, path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
+    }
+
+    const branch = process.env.GH_BRANCH || 'work';
+    if (!branch || branch === 'main') {
+      return respond({ error: 'Invalid branch configuration' }, { status: 500 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
