@@ -274,6 +274,10 @@ body.modal-open #addCard{display:none;}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{background:#e8f0ff;font-weight:600}
 .inv-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inv-name.consumable-name{display:flex;align-items:center;gap:8px;min-width:0}
+.inv-name.consumable-name .cons-name{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inv-name.consumable-name .cons-chips{flex-shrink:0;display:inline-flex;gap:6px}
+.inv-name.consumable-name .cons-chip{display:inline-flex;align-items:center;padding:2px 6px;border-radius:999px;border:1px solid rgba(26,115,232,.2);background:rgba(26,115,232,.12);color:#1e3a8a;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .inv-tools{display:flex;align-items:center;gap:6px}
 .inv-row .delete-btn{display:none;margin-left:8px}
 .modal.editing .inv-row{cursor:default}
@@ -1267,6 +1271,65 @@ function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k)
 function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
 
 function parseConsumableName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
+function formatConsumableDisplay(raw){
+  const original=String(raw||'').trim();
+  if(!original) return {label:'',chips:[]};
+  let working=original;
+  const chips=[];
+  const addChip=(chip)=>{ if(!chips.includes(chip)) chips.push(chip); };
+  const stripOuterParens=(str)=>{
+    let next=String(str||'').trim();
+    while(next.startsWith('(') && next.endsWith(')')){
+      const inner=next.slice(1,-1).trim();
+      if(!inner) break;
+      next=inner;
+    }
+    return next;
+  };
+  const stripLeadingSeparators=(str)=>String(str||'').replace(/^[\s,:;–—-]+/, '');
+
+  const hasSpellScroll=/spell\s*scroll/i.test(working);
+  if(hasSpellScroll){ addChip('Scroll'); }
+  else if(/^scrolls?\b/i.test(working)){ addChip('Scroll'); }
+
+  const potionPrefix=/^potion\b/i.test(working);
+  if(potionPrefix) addChip('Potion');
+
+  if(!/^spell\s*scrolls?\b/i.test(working)){
+    let match;
+    if((match=working.match(/^spell\s*\((.+)\)\s*$/i))){
+      working=match[1];
+    }else if((match=working.match(/^spell\s*(?:of\s+|[:–—-]\s*)(.+)$/i))){
+      working=match[1];
+    }else if(/^spell\b/i.test(working)){
+      working=working.replace(/^spell\b/i,'');
+      working=stripLeadingSeparators(working);
+    }
+  }
+
+  if(/^spell\s*scrolls?\b/i.test(working)){
+    working=working.replace(/^spell\s*scrolls?\b/i,'');
+    working=stripLeadingSeparators(working);
+    if(/^of\s+/i.test(working)) working=working.replace(/^of\s+/i,'');
+    working=stripOuterParens(working);
+  }else if(/^scrolls?\b/i.test(working)){
+    working=working.replace(/^scrolls?\b/i,'');
+    working=stripLeadingSeparators(working);
+    if(/^of\s+/i.test(working)) working=working.replace(/^of\s+/i,'');
+    working=stripOuterParens(working);
+  }
+
+  if(potionPrefix || /^potion\b/i.test(working)){
+    working=working.replace(/^potion\b/i,'');
+    working=stripLeadingSeparators(working);
+    if(/^of\s+/i.test(working)) working=working.replace(/^of\s+/i,'');
+    working=stripOuterParens(working);
+  }
+
+  working=stripOuterParens(working).trim();
+  if(!working) working=original;
+  return {label:working,chips};
+}
 function deriveConsumableInventory(charKey){
   const ch=DATA.characters[charKey]; if (!ch || !ch.adventures) return new Map();
   const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
@@ -1503,8 +1566,23 @@ function openConsumableModal(charKey){
     row.style.cursor='default';
 
     const nameDiv=document.createElement('div');
-    nameDiv.className='inv-name';
-    nameDiv.textContent=name;
+    nameDiv.className='inv-name consumable-name';
+    const {label:displayLabel,chips}=formatConsumableDisplay(name);
+    const labelSpan=document.createElement('span');
+    labelSpan.className='cons-name';
+    labelSpan.textContent=displayLabel||name;
+    nameDiv.appendChild(labelSpan);
+    if(Array.isArray(chips) && chips.length){
+      const chipWrap=document.createElement('span');
+      chipWrap.className='cons-chips';
+      chips.forEach(chip=>{
+        const chipEl=document.createElement('span');
+        chipEl.className='cons-chip';
+        chipEl.textContent=chip;
+        chipWrap.appendChild(chipEl);
+      });
+      nameDiv.appendChild(chipWrap);
+    }
 
     const qtyDiv=document.createElement('div');
     qtyDiv.className='qty';
