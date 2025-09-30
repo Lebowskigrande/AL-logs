@@ -11197,7 +11197,7 @@ window.DATA = {
           "itemReceived": "Ascendent Dragon's Wrath Longsword (Amethyst)"
         },
         {
-          "date": "2024-03-22",
+          "date": "2022-03-22",
           "title": "Claws of Fury",
           "code": "CCC-ALMOG-03 TALES03-01",
           "dm": "Dave N.",
@@ -11207,7 +11207,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": null,
+          "level_plus": 0,
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -11218,7 +11218,8 @@ window.DATA = {
             "Antitoxin"
           ],
           "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
-          "kind": "adventure"
+          "kind": "adventure",
+          "traded_item": ""
         },
         {
           "date": "2023-10-04",
@@ -21473,8 +21474,8 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 192,
-      "cons_count": 87
+      "perm_count": 156,
+      "cons_count": 66
     },
     "Zandaraxs Inventory": {
       "sessions": 0,
@@ -21636,12 +21637,12 @@ window.DATA = {
       2020
     ],
     "Zandarax": [
-      2025,
-      2024,
-      2023,
-      2022,
+      2020,
       2021,
-      2020
+      2022,
+      2023,
+      2024,
+      2025
     ],
     "Zandaraxs Inventory": [],
     "Zandaraxs Bastion": [],
@@ -21684,7 +21685,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T16:26:49.321Z",
+    "generated": "2025-09-30T21:50:53.113Z",
     "problems": []
   }
 };
