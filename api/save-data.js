@@ -34,7 +34,7 @@ export default async function handler(req) {
     }
 
     const branch = process.env.GH_BRANCH || 'work';
-    if (!branch || branch === 'main') {
+    if (!branch) {
       return respond({ error: 'Invalid branch configuration' }, { status: 500 });
     }
 
