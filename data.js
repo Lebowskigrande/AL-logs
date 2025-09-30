@@ -3670,9 +3670,9 @@ window.DATA = {
           "title": "Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
           "dm": "Simon R.",
-          "gp_plus": 1,
+          "gp_plus": 100,
           "gp_minus": 0,
-          "gp_net": 1,
+          "gp_net": 100,
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
@@ -21299,7 +21299,7 @@ window.DATA = {
     },
     "Ecthelion": {
       "sessions": 5,
-      "net_gp": 3951,
+      "net_gp": 4050,
       "net_dtd": 33,
       "level_ups": 6,
       "perm_count": 26,
@@ -21681,7 +21681,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T01:58:58.325Z",
+    "generated": "2025-09-30T01:59:36.132Z",
     "problems": []
   }
 };
