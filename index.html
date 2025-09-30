@@ -1510,8 +1510,14 @@ function openInventoryModal(charKey, opts={}){
   const activeSet=new Set(active.map(a=>a.toLowerCase()));
   const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
   const metaByName=new Map(keptMeta.map(item=>[item.name.toLowerCase(),item]));
-  const rest=keptMeta.filter(item=>!activeSet.has(item.name.toLowerCase())).sort((a,b)=>a.name.localeCompare(b.name));
-  const ordered=active.map(name=>metaByName.get(name.toLowerCase())).filter(Boolean).concat(rest);
+  const activeOrdered=active
+    .map(name=>metaByName.get(name.toLowerCase()))
+    .filter(Boolean)
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  const rest=keptMeta
+    .filter(item=>!activeSet.has(item.name.toLowerCase()))
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  const ordered=activeOrdered.concat(rest);
 
   invList.innerHTML='';
   const actions=invModal.querySelector('.modal-actions');
@@ -1819,6 +1825,7 @@ function openConsumableModal(charKey){
     const carriedOrdered=[];
     const seen=new Set();
     state.carriedList.forEach(name=>{ if(!seen.has(name)){ seen.add(name); carriedOrdered.push(name); } });
+    carriedOrdered.sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
     if(carriedOrdered.length){
       carriedOrdered.forEach(name=>{
         const total=counts.get(name)||0;
