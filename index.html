@@ -418,20 +418,27 @@ body.avatar-overlay-open{overflow:hidden}
     }
   }
   window.AL_DATA_VERSION=version;
-  var src=version?('data.js?v='+encodeURIComponent(version)):'data.js';
+  var cacheBust=String(Date.now());
+  window.AL_DATA_CACHE_BUST=cacheBust;
+  var srcBase=version?('data.js?v='+encodeURIComponent(version)):'data.js';
+  var separator=srcBase.indexOf('?')===-1?'?':'&';
+  var src=srcBase+separator+'cb='+encodeURIComponent(cacheBust);
   try {
     var script=document.createElement('script');
     script.src=src;
     script.id='dataScript';
     script.async=false;
     script.setAttribute('data-version', version||'');
+    script.setAttribute('data-cache-bust', cacheBust);
     var parent=document.currentScript&&document.currentScript.parentNode;
     (parent||document.head||document.body||document.documentElement).appendChild(script);
   } catch(err){
     var fallback=document.createElement('script');
-    fallback.src='data.js';
+    fallback.src=src;
     fallback.id='dataScript';
     fallback.async=false;
+    fallback.setAttribute('data-version', version||'');
+    fallback.setAttribute('data-cache-bust', cacheBust);
     (document.head||document.body||document.documentElement).appendChild(fallback);
   }
 })();
@@ -459,6 +466,8 @@ const dataScriptEl=document.getElementById('dataScript');
 const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
 let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||window.AL_DATA_VERSION||'';
 window.AL_DATA_VERSION=dataVersion;
+let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
+window.AL_DATA_CACHE_BUST=dataCacheBust;
 if(avatarEl){
   avatarEl.tabIndex=-1;
   avatarEl.addEventListener('click',evt=>{
@@ -704,9 +713,20 @@ function showDataLoadError(message){
   emptyEl.innerHTML=message||'Could not load <code>data.js</code>.';
 }
 
-function buildDataUrl(version){
+function buildDataUrl(version,{cacheBustToken=null}={}){
   const v=(version||'').trim();
-  return v?`data.js?v=${encodeURIComponent(v)}`:'data.js';
+  const params=[];
+  if(v){
+    params.push('v='+encodeURIComponent(v));
+  }
+  const cbToken=cacheBustToken==null?'' : String(cacheBustToken||'').trim();
+  if(cbToken){
+    params.push('cb='+encodeURIComponent(cbToken));
+  }
+  if(params.length){
+    return `data.js?${params.join('&')}`;
+  }
+  return 'data.js';
 }
 
 function persistDataVersion(version){
@@ -735,8 +755,11 @@ function setDataVersion(version){
   window.AL_DATA_VERSION=dataVersion;
   persistDataVersion(dataVersion);
   if(dataScriptEl){
+    dataCacheBust=String(Date.now());
+    window.AL_DATA_CACHE_BUST=dataCacheBust;
     dataScriptEl.setAttribute('data-version', dataVersion);
-    const desired=buildDataUrl(dataVersion);
+    dataScriptEl.setAttribute('data-cache-bust', dataCacheBust);
+    const desired=buildDataUrl(dataVersion,{cacheBustToken:dataCacheBust});
     try{
       const absolute=new URL(desired, window.location.href).href;
       if(dataScriptEl.src!==absolute){
@@ -803,7 +826,7 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
   const pinnedVersion=version?String(version):null;
   while(attempt<=retries){
     const versionToUse=pinnedVersion||String(Date.now());
-    const response=await fetch(buildDataUrl(versionToUse),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now()}),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
     if(!response.ok){
       throw new Error('HTTP '+response.status);
     }
