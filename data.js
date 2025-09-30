@@ -3646,7 +3646,7 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-09-24",
-          "title": "55Of Books and Men - An Overdue Adventure",
+          "title": "Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
           "dm": "Simon R.",
           "gp_plus": 1000,
@@ -21660,7 +21660,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T01:32:06.778Z",
+    "generated": "2025-09-30T01:36:34.378Z",
     "problems": []
   }
 };
