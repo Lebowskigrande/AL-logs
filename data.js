@@ -3645,22 +3645,21 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
-          "date": "2025-09-30",
-          "title": "Test Adventure",
-          "code": "CODE-123",
-          "dm": null,
+          "date": "2025-10-01",
+          "title": "Playwright Test",
+          "code": "PW-1",
+          "dm": "Test DM",
+          "kind": "adventure",
           "gp_plus": 100,
-          "gp_minus": 0,
+          "gp_minus": 10,
+          "gp_net": 90,
           "dtd_plus": 5,
           "dtd_minus": 0,
+          "dtd_net": 5,
           "level_plus": 1,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "",
-          "kind": "adventure",
-          "traded_item": "",
-          "gp_net": 100,
-          "dtd_net": 5
+          "notes": "Added via test"
         },
         {
           "date": "2025-09-24",
@@ -21296,7 +21295,7 @@ window.DATA = {
     },
     "Ecthelion": {
       "sessions": 6,
-      "net_gp": 5050,
+      "net_gp": 5040,
       "net_dtd": 38,
       "level_ups": 7,
       "perm_count": 26,
