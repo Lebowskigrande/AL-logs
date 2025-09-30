@@ -275,9 +275,9 @@ body.modal-open #addCard{display:none;}
 .inv-row.active{background:#e8f0ff;font-weight:600}
 .inv-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .inv-name.consumable-name{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
-.inv-name.consumable-name .cons-primary{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0}
-.inv-name.consumable-name .cons-name{display:inline-block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.inv-name.consumable-name .cons-chips{display:inline-flex;flex-wrap:wrap;gap:6px;margin-left:6px}
+.inv-name.consumable-name .cons-primary{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
+.inv-name.consumable-name .cons-name{display:block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 auto}
+.inv-name.consumable-name .cons-chips{display:inline-flex;flex-wrap:nowrap;gap:6px;margin-left:6px;flex:0 0 auto}
 .inv-tools{display:flex;align-items:center;gap:6px}
 .inv-row .delete-btn{display:none;margin-left:8px}
 .modal.editing .inv-row{cursor:default}
