@@ -274,12 +274,9 @@ body.modal-open #addCard{display:none;}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{background:#e8f0ff;font-weight:600}
 .inv-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.inv-name.consumable-name{display:flex;align-items:center;gap:8px;min-width:0}
-.inv-name.consumable-name .cons-name{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.inv-name.consumable-name .cons-chips{flex-shrink:0;display:inline-flex;gap:6px}
-.inv-name.consumable-name .cons-chip{display:inline-flex;align-items:center;padding:2px 6px;border-radius:999px;border:1px solid rgba(26,115,232,.2);background:rgba(26,115,232,.12);color:#1e3a8a;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.inv-name.consumable-name .cons-chip--potion{border-color:rgba(34,197,94,.35);background:rgba(220,252,231,1);color:#166534}
-.inv-name.consumable-name .cons-chip--scroll{border-color:rgba(129,140,248,.4);background:rgba(237,233,254,1);color:#3730a3}
+.inv-name.consumable-name{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.inv-name.consumable-name .cons-name{display:block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inv-name.consumable-name .cons-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0}
 .inv-tools{display:flex;align-items:center;gap:6px}
 .inv-row .delete-btn{display:none;margin-left:8px}
 .modal.editing .inv-row{cursor:default}
@@ -302,6 +299,16 @@ body.modal-open #addCard{display:none;}
 .qty-icon:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 .qty-icon.disabled{opacity:.35;cursor:not-allowed;transform:none}
 .qty-icon.disabled:hover{color:inherit}
+.cons-section{display:flex;flex-direction:column;gap:6px;padding:2px 0}
+.cons-section+.cons-section{margin-top:16px}
+.cons-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 4px}
+.cons-sublist{display:flex;flex-direction:column;gap:6px}
+.cons-name{display:block;font-weight:600}
+.cons-chips{display:inline-flex;gap:6px;margin-left:8px;flex-wrap:wrap;align-items:center}
+.cons-chip{display:inline-flex;align-items:center;justify-content:center;padding:2px 6px;border-radius:999px;background:#eef4ff;color:#1e3a8a;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.cons-chip--potion{background:#fef3c7;color:#b45309}
+.cons-chip--scroll{background:#ede9fe;color:#5b21b6}
+.cons-secondary{display:block;margin-top:3px;font-size:11px;color:var(--muted);white-space:normal}
 
 /* Reduce scroll anchoring jumps */
 html,body,.grid,.grid .col,.card-bd{overflow-anchor:none}
@@ -1265,6 +1272,18 @@ function currentLevelFor(charKey){
   const ch=DATA.characters[charKey]; const lvl=1+Math.floor((ch.adventures||[]).reduce((s,a)=>s+(+a.level_plus||0),0)); return Math.max(1,lvl);
 }
 function activeSlotsFor(level){ if(level<=4)return 1; if(level<=10)return 3; if(level<=16)return 6; return 10; }
+function consumableCarrySlotsFor(level){ if(level<=4)return 5; if(level<=16)return 10; return 15; }
+function consumableCarryKey(k){ return 'CARRIED_CONS__'+k; }
+function loadCarriedConsumables(k){
+  try{
+    const raw=JSON.parse(localStorage.getItem(consumableCarryKey(k))||'[]');
+    if(Array.isArray(raw)) return raw.map(item=>String(item||'').trim()).filter(Boolean);
+  }catch(_){ /* ignore */ }
+  return [];
+}
+function saveCarriedConsumables(k,list){
+  localStorage.setItem(consumableCarryKey(k),JSON.stringify(Array.isArray(list)?list:[]));
+}
 function activeKey(k){ return 'ACTIVE_INV__'+k; }
 function attuneKey(k){ return 'ATTUNED__'+k; }
 function loadActive(k){ try{return JSON.parse(localStorage.getItem(activeKey(k))||'[]')}catch(_){return[]} }
@@ -1379,7 +1398,7 @@ const consSaveBtn=document.getElementById('consSave');
 let currentConsumableContext=null;
 document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
 function closeConsumableModal(){
-  consModal.classList.remove('open');
+  consModal.classList.remove('open','editing');
   refreshModalState();
   currentConsumableContext=null;
 }
@@ -1534,39 +1553,77 @@ function openInventoryModal(charKey, opts={}){
   refreshModalState();
 }
 
-function openConsumableModal(charKey){
+function openConsumableModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
+  const level=currentLevelFor(charKey);
+  const carryCap=consumableCarrySlotsFor(level);
   const baseCounts=deriveConsumableInventory(charKey);
   const manual=(ch&&typeof ch.consumables==='object'&&ch.consumables)?ch.consumables:{};
   const counts=buildConsumableInventory(charKey);
   const names=new Set([...counts.keys(), ...baseCounts.keys(), ...Object.keys(manual)]);
   const ordered=[...names].sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+  const editingTotals=!!(opts&&opts.editingTotals);
+  const actions=consModal?consModal.querySelector('.modal-actions'):null;
+  let totalsToggle=actions?actions.querySelector('.cons-edit-toggle'):null;
+  if(actions && !totalsToggle){
+    totalsToggle=document.createElement('button');
+    totalsToggle.type='button';
+    totalsToggle.className='btn small cons-edit-toggle';
+    totalsToggle.textContent='Edit totals';
+    totalsToggle.setAttribute('aria-pressed','false');
+    actions.insertBefore(totalsToggle, actions.firstChild);
+  }
+  const hasInventory=ordered.some(name=>{
+    const total=counts.get(name)||0;
+    const base=baseCounts.get(name)||0;
+    return total>0 || base>0;
+  });
+  if(totalsToggle){
+    totalsToggle.onclick=()=>openConsumableModal(charKey,{editingTotals:!editingTotals});
+    totalsToggle.textContent=editingTotals?'Done':'Edit totals';
+    totalsToggle.setAttribute('aria-pressed',editingTotals?'true':'false');
+    totalsToggle.style.display=hasInventory?'inline-flex':'none';
+  }
 
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
-  consMeta.textContent='';
+  consMeta.textContent=`Level ${level} • Carry limit: ${carryCap}`;
   consSummary.textContent='';
   consList.innerHTML='';
-  if(consSaveBtn){ consSaveBtn.style.display='none'; }
+  currentConsumableContext=null;
 
-  const states=[];
-  const updateSaveVisibility=()=>{
-    const dirty=states.some(state=>state.value!==state.initial);
-    if(consSaveBtn){ consSaveBtn.style.display=dirty?'inline-flex':'none'; }
-    if(dirty){ consSummary.textContent=''; }
+  const rawCarried=loadCarriedConsumables(charKey);
+  const carriedList=[];
+  const usage=new Map();
+  let needsSave=false;
+  rawCarried.forEach(item=>{
+    const name=String(item||'').trim();
+    if(!name){ needsSave=true; return; }
+    if(!counts.has(name)){ needsSave=true; return; }
+    const total=counts.get(name)||0;
+    if(total<=0){ needsSave=true; return; }
+    const used=usage.get(name)||0;
+    if(used>=total){ needsSave=true; return; }
+    if(carriedList.length>=carryCap){ needsSave=true; return; }
+    carriedList.push(name);
+    usage.set(name,used+1);
+  });
+  const state={carriedList,carriedCounts:new Map()};
+  const recomputeCarriedCounts=()=>{
+    state.carriedCounts=new Map();
+    state.carriedList.forEach(name=>{
+      state.carriedCounts.set(name,(state.carriedCounts.get(name)||0)+1);
+    });
   };
+  recomputeCarriedCounts();
+  if(needsSave || rawCarried.length!==state.carriedList.length){
+    saveCarriedConsumables(charKey,state.carriedList);
+  }
 
-  ordered.forEach(name=>{
-    const value=counts.get(name)||0;
-    const base=baseCounts.get(name)||0;
-    if(value<=0 && base<=0) return;
+  const totalCopies=[...counts.values()].reduce((sum,val)=>sum+val,0);
+  const totalCarried=()=>state.carriedList.length;
+  const slotsFree=()=>Math.max(0,carryCap-totalCarried());
 
-    const state={name,value,initial:value,base};
-    states.push(state);
-
-    const row=document.createElement('div');
-    row.className='inv-row';
-    row.style.cursor='default';
-
+  const buildNameDiv=(name)=>{
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name consumable-name';
     const {label:displayLabel,chips}=formatConsumableDisplay(name);
@@ -1587,88 +1644,318 @@ function openConsumableModal(charKey){
       });
       nameDiv.appendChild(chipWrap);
     }
+    return nameDiv;
+  };
 
-    const qtyDiv=document.createElement('div');
-    qtyDiv.className='qty';
+  const createSection=(title)=>{
+    const section=document.createElement('section');
+    section.className='cons-section';
+    const heading=document.createElement('div');
+    heading.className='cons-section-title';
+    heading.textContent=title;
+    const list=document.createElement('div');
+    list.className='cons-sublist';
+    section.appendChild(heading);
+    section.appendChild(list);
+    return {section,list};
+  };
 
-    const minus=document.createElement('span');
-    minus.className='qty-icon';
-    minus.innerHTML=ICON_MINUS;
-    minus.setAttribute('role','button');
-    minus.setAttribute('aria-label',`Decrease ${name}`);
-    minus.tabIndex=0;
+  const addCarry=(name,{toFront=true}={})=>{
+    const total=counts.get(name)||0;
+    const carried=state.carriedCounts.get(name)||0;
+    if(total<=carried) return false;
+    if(totalCarried()>=carryCap){
+      window.alert(`You can only carry ${carryCap} consumable${carryCap===1?'':'s'} at level ${level}.`);
+      return false;
+    }
+    if(toFront) state.carriedList.unshift(name);
+    else state.carriedList.push(name);
+    recomputeCarriedCounts();
+    saveCarriedConsumables(charKey,state.carriedList);
+    renderCarryView();
+    return true;
+  };
 
-    const input=document.createElement('input');
-    input.type='number';
-    input.min='0';
-    input.step='1';
-    input.inputMode='numeric';
-    input.className='qty-input';
-    input.value=String(state.value);
+  const removeCarry=(name)=>{
+    const idx=state.carriedList.indexOf(name);
+    if(idx===-1) return false;
+    state.carriedList.splice(idx,1);
+    recomputeCarriedCounts();
+    saveCarriedConsumables(charKey,state.carriedList);
+    renderCarryView();
+    return true;
+  };
 
-    const plus=document.createElement('span');
-    plus.className='qty-icon';
-    plus.innerHTML=ICON_PLUS;
-    plus.setAttribute('role','button');
-    plus.setAttribute('aria-label',`Increase ${name}`);
-    plus.tabIndex=0;
+  const renderCarryView=()=>{
+    consModal.classList.remove('editing');
+    consList.innerHTML='';
+    if(consSaveBtn) consSaveBtn.style.display='none';
+    currentConsumableContext=null;
 
-    const sync=()=>{
+    if(!hasInventory){
+      consSummary.textContent='No consumables tracked yet.';
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.textContent='No consumables tracked yet.';
+      consList.appendChild(empty);
+      return;
+    }
+
+    const carriedTotal=totalCarried();
+    const free=slotsFree();
+    const summaryParts=[`Carried: ${carriedTotal}/${carryCap}`];
+    summaryParts.push(free>0?`${free} slot${free===1?'':'s'} free`:'Carry limit reached');
+    if(totalCopies>0) summaryParts.push(`${totalCopies} total item${totalCopies===1?'':'s'}`);
+    consSummary.textContent=summaryParts.join(' • ');
+
+    const carriedSection=createSection('Carried');
+    const carriedOrdered=[];
+    const seen=new Set();
+    state.carriedList.forEach(name=>{ if(!seen.has(name)){ seen.add(name); carriedOrdered.push(name); } });
+    if(carriedOrdered.length){
+      carriedOrdered.forEach(name=>{
+        const total=counts.get(name)||0;
+        const carried=state.carriedCounts.get(name)||0;
+        const remaining=Math.max(0,total-carried);
+        const row=document.createElement('div');
+        row.className='inv-row';
+        row.style.cursor='default';
+        const nameDiv=buildNameDiv(name);
+        const secondary=document.createElement('span');
+        secondary.className='cons-secondary';
+        secondary.textContent=`Carried ${carried} of ${total}`+(remaining>0?` • ${remaining} available`:'');
+        nameDiv.appendChild(secondary);
+        row.appendChild(nameDiv);
+
+        const tools=document.createElement('div');
+        tools.className='qty';
+
+        const minus=document.createElement('span');
+        minus.className='qty-icon'+(carried<=0?' disabled':'');
+        minus.innerHTML=ICON_MINUS;
+        minus.setAttribute('role','button');
+        minus.setAttribute('aria-label',`Stow one ${name}`);
+        minus.tabIndex=0;
+        minus.setAttribute('aria-disabled',carried<=0?'true':'false');
+
+        const pill=document.createElement('span');
+        pill.className='qty-pill';
+        pill.textContent=String(carried);
+
+        const plus=document.createElement('span');
+        const canIncrease=remaining>0 && free>0;
+        plus.className='qty-icon'+(canIncrease?'':' disabled');
+        plus.innerHTML=ICON_PLUS;
+        plus.setAttribute('role','button');
+        plus.setAttribute('aria-label',`Carry one more ${name}`);
+        plus.tabIndex=0;
+        plus.setAttribute('aria-disabled',canIncrease?'false':'true');
+
+        const handleAdjust=(delta)=>(ev)=>{
+          if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(delta<0){
+            if(carried>0) removeCarry(name);
+          }else{
+            addCarry(name,{toFront:false});
+          }
+        };
+
+        minus.addEventListener('click',handleAdjust(-1));
+        minus.addEventListener('keydown',handleAdjust(-1));
+        plus.addEventListener('click',handleAdjust(1));
+        plus.addEventListener('keydown',handleAdjust(1));
+
+        tools.appendChild(minus);
+        tools.appendChild(pill);
+        tools.appendChild(plus);
+        row.appendChild(tools);
+        carriedSection.list.appendChild(row);
+      });
+    }else{
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.style.padding='4px 8px';
+      empty.textContent='Not carrying any consumables.';
+      carriedSection.list.appendChild(empty);
+    }
+    consList.appendChild(carriedSection.section);
+
+    const availableSection=createSection('Available');
+    const availableNames=ordered.filter(name=>{
+      const total=counts.get(name)||0;
+      const carried=state.carriedCounts.get(name)||0;
+      return total-carried>0;
+    });
+    if(availableNames.length){
+      availableNames.forEach(name=>{
+        const total=counts.get(name)||0;
+        const carried=state.carriedCounts.get(name)||0;
+        const remaining=Math.max(0,total-carried);
+        const row=document.createElement('div');
+        row.className='inv-row';
+        row.setAttribute('role','button');
+        row.tabIndex=0;
+        row.title='Click to carry one copy';
+        const nameDiv=buildNameDiv(name);
+        const secondary=document.createElement('span');
+        secondary.className='cons-secondary';
+        secondary.textContent=`${remaining} available${total!==remaining?` • ${total} total`:''}`;
+        nameDiv.appendChild(secondary);
+        row.appendChild(nameDiv);
+
+        const qtyDiv=document.createElement('div');
+        qtyDiv.className='qty';
+        const pill=document.createElement('span');
+        pill.className='qty-pill';
+        pill.textContent=String(remaining);
+        qtyDiv.appendChild(pill);
+        row.appendChild(qtyDiv);
+
+        const activate=(ev)=>{
+          if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+          ev.preventDefault();
+          ev.stopPropagation();
+          addCarry(name,{toFront:true});
+        };
+        row.addEventListener('click',activate);
+        row.addEventListener('keydown',activate);
+        availableSection.list.appendChild(row);
+      });
+    }else{
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.style.padding='4px 8px';
+      empty.textContent='All consumables are being carried.';
+      availableSection.list.appendChild(empty);
+    }
+    consList.appendChild(availableSection.section);
+  };
+
+  const renderTotalsView=()=>{
+    consModal.classList.add('editing');
+    consList.innerHTML='';
+    let baseSummary='';
+    const states=[];
+    const updateSaveVisibility=()=>{
+      const dirty=states.some(state=>state.value!==state.initial);
+      if(consSaveBtn){ consSaveBtn.style.display=dirty?'inline-flex':'none'; }
+      if(dirty){
+        if(consSummary.textContent===baseSummary) consSummary.textContent='';
+      }else{
+        consSummary.textContent=baseSummary;
+      }
+    };
+
+    ordered.forEach(name=>{
+      const value=counts.get(name)||0;
+      const base=baseCounts.get(name)||0;
+      if(value<=0 && base<=0) return;
+
+      const state={name,value,initial:value,base};
+      states.push(state);
+
+      const row=document.createElement('div');
+      row.className='inv-row';
+      row.style.cursor='default';
+
+      const nameDiv=buildNameDiv(name);
+      const carriedNow=state.carriedCounts.get(name)||0;
+      if(carriedNow>0){
+        const secondary=document.createElement('span');
+        secondary.className='cons-secondary';
+        secondary.textContent=`Currently carrying ${carriedNow}`;
+        nameDiv.appendChild(secondary);
+      }
+      row.appendChild(nameDiv);
+
+      const qtyDiv=document.createElement('div');
+      qtyDiv.className='qty';
+
+      const minus=document.createElement('span');
+      minus.className='qty-icon'+(state.value<=carriedNow?' disabled':'');
+      minus.innerHTML=ICON_MINUS;
+      minus.setAttribute('role','button');
+      minus.setAttribute('aria-label',`Decrease ${name}`);
+      minus.tabIndex=0;
+
+      const input=document.createElement('input');
+      input.type='number';
+      input.min='0';
+      input.step='1';
+      input.inputMode='numeric';
+      input.className='qty-input';
       input.value=String(state.value);
-      const isMin=state.value<=0;
-      minus.classList.toggle('disabled',isMin);
-      minus.setAttribute('aria-disabled',isMin?'true':'false');
-    };
-    const adjust=(delta)=>{
-      state.value=Math.max(0,state.value+delta);
+
+      const plus=document.createElement('span');
+      plus.className='qty-icon';
+      plus.innerHTML=ICON_PLUS;
+      plus.setAttribute('role','button');
+      plus.setAttribute('aria-label',`Increase ${name}`);
+      plus.tabIndex=0;
+
+      const sync=()=>{
+        input.value=String(state.value);
+        const isMin=state.value<=carriedNow;
+        minus.classList.toggle('disabled',isMin);
+        minus.setAttribute('aria-disabled',isMin?'true':'false');
+      };
+      const adjust=(delta)=>{
+        state.value=Math.max(carriedNow,state.value+delta);
+        sync();
+        updateSaveVisibility();
+      };
+
+      const handleIcon=(delta)=>(ev)=>{
+        if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+        ev.preventDefault();
+        ev.stopPropagation();
+        if(delta<0 && state.value<=carriedNow){ return; }
+        adjust(delta);
+      };
+
+      minus.addEventListener('click',handleIcon(-1));
+      minus.addEventListener('keydown',handleIcon(-1));
+      plus.addEventListener('click',handleIcon(1));
+      plus.addEventListener('keydown',handleIcon(1));
+
+      const handleInput=()=>{
+        let next=parseInt(input.value,10);
+        if(Number.isNaN(next)) next=carriedNow;
+        if(next<carriedNow) next=carriedNow;
+        state.value=next;
+        sync();
+        updateSaveVisibility();
+      };
+      input.addEventListener('change',handleInput);
+      input.addEventListener('input',handleInput);
+
       sync();
-      updateSaveVisibility();
-    };
+      qtyDiv.appendChild(minus);
+      qtyDiv.appendChild(input);
+      qtyDiv.appendChild(plus);
+      row.appendChild(qtyDiv);
+      consList.appendChild(row);
+    });
 
-    const handleIcon=(delta)=>(ev)=>{
-      if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
-      ev.preventDefault();
-      ev.stopPropagation();
-      if(delta<0 && state.value<=0){ return; }
-      adjust(delta);
-    };
+    if(!states.length){
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.textContent='No consumables tracked yet.';
+      consList.appendChild(empty);
+      baseSummary='No consumables tracked yet.';
+    }else{
+      baseSummary='Adjust total counts below, then save to data.js.';
+    }
 
-    minus.addEventListener('click',handleIcon(-1));
-    minus.addEventListener('keydown',handleIcon(-1));
-    plus.addEventListener('click',handleIcon(1));
-    plus.addEventListener('keydown',handleIcon(1));
+    currentConsumableContext={charKey,states,updateSaveVisibility};
+    updateSaveVisibility();
+  };
 
-    const handleInput=()=>{
-      let next=parseInt(input.value,10);
-      if(Number.isNaN(next)) next=0;
-      if(next<0) next=0;
-      state.value=next;
-      sync();
-      updateSaveVisibility();
-    };
-    input.addEventListener('change',handleInput);
-    input.addEventListener('input',handleInput);
+  if(editingTotals){ renderTotalsView(); }
+  else{ renderCarryView(); }
 
-    sync();
-    qtyDiv.appendChild(minus);
-    qtyDiv.appendChild(input);
-    qtyDiv.appendChild(plus);
-
-    row.appendChild(nameDiv);
-    row.appendChild(qtyDiv);
-
-    consList.appendChild(row);
-  });
-
-  if(!states.length){
-    const empty=document.createElement('div');
-    empty.className='muted';
-    empty.textContent='No consumables tracked yet.';
-    consList.appendChild(empty);
-  }
-
-  currentConsumableContext={charKey,states,updateSaveVisibility};
-  updateSaveVisibility();
   consModal.classList.add('open');
   refreshModalState();
 }
