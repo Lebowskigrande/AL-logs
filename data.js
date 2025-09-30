@@ -5,6 +5,23 @@ window.DATA = {
       "display_name": "DM log",
       "adventures": [
         {
+          "date": "2025-09-05",
+          "title": "Shadows over Waterdeep",
+          "code": "DDAL-DRW-14",
+          "dm": "Ecthelion",
+          "gp_plus": 150,
+          "gp_minus": 25,
+          "gp_net": 125,
+          "dtd_plus": 1,
+          "dtd_minus": 0,
+          "dtd_net": 1,
+          "level_plus": 1,
+          "perm_items": ["Ring of Water Walking"],
+          "consumable_items": ["Potion of Heroism"],
+          "notes": "Finalized fix testing work-branch deployment.",
+          "kind": "adventure"
+        },
+        {
           "date": "2025-07-14",
           "title": null,
           "code": "Playtest",

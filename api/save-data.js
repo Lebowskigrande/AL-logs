@@ -28,7 +28,7 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, branch = process.env.GH_BRANCH || 'main', path = 'data.js' } = await req.json();
+    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
     }
