@@ -3864,10 +3864,12 @@ window.DATA = {
             "Keoghtom's Ointment",
             "Potion of Hill Giant Strength",
             "Spell Scroll of Web",
-            "2 Potions of Healing"
+            "Potion of Healing",
+            "Potion of Healing"
           ],
           "notes": "Sold chain shirt for 25 gp, purchased Breastplate for 400 gp and 2 potions of healing for 45 gp each (sale).",
-          "kind": "adventure"
+          "kind": "adventure",
+          "traded_item": ""
         }
       ]
     },
@@ -21681,7 +21683,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T07:42:04.791Z",
+    "generated": "2025-09-30T16:13:20.685Z",
     "problems": []
   }
 };
