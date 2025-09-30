@@ -3682,9 +3682,9 @@ window.DATA = {
             "Chest of Preserving"
           ],
           "consumable_items": [
-            "Scrolls of Dispel",
-            "See Invisibility",
-            "and Enhance Ability"
+            "Scroll of Dispel Magic",
+            "Scroll of See Invisibility",
+            "Scroll of Enhance Ability"
           ],
           "notes": "",
           "kind": "adventure",
@@ -21681,7 +21681,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T07:40:05.117Z",
+    "generated": "2025-09-30T07:42:04.791Z",
     "problems": []
   }
 };
