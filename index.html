@@ -66,7 +66,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
 .download-btn{margin-left:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;height:32px;padding:0 12px;border:none;border-radius:999px;background:transparent;box-shadow:none;color:var(--primary);font-weight:600;font-size:13px;line-height:1}
 .download-btn .save-icon,.download-btn .save-spinner,.download-btn .save-success{display:none;align-items:center;justify-content:center;gap:6px}
-.download-btn .save-icon svg,.download-btn .save-spinner svg{width:20px;height:20px}
+.download-btn .save-icon svg,.download-btn .save-icon img,.download-btn .save-spinner svg{width:20px;height:20px}
 .download-btn .save-success{letter-spacing:.01em}
 .download-btn:not(.saving):not(.success) .save-icon{display:inline-flex}
 .download-btn.saving .save-spinner{display:inline-flex}
@@ -343,11 +343,7 @@ body.avatar-overlay-open{overflow:hidden}
       </div>
       <button id="downloadData" class="icon-btn download-btn" type="button" title="Save data.js" aria-label="Save data.js">
         <span class="save-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 3h9l4 4v13H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z"/>
-            <path d="M15 3v5H6V3"/>
-            <path d="M9 14h6v5H9z"/>
-          </svg>
+          <img src="save.svg" alt="" width="20" height="20"/>
         </span>
         <span class="save-spinner" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
