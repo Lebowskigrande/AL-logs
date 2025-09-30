@@ -618,8 +618,23 @@ function clearDirty(){
   updateSaveButtonState();
 }
 
+function touchDataMetaTimestamp(){
+  if(!DATA||typeof DATA!=='object') return;
+  const meta=DATA.meta;
+  if(meta&&typeof meta==='object'){
+    try{
+      meta.generated=new Date().toISOString();
+    }catch(err){
+      /* no-op */
+    }
+  }
+}
+
 async function saveDataJs(options={}){
   const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
+  if(typeof customDataJs!=='string'){
+    touchDataMetaTimestamp();
+  }
   const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
   const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
   const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
@@ -661,8 +676,10 @@ async function saveDataJs(options={}){
     }
     clearDirty();
     setSaveResult('success');
+    const versionForSave=String(Date.now());
+    setDataVersion(versionForSave);
     try{
-      await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800 });
+      await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
     }catch(err){
       console.warn('Unable to refresh data.js cache after save', err);
     }
@@ -781,18 +798,19 @@ function wait(ms){
   return new Promise(resolve=>setTimeout(resolve,ms));
 }
 
-async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500 }={}){
+async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, version=null }={}){
   let attempt=0;
+  const pinnedVersion=version?String(version):null;
   while(attempt<=retries){
-    const version=String(Date.now());
-    const response=await fetch(buildDataUrl(version),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+    const versionToUse=pinnedVersion||String(Date.now());
+    const response=await fetch(buildDataUrl(versionToUse),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
     if(!response.ok){
       throw new Error('HTTP '+response.status);
     }
     const text=await response.text();
     if(!expectedDataJs || dataPayloadsMatch(text, expectedDataJs)){
       applyDataJs(text);
-      setDataVersion(version);
+      setDataVersion(versionToUse);
       return true;
     }
     if(attempt===retries){
