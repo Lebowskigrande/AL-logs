@@ -23,6 +23,7 @@ html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-sy
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
 .avatar.has-avatar{cursor:zoom-in;}
+.avatar.avatar-fallback{background:linear-gradient(135deg,#dbeafe,#bfdbfe);}
 .avatar:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
@@ -558,7 +559,9 @@ const AVATAR_MANIFEST=Object.freeze({
   'Zandaraxs Inventory':'zandarax.png',
   'Zandaraxs Bastion':'zandarax.png'
 });
+const AVATAR_FALLBACK_PATH='avatar-fallback.svg';
 const avatarCache=new Map();
+const avatarPreloadPromises=new Map();
 let avatarLoadToken=0;
 let persistedAvatarPaths={};
 let avatarPathsDirty=false;
@@ -1222,6 +1225,7 @@ function resetAvatar(){
   if(!avatarEl) return;
   avatarEl.removeAttribute('src');
   avatarEl.classList.remove('has-avatar');
+  avatarEl.classList.remove('avatar-fallback');
   avatarEl.removeAttribute('data-avatar-src');
   avatarEl.alt='Character avatar';
   avatarEl.removeAttribute('role');
@@ -1230,32 +1234,29 @@ function resetAvatar(){
   avatarEl.tabIndex=-1;
   closeAvatarOverlay({returnFocus:false});
 }
-function applyAvatar(path,token,key){
+function applyAvatar(path,token,key,{persist=true,isFallback=false}={}){
   if(!avatarEl || token!==avatarLoadToken) return;
   avatarEl.src=path;
   avatarEl.classList.add('has-avatar');
+  if(isFallback){
+    avatarEl.classList.add('avatar-fallback');
+  }else{
+    avatarEl.classList.remove('avatar-fallback');
+  }
   avatarEl.setAttribute('data-avatar-src',path);
   const selectedOption=charSel && charSel.options && charSel.selectedIndex>=0 ? charSel.options[charSel.selectedIndex] : null;
   const optionLabel=selectedOption?selectedOption.textContent.trim():'';
-  const label=optionLabel?`${optionLabel} avatar`:'Character avatar';
-  avatarEl.alt=label;
+  const defaultLabel=optionLabel?`${optionLabel} avatar`:'Character avatar';
+  const fallbackLabel=optionLabel?`${optionLabel} default avatar`:'Default character avatar';
+  avatarEl.alt=isFallback?fallbackLabel:defaultLabel;
   avatarEl.setAttribute('role','button');
   avatarEl.setAttribute('aria-haspopup','dialog');
   avatarEl.setAttribute('aria-expanded','false');
   avatarEl.tabIndex=0;
-  rememberAvatarPath(key,path);
+  if(persist) rememberAvatarPath(key,path);
 }
-function updateAvatar(key,obj){
-  if(!avatarEl){
-    return;
-  }
+function buildAvatarCandidates(key,obj){
   const names=collectAvatarNames(obj,key);
-  if(!names.length){
-    avatarLoadToken++;
-    resetAvatar();
-    forgetAvatarPath(key);
-    return;
-  }
   const candidates=[];
   const persistedPath=getPersistedAvatarPath(key);
   if(persistedPath) candidates.push(persistedPath);
@@ -1266,10 +1267,63 @@ function updateAvatar(key,obj){
       if(file && !candidates.includes(file)) candidates.push(file);
     });
   });
+  return candidates;
+}
+function preloadAvatar(path){
+  if(!path) return null;
+  if(avatarCache.has(path)) return null;
+  if(avatarPreloadPromises.has(path)) return avatarPreloadPromises.get(path);
+  const promise=new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      avatarCache.set(path,true);
+      resolve(true);
+    };
+    img.onerror=()=>{
+      avatarCache.set(path,false);
+      resolve(false);
+    };
+    img.src=path;
+  });
+  avatarPreloadPromises.set(path,promise);
+  return promise;
+}
+function collectAllAvatarPaths(){
+  if(!DATA || !DATA.characters) return [];
+  const paths=new Set();
+  Object.entries(DATA.characters).forEach(([key,obj])=>{
+    buildAvatarCandidates(key,obj).forEach(path=>{ if(path) paths.add(path); });
+  });
+  if(AVATAR_FALLBACK_PATH) paths.add(AVATAR_FALLBACK_PATH);
+  return Array.from(paths);
+}
+let avatarPreloadScheduled=false;
+function scheduleAvatarPreload(){
+  if(avatarPreloadScheduled) return;
+  avatarPreloadScheduled=true;
+  const startPreload=()=>{
+    avatarPreloadScheduled=false;
+    collectAllAvatarPaths().forEach(path=>preloadAvatar(path));
+  };
+  if(typeof window!=='undefined' && typeof window.requestIdleCallback==='function'){
+    window.requestIdleCallback(startPreload,{timeout:1200});
+  }else{
+    setTimeout(startPreload,150);
+  }
+}
+function updateAvatar(key,obj){
+  if(!avatarEl){
+    return;
+  }
+  const candidates=buildAvatarCandidates(key,obj);
   if(!candidates.length){
-    avatarLoadToken++;
+    const token=++avatarLoadToken;
     resetAvatar();
     forgetAvatarPath(key);
+    if(AVATAR_FALLBACK_PATH){
+      avatarCache.set(AVATAR_FALLBACK_PATH,true);
+      applyAvatar(AVATAR_FALLBACK_PATH,token,key,{persist:false,isFallback:true});
+    }
     return;
   }
   const token=++avatarLoadToken;
@@ -1277,8 +1331,13 @@ function updateAvatar(key,obj){
   const tryNext=(index)=>{
     if(token!==avatarLoadToken) return;
     if(index>=candidates.length){
-      resetAvatar();
       forgetAvatarPath(key);
+      if(AVATAR_FALLBACK_PATH){
+        avatarCache.set(AVATAR_FALLBACK_PATH,true);
+        applyAvatar(AVATAR_FALLBACK_PATH,token,key,{persist:false,isFallback:true});
+      }else{
+        resetAvatar();
+      }
       return;
     }
     const path=candidates[index];
@@ -2705,6 +2764,7 @@ function updateDerivedDataFor(key){
 function applyDataMutation(key){
   updateDerivedDataFor(key);
   filterAndRender();
+  scheduleAvatarPreload();
 }
 
 /* --- stats & header --- */
@@ -2902,6 +2962,7 @@ function initApp(){
     charSel.value=initialKey;
   }
   filterAndRender();
+  scheduleAvatarPreload();
   clearDirty();
   return true;
 }
