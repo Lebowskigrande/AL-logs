@@ -29,7 +29,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .title-select-wrap{display:flex;align-items:center;gap:6px;position:relative;max-width:100%;min-width:0}
 .title-select-wrap::after{content:"";flex-shrink:0;width:12px;height:8px;clip-path:polygon(0 0,100% 0,50% 100%);background:currentColor;opacity:.55;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;transform:translateY(0)}
 .title-select-wrap:focus-within::after{opacity:1;transform:translateY(-2px)}
-.title-select{appearance:none;border:none;background:transparent;font:inherit;color:var(--ink);padding:0;margin:0;cursor:pointer;line-height:1.1;font-weight:800;letter-spacing:-0.01em;max-width:100%;min-width:0;font-size:clamp(20px,4vw,28px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title-select{appearance:none;border:none;background:transparent;font:inherit;color:var(--ink);padding:0;margin:0;cursor:pointer;line-height:1.1;font-weight:800;letter-spacing:-0.01em;max-width:100%;min-width:0;font-size:clamp(16px,3vw,22px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .title-select:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px;border-radius:6px}
 .title-select option{color:var(--ink)}
 .char-badges{margin-top:4px;display:none;gap:8px;flex-wrap:wrap;align-items:center}
@@ -556,7 +556,8 @@ let saveFeedbackTimeout=null;
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
-  showActivities:'al_logs_show_activities'
+  showActivities:'al_logs_show_activities',
+  lastCharacter:'al_logs_last_character'
 };
 
 let showActivities=true;
@@ -570,6 +571,33 @@ try{
 function persistActivityVisibility(){
   try{
     localStorage.setItem(STORAGE_KEYS.showActivities, showActivities?'1':'0');
+  }catch(err){
+    /* no-op */
+  }
+}
+
+let cachedLastCharacterKey=null;
+function getRememberedCharacterKey(){
+  if(cachedLastCharacterKey===null){
+    try{
+      cachedLastCharacterKey=localStorage.getItem(STORAGE_KEYS.lastCharacter)||'';
+    }catch(err){
+      cachedLastCharacterKey='';
+    }
+  }
+  return cachedLastCharacterKey;
+}
+function rememberCharacterKey(key){
+  const hasCharacters=!!(DATA&&DATA.characters);
+  const nextKey=(key && hasCharacters && DATA.characters[key])?String(key):'';
+  if(cachedLastCharacterKey===nextKey) return;
+  cachedLastCharacterKey=nextKey;
+  try{
+    if(nextKey){
+      localStorage.setItem(STORAGE_KEYS.lastCharacter,nextKey);
+    }else{
+      localStorage.removeItem(STORAGE_KEYS.lastCharacter);
+    }
   }catch(err){
     /* no-op */
   }
@@ -886,27 +914,49 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
 function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={}){
   if(!charSel) return null;
   const hasData=DATA && DATA.characters && typeof DATA.characters==='object';
-  const previous=preferredKey??(preserveSelection?charSel.value:null);
+  const previousSelection=preserveSelection?charSel.value:null;
   const scrollTop=charSel.scrollTop||0;
   charSel.innerHTML='';
   if(!hasData){
     return null;
   }
-  Object.entries(DATA.characters).forEach(([key,obj])=>{
+  let storedKey=getRememberedCharacterKey();
+  if(storedKey && !DATA.characters[storedKey]){
+    rememberCharacterKey('');
+    storedKey='';
+  }
+  const entries=Object.entries(DATA.characters).map(([key,obj])=>{
+    const sheetName=(obj.sheet||'').toString().trim();
+    const displayName=(obj.display_name||'').toString().trim();
+    const baseLabel=sheetName||displayName||key;
+    const label=(displayName && displayName!==key)?(displayName+(sheetName&&sheetName!==displayName?' ('+sheetName+')':'')):baseLabel;
+    const labelText=(label||'').toString().trim()||key;
+    const sortValue=(displayName||sheetName||key||'').toString().trim();
+    return { key, label:labelText, sortValue };
+  }).sort((a,b)=>{
+    const cmp=a.sortValue.localeCompare(b.sortValue,undefined,{sensitivity:'base',numeric:true});
+    if(cmp!==0) return cmp;
+    return a.key.localeCompare(b.key,undefined,{sensitivity:'base',numeric:true});
+  });
+  entries.forEach(({key,label})=>{
     const opt=document.createElement('option');
-    const disp=(obj.display_name&&obj.display_name!==key)?(obj.display_name+' ('+obj.sheet+')'):obj.sheet;
     opt.value=key;
-    opt.textContent=disp;
+    opt.textContent=label;
     charSel.appendChild(opt);
   });
+  const candidateKeys=[preferredKey, previousSelection, storedKey];
   let nextKey=null;
-  if(previous && DATA.characters[previous]){
-    nextKey=previous;
-  }else{
+  for(const candidate of candidateKeys){
+    if(candidate && DATA.characters[candidate]){ nextKey=candidate; break; }
+  }
+  if(!nextKey){
     nextKey=getMostRecentCharacter();
   }
   if(nextKey){
     charSel.value=nextKey;
+    rememberCharacterKey(nextKey);
+  }else{
+    rememberCharacterKey('');
   }
   if(typeof charSel.scrollTop==='number'){
     charSel.scrollTop=scrollTop;
@@ -2672,17 +2722,26 @@ function columnizeGrid(mode){
 function filterAndRender(){
   if(!DATA || !DATA.characters || !charSel) return;
   let key=charSel.value;
+  if((!key || !DATA.characters[key]) && DATA.characters){
+    const stored=getRememberedCharacterKey();
+    if(stored && DATA.characters[stored]){
+      charSel.value=stored;
+      key=stored;
+    }
+  }
   if(!key || !DATA.characters[key]){
     const fallback=getMostRecentCharacter();
     if(fallback){
       charSel.value=fallback;
       key=fallback;
     }else{
+      rememberCharacterKey('');
       grid.innerHTML='';
       emptyEl.style.display='block';
       return;
     }
   }
+  rememberCharacterKey(key);
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
   const q=(qEl.value||'').toLowerCase();
   const filtered=advs.filter(a=>{
