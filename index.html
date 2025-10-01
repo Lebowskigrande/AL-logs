@@ -1446,6 +1446,11 @@ function collectPermanentInventory(charKey){
   const keptMap=new Map();
   entries.forEach(({adv,index})=>{
     const items=adv.perm_items||[];
+    const lostNames=[];
+    if(adv.lost_perm_item){
+      const cleaned=normItemName(adv.lost_perm_item);
+      if(cleaned) lostNames.push(cleaned);
+    }
     const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
     if(isLoss){
       if(items.length){
@@ -1460,6 +1465,7 @@ function collectPermanentInventory(charKey){
           if(regex.test(adv.notes)) keptMap.delete(meta.name.toLowerCase());
         });
       }
+      lostNames.forEach(name=>keptMap.delete(name.toLowerCase()));
       return;
     }
     items.forEach(raw=>{
@@ -1473,6 +1479,7 @@ function collectPermanentInventory(charKey){
       }
       keptMap.set(key,{name:cleaned,index,adv});
     });
+    lostNames.forEach(name=>keptMap.delete(name.toLowerCase()));
   });
   const kept=[...keptMap.values()].sort((a,b)=>a.name.localeCompare(b.name));
   return {kept,map:keptMap};
@@ -2337,9 +2344,13 @@ function makeCard(a,idx){
   }
 
   const hasPermItems=Array.isArray(a.perm_items)&&a.perm_items.some(item=>hasMeaningfulValue(item));
-  const permField=appendField('Magic Items', listBox(a.perm_items),'mi');
+  const permField=appendField('Magic items gained', listBox(a.perm_items),'mi');
   const showPerm=(!act || (!hasTradeMeta && hasPermItems));
   if(!showPerm){ permField.style.display='none'; }
+  const lostValue=normalizeDisplayValue(a.lost_perm_item)||'';
+  const lostField=appendField('Magic items lost', lostValue||'');
+  lostField.classList.add('milost');
+  if(!lostValue){ lostField.style.display='none'; }
   const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>hasMeaningfulValue(item));
   const consField=appendField('Consumables', listBox(a.consumable_items),'cons');
   const showCons=(!act || hasConsumables);
@@ -2438,8 +2449,43 @@ function makeCard(a,idx){
     return wrap;
   }
 
+  function rebuildLostOptions(selected){
+    const select=controls.lost_perm_item;
+    if(!select) return;
+    const key=(a && a.__charKey)||charSel.value;
+    select.innerHTML='';
+    const seen=new Set();
+    const addOption=(value,label)=>{
+      const val=String(value||'');
+      if(seen.has(val)) return;
+      const opt=document.createElement('option');
+      opt.value=val;
+      opt.textContent=label;
+      select.appendChild(opt);
+      seen.add(val);
+    };
+    addOption('', 'None');
+    if(key && DATA && DATA.characters && DATA.characters[key]){
+      const {kept}=collectPermanentInventory(key);
+      kept.forEach(meta=>{
+        const name=meta && meta.name?meta.name:'';
+        if(name) addOption(name,name);
+      });
+    }
+    const trimmedSelected=(selected||'').trim();
+    if(trimmedSelected && !seen.has(trimmedSelected)){
+      addOption(trimmedSelected, trimmedSelected);
+    }
+    select.value=trimmedSelected;
+  }
+
   controls.perm_items=createListEditor(a.perm_items||[]);
-  addField('Magic items', controls.perm_items);
+  addField('Magic items gained', controls.perm_items);
+  function makeLostSelect(){
+    const select=document.createElement('select');
+    return select;
+  }
+  controls.lost_perm_item=addField('Magic items lost', makeLostSelect());
   controls.consumable_items=createListEditor(a.consumable_items||[]);
   addField('Consumables', controls.consumable_items);
   controls.notes=addField('Notes', makeTextarea());
@@ -2467,10 +2513,12 @@ function makeCard(a,idx){
   mountControl(controls.dtd_minus, dtSpendCell.__editor);
   mountControl(controls.level_plus, levelField.__editor);
   mountControl(controls.perm_items, permField.__editor);
+  mountControl(controls.lost_perm_item, lostField.__editor);
   mountControl(controls.consumable_items, consField.__editor);
   mountControl(controls.notes, notesField.__editor);
 
   permField.classList.add('full');
+  lostField.classList.add('full');
   consField.classList.add('full');
   notesField.classList.add('full','notes-field');
 
@@ -2591,6 +2639,12 @@ function makeCard(a,idx){
     const showNotes=(editing || (!hasTradeMeta && (!isActivityMode || notesDisplay!=='—')));
     notesField.style.display=showNotes?'':'none';
 
+    const lostRaw=(a.lost_perm_item||'').trim();
+    rebuildLostOptions(lostRaw);
+    controls.lost_perm_item.value=lostRaw;
+    lostField.__display.textContent=makeValue(lostRaw);
+    lostField.style.display=(editing || !!lostRaw)?'':'none';
+
     syncKindVisibility();
   }
 
@@ -2610,6 +2664,7 @@ function makeCard(a,idx){
       dtd_minus:Number(controls.dtd_minus.value||0),
       level_plus:Number(controls.level_plus.value||0),
       perm_items:controls.perm_items.getValues(),
+      lost_perm_item:(controls.lost_perm_item.value||'').trim(),
       consumable_items:controls.consumable_items.getValues(),
       notes:controls.notes.value||'',
       traded_item:isActivity?(controls.traded_item.value||'').trim():''
@@ -2678,6 +2733,7 @@ async function saveCardChanges(card){
   data.dtd_net=data.dtd_plus-data.dtd_minus;
   data.level_plus=Number.isFinite(updates.level_plus)?updates.level_plus:0;
   data.perm_items=[...updates.perm_items];
+  data.lost_perm_item=updates.lost_perm_item||'';
   data.consumable_items=[...updates.consumable_items];
   const trimmedNotes=(updates.notes||'').trim();
   data.notes=trimmedNotes||'';
@@ -2913,7 +2969,7 @@ function filterAndRender(){
   const q=(qEl.value||'').toLowerCase();
   const filtered=advs.filter(a=>{
     if(!showActivities && isActivityEntry(a)) return false;
-    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character]
+    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character,a.lost_perm_item]
       .concat(a.perm_items||[])
       .concat(a.consumable_items||[])
       .map(x=>(x||'').toString().toLowerCase()).join(' ');
@@ -3029,6 +3085,7 @@ if(addCardBtn){
       dtd_minus:0,
       level_plus:0,
       perm_items:[],
+      lost_perm_item:'',
       consumable_items:[],
       notes:'',
       kind:'adventure',
