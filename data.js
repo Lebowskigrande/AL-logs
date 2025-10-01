@@ -3667,6 +3667,27 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-10-01",
+          "title": "Lord's Alliance Trade",
+          "code": "",
+          "dm": "Alexis P.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Belt of Fire Giant Strength"
+          ],
+          "lost_perm_item": "Bag of Devouring",
+          "consumable_items": [],
+          "notes": "Lord's Alliance stronghold accepted banned item Bag of Devouring and offered choice of VR item in compensation.",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": 0
+        },
+        {
+          "date": "2025-10-01",
           "title": "Level up",
           "code": "",
           "dm": null,
@@ -21349,7 +21370,7 @@ window.DATA = {
       "net_gp": 9225,
       "net_dtd": 33,
       "level_ups": 8,
-      "perm_count": 28,
+      "perm_count": 27,
       "cons_count": 13
     },
     "Chef Ture": {
@@ -21728,7 +21749,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T03:58:40.209Z",
+    "generated": "2025-10-01T04:22:01.930Z",
     "problems": []
   }
 };
