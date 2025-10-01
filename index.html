@@ -198,6 +198,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .list-editor .list-row button svg{width:16px;height:16px}
 .list-editor .add-row{align-self:flex-start;border:1px dashed var(--border);background:#f8fafc;color:var(--primary);border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
 .list-editor .add-row:hover{background:#eef4ff}
+.lost-select-control{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.lost-select-control select{flex:1 1 220px;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.lost-select-control select[multiple]{min-height:140px;padding:8px;}
+.lost-select-control select option{padding:4px 6px;white-space:nowrap;}
 .edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
 .card:not(.editing) .edit-actions{display:none}
 .card.editing .edit-actions{display:flex}
@@ -1438,6 +1442,23 @@ function toggleCard(card){ card.classList.contains('open')?collapseCard(card):ex
 
 /* --- inventory helpers --- */
 function normItemName(s){ return (s||'').trim(); }
+function parseLostItemList(raw){
+  if(Array.isArray(raw)){
+    return raw.map(normItemName).filter(Boolean);
+  }
+  const text=String(raw||'').replace(/\r\n?/g,'\n').trim();
+  if(!text) return [];
+  if(text.includes('\n')){
+    return text.split('\n').map(normItemName).filter(Boolean);
+  }
+  if(text.includes(';')){
+    return text.split(';').map(normItemName).filter(Boolean);
+  }
+  if(text.includes('•')){
+    return text.split('•').map(normItemName).filter(Boolean);
+  }
+  return [normItemName(text)];
+}
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
 function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
 function collectPermanentInventory(charKey){
@@ -1446,11 +1467,7 @@ function collectPermanentInventory(charKey){
   const keptMap=new Map();
   entries.forEach(({adv,index})=>{
     const items=adv.perm_items||[];
-    const lostNames=[];
-    if(adv.lost_perm_item){
-      const cleaned=normItemName(adv.lost_perm_item);
-      if(cleaned) lostNames.push(cleaned);
-    }
+    const lostNames=parseLostItemList(adv.lost_perm_item);
     const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
     if(isLoss){
       if(items.length){
@@ -2347,10 +2364,11 @@ function makeCard(a,idx){
   const permField=appendField('Magic items gained', listBox(a.perm_items),'mi');
   const showPerm=(!act || (!hasTradeMeta && hasPermItems));
   if(!showPerm){ permField.style.display='none'; }
-  const lostValue=normalizeDisplayValue(a.lost_perm_item)||'';
-  const lostField=appendField('Magic items lost', lostValue||'');
+  const lostValueList=parseLostItemList(a.lost_perm_item);
+  const lostInitial=lostValueList.length?lostValueList.join(', '):'';
+  const lostField=appendField('Magic items lost', lostInitial||'');
   lostField.classList.add('milost');
-  if(!lostValue){ lostField.style.display='none'; }
+  if(!lostValueList.length){ lostField.style.display='none'; }
   const hasConsumables=Array.isArray(a.consumable_items)&&a.consumable_items.some(item=>hasMeaningfulValue(item));
   const consField=appendField('Consumables', listBox(a.consumable_items),'cons');
   const showCons=(!act || hasConsumables);
@@ -2449,22 +2467,37 @@ function makeCard(a,idx){
     return wrap;
   }
 
+  function getLostSelect(){
+    const control=controls.lost_perm_item;
+    if(!control) return null;
+    if(control.tagName==='SELECT') return control;
+    if(control.__select) return control.__select;
+    return control.querySelector?control.querySelector('select'):null;
+  }
+
   function rebuildLostOptions(selected){
-    const select=controls.lost_perm_item;
+    const select=getLostSelect();
     if(!select) return;
+    const wrap=controls.lost_perm_item;
+    const selectedValues=parseLostItemList(selected || (wrap && wrap.value) || '');
     const key=(a && a.__charKey)||charSel.value;
     select.innerHTML='';
     const seen=new Set();
     const addOption=(value,label)=>{
       const val=String(value||'');
-      if(seen.has(val)) return;
+      const normalized=val.trim().toLowerCase();
+      if(seen.has(normalized)) return;
       const opt=document.createElement('option');
       opt.value=val;
       opt.textContent=label;
       select.appendChild(opt);
-      seen.add(val);
+      seen.add(normalized);
     };
-    addOption('', 'None');
+    const emptyOpt=document.createElement('option');
+    emptyOpt.value='';
+    emptyOpt.textContent='None';
+    emptyOpt.dataset.empty='1';
+    select.appendChild(emptyOpt);
     if(key && DATA && DATA.characters && DATA.characters[key]){
       const {kept}=collectPermanentInventory(key);
       kept.forEach(meta=>{
@@ -2472,18 +2505,109 @@ function makeCard(a,idx){
         if(name) addOption(name,name);
       });
     }
-    const trimmedSelected=(selected||'').trim();
-    if(trimmedSelected && !seen.has(trimmedSelected)){
-      addOption(trimmedSelected, trimmedSelected);
+    selectedValues.forEach(name=>addOption(name,name));
+    if(wrap && typeof wrap.setValues==='function'){
+      wrap.setValues(selectedValues);
+    }else{
+      const hasSelection=selectedValues.length>0;
+      Array.from(select.options).forEach(opt=>{
+        if(opt.dataset.empty==='1'){
+          opt.selected=!hasSelection;
+          return;
+        }
+        const normalized=opt.value.trim().toLowerCase();
+        opt.selected=selectedValues.some(val=>val.toLowerCase()===normalized);
+      });
     }
-    select.value=trimmedSelected;
   }
 
   controls.perm_items=createListEditor(a.perm_items||[]);
   addField('Magic items gained', controls.perm_items);
   function makeLostSelect(){
+    const wrap=document.createElement('div');
+    wrap.className='lost-select-control';
     const select=document.createElement('select');
-    return select;
+    select.multiple=true;
+    select.size=6;
+    wrap.appendChild(select);
+    wrap.__select=select;
+    wrap.__selected=[];
+    wrap.focus=()=>select.focus();
+
+    function ensureEmptyOption(){
+      let emptyOpt=select.querySelector('option[data-empty="1"]');
+      if(!emptyOpt){
+        emptyOpt=document.createElement('option');
+        emptyOpt.value='';
+        emptyOpt.textContent='None';
+        emptyOpt.dataset.empty='1';
+        select.insertBefore(emptyOpt, select.firstChild);
+      }
+      return emptyOpt;
+    }
+
+    function ensureOption(value,label){
+      const val=String(value||'').trim();
+      if(!val) return null;
+      const normalized=val.toLowerCase();
+      const existing=Array.from(select.options).find(opt=>opt.value.trim().toLowerCase()===normalized);
+      if(existing) return existing;
+      const opt=document.createElement('option');
+      opt.value=val;
+      opt.textContent=label||value;
+      select.appendChild(opt);
+      return opt;
+    }
+
+    function setValues(vals){
+      const values=Array.isArray(vals)?vals:parseLostItemList(vals);
+      const unique=[];
+      const seen=new Set();
+      values.forEach(item=>{
+        const cleaned=normItemName(item);
+        if(!cleaned) return;
+        const key=cleaned.toLowerCase();
+        if(seen.has(key)) return;
+        seen.add(key);
+        ensureOption(cleaned, cleaned);
+        unique.push(cleaned);
+      });
+      wrap.__selected=unique;
+      const emptyOpt=ensureEmptyOption();
+      const hasSelection=unique.length>0;
+      const lowerSet=new Set(unique.map(item=>item.toLowerCase()));
+      Array.from(select.options).forEach(opt=>{
+        if(opt.dataset.empty==='1'){
+          opt.selected=!hasSelection;
+          return;
+        }
+        const normalized=normItemName(opt.value).toLowerCase();
+        opt.selected=lowerSet.has(normalized);
+      });
+      if(!hasSelection && emptyOpt){
+        emptyOpt.selected=true;
+      }
+    }
+
+    wrap.setValues=setValues;
+    wrap.getValues=()=>Array.isArray(wrap.__selected)?wrap.__selected.slice():[];
+    Object.defineProperty(wrap,'value',{
+      get(){
+        const values=wrap.getValues();
+        return values.length?values.join('\n'):'';
+      },
+      set(val){ setValues(val); }
+    });
+
+    select.addEventListener('change',()=>{
+      const selectedValues=Array.from(select.selectedOptions)
+        .map(opt=>opt.value.trim())
+        .filter(Boolean);
+      setValues(selectedValues);
+      wrap.dispatchEvent(new Event('input',{bubbles:true}));
+    });
+
+    return wrap;
   }
   controls.lost_perm_item=addField('Magic items lost', makeLostSelect());
   controls.consumable_items=createListEditor(a.consumable_items||[]);
@@ -2642,8 +2766,9 @@ function makeCard(a,idx){
     const lostRaw=(a.lost_perm_item||'').trim();
     rebuildLostOptions(lostRaw);
     controls.lost_perm_item.value=lostRaw;
-    lostField.__display.textContent=makeValue(lostRaw);
-    lostField.style.display=(editing || !!lostRaw)?'':'none';
+    const lostItems=controls.lost_perm_item.getValues?controls.lost_perm_item.getValues():parseLostItemList(controls.lost_perm_item.value);
+    lostField.__display.textContent=lostItems.length?lostItems.join(', '):'—';
+    lostField.style.display=(editing || lostItems.length)?'':'none';
 
     syncKindVisibility();
   }
