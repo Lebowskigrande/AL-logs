@@ -3670,18 +3670,24 @@ window.DATA = {
           "title": "The Dragon of Najkir",
           "code": "DDHC-DD-Ch5",
           "dm": "Alexis P.",
-          "gp_plus": 0,
+          "gp_plus": 4275,
           "gp_minus": 0,
-          "dtd_plus": 0,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 0,
-          "perm_items": [],
-          "consumable_items": [],
-          "notes": "Studied under Patrel to learn Deception proficiency. Formed the adventuring company Metallicant with Ashryn and Kronk and commissioned as licensed adventurers in Cormyr.",
+          "level_plus": 1,
+          "perm_items": [
+            "Folding Boat",
+            "Moon-Touched Rapier"
+          ],
+          "consumable_items": [
+            "Keoghtom’s Ointment"
+          ],
+          "notes": "Studied under Patrel to learn Deception proficiency. Formed the adventuring company Metallicant with Ashryn and Kronk and commissioned as licensed adventurers in Cormyr. Earned the gratitude of the Lord's Alliance.",
           "kind": "adventure",
           "traded_item": "",
-          "gp_net": 0,
-          "dtd_net": 0
+          "gp_net": 4275,
+          "dtd_net": 10,
+          "lost_perm_item": ""
         },
         {
           "date": "2025-09-24",
@@ -21321,11 +21327,11 @@ window.DATA = {
     },
     "Ecthelion": {
       "sessions": 6,
-      "net_gp": 4950,
-      "net_dtd": 33,
-      "level_ups": 6,
-      "perm_count": 26,
-      "cons_count": 12
+      "net_gp": 9225,
+      "net_dtd": 43,
+      "level_ups": 7,
+      "perm_count": 28,
+      "cons_count": 13
     },
     "Chef Ture": {
       "sessions": 9,
@@ -21703,7 +21709,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T01:57:42.618Z",
+    "generated": "2025-10-01T03:58:03.336Z",
     "problems": []
   }
 };
