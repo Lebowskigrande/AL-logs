@@ -3668,7 +3668,7 @@ window.DATA = {
         {
           "date": "2025-10-01",
           "title": "The Dragon of Najkir",
-          "code": "DDHC-DD Ch5",
+          "code": "DDHC-DD-Ch5",
           "dm": "Alexis P.",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -21703,7 +21703,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T01:55:34.345Z",
+    "generated": "2025-10-01T01:57:42.618Z",
     "problems": []
   }
 };
