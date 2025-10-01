@@ -3667,6 +3667,25 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-10-01",
+          "title": "Level up",
+          "code": "",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 10,
+          "level_plus": 1,
+          "perm_items": [],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "notes": "",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": -10
+        },
+        {
+          "date": "2025-10-01",
           "title": "The Dragon of Najkir",
           "code": "DDHC-DD-Ch5",
           "dm": "Alexis P.",
@@ -21328,8 +21347,8 @@ window.DATA = {
     "Ecthelion": {
       "sessions": 6,
       "net_gp": 9225,
-      "net_dtd": 43,
-      "level_ups": 7,
+      "net_dtd": 33,
+      "level_ups": 8,
       "perm_count": 28,
       "cons_count": 13
     },
@@ -21709,7 +21728,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T03:58:03.336Z",
+    "generated": "2025-10-01T03:58:40.209Z",
     "problems": []
   }
 };
