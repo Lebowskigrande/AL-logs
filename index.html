@@ -1429,6 +1429,37 @@ function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
 function fmtSigned(n){ return fmtNumber(n,{signed:true}); }
 
+const __MIN_TIME=-8640000000000000;
+function entryTimestamp(entry){
+  if(!entry) return __MIN_TIME;
+  const raw=entry.date;
+  if(raw==null) return __MIN_TIME;
+  if(raw instanceof Date){
+    const t=raw.getTime();
+    return Number.isFinite(t)?t:__MIN_TIME;
+  }
+  if(typeof raw==='number' && Number.isFinite(raw)) return raw;
+  const t=new Date(raw).getTime();
+  return Number.isFinite(t)?t:__MIN_TIME;
+}
+function entryIndexHint(wrapper){
+  if(wrapper && typeof wrapper.idx==='number') return wrapper.idx;
+  if(wrapper && typeof wrapper.index==='number') return wrapper.index;
+  return 0;
+}
+function compareChronoDesc(a,b){
+  const timeA=entryTimestamp(a&&a.adv?a.adv:a);
+  const timeB=entryTimestamp(b&&b.adv?b.adv:b);
+  if(timeA!==timeB) return timeB-timeA;
+  return entryIndexHint(a)-entryIndexHint(b);
+}
+function compareChronoAsc(a,b){
+  const timeA=entryTimestamp(a&&a.adv?a.adv:a);
+  const timeB=entryTimestamp(b&&b.adv?b.adv:b);
+  if(timeA!==timeB) return timeA-timeB;
+  return entryIndexHint(a)-entryIndexHint(b);
+}
+
 /* --- smooth expand/collapse --- */
 function isAnimating(card){ return card.dataset.anim==='1'; }
 function setAnimating(card,on){ if(on) card.dataset.anim='1'; else delete card.dataset.anim; }
@@ -1461,11 +1492,22 @@ function parseLostItemList(raw){
 }
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
 function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
+function sortCharacterAdventures(key){
+  if(!DATA || !DATA.characters) return;
+  const ch=DATA.characters[key];
+  if(!ch || !Array.isArray(ch.adventures)) return;
+  const decorated=ch.adventures.map((adv,idx)=>({adv,idx})).sort(compareChronoDesc);
+  const reordered=decorated.map(item=>item.adv);
+  const changed=reordered.length!==ch.adventures.length || reordered.some((adv,idx)=>adv!==ch.adventures[idx]);
+  if(changed){
+    ch.adventures=reordered;
+  }
+}
 function collectPermanentInventory(charKey){
   const ch=DATA.characters[charKey]; if(!ch||!ch.adventures) return {kept:[], map:new Map()};
-  const entries=ch.adventures.map((adv,index)=>({adv,index})).sort((a,b)=>new Date(a.adv.date||'1900-01-01')-new Date(b.adv.date||'1900-01-01'));
+  const entries=ch.adventures.map((adv,idx)=>({adv,idx})).sort(compareChronoAsc);
   const keptMap=new Map();
-  entries.forEach(({adv,index})=>{
+  entries.forEach(({adv,idx})=>{
     const items=adv.perm_items||[];
     const lostNames=parseLostItemList(adv.lost_perm_item);
     const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
@@ -1494,7 +1536,7 @@ function collectPermanentInventory(charKey){
         keptMap.delete(key);
         return;
       }
-      keptMap.set(key,{name:cleaned,index,adv});
+      keptMap.set(key,{name:cleaned,index:idx,adv});
     });
     lostNames.forEach(name=>keptMap.delete(name.toLowerCase()));
   });
@@ -1586,16 +1628,16 @@ function formatConsumableDisplay(raw){
 }
 function deriveConsumableInventory(charKey){
   const ch=DATA.characters[charKey]; if (!ch || !ch.adventures) return new Map();
-  const sorted=[...ch.adventures].sort((a,b)=>new Date(a.date||'1900-01-01')-new Date(b.date||'1900-01-01'));
+  const sorted=ch.adventures.map((adv,idx)=>({adv,idx})).sort(compareChronoAsc);
   const counts=new Map();
   const add=(n,k=1)=>{ n=n.trim(); if(!n) return; counts.set(n,(counts.get(n)||0)+k); };
   const sub=(n,k=1)=>{ n=n.trim(); if(!n) return; const cur=(counts.get(n)||0)-k; counts.set(n,Math.max(0,cur)); if(counts.get(n)===0) counts.delete(n); };
-  sorted.forEach(e=>{
-    const items=e.consumable_items||[];
-    const isLoss=(e.kind&&e.kind!=='adventure')?looksLikeLossEntry(e):false;
+  sorted.forEach(({adv})=>{
+    const items=adv.consumable_items||[];
+    const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
     if(isLoss){
       if(items.length) items.forEach(raw=>sub(raw.replace(/^\(|\)$/g,'')));
-      else if(e.notes){ [...counts.keys()].forEach(name=>{ if(new RegExp('\\b'+name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(e.notes)) sub(name); }); }
+      else if(adv.notes){ [...counts.keys()].forEach(name=>{ if(new RegExp('\\b'+name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(adv.notes)) sub(name); }); }
       return;
     }
     items.forEach(raw=>{ const {name,acquired}=parseConsumableName(raw); if(acquired) add(name); });
@@ -2909,6 +2951,7 @@ function deleteCard(card){
 }
 
 function updateDerivedDataFor(key){
+  sortCharacterAdventures(key);
   const ch=DATA.characters[key];
   if(!ch) return;
   const advs=ch.adventures||[];
@@ -3090,19 +3133,21 @@ function filterAndRender(){
     }
   }
   rememberCharacterKey(key);
+  sortCharacterAdventures(key);
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
   const q=(qEl.value||'').toLowerCase();
-  const filtered=advs.filter(a=>{
+  const decorated=advs.map((adv,idx)=>({adv,idx}));
+  const filtered=decorated.filter(({adv:a})=>{
     if(!showActivities && isActivityEntry(a)) return false;
     const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character,a.lost_perm_item]
       .concat(a.perm_items||[])
       .concat(a.consumable_items||[])
       .map(x=>(x||'').toString().toLowerCase()).join(' ');
     return !q||blob.indexOf(q)!==-1;
-  });
+  }).sort(compareChronoDesc);
   grid.innerHTML='';
   if(!filtered.length){ emptyEl.style.display='block'; }
-  else { emptyEl.style.display='none'; filtered.forEach((a,i)=>grid.appendChild(makeCard(a,i))); }
+  else { emptyEl.style.display='none'; filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i))); }
   renderStats(key); setHeader(key); columnizeGrid('build');
 }
 
