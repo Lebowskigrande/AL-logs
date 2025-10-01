@@ -3720,7 +3720,7 @@ window.DATA = {
             "Moon-Touched Rapier"
           ],
           "consumable_items": [
-            "Keoghtom’s Ointment"
+            "Keoghtom's Ointment"
           ],
           "notes": "Studied under Patrel to learn Deception proficiency. Formed the adventuring company Metallicant with Ashryn and Kronk and commissioned as licensed adventurers in Cormyr. Earned the gratitude of the Lord's Alliance.",
           "kind": "adventure",
@@ -11261,31 +11261,6 @@ window.DATA = {
           "itemReceived": "Ascendent Dragon's Wrath Longsword (Amethyst)"
         },
         {
-          "date": "2022-03-22",
-          "title": "Claws of Fury",
-          "code": "CCC-ALMOG-03 TALES03-01",
-          "dm": "Dave N.",
-          "gp_plus": 6625,
-          "gp_minus": 3800,
-          "gp_net": 2825,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "perm_items": [
-            "Belt of Fire Giant Strength"
-          ],
-          "consumable_items": [
-            "Scroll of Grasping Vine",
-            "Enhance Ability",
-            "Potion of Supreme Healing",
-            "Antitoxin"
-          ],
-          "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
-          "kind": "adventure",
-          "traded_item": ""
-        },
-        {
           "date": "2023-10-04",
           "title": "DM Reward",
           "code": null,
@@ -12020,6 +11995,31 @@ window.DATA = {
           ],
           "notes": "Bought 2 death ward scrolls, 1 greater restoration scroll, 1 heroes feast",
           "kind": "adventure"
+        },
+        {
+          "date": "2022-03-22",
+          "title": "Claws of Fury",
+          "code": "CCC-ALMOG-03 TALES03-01",
+          "dm": "Dave N.",
+          "gp_plus": 6625,
+          "gp_minus": 3800,
+          "gp_net": 2825,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "perm_items": [
+            "Belt of Fire Giant Strength"
+          ],
+          "consumable_items": [
+            "Scroll of Grasping Vine",
+            "Enhance Ability",
+            "Potion of Supreme Healing",
+            "Antitoxin"
+          ],
+          "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
+          "kind": "adventure",
+          "traded_item": ""
         },
         {
           "date": "2022-03-16",
@@ -21371,7 +21371,7 @@ window.DATA = {
       "net_dtd": 33,
       "level_ups": 8,
       "perm_count": 27,
-      "cons_count": 13
+      "cons_count": 12
     },
     "Chef Ture": {
       "sessions": 9,
@@ -21749,7 +21749,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T04:22:01.930Z",
+    "generated": "2025-10-01T04:55:45.603Z",
     "problems": []
   }
 };
