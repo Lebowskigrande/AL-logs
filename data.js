@@ -3666,6 +3666,24 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
+          "date": "2025-10-01",
+          "title": "The Dragon of Najkir",
+          "code": "DDHC-DD Ch5",
+          "dm": "Alexis P.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Studied under Patrel to learn Deception proficiency. Formed the adventuring company Metallicant with Ashryn and Kronk and commissioned as licensed adventurers in Cormyr.",
+          "kind": "adventure",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": 0
+        },
+        {
           "date": "2025-09-24",
           "title": "Of Books and Men - An Overdue Adventure",
           "code": "FR-DC-RWIE-02",
@@ -21302,7 +21320,7 @@ window.DATA = {
       "cons_count": 11
     },
     "Ecthelion": {
-      "sessions": 5,
+      "sessions": 6,
       "net_gp": 4950,
       "net_dtd": 33,
       "level_ups": 6,
@@ -21685,7 +21703,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T21:50:53.113Z",
+    "generated": "2025-10-01T01:55:34.345Z",
     "problems": []
   }
 };
