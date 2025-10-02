@@ -3666,6 +3666,25 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
+          "date": "2025-10-02",
+          "title": "New Adventure",
+          "code": "test",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "notes": "",
+          "kind": "adventure",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": 0
+        },
+        {
           "date": "2025-10-01",
           "title": "Lord's Alliance Trade",
           "code": "",
@@ -21366,7 +21385,7 @@ window.DATA = {
       "cons_count": 11
     },
     "Ecthelion": {
-      "sessions": 6,
+      "sessions": 7,
       "net_gp": 9225,
       "net_dtd": 33,
       "level_ups": 8,
@@ -21749,7 +21768,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-01T04:55:45.603Z",
+    "generated": "2025-10-02T23:37:42.734Z",
     "problems": []
   }
 };
