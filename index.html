@@ -506,6 +506,7 @@ let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||windo
 window.AL_DATA_VERSION=dataVersion;
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
 window.AL_DATA_CACHE_BUST=dataCacheBust;
+const DATA_DRAFT_STORAGE_KEY='al_logs_data_draft_v1';
 if(avatarEl){
   avatarEl.tabIndex=-1;
   avatarEl.addEventListener('click',evt=>{
@@ -652,6 +653,10 @@ let pendingChanges=false;
 let savingData=false;
 let lastSaveResult=null;
 let saveFeedbackTimeout=null;
+let hasLocalDraft=false;
+let draftStateApplied=false;
+let draftPersistWarningShown=false;
+let draftLoadWarningShown=false;
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
@@ -778,6 +783,74 @@ function closeCardOverlay(){
   refreshModalState();
 }
 
+function loadDataDraft(){
+  try{
+    const raw=localStorage.getItem(DATA_DRAFT_STORAGE_KEY);
+    if(!raw){
+      return null;
+    }
+    const parsed=JSON.parse(raw);
+    if(parsed && typeof parsed==='object' && parsed.data){
+      hasLocalDraft=true;
+      return parsed;
+    }
+  }catch(err){
+    if(!draftLoadWarningShown){
+      draftLoadWarningShown=true;
+      console.warn('Unable to load data.js draft from storage', err);
+    }
+    try{ localStorage.removeItem(DATA_DRAFT_STORAGE_KEY); }
+    catch(_){ /* no-op */ }
+  }
+  return null;
+}
+function persistDataDraft(){
+  if(!DATA||typeof DATA!=='object') return;
+  try{
+    const serialized=JSON.stringify({
+      version:dataVersion||'',
+      data:DATA
+    });
+    localStorage.setItem(DATA_DRAFT_STORAGE_KEY, serialized);
+    hasLocalDraft=true;
+  }catch(err){
+    if(!draftPersistWarningShown){
+      draftPersistWarningShown=true;
+      console.warn('Unable to persist data.js draft to storage', err);
+    }
+  }
+}
+function clearDataDraft(){
+  hasLocalDraft=false;
+  try{
+    localStorage.removeItem(DATA_DRAFT_STORAGE_KEY);
+  }catch(err){
+    /* no-op */
+  }
+}
+function applyDraftIfAvailable(){
+  if(draftStateApplied) return;
+  draftStateApplied=true;
+  let draft=null;
+  try{
+    draft=loadDataDraft();
+  }catch(err){
+    draft=null;
+  }
+  if(!draft||!draft.data||!draft.data.characters) return;
+  window.DATA=draft.data;
+  DATA=window.DATA;
+  if(draft.version){
+    dataVersion=draft.version;
+    window.AL_DATA_VERSION=dataVersion;
+  }
+  pendingChanges=true;
+  lastSaveResult=null;
+  clearTimeout(saveFeedbackTimeout);
+  hasLocalDraft=true;
+  updateSaveButtonState();
+}
+
 function markDirty(){
   pendingChanges=true;
   lastSaveResult=null;
@@ -788,6 +861,7 @@ function clearDirty(){
   pendingChanges=false;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
+  clearDataDraft();
   updateSaveButtonState();
 }
 
@@ -2701,7 +2775,7 @@ function makeCard(a,idx){
     }
     exitEditMode(card,true);
   });
-  const saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn small primary'; saveBtn.textContent='Save changes';
+  const saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn small primary'; saveBtn.textContent='OK';
   saveBtn.addEventListener('click',async(ev)=>{ ev.preventDefault(); await saveCardChanges(card); });
   actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
@@ -2924,11 +2998,6 @@ async function saveCardChanges(card){
   }
   const mutationKey=wasNew?targetKey:charSel.value;
   applyDataMutation(mutationKey);
-  try{
-    await saveDataJs();
-  }catch(err){
-    /* saveDataJs already handles user feedback */
-  }
 }
 
 function deleteCard(card){
@@ -2985,6 +3054,9 @@ function applyDataMutation(key){
   updateDerivedDataFor(key);
   filterAndRender();
   scheduleAvatarPreload();
+  if(pendingChanges){
+    persistDataDraft();
+  }
 }
 
 /* --- stats & header --- */
@@ -3167,6 +3239,14 @@ window.addEventListener('resize',()=>{
   if(Math.abs(w-__lastWidth)<8) return; __lastWidth=w;
   clearTimeout(window.__colize); window.__colize=setTimeout(()=>{ columnizeGrid('build'); },120);
 });
+window.addEventListener('beforeunload',(event)=>{
+  if(pendingChanges || hasLocalDraft){
+    const message='You have unsaved changes. Save them before leaving or continue to discard them.';
+    event.preventDefault();
+    event.returnValue=message;
+    return message;
+  }
+});
 
 /* --- init --- */
 function initApp(){
@@ -3185,7 +3265,11 @@ function initApp(){
   }
   filterAndRender();
   scheduleAvatarPreload();
-  clearDirty();
+  if(pendingChanges){
+    updateSaveButtonState();
+  }else{
+    clearDirty();
+  }
   return true;
 }
 
@@ -3196,6 +3280,7 @@ function ensureAppInitialized(){
 }
 
 function tryInitApp(){
+  applyDraftIfAvailable();
   if(window.DATA && window.DATA.characters){
     DATA=window.DATA;
     ensureAppInitialized();
