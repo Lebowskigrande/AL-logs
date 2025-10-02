@@ -828,6 +828,16 @@ function clearDataDraft(){
     /* no-op */
   }
 }
+
+function discardDraftBeforeNavigation(){
+  if(!(pendingChanges || hasLocalDraft)) return;
+  clearDataDraft();
+}
+
+if(typeof window!=='undefined'){
+  window.addEventListener('pagehide',discardDraftBeforeNavigation);
+  window.addEventListener('unload',discardDraftBeforeNavigation);
+}
 function applyDraftIfAvailable(){
   if(draftStateApplied) return;
   draftStateApplied=true;
@@ -3241,7 +3251,7 @@ window.addEventListener('resize',()=>{
 });
 window.addEventListener('beforeunload',(event)=>{
   if(pendingChanges || hasLocalDraft){
-    const message='You have unsaved changes. Save them before leaving or continue to discard them.';
+    const message='You have unsaved changes. Save them before leaving or they will be discarded.';
     event.preventDefault();
     event.returnValue=message;
     return message;
