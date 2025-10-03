@@ -42,6 +42,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Toolbar */
 .toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+.dm-filter{display:flex;align-items:center}
+.dm-filter .select{min-width:200px}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1)}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
@@ -359,12 +361,15 @@ body.avatar-overlay-open{overflow:hidden}
       </button>
     </div>
     <div class="toolbar">
+      <div id="dmSeasonFilterWrap" class="dm-filter" hidden aria-hidden="true">
+        <label for="dmSeasonFilter" class="sr-only">Filter by season</label>
+        <select id="dmSeasonFilter" class="select"></select>
+      </div>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" placeholder="Search adventures"/>
       </div>
       <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
-      <a class="btn small" href="dm.html">DM Log</a>
       <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
@@ -482,6 +487,7 @@ body.avatar-overlay-open{overflow:hidden}
   }
 })();
 </script>
+<script src="dmData.js"></script>
 <script>
 /* --- data boot --- */
 let DATA = window.DATA || null;
@@ -497,6 +503,9 @@ const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
+const headerQuick = document.getElementById('headerQuick');
+const dmSeasonFilterWrap = document.getElementById('dmSeasonFilterWrap');
+const dmSeasonFilter = document.getElementById('dmSeasonFilter');
 const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
@@ -531,7 +540,20 @@ const magicItemsBtn=document.getElementById('magicItemsBtn');
 const consumablesBtn=document.getElementById('consumablesBtn');
 const magicItemsCountEl=document.getElementById('magicItemsCount');
 const consumablesCountEl=document.getElementById('consumablesCount');
+const defaultEmptyMessage=emptyEl?(emptyEl.textContent||''):'';
+const defaultSearchPlaceholder=qEl?(qEl.getAttribute('placeholder')||''):'';
+const DM_EMPTY_MESSAGE='No log entries match your filters.';
+
+const DM_LOG_KEY='__dmLog';
+const DM_SEASON_ALL='__all__';
+const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
+let DM_ENTRIES=[];
+let DM_SEASON_LABELS=[];
+let DM_SUMMARY={ runs:0, allocations:0, hours:0, extraHours:0, levels:0, entries:0 };
+let DM_FILTER_VALUE=DM_SEASON_ALL;
+let cachedDmSeasonFilterValue=null;
 let overlayCard=null;
+buildDmEntries();
 if(avatarEl){
   try{ avatarEl.decoding='async'; }catch(err){ /* no-op */ }
   try{ avatarEl.loading='eager'; }catch(err){ /* no-op */ }
@@ -662,8 +684,21 @@ const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'h
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
   showActivities:'al_logs_show_activities',
-  lastCharacter:'al_logs_last_character'
+  lastCharacter:'al_logs_last_character',
+  dmSeason:'al_logs_dm_season'
 };
+
+function hasDmLogData(){
+  return !!DM_DATA;
+}
+function isDmLogKey(key){
+  return key===DM_LOG_KEY;
+}
+function isValidSheetKey(key){
+  if(!key) return false;
+  if(isDmLogKey(key)) return hasDmLogData();
+  return !!(DATA && DATA.characters && DATA.characters[key]);
+}
 
 let showActivities=true;
 try{
@@ -690,11 +725,13 @@ function getRememberedCharacterKey(){
       cachedLastCharacterKey='';
     }
   }
+  if(cachedLastCharacterKey && !isValidSheetKey(cachedLastCharacterKey)){
+    cachedLastCharacterKey='';
+  }
   return cachedLastCharacterKey;
 }
 function rememberCharacterKey(key){
-  const hasCharacters=!!(DATA&&DATA.characters);
-  const nextKey=(key && hasCharacters && DATA.characters[key])?String(key):'';
+  const nextKey=isValidSheetKey(key)?String(key):'';
   if(cachedLastCharacterKey===nextKey) return;
   cachedLastCharacterKey=nextKey;
   try{
@@ -706,6 +743,61 @@ function rememberCharacterKey(key){
   }catch(err){
     /* no-op */
   }
+}
+
+function getStoredDmSeasonFilter(){
+  if(cachedDmSeasonFilterValue===null){
+    try{
+      const stored=localStorage.getItem(STORAGE_KEYS.dmSeason)||'';
+      cachedDmSeasonFilterValue=stored||DM_SEASON_ALL;
+    }catch(err){
+      cachedDmSeasonFilterValue=DM_SEASON_ALL;
+    }
+  }
+  if(!isValidDmSeason(cachedDmSeasonFilterValue)){
+    cachedDmSeasonFilterValue=DM_SEASON_ALL;
+  }
+  return cachedDmSeasonFilterValue;
+}
+function storeDmSeasonFilter(value){
+  const normalized=value && value!==DM_SEASON_ALL?String(value):'';
+  cachedDmSeasonFilterValue=isValidDmSeason(value)?value:DM_SEASON_ALL;
+  try{
+    if(normalized){
+      localStorage.setItem(STORAGE_KEYS.dmSeason, normalized);
+    }else{
+      localStorage.removeItem(STORAGE_KEYS.dmSeason);
+    }
+  }catch(err){
+    /* no-op */
+  }
+}
+function isValidDmSeason(value){
+  if(!value) return false;
+  if(value===DM_SEASON_ALL) return true;
+  return DM_SEASON_LABELS.includes(value);
+}
+function setEmptyStateMessage(text){
+  if(!emptyEl) return;
+  emptyEl.textContent=text;
+}
+function populateDmSeasonFilter(){
+  if(!dmSeasonFilter) return;
+  dmSeasonFilter.innerHTML='';
+  const allOpt=document.createElement('option');
+  allOpt.value=DM_SEASON_ALL;
+  allOpt.textContent='All seasons';
+  dmSeasonFilter.appendChild(allOpt);
+  DM_SEASON_LABELS.forEach(label=>{
+    const opt=document.createElement('option');
+    opt.value=label;
+    opt.textContent=label;
+    dmSeasonFilter.appendChild(opt);
+  });
+  const stored=getStoredDmSeasonFilter();
+  DM_FILTER_VALUE=isValidDmSeason(stored)?stored:DM_SEASON_ALL;
+  dmSeasonFilter.value=DM_FILTER_VALUE;
+  dmSeasonFilter.disabled=!hasDmLogData();
 }
 
 function updateActivityToggle(){
@@ -1105,7 +1197,7 @@ function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={})
     return null;
   }
   let storedKey=getRememberedCharacterKey();
-  if(storedKey && !DATA.characters[storedKey]){
+  if(storedKey && !isValidSheetKey(storedKey)){
     rememberCharacterKey('');
     storedKey='';
   }
@@ -1128,13 +1220,22 @@ function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={})
     opt.textContent=label;
     charSel.appendChild(opt);
   });
+  if(hasDmLogData()){
+    const dmOpt=document.createElement('option');
+    dmOpt.value=DM_LOG_KEY;
+    dmOpt.textContent='Dungeon Master Log';
+    charSel.appendChild(dmOpt);
+  }
   const candidateKeys=[preferredKey, previousSelection, storedKey];
   let nextKey=null;
   for(const candidate of candidateKeys){
-    if(candidate && DATA.characters[candidate]){ nextKey=candidate; break; }
+    if(isValidSheetKey(candidate)){ nextKey=candidate; break; }
   }
   if(!nextKey){
     nextKey=getMostRecentCharacter();
+  }
+  if(!nextKey && hasDmLogData()){
+    nextKey=DM_LOG_KEY;
   }
   if(nextKey){
     charSel.value=nextKey;
@@ -1497,6 +1598,409 @@ function listBox(items){
   normalized.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent='• '+name; wrap.appendChild(row); });
   return wrap;
 }
+
+/* --- DM log helpers --- */
+function dmNormalizeSeasonLabel(label){
+  const text=(label==null?'':String(label)).trim();
+  return text||'Unlabeled season';
+}
+function dmToNullableNumber(value){
+  const num=Number(value);
+  return Number.isFinite(num)?num:null;
+}
+function dmToNumber(value){
+  const num=Number(value);
+  return Number.isFinite(num)?num:0;
+}
+function dmTimestamp(value){
+  if(!value) return Number.NEGATIVE_INFINITY;
+  const t=new Date(value).getTime();
+  return Number.isFinite(t)?t:Number.NEGATIVE_INFINITY;
+}
+function buildDmEntries(){
+  DM_ENTRIES=[];
+  DM_SEASON_LABELS=[];
+  DM_SUMMARY={ runs:0, allocations:0, hours:0, extraHours:0, levels:0, entries:0 };
+  if(!DM_DATA) return;
+  let sortIndex=0;
+  const ensureSeason=(raw)=>{
+    const normalized=dmNormalizeSeasonLabel(raw);
+    if(!DM_SEASON_LABELS.includes(normalized)){
+      DM_SEASON_LABELS.push(normalized);
+    }
+    return normalized;
+  };
+  const pushEntry=(entry)=>{
+    entry.__origIndex=sortIndex++;
+    DM_ENTRIES.push(entry);
+  };
+  const addRun=(seasonLabel, run)=>{
+    const season=ensureSeason(seasonLabel);
+    const hoursVal=dmToNullableNumber(run.hours);
+    const bonusVal=dmToNullableNumber(run.extra_hours);
+    const levelsPlus=dmToNullableNumber(run.levels_plus);
+    const levelsMinus=dmToNullableNumber(run.levels_minus);
+    pushEntry({
+      type:'run',
+      season,
+      date:run.date||'',
+      code:run.code||'',
+      name:run.name||'',
+      tier:run.tier,
+      hours:hoursVal,
+      extra_hours:bonusVal,
+      roles:Array.isArray(run.roles)?run.roles.slice():[],
+      location:run.location||'',
+      levels_plus:levelsPlus,
+      levels_minus:levelsMinus,
+      item:run.item||'',
+      allocation:run.allocation||''
+    });
+    DM_SUMMARY.runs+=1;
+    if(hoursVal!=null) DM_SUMMARY.hours+=hoursVal;
+    if(bonusVal!=null) DM_SUMMARY.extraHours+=bonusVal;
+    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
+  };
+  const addPreEntry=(entry)=>{
+    const season=ensureSeason('Pre-Season 11');
+    const levelsPlus=dmToNullableNumber(entry.levels_plus);
+    const levelsMinus=dmToNullableNumber(entry.levels_minus);
+    pushEntry({
+      type:'run',
+      season,
+      date:entry.date||'',
+      code:entry.code||'',
+      name:entry.name||'',
+      tier:entry.tier,
+      hours:null,
+      extra_hours:null,
+      roles:[],
+      location:entry.location||'',
+      levels_plus:levelsPlus,
+      levels_minus:levelsMinus,
+      item:entry.item||'',
+      allocation:entry.allocation||''
+    });
+    DM_SUMMARY.runs+=1;
+    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
+  };
+  const addAllocation=(seasonLabel, alloc)=>{
+    const season=ensureSeason(seasonLabel);
+    const hoursVal=dmToNullableNumber(alloc.hours);
+    const bonusVal=dmToNullableNumber(alloc.extra_hours);
+    const levelsPlus=dmToNullableNumber(alloc.levels_plus);
+    pushEntry({
+      type:'allocation',
+      season,
+      date:alloc.date||'',
+      allocation:alloc.allocation||'',
+      cost:dmToNullableNumber(alloc.cost),
+      levels_plus:levelsPlus,
+      hours:hoursVal,
+      extra_hours:bonusVal,
+      location:alloc.location||''
+    });
+    DM_SUMMARY.allocations+=1;
+    if(hoursVal!=null) DM_SUMMARY.hours+=hoursVal;
+    if(bonusVal!=null) DM_SUMMARY.extraHours+=bonusVal;
+    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
+  };
+  if(Array.isArray(DM_DATA.preS11)){
+    DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
+  }
+  if(DM_DATA.seasonal && typeof DM_DATA.seasonal==='object'){
+    Object.entries(DM_DATA.seasonal).forEach(([seasonName, seasonData])=>{
+      const seasonLabel=seasonName;
+      const runs=seasonData && Array.isArray(seasonData.runs)?seasonData.runs:[];
+      runs.forEach(run=>addRun(seasonLabel, run));
+      const allocations=seasonData && Array.isArray(seasonData.allocations)?seasonData.allocations:[];
+      allocations.forEach(allocation=>addAllocation(seasonLabel, allocation));
+    });
+  }
+  DM_ENTRIES.sort((a,b)=>{
+    const diff=dmTimestamp(b.date)-dmTimestamp(a.date);
+    if(diff!==0) return diff;
+    const orderA=(typeof a.__origIndex==='number')?a.__origIndex:0;
+    const orderB=(typeof b.__origIndex==='number')?b.__origIndex:0;
+    return orderA-orderB;
+  });
+  DM_ENTRIES.forEach((entry,index)=>{
+    entry.sortIndex=index;
+  });
+  DM_SUMMARY.entries=DM_ENTRIES.length;
+}
+function updateDmMeta(){
+  if(!metaEl) return;
+  const runs=DM_SUMMARY.runs||0;
+  const allocations=DM_SUMMARY.allocations||0;
+  const entries=DM_SUMMARY.entries||0;
+  const hours=DM_SUMMARY.hours||0;
+  const extra=DM_SUMMARY.extraHours||0;
+  const levels=DM_SUMMARY.levels||0;
+  const parts=[];
+  if(entries && !runs && !allocations){
+    parts.push(`${fmtNumber(entries)} ${entries===1?'Entry':'Entries'}`);
+  }
+  if(runs){
+    parts.push(`${fmtNumber(runs)} ${runs===1?'Run':'Runs'}`);
+  }
+  if(allocations){
+    parts.push(`${fmtNumber(allocations)} ${allocations===1?'Allocation':'Allocations'}`);
+  }
+  if(hours){
+    let text=`${fmtNumber(hours)} Hours`;
+    if(extra){
+      text+=` (+${fmtNumber(extra)} bonus)`;
+    }
+    parts.push(text);
+  }else if(extra){
+    parts.push(`${fmtNumber(extra)} Bonus Hours`);
+  }
+  if(levels){
+    parts.push(`${fmtNumber(levels)} Levels awarded`);
+  }
+  const text=parts.join(' • ') || 'Dungeon Master rewards and allocations';
+  metaEl.textContent=text;
+  metaEl.style.display='block';
+  metaEl.setAttribute('aria-hidden','false');
+}
+function setDmHeader(){
+  if(avatarEl){
+    resetAvatar();
+    if(AVATAR_FALLBACK_PATH){
+      avatarEl.src=AVATAR_FALLBACK_PATH;
+      avatarEl.classList.add('avatar-fallback');
+    }
+    avatarEl.alt='Dungeon Master Log';
+  }
+  if(badgesEl){
+    badgesEl.innerHTML='';
+    badgesEl.style.display='none';
+    badgesEl.setAttribute('aria-hidden','true');
+  }
+}
+function updateUiForSelection(key){
+  const isDm=isDmLogKey(key);
+  const showDmFilter=isDm && hasDmLogData();
+  if(dmSeasonFilterWrap){
+    dmSeasonFilterWrap.hidden=!showDmFilter;
+    dmSeasonFilterWrap.setAttribute('aria-hidden', showDmFilter?'false':'true');
+  }
+  if(dmSeasonFilter){
+    dmSeasonFilter.disabled=!hasDmLogData();
+    if(showDmFilter){
+      dmSeasonFilter.value=DM_FILTER_VALUE;
+    }
+  }
+  if(headerQuick){
+    headerQuick.style.display=isDm?'none':'';
+    headerQuick.setAttribute('aria-hidden', isDm?'true':'false');
+  }
+  if(activityToggleBtn){
+    activityToggleBtn.style.display=isDm?'none':'';
+    activityToggleBtn.setAttribute('aria-hidden', isDm?'true':'false');
+  }
+  if(addCardBtn){
+    addCardBtn.style.display=isDm?'none':'';
+    addCardBtn.setAttribute('aria-hidden', isDm?'true':'false');
+  }
+  if(qEl){
+    const placeholder=isDm?'Search DM log entries':(defaultSearchPlaceholder||'');
+    if(placeholder){
+      qEl.setAttribute('placeholder', placeholder);
+      qEl.setAttribute('aria-label', placeholder);
+    }else{
+      qEl.removeAttribute('aria-label');
+    }
+  }
+}
+function renderDmLog(){
+  if(!grid) return;
+  const query=(qEl && typeof qEl.value==='string')?qEl.value.trim().toLowerCase():'';
+  const seasonValue=dmSeasonFilter? (dmSeasonFilter.value||DM_SEASON_ALL) : DM_SEASON_ALL;
+  DM_FILTER_VALUE=isValidDmSeason(seasonValue)?seasonValue:DM_SEASON_ALL;
+  if(dmSeasonFilter && dmSeasonFilter.value!==DM_FILTER_VALUE){
+    dmSeasonFilter.value=DM_FILTER_VALUE;
+  }
+  const filtered=DM_ENTRIES.filter(entry=>{
+    if(DM_FILTER_VALUE!==DM_SEASON_ALL && entry.season!==dmNormalizeSeasonLabel(DM_FILTER_VALUE)){
+      return false;
+    }
+    if(!query) return true;
+    const roleText=Array.isArray(entry.roles)?entry.roles.join(' '):'';
+    const blob=[
+      entry.season,
+      entry.name,
+      entry.code,
+      entry.allocation,
+      entry.location,
+      entry.item,
+      roleText,
+      entry.tier,
+      entry.cost,
+      entry.levels_plus,
+      entry.levels_minus,
+      entry.hours,
+      entry.extra_hours
+    ].map(val=>val==null?'':String(val)).join(' ').toLowerCase();
+    return blob.includes(query);
+  });
+  grid.innerHTML='';
+  if(!filtered.length){
+    if(emptyEl){
+      emptyEl.style.display='block';
+    }
+    return;
+  }
+  if(emptyEl){
+    emptyEl.style.display='none';
+  }
+  filtered.forEach((entry,idx)=>{
+    const card=makeDmCard(entry,idx);
+    grid.appendChild(card);
+  });
+  columnizeGrid('build');
+}
+function makeDmCard(entry,idx){
+  const isAllocation=entry.type==='allocation';
+  const card=document.createElement('article');
+  card.className='card dm-card'+(isAllocation?' activity':'');
+  const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
+  card.dataset.idx=String(sortIdx);
+  card.__dmEntry=entry;
+
+  const header=document.createElement('div');
+  header.className='card-hd';
+
+  if(isAllocation){
+    const main=document.createElement('div');
+    main.className='activity-line';
+    const left=document.createElement('div');
+    left.className='activity-left';
+    const dateSpan=document.createElement('span');
+    dateSpan.className='activity-date';
+    dateSpan.textContent=fmtDate(entry.date);
+    const nameSpan=document.createElement('span');
+    nameSpan.className='activity-name';
+    nameSpan.textContent=sanitizeTitle(entry.allocation || 'Reward allocation');
+    left.append(dateSpan,nameSpan);
+    main.appendChild(left);
+    const chips=document.createElement('div');
+    chips.className='chips';
+    const costVal=dmToNullableNumber(entry.cost);
+    if(costVal!=null && costVal!==0){
+      chips.appendChild(pill(`Cost ${fmtNumber(costVal)}`));
+    }
+    const levelsVal=dmToNullableNumber(entry.levels_plus);
+    if(levelsVal!=null && levelsVal!==0){
+      chips.appendChild(pill(`Levels ${fmtNumber(levelsVal,{signed:true})}`));
+    }
+    if(chips.children.length){
+      main.appendChild(chips);
+    }
+    header.appendChild(main);
+  }else{
+    const main=document.createElement('div');
+    main.className='titleLine';
+    const dateDiv=document.createElement('div');
+    dateDiv.className='date';
+    dateDiv.textContent=fmtDate(entry.date);
+    const titleDiv=document.createElement('div');
+    titleDiv.className='title';
+    titleDiv.textContent=sanitizeTitle(entry.name || entry.code || 'DM Session');
+    const subtitleRow=document.createElement('div');
+    subtitleRow.className='subtitle-row';
+    const subtitleDiv=document.createElement('div');
+    subtitleDiv.className='subtitle';
+    subtitleDiv.textContent=entry.code || entry.season || '';
+    subtitleRow.appendChild(subtitleDiv);
+    const chips=document.createElement('div');
+    chips.className='chips';
+    const hoursVal=dmToNullableNumber(entry.hours);
+    if(hoursVal!=null && hoursVal!==0){
+      chips.appendChild(pill(`Hours ${fmtNumber(hoursVal)}`));
+    }
+    const extraVal=dmToNullableNumber(entry.extra_hours);
+    if(extraVal!=null && extraVal!==0){
+      chips.appendChild(pill(`Bonus ${fmtNumber(extraVal)}`));
+    }
+    if(entry.tier!=null && entry.tier!==''){
+      chips.appendChild(pill(`Tier ${fmtNumber(entry.tier)}`));
+    }
+    const levelsVal=dmToNullableNumber(entry.levels_plus);
+    if(levelsVal!=null && levelsVal!==0){
+      chips.appendChild(pill(`Levels ${fmtNumber(levelsVal,{signed:true})}`));
+    }
+    if(chips.children.length){
+      subtitleRow.appendChild(chips);
+    }
+    main.append(dateDiv,titleDiv,subtitleRow);
+    header.appendChild(main);
+  }
+
+  header.addEventListener('click',()=>toggleCard(card));
+  card.appendChild(header);
+
+  const body=document.createElement('div');
+  body.className='card-bd';
+  const inner=document.createElement('div');
+  inner.className='bd-in';
+
+  const addField=(label,value)=>{
+    if(value==null) return;
+    let node=null;
+    let text='';
+    if(value instanceof Node){
+      node=value;
+    }else{
+      text=normalizeDisplayValue(value);
+      if(!text){
+        return;
+      }
+    }
+    const field=document.createElement('div');
+    field.className='field';
+    const k=document.createElement('div'); k.className='k'; k.textContent=label;
+    const v=document.createElement('div'); v.className='v';
+    const display=document.createElement('div'); display.className='display';
+    if(node){
+      display.appendChild(node);
+    }else{
+      display.textContent=text;
+    }
+    v.appendChild(display);
+    field.append(k,v);
+    inner.appendChild(field);
+    return field;
+  };
+
+  addField('Season', entry.season);
+  if(isAllocation){
+    addField('Reward allocation', entry.allocation);
+    if(entry.cost!=null){ addField('Season cost', fmtNumber(entry.cost)); }
+    if(entry.levels_plus!=null){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
+    if(entry.hours!=null){ addField('Hours', fmtNumber(entry.hours)); }
+    if(entry.extra_hours!=null){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
+    if(entry.location){ addField('Location', entry.location); }
+  }else{
+    if(entry.code){ addField('Adventure code', entry.code); }
+    if(entry.name){ addField('Adventure name', entry.name); }
+    if(entry.tier!=null){ addField('Tier', fmtNumber(entry.tier)); }
+    if(entry.hours!=null){ addField('Hours', fmtNumber(entry.hours)); }
+    if(entry.extra_hours!=null){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
+    if(entry.roles && entry.roles.length){ addField('Roles', listBox(entry.roles)); }
+    if(entry.levels_plus!=null){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
+    if(entry.levels_minus!=null && entry.levels_minus!==entry.levels_plus){ addField('Levels spent', fmtNumber(entry.levels_minus)); }
+    if(entry.item){ addField('Reward item', entry.item); }
+    if(entry.allocation){ addField('Reward allocation', entry.allocation); }
+    if(entry.location){ addField('Location', entry.location); }
+  }
+
+  body.appendChild(inner);
+  card.appendChild(body);
+  return card;
+}
+
 function getMostRecentCharacter(){
   if(!DATA || !DATA.characters){
     return '';
@@ -3031,6 +3535,7 @@ function deleteCard(card){
 }
 
 function updateDerivedDataFor(key){
+  if(isDmLogKey(key)) return;
   sortCharacterAdventures(key);
   const ch=DATA.characters[key];
   if(!ch) return;
@@ -3097,6 +3602,10 @@ function updateCharMeta(key){
 }
 
 function renderStats(key){
+  if(isDmLogKey(key)){
+    updateDmMeta();
+    return;
+  }
   const s=DATA.stats[key]||{};
   updateCharMeta(key);
   const goldVal=fmtNumber(s.net_gp||0);
@@ -3121,6 +3630,10 @@ function renderStats(key){
   }
 }
 function setHeader(key){
+  if(isDmLogKey(key)){
+    setDmHeader();
+    return;
+  }
   const obj=DATA.characters[key];
   updateAvatar(key,obj);
   if(metaEl&&!obj){
@@ -3194,28 +3707,48 @@ function columnizeGrid(mode){
 }
 /* --- rendering --- */
 function filterAndRender(){
-  if(!DATA || !DATA.characters || !charSel) return;
+  if(!charSel) return;
   let key=charSel.value;
-  if((!key || !DATA.characters[key]) && DATA.characters){
+  if(!isValidSheetKey(key)){
     const stored=getRememberedCharacterKey();
-    if(stored && DATA.characters[stored]){
+    if(isValidSheetKey(stored)){
       charSel.value=stored;
       key=stored;
     }
   }
-  if(!key || !DATA.characters[key]){
+  if(!isValidSheetKey(key)){
     const fallback=getMostRecentCharacter();
-    if(fallback){
+    if(isValidSheetKey(fallback)){
       charSel.value=fallback;
       key=fallback;
+    }else if(hasDmLogData()){
+      charSel.value=DM_LOG_KEY;
+      key=DM_LOG_KEY;
     }else{
       rememberCharacterKey('');
-      grid.innerHTML='';
-      emptyEl.style.display='block';
+      if(grid){
+        grid.innerHTML='';
+      }
+      if(emptyEl){
+        setEmptyStateMessage(defaultEmptyMessage);
+        emptyEl.style.display='block';
+      }
       return;
     }
   }
   rememberCharacterKey(key);
+  updateUiForSelection(key);
+  if(isDmLogKey(key)){
+    setEmptyStateMessage(DM_EMPTY_MESSAGE);
+    renderDmLog();
+    renderStats(key);
+    setHeader(key);
+    return;
+  }
+  if(!DATA || !DATA.characters){
+    return;
+  }
+  setEmptyStateMessage(defaultEmptyMessage);
   sortCharacterAdventures(key);
   const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
   const q=(qEl.value||'').toLowerCase();
@@ -3231,10 +3764,20 @@ function filterAndRender(){
   grid.innerHTML='';
   if(!filtered.length){ emptyEl.style.display='block'; }
   else { emptyEl.style.display='none'; filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i))); }
-  renderStats(key); setHeader(key); columnizeGrid('build');
+  renderStats(key);
+  setHeader(key);
+  columnizeGrid('build');
 }
 
 /* --- events --- */
+populateDmSeasonFilter();
+if(dmSeasonFilter){
+  dmSeasonFilter.addEventListener('change',()=>{
+    DM_FILTER_VALUE=(dmSeasonFilter.value||DM_SEASON_ALL);
+    storeDmSeasonFilter(DM_FILTER_VALUE);
+    filterAndRender();
+  });
+}
 qEl.addEventListener('input',filterAndRender);
 charSel.addEventListener('change',filterAndRender);
 if(activityToggleBtn){
