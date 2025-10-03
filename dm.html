@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dungeon Master Log Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png"/>
+<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
+<style>
+:root{
+  --bg:#e0e4ea; --surface:#fff; --ink:#0f172a; --muted:#64748b; --primary:#1a73e8; --border:#e5eaf3;
+  --radius:16px; --shadow1:0 2px 10px rgba(16,24,40,.06); --shadow2:0 20px 40px rgba(16,24,40,.12);
+  --gap:14px; --min-card:320px; --danger:#dc2626;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:28px auto 80px;padding:0 20px 120px}
+.header{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow1)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
+.avatar.avatar-fallback{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
+h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
+.muted{color:var(--muted);font-size:13px}
+.header-actions{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 14px;font-weight:600;box-shadow:var(--shadow1);cursor:pointer;text-decoration:none;color:var(--ink);transition:transform 220ms cubic-bezier(.2,.8,.2,1),box-shadow 220ms cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.btn.primary{background:var(--primary);color:#fff;border-color:transparent}
+.toolbar{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.select-group{display:flex;flex-direction:column;gap:4px}
+.select{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1);appearance:none;font-size:14px;color:var(--ink);min-width:220px}
+.select:focus{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
+.spacer{flex:1 1 auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.metrics{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px}
+.metric{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:12px 16px;min-width:140px;flex:1 1 160px;box-shadow:var(--shadow1)}
+.metric-value{font-size:20px;font-weight:700;letter-spacing:-0.01em}
+.metric-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:6px}
+main{margin-top:24px}
+.grid{display:flex;flex-direction:column;gap:24px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--min-card),1fr));gap:var(--gap)}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform 220ms cubic-bezier(.2,.8,.2,1),box-shadow 220ms cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+.card.activity{background:#f7f8fa;border-color:#e6e9f2}
+.card-hd{padding:16px 14px 12px 16px;display:flex;flex-direction:column;gap:6px}
+.titleLine{display:flex;flex-direction:column;gap:4px}
+.date{color:var(--muted);font-size:13px;line-height:16px}
+.title{font-weight:700;line-height:1.3;font-size:17px}
+.subtitle{color:var(--muted);font-size:13px;line-height:1.3}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 10px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.card-body{padding:0 16px 18px}
+.field-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field dt{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0}
+.field dd{margin:0;font-size:14px;line-height:1.45;color:var(--ink)}
+.season-sections{display:grid;gap:24px}
+@media(min-width:900px){.season-sections{grid-template-columns:1fr 1fr}}
+.section-title{margin:0 0 12px;font-size:18px;font-weight:700;letter-spacing:-0.01em}
+.empty-state{padding:32px;border:1px dashed var(--border);border-radius:16px;text-align:center;color:var(--muted);background:#f8fafc}
+.hidden{display:none!important}
+.allocation-link{background:none;border:none;padding:0;margin:0;font:inherit;color:var(--primary);cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.allocation-link:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px;border-radius:4px}
+.note{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div class="row">
+      <img src="avatar-fallback.svg" alt="" class="avatar avatar-fallback"/>
+      <div class="header-main">
+        <h1>Dungeon Master Log</h1>
+        <p class="muted">Track Adventurers League DM sessions, rewards, and allocations.</p>
+      </div>
+      <div class="header-actions">
+        <a class="btn" href="index.html">Character Dashboard</a>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="select-group">
+        <label for="viewSelect" class="sr-only">Select log type</label>
+        <select id="viewSelect" class="select">
+          <option value="pre">Pre-Season 11 rewards</option>
+          <option value="seasonal">Seasonal rewards</option>
+        </select>
+      </div>
+      <div class="select-group hidden" id="seasonSelectGroup">
+        <label for="seasonSelect" class="sr-only">Select season</label>
+        <select id="seasonSelect" class="select"></select>
+      </div>
+      <div class="spacer"></div>
+    </div>
+    <div class="metrics" id="dmMetrics"></div>
+  </header>
+  <main>
+    <div id="dmGrid" class="grid"></div>
+  </main>
+</div>
+<script src="data.js"></script>
+<script src="dmData.js"></script>
+<script>
+(function(){
+  const STORAGE_KEYS={ lastCharacter:'al_logs_last_character' };
+  const numberFmt=new Intl.NumberFormat('en-US');
+  const dateFmt=new Intl.DateTimeFormat('en-US',{ month:'short', day:'numeric', year:'numeric' });
+
+  const viewSelect=document.getElementById('viewSelect');
+  const seasonGroup=document.getElementById('seasonSelectGroup');
+  const seasonSelect=document.getElementById('seasonSelect');
+  const metricsEl=document.getElementById('dmMetrics');
+  const gridEl=document.getElementById('dmGrid');
+
+  const dmData=window.DMDATA||{};
+  const preEntries=Array.isArray(dmData.preS11)?dmData.preS11.slice():[];
+  const seasonal=dmData.seasonal && typeof dmData.seasonal==='object'?dmData.seasonal:{};
+
+  function fmtNumber(value){
+    const num=Number(value)||0;
+    return numberFmt.format(num);
+  }
+
+  function fmtDate(value){
+    if(!value) return '';
+    const date=new Date(value);
+    if(Number.isNaN(date.getTime())) return value;
+    return dateFmt.format(date);
+  }
+
+  function createPill(text){
+    const pill=document.createElement('span');
+    pill.className='pill';
+    pill.textContent=text;
+    return pill;
+  }
+
+  function createField(label,value){
+    if(value===null || value===undefined) return null;
+    const isString=typeof value==='string';
+    if(isString && !value.trim()) return null;
+    const field=document.createElement('div');
+    field.className='field';
+    const dt=document.createElement('dt');
+    dt.textContent=label;
+    const dd=document.createElement('dd');
+    if(value instanceof Node){
+      dd.appendChild(value);
+    }else if(Array.isArray(value)){
+      value.forEach(part=>{
+        if(part instanceof Node){
+          dd.appendChild(part);
+        }else if(part!==null && part!==undefined){
+          dd.appendChild(document.createTextNode(String(part)));
+        }
+      });
+    }else{
+      dd.textContent=String(value);
+    }
+    field.appendChild(dt);
+    field.appendChild(dd);
+    return field;
+  }
+
+  function createDefinitionList(fields){
+    const dl=document.createElement('dl');
+    dl.className='field-list';
+    fields.forEach(field=>{
+      if(!field) return;
+      dl.appendChild(field);
+    });
+    return dl;
+  }
+
+  function handleAllocationLink(event){
+    event.preventDefault();
+    const btn=event.currentTarget;
+    const charKey=btn.dataset.charKey;
+    const charName=btn.dataset.charName||'the selected character';
+    if(!charKey) return;
+    const confirmed=window.confirm(`View ${charName}'s log on the character dashboard?`);
+    if(!confirmed) return;
+    try{
+      localStorage.setItem(STORAGE_KEYS.lastCharacter,charKey);
+    }catch(err){
+      /* ignore storage errors */
+    }
+    window.location.href='index.html';
+  }
+
+  let cachedPatterns=null;
+  function buildCharacterPatterns(){
+    if(cachedPatterns) return cachedPatterns;
+    const map=[];
+    const data=window.DATA;
+    if(!data || !data.characters) return [];
+    Object.entries(data.characters).forEach(([key,obj])=>{
+      const label=obj && (obj.display_name||obj.sheet||key)||key;
+      if(!label) return;
+      const escaped=label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      const regex=new RegExp(escaped,'gi');
+      map.push({ key, label, regex });
+    });
+    map.sort((a,b)=>b.label.length-a.label.length);
+    cachedPatterns=map;
+    return map;
+  }
+
+  function buildAllocationContent(text){
+    if(!text){
+      const span=document.createElement('span');
+      span.textContent='No allocation recorded yet.';
+      span.className='note';
+      return span;
+    }
+    const patterns=buildCharacterPatterns();
+    if(!patterns.length){
+      const span=document.createElement('span');
+      span.textContent=text;
+      return span;
+    }
+    const matches=[];
+    patterns.forEach(entry=>{
+      entry.regex.lastIndex=0;
+      let match;
+      while((match=entry.regex.exec(text))){
+        matches.push({ start:match.index, end:match.index+match[0].length, key:entry.key, label:entry.label, raw:match[0] });
+      }
+    });
+    matches.sort((a,b)=>{
+      if(a.start!==b.start) return a.start-b.start;
+      const aLen=a.end-a.start;
+      const bLen=b.end-b.start;
+      return bLen-aLen;
+    });
+    const filtered=[];
+    let cursor=0;
+    let lastEnd=-1;
+    matches.forEach(match=>{
+      if(match.start<lastEnd) return;
+      filtered.push(match);
+      lastEnd=match.end;
+    });
+    const frag=document.createDocumentFragment();
+    filtered.forEach(match=>{
+      if(match.start>cursor){
+        frag.appendChild(document.createTextNode(text.slice(cursor,match.start)));
+      }
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='allocation-link';
+      btn.textContent=match.raw;
+      btn.dataset.charKey=match.key;
+      btn.dataset.charName=match.label;
+      btn.addEventListener('click',handleAllocationLink);
+      frag.appendChild(btn);
+      cursor=match.end;
+    });
+    if(cursor<text.length){
+      frag.appendChild(document.createTextNode(text.slice(cursor)));
+    }
+    if(!frag.childNodes.length){
+      frag.appendChild(document.createTextNode(text));
+    }
+    return frag;
+  }
+
+  function createPreCard(entry){
+    const card=document.createElement('article');
+    card.className='card';
+
+    const header=document.createElement('div');
+    header.className='card-hd';
+    const titleLine=document.createElement('div');
+    titleLine.className='titleLine';
+
+    const dateEl=document.createElement('div');
+    dateEl.className='date';
+    dateEl.textContent=fmtDate(entry.date);
+
+    const titleEl=document.createElement('div');
+    titleEl.className='title';
+    const parts=[];
+    if(entry.code){ parts.push(entry.code); }
+    if(entry.name){ parts.push(entry.name); }
+    titleEl.textContent=parts.join(' • ')||'Adventure';
+
+    const subtitleEl=document.createElement('div');
+    subtitleEl.className='subtitle';
+    const subtitleParts=[];
+    if(entry.tier){ subtitleParts.push(`Tier ${entry.tier}`); }
+    if(entry.location){ subtitleParts.push(entry.location); }
+    subtitleEl.textContent=subtitleParts.join(' • ');
+
+    const chips=document.createElement('div');
+    chips.className='chips';
+    const earned=Number(entry.levels_plus||0);
+    const spent=Number(entry.levels_minus||0);
+    if(earned){ chips.appendChild(createPill(`Levels Earned +${fmtNumber(earned)}`)); }
+    if(spent){ chips.appendChild(createPill(`Levels Assigned ${fmtNumber(spent)}`)); }
+    if(entry.item && entry.item.trim()){
+      chips.appendChild(createPill('Magic Item Eligible'));
+    }
+
+    titleLine.appendChild(dateEl);
+    titleLine.appendChild(titleEl);
+    if(subtitleParts.length){
+      titleLine.appendChild(subtitleEl);
+    }
+    if(chips.childNodes.length){
+      titleLine.appendChild(chips);
+    }
+    header.appendChild(titleLine);
+    card.appendChild(header);
+
+    const fields=[];
+    if(entry.location){
+      fields.push(createField('Location', entry.location));
+    }
+    if(entry.item && entry.item.trim()){
+      fields.push(createField('Magic Item', entry.item));
+    }
+    if(earned || spent){
+      const values=[];
+      if(earned){ values.push(`Earned +${fmtNumber(earned)}`); }
+      if(spent){
+        if(values.length) values.push(' • ');
+        values.push(`Assigned ${fmtNumber(spent)}`);
+      }
+      fields.push(createField('Levels', values));
+    }
+    if(entry.allocation){
+      fields.push(createField('Allocation', buildAllocationContent(entry.allocation)));
+    }
+    if(!fields.length){
+      fields.push(createField('Notes','No additional rewards recorded.'));
+    }
+
+    const body=document.createElement('div');
+    body.className='card-body';
+    body.appendChild(createDefinitionList(fields));
+    card.appendChild(body);
+
+    return card;
+  }
+
+  function formatRoles(roles){
+    if(!Array.isArray(roles) || !roles.length) return '';
+    return roles.join(', ');
+  }
+
+  function createRunCard(run){
+    const card=document.createElement('article');
+    card.className='card';
+
+    const header=document.createElement('div');
+    header.className='card-hd';
+    const titleLine=document.createElement('div');
+    titleLine.className='titleLine';
+
+    const dateEl=document.createElement('div');
+    dateEl.className='date';
+    dateEl.textContent=fmtDate(run.date);
+
+    const titleEl=document.createElement('div');
+    titleEl.className='title';
+    const parts=[];
+    if(run.code){ parts.push(run.code); }
+    if(run.name){ parts.push(run.name); }
+    titleEl.textContent=parts.join(' • ')||'Session';
+
+    const subtitle=document.createElement('div');
+    subtitle.className='subtitle';
+    const subtitleParts=[];
+    if(run.location){ subtitleParts.push(run.location); }
+    const roles=formatRoles(run.roles);
+    if(roles){ subtitleParts.push(roles); }
+    subtitle.textContent=subtitleParts.join(' • ');
+
+    const chips=document.createElement('div');
+    chips.className='chips';
+    if(run.hours){ chips.appendChild(createPill(`${fmtNumber(run.hours)} hour${run.hours===1?'':'s'}`)); }
+    if(run.extra_hours){ chips.appendChild(createPill(`Extra +${fmtNumber(run.extra_hours)}`)); }
+
+    titleLine.appendChild(dateEl);
+    titleLine.appendChild(titleEl);
+    if(subtitleParts.length){ titleLine.appendChild(subtitle); }
+    if(chips.childNodes.length){ titleLine.appendChild(chips); }
+
+    header.appendChild(titleLine);
+    card.appendChild(header);
+
+    const fields=[];
+    if(run.location){ fields.push(createField('Location', run.location)); }
+    if(roles){ fields.push(createField('Roles', roles)); }
+    const totalHours=(Number(run.hours)||0)+(Number(run.extra_hours)||0);
+    fields.push(createField('Hours Summary', `${fmtNumber(run.hours||0)} session + ${fmtNumber(run.extra_hours||0)} extra = ${fmtNumber(totalHours)} total`));
+
+    const body=document.createElement('div');
+    body.className='card-body';
+    body.appendChild(createDefinitionList(fields));
+    card.appendChild(body);
+
+    return card;
+  }
+
+  function createAllocationCard(allocation){
+    const card=document.createElement('article');
+    card.className='card activity';
+
+    const header=document.createElement('div');
+    header.className='card-hd';
+    const titleLine=document.createElement('div');
+    titleLine.className='titleLine';
+
+    const dateEl=document.createElement('div');
+    dateEl.className='date';
+    dateEl.textContent=fmtDate(allocation.date);
+
+    const titleEl=document.createElement('div');
+    titleEl.className='title';
+    titleEl.textContent='Reward Allocation';
+
+    const subtitle=document.createElement('div');
+    subtitle.className='subtitle';
+    subtitle.textContent='See details below';
+
+    const chips=document.createElement('div');
+    chips.className='chips';
+    if(allocation.cost){ chips.appendChild(createPill(`${fmtNumber(allocation.cost)} hour${allocation.cost===1?'':'s'}`)); }
+    if(allocation.levels_plus){ chips.appendChild(createPill(`${fmtNumber(allocation.levels_plus)} level${allocation.levels_plus===1?'':'s'}`)); }
+
+    titleLine.appendChild(dateEl);
+    titleLine.appendChild(titleEl);
+    titleLine.appendChild(subtitle);
+    if(chips.childNodes.length){ titleLine.appendChild(chips); }
+    header.appendChild(titleLine);
+    card.appendChild(header);
+
+    const fields=[];
+    if(allocation.allocation){
+      fields.push(createField('Details', buildAllocationContent(allocation.allocation)));
+    }
+    if(allocation.cost){
+      fields.push(createField('Hours Spent', `${fmtNumber(allocation.cost)} hour${allocation.cost===1?'':'s'}`));
+    }
+    if(allocation.levels_plus){
+      fields.push(createField('Levels Granted', `${fmtNumber(allocation.levels_plus)} level${allocation.levels_plus===1?'':'s'}`));
+    }
+
+    const body=document.createElement('div');
+    body.className='card-body';
+    if(fields.length){
+      body.appendChild(createDefinitionList(fields));
+    }else{
+      body.appendChild(createDefinitionList([createField('Details','No additional details recorded.')]));
+    }
+    card.appendChild(body);
+
+    return card;
+  }
+
+  function renderMetrics(items){
+    metricsEl.innerHTML='';
+    if(!items || !items.length){
+      const empty=document.createElement('div');
+      empty.className='metric';
+      const value=document.createElement('div');
+      value.className='metric-value';
+      value.textContent='—';
+      const label=document.createElement('div');
+      label.className='metric-label';
+      label.textContent='No data';
+      empty.append(value,label);
+      metricsEl.appendChild(empty);
+      return;
+    }
+    items.forEach(item=>{
+      const metric=document.createElement('div');
+      metric.className='metric';
+      if(item.title){ metric.title=item.title; }
+      const value=document.createElement('div');
+      value.className='metric-value';
+      value.textContent=item.value;
+      const label=document.createElement('div');
+      label.className='metric-label';
+      label.textContent=item.label;
+      metric.append(value,label);
+      metricsEl.appendChild(metric);
+    });
+  }
+
+  function renderPreView(){
+    seasonGroup.classList.add('hidden');
+    gridEl.innerHTML='';
+
+    const sorted=preEntries.slice().sort((a,b)=>{
+      const aTime=new Date(a.date||0).getTime();
+      const bTime=new Date(b.date||0).getTime();
+      return bTime-aTime;
+    });
+
+    if(!sorted.length){
+      const empty=document.createElement('div');
+      empty.className='empty-state';
+      empty.textContent='No pre-Season 11 DM sessions recorded.';
+      gridEl.appendChild(empty);
+    }else{
+      const grid=document.createElement('div');
+      grid.className='card-grid';
+      sorted.forEach(entry=>{
+        grid.appendChild(createPreCard(entry));
+      });
+      gridEl.appendChild(grid);
+    }
+
+    const totalSessions=sorted.length;
+    const totalEarned=sorted.reduce((sum,entry)=>sum+(Number(entry.levels_plus)||0),0);
+    const totalAssigned=sorted.reduce((sum,entry)=>sum+(Number(entry.levels_minus)||0),0);
+    const totalItems=sorted.reduce((sum,entry)=>sum+((entry.item&&entry.item.trim())?1:0),0);
+
+    renderMetrics([
+      { label:'Sessions', value:fmtNumber(totalSessions) },
+      { label:'Levels Earned', value:fmtNumber(totalEarned) },
+      { label:'Levels Assigned', value:fmtNumber(totalAssigned) },
+      { label:'Magic Items Awarded', value:fmtNumber(totalItems) }
+    ]);
+  }
+
+  function renderSeasonalView(){
+    seasonGroup.classList.remove('hidden');
+    gridEl.innerHTML='';
+
+    const seasonKey=seasonSelect.value;
+    const season=seasonKey?seasonal[seasonKey]:null;
+
+    if(!season){
+      const empty=document.createElement('div');
+      empty.className='empty-state';
+      empty.textContent='Select a season to view DM sessions and allocations.';
+      gridEl.appendChild(empty);
+      renderMetrics([]);
+      return;
+    }
+
+    const runs=Array.isArray(season.runs)?season.runs.slice():[];
+    runs.sort((a,b)=>{
+      const aTime=new Date(a.date||0).getTime();
+      const bTime=new Date(b.date||0).getTime();
+      return bTime-aTime;
+    });
+    const allocations=Array.isArray(season.allocations)?season.allocations.slice():[];
+    allocations.sort((a,b)=>{
+      const aTime=new Date(a.date||0).getTime();
+      const bTime=new Date(b.date||0).getTime();
+      return bTime-aTime;
+    });
+
+    const wrapper=document.createElement('div');
+    wrapper.className='season-sections';
+
+    const runsSection=document.createElement('section');
+    const runsTitle=document.createElement('h2');
+    runsTitle.className='section-title';
+    runsTitle.textContent='DM Sessions';
+    runsSection.appendChild(runsTitle);
+    if(runs.length){
+      const runGrid=document.createElement('div');
+      runGrid.className='card-grid';
+      runs.forEach(run=>runGrid.appendChild(createRunCard(run)));
+      runsSection.appendChild(runGrid);
+    }else{
+      const empty=document.createElement('div');
+      empty.className='empty-state';
+      empty.textContent='No DM sessions logged for this season yet.';
+      runsSection.appendChild(empty);
+    }
+
+    const allocSection=document.createElement('section');
+    const allocTitle=document.createElement('h2');
+    allocTitle.className='section-title';
+    allocTitle.textContent='Reward Allocations';
+    allocSection.appendChild(allocTitle);
+    if(allocations.length){
+      const allocGrid=document.createElement('div');
+      allocGrid.className='card-grid';
+      allocations.forEach(item=>allocGrid.appendChild(createAllocationCard(item)));
+      allocSection.appendChild(allocGrid);
+    }else{
+      const empty=document.createElement('div');
+      empty.className='empty-state';
+      empty.textContent='No allocations recorded for this season yet.';
+      allocSection.appendChild(empty);
+    }
+
+    wrapper.appendChild(runsSection);
+    wrapper.appendChild(allocSection);
+    gridEl.appendChild(wrapper);
+
+    const totals=season.totals||{};
+    const baseHours=Number(totals.hours||0);
+    const extraHours=Number(totals.extra_hours||0);
+    const totalHours=baseHours+extraHours;
+    const allocatedHours=allocations.reduce((sum,item)=>sum+(Number(item.cost)||0),0);
+    const levelAwards=allocations.reduce((sum,item)=>sum+(Number(item.levels_plus)||0),0);
+    const remaining=Math.max(0,totalHours-allocatedHours);
+
+    renderMetrics([
+      { label:'Runs Logged', value:fmtNumber(runs.length) },
+      { label:'Hours', value:fmtNumber(baseHours) },
+      { label:'Extra Hours', value:fmtNumber(extraHours) },
+      { label:'Hours Allocated', value:fmtNumber(allocatedHours) },
+      { label:'Hours Remaining', value:fmtNumber(remaining) },
+      { label:'Levels Awarded', value:fmtNumber(levelAwards) }
+    ]);
+  }
+
+  function getLatestDateForSeason(season){
+    if(!season) return 0;
+    const runs=Array.isArray(season.runs)?season.runs:[];
+    const allocations=Array.isArray(season.allocations)?season.allocations:[];
+    const dates=[];
+    runs.forEach(item=>{ if(item && item.date){ dates.push(new Date(item.date).getTime()); }});
+    allocations.forEach(item=>{ if(item && item.date){ dates.push(new Date(item.date).getTime()); }});
+    return dates.length?Math.max(...dates):0;
+  }
+
+  function populateSeasonOptions(){
+    if(!seasonSelect) return;
+    seasonSelect.innerHTML='';
+    const entries=Object.entries(seasonal||{});
+    if(!entries.length){
+      seasonGroup.classList.add('hidden');
+      return;
+    }
+    const sorted=entries.sort((a,b)=>getLatestDateForSeason(b[1])-getLatestDateForSeason(a[1]));
+    sorted.forEach(([key])=>{
+      const opt=document.createElement('option');
+      opt.value=key;
+      opt.textContent=key;
+      seasonSelect.appendChild(opt);
+    });
+    if(sorted.length){
+      seasonSelect.value=sorted[0][0];
+    }
+  }
+
+  function render(){
+    const mode=viewSelect.value;
+    if(mode==='seasonal'){
+      renderSeasonalView();
+    }else{
+      renderPreView();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    if(!window.DMDATA){
+      metricsEl.innerHTML='';
+      gridEl.innerHTML='';
+      const empty=document.createElement('div');
+      empty.className='empty-state';
+      empty.textContent='DM data failed to load.';
+      gridEl.appendChild(empty);
+      return;
+    }
+    buildCharacterPatterns();
+    populateSeasonOptions();
+    if(!seasonSelect.options.length){
+      seasonGroup.classList.add('hidden');
+    }
+    viewSelect.addEventListener('change',render);
+    seasonSelect.addEventListener('change',render);
+    render();
+  });
+})();
+</script>
+</body>
+</html>
