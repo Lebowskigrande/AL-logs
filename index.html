@@ -2096,16 +2096,26 @@ function collectPermanentInventory(charKey){
   const ch=DATA.characters[charKey]; if(!ch||!ch.adventures) return {kept:[], map:new Map()};
   const entries=ch.adventures.map((adv,idx)=>({adv,idx})).sort(compareChronoAsc);
   const keptMap=new Map();
+  const removeByName=(name)=>{
+    const cleaned=normItemName(name);
+    if(!cleaned) return;
+    keptMap.delete(cleaned.toLowerCase());
+  };
   entries.forEach(({adv,idx})=>{
     const items=adv.perm_items||[];
     const lostNames=parseLostItemList(adv.lost_perm_item);
+    const tradedAway=[
+      ...parseLostItemList(adv.traded_item),
+      ...parseLostItemList(adv.itemTraded)
+    ];
+    const receivedList=parseLostItemList(adv.itemReceived);
+    const hasTradeMeta=tradedAway.length>0||receivedList.length>0||(lostNames.length>0&&items.length>0);
     const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
-    if(isLoss){
+    if(isLoss && !hasTradeMeta){
       if(items.length){
         items.forEach(raw=>{
-          const cleaned=normItemName(raw.replace(/^\(|\)$/g,''));
-          if(!cleaned) return;
-          keptMap.delete(cleaned.toLowerCase());
+          const {name}=parseAcquisitionName(raw);
+          removeByName(name);
         });
       }else if(adv.notes){
         [...keptMap.values()].forEach(meta=>{
@@ -2113,10 +2123,10 @@ function collectPermanentInventory(charKey){
           if(regex.test(adv.notes)) keptMap.delete(meta.name.toLowerCase());
         });
       }
-      lostNames.forEach(name=>keptMap.delete(name.toLowerCase()));
+      lostNames.forEach(removeByName);
       return;
     }
-    items.forEach(raw=>{
+    const handleAddition=(raw)=>{
       const {name,acquired}=parseAcquisitionName(raw);
       const cleaned=normItemName(name);
       if(!cleaned) return;
@@ -2126,8 +2136,13 @@ function collectPermanentInventory(charKey){
         return;
       }
       keptMap.set(key,{name:cleaned,index:idx,adv});
-    });
-    lostNames.forEach(name=>keptMap.delete(name.toLowerCase()));
+    };
+    items.forEach(handleAddition);
+    if(hasTradeMeta){
+      receivedList.forEach(handleAddition);
+    }
+    lostNames.forEach(removeByName);
+    tradedAway.forEach(removeByName);
   });
   const kept=[...keptMap.values()].sort((a,b)=>a.name.localeCompare(b.name));
   return {kept,map:keptMap};
