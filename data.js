@@ -406,6 +406,27 @@ window.DATA = {
           "kind": "activity"
         },
         {
+          "date": "2025-08-11",
+          "title": "Steeped hoard items",
+          "code": "",
+          "dm": "Alexis P.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Dragon's Wrath Weapon (Stirring)"
+          ],
+          "lost_perm_item": "Dragon's Wrath Weapon (slumbering)",
+          "consumable_items": [],
+          "notes": "Steeped Dragon's Wrath Weapon in the hoard of a young brass dragon, elevating it to Stirring.",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": 0
+        },
+        {
           "date": "2025-08-05",
           "title": "Baker's Doesn't",
           "code": "DDHC-DD-Ch2",
@@ -17884,7 +17905,7 @@ window.DATA = {
       "net_gp": 9225,
       "net_dtd": 33,
       "level_ups": 8,
-      "perm_count": 27,
+      "perm_count": 29,
       "cons_count": 12
     },
     "Chef Ture": {
@@ -18255,7 +18276,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-03T15:42:06.720Z",
+    "generated": "2025-10-03T21:20:06.841Z",
     "problems": []
   }
 };
