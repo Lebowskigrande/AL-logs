@@ -42,8 +42,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Toolbar */
 .toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
-.dm-filter{display:flex;align-items:center}
-.dm-filter .select{min-width:200px}
+.dm-actions{position:relative;display:flex;align-items:center}
+.dm-actions .btn{display:inline-flex;align-items:center;gap:8px}
+.dm-menu{position:absolute;top:calc(100% + 6px);left:0;display:flex;flex-direction:column;min-width:180px;padding:6px 0;border-radius:12px;background:#fff;box-shadow:var(--shadow2);border:1px solid var(--border);z-index:40}
+.dm-menu[hidden]{display:none}
+.dm-menu-item{padding:8px 14px;text-align:left;background:none;border:none;font:inherit;color:var(--ink);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.dm-menu-item:hover,.dm-menu-item:focus{background:#eef4ff;color:var(--primary);outline:none}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1)}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
@@ -90,6 +94,16 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Header metrics */
 .header-quick{margin-top:14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.dm-summary{gap:24px}
+.dm-summary[hidden]{display:none}
+.dm-metric{display:flex;flex-direction:column;gap:2px}
+.dm-metric-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.dm-metric-value{font-size:20px;font-weight:700;color:var(--ink)}
+.dm-items-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:#fff;border-radius:12px;padding:8px 12px;font-weight:600;font-size:14px;color:var(--muted);box-shadow:var(--shadow1);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.dm-items-btn:hover,.dm-items-btn:focus-visible{color:var(--primary);background:#eef4ff;box-shadow:var(--shadow2);outline:none}
+.dm-items-btn[aria-expanded="true"]{color:var(--primary);background:#eef4ff}
+.dm-items-icon img{display:block;width:24px;height:24px}
+.dm-items-count{font-weight:700;color:var(--ink)}
 .inventory-buttons{display:flex;align-items:center;gap:18px;margin-left:auto;flex-wrap:wrap}
 .inventory-link{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .inventory-link .icon svg,.inventory-link .icon img,.inventory-metric .icon svg{width:24px;height:24px;display:block}
@@ -100,6 +114,15 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .inventory-metric{display:inline-flex;align-items:center;gap:8px;padding:6px 0;color:var(--muted);font-weight:600}
 .inventory-metric .text{white-space:nowrap}
 .inventory-metric .amount{font-weight:700;color:var(--ink)}
+.dm-popover{position:fixed;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:72px 16px;background:rgba(15,23,42,.12);backdrop-filter:blur(2px);z-index:90;pointer-events:none}
+.dm-popover[hidden]{display:none}
+.dm-popover:not([hidden]){pointer-events:auto}
+.dm-popover-card{background:#fff;border-radius:16px;box-shadow:var(--shadow2);border:1px solid var(--border);max-width:360px;width:100%;padding:18px;display:flex;flex-direction:column;gap:12px}
+.dm-popover-title{font-weight:700;font-size:16px;color:var(--ink)}
+.dm-popover-body{max-height:280px;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.dm-popover-item{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ink)}
+.dm-popover-item-date{font-size:12px;color:var(--muted)}
+.dm-popover-close{align-self:flex-end}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
@@ -361,9 +384,17 @@ body.avatar-overlay-open{overflow:hidden}
       </button>
     </div>
     <div class="toolbar">
-      <div id="dmSeasonFilterWrap" class="dm-filter" hidden aria-hidden="true">
-        <label for="dmSeasonFilter" class="sr-only">Filter by season</label>
-        <select id="dmSeasonFilter" class="select"></select>
+      <div id="dmActions" class="dm-actions" hidden aria-hidden="true">
+        <button id="dmNewEntryBtn" class="btn small" type="button" aria-expanded="false" aria-haspopup="true">
+          <span class="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+          New entry
+        </button>
+        <div id="dmNewEntryMenu" class="dm-menu" role="menu" hidden>
+          <button type="button" class="dm-menu-item" role="menuitem" data-dm-action="session">New session</button>
+          <button type="button" class="dm-menu-item" role="menuitem" data-dm-action="allocation">New allocation</button>
+        </div>
       </div>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
@@ -398,9 +429,34 @@ body.avatar-overlay-open{overflow:hidden}
         </div>
       </div>
     </div>
+    <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
+      <div class="dm-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
+        <div class="dm-metric-label">Available hours</div>
+        <div class="dm-metric-value" id="dmHoursValue">0</div>
+      </div>
+      <div class="dm-metric" id="dmLevelsMetric" role="group" aria-label="Pre-Season 11 levels available">
+        <div class="dm-metric-label">Pre-S11 levels</div>
+        <div class="dm-metric-value" id="dmLevelsValue">0</div>
+      </div>
+      <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="true" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
+        <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
+        <span class="dm-items-icon" aria-hidden="true">
+          <img src="chest.png" alt="" width="24" height="24"/>
+        </span>
+        <span class="dm-items-count" id="dmItemsCount">0</span>
+      </button>
+    </div>
   </section>
   <section id="grid" class="grid cols"></section>
   <div id="empty" class="empty" style="display:none;">No adventures match your filters.</div>
+</div>
+
+<div id="dmItemsPopover" class="dm-popover" hidden role="dialog" aria-modal="false" aria-labelledby="dmItemsPopoverTitle">
+  <div class="dm-popover-card">
+    <div class="dm-popover-title" id="dmItemsPopoverTitle">Pre-Season 11 magic items</div>
+    <div class="dm-popover-body" id="dmItemsList"></div>
+    <button id="dmItemsClose" class="btn small dm-popover-close" type="button">Close</button>
+  </div>
 </div>
 
 <!-- Permanent Items Modal -->
@@ -504,8 +560,17 @@ const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const activityToggleBtn = document.getElementById('activityToggle');
 const headerQuick = document.getElementById('headerQuick');
-const dmSeasonFilterWrap = document.getElementById('dmSeasonFilterWrap');
-const dmSeasonFilter = document.getElementById('dmSeasonFilter');
+const dmSummaryBar = document.getElementById('dmSummaryBar');
+const dmHoursValueEl = document.getElementById('dmHoursValue');
+const dmLevelsValueEl = document.getElementById('dmLevelsValue');
+const dmItemsCountEl = document.getElementById('dmItemsCount');
+const dmItemsBtnEl = document.getElementById('dmItemsBtn');
+const dmItemsPopover = document.getElementById('dmItemsPopover');
+const dmItemsListEl = document.getElementById('dmItemsList');
+const dmItemsCloseBtn = document.getElementById('dmItemsClose');
+const dmActionsWrap = document.getElementById('dmActions');
+const dmNewEntryBtn = document.getElementById('dmNewEntryBtn');
+const dmNewEntryMenu = document.getElementById('dmNewEntryMenu');
 const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
@@ -545,13 +610,10 @@ const defaultSearchPlaceholder=qEl?(qEl.getAttribute('placeholder')||''):'';
 const DM_EMPTY_MESSAGE='No log entries match your filters.';
 
 const DM_LOG_KEY='__dmLog';
-const DM_SEASON_ALL='__all__';
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
 let DM_ENTRIES=[];
-let DM_SEASON_LABELS=[];
-let DM_SUMMARY={ runs:0, allocations:0, hours:0, extraHours:0, levels:0, entries:0 };
-let DM_FILTER_VALUE=DM_SEASON_ALL;
-let cachedDmSeasonFilterValue=null;
+let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, preLevels:0, entries:0 };
+let DM_PRE_ITEMS=[];
 let overlayCard=null;
 buildDmEntries();
 if(avatarEl){
@@ -684,8 +746,7 @@ const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'h
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
   showActivities:'al_logs_show_activities',
-  lastCharacter:'al_logs_last_character',
-  dmSeason:'al_logs_dm_season'
+  lastCharacter:'al_logs_last_character'
 };
 
 function hasDmLogData(){
@@ -745,59 +806,9 @@ function rememberCharacterKey(key){
   }
 }
 
-function getStoredDmSeasonFilter(){
-  if(cachedDmSeasonFilterValue===null){
-    try{
-      const stored=localStorage.getItem(STORAGE_KEYS.dmSeason)||'';
-      cachedDmSeasonFilterValue=stored||DM_SEASON_ALL;
-    }catch(err){
-      cachedDmSeasonFilterValue=DM_SEASON_ALL;
-    }
-  }
-  if(!isValidDmSeason(cachedDmSeasonFilterValue)){
-    cachedDmSeasonFilterValue=DM_SEASON_ALL;
-  }
-  return cachedDmSeasonFilterValue;
-}
-function storeDmSeasonFilter(value){
-  const normalized=value && value!==DM_SEASON_ALL?String(value):'';
-  cachedDmSeasonFilterValue=isValidDmSeason(value)?value:DM_SEASON_ALL;
-  try{
-    if(normalized){
-      localStorage.setItem(STORAGE_KEYS.dmSeason, normalized);
-    }else{
-      localStorage.removeItem(STORAGE_KEYS.dmSeason);
-    }
-  }catch(err){
-    /* no-op */
-  }
-}
-function isValidDmSeason(value){
-  if(!value) return false;
-  if(value===DM_SEASON_ALL) return true;
-  return DM_SEASON_LABELS.includes(value);
-}
 function setEmptyStateMessage(text){
   if(!emptyEl) return;
   emptyEl.textContent=text;
-}
-function populateDmSeasonFilter(){
-  if(!dmSeasonFilter) return;
-  dmSeasonFilter.innerHTML='';
-  const allOpt=document.createElement('option');
-  allOpt.value=DM_SEASON_ALL;
-  allOpt.textContent='All seasons';
-  dmSeasonFilter.appendChild(allOpt);
-  DM_SEASON_LABELS.forEach(label=>{
-    const opt=document.createElement('option');
-    opt.value=label;
-    opt.textContent=label;
-    dmSeasonFilter.appendChild(opt);
-  });
-  const stored=getStoredDmSeasonFilter();
-  DM_FILTER_VALUE=isValidDmSeason(stored)?stored:DM_SEASON_ALL;
-  dmSeasonFilter.value=DM_FILTER_VALUE;
-  dmSeasonFilter.disabled=!hasDmLogData();
 }
 
 function updateActivityToggle(){
@@ -1619,23 +1630,17 @@ function dmTimestamp(value){
 }
 function buildDmEntries(){
   DM_ENTRIES=[];
-  DM_SEASON_LABELS=[];
-  DM_SUMMARY={ runs:0, allocations:0, hours:0, extraHours:0, levels:0, entries:0 };
+  DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, preLevels:0, entries:0 };
+  DM_PRE_ITEMS=[];
   if(!DM_DATA) return;
   let sortIndex=0;
-  const ensureSeason=(raw)=>{
-    const normalized=dmNormalizeSeasonLabel(raw);
-    if(!DM_SEASON_LABELS.includes(normalized)){
-      DM_SEASON_LABELS.push(normalized);
-    }
-    return normalized;
-  };
+  const normalizeSeason=(raw)=>dmNormalizeSeasonLabel(raw);
   const pushEntry=(entry)=>{
     entry.__origIndex=sortIndex++;
     DM_ENTRIES.push(entry);
   };
   const addRun=(seasonLabel, run)=>{
-    const season=ensureSeason(seasonLabel);
+    const season=normalizeSeason(seasonLabel);
     const hoursVal=dmToNullableNumber(run.hours);
     const bonusVal=dmToNullableNumber(run.extra_hours);
     const levelsPlus=dmToNullableNumber(run.levels_plus);
@@ -1657,12 +1662,11 @@ function buildDmEntries(){
       allocation:run.allocation||''
     });
     DM_SUMMARY.runs+=1;
-    if(hoursVal!=null) DM_SUMMARY.hours+=hoursVal;
-    if(bonusVal!=null) DM_SUMMARY.extraHours+=bonusVal;
-    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
+    if(hoursVal!=null) DM_SUMMARY.earnedHours+=hoursVal;
+    if(bonusVal!=null) DM_SUMMARY.earnedBonus+=bonusVal;
   };
   const addPreEntry=(entry)=>{
-    const season=ensureSeason('Pre-Season 11');
+    const season=normalizeSeason('Pre-Season 11');
     const levelsPlus=dmToNullableNumber(entry.levels_plus);
     const levelsMinus=dmToNullableNumber(entry.levels_minus);
     pushEntry({
@@ -1681,11 +1685,26 @@ function buildDmEntries(){
       item:entry.item||'',
       allocation:entry.allocation||''
     });
+    const plusVal=Number(levelsPlus||0);
+    const minusVal=Number(levelsMinus||0);
+    if(Number.isFinite(plusVal)||Number.isFinite(minusVal)){
+      const net=(Number.isFinite(plusVal)?plusVal:0)-(Number.isFinite(minusVal)?minusVal:0);
+      DM_SUMMARY.preLevels+=net;
+    }
+    const hasAllocation=Boolean((entry.allocation||'').trim());
+    const itemName=String(entry.item||'').trim();
+    if(itemName && !hasAllocation){
+      DM_PRE_ITEMS.push({
+        item:itemName,
+        date:entry.date||'',
+        code:entry.code||'',
+        location:entry.location||''
+      });
+    }
     DM_SUMMARY.runs+=1;
-    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
   };
   const addAllocation=(seasonLabel, alloc)=>{
-    const season=ensureSeason(seasonLabel);
+    const season=normalizeSeason(seasonLabel);
     const hoursVal=dmToNullableNumber(alloc.hours);
     const bonusVal=dmToNullableNumber(alloc.extra_hours);
     const levelsPlus=dmToNullableNumber(alloc.levels_plus);
@@ -1701,20 +1720,18 @@ function buildDmEntries(){
       location:alloc.location||''
     });
     DM_SUMMARY.allocations+=1;
-    if(hoursVal!=null) DM_SUMMARY.hours+=hoursVal;
-    if(bonusVal!=null) DM_SUMMARY.extraHours+=bonusVal;
-    if(levelsPlus!=null) DM_SUMMARY.levels+=levelsPlus;
+    if(hoursVal!=null) DM_SUMMARY.allocatedHours+=hoursVal;
+    if(bonusVal!=null) DM_SUMMARY.allocatedBonus+=bonusVal;
   };
   if(Array.isArray(DM_DATA.preS11)){
     DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
   }
   if(DM_DATA.seasonal && typeof DM_DATA.seasonal==='object'){
     Object.entries(DM_DATA.seasonal).forEach(([seasonName, seasonData])=>{
-      const seasonLabel=seasonName;
       const runs=seasonData && Array.isArray(seasonData.runs)?seasonData.runs:[];
-      runs.forEach(run=>addRun(seasonLabel, run));
+      runs.forEach(run=>addRun(seasonName, run));
       const allocations=seasonData && Array.isArray(seasonData.allocations)?seasonData.allocations:[];
-      allocations.forEach(allocation=>addAllocation(seasonLabel, allocation));
+      allocations.forEach(allocation=>addAllocation(seasonName, allocation));
     });
   }
   DM_ENTRIES.sort((a,b)=>{
@@ -1728,41 +1745,102 @@ function buildDmEntries(){
     entry.sortIndex=index;
   });
   DM_SUMMARY.entries=DM_ENTRIES.length;
+  if(DM_PRE_ITEMS.length){
+    DM_PRE_ITEMS.sort((a,b)=>dmTimestamp(a.date)-dmTimestamp(b.date));
+  }
+  updateDmSummaryBar();
 }
 function updateDmMeta(){
-  if(!metaEl) return;
-  const runs=DM_SUMMARY.runs||0;
-  const allocations=DM_SUMMARY.allocations||0;
-  const entries=DM_SUMMARY.entries||0;
-  const hours=DM_SUMMARY.hours||0;
-  const extra=DM_SUMMARY.extraHours||0;
-  const levels=DM_SUMMARY.levels||0;
-  const parts=[];
-  if(entries && !runs && !allocations){
-    parts.push(`${fmtNumber(entries)} ${entries===1?'Entry':'Entries'}`);
+  if(metaEl){
+    metaEl.textContent='';
+    metaEl.style.display='none';
+    metaEl.setAttribute('aria-hidden','true');
   }
-  if(runs){
-    parts.push(`${fmtNumber(runs)} ${runs===1?'Run':'Runs'}`);
+  updateDmSummaryBar();
+}
+function updateDmSummaryBar(){
+  if(!dmSummaryBar) return;
+  const earned=(Number(DM_SUMMARY.earnedHours)||0)+(Number(DM_SUMMARY.earnedBonus)||0);
+  const spent=(Number(DM_SUMMARY.allocatedHours)||0)+(Number(DM_SUMMARY.allocatedBonus)||0);
+  const available=earned-spent;
+  const preLevels=Number(DM_SUMMARY.preLevels||0);
+  if(dmHoursValueEl){
+    dmHoursValueEl.textContent=fmtNumber(available);
+    dmHoursValueEl.setAttribute('data-value', String(available));
   }
-  if(allocations){
-    parts.push(`${fmtNumber(allocations)} ${allocations===1?'Allocation':'Allocations'}`);
+  if(dmLevelsValueEl){
+    dmLevelsValueEl.textContent=fmtNumber(preLevels);
+    dmLevelsValueEl.setAttribute('data-value', String(preLevels));
   }
-  if(hours){
-    let text=`${fmtNumber(hours)} Hours`;
-    if(extra){
-      text+=` (+${fmtNumber(extra)} bonus)`;
-    }
-    parts.push(text);
-  }else if(extra){
-    parts.push(`${fmtNumber(extra)} Bonus Hours`);
+  const itemCount=DM_PRE_ITEMS.length||0;
+  if(dmItemsCountEl){
+    dmItemsCountEl.textContent=fmtNumber(itemCount);
   }
-  if(levels){
-    parts.push(`${fmtNumber(levels)} Levels awarded`);
+  if(dmItemsBtnEl){
+    const label=`View unallocated pre-Season 11 magic items (${fmtNumber(itemCount)} ${itemCount===1?'item':'items'})`;
+    dmItemsBtnEl.setAttribute('aria-label', label);
+    dmItemsBtnEl.title=label;
   }
-  const text=parts.join(' • ') || 'Dungeon Master rewards and allocations';
-  metaEl.textContent=text;
-  metaEl.style.display='block';
-  metaEl.setAttribute('aria-hidden','false');
+  if(dmItemsListEl){
+    dmItemsListEl.innerHTML='';
+    if(!itemCount){
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.textContent='All pre-Season 11 items are allocated';
+      dmItemsListEl.appendChild(empty);
+    }else{
+      DM_PRE_ITEMS.forEach(item=>{
+        const row=document.createElement('div');
+        row.className='dm-popover-item';
+        const name=document.createElement('div');
+        name.textContent=item.item||'Unknown item';
+        row.appendChild(name);
+        const metaParts=[];
+        if(item.date){
+          const formatted=fmtDate(item.date);
+          if(formatted) metaParts.push(formatted);
+        }
+        if(item.code){ metaParts.push(item.code); }
+        if(item.location){ metaParts.push(item.location); }
+        if(metaParts.length){
+          const meta=document.createElement('div');
+          meta.className='dm-popover-item-date';
+          meta.textContent=metaParts.join(' • ');
+          row.appendChild(meta);
+        }
+      dmItemsListEl.appendChild(row);
+    });
+  }
+}
+function openDmItemsPopover(){
+  if(!dmItemsPopover) return;
+  updateDmSummaryBar();
+  dmItemsPopover.hidden=false;
+  if(dmItemsBtnEl){
+    dmItemsBtnEl.setAttribute('aria-expanded','true');
+  }
+}
+function closeDmItemsPopover(){
+  if(dmItemsPopover){
+    dmItemsPopover.hidden=true;
+  }
+  if(dmItemsBtnEl){
+    dmItemsBtnEl.setAttribute('aria-expanded','false');
+  }
+}
+function openDmEntryMenu(){
+  if(!dmNewEntryMenu||!dmNewEntryBtn) return;
+  dmNewEntryMenu.hidden=false;
+  dmNewEntryBtn.setAttribute('aria-expanded','true');
+}
+function closeDmEntryMenu(){
+  if(dmNewEntryMenu){
+    dmNewEntryMenu.hidden=true;
+  }
+  if(dmNewEntryBtn){
+    dmNewEntryBtn.setAttribute('aria-expanded','false');
+  }
+}
 }
 function setDmHeader(){
   if(avatarEl){
@@ -1781,20 +1859,25 @@ function setDmHeader(){
 }
 function updateUiForSelection(key){
   const isDm=isDmLogKey(key);
-  const showDmFilter=isDm && hasDmLogData();
-  if(dmSeasonFilterWrap){
-    dmSeasonFilterWrap.hidden=!showDmFilter;
-    dmSeasonFilterWrap.setAttribute('aria-hidden', showDmFilter?'false':'true');
-  }
-  if(dmSeasonFilter){
-    dmSeasonFilter.disabled=!hasDmLogData();
-    if(showDmFilter){
-      dmSeasonFilter.value=DM_FILTER_VALUE;
-    }
-  }
   if(headerQuick){
     headerQuick.style.display=isDm?'none':'';
     headerQuick.setAttribute('aria-hidden', isDm?'true':'false');
+  }
+  if(dmSummaryBar){
+    const showSummary=isDm && hasDmLogData();
+    dmSummaryBar.hidden=!showSummary;
+    dmSummaryBar.setAttribute('aria-hidden', showSummary?'false':'true');
+  }
+  if(dmActionsWrap){
+    const showActions=isDm && hasDmLogData();
+    dmActionsWrap.hidden=!showActions;
+    dmActionsWrap.setAttribute('aria-hidden', showActions?'false':'true');
+    if(!showActions){
+      closeDmEntryMenu();
+      closeDmItemsPopover();
+    }
+  }else if(!isDm){
+    closeDmItemsPopover();
   }
   if(activityToggleBtn){
     activityToggleBtn.style.display=isDm?'none':'';
@@ -1817,15 +1900,7 @@ function updateUiForSelection(key){
 function renderDmLog(){
   if(!grid) return;
   const query=(qEl && typeof qEl.value==='string')?qEl.value.trim().toLowerCase():'';
-  const seasonValue=dmSeasonFilter? (dmSeasonFilter.value||DM_SEASON_ALL) : DM_SEASON_ALL;
-  DM_FILTER_VALUE=isValidDmSeason(seasonValue)?seasonValue:DM_SEASON_ALL;
-  if(dmSeasonFilter && dmSeasonFilter.value!==DM_FILTER_VALUE){
-    dmSeasonFilter.value=DM_FILTER_VALUE;
-  }
   const filtered=DM_ENTRIES.filter(entry=>{
-    if(DM_FILTER_VALUE!==DM_SEASON_ALL && entry.season!==dmNormalizeSeasonLabel(DM_FILTER_VALUE)){
-      return false;
-    }
     if(!query) return true;
     const roleText=Array.isArray(entry.roles)?entry.roles.join(' '):'';
     const blob=[
@@ -1848,11 +1923,13 @@ function renderDmLog(){
   grid.innerHTML='';
   if(!filtered.length){
     if(emptyEl){
+      emptyEl.textContent=DM_EMPTY_MESSAGE;
       emptyEl.style.display='block';
     }
     return;
   }
   if(emptyEl){
+    emptyEl.textContent=DM_EMPTY_MESSAGE;
     emptyEl.style.display='none';
   }
   filtered.forEach((entry,idx)=>{
@@ -3785,16 +3862,70 @@ function filterAndRender(){
 }
 
 /* --- events --- */
-populateDmSeasonFilter();
-if(dmSeasonFilter){
-  dmSeasonFilter.addEventListener('change',()=>{
-    DM_FILTER_VALUE=(dmSeasonFilter.value||DM_SEASON_ALL);
-    storeDmSeasonFilter(DM_FILTER_VALUE);
-    filterAndRender();
-  });
-}
 qEl.addEventListener('input',filterAndRender);
 charSel.addEventListener('change',filterAndRender);
+if(dmNewEntryBtn){
+  dmNewEntryBtn.addEventListener('click',()=>{
+    if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
+      closeDmEntryMenu();
+    }else{
+      openDmEntryMenu();
+    }
+  });
+}
+if(dmNewEntryMenu){
+  dmNewEntryMenu.addEventListener('click',(event)=>{
+    const actionBtn=event.target.closest('.dm-menu-item');
+    if(!actionBtn) return;
+    const action=actionBtn.getAttribute('data-dm-action')||'';
+    closeDmEntryMenu();
+    window.dispatchEvent(new CustomEvent('dm:new-entry',{detail:{type:action}}));
+  });
+}
+if(dmItemsBtnEl){
+  dmItemsBtnEl.addEventListener('click',()=>{
+    const expanded=dmItemsBtnEl.getAttribute('aria-expanded')==='true';
+    if(expanded){
+      closeDmItemsPopover();
+    }else{
+      openDmItemsPopover();
+    }
+  });
+}
+if(dmItemsCloseBtn){
+  dmItemsCloseBtn.addEventListener('click',()=>{
+    closeDmItemsPopover();
+  });
+}
+document.addEventListener('click',(event)=>{
+  if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
+    if(!dmNewEntryMenu.contains(event.target) && !(dmNewEntryBtn && dmNewEntryBtn.contains(event.target))){
+      closeDmEntryMenu();
+    }
+  }
+  if(dmItemsPopover && !dmItemsPopover.hidden){
+    const clickedOverlay=(event.target===dmItemsPopover);
+    if((!dmItemsPopover.contains(event.target) || clickedOverlay) && !(dmItemsBtnEl && dmItemsBtnEl.contains(event.target))){
+      closeDmItemsPopover();
+    }
+  }
+});
+document.addEventListener('keydown',(event)=>{
+  if(event.key==='Escape'){
+    let handled=false;
+    if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
+      closeDmEntryMenu();
+      handled=true;
+    }
+    if(dmItemsPopover && !dmItemsPopover.hidden){
+      closeDmItemsPopover();
+      handled=true;
+    }
+    if(handled){
+      event.stopPropagation();
+    }
+  }
+});
 if(activityToggleBtn){
   activityToggleBtn.addEventListener('click',()=>{
     showActivities=!showActivities;
