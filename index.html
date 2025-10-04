@@ -114,15 +114,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .inventory-metric{display:inline-flex;align-items:center;gap:8px;padding:6px 0;color:var(--muted);font-weight:600}
 .inventory-metric .text{white-space:nowrap}
 .inventory-metric .amount{font-weight:700;color:var(--ink)}
-.dm-popover{position:fixed;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:72px 16px;background:rgba(15,23,42,.12);backdrop-filter:blur(2px);z-index:90;pointer-events:none}
-.dm-popover[hidden]{display:none}
-.dm-popover:not([hidden]){pointer-events:auto}
-.dm-popover-card{background:#fff;border-radius:16px;box-shadow:var(--shadow2);border:1px solid var(--border);max-width:360px;width:100%;padding:18px;display:flex;flex-direction:column;gap:12px}
-.dm-popover-title{font-weight:700;font-size:16px;color:var(--ink)}
-.dm-popover-body{max-height:280px;overflow:auto;display:flex;flex-direction:column;gap:10px}
-.dm-popover-item{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ink)}
-.dm-popover-item-date{font-size:12px;color:var(--muted)}
-.dm-popover-close{align-self:flex-end}
+.dm-items-card{max-width:420px;width:100%}
+.dm-items-card .modal-body{display:flex;flex-direction:column;gap:12px;max-height:360px}
+.dm-items-list{display:flex;flex-direction:column;gap:10px}
+.dm-items-row{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ink)}
+.dm-items-meta{font-size:12px;color:var(--muted)}
+.dm-items-empty{color:var(--muted)}
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
@@ -434,11 +431,11 @@ body.avatar-overlay-open{overflow:hidden}
         <div class="dm-metric-label">Available hours</div>
         <div class="dm-metric-value" id="dmHoursValue">0</div>
       </div>
-      <div class="dm-metric" id="dmLevelsMetric" role="group" aria-label="Pre-Season 11 levels available">
-        <div class="dm-metric-label">Pre-S11 levels</div>
+      <div class="dm-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
+        <div class="dm-metric-label">Available levels</div>
         <div class="dm-metric-value" id="dmLevelsValue">0</div>
       </div>
-      <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="true" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
+      <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
         <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
         <span class="dm-items-icon" aria-hidden="true">
           <img src="chest.png" alt="" width="24" height="24"/>
@@ -451,11 +448,17 @@ body.avatar-overlay-open{overflow:hidden}
   <div id="empty" class="empty" style="display:none;">No adventures match your filters.</div>
 </div>
 
-<div id="dmItemsPopover" class="dm-popover" hidden role="dialog" aria-modal="false" aria-labelledby="dmItemsPopoverTitle">
-  <div class="dm-popover-card">
-    <div class="dm-popover-title" id="dmItemsPopoverTitle">Pre-Season 11 magic items</div>
-    <div class="dm-popover-body" id="dmItemsList"></div>
-    <button id="dmItemsClose" class="btn small dm-popover-close" type="button">Close</button>
+<div id="dmItemsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dmItemsTitle">
+  <div class="modal-card dm-items-card">
+    <div class="modal-hd">
+      <div id="dmItemsTitle">Pre-Season 11 magic items</div>
+    </div>
+    <div class="modal-body">
+      <div id="dmItemsList" class="dm-items-list"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn small" id="dmItemsClose" type="button">Close</button>
+    </div>
   </div>
 </div>
 
@@ -565,7 +568,7 @@ const dmHoursValueEl = document.getElementById('dmHoursValue');
 const dmLevelsValueEl = document.getElementById('dmLevelsValue');
 const dmItemsCountEl = document.getElementById('dmItemsCount');
 const dmItemsBtnEl = document.getElementById('dmItemsBtn');
-const dmItemsPopover = document.getElementById('dmItemsPopover');
+const dmItemsModal = document.getElementById('dmItemsModal');
 const dmItemsListEl = document.getElementById('dmItemsList');
 const dmItemsCloseBtn = document.getElementById('dmItemsClose');
 const dmActionsWrap = document.getElementById('dmActions');
@@ -612,7 +615,7 @@ const DM_EMPTY_MESSAGE='No log entries match your filters.';
 const DM_LOG_KEY='__dmLog';
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
 let DM_ENTRIES=[];
-let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, preLevels:0, entries:0 };
+let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
 buildDmEntries();
@@ -860,6 +863,7 @@ function setSaveResult(state){
 function anyModalOpen(){
   return (invModal && invModal.classList.contains('open'))
     || (consModal && consModal.classList.contains('open'))
+    || (dmItemsModal && dmItemsModal.classList.contains('open'))
     || (cardOverlay && cardOverlay.classList.contains('open'));
 }
 
@@ -1631,7 +1635,7 @@ function dmTimestamp(value){
 }
 function buildDmEntries(){
   DM_ENTRIES=[];
-  DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, preLevels:0, entries:0 };
+  DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
   DM_PRE_ITEMS=[];
   if(!DM_DATA) return;
   let sortIndex=0;
@@ -1665,6 +1669,8 @@ function buildDmEntries(){
     DM_SUMMARY.runs+=1;
     if(hoursVal!=null) DM_SUMMARY.earnedHours+=hoursVal;
     if(bonusVal!=null) DM_SUMMARY.earnedBonus+=bonusVal;
+    if(levelsPlus!=null) DM_SUMMARY.earnedLevels+=levelsPlus;
+    if(levelsMinus!=null) DM_SUMMARY.spentLevels+=levelsMinus;
   };
   const addPreEntry=(entry)=>{
     const season=normalizeSeason('Pre-Season 11');
@@ -1686,12 +1692,8 @@ function buildDmEntries(){
       item:entry.item||'',
       allocation:entry.allocation||''
     });
-    const plusVal=Number(levelsPlus||0);
-    const minusVal=Number(levelsMinus||0);
-    if(Number.isFinite(plusVal)||Number.isFinite(minusVal)){
-      const net=(Number.isFinite(plusVal)?plusVal:0)-(Number.isFinite(minusVal)?minusVal:0);
-      DM_SUMMARY.preLevels+=net;
-    }
+    if(levelsPlus!=null) DM_SUMMARY.earnedLevels+=levelsPlus;
+    if(levelsMinus!=null) DM_SUMMARY.spentLevels+=levelsMinus;
     const hasAllocation=Boolean((entry.allocation||'').trim());
     const itemName=String(entry.item||'').trim();
     if(itemName && !hasAllocation){
@@ -1709,13 +1711,16 @@ function buildDmEntries(){
     const hoursVal=dmToNullableNumber(alloc.hours);
     const bonusVal=dmToNullableNumber(alloc.extra_hours);
     const levelsPlus=dmToNullableNumber(alloc.levels_plus);
+    const levelsMinus=dmToNullableNumber(alloc.levels_minus);
+    const costVal=dmToNullableNumber(alloc.cost);
     pushEntry({
       type:'allocation',
       season,
       date:alloc.date||'',
       allocation:alloc.allocation||'',
-      cost:dmToNullableNumber(alloc.cost),
+      cost:costVal,
       levels_plus:levelsPlus,
+      levels_minus:levelsMinus,
       hours:hoursVal,
       extra_hours:bonusVal,
       location:alloc.location||''
@@ -1723,6 +1728,9 @@ function buildDmEntries(){
     DM_SUMMARY.allocations+=1;
     if(hoursVal!=null) DM_SUMMARY.allocatedHours+=hoursVal;
     if(bonusVal!=null) DM_SUMMARY.allocatedBonus+=bonusVal;
+    if(costVal!=null) DM_SUMMARY.allocatedCost+=costVal;
+    if(levelsPlus!=null) DM_SUMMARY.spentLevels+=levelsPlus;
+    if(levelsMinus!=null) DM_SUMMARY.earnedLevels+=levelsMinus;
   };
   if(Array.isArray(DM_DATA.preS11)){
     DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
@@ -1762,16 +1770,16 @@ function updateDmMeta(){
 function updateDmSummaryBar(){
   if(!dmSummaryBar) return;
   const earned=(Number(DM_SUMMARY.earnedHours)||0)+(Number(DM_SUMMARY.earnedBonus)||0);
-  const spent=(Number(DM_SUMMARY.allocatedHours)||0)+(Number(DM_SUMMARY.allocatedBonus)||0);
+  const spent=(Number(DM_SUMMARY.allocatedHours)||0)+(Number(DM_SUMMARY.allocatedBonus)||0)+(Number(DM_SUMMARY.allocatedCost)||0);
   const available=earned-spent;
-  const preLevels=Number(DM_SUMMARY.preLevels||0);
+  const levelBalance=(Number(DM_SUMMARY.earnedLevels)||0)-(Number(DM_SUMMARY.spentLevels)||0);
   if(dmHoursValueEl){
     dmHoursValueEl.textContent=fmtNumber(available);
     dmHoursValueEl.setAttribute('data-value', String(available));
   }
   if(dmLevelsValueEl){
-    dmLevelsValueEl.textContent=fmtNumber(preLevels);
-    dmLevelsValueEl.setAttribute('data-value', String(preLevels));
+    dmLevelsValueEl.textContent=fmtNumber(levelBalance);
+    dmLevelsValueEl.setAttribute('data-value', String(levelBalance));
   }
   const itemCount=DM_PRE_ITEMS.length||0;
   if(dmItemsCountEl){
@@ -1786,13 +1794,13 @@ function updateDmSummaryBar(){
     dmItemsListEl.innerHTML='';
     if(!itemCount){
       const empty=document.createElement('div');
-      empty.className='muted';
+      empty.className='dm-items-empty';
       empty.textContent='All pre-Season 11 items are allocated';
       dmItemsListEl.appendChild(empty);
     }else{
       DM_PRE_ITEMS.forEach(item=>{
         const row=document.createElement('div');
-        row.className='dm-popover-item';
+        row.className='dm-items-row';
         const name=document.createElement('div');
         name.textContent=item.item||'Unknown item';
         row.appendChild(name);
@@ -1805,7 +1813,7 @@ function updateDmSummaryBar(){
         if(item.location){ metaParts.push(item.location); }
         if(metaParts.length){
           const meta=document.createElement('div');
-          meta.className='dm-popover-item-date';
+          meta.className='dm-items-meta';
           meta.textContent=metaParts.join(' • ');
           row.appendChild(meta);
         }
@@ -1814,18 +1822,24 @@ function updateDmSummaryBar(){
     }
   }
 }
-function openDmItemsPopover(){
-  if(!dmItemsPopover) return;
+function openDmItemsModal(){
+  if(!dmItemsModal) return;
   updateDmSummaryBar();
-  dmItemsPopover.hidden=false;
+  dmItemsModal.classList.add('open');
+  refreshModalState();
   if(dmItemsBtnEl){
     dmItemsBtnEl.setAttribute('aria-expanded','true');
   }
-}
-function closeDmItemsPopover(){
-  if(dmItemsPopover){
-    dmItemsPopover.hidden=true;
+  if(dmItemsCloseBtn){
+    try{ dmItemsCloseBtn.focus({preventScroll:true}); }
+    catch(err){ dmItemsCloseBtn.focus(); }
   }
+}
+function closeDmItemsModal(){
+  if(dmItemsModal){
+    dmItemsModal.classList.remove('open');
+  }
+  refreshModalState();
   if(dmItemsBtnEl){
     dmItemsBtnEl.setAttribute('aria-expanded','false');
   }
@@ -3925,29 +3939,30 @@ if(dmNewEntryMenu){
 }
 if(dmItemsBtnEl){
   dmItemsBtnEl.addEventListener('click',()=>{
-    const expanded=dmItemsBtnEl.getAttribute('aria-expanded')==='true';
-    if(expanded){
-      closeDmItemsPopover();
+    const isOpen=dmItemsModal && dmItemsModal.classList.contains('open');
+    if(isOpen){
+      closeDmItemsModal();
     }else{
-      openDmItemsPopover();
+      openDmItemsModal();
     }
   });
 }
 if(dmItemsCloseBtn){
   dmItemsCloseBtn.addEventListener('click',()=>{
-    closeDmItemsPopover();
+    closeDmItemsModal();
+  });
+}
+if(dmItemsModal){
+  dmItemsModal.addEventListener('click',(event)=>{
+    if(event.target===dmItemsModal){
+      closeDmItemsModal();
+    }
   });
 }
 document.addEventListener('click',(event)=>{
   if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
     if(!dmNewEntryMenu.contains(event.target) && !(dmNewEntryBtn && dmNewEntryBtn.contains(event.target))){
       closeDmEntryMenu();
-    }
-  }
-  if(dmItemsPopover && !dmItemsPopover.hidden){
-    const clickedOverlay=(event.target===dmItemsPopover);
-    if((!dmItemsPopover.contains(event.target) || clickedOverlay) && !(dmItemsBtnEl && dmItemsBtnEl.contains(event.target))){
-      closeDmItemsPopover();
     }
   }
 });
@@ -3958,8 +3973,8 @@ document.addEventListener('keydown',(event)=>{
       closeDmEntryMenu();
       handled=true;
     }
-    if(dmItemsPopover && !dmItemsPopover.hidden){
-      closeDmItemsPopover();
+    if(dmItemsModal && dmItemsModal.classList.contains('open')){
+      closeDmItemsModal();
       handled=true;
     }
     if(handled){
