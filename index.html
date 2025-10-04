@@ -1137,6 +1137,7 @@ function applyDataJs(text){
     throw new Error('DATA missing after applying data.js');
   }
   DATA=next;
+  refreshAllDerivedData();
   rebuildCharacterOptions({preserveSelection:true});
   filterAndRender();
 }
@@ -1808,8 +1809,9 @@ function updateDmSummaryBar(){
           meta.textContent=metaParts.join(' • ');
           row.appendChild(meta);
         }
-      dmItemsListEl.appendChild(row);
-    });
+        dmItemsListEl.appendChild(row);
+      });
+    }
   }
 }
 function openDmItemsPopover(){
@@ -1840,7 +1842,6 @@ function closeDmEntryMenu(){
   if(dmNewEntryBtn){
     dmNewEntryBtn.setAttribute('aria-expanded','false');
   }
-}
 }
 function setDmHeader(){
   if(avatarEl){
@@ -2138,6 +2139,10 @@ function collapseCard(card){ if(isAnimating(card))return; const bd=card.querySel
 function toggleCard(card){ card.classList.contains('open')?collapseCard(card):expandCard(card); }
 
 /* --- inventory helpers --- */
+const REGEX_META_CHARS=/[\\^$.*+?()[\]{}|]/g;
+function escapeRegexFragment(value){
+  return String(value||'').replace(REGEX_META_CHARS,'\\$&');
+}
 function normItemName(s){ return (s||'').trim(); }
 function parseLostItemList(raw){
   if(Array.isArray(raw)){
@@ -2195,10 +2200,15 @@ function collectPermanentInventory(charKey){
           removeByName(name);
         });
       }else if(adv.notes){
-        [...keptMap.values()].forEach(meta=>{
-          const regex=new RegExp('\\b'+meta.name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i');
-          if(regex.test(adv.notes)) keptMap.delete(meta.name.toLowerCase());
-        });
+        const note=String(adv.notes||'');
+        if(note){
+          [...keptMap.values()].forEach(meta=>{
+            const pattern=new RegExp(`\\b${escapeRegexFragment(meta.name)}\\b`,'i');
+            if(pattern.test(note)){
+              keptMap.delete(meta.name.toLowerCase());
+            }
+          });
+        }
       }
       lostNames.forEach(removeByName);
       return;
@@ -2317,8 +2327,17 @@ function deriveConsumableInventory(charKey){
     const items=adv.consumable_items||[];
     const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
     if(isLoss){
-      if(items.length) items.forEach(raw=>sub(raw.replace(/^\(|\)$/g,'')));
-      else if(adv.notes){ [...counts.keys()].forEach(name=>{ if(new RegExp('\\b'+name.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\$&')+'\\b','i').test(adv.notes)) sub(name); }); }
+      if(items.length){
+        items.forEach(raw=>sub(raw.replace(/^\(|\)$/g,'')));
+      }else if(adv.notes){
+        const note=String(adv.notes||'');
+        if(note){
+          [...counts.keys()].forEach(name=>{
+            const pattern=new RegExp(`\\b${escapeRegexFragment(name)}\\b`,'i');
+            if(pattern.test(note)) sub(name);
+          });
+        }
+      }
       return;
     }
     items.forEach(raw=>{ const {name,acquired}=parseConsumableName(raw); if(acquired) add(name); });
@@ -3626,8 +3645,20 @@ function deleteCard(card){
   applyDataMutation(key);
 }
 
+function ensureDerivedStores(){
+  if(!DATA || typeof DATA!=='object') return;
+  if(!DATA.stats || typeof DATA.stats!=='object'){
+    DATA.stats={};
+  }
+  if(!DATA.years || typeof DATA.years!=='object'){
+    DATA.years={};
+  }
+}
+
 function updateDerivedDataFor(key){
   if(isDmLogKey(key)) return;
+  if(!DATA || !DATA.characters) return;
+  ensureDerivedStores();
   sortCharacterAdventures(key);
   const ch=DATA.characters[key];
   if(!ch) return;
@@ -3658,6 +3689,14 @@ function updateDerivedDataFor(key){
   };
 }
 
+function refreshAllDerivedData(){
+  if(!DATA || !DATA.characters) return;
+  ensureDerivedStores();
+  Object.keys(DATA.characters).forEach(key=>{
+    updateDerivedDataFor(key);
+  });
+}
+
 function applyDataMutation(key){
   updateDerivedDataFor(key);
   filterAndRender();
@@ -3670,7 +3709,8 @@ function applyDataMutation(key){
 /* --- stats & header --- */
 function updateCharMeta(key){
   if(!metaEl) return;
-  const stats=DATA.stats[key];
+  const statsMap=(DATA && typeof DATA.stats==='object')?DATA.stats:{};
+  const stats=statsMap[key];
   if(!stats){
     metaEl.textContent='';
     metaEl.style.display='none';
@@ -3698,7 +3738,8 @@ function renderStats(key){
     updateDmMeta();
     return;
   }
-  const s=DATA.stats[key]||{};
+  const statsMap=(DATA && typeof DATA.stats==='object')?DATA.stats:{};
+  const s=statsMap[key]||{};
   updateCharMeta(key);
   const goldVal=fmtNumber(s.net_gp||0);
   if(goldValueEl) goldValueEl.textContent=goldVal;
@@ -3955,6 +3996,7 @@ function initApp(){
     showDataLoadError('Could not load <code>data.js</code>.');
     return false;
   }
+  refreshAllDerivedData();
   if(emptyEl){
     emptyEl.style.display='none';
   }
