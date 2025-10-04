@@ -42,12 +42,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Toolbar */
 .toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
-.dm-actions{position:relative;display:flex;align-items:center}
-.dm-actions .btn{display:inline-flex;align-items:center;gap:8px}
-.dm-menu{position:absolute;top:calc(100% + 6px);left:0;display:flex;flex-direction:column;min-width:180px;padding:6px 0;border-radius:12px;background:#fff;box-shadow:var(--shadow2);border:1px solid var(--border);z-index:40}
-.dm-menu[hidden]{display:none}
-.dm-menu-item{padding:8px 14px;text-align:left;background:none;border:none;font:inherit;color:var(--ink);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
-.dm-menu-item:hover,.dm-menu-item:focus{background:#eef4ff;color:var(--primary);outline:none}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1)}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
@@ -246,6 +240,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 body.modal-open{overflow:hidden;}
 body.modal-open #addCard{display:none;}
+body.modal-open #addCardMenu{display:none;}
 
 #addCard{
   position:fixed;
@@ -269,6 +264,11 @@ body.modal-open #addCard{display:none;}
 #addCard:hover{transform:translateY(-2px);box-shadow:0 24px 40px rgba(255,61,113,.45)}
 #addCard:focus-visible{outline:3px solid rgba(255,61,113,.4);outline-offset:4px}
 .toolbar #addCard{margin-left:auto}
+
+.fab-menu{position:fixed;right:24px;bottom:100px;display:flex;flex-direction:column;gap:6px;min-width:200px;padding:8px 0;border-radius:12px;background:#fff;box-shadow:var(--shadow2);border:1px solid var(--border);z-index:65}
+.fab-menu[hidden]{display:none}
+.fab-menu button{padding:10px 16px;text-align:left;background:none;border:none;font:inherit;color:var(--ink);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease);display:flex;align-items:center;gap:10px}
+.fab-menu button:hover,.fab-menu button:focus{background:#eef4ff;color:var(--primary);outline:none}
 
 /* Activity cards (compact header) */
 .card.activity{background:#f7f8fa;border-color:#e6e9f2}
@@ -381,24 +381,12 @@ body.avatar-overlay-open{overflow:hidden}
       </button>
     </div>
     <div class="toolbar">
-      <div id="dmActions" class="dm-actions" hidden aria-hidden="true">
-        <button id="dmNewEntryBtn" class="btn small" type="button" aria-expanded="false" aria-haspopup="true">
-          <span class="btn-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-          </span>
-          New entry
-        </button>
-        <div id="dmNewEntryMenu" class="dm-menu" role="menu" hidden>
-          <button type="button" class="dm-menu-item" role="menuitem" data-dm-action="session">New session</button>
-          <button type="button" class="dm-menu-item" role="menuitem" data-dm-action="allocation">New allocation</button>
-        </div>
-      </div>
       <div class="search">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" placeholder="Search adventures"/>
       </div>
       <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
-      <button id="addCard" class="icon-btn" title="Add new adventure" aria-label="Add new adventure">
+      <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
@@ -447,6 +435,8 @@ body.avatar-overlay-open{overflow:hidden}
   <section id="grid" class="grid cols"></section>
   <div id="empty" class="empty" style="display:none;">No adventures match your filters.</div>
 </div>
+
+<div id="addCardMenu" class="fab-menu" role="menu" hidden aria-hidden="true"></div>
 
 <div id="dmItemsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dmItemsTitle">
   <div class="modal-card dm-items-card">
@@ -561,6 +551,7 @@ const emptyEl  = document.getElementById('empty');
 const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
+const addCardMenu = document.getElementById('addCardMenu');
 const activityToggleBtn = document.getElementById('activityToggle');
 const headerQuick = document.getElementById('headerQuick');
 const dmSummaryBar = document.getElementById('dmSummaryBar');
@@ -571,9 +562,6 @@ const dmItemsBtnEl = document.getElementById('dmItemsBtn');
 const dmItemsModal = document.getElementById('dmItemsModal');
 const dmItemsListEl = document.getElementById('dmItemsList');
 const dmItemsCloseBtn = document.getElementById('dmItemsClose');
-const dmActionsWrap = document.getElementById('dmActions');
-const dmNewEntryBtn = document.getElementById('dmNewEntryBtn');
-const dmNewEntryMenu = document.getElementById('dmNewEntryMenu');
 const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
@@ -872,8 +860,72 @@ function refreshModalState(){
   else{ document.body.classList.remove('modal-open'); }
 }
 
+function closeAddMenu(){
+  if(addCardMenu){
+    addCardMenu.hidden=true;
+    addCardMenu.setAttribute('aria-hidden','true');
+    addCardMenu.innerHTML='';
+  }
+  if(addCardBtn){
+    addCardBtn.setAttribute('aria-expanded','false');
+  }
+}
+
+function dispatchDmNewEntry(type){
+  if(!type) return;
+  window.dispatchEvent(new CustomEvent('dm:new-entry',{detail:{type}}));
+}
+
+function buildAddMenuOptions(){
+  if(!charSel) return [];
+  const key=charSel.value;
+  if(isDmLogKey(key)){
+    if(!hasDmLogData()) return [];
+    return [
+      {label:'New session', action:()=>dispatchDmNewEntry('session')},
+      {label:'New allocation', action:()=>dispatchDmNewEntry('allocation')}
+    ];
+  }
+  if(!isValidSheetKey(key)) return [];
+  return [
+    {label:'New adventure', action:()=>createCharacterNewEntry('adventure')},
+    {label:'Downtime activity', action:()=>createCharacterNewEntry('Downtime Activity')}
+  ];
+}
+
+function openAddMenu(){
+  if(!addCardMenu||!addCardBtn) return;
+  const options=buildAddMenuOptions();
+  if(!options.length){
+    closeAddMenu();
+    return;
+  }
+  addCardMenu.innerHTML='';
+  options.forEach(option=>{
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='fab-menu-item';
+    btn.textContent=option.label;
+    btn.setAttribute('role','menuitem');
+    btn.addEventListener('click',()=>{
+      closeAddMenu();
+      option.action();
+    });
+    addCardMenu.appendChild(btn);
+  });
+  addCardMenu.hidden=false;
+  addCardMenu.setAttribute('aria-hidden','false');
+  addCardBtn.setAttribute('aria-expanded','true');
+  const first=addCardMenu.querySelector('button');
+  if(first){
+    try{ first.focus({preventScroll:true}); }
+    catch(err){ first.focus(); }
+  }
+}
+
 function openCardOverlay(card){
   if(!cardOverlay || !card) return;
+  closeAddMenu();
   cardOverlay.innerHTML='';
   cardOverlay.appendChild(card);
   cardOverlay.classList.add('open');
@@ -889,6 +941,39 @@ function closeCardOverlay(){
   overlayCard=null;
   cardOverlay.innerHTML='';
   refreshModalState();
+}
+
+function createCharacterNewEntry(kind){
+  if(!DATA || !DATA.characters || !charSel) return;
+  const key=charSel.value;
+  if(!isValidSheetKey(key) || !DATA.characters[key]) return;
+  const normalized=kind==='Downtime Activity'?'Downtime Activity':'adventure';
+  const isActivity=normalized!=='adventure';
+  const today=new Date().toISOString().slice(0,10);
+  const template={
+    date:today,
+    title:isActivity?'New Downtime Activity':'New Adventure',
+    code:'',
+    dm:'',
+    gp_plus:0,
+    gp_minus:0,
+    dtd_plus:0,
+    dtd_minus:0,
+    level_plus:0,
+    perm_items:[],
+    lost_perm_item:'',
+    consumable_items:[],
+    notes:'',
+    kind:normalized,
+    traded_item:'',
+    __openEdit:true,
+    __isNew:true,
+    __charKey:key,
+    __lockedKind:normalized
+  };
+  const card=makeCard(template,-1);
+  card.classList.add('overlay-card');
+  openCardOverlay(card);
 }
 
 function loadDataDraft(){
@@ -1824,6 +1909,7 @@ function updateDmSummaryBar(){
 }
 function openDmItemsModal(){
   if(!dmItemsModal) return;
+  closeAddMenu();
   updateDmSummaryBar();
   dmItemsModal.classList.add('open');
   refreshModalState();
@@ -1844,19 +1930,6 @@ function closeDmItemsModal(){
     dmItemsBtnEl.setAttribute('aria-expanded','false');
   }
 }
-function openDmEntryMenu(){
-  if(!dmNewEntryMenu||!dmNewEntryBtn) return;
-  dmNewEntryMenu.hidden=false;
-  dmNewEntryBtn.setAttribute('aria-expanded','true');
-}
-function closeDmEntryMenu(){
-  if(dmNewEntryMenu){
-    dmNewEntryMenu.hidden=true;
-  }
-  if(dmNewEntryBtn){
-    dmNewEntryBtn.setAttribute('aria-expanded','false');
-  }
-}
 function setDmHeader(){
   if(avatarEl){
     resetAvatar();
@@ -1873,6 +1946,7 @@ function setDmHeader(){
   }
 }
 function updateUiForSelection(key){
+  closeAddMenu();
   const isDm=isDmLogKey(key);
   if(headerQuick){
     headerQuick.style.display=isDm?'none':'';
@@ -1883,15 +1957,7 @@ function updateUiForSelection(key){
     dmSummaryBar.hidden=!showSummary;
     dmSummaryBar.setAttribute('aria-hidden', showSummary?'false':'true');
   }
-  if(dmActionsWrap){
-    const showActions=isDm && hasDmLogData();
-    dmActionsWrap.hidden=!showActions;
-    dmActionsWrap.setAttribute('aria-hidden', showActions?'false':'true');
-    if(!showActions){
-      closeDmEntryMenu();
-      closeDmItemsPopover();
-    }
-  }else if(!isDm){
+  if(!isDm){
     closeDmItemsPopover();
   }
   if(activityToggleBtn){
@@ -1899,8 +1965,12 @@ function updateUiForSelection(key){
     activityToggleBtn.setAttribute('aria-hidden', isDm?'true':'false');
   }
   if(addCardBtn){
-    addCardBtn.style.display=isDm?'none':'';
-    addCardBtn.setAttribute('aria-hidden', isDm?'true':'false');
+    const showButton=!isDm || hasDmLogData();
+    addCardBtn.style.display=showButton?'':'';
+    addCardBtn.setAttribute('aria-hidden', showButton?'false':'true');
+    if(!showButton){
+      closeAddMenu();
+    }
   }
   if(qEl){
     const placeholder=isDm?'Search DM log entries':(defaultSearchPlaceholder||'');
@@ -1911,6 +1981,16 @@ function updateUiForSelection(key){
       qEl.removeAttribute('aria-label');
     }
   }
+  updateAddButtonContext(isDm);
+}
+
+function updateAddButtonContext(isDm){
+  if(!addCardBtn) return;
+  const description=isDm?'Add a new DM session or reward allocation':'Add a new adventure or downtime activity';
+  addCardBtn.title=description;
+  addCardBtn.setAttribute('aria-label', description);
+  const expanded=(addCardMenu && !addCardMenu.hidden)?'true':'false';
+  addCardBtn.setAttribute('aria-expanded', expanded);
 }
 function renderDmLog(){
   if(!grid) return;
@@ -2929,6 +3009,8 @@ function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
   const card=document.createElement('article'); card.className='card'+(act?' activity':''); card.dataset.idx=String(idx);
   card.__dataRef=a;
+  const lockedKind=(a && a.__lockedKind)?String(a.__lockedKind):'';
+  const hasLockedKind=!!lockedKind;
 
   const hd=document.createElement('div'); hd.className='card-hd';
   const main=document.createElement('div');
@@ -3168,6 +3250,14 @@ function makeCard(a,idx){
     return select;
   }
   controls.kind=addField('Kind', makeKindSelect());
+  if(hasLockedKind){
+    controls.kind.value=lockedKind;
+    controls.kind.disabled=true;
+    const kindFieldEl=controls.kind.closest('.field');
+    if(kindFieldEl){
+      kindFieldEl.style.display='none';
+    }
+  }
   controls.traded_item=addField('Item traded away', makeInput('text'));
 
   const gpRowForm=document.createElement('div'); gpRowForm.className='kv2';
@@ -3422,9 +3512,10 @@ function makeCard(a,idx){
   view.appendChild(actions);
 
   function populate(editing=false){
-    const kindRaw=(a.kind||'').toString();
+    const kindRaw=hasLockedKind?lockedKind:(a.kind||'').toString();
     const kindVal=kindRaw && kindRaw.toLowerCase()!=='adventure'?'Downtime Activity':'adventure';
     controls.kind.value=kindVal;
+    controls.kind.disabled=hasLockedKind;
     const isActivityMode=(controls.kind.value||'adventure')!=='adventure';
 
     const titleRaw=a.title||'';
@@ -3448,7 +3539,8 @@ function makeCard(a,idx){
 
     const kindLabel=(controls.kind.value||'adventure')==='adventure'?'Adventure':'Downtime Activity';
     kindField.__display.textContent=kindLabel;
-    kindField.style.display=editing?'':'none';
+    const showKindField=editing && !hasLockedKind;
+    kindField.style.display=showKindField?'':'none';
 
     const dmRaw=a.dm||'';
     controls.dm.value=dmRaw;
@@ -3630,6 +3722,9 @@ async function saveCardChanges(card){
     }
     delete data.__isNew;
     delete data.__charKey;
+  }
+  if(Object.prototype.hasOwnProperty.call(data,'__lockedKind')){
+    delete data.__lockedKind;
   }
   markDirty();
   exitEditMode(card);
@@ -3919,24 +4014,6 @@ function filterAndRender(){
 /* --- events --- */
 qEl.addEventListener('input',filterAndRender);
 charSel.addEventListener('change',filterAndRender);
-if(dmNewEntryBtn){
-  dmNewEntryBtn.addEventListener('click',()=>{
-    if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
-      closeDmEntryMenu();
-    }else{
-      openDmEntryMenu();
-    }
-  });
-}
-if(dmNewEntryMenu){
-  dmNewEntryMenu.addEventListener('click',(event)=>{
-    const actionBtn=event.target.closest('.dm-menu-item');
-    if(!actionBtn) return;
-    const action=actionBtn.getAttribute('data-dm-action')||'';
-    closeDmEntryMenu();
-    window.dispatchEvent(new CustomEvent('dm:new-entry',{detail:{type:action}}));
-  });
-}
 if(dmItemsBtnEl){
   dmItemsBtnEl.addEventListener('click',()=>{
     const isOpen=dmItemsModal && dmItemsModal.classList.contains('open');
@@ -3960,17 +4037,19 @@ if(dmItemsModal){
   });
 }
 document.addEventListener('click',(event)=>{
-  if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
-    if(!dmNewEntryMenu.contains(event.target) && !(dmNewEntryBtn && dmNewEntryBtn.contains(event.target))){
-      closeDmEntryMenu();
+  if(addCardMenu && !addCardMenu.hidden){
+    const withinMenu=addCardMenu.contains(event.target);
+    const withinButton=addCardBtn && addCardBtn.contains(event.target);
+    if(!withinMenu && !withinButton){
+      closeAddMenu();
     }
   }
 });
 document.addEventListener('keydown',(event)=>{
   if(event.key==='Escape'){
     let handled=false;
-    if(dmNewEntryMenu && !dmNewEntryMenu.hidden){
-      closeDmEntryMenu();
+    if(addCardMenu && !addCardMenu.hidden){
+      closeAddMenu();
       handled=true;
     }
     if(dmItemsModal && dmItemsModal.classList.contains('open')){
@@ -4082,33 +4161,11 @@ if(downloadBtn){
 }
 if(addCardBtn){
   addCardBtn.addEventListener('click',()=>{
-    const key=charSel.value;
-    const ch=DATA.characters[key];
-    if(!ch) return;
-    const today=new Date().toISOString().slice(0,10);
-    const template={
-      date:today,
-      title:'New Adventure',
-      code:'',
-      dm:'',
-      gp_plus:0,
-      gp_minus:0,
-      dtd_plus:0,
-      dtd_minus:0,
-      level_plus:0,
-      perm_items:[],
-      lost_perm_item:'',
-      consumable_items:[],
-      notes:'',
-      kind:'adventure',
-      traded_item:'',
-      __openEdit:true,
-      __isNew:true,
-      __charKey:key
-    };
-    const card=makeCard(template,-1);
-    card.classList.add('overlay-card');
-    openCardOverlay(card);
+    if(addCardMenu && !addCardMenu.hidden){
+      closeAddMenu();
+    }else{
+      openAddMenu();
+    }
   });
 }
 </script>

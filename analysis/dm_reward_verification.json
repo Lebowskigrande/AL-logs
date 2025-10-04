@@ -1,0 +1,2138 @@
+{
+  "analysis": [
+    {
+      "character": "Agatha",
+      "dm_log": [
+        {
+          "date": "2024-09-11T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "3 levels to Agatha",
+          "season": "50th Anniversary Season B"
+        },
+        {
+          "date": "2025-04-25T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Ring of Invisibility + 40 DTD to Agatha",
+          "season": "Service Awards 2025"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2025-05-14",
+          "title": "DM Reward",
+          "perm_items": [
+            "Ring of Invisibility"
+          ],
+          "level_plus": null,
+          "dtd_net": 40,
+          "notes": null
+        },
+        {
+          "date": "2024-09-11",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 3,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Anfer",
+      "dm_log": [
+        {
+          "date": "2021-02-04T00:00:00",
+          "code": "CCC-MCX-01-02",
+          "name": "The Rescue",
+          "item": "Cape of Billowing",
+          "allocation": "Level to Anfer",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Arvistan Brightwave",
+      "dm_log": [
+        {
+          "date": "2025-05-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Player rewards: Arcane Grimoire +3 and Blessing of Protection to Arvistan",
+          "season": "Service Awards 2025"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2025-05-28",
+          "title": "DM Reward",
+          "perm_items": [
+            "Arcane Grimoire +3",
+            "Blessing of Protection"
+          ],
+          "level_plus": null,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2020-11-01",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Buckley",
+      "dm_log": [
+        {
+          "date": "2020-03-03T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Darrendrian (x2), Morty, Buckley",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2020-03-03",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 10,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Chef Ture",
+      "dm_log": [
+        {
+          "date": "2024-09-01T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Boomerang Shield + 10 DTD to Chef Ture",
+          "season": "50th Anniversary Season B"
+        },
+        {
+          "date": "2024-09-01T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Rare reward (Flametongue Warhammer) + 2500gp to Chef Ture",
+          "season": "50th Anniversary Season B"
+        }
+      ],
+      "char_log": [
+        {
+          "date": null,
+          "title": "DM Reward x 2",
+          "perm_items": [
+            "Boomerang Shield",
+            "Flametongue Warhammer"
+          ],
+          "level_plus": 1,
+          "dtd_net": 10,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Creature X-12",
+      "dm_log": [
+        {
+          "date": "2020-09-08T00:00:00",
+          "code": "DDHC-TYP",
+          "name": "Chapter 3 pt. 2",
+          "item": "Wand of Lightning Bolts, Hat of Disguise, Eagle Whistle, Dagger +1 (broken), Dagger +1, Mace +1 (broken), Stone of Ill Luck",
+          "allocation": "Hat of Disuise to Creature X-12",
+          "season": "preS11"
+        },
+        {
+          "date": "2022-07-03T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Level to Creature X-12",
+          "season": "Season 11b"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2023-07-06",
+          "title": "DM Reward (x2)",
+          "perm_items": [
+            "Hat of Disguise"
+          ],
+          "level_plus": 1,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Darrendrian",
+      "dm_log": [
+        {
+          "date": "2020-03-03T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Darrendrian (x2), Morty, Buckley",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-06-20T00:00:00",
+          "code": "CCC-SALT-02-05",
+          "name": "The Darkness Never Forgets",
+          "item": "Cape of the Mountbank",
+          "allocation": "Item to Darrendrian",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-09-19T00:00:00",
+          "code": "DDHC-TYP",
+          "name": "Chapter 3 pt. 2",
+          "item": "Wand of Lightning Bolts, Hat of Disguise, Eagle Whistle",
+          "allocation": "Item to Darrendrian",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-10-03",
+          "title": "DM Reward",
+          "perm_items": [
+            "Wand of Lightning Bolts"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-06-26",
+          "title": "DM Reward",
+          "perm_items": [
+            "Cape of the Mountbank"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-03-06",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": null,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-03-03",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": null,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Dolroruuk",
+      "dm_log": [
+        {
+          "date": "2021-05-25T00:00:00",
+          "code": "CCC-BMG-MOON-6-2",
+          "name": "Troubled Visions",
+          "item": "Boots of Elvenkind, Moon Touched Rapier",
+          "allocation": "Level to Dolroruuk",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-05-31T00:00:00",
+          "code": "CCC-BMG-MOON-6-3",
+          "name": "Planar Convergance",
+          "item": "Javeline of Lightning, Horn of Silent Alarm",
+          "allocation": "Level to Dolroruuk",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-09-15T00:00:00",
+          "code": "CCC-DES-01-02",
+          "name": "A Sanity Never Questioned",
+          "item": "Staff of Healing (Driftwood staff)",
+          "allocation": "Level to Dolroruuk",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": null,
+          "title": "DM Reward x 3",
+          "perm_items": [],
+          "level_plus": 3,
+          "dtd_net": 30,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Gnat",
+      "dm_log": [
+        {
+          "date": "2021-09-03T00:00:00",
+          "code": "DRW-09",
+          "name": "Vile Bounty",
+          "item": "Amulet of Health, Mariner's Studded Leather",
+          "allocation": "Item to Gnat",
+          "season": "preS11"
+        },
+        {
+          "date": "2028-07-14T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Rare reward (Vicious Glavie) to Gnat + 2500 gp",
+          "season": "50th Anniversary Season B"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-09-29",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2021-09-29",
+          "title": "DM Reward",
+          "perm_items": [
+            "Marvelous Pigments"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-09-29",
+          "title": "DM Reward",
+          "perm_items": [
+            "Bracers of Defense"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": null,
+          "title": "DM Reward",
+          "perm_items": [
+            "Amulet of Health"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": null,
+          "title": "DM Reward",
+          "perm_items": [
+            "Vicious Glaive"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Goblert Godfrey",
+      "dm_log": [
+        {
+          "date": "2021-10-19T00:00:00",
+          "code": "DDHC-TOA-9",
+          "name": "Ruins of Matolo",
+          "item": "Marvelous Pigments, Bronze Griffon, +1 Scimitar, 2310 gp",
+          "allocation": "Item to (Pigments) to Goblert",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2022-01-15",
+          "title": "DM Reward",
+          "perm_items": [
+            "Nolzur's Pigments"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Leonardo",
+      "dm_log": [
+        {
+          "date": "2020-06-06T00:00:00",
+          "code": "CCC-CIC-10",
+          "name": "Terror at Soward Manor",
+          "item": "Bracers of Defense",
+          "allocation": "Item to Leonardo",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2020-07-19",
+          "title": "DM Reward",
+          "perm_items": [
+            "Bracers of Defense"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Lorien",
+      "dm_log": [
+        {
+          "date": "2020-05-16T00:00:00",
+          "code": "DDAL 09-04",
+          "name": "Day of the Devil",
+          "item": "Periapt of Health",
+          "allocation": "Level to Lorien",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-06-25T00:00:00",
+          "code": "CCC-ELF-001",
+          "name": "Life's a Party",
+          "item": "Ring of Warmth",
+          "allocation": "Level to Lorien",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-07-04T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Lorien",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2020-07-13",
+          "title": "DM Rewards x3",
+          "perm_items": [],
+          "level_plus": 3,
+          "dtd_net": 60,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Lyrielle",
+      "dm_log": [
+        {
+          "date": "2021-05-09T00:00:00",
+          "code": "CCC-BMG-MOON6-3",
+          "name": "A Reopened Eye",
+          "item": "Fey Cloak of Protection",
+          "allocation": "Item to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-05-19T00:00:00",
+          "code": "CCC-CIC-15",
+          "name": "Den of the Dead Witch",
+          "item": "Necklace of Fireballs (6)",
+          "allocation": "Item to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-06-23T00:00:00",
+          "code": "CCC-ELF-001",
+          "name": "Life's a Party",
+          "item": "Ring of Warmth",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-06-26T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-06-27T00:00:00",
+          "code": "CCC-BMG-MOON-6-3",
+          "name": "Planar Convergance",
+          "item": "Javeline of Lightning, Horn of Silent Alarm",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-06-30T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-07-12T00:00:00",
+          "code": "CCC-MCX-01-02",
+          "name": "The Rescue",
+          "item": "",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-07-28T00:00:00",
+          "code": "DC-PoA-DCAF01",
+          "name": "Let it Goat",
+          "item": "Boots of the Winterlands, Pole of Angling",
+          "allocation": "Level to Lyrielle",
+          "season": "preS11"
+        },
+        {
+          "date": "2022-07-08T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Levels to Lyrielle",
+          "season": "Season 11b"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2022-07-04",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 6,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-09-04",
+          "title": "DM Reward x 2",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 40,
+          "notes": null
+        },
+        {
+          "date": "2021-08-27",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2021-07-15",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2021-07-15",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2021-07-15",
+          "title": "DM Reward",
+          "perm_items": [
+            "Fey Cloak of Protection"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-07-06",
+          "title": "DM Reward x 3",
+          "perm_items": [],
+          "level_plus": 3,
+          "dtd_net": 30,
+          "notes": "Purchased Bruce the Elephant for 200 gp"
+        },
+        {
+          "date": "2021-07-06",
+          "title": "DM Reward",
+          "perm_items": [
+            "Necklace of Fireballs"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Madam Renata",
+      "dm_log": [
+        {
+          "date": "2021-05-28T00:00:00",
+          "code": "CCC-BMG-MOON-6-3",
+          "name": "Planar Convergance",
+          "item": "Javeline of Lightning, Horn of Silent Alarm",
+          "allocation": "Level to Madam Renata",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-09-03T00:00:00",
+          "code": "DDEX02-10",
+          "name": "Cloaks and Shadows",
+          "item": "Winged Boots",
+          "allocation": "Item to Madam Renata",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-09-08T00:00:00",
+          "code": "CCC-DES-01-01",
+          "name": "Finding the Rabbit Hole",
+          "item": "FOWP - Ivory Goats",
+          "allocation": "Level to Madam Renata",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-09-24",
+          "title": "DM Reward x 3",
+          "perm_items": [],
+          "level_plus": 3,
+          "dtd_net": 30,
+          "notes": null
+        },
+        {
+          "date": "2021-09-24",
+          "title": "DM Reward",
+          "perm_items": [
+            "Winged Boots"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Morty",
+      "dm_log": [
+        {
+          "date": "2020-03-03T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Darrendrian (x2), Morty, Buckley",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-03-28T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Zandarax (x2), Morty, S9 reward (Tressym) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-06-18T00:00:00",
+          "code": "CCC-CIC-10",
+          "name": "Terror at Soward Manor",
+          "item": "Bracers of Defense",
+          "allocation": "Level to Morty",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-08-06T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Ring of Warmth",
+          "allocation": "Level to Morty",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2020-08-08",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-08-08",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-08-08",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-03-25",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 10,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Noraggen",
+      "dm_log": [
+        {
+          "date": "2020-05-21T00:00:00",
+          "code": "DDAL 09-04",
+          "name": "Day of the Devil",
+          "item": "Periapt of Health",
+          "allocation": "Level to Noraggen",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-06-05T00:00:00",
+          "code": "Playtest",
+          "name": "Tier 4 w/ Jon K.",
+          "item": "",
+          "allocation": "Level to Noraggen",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-08-12T00:00:00",
+          "code": "CCC-BLD 1-1",
+          "name": "Bleeding Gate: Pandemonium",
+          "item": "Periapt of Wound Closure",
+          "allocation": "Level to Noraggen",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-08-15T00:00:00",
+          "code": "CCC-CIC-10",
+          "name": "Terror at Soward Manor",
+          "item": "Bracers of Defense",
+          "allocation": "Level to Noraggen",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-11-15T00:00:00",
+          "code": "DDHC-TYP",
+          "name": "Chapter 3",
+          "item": "Tloque's Battleaxe, Bracelet of Rock Magic, Eagle Whistle",
+          "allocation": "Item (Battleaxe) to Noraggen",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-18T00:00:00",
+          "code": "CCC-BMG-22 PHLAN2-1",
+          "name": "Demagogue",
+          "item": "Tyr's Blessing of the Mind",
+          "allocation": "Level to Noraggen",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-04-01",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-11-18",
+          "title": "DM Reward (x4)",
+          "perm_items": [],
+          "level_plus": 4,
+          "dtd_net": 40,
+          "notes": null
+        },
+        {
+          "date": "2020-11-18",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-11-18",
+          "title": "DM Reward",
+          "perm_items": [
+            "Tloque's Battleaxe"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Norixius",
+      "dm_log": [
+        {
+          "date": "2022-03-07T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Dragon slayer greatsword + 20 DTD to Norixius",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-03-09T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Giant slayer greatsword + 2500 gp to Norixius",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-04-07T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Flametongue greatsword + 2500 gp to Norixius",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2023-04-26T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Sixth Sword + 2500gp to Norixius",
+          "season": "Season 12b"
+        },
+        {
+          "date": "2025-08-27T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Player rewards: Ring of Acid Resistance, Stirring Dragon's Wrath Greatsword to Norixius",
+          "season": "Service Awards 2025"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2025-08-27",
+          "title": "DM Reward",
+          "perm_items": [
+            "Dragon's Wrath Greatsword",
+            "Ring of Acid Resistance"
+          ],
+          "level_plus": null,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2024-03-23",
+          "title": "DM Reward",
+          "perm_items": [
+            "The Sixth Sword"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2022-05-02",
+          "title": "Season 11b DM Reward (R)",
+          "perm_items": [
+            "Giant slayer greatsword"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2022-05-02",
+          "title": "Season 11b DM Reward (R)",
+          "perm_items": [
+            "Flametongue greatsword"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2022-04-20",
+          "title": "Season 11b DM Reward (R)",
+          "perm_items": [
+            "Dragon slayer greatsword"
+          ],
+          "level_plus": null,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Orakhar",
+      "dm_log": [
+        {
+          "date": "2020-04-29T00:00:00",
+          "code": "DDEX 2-10",
+          "name": "Cloaks and Shadows",
+          "item": "Winged Boots",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-10-03T00:00:00",
+          "code": "CCC-DES-01-06",
+          "name": "One Last Job",
+          "item": "Jeny's Special Helper (Broom of Flying), Black Shard Amulet, Charlatan's Die",
+          "allocation": "Item (Broom) to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-01-21T00:00:00",
+          "code": "CCC-CIC-15",
+          "name": "Den of the Dead Witch",
+          "item": "Necklace of Fireballs (6)",
+          "allocation": "Item to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-25T00:00:00",
+          "code": "CCC-BMG-23 PHLAN2-2",
+          "name": "Hatemaster",
+          "item": "Tyr's Blessing of Command",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-03-04T00:00:00",
+          "code": "CCC-BMG-24 PHLAN 2-3",
+          "name": "The Royal We",
+          "item": "Tyr's Blessing of Luck",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-03-27T00:00:00",
+          "code": "CCC-BMG-22 PHLAN2-1",
+          "name": "Demagogue",
+          "item": "Tyr's Blessing of the Mind",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-05-30T00:00:00",
+          "code": "CCC-BMG-MOON-6-2",
+          "name": "Troubled Visions",
+          "item": "Boots of Elvenkind, Moon Touched Short Sword",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-05-09T00:00:00",
+          "code": "DDAL05-05",
+          "name": "A Dish Best Served Cold",
+          "item": "Cloak of Displacement",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-07-16T00:00:00",
+          "code": "DDHC-OotA",
+          "name": "Chapter 15",
+          "item": "Scimitar of Speed",
+          "allocation": "Item to Orakhar",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-08-18T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Orakhar",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-08-27",
+          "title": "DM Reward x 4",
+          "perm_items": [],
+          "level_plus": 4,
+          "dtd_net": 80,
+          "notes": null
+        },
+        {
+          "date": "2021-08-27",
+          "title": "DM Reward",
+          "perm_items": [
+            "Broom of Flying"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-07-16",
+          "title": "DM Reward",
+          "perm_items": [
+            "Scimitar of Speed"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-06-11",
+          "title": "DM Rewards x 2",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 40,
+          "notes": null
+        },
+        {
+          "date": "2021-05-07",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2021-04-02",
+          "title": "DM Reward",
+          "perm_items": [
+            "Necklace of Fireballs (6 Beads)"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-03-26",
+          "title": "DM Reward (x2)",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Raguel",
+      "dm_log": [
+        {
+          "date": "2021-10-24T00:00:00",
+          "code": "HULB 4-1",
+          "name": "Whispers from the Deep",
+          "item": "Anstruth Harp",
+          "allocation": "Item (Harp) to Raguel",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-11-01T00:00:00",
+          "code": "CCC-QCC-2017",
+          "name": "Delusions of Grandeur, Dreams of Revenge",
+          "item": "Manual of Bodily Health",
+          "allocation": "Item (Manual) to Raguel",
+          "season": "preS11"
+        },
+        {
+          "date": "2024-07-06T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "8 levels to Raguel",
+          "season": "50th Anniversary Season B"
+        },
+        {
+          "date": "2024-08-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Player rewards: Vicious Maul + level to Raguel",
+          "season": "50th Anniversary Season B"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2024-11-20",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 8,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2024-11-20",
+          "title": "DM Reward",
+          "perm_items": [
+            "Manual of Bodily Health"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2024-11-20",
+          "title": "DM Reward",
+          "perm_items": [
+            "Anstruth Harp"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2024-11-20",
+          "title": "DM Reward",
+          "perm_items": [
+            "Vicious Lance"
+          ],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2024-11-20",
+          "title": "DM Reward",
+          "perm_items": [
+            "Spider Staff"
+          ],
+          "level_plus": 1,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Rolyn",
+      "dm_log": [
+        {
+          "date": "2023-03-15T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Gloves of Thievery + 10 DTD to Rolyn",
+          "season": "Season 12b"
+        },
+        {
+          "date": "2024-03-21T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Rogue's Mantle + 20 DTD to Rolyn",
+          "season": "50th Anniversary Season A"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2023-10-04",
+          "title": "DM Reward",
+          "perm_items": [
+            "Rogue's Mantle"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Sentient Hat",
+      "dm_log": [
+        {
+          "date": "2020-05-07T00:00:00",
+          "code": "DDAL 05-04",
+          "name": "In Dire Need",
+          "item": "Mithral Splint / Splint +1",
+          "allocation": "Item to (Splint +1) Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-08-12T00:00:00",
+          "code": "CCC-BLD 1-2",
+          "name": "Bleeding Gate: Amalgamation",
+          "item": "Winged Boots",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "NaT",
+          "code": "DDAL 10-00",
+          "name": "Ice Road Trackers",
+          "item": "",
+          "allocation": "Levels (x2) to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-10-10T00:00:00",
+          "code": "CCC-ELF-001",
+          "name": "Life's a Party",
+          "item": "Ring of Warmth",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-10-18T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-11-05T00:00:00",
+          "code": "CCC-ELF-001",
+          "name": "Life's a Party",
+          "item": "Ring of Warmth",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-11-07T00:00:00",
+          "code": "CCC-DES-01-01",
+          "name": "Finding the Rabbit Hole",
+          "item": "FOWP - Ivory Goats",
+          "allocation": "Item to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-11-11T00:00:00",
+          "code": "CCC-GLIP-02-01",
+          "name": "Blue Scales",
+          "item": "Arrow-Catching Shield",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-11-21T00:00:00",
+          "code": "CCC-DES-01-02",
+          "name": "A Sanity Never Questioned",
+          "item": "Staff of Healing (Driftwood staff)",
+          "allocation": "Item to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-12-05T00:00:00",
+          "code": "CCC-DES-01-03",
+          "name": "A Question Never Asked",
+          "item": "Wand of Magic Missiles",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-12-19T00:00:00",
+          "code": "CCC-DES-01-04",
+          "name": "An Answer Never Offered",
+          "item": "Decanter of Endless Water",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-06T00:00:00",
+          "code": "CCC-DES-01-06",
+          "name": "One Last Job",
+          "item": "Broom of Flying, Charlatan's Die, Dark Shard Amulet",
+          "allocation": "Item to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-14T00:00:00",
+          "code": "DDAL10-03",
+          "name": "Divining Evil",
+          "item": "",
+          "allocation": "Level to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-23T00:00:00",
+          "code": "CCC-TRI-25",
+          "name": "Dead Men's Treasure",
+          "item": "Cli Lyre",
+          "allocation": "Item to Sentient Hat",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-03-20T00:00:00",
+          "code": "HULB 4-1",
+          "name": "Whispers from the Deep",
+          "item": "Anstruth Harp",
+          "allocation": "Item to Sentient Hat",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2021-03-27",
+          "title": "DM Reward",
+          "perm_items": [
+            "Broom of Flying"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward (x6)",
+          "perm_items": [],
+          "level_plus": 6,
+          "dtd_net": 120,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward (x2)",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 30,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward (x2)",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 40,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward",
+          "perm_items": [
+            "Cli Lyre"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward",
+          "perm_items": [
+            "Staff of Healing"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward",
+          "perm_items": [
+            "FOWP - Ivory Goats"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2021-02-24",
+          "title": "DM Reward",
+          "perm_items": [
+            "Splint +1"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Sookie Stackhouse",
+      "dm_log": [
+        {
+          "date": "2020-04-30T00:00:00",
+          "code": "CCC-BLD 1-1",
+          "name": "Bleeding Gate: Pandemonium",
+          "item": "Periapt of Wound Closure",
+          "allocation": "Level to Sookie Stackhouse",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-04-30T00:00:00",
+          "code": "CCC-BLD 1-2",
+          "name": "Bleeding Gate: Amalgamation",
+          "item": "Winged Boots",
+          "allocation": "Level to Sookie Stackhouse",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-05-02T00:00:00",
+          "code": "DDAL 05-04",
+          "name": "In Dire Need",
+          "item": "Mithral Splint / Splint +1",
+          "allocation": "Item to (Mithril Splint) Sookie Stackhouse",
+          "season": "preS11"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2020-06-20",
+          "title": "DM Reward x2",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2020-06-20",
+          "title": "DM Reward",
+          "perm_items": [
+            "Mithral Splintmail"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Squelch",
+      "dm_log": [
+        {
+          "date": "2022-04-27T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Dex Tome + 10k gp + level to Squelch",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-09-02T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Wis Tome + 30 DTD + level to Squelch",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2024-03-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Wraps of Unarmed Prowess + 10 DTD to Squelch",
+          "season": "50th Anniversary Season A"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2022-09-30",
+          "title": "DM Reward (12a VR)",
+          "perm_items": [
+            "Tome of Understanding"
+          ],
+          "level_plus": 1,
+          "dtd_net": 30,
+          "notes": null
+        },
+        {
+          "date": "2022-09-30",
+          "title": "DM Reward (11b VR)",
+          "perm_items": [
+            "Manual of Quickness of Action"
+          ],
+          "level_plus": 1,
+          "dtd_net": 0,
+          "notes": null
+        }
+      ]
+    },
+    {
+      "character": "Wobbly Bobbly",
+      "dm_log": [
+        {
+          "date": "2024-09-01T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "5 levels to Wobbly Bobbly",
+          "season": "50th Anniversary Season B"
+        }
+      ],
+      "char_log": []
+    },
+    {
+      "character": "Zandarax",
+      "dm_log": [
+        {
+          "date": "2020-03-28T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Zandarax (x2), Morty, S9 reward (Tressym) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-03-28T00:00:00",
+          "code": "DDAL 09-01",
+          "name": "Escape from Elturguard",
+          "item": "Amulet of Proof Against Detection",
+          "allocation": "Levels to Zandarax (x2), Morty, S9 reward (Tressym) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-04-04T00:00:00",
+          "code": "DDAL 09-02",
+          "name": "Stopped at the Gate",
+          "item": "Eyes of the Eagle",
+          "allocation": "S9 reward (Tressym) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-04-18T00:00:00",
+          "code": "DDAL 09-09",
+          "name": "Ruined Prospects",
+          "item": "Heward's Handy Haversack",
+          "allocation": "S9 reward (Tressym) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-04-21T00:00:00",
+          "code": "DDEX 2-10",
+          "name": "Cloaks and Shadows",
+          "item": "Winged Boots",
+          "allocation": "Item to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-07-22T00:00:00",
+          "code": "CCC-SALT-02-05",
+          "name": "The Darkness Never Forgets",
+          "item": "Cape of the Mountbank",
+          "allocation": "Item to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-08-22T00:00:00",
+          "code": "DDEP00-01",
+          "name": "The Red War (Tier 2)",
+          "item": "Boon of High Magic",
+          "allocation": "Boon to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-09-08T00:00:00",
+          "code": "DDHC-TYP",
+          "name": "Chapter 3 pt. 1",
+          "item": "Tloque's Battleaxe, Bracelet of Rock Magic, Bracers of Defense, Gloves of Missile Snaring, Longsword +1 (+2d6 vs plants), Ring of Animal Influence, Ring of Fire Resistance",
+          "allocation": "Item (battleax) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-09-19T00:00:00",
+          "code": "DDHC-TYP",
+          "name": "Chapter 3 pt. 1",
+          "item": "Bracelet of Rock Magic, +1 Dagger, +1 Longsword (plants)",
+          "allocation": "Item (bracelet) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2020-12-09T00:00:00",
+          "code": "CCC-TRI-28",
+          "name": "Siege of the Yellow Rose",
+          "item": "Robe of Stars (Cosmic Chausible)",
+          "allocation": "Item to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-12T00:00:00",
+          "code": "CCC-SEA-01-03",
+          "name": "Stargazing on the Albatross",
+          "item": "Bag of Devouring, Scroll of Simulacrum",
+          "allocation": "Item (Scroll) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-13T00:00:00",
+          "code": "CCC-SEA-01-03",
+          "name": "Stargazing on the Albatross",
+          "item": "Bag of Devouring, Scroll of Simulacrum",
+          "allocation": "Item (Scroll) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-02-13T00:00:00",
+          "code": "CCC-SEA-01-03",
+          "name": "Stargazing on the Albatross",
+          "item": "Bag of Devouring, Scroll of Simulacrum",
+          "allocation": "Item (Scroll) to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-10-01T00:00:00",
+          "code": "CCC-BLD-01-03",
+          "name": "Bleeding Gate: Lineage",
+          "item": "Stone of Controlling Earth Elementals, 190 gp",
+          "allocation": "Level to Zandarax",
+          "season": "preS11"
+        },
+        {
+          "date": "2021-11-02T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Nereid Shawl + 10 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-16T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Night Queen's eyes + 250 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-23T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Mariner's scale mail + 250 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-24T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Quiver of the centaurs + 250 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-25T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Lathai's saddle + 10 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-26T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Pixie winged boots + 10 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-27T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Darkthorn arrows (5) + 2500 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-11-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Faerie dragon's favor + 2500 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-12-01T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Hag's clawblade + 20 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-12-11T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Siren's caress + 20 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2021-12-14T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Blink Dog's Guide + 2500 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-02-15T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Sprite's Rescue + 20 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-02-16T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Daphnaie armor + 30 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-02-17T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Grif fiddle + 30 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-02-18T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Harengon's Freedom + 10,000 gp to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-02-19T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Wildmane's shoes + 30 DTD to Zandarax",
+          "season": "Season 11a"
+        },
+        {
+          "date": "2022-04-13T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Levels to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-05-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Emerald Pen + 10 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-05-29T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Periapt of Health + 10 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-06-01T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Bag of Tricks (Tan) + 10 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-06-16T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Dragon wing longbow + 20 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-06-16T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Gem of Seeing + 20 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-06-24T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Sapphire Buckler + 30 DTD to Zandarax",
+          "season": "Season 11b"
+        },
+        {
+          "date": "2022-09-02T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Pistol +1 + 10 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2022-09-03T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Spellwrought Tattoo (3rd level) + 10 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2022-09-03T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Wildspace Orrery + 10 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2022-09-04T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Armor of Radiant Resistant Halfplate + 20 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2022-09-10T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Mantle of Spell Resistance + 20 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2022-09-28T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Mace of Smiting + 20 DTD to Zandarax",
+          "season": "Season 12a"
+        },
+        {
+          "date": "2023-03-29T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Armor of Necrotic Restistance + 20 DTD to Zandarax",
+          "season": "Season 12b"
+        },
+        {
+          "date": "2023-05-03T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Kagonesti Forest Shroud + 20 DTD to Zandarax",
+          "season": "Season 12b"
+        },
+        {
+          "date": "2023-05-24T00:00:00",
+          "code": null,
+          "name": null,
+          "item": null,
+          "allocation": "Rod of Abosrption + 30 DTD to Zandarax",
+          "season": "Season 12b"
+        }
+      ],
+      "char_log": [
+        {
+          "date": "2023-10-04",
+          "title": "DM Reward",
+          "perm_items": [
+            "Armor of Necrotic Resistance"
+          ],
+          "level_plus": null,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2023-10-04",
+          "title": "DM Reward",
+          "perm_items": [
+            "Sixth Sword"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2023-10-04",
+          "title": "DM Reward",
+          "perm_items": [
+            "Kagonesti Forest Shroud"
+          ],
+          "level_plus": null,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2023-10-04",
+          "title": "DM Reward",
+          "perm_items": [
+            "Rod of Absorption"
+          ],
+          "level_plus": null,
+          "dtd_net": 30,
+          "notes": null
+        },
+        {
+          "date": "2023-01-20",
+          "title": "Season 12a DM Rewards (UC x 3, R x 3)",
+          "perm_items": [
+            "Pistol +1",
+            "Spellwrought Tattoo (3rd)",
+            "Wildspace Orrery",
+            "Armor of Radiant Resistant Halfplate",
+            "Mantle of Spell Resistance",
+            "Mace of Smiting"
+          ],
+          "level_plus": null,
+          "dtd_net": 90,
+          "notes": null
+        },
+        {
+          "date": "2023-01-20",
+          "title": "Season 11b DM Rewards (UC x 3, R x 2, VR x 1)",
+          "perm_items": [
+            "Emerald Pen",
+            "Periapt of Health",
+            "Bag of Tricks (tan)",
+            "Dragon Wing Longbow",
+            "Gem of Seeing",
+            "Sapphire Buckler"
+          ],
+          "level_plus": null,
+          "dtd_net": 100,
+          "notes": null
+        },
+        {
+          "date": "2022-06-08",
+          "title": "DM Reward",
+          "perm_items": [
+            "Szass Tam's Essence (Boon of High Magic)"
+          ],
+          "level_plus": 3,
+          "dtd_net": 0,
+          "notes": "Gained an additional 9th level spell slot"
+        },
+        {
+          "date": "2022-02-28",
+          "title": "Season 11 DM Reward (VR) x 4",
+          "perm_items": [
+            "Haregon's Freedom",
+            "Wildmane's shoes",
+            "Grig fiddle",
+            "Daphnaie armor"
+          ],
+          "level_plus": null,
+          "dtd_net": 90,
+          "notes": null
+        },
+        {
+          "date": "2022-02-28",
+          "title": "Season 11 DM Reward (UC) x 5",
+          "perm_items": [
+            "Nereid Shawl",
+            "Night Queen's Eyes",
+            "Mariner's scale mail",
+            "Quiver of the Centaurs",
+            "Lathai's saddle"
+          ],
+          "level_plus": null,
+          "dtd_net": 20,
+          "notes": null
+        },
+        {
+          "date": "2022-02-28",
+          "title": "Season 11 DM Reward (R) x 6",
+          "perm_items": [
+            "Darkthorn arrows (5)",
+            "Faerie dragon's favor",
+            "Hag's clawblade",
+            "Siren's caress",
+            "Blink Dog's Guide to Transversing the Feywild",
+            "Sprite's rescue"
+          ],
+          "level_plus": null,
+          "dtd_net": 60,
+          "notes": null
+        },
+        {
+          "date": "2021-11-21",
+          "title": "Season 11 DM Reward UC",
+          "perm_items": [
+            "Winged Boots"
+          ],
+          "level_plus": null,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2021-10-26",
+          "title": "DM Reward",
+          "perm_items": [],
+          "level_plus": 1,
+          "dtd_net": 10,
+          "notes": null
+        },
+        {
+          "date": "2020-12-10",
+          "title": "DM Reward",
+          "perm_items": [
+            "Cosmic Chausible"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-10-17",
+          "title": "DM Reward",
+          "perm_items": [
+            "Cape of the Mountebank"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-09-23",
+          "title": "DM Reward",
+          "perm_items": [
+            "Bracelet of Rock Magic"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-09-11",
+          "title": "DM Reward S9 (x3)",
+          "perm_items": [],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": "Can summon a Tressym familiar"
+        },
+        {
+          "date": "2020-09-08",
+          "title": "DM Reward",
+          "perm_items": [
+            "Winged Boots"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-09-07",
+          "title": "DM Reward",
+          "perm_items": [
+            "Tloque's Battleaxe"
+          ],
+          "level_plus": null,
+          "dtd_net": 0,
+          "notes": null
+        },
+        {
+          "date": "2020-07-16",
+          "title": "DM Reward (x2)",
+          "perm_items": [],
+          "level_plus": 2,
+          "dtd_net": 20,
+          "notes": null
+        }
+      ]
+    }
+  ],
+  "missing": {
+    "Steve*": [
+      {
+        "date": "2020-09-08T00:00:00",
+        "code": "CCC-DES-01-01",
+        "name": "Finding the Rabbit Hole",
+        "tier": 2,
+        "levels_plus": 1,
+        "levels_minus": 1,
+        "item": "FOWP - Ivory Goats",
+        "allocation": "Level to Steve*",
+        "location": "Gateway"
+      },
+      {
+        "date": "2020-09-18T00:00:00",
+        "code": "Playtest",
+        "name": "Tier 1 w/ Jon K.",
+        "tier": 1,
+        "levels_plus": 1,
+        "levels_minus": 1,
+        "item": "",
+        "allocation": "Level to Steve*",
+        "location": "private"
+      }
+    ],
+    "Sir Smol": [
+      {
+        "date": "2021-05-29T00:00:00",
+        "code": "DDAL-DRWEP02",
+        "name": "Wings of Death",
+        "tier": 3,
+        "levels_plus": 1,
+        "levels_minus": 1,
+        "item": "Bracers of Defense",
+        "allocation": "Item to Sir Smol",
+        "location": "GameX"
+      },
+      {
+        "date": "2021-09-04T00:00:00",
+        "code": "CCC-BLD-01-03",
+        "name": "Bleeding Gate: Lineage",
+        "tier": 2,
+        "levels_plus": 1,
+        "levels_minus": 1,
+        "item": "Stone of Controlling Earth Elementals",
+        "allocation": "Level to Sir Smol",
+        "location": "Gateway"
+      },
+      {
+        "date": "2021-09-29T00:00:00",
+        "code": "DDHC-TOA-9",
+        "name": "Ruins of Matolo",
+        "tier": 2,
+        "levels_plus": 1,
+        "levels_minus": 1,
+        "item": "Marvelous Pigments, Bronze Griffon, +1 Scimitar, +1 Spear (Sentient), +1 Greataxe (Sentient)",
+        "allocation": "Item (Pigments) to Sir Smol",
+        "location": "private"
+      }
+    ]
+  }
+}
