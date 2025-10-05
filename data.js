@@ -191,7 +191,7 @@ window.DATA = {
           "date": "2025-10-01",
           "title": "Lord's Alliance Trade",
           "code": "",
-          "dm": "Alexis P.",
+          "dm": "Alexis Paige",
           "gp_plus": 0,
           "gp_minus": 0,
           "dtd_plus": 0,
@@ -17898,7 +17898,7 @@ window.DATA = {
       "net_dtd": 60,
       "level_ups": 3,
       "perm_count": 3,
-      "cons_count": 11
+      "cons_count": 8
     },
     "Ecthelion": {
       "sessions": 6,
@@ -17914,7 +17914,7 @@ window.DATA = {
       "net_dtd": 33,
       "level_ups": 5,
       "perm_count": 22,
-      "cons_count": 28
+      "cons_count": 17
     },
     "Wobbly Bobbly": {
       "sessions": 3,
@@ -17945,7 +17945,7 @@ window.DATA = {
       "net_gp": 11773,
       "net_dtd": 55,
       "level_ups": 5,
-      "perm_count": 8,
+      "perm_count": 7,
       "cons_count": 1
     },
     "Norixius": {
@@ -17953,8 +17953,8 @@ window.DATA = {
       "net_gp": 17727,
       "net_dtd": 145,
       "level_ups": 5,
-      "perm_count": 37,
-      "cons_count": 16
+      "perm_count": 39,
+      "cons_count": 13
     },
     "Jerry Garcia": {
       "sessions": 8,
@@ -17977,7 +17977,7 @@ window.DATA = {
       "net_gp": 1249,
       "net_dtd": 65,
       "level_ups": 8,
-      "perm_count": 14,
+      "perm_count": 13,
       "cons_count": 2
     },
     "Sookie Stackhouse": {
@@ -17985,15 +17985,15 @@ window.DATA = {
       "net_gp": 406,
       "net_dtd": 40,
       "level_ups": 5,
-      "perm_count": 8,
-      "cons_count": 2
+      "perm_count": 5,
+      "cons_count": 0
     },
     "Buckley": {
       "sessions": 11,
       "net_gp": 697,
       "net_dtd": 50,
       "level_ups": 7,
-      "perm_count": 17,
+      "perm_count": 14,
       "cons_count": 3
     },
     "Leonardo": {
@@ -18001,7 +18001,7 @@ window.DATA = {
       "net_gp": 730,
       "net_dtd": 5,
       "level_ups": 5,
-      "perm_count": 12,
+      "perm_count": 9,
       "cons_count": 3
     },
     "Rolyn": {
@@ -18009,7 +18009,7 @@ window.DATA = {
       "net_gp": 355,
       "net_dtd": 25,
       "level_ups": 5,
-      "perm_count": 7,
+      "perm_count": 3,
       "cons_count": 0
     },
     "Anfer": {
@@ -18017,7 +18017,7 @@ window.DATA = {
       "net_gp": 660,
       "net_dtd": 15,
       "level_ups": 6,
-      "perm_count": 8,
+      "perm_count": 3,
       "cons_count": 0
     },
     "Goblert Godfrey": {
@@ -18025,15 +18025,15 @@ window.DATA = {
       "net_gp": 19740,
       "net_dtd": 80,
       "level_ups": 10,
-      "perm_count": 18,
-      "cons_count": 13
+      "perm_count": 17,
+      "cons_count": 10
     },
     "Raguel": {
       "sessions": 2,
       "net_gp": 9833,
       "net_dtd": 45,
       "level_ups": 11,
-      "perm_count": 9,
+      "perm_count": 11,
       "cons_count": 3
     },
     "Orakhar": {
@@ -18041,7 +18041,7 @@ window.DATA = {
       "net_gp": 8854,
       "net_dtd": 207,
       "level_ups": 15,
-      "perm_count": 23,
+      "perm_count": 21,
       "cons_count": 1
     },
     "Lyrielle": {
@@ -18049,31 +18049,31 @@ window.DATA = {
       "net_gp": 78413,
       "net_dtd": 215,
       "level_ups": 15,
-      "perm_count": 35,
-      "cons_count": 23
+      "perm_count": 31,
+      "cons_count": 20
     },
     "Sentient Hat": {
       "sessions": 36,
       "net_gp": 45317,
       "net_dtd": 227,
       "level_ups": 15,
-      "perm_count": 48,
-      "cons_count": 37
+      "perm_count": 47,
+      "cons_count": 30
     },
     "Arvistan Brightwave": {
       "sessions": 37,
       "net_gp": 5765,
       "net_dtd": 50,
       "level_ups": 15,
-      "perm_count": 60,
-      "cons_count": 6
+      "perm_count": 41,
+      "cons_count": 4
     },
     "Zandarax": {
       "sessions": 72,
       "net_gp": 54776,
       "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 156,
+      "perm_count": 168,
       "cons_count": 66
     },
     "Zandaraxs Inventory": {
@@ -18097,39 +18097,39 @@ window.DATA = {
       "net_gp": 48238,
       "net_dtd": 120,
       "level_ups": 19,
-      "perm_count": 80,
-      "cons_count": 26
+      "perm_count": 48,
+      "cons_count": 21
     },
     "Lorien": {
       "sessions": 27,
       "net_gp": 21369,
       "net_dtd": 9,
       "level_ups": 19,
-      "perm_count": 55,
+      "perm_count": 30,
       "cons_count": 5
     },
     "Darrendrian": {
       "sessions": 46,
-      "net_gp": 67679,
+      "net_gp": 87679,
       "net_dtd": 95,
       "level_ups": 19,
-      "perm_count": 113,
-      "cons_count": 15
+      "perm_count": 68,
+      "cons_count": 13
     },
     "Copy of Darrendrian": {
       "sessions": 45,
       "net_gp": 76679,
       "net_dtd": 85,
       "level_ups": 19,
-      "perm_count": 112,
-      "cons_count": 15
+      "perm_count": 67,
+      "cons_count": 13
     },
     "Morty": {
       "sessions": 28,
       "net_gp": 23806,
       "net_dtd": 241,
       "level_ups": 19,
-      "perm_count": 43,
+      "perm_count": 25,
       "cons_count": 3
     }
   },
@@ -18139,8 +18139,8 @@ window.DATA = {
       2022
     ],
     "Dolroruuk": [
-      2022,
-      2021
+      2021,
+      2022
     ],
     "Ecthelion": [
       2025
@@ -18156,53 +18156,53 @@ window.DATA = {
       2023
     ],
     "Squelch": [
-      2023,
-      2022
+      2022,
+      2023
     ],
     "Norixius": [
-      2025,
-      2024,
+      2022,
       2023,
-      2022
+      2024,
+      2025
     ],
     "Jerry Garcia": [
-      2021,
-      2020
+      2020,
+      2021
     ],
     "Madam Renata": [
-      2024,
+      2021,
       2022,
-      2021
+      2024
     ],
     "Noraggen": [
-      2025,
+      2020,
       2021,
-      2020
+      2025
     ],
     "Sookie Stackhouse": [
-      2021,
-      2020
+      2020,
+      2021
     ],
     "Buckley": [
-      2021,
-      2020
+      2020,
+      2021
     ],
     "Leonardo": [
-      2021,
-      2020
+      2020,
+      2021
     ],
     "Rolyn": [
-      2023,
-      2019
+      2019,
+      2023
     ],
     "Anfer": [
-      2021,
+      2019,
       2020,
-      2019
+      2021
     ],
     "Goblert Godfrey": [
-      2022,
-      2021
+      2021,
+      2022
     ],
     "Raguel": [
       2024
@@ -18211,21 +18211,21 @@ window.DATA = {
       2021
     ],
     "Lyrielle": [
-      2025,
-      2024,
-      2023,
+      2021,
       2022,
-      2021
+      2023,
+      2024,
+      2025
     ],
     "Sentient Hat": [
-      2024,
+      2021,
       2022,
-      2021
+      2024
     ],
     "Arvistan Brightwave": [
-      2025,
+      2020,
       2021,
-      2020
+      2025
     ],
     "Zandarax": [
       2020,
@@ -18238,45 +18238,45 @@ window.DATA = {
     "Zandaraxs Inventory": [],
     "Zandaraxs Bastion": [],
     "Agatha": [
-      2025,
-      2024,
-      2022,
-      2021,
+      2002,
       2020,
-      2002
+      2021,
+      2022,
+      2024,
+      2025
     ],
     "Lorien": [
-      2024,
-      2021,
+      2019,
       2020,
-      2019
+      2021,
+      2024
     ],
     "Darrendrian": [
-      2025,
-      2024,
-      2022,
-      2021,
-      2020,
+      219,
       2019,
-      219
+      2020,
+      2021,
+      2022,
+      2024,
+      2025
     ],
     "Copy of Darrendrian": [
-      2024,
-      2022,
-      2021,
-      2020,
+      219,
       2019,
-      219
+      2020,
+      2021,
+      2022,
+      2024
     ],
     "Morty": [
-      2022,
+      2020,
       2021,
-      2020
+      2022
     ]
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-03T21:20:06.841Z",
+    "generated": "2025-10-05T05:16:41.115Z",
     "problems": []
   }
 };
