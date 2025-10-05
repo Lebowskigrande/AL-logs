@@ -42,6 +42,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Toolbar */
 .toolbar{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+.deployment-notice{margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(26,115,232,.12);color:#0b3f88;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600;box-shadow:var(--shadow1)}
 .btn{cursor:pointer;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
@@ -397,6 +398,9 @@ body.avatar-overlay-open{overflow:hidden}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
       </button>
     </div>
+    <div id="deploymentNotice" class="deployment-notice" role="status" aria-live="polite" hidden>
+      Waiting for deployment…
+    </div>
     <div class="header-quick" id="headerQuick">
       <div class="inventory-buttons">
         <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
@@ -552,6 +556,7 @@ let DATA = window.DATA || null;
 const charSel  = document.getElementById('charSel');
 const avatarEl = document.getElementById('charAvatar');
 const downloadBtn = document.getElementById('downloadData');
+const deploymentNotice = document.getElementById('deploymentNotice');
 const qEl      = document.getElementById('q');
 const grid     = document.getElementById('grid');
 const emptyEl  = document.getElementById('empty');
@@ -575,6 +580,7 @@ const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview')
 const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
 const dataScriptEl=document.getElementById('dataScript');
 const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
+const DEFAULT_DEPLOYMENT_NOTICE=(deploymentNotice && deploymentNotice.textContent && deploymentNotice.textContent.trim())||'Waiting for deployment…';
 let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||window.AL_DATA_VERSION||'';
 window.AL_DATA_VERSION=dataVersion;
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
@@ -856,6 +862,19 @@ function setSaveResult(state){
   updateSaveButtonState();
 }
 
+function showDeploymentNotice(message=DEFAULT_DEPLOYMENT_NOTICE){
+  if(!deploymentNotice) return;
+  const text=(message==null?DEFAULT_DEPLOYMENT_NOTICE:String(message));
+  deploymentNotice.hidden=false;
+  deploymentNotice.textContent=text;
+}
+
+function hideDeploymentNotice(){
+  if(!deploymentNotice) return;
+  deploymentNotice.hidden=true;
+  deploymentNotice.textContent=DEFAULT_DEPLOYMENT_NOTICE;
+}
+
 function anyModalOpen(){
   return (invModal && invModal.classList.contains('open'))
     || (consModal && consModal.classList.contains('open'))
@@ -1060,6 +1079,7 @@ function applyDraftIfAvailable(){
   clearTimeout(saveFeedbackTimeout);
   hasLocalDraft=true;
   updateSaveButtonState();
+  showDeploymentNotice();
 }
 
 function markDirty(){
@@ -1073,6 +1093,7 @@ function clearDirty(){
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   clearDataDraft();
+  hideDeploymentNotice();
   updateSaveButtonState();
 }
 
@@ -1094,6 +1115,7 @@ async function saveDataJs(options={}){
     touchDataMetaTimestamp();
   }
   const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
+  const hadPendingChanges=pendingChanges;
   const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
   const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
   const headers={
@@ -1132,14 +1154,33 @@ async function saveDataJs(options={}){
       const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
       throw new Error(message);
     }
-    clearDirty();
-    setSaveResult('success');
     const versionForSave=String(Date.now());
     setDataVersion(versionForSave);
+    let refreshOutcome=null;
+    let refreshError=null;
     try{
-      await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
+      refreshOutcome=await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
     }catch(err){
-      console.warn('Unable to refresh data.js cache after save', err);
+      refreshError=err;
+    }
+    if(!refreshError && refreshOutcome!==false){
+      clearDirty();
+      setSaveResult('success');
+    }else{
+      if(refreshError){
+        console.warn('Unable to refresh data.js cache after save', refreshError);
+      }else{
+        console.warn('Unable to refresh data.js cache after save');
+      }
+      const shouldPersistDraft=(typeof customDataJs!=='string' && DATA && typeof DATA==='object' && (hadPendingChanges || hasLocalDraft));
+      if(shouldPersistDraft){
+        persistDataDraft();
+      }
+      if(hadPendingChanges || hasLocalDraft || shouldPersistDraft){
+        pendingChanges=true;
+        showDeploymentNotice();
+        setSaveResult(null);
+      }
     }
     return body;
   }catch(err){
@@ -1274,6 +1315,7 @@ function wait(ms){
 async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, version=null }={}){
   let attempt=0;
   const pinnedVersion=version?String(version):null;
+  let lastMismatchError=null;
   while(attempt<=retries){
     const versionToUse=pinnedVersion||String(Date.now());
     const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now()}),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
@@ -1286,12 +1328,16 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
       setDataVersion(versionToUse);
       return true;
     }
+    lastMismatchError=new Error('Latest data.js did not match the newly saved content.');
     if(attempt===retries){
-      console.warn('Latest data.js did not match newly saved content; skipping cache refresh to avoid overwriting edits.');
-      return false;
+      console.warn('Latest data.js did not match newly saved content; giving up on cache refresh for now.');
+      throw lastMismatchError;
     }
     attempt+=1;
     await wait(retryDelay);
+  }
+  if(lastMismatchError){
+    throw lastMismatchError;
   }
 }
 
