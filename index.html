@@ -131,6 +131,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .card:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+.card:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:4px}
+.card.focus-glow{animation:card-focus-glow 1300ms ease-out}
+@keyframes card-focus-glow{
+  0%{box-shadow:var(--shadow1)}
+  40%{box-shadow:0 8px 24px rgba(26,115,232,.25),0 0 0 6px rgba(26,115,232,.3)}
+  100%{box-shadow:var(--shadow1)}
+}
 .card-hd{display:flex;align-items:flex-start;justify-content:flex-start;gap:10px;padding:14px 12px 14px 14px;cursor:pointer;min-height:96px}
 .card-hd .titleLine,.card-hd .activity-line{flex:1 1 auto;min-width:0}
 .card-hd .titleLine{width:100%}
@@ -708,6 +715,7 @@ function forgetAvatarPath(key){
   rememberAvatarPath(key,null);
 }
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
+const ICON_LINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.59 13.41a1.5 1.5 0 0 0 2.12 0l4.95-4.95a3 3 0 0 0-4.24-4.24l-1.77 1.77"/><path d="M13.41 10.59a1.5 1.5 0 0 0-2.12 0l-4.95 4.95a3 3 0 0 0 4.24 4.24l1.77-1.77"/></svg>';
 const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
 const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
 
@@ -1844,6 +1852,222 @@ function buildDmEntries(){
   }
   updateDmSummaryBar();
 }
+
+let DM_ALLOCATION_LINKS=new WeakMap();
+let DM_REWARD_LINKS=new WeakMap();
+
+function normalizeDateString(value){
+  if(!value) return '';
+  const text=String(value);
+  if(/^\d{4}-\d{2}-\d{2}/.test(text)){
+    return text.slice(0,10);
+  }
+  const ts=new Date(text).getTime();
+  if(Number.isFinite(ts)){
+    return new Date(ts).toISOString().slice(0,10);
+  }
+  return '';
+}
+
+function normalizeMatchToken(value){
+  return String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
+}
+
+function parseAllocationRecipients(text){
+  const raw=String(text||'');
+  const idx=raw.toLowerCase().lastIndexOf(' to ');
+  if(idx===-1) return [];
+  let after=raw.slice(idx+4).trim();
+  if(!after) return [];
+  after=after.replace(/[,.;]+$/,'');
+  after=after.replace(/\band\b/gi,',');
+  after=after.replace(/&/g,',');
+  after=after.replace(/\//g,',');
+  const parts=after.split(',').map(part=>part.trim()).filter(Boolean);
+  return parts;
+}
+
+function rebuildDmRewardLinks(){
+  DM_ALLOCATION_LINKS=new WeakMap();
+  DM_REWARD_LINKS=new WeakMap();
+  if(!DATA || !DATA.characters || !DM_ENTRIES || !DM_ENTRIES.length){
+    return;
+  }
+  const charEntries=Object.entries(DATA.characters);
+  if(!charEntries.length) return;
+
+  const fragmentOwnersLower=new Map();
+  const fragmentOwnersCompact=new Map();
+  const characterMeta=charEntries.map(([key,obj])=>{
+    const names=new Set();
+    const pushName=(val)=>{
+      if(!val) return;
+      const text=String(val).trim();
+      if(text) names.add(text);
+    };
+    pushName(key);
+    if(obj && typeof obj==='object'){
+      pushName(obj.display_name);
+      if(typeof obj.sheet==='string') pushName(obj.sheet);
+    }
+    Array.from(names).forEach(name=>{
+      const cleaned=name.replace(/\(.*?\)/g,' ').replace(/\s{2,}/g,' ').trim();
+      if(cleaned && cleaned!==name){
+        names.add(cleaned);
+      }
+    });
+    const lowerVariants=new Set();
+    const compactVariants=new Set();
+    const fragments=new Set();
+    names.forEach(name=>{
+      const lower=name.toLowerCase();
+      if(lower) lowerVariants.add(lower);
+      const compact=normalizeMatchToken(name);
+      if(compact) compactVariants.add(compact);
+      name.split(/[^A-Za-z0-9]+/).forEach(part=>{
+        const trimmed=part.trim();
+        if(trimmed.length>=3){
+          fragments.add(trimmed);
+        }
+      });
+    });
+    return { key, lower:Array.from(lowerVariants).filter(Boolean), compact:Array.from(compactVariants).filter(Boolean), fragments };
+  });
+
+  characterMeta.forEach(meta=>{
+    meta.fragments.forEach(fragment=>{
+      const lower=fragment.toLowerCase();
+      if(lower){
+        if(!fragmentOwnersLower.has(lower)) fragmentOwnersLower.set(lower,new Set());
+        fragmentOwnersLower.get(lower).add(meta.key);
+      }
+      const compact=normalizeMatchToken(fragment);
+      if(compact){
+        if(!fragmentOwnersCompact.has(compact)) fragmentOwnersCompact.set(compact,new Set());
+        fragmentOwnersCompact.get(compact).add(meta.key);
+      }
+    });
+  });
+
+  const uniqueFragmentLower=new Map();
+  fragmentOwnersLower.forEach((owners,frag)=>{
+    if(owners.size===1){
+      uniqueFragmentLower.set(frag, owners.values().next().value);
+    }
+  });
+  const uniqueFragmentCompact=new Map();
+  fragmentOwnersCompact.forEach((owners,frag)=>{
+    if(owners.size===1){
+      uniqueFragmentCompact.set(frag, owners.values().next().value);
+    }
+  });
+
+  const rewardMetaByChar=new Map();
+  charEntries.forEach(([key,obj])=>{
+    const advs=obj && Array.isArray(obj.adventures)?obj.adventures:[];
+    advs.forEach(adv=>{
+      if(!isDmRewardEntry(adv)) return;
+      const meta={
+        charKey:key,
+        adv,
+        date:normalizeDateString(adv.date),
+        levels:Number(adv.level_plus||0)||0,
+        dtd:Number(adv.dtd_net||0)||0,
+        itemsNormalized:Array.isArray(adv.perm_items)?adv.perm_items.map(item=>normalizeMatchToken(item)).filter(token=>token && token.length>=2):[]
+      };
+      if(!rewardMetaByChar.has(key)) rewardMetaByChar.set(key,[]);
+      rewardMetaByChar.get(key).push(meta);
+    });
+  });
+
+  const assignedRewards=new Set();
+  DM_ENTRIES.forEach(entry=>{
+    if(!entry || entry.type!=='allocation') return;
+    const allocationText=entry.allocation||'';
+    if(!allocationText) return;
+    const normalizedText=allocationText.toLowerCase();
+    const normalizedCompact=normalizeMatchToken(allocationText);
+    const recipients=parseAllocationRecipients(allocationText);
+    const matchedKeys=new Set();
+
+    if(recipients.length){
+      recipients.forEach(rec=>{
+        const variants=[rec, rec.replace(/\(.*?\)/g,' ').trim()];
+        variants.forEach(variant=>{
+          if(!variant) return;
+          const lowerVariant=variant.toLowerCase();
+          const compactVariant=normalizeMatchToken(variant);
+          characterMeta.forEach(meta=>{
+            if(matchedKeys.has(meta.key)) return;
+            if(meta.lower.includes(lowerVariant) || (compactVariant && meta.compact.includes(compactVariant))){
+              matchedKeys.add(meta.key);
+              return;
+            }
+            if(uniqueFragmentLower.get(lowerVariant)===meta.key || (compactVariant && uniqueFragmentCompact.get(compactVariant)===meta.key)){
+              matchedKeys.add(meta.key);
+            }
+          });
+        });
+      });
+    }
+
+    if(!matchedKeys.size){
+      characterMeta.forEach(meta=>{
+        const lowerHit=meta.lower.some(name=>name && normalizedText.includes(name));
+        const compactHit=meta.compact.some(name=>name && normalizedCompact.includes(name));
+        if(lowerHit || compactHit){
+          matchedKeys.add(meta.key);
+        }
+      });
+    }
+
+    if(matchedKeys.size!==1) return;
+    const [charKey]=matchedKeys;
+    const candidates=rewardMetaByChar.get(charKey)||[];
+    if(!candidates.length) return;
+
+    const targetDate=normalizeDateString(entry.date);
+    const targetLevels=Number(entry.levels_plus||0)||0;
+    const targetCost=Number(entry.cost||0)||0;
+    const targetHours=(Number(entry.hours)||0)+(Number(entry.extra_hours)||0);
+
+    let bestScore=-Infinity;
+    let bestCandidates=[];
+
+    candidates.forEach(meta=>{
+      let score=0;
+      if(targetDate && meta.date===targetDate) score+=4;
+      if(targetLevels && meta.levels===targetLevels) score+=6;
+      else if(!targetLevels && meta.levels===0) score+=1;
+      if(targetCost && meta.dtd===targetCost) score+=6;
+      else if(!targetCost && meta.dtd===0) score+=1;
+      if(targetHours && meta.dtd===targetHours) score+=4;
+      const itemMatches=meta.itemsNormalized.filter(token=>token && normalizedCompact.includes(token)).length;
+      if(itemMatches>0){
+        score+=itemMatches*5;
+        if(itemMatches===meta.itemsNormalized.length){
+          score+=2;
+        }
+      }
+      if(meta.levels>0 && normalizedText.includes('level')) score+=2;
+      if(meta.dtd>0 && normalizedText.includes('dtd')) score+=2;
+
+      if(score>bestScore){
+        bestScore=score;
+        bestCandidates=[meta];
+      }else if(score===bestScore && score>0){
+        bestCandidates.push(meta);
+      }
+    });
+
+    if(bestScore<5 || bestCandidates.length!==1) return;
+    const bestMeta=bestCandidates[0];
+    if(assignedRewards.has(bestMeta.adv)) return;
+    assignedRewards.add(bestMeta.adv);
+    DM_ALLOCATION_LINKS.set(entry,{charKey,adv:bestMeta.adv});
+    DM_REWARD_LINKS.set(bestMeta.adv,{entry,charKey});
+  });
+}
 function updateDmMeta(){
   if(metaEl){
     metaEl.textContent='';
@@ -2110,6 +2334,30 @@ function makeDmCard(entry,idx){
     header.appendChild(main);
   }
 
+  const tools=document.createElement('div');
+  tools.className='card-tools';
+  const linkMeta=DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry);
+  if(linkMeta && linkMeta.adv){
+    const charObj=(DATA && DATA.characters && DATA.characters[linkMeta.charKey])||null;
+    const charName=(charObj && (charObj.display_name || charObj.sheet)) || linkMeta.charKey;
+    const linkBtn=document.createElement('button');
+    linkBtn.type='button';
+    linkBtn.className='icon-btn';
+    linkBtn.innerHTML=ICON_LINK;
+    const label=`View DM reward entry for ${charName}`;
+    linkBtn.title=label;
+    linkBtn.setAttribute('aria-label',label);
+    linkBtn.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      ev.preventDefault();
+      navigateToCharacterReward(linkMeta.charKey, linkMeta.adv);
+    });
+    tools.appendChild(linkBtn);
+  }
+  if(tools.children.length){
+    header.appendChild(tools);
+  }
+
   header.addEventListener('click',()=>toggleCard(card));
   card.appendChild(header);
 
@@ -2187,6 +2435,12 @@ function getMostRecentCharacter(){
   return latestKey || (keys.length?keys[0]:'');
 }
 function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
+function isDmRewardEntry(entry){
+  if(!entry) return false;
+  const title=String(entry.title||'').toLowerCase();
+  const code=String(entry.code||'').toLowerCase();
+  return title.includes('dm reward') || code.includes('dm reward');
+}
 function netVals(a){ return { gp:(+a.gp_plus||0)-(+a.gp_minus||0), dtd:(+a.dtd_plus||0)-(+a.dtd_minus||0) }; }
 function fmtSigned(n){ return fmtNumber(n,{signed:true}); }
 
@@ -2231,6 +2485,94 @@ function clearCardDuration(bd){ bd.style.removeProperty('--card-dur'); }
 function expandCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); const start=bd.offsetHeight||0; const target=Math.max(bd.scrollHeight, start); const duration=setCardDuration(bd,target); bd.style.height=start+'px'; bd.style.opacity='0'; card.classList.add('open'); void bd.offsetHeight; requestAnimationFrame(()=>{ bd.style.height=target+'px'; bd.style.opacity='1'; }); afterTransition(bd,'height',duration+100,()=>{ bd.style.height='auto'; clearCardDuration(bd); setAnimating(card,false); columnizeGrid('relayout'); }); }
 function collapseCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); const start=bd.offsetHeight||bd.scrollHeight||0; const duration=setCardDuration(bd,start); bd.style.height=start+'px'; bd.style.opacity='1'; void bd.offsetHeight; requestAnimationFrame(()=>{ bd.style.height='0px'; bd.style.opacity='0'; }); afterTransition(bd,'height',duration+100,()=>{ card.classList.remove('open'); clearCardDuration(bd); setAnimating(card,false); columnizeGrid('relayout'); }); }
 function toggleCard(card){ card.classList.contains('open')?collapseCard(card):expandCard(card); }
+
+function focusCardElement(card,{expand=true}={}){
+  if(!card) return;
+  const shouldExpand=expand && !card.classList.contains('open');
+  if(shouldExpand){
+    expandCard(card);
+  }
+  if(!card.hasAttribute('tabindex')){
+    card.setAttribute('tabindex','-1');
+  }
+  const applyFocus=()=>{
+    try{ card.scrollIntoView({behavior:'smooth',block:'center'}); }
+    catch(err){ try{ card.scrollIntoView({block:'center'}); }catch(_err){ /* no-op */ } }
+    if(typeof card.focus==='function'){
+      try{ card.focus({preventScroll:true}); }
+      catch(err){ card.focus(); }
+    }
+    card.classList.remove('focus-glow');
+    void card.offsetWidth;
+    card.classList.add('focus-glow');
+    setTimeout(()=>card.classList.remove('focus-glow'),1400);
+  };
+  const delay=shouldExpand?320:40;
+  setTimeout(()=>{ requestAnimationFrame(applyFocus); }, delay);
+}
+
+function clearSearchForNavigation(){
+  if(qEl && qEl.value){
+    qEl.value='';
+    return true;
+  }
+  return false;
+}
+
+function ensureActivitiesVisible(){
+  if(showActivities) return false;
+  showActivities=true;
+  persistActivityVisibility();
+  updateActivityToggle();
+  return true;
+}
+
+function findCharacterCardFor(adv){
+  if(!grid) return null;
+  const cards=Array.from(grid.querySelectorAll('.card'));
+  return cards.find(card=>card.__dataRef===adv) || null;
+}
+
+function findDmCardFor(entry){
+  if(!grid) return null;
+  const cards=Array.from(grid.querySelectorAll('.card'));
+  return cards.find(card=>card.__dmEntry===entry) || null;
+}
+
+function navigateToCharacterReward(charKey, adv){
+  if(!charKey || !adv || !charSel){
+    return;
+  }
+  clearSearchForNavigation();
+  ensureActivitiesVisible();
+  if(charSel.value!==charKey){
+    charSel.value=charKey;
+  }
+  filterAndRender();
+  requestAnimationFrame(()=>{
+    const card=findCharacterCardFor(adv);
+    if(card){
+      focusCardElement(card,{expand:true});
+    }
+  });
+}
+
+function navigateToDmAllocation(entry){
+  if(!entry || !charSel){
+    return;
+  }
+  clearSearchForNavigation();
+  if(charSel.value!==DM_LOG_KEY){
+    charSel.value=DM_LOG_KEY;
+  }
+  filterAndRender();
+  requestAnimationFrame(()=>{
+    const card=findDmCardFor(entry);
+    if(card){
+      focusCardElement(card,{expand:true});
+    }
+  });
+}
 
 /* --- inventory helpers --- */
 const REGEX_META_CHARS=/[\\^$.*+?()[\]{}|]/g;
@@ -3066,6 +3408,22 @@ function makeCard(a,idx){
   hd.appendChild(main);
 
   const tools=document.createElement('div'); tools.className='card-tools';
+  const dmLinkMeta=DM_REWARD_LINKS && DM_REWARD_LINKS.get(a);
+  if(dmLinkMeta && dmLinkMeta.entry){
+    const linkBtn=document.createElement('button');
+    linkBtn.type='button';
+    linkBtn.className='icon-btn';
+    linkBtn.innerHTML=ICON_LINK;
+    const label='View linked DM log allocation';
+    linkBtn.title=label;
+    linkBtn.setAttribute('aria-label',label);
+    linkBtn.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      ev.preventDefault();
+      navigateToDmAllocation(dmLinkMeta.entry);
+    });
+    tools.appendChild(linkBtn);
+  }
   const editBtn=document.createElement('button');
   editBtn.type='button';
   editBtn.className='icon-btn';
@@ -3804,10 +4162,12 @@ function refreshAllDerivedData(){
   Object.keys(DATA.characters).forEach(key=>{
     updateDerivedDataFor(key);
   });
+  rebuildDmRewardLinks();
 }
 
 function applyDataMutation(key){
   updateDerivedDataFor(key);
+  rebuildDmRewardLinks();
   filterAndRender();
   scheduleAvatarPreload();
   if(pendingChanges){
