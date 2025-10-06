@@ -1894,27 +1894,37 @@ function buildDmEntries(){
     const season=normalizeSeason(seasonLabel);
     const hoursVal=dmToNullableNumber(alloc.hours);
     const bonusVal=dmToNullableNumber(alloc.extra_hours);
-    const levelsPlus=dmToNullableNumber(alloc.levels_plus);
-    const levelsMinus=dmToNullableNumber(alloc.levels_minus);
-    const costVal=dmToNullableNumber(alloc.cost);
-    pushEntry({
+    const baseLevelsPlus=dmToNullableNumber(alloc.levels_plus);
+    const baseLevelsMinus=dmToNullableNumber(alloc.levels_minus);
+    const baseCost=dmToNullableNumber(alloc.cost);
+    const parsed=interpretAllocationDetails(alloc.allocation);
+    const effectiveLevelsPlus=(parsed && parsed.levelsSpent!=null)?parsed.levelsSpent:baseLevelsPlus;
+    const effectiveLevelsMinus=(parsed && parsed.levelsGained!=null)?parsed.levelsGained:baseLevelsMinus;
+    const effectiveCost=(parsed && parsed.downtimeSpent!=null)?parsed.downtimeSpent:baseCost;
+    const effectiveGold=(parsed && parsed.goldSpent!=null)?parsed.goldSpent:null;
+    const entry={
       type:'allocation',
       season,
       date:alloc.date||'',
       allocation:alloc.allocation||'',
-      cost:costVal,
-      levels_plus:levelsPlus,
-      levels_minus:levelsMinus,
+      cost:effectiveCost,
+      levels_plus:effectiveLevelsPlus,
+      levels_minus:effectiveLevelsMinus,
       hours:hoursVal,
       extra_hours:bonusVal,
-      location:alloc.location||''
-    });
+      location:alloc.location||'',
+      gp:effectiveGold,
+      allocation_tokens:parsed && Array.isArray(parsed.tokens)?parsed.tokens.slice():[],
+      allocation_recipients:parsed && Array.isArray(parsed.recipients)?parsed.recipients.slice():[],
+      allocation_item_tokens:parsed && Array.isArray(parsed.itemTokens)?parsed.itemTokens.slice():[]
+    };
+    pushEntry(entry);
     DM_SUMMARY.allocations+=1;
     if(hoursVal!=null) DM_SUMMARY.allocatedHours+=hoursVal;
     if(bonusVal!=null) DM_SUMMARY.allocatedBonus+=bonusVal;
-    if(costVal!=null) DM_SUMMARY.allocatedCost+=costVal;
-    if(levelsPlus!=null) DM_SUMMARY.spentLevels+=levelsPlus;
-    if(levelsMinus!=null) DM_SUMMARY.earnedLevels+=levelsMinus;
+    if(entry.cost!=null) DM_SUMMARY.allocatedCost+=entry.cost;
+    if(entry.levels_plus!=null) DM_SUMMARY.spentLevels+=entry.levels_plus;
+    if(entry.levels_minus!=null) DM_SUMMARY.earnedLevels+=entry.levels_minus;
   };
   if(Array.isArray(DM_DATA.preS11)){
     DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
@@ -1978,6 +1988,12 @@ function parseAllocationRecipients(text){
   return parts;
 }
 function extractAllocationItemTokens(text){
+  if(text && typeof text==='object'){
+    if(Array.isArray(text.allocation_item_tokens)){
+      return text.allocation_item_tokens.slice();
+    }
+    text=text.allocation||'';
+  }
   const raw=String(text||'');
   if(!raw) return [];
   const idx=raw.toLowerCase().lastIndexOf(' to ');
@@ -1993,6 +2009,112 @@ function extractAllocationItemTokens(text){
     tokens.add(token);
   });
   return Array.from(tokens);
+}
+
+function interpretAllocationDetails(text){
+  const raw=String(text||'');
+  const recipients=parseAllocationRecipients(raw);
+  const itemTokens=extractAllocationItemTokens(raw);
+  const tokens=new Set();
+  itemTokens.forEach(token=>{
+    if(token) tokens.add(`item:${token}`);
+  });
+
+  const addNumericToken=(prefix,value)=>{
+    if(value==null) return;
+    const rounded=value%1===0?Math.trunc(value):Number(value.toFixed(2));
+    tokens.add(`${prefix}:${rounded}`);
+  };
+
+  const normalizeNumber=(value,kFlag)=>{
+    if(value==null) return null;
+    let cleaned=String(value).replace(/,/g,'');
+    if(!cleaned) return null;
+    const num=Number(cleaned);
+    if(!Number.isFinite(num)) return null;
+    return kFlag?num*1000:num;
+  };
+
+  const detail={
+    recipients,
+    itemTokens,
+    tokens:null,
+    levelsSpent:null,
+    levelsGained:null,
+    downtimeSpent:null,
+    goldSpent:null
+  };
+
+  if(Array.isArray(recipients)){
+    recipients.forEach(rec=>{
+      const normalized=normalizeMatchToken(rec);
+      if(normalized) tokens.add(`recipient:${normalized}`);
+    });
+  }
+
+  const explicitLevelMatches=[];
+  raw.replace(/(?:^|[\s,+/&-])([0-9]+)\s*(?:levels?|lvl)\b/gi,(match,value)=>{
+    const parsed=normalizeNumber(value,false);
+    if(parsed!=null) explicitLevelMatches.push(parsed);
+    return match;
+  });
+  const explicitLevelTotal=explicitLevelMatches.reduce((sum,val)=>sum+val,0);
+  const hasLevelPhrase=/levels?\s+(?:to|for|of)\b/i.test(raw);
+  const multiplierMatches=[];
+  raw.replace(/\(x\s*([0-9]+)\s*\)/gi,(match,value)=>{
+    const parsed=normalizeNumber(value,false);
+    if(parsed!=null) multiplierMatches.push(parsed);
+    return match;
+  });
+
+  if(explicitLevelMatches.length>0){
+    if(explicitLevelTotal>0){
+      detail.levelsSpent=explicitLevelTotal;
+    }
+  }else if(hasLevelPhrase){
+    if(multiplierMatches.length>0){
+      const multiplierTotal=multiplierMatches.reduce((sum,val)=>sum+val,0);
+      if(multiplierTotal>0){
+        detail.levelsSpent=multiplierTotal;
+      }
+    }
+    if(detail.levelsSpent==null){
+      if(Array.isArray(recipients) && recipients.length>0){
+        detail.levelsSpent=recipients.length;
+      }else{
+        detail.levelsSpent=1;
+      }
+    }
+  }
+
+  const dtdMatches=[];
+  raw.replace(/([0-9][0-9,]*)(?:\s*(k))?\s*dtd\b/gi,(match,value,kFlag)=>{
+    const parsed=normalizeNumber(value,kFlag);
+    if(parsed!=null) dtdMatches.push(parsed);
+    return match;
+  });
+  if(dtdMatches.length>0){
+    const dtdTotal=dtdMatches.reduce((sum,val)=>sum+val,0);
+    if(dtdTotal>0) detail.downtimeSpent=dtdTotal;
+  }
+
+  const gpMatches=[];
+  raw.replace(/([0-9][0-9,]*)(?:\s*(k))?\s*gp\b/gi,(match,value,kFlag)=>{
+    const parsed=normalizeNumber(value,kFlag);
+    if(parsed!=null) gpMatches.push(parsed);
+    return match;
+  });
+  if(gpMatches.length>0){
+    const gpTotal=gpMatches.reduce((sum,val)=>sum+val,0);
+    if(gpTotal>0) detail.goldSpent=gpTotal;
+  }
+
+  if(detail.levelsSpent!=null) addNumericToken('levels',detail.levelsSpent);
+  if(detail.downtimeSpent!=null) addNumericToken('dtd',detail.downtimeSpent);
+  if(detail.goldSpent!=null) addNumericToken('gp',detail.goldSpent);
+
+  detail.tokens=Array.from(tokens);
+  return detail;
 }
 function extractContentTokens(values){
   const tokens=new Set();
@@ -2025,7 +2147,7 @@ function buildAllocationItemSeasonIndex(entries){
     if(!entry || entry.type!=='allocation') return;
     const season=entry.season||'';
     if(!season) return;
-    extractAllocationItemTokens(entry.allocation).forEach(token=>{
+    extractAllocationItemTokens(entry).forEach(token=>{
       if(!map.has(token)) map.set(token,new Set());
       map.get(token).add(season);
     });
@@ -2197,7 +2319,9 @@ function rebuildDmRewardLinks(){
     if(!allocationText) return;
     const normalizedText=allocationText.toLowerCase();
     const normalizedCompact=normalizeMatchToken(allocationText);
-    const allocationTokens=extractAllocationItemTokens(allocationText);
+    const allocationTokens=(entry && Array.isArray(entry.allocation_item_tokens) && entry.allocation_item_tokens.length)
+      ? entry.allocation_item_tokens.slice()
+      : extractAllocationItemTokens(allocationText);
     const allocationTokenSet=new Set(allocationTokens);
     const allocationWordSet=new Set(normalizedText.split(/[^a-z0-9]+/).map(part=>normalizeMatchToken(part)).filter(token=>token && token.length>=3));
     const recipients=parseAllocationRecipients(allocationText);
