@@ -1753,6 +1753,54 @@ function dmNormalizeSeasonLabel(label){
   const text=(label==null?'':String(label)).trim();
   return text||'Unlabeled season';
 }
+function normalizeSeasonGroup(label){
+  const text=(label==null?'':String(label)).trim().toLowerCase();
+  if(!text) return '';
+  if(text.startsWith('seasonal')) return 'seasonal';
+  const seasonMatch=text.match(/^season\s*(\d+)([a-z])?/);
+  if(seasonMatch){
+    return `season-${seasonMatch[1]}`;
+  }
+  const anniversaryMatch=text.match(/(\d{1,3})(st|nd|rd|th)\s+anniversary\s+season/);
+  if(anniversaryMatch){
+    return `${anniversaryMatch[1]}th-anniversary-season`;
+  }
+  return text;
+}
+function extractSeasonLabel(text){
+  if(!text) return '';
+  const value=String(text);
+  const anniversary=value.match(/(\d{1,3})(st|nd|rd|th)\s+Anniversary\s+Season\s+([A-Za-z])/i);
+  if(anniversary){
+    const ordinal=`${anniversary[1]}${anniversary[2]}`;
+    const seasonLetter=anniversary[3].toUpperCase();
+    return `${ordinal} Anniversary Season ${seasonLetter}`;
+  }
+  const seasonal=value.match(/Seasonal\s*\(([^)]+)\)/i);
+  if(seasonal){
+    return `Seasonal (${seasonal[1].trim()})`;
+  }
+  const detailed=value.match(/Season\s*(\d+)\s*([A-Za-z])?/i);
+  if(detailed){
+    const seasonNumber=detailed[1];
+    const letter=(detailed[2]||'').trim();
+    if(letter){
+      return `Season ${seasonNumber}${letter.toLowerCase()}`;
+    }
+    return `Season ${seasonNumber}`;
+  }
+  return '';
+}
+function inferSeasonFromReward(adv){
+  if(!adv || typeof adv!=='object') return '';
+  const direct=extractSeasonLabel(adv.season);
+  if(direct) return dmNormalizeSeasonLabel(direct);
+  const fromTitle=extractSeasonLabel(adv.title);
+  if(fromTitle) return dmNormalizeSeasonLabel(fromTitle);
+  const fromNotes=extractSeasonLabel(adv.notes);
+  if(fromNotes) return dmNormalizeSeasonLabel(fromNotes);
+  return '';
+}
 function dmToNullableNumber(value){
   const num=Number(value);
   return Number.isFinite(num)?num:null;
@@ -1775,6 +1823,9 @@ function buildDmEntries(){
   const normalizeSeason=(raw)=>dmNormalizeSeasonLabel(raw);
   const pushEntry=(entry)=>{
     entry.__origIndex=sortIndex++;
+    if(entry && typeof entry==='object'){
+      entry.seasonGroup=normalizeSeasonGroup(entry.season||'');
+    }
     DM_ENTRIES.push(entry);
   };
   const addRun=(seasonLabel, run)=>{
@@ -1926,6 +1977,61 @@ function parseAllocationRecipients(text){
   const parts=after.split(',').map(part=>part.trim()).filter(Boolean);
   return parts;
 }
+function extractAllocationItemTokens(text){
+  const raw=String(text||'');
+  if(!raw) return [];
+  const idx=raw.toLowerCase().lastIndexOf(' to ');
+  const before=idx===-1?raw:raw.slice(0, idx);
+  const candidates=before.split(/[+,&/]/).map(part=>normalizeMatchToken(part));
+  const tokens=new Set();
+  candidates.forEach(token=>{
+    if(!token) return;
+    if(token.length<4) return;
+    if(!/[a-z]/.test(token)) return;
+    if(/^(?:level|levels|hours|extra|bonus|dtd|gp)$/.test(token)) return;
+    if(/^\d/.test(token)) return;
+    tokens.add(token);
+  });
+  return Array.from(tokens);
+}
+function extractContentTokens(values){
+  const tokens=new Set();
+  const stopWords=new Set(['and','the','for','with','from','into','onto','this','that','item','items','reward','rewards','entry','entries','log','card','cards','season','seasonal','dm','of','to','per','plus','minus','bonus','extra','cost','gp','hour','hours','level','levels','dtd','loss','spent','earned','player']);
+  const addFromValue=(val)=>{
+    if(val==null) return;
+    if(Array.isArray(val)){
+      val.forEach(addFromValue);
+      return;
+    }
+    const text=String(val).toLowerCase();
+    if(!text.trim()) return;
+    text.split(/[^a-z0-9]+/).forEach(part=>{
+      const cleaned=part.trim();
+      if(!cleaned) return;
+      if(cleaned.length<3) return;
+      if(stopWords.has(cleaned)) return;
+      const normalized=normalizeMatchToken(cleaned);
+      if(!normalized) return;
+      tokens.add(normalized);
+    });
+  };
+  addFromValue(values);
+  return Array.from(tokens);
+}
+function buildAllocationItemSeasonIndex(entries){
+  const map=new Map();
+  if(!Array.isArray(entries)) return map;
+  entries.forEach(entry=>{
+    if(!entry || entry.type!=='allocation') return;
+    const season=entry.season||'';
+    if(!season) return;
+    extractAllocationItemTokens(entry.allocation).forEach(token=>{
+      if(!map.has(token)) map.set(token,new Set());
+      map.get(token).add(season);
+    });
+  });
+  return map;
+}
 
 function rebuildDmRewardLinks(){
   DM_ALLOCATION_LINKS=new WeakMap();
@@ -1935,6 +2041,8 @@ function rebuildDmRewardLinks(){
   }
   const charEntries=Object.entries(DATA.characters);
   if(!charEntries.length) return;
+
+  const itemSeasonIndex=buildAllocationItemSeasonIndex(DM_ENTRIES);
 
   const fragmentOwnersLower=new Map();
   const fragmentOwnersCompact=new Map();
@@ -2007,14 +2115,76 @@ function rebuildDmRewardLinks(){
     const advs=obj && Array.isArray(obj.adventures)?obj.adventures:[];
     advs.forEach(adv=>{
       if(!isDmRewardEntry(adv)) return;
+      const inferredSeason=inferSeasonFromReward(adv);
       const meta={
         charKey:key,
         adv,
         date:normalizeDateString(adv.date),
         levels:Number(adv.level_plus||0)||0,
         dtd:Number(adv.dtd_net||0)||0,
-        itemsNormalized:Array.isArray(adv.perm_items)?adv.perm_items.map(item=>normalizeMatchToken(item)).filter(token=>token && token.length>=2):[]
+        hours:(Number(adv.hours)||0)+(Number(adv.extra_hours)||0),
+        itemsNormalized:Array.isArray(adv.perm_items)?adv.perm_items.map(item=>normalizeMatchToken(item)).filter(token=>token && token.length>=2):[],
+        season:inferredSeason,
+        seasonGroup:normalizeSeasonGroup(inferredSeason)
       };
+      const textSources=[];
+      const pushText=(val)=>{
+        if(val==null) return;
+        if(Array.isArray(val)){
+          val.forEach(pushText);
+          return;
+        }
+        const text=String(val).trim();
+        if(text) textSources.push(text);
+      };
+      pushText(adv.title);
+      pushText(adv.notes);
+      pushText(adv.adventure);
+      pushText(adv.story_awards);
+      pushText(adv.reward);
+      pushText(adv.log);
+      pushText(adv.description);
+      pushText(adv.summary);
+      pushText(adv.details);
+      pushText(adv.item);
+      pushText(adv.magic_item);
+      pushText(adv.magic_items);
+      pushText(adv.story);
+      if(Array.isArray(adv.perm_items)) pushText(adv.perm_items.join(' '));
+      if(Array.isArray(adv.temp_items)) pushText(adv.temp_items.join(' '));
+      if(Array.isArray(adv.consumable_items)) pushText(adv.consumable_items.join(' '));
+      const combinedLower=textSources.join(' ').toLowerCase();
+      const contentTokenSet=new Set(meta.itemsNormalized);
+      extractContentTokens(textSources).forEach(token=>contentTokenSet.add(token));
+      meta.contentTokens=Array.from(contentTokenSet);
+      meta.hasLevelKeyword=/\blevels?\b/.test(combinedLower);
+      meta.hasDtdKeyword=/\bdtd\b/.test(combinedLower) || /down\s*time/.test(combinedLower);
+      meta.hasHourKeyword=/\bhours?\b/.test(combinedLower);
+      if(meta.itemsNormalized.length){
+        const seasonsFromItems=new Set();
+        meta.itemsNormalized.forEach(token=>{
+          const seasons=itemSeasonIndex.get(token);
+          if(seasons){
+            seasons.forEach(season=>{
+              if(season) seasonsFromItems.add(season);
+            });
+          }
+        });
+        const seasonsArray=Array.from(seasonsFromItems);
+        if(seasonsArray.length===1){
+          if(!meta.season) meta.season=dmNormalizeSeasonLabel(seasonsArray[0]);
+          meta.seasonGroup=normalizeSeasonGroup(meta.season);
+        }else if(seasonsArray.length>1){
+          const groups=Array.from(new Set(seasonsArray.map(normalizeSeasonGroup).filter(Boolean)));
+          if(groups.length===1){
+            if(!meta.season) meta.season=dmNormalizeSeasonLabel(seasonsArray[0]);
+            meta.seasonGroup=groups[0];
+          }
+        }
+      }
+      if(!meta.seasonGroup && meta.season){
+        meta.seasonGroup=normalizeSeasonGroup(meta.season);
+      }
       if(!rewardMetaByChar.has(key)) rewardMetaByChar.set(key,[]);
       rewardMetaByChar.get(key).push(meta);
     });
@@ -2027,6 +2197,9 @@ function rebuildDmRewardLinks(){
     if(!allocationText) return;
     const normalizedText=allocationText.toLowerCase();
     const normalizedCompact=normalizeMatchToken(allocationText);
+    const allocationTokens=extractAllocationItemTokens(allocationText);
+    const allocationTokenSet=new Set(allocationTokens);
+    const allocationWordSet=new Set(normalizedText.split(/[^a-z0-9]+/).map(part=>normalizeMatchToken(part)).filter(token=>token && token.length>=3));
     const recipients=parseAllocationRecipients(allocationText);
     const matchedKeys=new Set();
 
@@ -2066,31 +2239,39 @@ function rebuildDmRewardLinks(){
     const candidates=rewardMetaByChar.get(charKey)||[];
     if(!candidates.length) return;
 
-    const targetDate=normalizeDateString(entry.date);
     const targetLevels=Number(entry.levels_plus||0)||0;
     const targetCost=Number(entry.cost||0)||0;
     const targetHours=(Number(entry.hours)||0)+(Number(entry.extra_hours)||0);
-
     let bestScore=-Infinity;
     let bestCandidates=[];
 
     candidates.forEach(meta=>{
       let score=0;
-      if(targetDate && meta.date===targetDate) score+=4;
       if(targetLevels && meta.levels===targetLevels) score+=6;
+      else if(targetLevels && meta.levels && Math.abs(meta.levels-targetLevels)===1) score+=2;
       else if(!targetLevels && meta.levels===0) score+=1;
       if(targetCost && meta.dtd===targetCost) score+=6;
+      else if(targetCost && meta.dtd && Math.abs(meta.dtd-targetCost)<=1) score+=2;
       else if(!targetCost && meta.dtd===0) score+=1;
-      if(targetHours && meta.dtd===targetHours) score+=4;
-      const itemMatches=meta.itemsNormalized.filter(token=>token && normalizedCompact.includes(token)).length;
+      if(targetHours && meta.hours===targetHours) score+=5;
+      else if(targetHours && meta.hours && Math.abs(meta.hours-targetHours)<=1) score+=2;
+      else if(!targetHours && meta.hours===0) score+=1;
+      const itemMatches=meta.itemsNormalized.filter(token=>token && (allocationTokenSet.has(token) || normalizedCompact.includes(token))).length;
       if(itemMatches>0){
-        score+=itemMatches*5;
+        score+=itemMatches*7;
         if(itemMatches===meta.itemsNormalized.length){
-          score+=2;
+          score+=3;
         }
       }
-      if(meta.levels>0 && normalizedText.includes('level')) score+=2;
-      if(meta.dtd>0 && normalizedText.includes('dtd')) score+=2;
+      if(Array.isArray(meta.contentTokens) && meta.contentTokens.length){
+        const contentMatches=meta.contentTokens.filter(token=>token && (allocationTokenSet.has(token) || normalizedCompact.includes(token) || allocationWordSet.has(token))).length;
+        if(contentMatches>0){
+          score+=contentMatches*3;
+        }
+      }
+      if(meta.levels>0 && (normalizedText.includes('level') || meta.hasLevelKeyword)) score+=1;
+      if(meta.dtd>0 && (normalizedText.includes('dtd') || meta.hasDtdKeyword)) score+=1;
+      if(meta.hasHourKeyword && targetHours>0) score+=1;
 
       if(score>bestScore){
         bestScore=score;
