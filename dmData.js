@@ -12,25 +12,7 @@ window.DMDATA = {
       "levels_plus": 4,
       "levels_minus": 4,
       "item": "Amulet of Proof Against Detection",
-      "allocation": {
-        "label": "Levels to Darrendrian (x2), Morty, Buckley",
-        "tokens": [
-          "levels:4",
-          "recipient:buckley",
-          "recipient:darrendrian",
-          "recipient:morty"
-        ],
-        "recipients": [
-          "Darrendrian",
-          "Morty",
-          "Buckley"
-        ],
-        "item_tokens": [],
-        "levels_spent": 4,
-        "levels_gained": 4,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Levels to Darrendrian (x2), Morty, Buckley",
       "location": "GE (IRL - private)"
     },
     {
@@ -41,28 +23,7 @@ window.DMDATA = {
       "levels_plus": 4,
       "levels_minus": 4,
       "item": "Amulet of Proof Against Detection",
-      "allocation": {
-        "label": "Levels to Zandarax (x2), Morty, S9 reward (Tressym) to Zandarax",
-        "tokens": [
-          "item:levelstozandaraxx2",
-          "item:morty",
-          "item:s9rewardtressym",
-          "levels:4",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "levelstozandaraxx2",
-          "morty",
-          "s9rewardtressym"
-        ],
-        "levels_spent": 4,
-        "levels_gained": 4,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Levels to Zandarax (x2), Morty, S9 reward (Tressym) to Zandarax",
       "location": "private"
     },
     {
@@ -73,24 +34,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Eyes of the Eagle",
-      "allocation": {
-        "label": "S9 reward (Tressym) to Zandarax",
-        "tokens": [
-          "item:s9rewardtressym",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "s9rewardtressym"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "S9 reward (Tressym) to Zandarax",
       "location": "GE"
     },
     {
@@ -101,24 +45,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Heward's Handy Haversack",
-      "allocation": {
-        "label": "S9 reward (Tressym) to Zandarax",
-        "tokens": [
-          "item:s9rewardtressym",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "s9rewardtressym"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "S9 reward (Tressym) to Zandarax",
       "location": "GE"
     },
     {
@@ -129,24 +56,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Winged Boots",
-      "allocation": {
-        "label": "Item to Zandarax",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Zandarax",
       "location": "private"
     },
     {
@@ -157,21 +67,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Winged Boots",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "F&D"
     },
     {
@@ -182,21 +78,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Periapt of Wound Closure",
-      "allocation": {
-        "label": "Level to Sookie Stackhouse",
-        "tokens": [
-          "levels:1",
-          "recipient:sookiestackhouse"
-        ],
-        "recipients": [
-          "Sookie Stackhouse"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sookie Stackhouse",
       "location": "PHG"
     },
     {
@@ -207,21 +89,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Winged Boots",
-      "allocation": {
-        "label": "Level to Sookie Stackhouse",
-        "tokens": [
-          "levels:1",
-          "recipient:sookiestackhouse"
-        ],
-        "recipients": [
-          "Sookie Stackhouse"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sookie Stackhouse",
       "location": "PHG"
     },
     {
@@ -232,24 +100,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Mithral Splint / Splint +1",
-      "allocation": {
-        "label": "Item to (Mithril Splint) Sookie Stackhouse",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sookiestackhouse"
-        ],
-        "recipients": [
-          "Sookie Stackhouse"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to (Mithril Splint) Sookie Stackhouse",
       "location": "GE"
     },
     {
@@ -260,24 +111,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Mithral Splint / Splint +1",
-      "allocation": {
-        "label": "Item to (Splint +1) Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to (Splint +1) Sentient Hat",
       "location": "PHG"
     },
     {
@@ -288,21 +122,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Periapt of Health",
-      "allocation": {
-        "label": "Level to Lorien",
-        "tokens": [
-          "levels:1",
-          "recipient:lorien"
-        ],
-        "recipients": [
-          "Lorien"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lorien",
       "location": "GE"
     },
     {
@@ -313,21 +133,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Periapt of Health",
-      "allocation": {
-        "label": "Level to Noraggen",
-        "tokens": [
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Noraggen",
       "location": "PHG"
     },
     {
@@ -338,21 +144,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "",
-      "allocation": {
-        "label": "Level to Noraggen",
-        "tokens": [
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Noraggen",
       "location": ""
     },
     {
@@ -363,24 +155,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracers of Defense",
-      "allocation": {
-        "label": "Item to Leonardo",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:leonardo"
-        ],
-        "recipients": [
-          "Leonardo"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Leonardo",
       "location": "GE"
     },
     {
@@ -391,21 +166,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracers of Defense",
-      "allocation": {
-        "label": "Level to Morty",
-        "tokens": [
-          "levels:1",
-          "recipient:morty"
-        ],
-        "recipients": [
-          "Morty"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Morty",
       "location": "PHG"
     },
     {
@@ -416,24 +177,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Cape of the Mountbank",
-      "allocation": {
-        "label": "Item to Darrendrian",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:darrendrian"
-        ],
-        "recipients": [
-          "Darrendrian"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Darrendrian",
       "location": "GE"
     },
     {
@@ -444,21 +188,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Ring of Warmth",
-      "allocation": {
-        "label": "Level to Lorien",
-        "tokens": [
-          "levels:1",
-          "recipient:lorien"
-        ],
-        "recipients": [
-          "Lorien"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lorien",
       "location": "PHG"
     },
     {
@@ -469,21 +199,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Lorien",
-        "tokens": [
-          "levels:1",
-          "recipient:lorien"
-        ],
-        "recipients": [
-          "Lorien"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lorien",
       "location": "GE"
     },
     {
@@ -494,24 +210,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Cape of the Mountbank",
-      "allocation": {
-        "label": "Item to Zandarax",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Zandarax",
       "location": "GE"
     },
     {
@@ -522,21 +221,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Ring of Warmth",
-      "allocation": {
-        "label": "Level to Morty",
-        "tokens": [
-          "levels:1",
-          "recipient:morty"
-        ],
-        "recipients": [
-          "Morty"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Morty",
       "location": "PHG"
     },
     {
@@ -547,21 +232,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Periapt of Wound Closure",
-      "allocation": {
-        "label": "Level to Noraggen",
-        "tokens": [
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Noraggen",
       "location": "F&D"
     },
     {
@@ -572,21 +243,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Winged Boots",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "F&D"
     },
     {
@@ -597,21 +254,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracers of Defense",
-      "allocation": {
-        "label": "Level to Noraggen",
-        "tokens": [
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Noraggen",
       "location": "GE"
     },
     {
@@ -622,24 +265,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Boon of High Magic",
-      "allocation": {
-        "label": "Boon to Zandarax",
-        "tokens": [
-          "item:boon",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "boon"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Boon to Zandarax",
       "location": "The Lich Strikes Back (special)"
     },
     {
@@ -650,21 +276,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "FOWP - Ivory Goats",
-      "allocation": {
-        "label": "Level to Steve*",
-        "tokens": [
-          "levels:1",
-          "recipient:steve"
-        ],
-        "recipients": [
-          "Steve*"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Steve*",
       "location": "Gateway"
     },
     {
@@ -675,24 +287,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tloque's Battleaxe, Bracelet of Rock Magic, Bracers of Defense, Gloves of Missile Snaring, Longsword +1 (+2d6 vs plants), Ring of Animal Influence, Ring of Fire Resistance",
-      "allocation": {
-        "label": "Item (battleax) to Zandarax",
-        "tokens": [
-          "item:itembattleax",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "itembattleax"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (battleax) to Zandarax",
       "location": "Gateway"
     },
     {
@@ -703,24 +298,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Wand of Lightning Bolts, Hat of Disguise, Eagle Whistle, Dagger +1 (broken), Dagger +1, Mace +1 (broken), Stone of Ill Luck",
-      "allocation": {
-        "label": "Hat of Disuise to Creature X-12",
-        "tokens": [
-          "item:hatofdisuise",
-          "levels:1",
-          "recipient:creaturex12"
-        ],
-        "recipients": [
-          "Creature X-12"
-        ],
-        "item_tokens": [
-          "hatofdisuise"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Hat of Disuise to Creature X-12",
       "location": "Gateway"
     },
     {
@@ -731,21 +309,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "",
-      "allocation": {
-        "label": "Level to Steve*",
-        "tokens": [
-          "levels:1",
-          "recipient:steve"
-        ],
-        "recipients": [
-          "Steve*"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Steve*",
       "location": "private"
     },
     {
@@ -756,24 +320,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracelet of Rock Magic, +1 Dagger, +1 Longsword (plants)",
-      "allocation": {
-        "label": "Item (bracelet) to Zandarax",
-        "tokens": [
-          "item:itembracelet",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "itembracelet"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (bracelet) to Zandarax",
       "location": "GE"
     },
     {
@@ -784,24 +331,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Wand of Lightning Bolts, Hat of Disguise, Eagle Whistle",
-      "allocation": {
-        "label": "Item to Darrendrian",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:darrendrian"
-        ],
-        "recipients": [
-          "Darrendrian"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Darrendrian",
       "location": "GE"
     },
     {
@@ -812,24 +342,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Jeny's Special Helper (Broom of Flying), Black Shard Amulet, Charlatan's Die",
-      "allocation": {
-        "label": "Item (Broom) to Orakhar",
-        "tokens": [
-          "item:itembroom",
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [
-          "itembroom"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Broom) to Orakhar",
       "location": "GE"
     },
     {
@@ -840,24 +353,7 @@ window.DMDATA = {
       "levels_plus": 2,
       "levels_minus": 2,
       "item": "",
-      "allocation": {
-        "label": "Levels (x2) to Sentient Hat",
-        "tokens": [
-          "item:levelsx2",
-          "levels:2",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "levelsx2"
-        ],
-        "levels_spent": 2,
-        "levels_gained": 2,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Levels (x2) to Sentient Hat",
       "location": ""
     },
     {
@@ -868,21 +364,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Ring of Warmth",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "private"
     },
     {
@@ -893,21 +375,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "private"
     },
     {
@@ -918,21 +386,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Ring of Warmth",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "PHG"
     },
     {
@@ -943,24 +397,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "FOWP - Ivory Goats",
-      "allocation": {
-        "label": "Item to Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sentient Hat",
       "location": "GE"
     },
     {
@@ -971,21 +408,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "F&D"
     },
     {
@@ -996,7 +419,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Cape of the Mountebank",
-      "allocation": null,
+      "allocation": "",
       "location": "PSA"
     },
     {
@@ -1007,24 +430,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tloque's Battleaxe, Bracelet of Rock Magic, Eagle Whistle",
-      "allocation": {
-        "label": "Item (Battleaxe) to Noraggen",
-        "tokens": [
-          "item:itembattleaxe",
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [
-          "itembattleaxe"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Battleaxe) to Noraggen",
       "location": "private"
     },
     {
@@ -1035,24 +441,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Staff of Healing (Driftwood staff)",
-      "allocation": {
-        "label": "Item to Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sentient Hat",
       "location": "GE"
     },
     {
@@ -1063,21 +452,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Wand of Magic Missiles",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "GE"
     },
     {
@@ -1088,24 +463,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Robe of Stars (Cosmic Chausible)",
-      "allocation": {
-        "label": "Item to Zandarax",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Zandarax",
       "location": "F&D"
     },
     {
@@ -1116,21 +474,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Decanter of Endless Water",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "GE"
     },
     {
@@ -1141,21 +485,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracers of Defense",
-      "allocation": {
-        "label": "Level of Madam Renata",
-        "tokens": [
-          "item:levelofmadamrenata",
-          "levels:1"
-        ],
-        "recipients": [],
-        "item_tokens": [
-          "levelofmadamrenata"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level of Madam Renata",
       "location": "F&D"
     },
     {
@@ -1166,7 +496,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Winged Boots (Magpie wings)",
-      "allocation": null,
+      "allocation": "",
       "location": "GE"
     },
     {
@@ -1177,24 +507,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Necklace of Fireballs (6)",
-      "allocation": {
-        "label": "Item to Orakhar",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Orakhar",
       "location": "PHG"
     },
     {
@@ -1205,21 +518,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Cape of Billowing",
-      "allocation": {
-        "label": "Level to Anfer",
-        "tokens": [
-          "levels:1",
-          "recipient:anfer"
-        ],
-        "recipients": [
-          "Anfer"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Anfer",
       "location": "PHG"
     },
     {
@@ -1230,24 +529,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Broom of Flying, Charlatan's Die, Dark Shard Amulet",
-      "allocation": {
-        "label": "Item to Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sentient Hat",
       "location": "GE"
     },
     {
@@ -1258,24 +540,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bag of Devouring, Scroll of Simulacrum",
-      "allocation": {
-        "label": "Item (Scroll) to Zandarax",
-        "tokens": [
-          "item:itemscroll",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "itemscroll"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Scroll) to Zandarax",
       "location": "OrcCon"
     },
     {
@@ -1286,24 +551,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bag of Devouring, Scroll of Simulacrum",
-      "allocation": {
-        "label": "Item (Scroll) to Zandarax",
-        "tokens": [
-          "item:itemscroll",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "itemscroll"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Scroll) to Zandarax",
       "location": "OrcCon"
     },
     {
@@ -1314,24 +562,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bag of Devouring, Scroll of Simulacrum",
-      "allocation": {
-        "label": "Item (Scroll) to Zandarax",
-        "tokens": [
-          "item:itemscroll",
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [
-          "itemscroll"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Scroll) to Zandarax",
       "location": "OrcCon"
     },
     {
@@ -1342,21 +573,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "",
-      "allocation": {
-        "label": "Level to Sentient Hat",
-        "tokens": [
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sentient Hat",
       "location": "OrcCon"
     },
     {
@@ -1367,21 +584,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tyr's Blessing of the Mind",
-      "allocation": {
-        "label": "Level to Noraggen",
-        "tokens": [
-          "levels:1",
-          "recipient:noraggen"
-        ],
-        "recipients": [
-          "Noraggen"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Noraggen",
       "location": "PHG"
     },
     {
@@ -1392,24 +595,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Cli Lyre",
-      "allocation": {
-        "label": "Item to Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sentient Hat",
       "location": "private"
     },
     {
@@ -1420,21 +606,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tyr's Blessing of Command",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "PHG"
     },
     {
@@ -1445,21 +617,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tyr's Blessing of Luck",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "PHG"
     },
     {
@@ -1470,24 +628,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Anstruth Harp",
-      "allocation": {
-        "label": "Item to Sentient Hat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sentienthat"
-        ],
-        "recipients": [
-          "Sentient Hat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sentient Hat",
       "location": "GE"
     },
     {
@@ -1498,21 +639,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Tyr's Blessing of the Mind",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "private"
     },
     {
@@ -1523,7 +650,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Staff of the Woodlands",
-      "allocation": null,
+      "allocation": "",
       "location": "private"
     },
     {
@@ -1534,7 +661,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Cli Lyre",
-      "allocation": null,
+      "allocation": "",
       "location": "F&D"
     },
     {
@@ -1545,24 +672,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Fey Cloak of Protection",
-      "allocation": {
-        "label": "Item to Lyrielle",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Lyrielle",
       "location": "private"
     },
     {
@@ -1573,24 +683,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Necklace of Fireballs (6)",
-      "allocation": {
-        "label": "Item to Lyrielle",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Lyrielle",
       "location": "F&D"
     },
     {
@@ -1601,21 +694,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Boots of Elvenkind, Moon Touched Rapier",
-      "allocation": {
-        "label": "Level to Dolroruuk",
-        "tokens": [
-          "levels:1",
-          "recipient:dolroruuk"
-        ],
-        "recipients": [
-          "Dolroruuk"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Dolroruuk",
       "location": "private"
     },
     {
@@ -1626,21 +705,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Javeline of Lightning, Horn of Silent Alarm",
-      "allocation": {
-        "label": "Level to Madam Renata",
-        "tokens": [
-          "levels:1",
-          "recipient:madamrenata"
-        ],
-        "recipients": [
-          "Madam Renata"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Madam Renata",
       "location": "private"
     },
     {
@@ -1651,24 +716,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Bracers of Defense",
-      "allocation": {
-        "label": "Item to Sir Smol",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:sirsmol"
-        ],
-        "recipients": [
-          "Sir Smol"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Sir Smol",
       "location": "GameX"
     },
     {
@@ -1679,21 +727,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Boots of Elvenkind, Moon Touched Short Sword",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "GameX"
     },
     {
@@ -1704,21 +738,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Javeline of Lightning, Horn of Silent Alarm",
-      "allocation": {
-        "label": "Level to Dolroruuk",
-        "tokens": [
-          "levels:1",
-          "recipient:dolroruuk"
-        ],
-        "recipients": [
-          "Dolroruuk"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Dolroruuk",
       "location": "GameX"
     },
     {
@@ -1729,7 +749,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Cloak of Displacement",
-      "allocation": null,
+      "allocation": "",
       "location": "private"
     },
     {
@@ -1740,21 +760,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Cloak of Displacement",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "F&D"
     },
     {
@@ -1765,7 +771,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Cape of the Mountbank",
-      "allocation": null,
+      "allocation": "",
       "location": "Odyssey"
     },
     {
@@ -1776,21 +782,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Ring of Warmth",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "Odyssey"
     },
     {
@@ -1801,21 +793,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "private"
     },
     {
@@ -1826,21 +804,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Javeline of Lightning, Horn of Silent Alarm",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "private"
     },
     {
@@ -1851,21 +815,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "Odyssey"
     },
     {
@@ -1876,21 +826,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "Odyssey"
     },
     {
@@ -1901,24 +837,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Scimitar of Speed",
-      "allocation": {
-        "label": "Item to Orakhar",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Orakhar",
       "location": "private"
     },
     {
@@ -1929,21 +848,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Boots of the Winterlands, Pole of Angling",
-      "allocation": {
-        "label": "Level to Lyrielle",
-        "tokens": [
-          "levels:1",
-          "recipient:lyrielle"
-        ],
-        "recipients": [
-          "Lyrielle"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Lyrielle",
       "location": "Odyssey"
     },
     {
@@ -1954,21 +859,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Arrow-Catching Shield",
-      "allocation": {
-        "label": "Level to Orakhar",
-        "tokens": [
-          "levels:1",
-          "recipient:orakhar"
-        ],
-        "recipients": [
-          "Orakhar"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Orakhar",
       "location": "F&D"
     },
     {
@@ -1979,24 +870,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Winged Boots",
-      "allocation": {
-        "label": "Item to Madam Renata",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:madamrenata"
-        ],
-        "recipients": [
-          "Madam Renata"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Madam Renata",
       "location": "Gateway"
     },
     {
@@ -2007,24 +881,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Amulet of Health, Mariner's Studded Leather",
-      "allocation": {
-        "label": "Item to Gnat",
-        "tokens": [
-          "item:item",
-          "levels:1",
-          "recipient:gnat"
-        ],
-        "recipients": [
-          "Gnat"
-        ],
-        "item_tokens": [
-          "item"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to Gnat",
       "location": "Gateway"
     },
     {
@@ -2035,21 +892,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Stone of Controlling Earth Elementals",
-      "allocation": {
-        "label": "Level to Sir Smol",
-        "tokens": [
-          "levels:1",
-          "recipient:sirsmol"
-        ],
-        "recipients": [
-          "Sir Smol"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Sir Smol",
       "location": "Gateway"
     },
     {
@@ -2060,7 +903,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Cloak of Protection, Bracers of Archery",
-      "allocation": null,
+      "allocation": "",
       "location": "Gateway"
     },
     {
@@ -2071,7 +914,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 0,
       "item": "Winged Boots",
-      "allocation": null,
+      "allocation": "",
       "location": "Gateway"
     },
     {
@@ -2082,21 +925,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "FOWP - Ivory Goats",
-      "allocation": {
-        "label": "Level to Madam Renata",
-        "tokens": [
-          "levels:1",
-          "recipient:madamrenata"
-        ],
-        "recipients": [
-          "Madam Renata"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Madam Renata",
       "location": "Odyssey"
     },
     {
@@ -2107,21 +936,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Staff of Healing (Driftwood staff)",
-      "allocation": {
-        "label": "Level to Dolroruuk",
-        "tokens": [
-          "levels:1",
-          "recipient:dolroruuk"
-        ],
-        "recipients": [
-          "Dolroruuk"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Dolroruuk",
       "location": "Odyssey"
     },
     {
@@ -2132,24 +947,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Marvelous Pigments, Bronze Griffon, +1 Scimitar, +1 Spear (Sentient), +1 Greataxe (Sentient)",
-      "allocation": {
-        "label": "Item (Pigments) to Sir Smol",
-        "tokens": [
-          "item:itempigments",
-          "levels:1",
-          "recipient:sirsmol"
-        ],
-        "recipients": [
-          "Sir Smol"
-        ],
-        "item_tokens": [
-          "itempigments"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Pigments) to Sir Smol",
       "location": "private"
     },
     {
@@ -2160,21 +958,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Stone of Controlling Earth Elementals, 190 gp",
-      "allocation": {
-        "label": "Level to Zandarax",
-        "tokens": [
-          "levels:1",
-          "recipient:zandarax"
-        ],
-        "recipients": [
-          "Zandarax"
-        ],
-        "item_tokens": [],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Level to Zandarax",
       "location": "private"
     },
     {
@@ -2185,24 +969,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Marvelous Pigments, Bronze Griffon, +1 Scimitar, 2310 gp",
-      "allocation": {
-        "label": "Item to (Pigments) to Goblert",
-        "tokens": [
-          "item:itemtopigments",
-          "levels:1",
-          "recipient:goblert"
-        ],
-        "recipients": [
-          "Goblert"
-        ],
-        "item_tokens": [
-          "itemtopigments"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item to (Pigments) to Goblert",
       "location": "private"
     },
     {
@@ -2213,24 +980,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Anstruth Harp",
-      "allocation": {
-        "label": "Item (Harp) to Raguel",
-        "tokens": [
-          "item:itemharp",
-          "levels:1",
-          "recipient:raguel"
-        ],
-        "recipients": [
-          "Raguel"
-        ],
-        "item_tokens": [
-          "itemharp"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Harp) to Raguel",
       "location": "private"
     },
     {
@@ -2241,24 +991,7 @@ window.DMDATA = {
       "levels_plus": 1,
       "levels_minus": 1,
       "item": "Manual of Bodily Health",
-      "allocation": {
-        "label": "Item (Manual) to Raguel",
-        "tokens": [
-          "item:itemmanual",
-          "levels:1",
-          "recipient:raguel"
-        ],
-        "recipients": [
-          "Raguel"
-        ],
-        "item_tokens": [
-          "itemmanual"
-        ],
-        "levels_spent": 1,
-        "levels_gained": 1,
-        "downtime_spent": null,
-        "gold_spent": null
-      },
+      "allocation": "Item (Manual) to Raguel",
       "location": "private"
     }
   ],
@@ -2563,413 +1296,103 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2021-11-02T00:00:00",
-          "allocation": {
-            "label": "Nereid Shawl + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:nereidshawl",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "nereidshawl"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Nereid Shawl + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-16T00:00:00",
-          "allocation": {
-            "label": "Night Queen's eyes + 250 gp to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "gp:250",
-              "item:nightqueenseyes",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "nightqueenseyes"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": 250
-          },
+          "allocation": "Night Queen's eyes + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-23T00:00:00",
-          "allocation": {
-            "label": "Mariner's scale mail + 250 gp to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "gp:250",
-              "item:marinersscalemail",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "marinersscalemail"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": 250
-          },
+          "allocation": "Mariner's scale mail + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-24T00:00:00",
-          "allocation": {
-            "label": "Quiver of the centaurs + 250 gp to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "gp:250",
-              "item:quiverofthecentaurs",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "quiverofthecentaurs"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": 250
-          },
+          "allocation": "Quiver of the centaurs + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-25T00:00:00",
-          "allocation": {
-            "label": "Lathai's saddle + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:lathaissaddle",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "lathaissaddle"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Lathai's saddle + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-26T00:00:00",
-          "allocation": {
-            "label": "Pixie winged boots + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:pixiewingedboots",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "pixiewingedboots"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Pixie winged boots + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2021-11-27T00:00:00",
-          "allocation": {
-            "label": "Darkthorn arrows (5) + 2500 gp to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:darkthornarrows5",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "darkthornarrows5"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Darkthorn arrows (5) + 2500 gp to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2021-11-28T00:00:00",
-          "allocation": {
-            "label": "Faerie dragon's favor + 2500 gp to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:faeriedragonsfavor",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "faeriedragonsfavor"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Faerie dragon's favor + 2500 gp to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2021-12-01T00:00:00",
-          "allocation": {
-            "label": "Hag's clawblade + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:hagsclawblade",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "hagsclawblade"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Hag's clawblade + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2021-12-11T00:00:00",
-          "allocation": {
-            "label": "Siren's caress + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:sirenscaress",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "sirenscaress"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Siren's caress + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2021-12-14T00:00:00",
-          "allocation": {
-            "label": "Blink Dog's Guide + 2500 gp to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:blinkdogsguide",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "blinkdogsguide"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Blink Dog's Guide + 2500 gp to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-02-15T00:00:00",
-          "allocation": {
-            "label": "Sprite's Rescue + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:spritesrescue",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "spritesrescue"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Sprite's Rescue + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-02-16T00:00:00",
-          "allocation": {
-            "label": "Daphnaie armor + 30 DTD to Zandarax",
-            "tokens": [
-              "dtd:15",
-              "item:daphnaiearmor",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "daphnaiearmor"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 15,
-            "gold_spent": null
-          },
+          "allocation": "Daphnaie armor + 30 DTD to Zandarax",
           "cost": 15,
           "levels_plus": 1
         },
         {
           "date": "2022-02-17T00:00:00",
-          "allocation": {
-            "label": "Grif fiddle + 30 DTD to Zandarax",
-            "tokens": [
-              "dtd:15",
-              "item:griffiddle",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "griffiddle"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 15,
-            "gold_spent": null
-          },
+          "allocation": "Grif fiddle + 30 DTD to Zandarax",
           "cost": 15,
           "levels_plus": 1
         },
         {
           "date": "2022-02-18T00:00:00",
-          "allocation": {
-            "label": "Harengon's Freedom + 10,000 gp to Zandarax",
-            "tokens": [
-              "dtd:15",
-              "gp:10000",
-              "item:harengonsfreedom",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "harengonsfreedom"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 15,
-            "gold_spent": 10000
-          },
+          "allocation": "Harengon's Freedom + 10,000 gp to Zandarax",
           "cost": 15,
           "levels_plus": 1
         },
         {
           "date": "2022-02-19T00:00:00",
-          "allocation": {
-            "label": "Wildmane's shoes + 30 DTD to Zandarax",
-            "tokens": [
-              "dtd:15",
-              "item:wildmanesshoes",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "wildmanesshoes"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 15,
-            "gold_spent": null
-          },
+          "allocation": "Wildmane's shoes + 30 DTD to Zandarax",
           "cost": 15,
           "levels_plus": 1
         },
         {
           "date": "2022-02-19T00:00:00",
-          "allocation": {
-            "label": "Loss at period end",
-            "tokens": [
-              "dtd:10",
-              "item:lossatperiodend",
-              "levels:0"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "lossatperiodend"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Loss at period end",
           "cost": 10,
           "levels_plus": 0
         }
@@ -3166,307 +1589,79 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2022-03-07T00:00:00",
-          "allocation": {
-            "label": "Dragon slayer greatsword + 20 DTD to Norixius",
-            "tokens": [
-              "dtd:10",
-              "item:dragonslayergreatsword",
-              "levels:1",
-              "recipient:norixius"
-            ],
-            "recipients": [
-              "Norixius"
-            ],
-            "item_tokens": [
-              "dragonslayergreatsword"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Dragon slayer greatsword + 20 DTD to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-03-09T00:00:00",
-          "allocation": {
-            "label": "Giant slayer greatsword + 2500 gp to Norixius",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:giantslayergreatsword",
-              "levels:1",
-              "recipient:norixius"
-            ],
-            "recipients": [
-              "Norixius"
-            ],
-            "item_tokens": [
-              "giantslayergreatsword"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Giant slayer greatsword + 2500 gp to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-04-07T00:00:00",
-          "allocation": {
-            "label": "Flametongue greatsword + 2500 gp to Norixius",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:flametonguegreatsword",
-              "levels:1",
-              "recipient:norixius"
-            ],
-            "recipients": [
-              "Norixius"
-            ],
-            "item_tokens": [
-              "flametonguegreatsword"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Flametongue greatsword + 2500 gp to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-04-13T00:00:00",
-          "allocation": {
-            "label": "Levels to Zandarax",
-            "tokens": [
-              "dtd:0",
-              "levels:0",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 0,
-            "gold_spent": null
-          },
+          "allocation": "Levels to Zandarax",
           "cost": 0,
           "levels_plus": 0
         },
         {
           "date": "2022-04-27T00:00:00",
-          "allocation": {
-            "label": "Dex Tome + 10k gp + level to Squelch",
-            "tokens": [
-              "dtd:20",
-              "gp:10000",
-              "item:dextome",
-              "levels:1",
-              "recipient:squelch"
-            ],
-            "recipients": [
-              "Squelch"
-            ],
-            "item_tokens": [
-              "dextome"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 20,
-            "gold_spent": 10000
-          },
+          "allocation": "Dex Tome + 10k gp + level to Squelch",
           "cost": 20,
           "levels_plus": 1
         },
         {
           "date": "2022-05-28T00:00:00",
-          "allocation": {
-            "label": "Emerald Pen + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:emeraldpen",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "emeraldpen"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Emerald Pen + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-05-29T00:00:00",
-          "allocation": {
-            "label": "Periapt of Health + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:periaptofhealth",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "periaptofhealth"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Periapt of Health + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-06-01T00:00:00",
-          "allocation": {
-            "label": "Bag of Tricks (Tan) + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:bagoftrickstan",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "bagoftrickstan"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Bag of Tricks (Tan) + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-06-16T00:00:00",
-          "allocation": {
-            "label": "Dragon wing longbow + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:dragonwinglongbow",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "dragonwinglongbow"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Dragon wing longbow + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-06-16T00:00:00",
-          "allocation": {
-            "label": "Gem of Seeing + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:gemofseeing",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "gemofseeing"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Gem of Seeing + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-06-24T00:00:00",
-          "allocation": {
-            "label": "Sapphire Buckler + 30 DTD to Zandarax",
-            "tokens": [
-              "dtd:20",
-              "item:sapphirebuckler",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "sapphirebuckler"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 20,
-            "gold_spent": null
-          },
+          "allocation": "Sapphire Buckler + 30 DTD to Zandarax",
           "cost": 20,
           "levels_plus": 1
         },
         {
           "date": "2022-07-03T00:00:00",
-          "allocation": {
-            "label": "Level to Creature X-12",
-            "tokens": [
-              "dtd:0",
-              "levels:0",
-              "recipient:creaturex12"
-            ],
-            "recipients": [
-              "Creature X-12"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 0,
-            "gold_spent": null
-          },
+          "allocation": "Level to Creature X-12",
           "cost": 0,
           "levels_plus": 0
         },
         {
           "date": "2022-07-08T00:00:00",
-          "allocation": {
-            "label": "Levels to Lyrielle",
-            "tokens": [
-              "dtd:0",
-              "levels:0",
-              "recipient:lyrielle"
-            ],
-            "recipients": [
-              "Lyrielle"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 0,
-            "gold_spent": null
-          },
+          "allocation": "Levels to Lyrielle",
           "cost": 0,
           "levels_plus": 0
         }
@@ -3813,190 +2008,49 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2022-09-02T00:00:00",
-          "allocation": {
-            "label": "Wis Tome + 30 DTD + level to Squelch",
-            "tokens": [
-              "dtd:20",
-              "item:wistome",
-              "levels:1",
-              "recipient:squelch"
-            ],
-            "recipients": [
-              "Squelch"
-            ],
-            "item_tokens": [
-              "wistome"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 20,
-            "gold_spent": null
-          },
+          "allocation": "Wis Tome + 30 DTD + level to Squelch",
           "cost": 20,
           "levels_plus": 1
         },
         {
           "date": "2022-09-02T00:00:00",
-          "allocation": {
-            "label": "Pistol +1 + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:pistol",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "pistol"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Pistol +1 + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-09-03T00:00:00",
-          "allocation": {
-            "label": "Spellwrought Tattoo (3rd level) + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:spellwroughttattoo3rdlevel",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "spellwroughttattoo3rdlevel"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Spellwrought Tattoo (3rd level) + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-09-03T00:00:00",
-          "allocation": {
-            "label": "Wildspace Orrery + 10 DTD to Zandarax",
-            "tokens": [
-              "dtd:5",
-              "item:wildspaceorrery",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "wildspaceorrery"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Wildspace Orrery + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2022-09-04T00:00:00",
-          "allocation": {
-            "label": "Armor of Radiant Resistant Halfplate + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:armorofradiantresistanthalfplate",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "armorofradiantresistanthalfplate"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Armor of Radiant Resistant Halfplate + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-09-10T00:00:00",
-          "allocation": {
-            "label": "Mantle of Spell Resistance + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:mantleofspellresistance",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "mantleofspellresistance"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Mantle of Spell Resistance + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-09-28T00:00:00",
-          "allocation": {
-            "label": "Mace of Smiting + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:maceofsmiting",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "maceofsmiting"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Mace of Smiting + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2022-10-19T00:00:00",
-          "allocation": {
-            "label": "Loss at period end",
-            "tokens": [
-              "dtd:12",
-              "item:lossatperiodend",
-              "levels:0"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "lossatperiodend"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 12,
-            "gold_spent": null
-          },
+          "allocation": "Loss at period end",
           "cost": 12,
           "levels_plus": 0
         }
@@ -4123,143 +2177,37 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2023-03-15T00:00:00",
-          "allocation": {
-            "label": "Gloves of Thievery + 10 DTD to Rolyn",
-            "tokens": [
-              "dtd:5",
-              "item:glovesofthievery",
-              "levels:1",
-              "recipient:rolyn"
-            ],
-            "recipients": [
-              "Rolyn"
-            ],
-            "item_tokens": [
-              "glovesofthievery"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Gloves of Thievery + 10 DTD to Rolyn",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2023-03-29T00:00:00",
-          "allocation": {
-            "label": "Armor of Necrotic Restistance + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:armorofnecroticrestistance",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "armorofnecroticrestistance"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Armor of Necrotic Restistance + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2023-04-26T00:00:00",
-          "allocation": {
-            "label": "Sixth Sword + 2500gp to Norixius",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:sixthsword",
-              "levels:1",
-              "recipient:norixius"
-            ],
-            "recipients": [
-              "Norixius"
-            ],
-            "item_tokens": [
-              "sixthsword"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Sixth Sword + 2500gp to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2023-05-03T00:00:00",
-          "allocation": {
-            "label": "Kagonesti Forest Shroud + 20 DTD to Zandarax",
-            "tokens": [
-              "dtd:10",
-              "item:kagonestiforestshroud",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "kagonestiforestshroud"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Kagonesti Forest Shroud + 20 DTD to Zandarax",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2023-05-24T00:00:00",
-          "allocation": {
-            "label": "Rod of Abosrption + 30 DTD to Zandarax",
-            "tokens": [
-              "dtd:20",
-              "item:rodofabosrption",
-              "levels:1",
-              "recipient:zandarax"
-            ],
-            "recipients": [
-              "Zandarax"
-            ],
-            "item_tokens": [
-              "rodofabosrption"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 20,
-            "gold_spent": null
-          },
+          "allocation": "Rod of Abosrption + 30 DTD to Zandarax",
           "cost": 20,
           "levels_plus": 1
         },
         {
           "date": "2023-05-27T00:00:00",
-          "allocation": {
-            "label": "Loss at end of period",
-            "tokens": [
-              "dtd:1",
-              "item:lossatendofperiod",
-              "levels:0"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "lossatendofperiod"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 1,
-            "gold_spent": null
-          },
+          "allocation": "Loss at end of period",
           "cost": 1,
           "levels_plus": 0
         }
@@ -4340,93 +2288,25 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2024-03-21T00:00:00",
-          "allocation": {
-            "label": "Rogue's Mantle + 20 DTD to Rolyn",
-            "tokens": [
-              "dtd:5",
-              "item:roguesmantle",
-              "levels:1",
-              "recipient:rolyn"
-            ],
-            "recipients": [
-              "Rolyn"
-            ],
-            "item_tokens": [
-              "roguesmantle"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Rogue's Mantle + 20 DTD to Rolyn",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2024-03-28T00:00:00",
-          "allocation": {
-            "label": "Wraps of Unarmed Prowess + 10 DTD to Squelch",
-            "tokens": [
-              "dtd:10",
-              "item:wrapsofunarmedprowess",
-              "levels:1",
-              "recipient:squelch"
-            ],
-            "recipients": [
-              "Squelch"
-            ],
-            "item_tokens": [
-              "wrapsofunarmedprowess"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": null
-          },
+          "allocation": "Wraps of Unarmed Prowess + 10 DTD to Squelch",
           "cost": 10,
           "levels_plus": 1
         },
         {
           "date": "2024-04-09T00:00:00",
-          "allocation": {
-            "label": "Loss at end of period",
-            "tokens": [
-              "dtd:1",
-              "item:lossatendofperiod",
-              "levels:0"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "lossatendofperiod"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 1,
-            "gold_spent": null
-          },
+          "allocation": "Loss at end of period",
           "cost": 1,
           "levels_plus": 0
         },
         {
           "date": "2024-05-29T00:00:00",
-          "allocation": {
-            "label": "Player rewards: Plate +3 (crystal), Boon of Recovery to...",
-            "tokens": [
-              "dtd:5",
-              "item:boonofrecoveryto",
-              "item:playerrewardsplate",
-              "levels:1"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "boonofrecoveryto",
-              "playerrewardsplate"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Player rewards: Plate +3 (crystal), Boon of Recovery to...",
           "cost": 5,
           "levels_plus": 1
         }
@@ -4564,183 +2444,49 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2024-07-06T00:00:00",
-          "allocation": {
-            "label": "8 levels to Raguel",
-            "tokens": [
-              "dtd:0",
-              "levels:0",
-              "recipient:raguel"
-            ],
-            "recipients": [
-              "Raguel"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 0,
-            "gold_spent": null
-          },
+          "allocation": "8 levels to Raguel",
           "cost": 0,
           "levels_plus": 0
         },
         {
           "date": "2028-07-14T00:00:00",
-          "allocation": {
-            "label": "Rare reward (Vicious Glavie) to Gnat + 2500 gp",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:rarerewardviciousglavie",
-              "levels:0",
-              "recipient:gnat2500gp"
-            ],
-            "recipients": [
-              "Gnat + 2500 gp"
-            ],
-            "item_tokens": [
-              "rarerewardviciousglavie"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Rare reward (Vicious Glavie) to Gnat + 2500 gp",
           "cost": 10,
           "levels_plus": 0
         },
         {
           "date": "2024-08-28T00:00:00",
-          "allocation": {
-            "label": "Player rewards: Vicious Maul + level to Raguel",
-            "tokens": [
-              "dtd:5",
-              "item:playerrewardsviciousmaul",
-              "levels:1",
-              "recipient:raguel"
-            ],
-            "recipients": [
-              "Raguel"
-            ],
-            "item_tokens": [
-              "playerrewardsviciousmaul"
-            ],
-            "levels_spent": 1,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Player rewards: Vicious Maul + level to Raguel",
           "cost": 5,
           "levels_plus": 1
         },
         {
           "date": "2024-09-01T00:00:00",
-          "allocation": {
-            "label": "5 levels to Wobbly Bobbly",
-            "tokens": [
-              "dtd:0",
-              "levels:0",
-              "recipient:wobblybobbly"
-            ],
-            "recipients": [
-              "Wobbly Bobbly"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 0,
-            "gold_spent": null
-          },
+          "allocation": "5 levels to Wobbly Bobbly",
           "cost": 0,
           "levels_plus": 0
         },
         {
           "date": "2024-09-01T00:00:00",
-          "allocation": {
-            "label": "Boomerang Shield + 10 DTD to Chef Ture",
-            "tokens": [
-              "dtd:5",
-              "item:boomerangshield",
-              "levels:0",
-              "recipient:chefture"
-            ],
-            "recipients": [
-              "Chef Ture"
-            ],
-            "item_tokens": [
-              "boomerangshield"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 5,
-            "gold_spent": null
-          },
+          "allocation": "Boomerang Shield + 10 DTD to Chef Ture",
           "cost": 5,
           "levels_plus": 0
         },
         {
           "date": "2024-09-01T00:00:00",
-          "allocation": {
-            "label": "Rare reward (Flametongue Warhammer) + 2500gp to Chef Ture",
-            "tokens": [
-              "dtd:10",
-              "gp:2500",
-              "item:rarerewardflametonguewarhammer",
-              "levels:0",
-              "recipient:chefture"
-            ],
-            "recipients": [
-              "Chef Ture"
-            ],
-            "item_tokens": [
-              "rarerewardflametonguewarhammer"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 10,
-            "gold_spent": 2500
-          },
+          "allocation": "Rare reward (Flametongue Warhammer) + 2500gp to Chef Ture",
           "cost": 10,
           "levels_plus": 0
         },
         {
           "date": "2024-09-11T00:00:00",
-          "allocation": {
-            "label": "3 levels to Agatha",
-            "tokens": [
-              "dtd:3",
-              "levels:0",
-              "recipient:agatha"
-            ],
-            "recipients": [
-              "Agatha"
-            ],
-            "item_tokens": [],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 3,
-            "gold_spent": null
-          },
+          "allocation": "3 levels to Agatha",
           "cost": 3,
           "levels_plus": 0
         },
         {
           "date": "NaT",
-          "allocation": {
-            "label": "Loss at end of period",
-            "tokens": [
-              "dtd:1",
-              "item:lossatendofperiod",
-              "levels:0"
-            ],
-            "recipients": [],
-            "item_tokens": [
-              "lossatendofperiod"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 1,
-            "gold_spent": null
-          },
+          "allocation": "Loss at end of period",
           "cost": 1,
           "levels_plus": 0
         }
@@ -4845,79 +2591,23 @@ window.DMDATA = {
       "allocations": [
         {
           "date": "2025-04-25T00:00:00",
-          "allocation": {
-            "label": "Ring of Invisibility + 40 DTD to Agatha",
-            "tokens": [
-              "dtd:40",
-              "item:ringofinvisibility",
-              "levels:0",
-              "recipient:agatha"
-            ],
-            "recipients": [
-              "Agatha"
-            ],
-            "item_tokens": [
-              "ringofinvisibility"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 40,
-            "gold_spent": null
-          },
+          "allocation": "Ring of Invisibility + 40 DTD to Agatha",
           "cost": 40,
           "levels_plus": 0
         },
         {
           "date": "2025-05-28T00:00:00",
-          "allocation": {
-            "label": "Player rewards: Arcane Grimoire +3 and Blessing of Protection to Arvistan",
-            "tokens": [
-              "dtd:8",
-              "item:playerrewardsarcanegrimoire",
-              "levels:0",
-              "recipient:arvistan"
-            ],
-            "recipients": [
-              "Arvistan"
-            ],
-            "item_tokens": [
-              "playerrewardsarcanegrimoire"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 8,
-            "gold_spent": null
-          },
+          "allocation": "Player rewards: Arcane Grimoire +3 and Blessing of Protection to Arvistan",
           "cost": 8,
           "levels_plus": 0
         },
         {
           "date": "2025-08-27T00:00:00",
-          "allocation": {
-            "label": "Player rewards: Ring of Acid Resistance, Stirring Dragon's Wrath Greatsword to Norixius",
-            "tokens": [
-              "dtd:3",
-              "item:playerrewardsringofacidresistance",
-              "item:stirringdragonswrathgreatsword",
-              "levels:0",
-              "recipient:norixius"
-            ],
-            "recipients": [
-              "Norixius"
-            ],
-            "item_tokens": [
-              "playerrewardsringofacidresistance",
-              "stirringdragonswrathgreatsword"
-            ],
-            "levels_spent": 0,
-            "levels_gained": null,
-            "downtime_spent": 3,
-            "gold_spent": null
-          },
+          "allocation": "Player rewards: Ring of Acid Resistance, Stirring Dragon's Wrath Greatsword to Norixius",
           "cost": 3,
           "levels_plus": 0
         }
       ]
     }
   }
-}
+};

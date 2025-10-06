@@ -544,6 +544,7 @@ body.avatar-overlay-open{overflow:hidden}
 })();
 </script>
 <script src="dmData.js"></script>
+<script src="dmAllocationMeta.js"></script>
 <script>
 /* --- data boot --- */
 let DATA = window.DATA || null;
@@ -1867,6 +1868,43 @@ function normalizeAllocationPayload(raw){
     goldSpent:null
   };
 }
+function dmAllocationLookupKey(seasonKey, entry){
+  if(!entry) return '';
+  const season=String(seasonKey||'').trim().toLowerCase();
+  const date=String(entry.date||'').trim().toLowerCase();
+  const code=String(entry.code||'').trim().toLowerCase();
+  const name=String(entry.name||'').trim().toLowerCase();
+  const item=String(entry.item||'').trim().toLowerCase();
+  let label='';
+  if(entry && typeof entry.allocation==='string'){
+    label=entry.allocation;
+  }else if(entry && entry.allocation && typeof entry.allocation==='object'){
+    label=entry.allocation.label||'';
+  }
+  label=String(label||'').trim().toLowerCase();
+  return [season,date,code,name,item,label].join('|');
+}
+function dmFindAllocationMetadata(seasonKey, entry){
+  if(!entry) return null;
+  const store=window.DM_ALLOCATION_DETAILS;
+  if(!store || typeof store!=='object') return null;
+  const key=dmAllocationLookupKey(seasonKey, entry);
+  if(!key || !(key in store)) return null;
+  const detail=store[key];
+  if(detail && typeof detail==='object' && !Array.isArray(detail)){
+    return detail;
+  }
+  return null;
+}
+function dmResolveAllocationDetail(seasonKey, entry){
+  if(!entry) return normalizeAllocationPayload(null);
+  const mapped=dmFindAllocationMetadata(seasonKey, entry);
+  if(mapped) return normalizeAllocationPayload(mapped);
+  if(entry.allocation_detail){
+    return normalizeAllocationPayload(entry.allocation_detail);
+  }
+  return normalizeAllocationPayload(entry.allocation||null);
+}
 function buildDmEntries(){
   DM_ENTRIES=[];
   DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
@@ -1890,6 +1928,7 @@ function buildDmEntries(){
     pushEntry({
       type:'run',
       season,
+      seasonKey:seasonLabel,
       date:run.date||'',
       code:run.code||'',
       name:run.name||'',
@@ -1913,10 +1952,11 @@ function buildDmEntries(){
     const season=normalizeSeason('Pre-Season 11');
     const levelsPlus=dmToNullableNumber(entry.levels_plus);
     const levelsMinus=dmToNullableNumber(entry.levels_minus);
-    const allocationDetails=normalizeAllocationPayload(entry.allocation);
+    const allocationDetails=dmResolveAllocationDetail('preS11', entry);
     pushEntry({
       type:'run',
       season,
+      seasonKey:'preS11',
       date:entry.date||'',
       code:entry.code||'',
       name:entry.name||'',
@@ -1955,7 +1995,7 @@ function buildDmEntries(){
     const baseLevelsPlus=dmToNullableNumber(alloc.levels_plus);
     const baseLevelsMinus=dmToNullableNumber(alloc.levels_minus);
     const baseCost=dmToNullableNumber(alloc.cost);
-    const allocationDetails=normalizeAllocationPayload(alloc.allocation);
+    const allocationDetails=dmResolveAllocationDetail(seasonLabel, alloc);
     const effectiveLevelsPlus=(allocationDetails.levelsSpent!=null)?allocationDetails.levelsSpent:baseLevelsPlus;
     const effectiveLevelsMinus=(allocationDetails.levelsGained!=null)?allocationDetails.levelsGained:baseLevelsMinus;
     const effectiveCost=(allocationDetails.downtimeSpent!=null)?allocationDetails.downtimeSpent:baseCost;
@@ -1963,7 +2003,12 @@ function buildDmEntries(){
     const entry={
       type:'allocation',
       season,
+      seasonKey:seasonLabel,
       date:alloc.date||'',
+      code:alloc.code||'',
+      name:alloc.name||'',
+      tier:alloc.tier,
+      item:alloc.item||'',
       allocation:allocationDetails.label,
       cost:effectiveCost,
       levels_plus:effectiveLevelsPlus,
@@ -2043,7 +2088,7 @@ function extractAllocationItemTokens(source){
     if(source.allocation_detail){
       details=source.allocation_detail;
     }else if(source.allocation){
-      details=normalizeAllocationPayload(source.allocation);
+      details=dmResolveAllocationDetail(source.seasonKey||source.season||'', source);
     }
   }else if(typeof source==='string'){
     details=normalizeAllocationPayload(source);
@@ -2275,7 +2320,7 @@ function rebuildDmRewardLinks(){
       : extractAllocationItemTokens(entry);
     const allocationTokenSet=new Set(allocationTokens);
     const allocationWordSet=new Set(normalizedText.split(/[^a-z0-9]+/).map(part=>normalizeMatchToken(part)).filter(token=>token && token.length>=3));
-    const allocationDetails=entry.allocation_detail||normalizeAllocationPayload(entry.allocation);
+    const allocationDetails=dmResolveAllocationDetail(entry.seasonKey||entry.season||'', entry);
     const recipients=(Array.isArray(entry.allocation_recipients) && entry.allocation_recipients.length)
       ? entry.allocation_recipients.slice()
       : Array.isArray(allocationDetails.recipients)?allocationDetails.recipients.slice():[];
