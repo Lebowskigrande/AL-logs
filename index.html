@@ -243,6 +243,14 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .field .editor{display:none}
 .card.editing .field .display{display:none}
 .card.editing .field .editor{display:block}
+.field.inline-field{flex-direction:row;align-items:center;gap:10px;margin:4px 0 0}
+.field.inline-field .k{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.field.inline-field .v{display:flex;align-items:center;gap:10px;width:auto;flex:1 1 auto}
+.field.inline-field .display{display:inline-flex;font-weight:600;color:var(--ink)}
+.field.inline-field .editor{display:none}
+.card.editing .field.inline-field .editor{display:flex;align-items:center}
+.card.editing .field.inline-field .editor > *{flex:1 1 220px;max-width:100%}
+.card.editing .field.inline-field input{width:100%;min-width:0}
 .show-when-editing{display:none}
 .card.editing .show-when-editing{display:block}
 .field.show-when-editing{display:none}
@@ -3986,10 +3994,22 @@ function makeCard(a,idx){
   kindField.classList.add('show-when-editing');
   kindField.style.display='none';
 
-  codeFieldView=appendField('Adventure code', a.code||'');
-  codeFieldView.classList.add('show-when-editing');
+  codeFieldView=document.createElement('div');
+  codeFieldView.className='field inline-field show-when-editing log-row-code';
+  const codeLabel=document.createElement('div'); codeLabel.className='k'; codeLabel.textContent='Adventure code';
+  const codeValue=document.createElement('div'); codeValue.className='v';
+  const codeDisplay=document.createElement('div'); codeDisplay.className='display'; codeDisplay.textContent=makeValue(a.code||'');
+  const codeEditor=document.createElement('div'); codeEditor.className='editor';
+  codeValue.appendChild(codeDisplay);
+  codeValue.appendChild(codeEditor);
+  codeFieldView.appendChild(codeLabel);
+  codeFieldView.appendChild(codeValue);
+  info.appendChild(codeFieldView);
+  codeFieldView.__display=codeDisplay;
+  codeFieldView.__editor=codeEditor;
+  codeEditorSlot=codeEditor;
+  codeDisplayEl=codeDisplay;
   if(!(a.code||'').trim()){ codeFieldView.style.display='none'; }
-  codeDisplayEl=codeFieldView.__display;
 
   const dmField=makeKVS('DM', dmDisplay||'—');
   const showDM=!act || (dmDisplay && !usedDmAsPlayer);
