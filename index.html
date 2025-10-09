@@ -202,6 +202,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-chips{margin-left:auto;justify-content:flex-end;flex-wrap:nowrap;gap:10px;align-items:center;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
 .log-row-chips:empty{display:none}
 .log-row-chips .pill{display:inline-flex;align-items:center;white-space:nowrap;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-weight:600;font-size:12px;color:inherit;box-shadow:none}
+.log-row-chips .pill.pill-level{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.32);color:#1d4ed8}
+.log-row-chips .pill.pill-level.pill-level-gain{background:transparent;border-color:rgba(29,78,216,.82);color:#1d4ed8;box-shadow:0 0 0 1px rgba(29,78,216,.18)}
 .log-row-chips .pill.gain{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.3);color:#166534}
 .log-row-chips .pill.loss{background:rgba(248,113,113,.16);border-color:rgba(248,113,113,.32);color:#b91c1c}
 .log-row-chips .pill.neutral{background:rgba(148,163,184,.14);border-color:rgba(148,163,184,.28);color:var(--muted)}
@@ -1029,6 +1031,7 @@ function createCharacterNewEntry(kind){
   const normalized=kind==='Downtime Activity'?'Downtime Activity':'adventure';
   const isActivity=normalized!=='adventure';
   const today=new Date().toISOString().slice(0,10);
+  const estimatedLevel=currentLevelFor(key);
   const template={
     date:today,
     title:isActivity?'New Downtime Activity':'New Adventure',
@@ -1048,7 +1051,8 @@ function createCharacterNewEntry(kind){
     __openEdit:true,
     __isNew:true,
     __charKey:key,
-    __lockedKind:normalized
+    __lockedKind:normalized,
+    __levelAtStart:Number.isFinite(estimatedLevel)?estimatedLevel:null
   };
   const card=makeCard(template,-1);
   card.classList.add('overlay-card');
@@ -3088,6 +3092,21 @@ function collectPermanentInventory(charKey){
 function currentLevelFor(charKey){
   const ch=DATA.characters[charKey]; const lvl=1+Math.floor((ch.adventures||[]).reduce((s,a)=>s+(+a.level_plus||0),0)); return Math.max(1,lvl);
 }
+function entryLevelAtStart(entry){
+  if(!entry) return null;
+  const stored=Number(entry.__levelAtStart);
+  if(Number.isFinite(stored) && stored>0){
+    return stored;
+  }
+  const key=entry.__charKey;
+  if(typeof key==='string' && key && isValidSheetKey(key)){
+    const fallback=currentLevelFor(key);
+    if(Number.isFinite(fallback) && fallback>0){
+      return fallback;
+    }
+  }
+  return null;
+}
 function activeSlotsFor(level){ if(level<=4)return 1; if(level<=10)return 3; if(level<=16)return 6; return 10; }
 function consumableCarrySlotsFor(level){ if(level<=4)return 5; if(level<=16)return 10; return 15; }
 function consumableCarryKey(k){ return 'CARRIED_CONS__'+k; }
@@ -3823,6 +3842,16 @@ function makeCard(a,idx){
     else if(value<0) pillEl.classList.add('loss');
     else pillEl.classList.add('neutral');
   };
+  const levelStart=entryLevelAtStart(a);
+  if(Number.isFinite(levelStart) && levelStart>0){
+    const levelPill=pill('Level '+fmtNumber(levelStart));
+    levelPill.classList.add('pill-level');
+    const levelGain=Number(a.level_plus);
+    if(Number.isFinite(levelGain) && levelGain>0){
+      levelPill.classList.add('pill-level-gain');
+    }
+    chips.appendChild(levelPill);
+  }
   if(act){
     if(gp){
       const gpPill=pill('GP '+fmtSigned(gp));
@@ -4653,6 +4682,9 @@ function updateDerivedDataFor(key){
   const years=new Set();
   let sessions=0, netGP=0, netDTD=0, levelUps=0;
   advs.forEach(entry=>{
+    if(entry && typeof entry==='object'){
+      entry.__charKey=key;
+    }
     if(entry.date){
       const year=new Date(entry.date).getFullYear();
       if(!Number.isNaN(year)) years.add(year);
@@ -4660,8 +4692,26 @@ function updateDerivedDataFor(key){
     const {gp,dtd}=netVals(entry);
     netGP+=gp;
     netDTD+=dtd;
-    levelUps+=Number(entry.level_plus||0);
+    const levelGain=Number(entry.level_plus);
+    if(Number.isFinite(levelGain)){
+      levelUps+=levelGain;
+    }
     if(!isActivityEntry(entry)) sessions++;
+  });
+  const descending=advs.map((adv,idx)=>({adv,idx})).sort(compareChronoDesc);
+  let runningLevel=Math.max(1, Math.round(1+levelUps));
+  descending.forEach(({adv})=>{
+    if(!adv || typeof adv!=='object') return;
+    const afterLevel=Number.isFinite(runningLevel)?runningLevel:1;
+    const normalizedAfter=Math.max(1, Math.round(afterLevel));
+    adv.__levelAfter=normalizedAfter;
+    const gainRaw=Number(adv.level_plus);
+    const gain=Number.isFinite(gainRaw)?gainRaw:0;
+    const beforeLevel=afterLevel-gain;
+    const normalizedBefore=Number.isFinite(beforeLevel)?Math.max(1, Math.round(beforeLevel)):normalizedAfter;
+    adv.__levelAtStart=normalizedBefore;
+    const nextLevel=Number.isFinite(beforeLevel)?Math.max(1, beforeLevel):normalizedBefore;
+    runningLevel=nextLevel;
   });
   DATA.years[key]=Array.from(years).sort((a,b)=>a-b);
   const perm=collectPermanentInventory(key);
