@@ -192,8 +192,8 @@ window.DATA = {
           "title": "The Pale Horse",
           "code": "",
           "dm": "Rick A.",
-          "gp_plus": 0,
-          "gp_minus": 1000,
+          "gp_plus": 1000,
+          "gp_minus": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
           "level_plus": 0,
@@ -206,7 +206,7 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "traded_item": "",
-          "gp_net": -1000,
+          "gp_net": 1000,
           "dtd_net": 10
         },
         {
@@ -17924,7 +17924,7 @@ window.DATA = {
     },
     "Ecthelion": {
       "sessions": 7,
-      "net_gp": 8225,
+      "net_gp": 10225,
       "net_dtd": 43,
       "level_ups": 8,
       "perm_count": 31,
@@ -18298,7 +18298,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T07:22:08.229Z",
+    "generated": "2025-10-09T07:23:19.148Z",
     "problems": []
   }
 };
