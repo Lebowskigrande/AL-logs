@@ -4294,7 +4294,13 @@ function makeCard(a,idx){
   controls.consumable_items=createListEditor(a.consumable_items||[]);
   addField('Consumables', controls.consumable_items);
   controls.notes=addField('Notes', makeTextarea());
-  if(controls.notes){ controls.notes.rows=4; }
+  if(controls.notes){
+    controls.notes.rows=4;
+    const notesControlField=controls.notes.closest('.field');
+    if(notesControlField){
+      notesControlField.classList.add('full');
+    }
+  }
 
   form.querySelectorAll('.field,.kv2').forEach(el=>el.remove());
 
