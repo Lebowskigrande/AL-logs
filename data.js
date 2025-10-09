@@ -10297,20 +10297,22 @@ window.DATA = {
           "date": "2025-05-25",
           "title": "The Definition of Heroism (Lost Tales of Myth Drannor)",
           "code": "DDAL00-02f",
-          "dm": null,
+          "dm": "Randy R.",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": null,
+          "level_plus": 0,
           "perm_items": [
             "Tome of the Stilled Tongue"
           ],
           "consumable_items": [],
-          "notes": null,
-          "kind": "adventure"
+          "notes": "",
+          "kind": "adventure",
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "date": "2025-05-14",
@@ -18319,7 +18321,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T21:45:30.604Z",
+    "generated": "2025-10-09T21:49:26.374Z",
     "problems": []
   }
 };
