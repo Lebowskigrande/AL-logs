@@ -25,7 +25,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 .sheet-card-body{flex:1 1 auto;display:flex;flex-direction:column;gap:16px;padding:20px;background:inherit;min-height:0}
 .log-window{flex:1 1 auto;display:flex;flex-direction:column;position:relative;border-radius:0;border:none;background:var(--surface);box-shadow:none;overflow:hidden;min-height:0}
 .log-window::before{content:none}
-.log-list{flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow:auto;scrollbar-gutter:stable;padding:6px;margin:0;gap:6px;min-height:0}
+.log-list{--log-row-gap:6px;flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow:auto;scrollbar-gutter:stable;padding:6px;margin:0;gap:var(--log-row-gap);min-height:0}
 .log-list::after{content:none}
 .log-window>.empty{padding:48px 24px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:var(--muted)}
 @media (max-width:768px){
@@ -150,10 +150,11 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
-.log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;overflow:hidden;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
+.log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card:first-child{border-top:1px solid var(--border)}
 .log-list .card::before{content:"";position:absolute;inset:0;pointer-events:none;border-left:3px solid transparent;transition:border-color var(--dur) var(--ease);z-index:1}
-.log-list .card::after{content:"";position:absolute;inset:0;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease);z-index:0}
+.log-list .card::after{content:"";position:absolute;top:-1px;right:0;bottom:-1px;left:0;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease);z-index:0}
+.log-list .card:not(:first-child)::after{top:calc(-1px - var(--log-row-gap))}
 .log-list .card>*{position:relative;z-index:1}
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card.open{--row-bg:#fff}
