@@ -12996,8 +12996,8 @@ window.DATA = {
         },
         {
           "date": "2024-04-25",
-          "title": null,
-          "code": null,
+          "title": "My Shattered Heart",
+          "code": "",
           "dm": "Alexis P.",
           "gp_plus": 7000,
           "gp_minus": 9000,
@@ -13005,14 +13005,16 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": null,
+          "level_plus": 0,
           "perm_items": [
             "Plate +3 (Crystal)",
             "Boon of Recovery"
           ],
           "consumable_items": [],
           "notes": "Bought 3 scrolls of Holy Weapon for 3k gp each.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "date": "2022-09-04",
@@ -18298,7 +18300,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T07:23:19.148Z",
+    "generated": "2025-10-09T21:01:41.076Z",
     "problems": []
   }
 };
