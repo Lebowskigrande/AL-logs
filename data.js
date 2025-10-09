@@ -188,6 +188,28 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
+          "date": "2025-10-09",
+          "title": "The Pale Horse",
+          "code": "",
+          "dm": "Rick A.",
+          "gp_plus": 0,
+          "gp_minus": 1000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Cloak of Many Fashions (Guardian)",
+            "Vicious Scimitar (Songcraft)"
+          ],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "notes": "",
+          "kind": "adventure",
+          "traded_item": "",
+          "gp_net": -1000,
+          "dtd_net": 10
+        },
+        {
           "date": "2025-10-01",
           "title": "Lord's Alliance Trade",
           "code": "",
@@ -17901,11 +17923,11 @@ window.DATA = {
       "cons_count": 8
     },
     "Ecthelion": {
-      "sessions": 6,
-      "net_gp": 9225,
-      "net_dtd": 33,
+      "sessions": 7,
+      "net_gp": 8225,
+      "net_dtd": 43,
       "level_ups": 8,
-      "perm_count": 29,
+      "perm_count": 31,
       "cons_count": 12
     },
     "Chef Ture": {
@@ -18276,7 +18298,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-05T05:16:41.115Z",
+    "generated": "2025-10-09T07:22:08.229Z",
     "problems": []
   }
 };
