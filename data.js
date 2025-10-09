@@ -189,6 +189,25 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-10-09",
+          "title": "Expanded Bastion",
+          "code": "",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "notes": "Added Teleportation Circle and Sacristy to my bastion.",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "gp_net": 0,
+          "dtd_net": 0
+        },
+        {
+          "date": "2025-10-09",
           "title": "The Pale Horse",
           "code": "",
           "dm": "Rick A.",
@@ -18300,7 +18319,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T21:01:41.076Z",
+    "generated": "2025-10-09T21:45:30.604Z",
     "problems": []
   }
 };
