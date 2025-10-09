@@ -457,9 +457,10 @@ window.DATA = {
           "dtd_minus": 0,
           "level_plus": 0,
           "perm_items": [
-            "Dragon's Wrath Weapon (Stirring)"
+            "Dragon's Wrath Weapon (Stirring)",
+            "Scaled Ornament (Stirring)"
           ],
-          "lost_perm_item": "Dragon's Wrath Weapon (slumbering)",
+          "lost_perm_item": "Dragon's Wrath Weapon (slumbering)\nScaled Ornament",
           "consumable_items": [],
           "notes": "Steeped Dragon's Wrath Weapon in the hoard of a young brass dragon, elevating it to Stirring.",
           "kind": "Downtime Activity",
@@ -18321,7 +18322,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T22:23:14.920Z",
+    "generated": "2025-10-09T22:24:35.395Z",
     "problems": []
   }
 };
