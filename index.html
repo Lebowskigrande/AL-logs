@@ -167,7 +167,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Grid / masonry columns */
 
 /* Card */
-.card{display:block;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
+.card{display:block;position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
 .log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card:first-child{border-top:1px solid var(--border)}
@@ -201,7 +201,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .card-tools .icon-btn,
 .card .card-tools .icon-btn:focus-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .card.editing .card-hd{cursor:default}
-.card-actions{display:flex;justify-content:flex-end;padding:16px 0 0}
+.card-actions{position:absolute;top:18px;right:20px;display:flex;justify-content:flex-end;gap:8px;padding:0;z-index:10;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity var(--dur) var(--ease),visibility var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.card.open .card-actions{opacity:1;visibility:visible;transform:translateY(0)}
+.card-actions .card-edit-btn{box-shadow:var(--shadow1)}
+.card.editing .card-actions .card-edit-btn{box-shadow:var(--shadow2)}
+@media (max-width:520px){
+  .card-actions{right:12px}
+}
 .card-edit-btn{padding:8px 16px;font-size:13px;border-radius:12px}
 .card-edit-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
 .card-edit-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
@@ -265,7 +271,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.open .subtitle-row .chips{margin-left:0;justify-content:flex-start}
 
 /* Collapsible */
-.card-bd{height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--ease),opacity var(--card-dur,var(--dur)) linear;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
+.card-bd{position:relative;height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--ease),opacity var(--card-dur,var(--dur)) linear;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
+.card.open .card-bd{overflow:visible}
 .bd-in{padding:12px 0 16px}
 .edit-form{padding:12px 0 16px;display:none}
 .card.editing .edit-form{display:none}
@@ -4213,7 +4220,6 @@ function makeCard(a,idx){
     }
   });
   cardActions.appendChild(editBtn);
-  bd.appendChild(cardActions);
   const view=document.createElement('div'); view.className='bd-in';
   view.innerHTML='';
 
@@ -4851,6 +4857,7 @@ function makeCard(a,idx){
   formWrap.populate=populate;
   formWrap.collect=collect;
 
+  bd.appendChild(cardActions);
   bd.appendChild(view);
   bd.appendChild(formWrap);
   card.appendChild(hd);
