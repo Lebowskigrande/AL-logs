@@ -237,7 +237,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-chips .pill.pill-dtd.loss,
 .log-row-chips .pill.pill-dtd.neutral{background:#e2e8f0;border-color:#cbd5f5;color:#334155}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
-.pill-link{display:inline-flex;align-items:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.pill-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.pill-link svg{width:14px;height:14px;display:block;pointer-events:none}
 .pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
 .pill-link:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:2px}
 @keyframes log-row-scroll{
@@ -4042,7 +4043,7 @@ function makeCard(a,idx){
     const linkChip=document.createElement('button');
     linkChip.type='button';
     linkChip.className='pill pill-link';
-    linkChip.textContent='DM allocation';
+    linkChip.innerHTML=ICON_LINK;
     const label='View linked DM log allocation';
     linkChip.title=label;
     linkChip.setAttribute('aria-label',label);
@@ -4121,21 +4122,6 @@ function makeCard(a,idx){
   requestAnimationFrame(()=>refreshScrollState(nameSpan));
 
   const tools=document.createElement('div'); tools.className='card-tools';
-  if(dmLinkMeta && dmLinkMeta.entry){
-    const linkBtn=document.createElement('button');
-    linkBtn.type='button';
-    linkBtn.className='icon-btn';
-    linkBtn.innerHTML=ICON_LINK;
-    const label='View linked DM log allocation';
-    linkBtn.title=label;
-    linkBtn.setAttribute('aria-label',label);
-    linkBtn.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      ev.preventDefault();
-      navigateToDmAllocation(dmLinkMeta.entry);
-    });
-    tools.appendChild(linkBtn);
-  }
   const editBtn=document.createElement('button');
   editBtn.type='button';
   editBtn.className='icon-btn';
