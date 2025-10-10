@@ -29,7 +29,10 @@ window.DATA = {
             "potion of climbing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Squelch (prequel)",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2022-10-08",
@@ -52,7 +55,10 @@ window.DATA = {
           "player": null,
           "character": "Squelch",
           "itemTraded": "Eldritch Claw Tattoo",
-          "itemReceived": "Wand of Magic Missiles"
+          "itemReceived": "Wand of Magic Missiles",
+          "__charKey": "Squelch (prequel)",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2022-10-08",
@@ -69,7 +75,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Squelch (prequel)",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-09-24",
@@ -86,7 +95,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Squelch (prequel)",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -118,7 +130,10 @@ window.DATA = {
             "Poisoners Kit"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Dolroruuk",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-11-30",
@@ -135,7 +150,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Dolroruuk",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-02-08",
@@ -159,7 +177,10 @@ window.DATA = {
             "Scroll of Protection from Poison"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Dolroruuk",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": null,
@@ -179,7 +200,10 @@ window.DATA = {
             "Scroll of Protection from Poison"
           ],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Dolroruuk",
+          "__levelAfter": 4,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -204,7 +228,10 @@ window.DATA = {
           "kind": "Downtime Activity",
           "traded_item": "",
           "gp_net": 0,
-          "dtd_net": 0
+          "dtd_net": 0,
+          "__charKey": "Ecthelion",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2025-10-09",
@@ -226,7 +253,10 @@ window.DATA = {
           "kind": "adventure",
           "traded_item": "",
           "gp_net": 1000,
-          "dtd_net": 10
+          "dtd_net": 10,
+          "__charKey": "Ecthelion",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2025-10-01",
@@ -247,7 +277,10 @@ window.DATA = {
           "kind": "Downtime Activity",
           "traded_item": "",
           "gp_net": 0,
-          "dtd_net": 0
+          "dtd_net": 0,
+          "__charKey": "Ecthelion",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2025-10-01",
@@ -266,7 +299,10 @@ window.DATA = {
           "kind": "Downtime Activity",
           "traded_item": "",
           "gp_net": 0,
-          "dtd_net": -10
+          "dtd_net": -10,
+          "__charKey": "Ecthelion",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2025-10-01",
@@ -290,7 +326,10 @@ window.DATA = {
           "traded_item": "",
           "gp_net": 4275,
           "dtd_net": 10,
-          "lost_perm_item": ""
+          "lost_perm_item": "",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2025-09-24",
@@ -315,7 +354,10 @@ window.DATA = {
           ],
           "notes": "",
           "kind": "adventure",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2025-08-19",
@@ -341,7 +383,10 @@ window.DATA = {
           "consumable_items": [],
           "notes": "Spent 30 days training in Nature under the tutelage of Youngster Joey during journey to Aglarond. Killed the young brass dragon Ylagan in his lair and steeped all four of my hoard items to Stirring.",
           "kind": "adventure",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-08-13",
@@ -358,7 +403,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-08-13",
@@ -377,7 +425,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Crafted a Longhorn of Illusions with help from my Arcane Workshop hireling.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-08-13",
@@ -396,7 +447,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Crafted an Enspelled Breastplate with the spell Armor of Agathys, using my existing breastplate, with help from my Smithy hireling.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-08-12",
@@ -427,7 +481,10 @@ window.DATA = {
             "Scroll of Prayer of Healing"
           ],
           "notes": "Performed a ritual for hire and sold Holy Water for 12 gp. Purchased Spell Scroll of Find Steed (200 gp) and successfully cast it, summoning the celestial elk Elenroch. Sold 2 Potions of Healing for 25 gp each.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2025-08-12",
@@ -444,7 +501,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2025-08-11",
@@ -466,7 +526,10 @@ window.DATA = {
           "kind": "Downtime Activity",
           "traded_item": "",
           "gp_net": 0,
-          "dtd_net": 0
+          "dtd_net": 0,
+          "__charKey": "Ecthelion",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2025-08-05",
@@ -491,7 +554,10 @@ window.DATA = {
             "Dust of Disappearance"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2025-07-22",
@@ -519,7 +585,10 @@ window.DATA = {
           ],
           "notes": "Sold chain shirt for 25 gp, purchased Breastplate for 400 gp and 2 potions of healing for 45 gp each (sale).",
           "kind": "adventure",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -548,7 +617,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-07-02",
@@ -569,7 +641,10 @@ window.DATA = {
             "burnt othur fumes"
           ],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-25",
@@ -590,7 +665,10 @@ window.DATA = {
             "Potion of Invulnerability"
           ],
           "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-25",
@@ -611,7 +689,10 @@ window.DATA = {
             "Antitoxin (2)"
           ],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-18",
@@ -632,7 +713,10 @@ window.DATA = {
             "burnt othur fumes"
           ],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-18",
@@ -660,7 +744,10 @@ window.DATA = {
             "2 x Potion of Greater Healing"
           ],
           "notes": "Purchased 3 vials of Oil of Slipperiness.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-15",
@@ -683,7 +770,10 @@ window.DATA = {
             "Oil of Slipperiness"
           ],
           "notes": "Purchased book on history of Faerun (including culinary) for 200 gp. Spent 50 gp making 4 doses of Weapon Poison.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-15",
@@ -704,7 +794,10 @@ window.DATA = {
             "Antitoxin (2)"
           ],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-11",
@@ -724,7 +817,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-06-11",
@@ -745,7 +841,10 @@ window.DATA = {
             "burnt othur fumes"
           ],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (truth serum); Laboratory: Craft Poison (burnt othur fumes).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2025-04-23",
@@ -764,7 +863,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-04-23",
@@ -781,7 +883,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Basic Facilities: Cramped Kitchen, Roomy Dining Room. Expanded Kitchen to Roomy for 500 gp and 25 days (out of 200 alotted). Special Facilities: Garden, Greenhouose, Laboratory, Training Area.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-04-23",
@@ -802,7 +907,10 @@ window.DATA = {
             "Antitoxin (2)"
           ],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-04-16",
@@ -825,7 +933,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Staff of the Python",
-          "itemReceived": "Glamoured Studed Leather"
+          "itemReceived": "Glamoured Studed Leather",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2025-04-16",
@@ -847,7 +958,10 @@ window.DATA = {
             "Flask of Styx water"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2025-04-02",
@@ -868,7 +982,10 @@ window.DATA = {
             "Potion of Poison Resistance"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2025-03-19",
@@ -891,7 +1008,10 @@ window.DATA = {
           "player": null,
           "character": "Norragen",
           "itemTraded": "Lash of Immolation",
-          "itemReceived": "Belt of Hill Giant Strength"
+          "itemReceived": "Belt of Hill Giant Strength",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2025-03-19",
@@ -910,7 +1030,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Table trade for Heward's Handy Spicepouch",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -930,7 +1053,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Chef Ture",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -953,7 +1079,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Wobbly Bobbly",
+          "__levelAfter": 6,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -972,7 +1101,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Wobbly Bobbly",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -989,7 +1121,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Wobbly Bobbly",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -1015,7 +1150,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Gnat",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-09-29",
@@ -1038,7 +1176,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Marvelous Pigments",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Gnat",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-09-29",
@@ -1055,7 +1196,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Gnat",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-09-29",
@@ -1074,7 +1218,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-09-29",
@@ -1093,7 +1240,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -1112,7 +1262,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -1131,7 +1284,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -1148,7 +1304,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Sold longbow, leather armor, and glaive (+40 gp). Bought Studded Leather armor (-45 gp)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -1165,7 +1324,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Gnat",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -1186,7 +1348,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Gnat",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -1212,7 +1377,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Creature X-12",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2023-07-06",
@@ -1231,7 +1399,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Creature X-12",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2023-07-06",
@@ -1250,7 +1421,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Creature X-12",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -1276,7 +1450,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Squelch",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2022-10-08",
@@ -1299,7 +1476,10 @@ window.DATA = {
           "player": null,
           "character": "Squelch (prequel)",
           "itemTraded": "Wand of Magic Missiles",
-          "itemReceived": "Eldritch Claw tattoo (temperate)"
+          "itemReceived": "Eldritch Claw tattoo (temperate)",
+          "__charKey": "Squelch",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2022-10-05",
@@ -1321,7 +1501,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Squelch",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2022-09-30",
@@ -1340,7 +1523,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Squelch",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2022-09-30",
@@ -1359,7 +1545,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Squelch",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-09-07",
@@ -1378,7 +1567,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Squelch",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -1404,7 +1596,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2024-11-20",
@@ -1427,7 +1622,10 @@ window.DATA = {
           "player": null,
           "character": "Raguel",
           "itemTraded": "Half-plate +1",
-          "itemReceived": "Giant Slayer Lance"
+          "itemReceived": "Giant Slayer Lance",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2024-08-31",
@@ -1446,7 +1644,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2024-08-31",
@@ -1468,7 +1669,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2024-03-23",
@@ -1491,7 +1695,10 @@ window.DATA = {
           "player": null,
           "character": "Faramir Quickfoot",
           "itemTraded": "Sixth Sword",
-          "itemReceived": "Periapt of Proof Against Poison"
+          "itemReceived": "Periapt of Proof Against Poison",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2024-03-23",
@@ -1510,7 +1717,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2023-04-12",
@@ -1532,7 +1742,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2023-02-22",
@@ -1553,7 +1766,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-09-14",
@@ -1576,7 +1792,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Pipe of Smoke Monsters (Guardian)",
-          "itemReceived": "a Moon-Tcouhed Greatsword"
+          "itemReceived": "a Moon-Tcouhed Greatsword",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-08-25",
@@ -1601,7 +1820,10 @@ window.DATA = {
             "Potion of Growth"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-07-10",
@@ -1626,7 +1848,10 @@ window.DATA = {
           "player": null,
           "character": "Pruxx",
           "itemTraded": null,
-          "itemReceived": "Necklace of Prayer Beads"
+          "itemReceived": "Necklace of Prayer Beads",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-07-10",
@@ -1648,7 +1873,10 @@ window.DATA = {
             "Drow Poison x 2"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-06-29",
@@ -1665,7 +1893,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-05-22",
@@ -1686,7 +1917,10 @@ window.DATA = {
             "Potion of Dimunition"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-05-15",
@@ -1703,7 +1937,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2022-05-12",
@@ -1725,7 +1962,10 @@ window.DATA = {
             "Elemental Gem (Water)"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2022-05-11",
@@ -1746,7 +1986,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": "Scavenged plate and a greatsword",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2022-05-04",
@@ -1768,7 +2011,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Learned Grippli",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-05-02",
@@ -1787,7 +2033,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Norixius",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-05-02",
@@ -1806,7 +2055,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Norixius",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-04-20",
@@ -1829,7 +2081,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Ring of Shooting Stars",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Norixius",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-04-20",
@@ -1848,7 +2103,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Norixius",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": "2022-04-20",
@@ -1867,7 +2125,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -1890,7 +2151,10 @@ window.DATA = {
             "Scroll of Sleet Storm"
           ],
           "notes": "Purchased Triceratops for 500 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -1914,7 +2178,10 @@ window.DATA = {
             "poison resistance"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Norixius",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -1943,7 +2210,10 @@ window.DATA = {
           "player": null,
           "character": "Madam Renata",
           "itemTraded": "Headband of Intellect",
-          "itemReceived": "Winged Boots"
+          "itemReceived": "Winged Boots",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-03-09",
@@ -1963,7 +2233,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Studded Leather Armor for 45 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-02-21",
@@ -1986,7 +2259,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-02-13",
@@ -2007,7 +2283,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Successfully defended Easthaven",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-12-26",
@@ -2027,7 +2306,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-12-26",
@@ -2046,7 +2328,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-12-03",
@@ -2063,7 +2348,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-11-29",
@@ -2082,7 +2370,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-11-20",
@@ -2102,7 +2393,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought snow shoes and crampons",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2020-02-21",
@@ -2119,7 +2413,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Jerry Garcia",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -2148,7 +2445,10 @@ window.DATA = {
           "player": null,
           "character": "Raguel",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Spider Staff"
+          "itemReceived": "Spider Staff",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-03-25",
@@ -2173,7 +2473,10 @@ window.DATA = {
             "Potion of Greater Healing (x4)"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-03-04",
@@ -2193,7 +2496,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased 2 potions of healing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-01-28",
@@ -2212,7 +2518,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-01-21",
@@ -2229,7 +2538,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 10,
+          "__levelAtStart": 6
         },
         {
           "date": "2022-01-21",
@@ -2248,7 +2560,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dark Gift: +30 max hp, twitchy, can't give a straight answer to any question, covered in dark fur",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-11-19",
@@ -2267,7 +2582,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2021-10-22",
@@ -2286,7 +2604,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-10-15",
@@ -2309,7 +2630,10 @@ window.DATA = {
             "Potion of Climbing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-10-01",
@@ -2328,7 +2652,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-09-24",
@@ -2351,7 +2678,10 @@ window.DATA = {
           "player": null,
           "character": "Jerry Garcia",
           "itemTraded": "Winged Boots",
-          "itemReceived": "Headband of Intellect"
+          "itemReceived": "Headband of Intellect",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-09-24",
@@ -2370,7 +2700,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-09-24",
@@ -2387,7 +2720,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 4,
+          "__levelAtStart": 1
         },
         {
           "date": "2021-09-24",
@@ -2406,7 +2742,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Madam Renata",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -2435,7 +2774,10 @@ window.DATA = {
           "player": null,
           "character": "Chef Ture",
           "itemTraded": "Belt of HIll Giant Strength",
-          "itemReceived": "Lash of Immolation"
+          "itemReceived": "Lash of Immolation",
+          "__charKey": "Noraggen",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2021-06-22",
@@ -2454,7 +2796,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2021-06-08",
@@ -2475,7 +2820,10 @@ window.DATA = {
             "Potion of Growth"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2021-05-30",
@@ -2492,7 +2840,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2021-05-05",
@@ -2513,7 +2864,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-04-01",
@@ -2536,7 +2890,10 @@ window.DATA = {
           "player": null,
           "character": "Sentient Hat",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Splint +1"
+          "itemReceived": "Splint +1",
+          "__charKey": "Noraggen",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-04-01",
@@ -2556,7 +2913,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-04-01",
@@ -2573,7 +2933,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Noraggen",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-01-27",
@@ -2592,7 +2955,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Added spells to Ring of Spell Storing: Hex, Shield, Haste",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-01-24",
@@ -2615,7 +2981,10 @@ window.DATA = {
           "player": null,
           "character": "Sookie Stackhouse",
           "itemTraded": "Plauge Fly",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Noraggen",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-01-24",
@@ -2634,7 +3003,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-11-18",
@@ -2657,7 +3029,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Tloque's Battleaxe",
-          "itemReceived": "Dwarven Thrower"
+          "itemReceived": "Dwarven Thrower",
+          "__charKey": "Noraggen",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-11-18",
@@ -2674,7 +3049,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Noraggen",
+          "__levelAfter": 6,
+          "__levelAtStart": 2
         },
         {
           "date": "2020-11-18",
@@ -2691,7 +3069,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Noraggen",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         },
         {
           "date": "2020-11-18",
@@ -2710,7 +3091,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Noraggen",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": "2020-11-18",
@@ -2729,7 +3113,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": "2020-10-17",
@@ -2748,7 +3135,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Noraggen",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -2780,7 +3170,10 @@ window.DATA = {
           "player": null,
           "character": "Noraggen",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Plague Fly"
+          "itemReceived": "Plague Fly",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-08-01",
@@ -2799,7 +3192,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-07-04",
@@ -2818,7 +3214,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-07-04",
@@ -2837,7 +3236,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-06-20",
@@ -2860,7 +3262,10 @@ window.DATA = {
           "player": null,
           "character": "Jormund Khan",
           "itemTraded": "Mithral Splintmail",
-          "itemReceived": "Helm of Telepathy"
+          "itemReceived": "Helm of Telepathy",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-06-20",
@@ -2879,7 +3284,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-06-20",
@@ -2898,7 +3306,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought cold weather gear",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-06-20",
@@ -2915,7 +3326,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         },
         {
           "date": "2020-06-20",
@@ -2934,7 +3348,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sookie Stackhouse",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -2963,7 +3380,10 @@ window.DATA = {
           "player": null,
           "character": "Sentient Hat",
           "itemTraded": "1 pot of Nulzor's Marvelous Pigments",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Buckley",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-02-20",
@@ -2986,7 +3406,10 @@ window.DATA = {
           "player": null,
           "character": "Noraggen",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Belt of Hill GIant Strength"
+          "itemReceived": "Belt of Hill GIant Strength",
+          "__charKey": "Buckley",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-02-20",
@@ -3005,7 +3428,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-02-17",
@@ -3024,7 +3450,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-02-11",
@@ -3043,7 +3472,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-01-20",
@@ -3062,7 +3494,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-12-27",
@@ -3085,7 +3520,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Eyes of the Eagle",
-          "itemReceived": "Adamantine Plate Armor"
+          "itemReceived": "Adamantine Plate Armor",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-12-27",
@@ -3105,7 +3543,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Met Foxwere companion",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-11-14",
@@ -3124,7 +3565,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Traded Portable Hole to Fai Chen for Maul +2",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-11-04",
@@ -3143,7 +3587,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-06-11",
@@ -3163,7 +3610,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Paid 10 gp for healing services",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-03-19",
@@ -3182,7 +3632,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Received Ring of Protection faction item from UAW (custom faction), +1 Maul from the people I organized in Thundertree. Purchased splint for 100gp and sold Chain mail for 37gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-03-07",
@@ -3201,7 +3654,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-03-03",
@@ -3218,7 +3674,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Buckley",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-02-19",
@@ -3241,7 +3700,10 @@ window.DATA = {
             "1 soul coin"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -3260,7 +3722,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Buckley",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -3289,7 +3754,10 @@ window.DATA = {
           "player": null,
           "character": "Lyrielle",
           "itemTraded": "Sixth Sword",
-          "itemReceived": "Necklace of Fireballs"
+          "itemReceived": "Necklace of Fireballs",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-29",
@@ -3308,7 +3776,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used Dreamwalker portent",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-29",
@@ -3327,7 +3798,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-23",
@@ -3346,7 +3820,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Gained one portent from Dreamwalker: 1 (used)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-21",
@@ -3369,7 +3846,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Necklace of Prayer Beads",
-          "itemReceived": "the Sixth Sword"
+          "itemReceived": "the Sixth Sword",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-19",
@@ -3388,7 +3868,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-07-19",
@@ -3407,7 +3890,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Received Ring of Protection from Force Grey",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-07-12",
@@ -3426,7 +3912,10 @@ window.DATA = {
             "Potion of Resistance"
           ],
           "notes": "Received Renown Item Katana (Longsword) +1",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-06-24",
@@ -3449,7 +3938,10 @@ window.DATA = {
           "player": null,
           "character": "Zeras Brid",
           "itemTraded": "Cloak of Many Fashions",
-          "itemReceived": "Ruby of the War Mage"
+          "itemReceived": "Ruby of the War Mage",
+          "__charKey": "Leonardo",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-06-24",
@@ -3472,7 +3964,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Ruby of the War Mage",
-          "itemReceived": "Dread Helm"
+          "itemReceived": "Dread Helm",
+          "__charKey": "Leonardo",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-06-23",
@@ -3491,7 +3986,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-06-14",
@@ -3508,7 +4006,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-06-07",
@@ -3525,7 +4026,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Recieved Stone of Golorr",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-05-24",
@@ -3544,7 +4048,10 @@ window.DATA = {
             "Potion of Water Breathing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-05-17",
@@ -3563,7 +4070,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2020-05-03",
@@ -3580,7 +4090,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         },
         {
           "date": "2020-04-26",
@@ -3599,7 +4112,10 @@ window.DATA = {
             "Paper Bird"
           ],
           "notes": "Joined faction Force Grey (which I prefer to call Force Green)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Leonardo",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -3622,7 +4138,10 @@ window.DATA = {
           "player": null,
           "character": "Collin",
           "itemTraded": "Bracers of Defense",
-          "itemReceived": "Rythm Makers Drum +2"
+          "itemReceived": "Rythm Makers Drum +2",
+          "__charKey": "Leonardo",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -3647,7 +4166,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Rolyn",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-20",
@@ -3670,7 +4192,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Shield +1",
-          "itemReceived": "Mithral Splintmail"
+          "itemReceived": "Mithral Splintmail",
+          "__charKey": "Rolyn",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-09",
@@ -3693,7 +4218,10 @@ window.DATA = {
           "player": null,
           "character": "Fei Chen",
           "itemTraded": "Sending Stones",
-          "itemReceived": "Shield +1"
+          "itemReceived": "Shield +1",
+          "__charKey": "Rolyn",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-02",
@@ -3716,7 +4244,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Winged Boots",
-          "itemReceived": "Gloves of Thievery"
+          "itemReceived": "Gloves of Thievery",
+          "__charKey": "Rolyn",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-10-05",
@@ -3735,7 +4266,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2019-10-04",
@@ -3752,7 +4286,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2019-09-27",
@@ -3769,7 +4306,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2019-09-27",
@@ -3788,7 +4328,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2019-09-25",
@@ -3807,7 +4350,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2019-09-20",
@@ -3824,7 +4370,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Rolyn",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -3853,7 +4402,10 @@ window.DATA = {
           "player": null,
           "character": "Sentient Hat",
           "itemTraded": "Glamoured Studded Leather",
-          "itemReceived": "Glamoured Studded Leather"
+          "itemReceived": "Glamoured Studded Leather",
+          "__charKey": "Anfer",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-02-24",
@@ -3870,7 +4422,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Anfer",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-02-12",
@@ -3893,7 +4448,10 @@ window.DATA = {
           "player": null,
           "character": "Tifa Heartlock",
           "itemTraded": "Gem of Seeing",
-          "itemReceived": "Sun Blade"
+          "itemReceived": "Sun Blade",
+          "__charKey": "Anfer",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-02-12",
@@ -3916,7 +4474,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Sun Blade",
-          "itemReceived": "Glamoured Studded Leather"
+          "itemReceived": "Glamoured Studded Leather",
+          "__charKey": "Anfer",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-12-21",
@@ -3939,7 +4500,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Belt of Hill Giant Strength",
-          "itemReceived": "Gem of Seeing"
+          "itemReceived": "Gem of Seeing",
+          "__charKey": "Anfer",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-12-12",
@@ -3962,7 +4526,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Elven Chain",
-          "itemReceived": "Belt of Hill Giant Strength"
+          "itemReceived": "Belt of Hill Giant Strength",
+          "__charKey": "Anfer",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-12-04",
@@ -3981,7 +4548,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Longbow +1 renown item",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Anfer",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2019-11-08",
@@ -4000,7 +4570,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Anfer",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2019-11-01",
@@ -4019,7 +4592,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Anfer",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2019-10-30",
@@ -4036,7 +4612,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Anfer",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -4053,7 +4632,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Anfer",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -4081,7 +4663,10 @@ window.DATA = {
             "Oil Etherealness"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-02-23",
@@ -4103,7 +4688,10 @@ window.DATA = {
             "Scroll of Prayer of Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-02-18",
@@ -4125,7 +4713,10 @@ window.DATA = {
             "Potion of Superior Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-02-02",
@@ -4148,7 +4739,10 @@ window.DATA = {
             "Crossbow bolt +2 (5)"
           ],
           "notes": "Bought Scroll of Revivify",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-01-29",
@@ -4167,7 +4761,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2022-01-19",
@@ -4189,7 +4786,10 @@ window.DATA = {
             "Potion of Growth"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2022-01-16",
@@ -4209,7 +4809,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2022-01-15",
@@ -4232,7 +4835,10 @@ window.DATA = {
           "player": null,
           "character": "Amaretto",
           "itemTraded": "Nolzur's Pigments",
-          "itemReceived": "Rod of the Pact Keeper +3"
+          "itemReceived": "Rod of the Pact Keeper +3",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2022-01-15",
@@ -4255,7 +4861,10 @@ window.DATA = {
           "player": null,
           "character": "Barbara Jean",
           "itemTraded": "Rod of the Pact Keeper +3",
-          "itemReceived": "Wand of the War Mage +3"
+          "itemReceived": "Wand of the War Mage +3",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2022-01-15",
@@ -4274,7 +4883,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2022-01-12",
@@ -4297,7 +4909,10 @@ window.DATA = {
             "Potion of Gaseous Form"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2022-01-05",
@@ -4320,7 +4935,10 @@ window.DATA = {
             "Scroll of Planar Binding"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-12-18",
@@ -4339,7 +4957,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": null,
@@ -4356,7 +4977,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Goblert Godfrey",
+          "__levelAfter": 5,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -4385,7 +5009,10 @@ window.DATA = {
           "player": null,
           "character": "Madam Renata",
           "itemTraded": "Spider Staff",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Raguel",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2024-11-20",
@@ -4408,7 +5035,10 @@ window.DATA = {
           "player": null,
           "character": "Norixious",
           "itemTraded": "Giant Slayer Lance",
-          "itemReceived": "Half-plate +1"
+          "itemReceived": "Half-plate +1",
+          "__charKey": "Raguel",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2024-11-20",
@@ -4431,7 +5061,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Anstruth Hapr",
-          "itemReceived": "Tome of Leadership and Influence"
+          "itemReceived": "Tome of Leadership and Influence",
+          "__charKey": "Raguel",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2024-11-20",
@@ -4448,7 +5081,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Raguel",
+          "__levelAfter": 12,
+          "__levelAtStart": 4
         },
         {
           "date": "2024-11-20",
@@ -4467,7 +5103,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Raguel",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2024-11-20",
@@ -4486,7 +5125,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Raguel",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2024-11-20",
@@ -4505,7 +5147,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Raguel",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2024-11-20",
@@ -4524,7 +5169,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Raguel",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2024-11-20",
@@ -4543,7 +5191,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Raguel",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         },
         {
           "date": "2024-11-20",
@@ -4566,7 +5217,10 @@ window.DATA = {
             "Scroll of Grasping Vine"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Raguel",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -4595,7 +5249,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Broom of Flying",
-          "itemReceived": "Eyes of the Eagle"
+          "itemReceived": "Eyes of the Eagle",
+          "__charKey": "Orakhar",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-08-27",
@@ -4612,7 +5269,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 16,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-08-27",
@@ -4631,7 +5291,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-08-27",
@@ -4657,7 +5320,10 @@ window.DATA = {
             "Spell Scroll of Wish"
           ],
           "notes": "Wished for resistance to Necrotic, spell was cast from a scroll with the help of Divine Intervention by Deneir called upon by Myka (Nicole)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-07-16",
@@ -4680,7 +5346,10 @@ window.DATA = {
           "player": null,
           "character": "Lyrielle",
           "itemTraded": "Scrimitar of Speed",
-          "itemReceived": "Ring of Telekenesis"
+          "itemReceived": "Ring of Telekenesis",
+          "__charKey": "Orakhar",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-07-16",
@@ -4699,7 +5368,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-06-25",
@@ -4718,7 +5390,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2021-06-18",
@@ -4738,7 +5413,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2021-06-11",
@@ -4757,7 +5435,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-06-11",
@@ -4774,7 +5455,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 10,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-06-04",
@@ -4793,7 +5477,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-05-21",
@@ -4812,7 +5499,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Scribed Counterspell from a scroll",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-05-21",
@@ -4831,7 +5521,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-05-14",
@@ -4848,7 +5541,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-05-07",
@@ -4868,7 +5564,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-05-07",
@@ -4885,7 +5584,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2021-04-02",
@@ -4904,7 +5606,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-04-02",
@@ -4923,7 +5628,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-03-26",
@@ -4943,7 +5651,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Orakhar",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-03-26",
@@ -4960,7 +5671,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Orakhar",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -4987,7 +5701,10 @@ window.DATA = {
             "NaT"
           ],
           "notes": "NaT",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2024-11-09",
@@ -5006,7 +5723,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased 15 elephants in Waterdeep and freed them",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2023-01-18",
@@ -5027,7 +5747,10 @@ window.DATA = {
             "Scroll of Greater Restoration"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-08-03",
@@ -5046,7 +5769,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-07-04",
@@ -5063,7 +5789,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 16,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-07-04",
@@ -5086,7 +5815,10 @@ window.DATA = {
             "Spell Scroll of Illusory Dragon"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-04-08",
@@ -5105,7 +5837,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Greater Restoration, Scroll of Revivify",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-03-30",
@@ -5128,7 +5863,10 @@ window.DATA = {
           "player": null,
           "character": "Tengen Uzui",
           "itemTraded": "Opal of the ild rune",
-          "itemReceived": "Iron Bands of Bilaro"
+          "itemReceived": "Iron Bands of Bilaro",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-03-20",
@@ -5147,7 +5885,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-03-15",
@@ -5164,7 +5905,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2022-01-29",
@@ -5183,7 +5927,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased 2 castings of Greater Restoration to remove effects from 10/25/21",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-12-15",
@@ -5207,7 +5954,10 @@ window.DATA = {
             "Scroll of Ceremony"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-11-23",
@@ -5226,7 +5976,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Killed in the Shadowfell, raised by clerics of Shantea for 1500 gp, purchased Greater Restoration to clear Shadowfell Despair for 550 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-11-17",
@@ -5247,7 +6000,10 @@ window.DATA = {
             "Potion of Speed"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-10-27",
@@ -5269,7 +6025,10 @@ window.DATA = {
             "Scroll of Ceremony"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-10-25",
@@ -5292,7 +6051,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": "Skin turned blue, hair turned purple, gained the flaw \"I am terrified of children.\"",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-10-19",
@@ -5313,7 +6075,10 @@ window.DATA = {
             "Scroll of Mass Cure Wounds"
           ],
           "notes": "Purchased Studded Leather, cold weather gear, and 5 Potions of Superior Healing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-09-25",
@@ -5349,7 +6114,10 @@ window.DATA = {
             "protection from fiends"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-09-07",
@@ -5366,7 +6134,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-09-04",
@@ -5383,7 +6154,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2021-09-04",
@@ -5400,7 +6174,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 10,
+          "__levelAtStart": 8
         },
         {
           "date": "2021-08-27",
@@ -5417,7 +6194,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-08-25",
@@ -5434,7 +6214,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-08-06",
@@ -5451,7 +6234,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-08-04",
@@ -5470,7 +6256,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-08-03",
@@ -5487,7 +6276,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-07-16",
@@ -5510,7 +6302,10 @@ window.DATA = {
           "player": null,
           "character": "Orakhar",
           "itemTraded": "Ring of Telekenesis",
-          "itemReceived": "Scimitar of Speed"
+          "itemReceived": "Scimitar of Speed",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-07-16",
@@ -5533,7 +6328,10 @@ window.DATA = {
           "player": null,
           "character": "Z'la'ssh",
           "itemTraded": "Sixth Sword",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-07-15",
@@ -5554,7 +6352,10 @@ window.DATA = {
             "Spell Scroll of Teleport"
           ],
           "notes": "Purchased Scale Mail for 50 gp, sold Leather Armor for 5gp, Bruce was Awakened by Pwyl Pweeten (Tim H.)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2021-07-15",
@@ -5571,7 +6372,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2021-07-15",
@@ -5588,7 +6392,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-07-15",
@@ -5607,7 +6414,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-07-14",
@@ -5624,7 +6434,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-07-14",
@@ -5641,7 +6454,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Purchased Yeti horn recorder (Flute) in Baldur's Gate",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-07-06",
@@ -5664,7 +6480,10 @@ window.DATA = {
           "player": null,
           "character": "Leonardo",
           "itemTraded": "Necklace of Fireballs",
-          "itemReceived": "the Sixth Sword"
+          "itemReceived": "the Sixth Sword",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "date": "2021-07-06",
@@ -5681,7 +6500,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Purchased Bruce the Elephant for 200 gp",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 4,
+          "__levelAtStart": 1
         },
         {
           "date": "2021-07-06",
@@ -5700,7 +6522,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         },
         {
           "date": "2021-07-06",
@@ -5720,7 +6545,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lyrielle",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -5750,7 +6578,10 @@ window.DATA = {
             "Scroll of Ottiluke's Resilient Sphere"
           ],
           "notes": "Kendrick Camaraderie story award. Purchased Heroes' Feast component (1000gp), 3 scrolls of Teleportation Circle (3000 gp)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-11-30",
@@ -5767,7 +6598,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-07-02",
@@ -5790,7 +6624,10 @@ window.DATA = {
             "Scroll of Sending"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-05-18",
@@ -5809,7 +6646,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-04-03",
@@ -5830,7 +6670,10 @@ window.DATA = {
             "Potion of Fire Resistance"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-04-01",
@@ -5851,7 +6694,10 @@ window.DATA = {
             "Potion of FIre giant Strength"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-03-29",
@@ -5874,7 +6720,10 @@ window.DATA = {
             "Elixir of Health"
           ],
           "notes": "Saved the Lich Queen's Begotten (Janeane) because she's great and likes crepes. Plane Shifted to the House of Knowledge to let Oghma deal with her being a vessel for the Lich Queen. Stayed and performed many new stories and songs for Oghma.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-13",
@@ -5900,7 +6749,10 @@ window.DATA = {
             "Scroll of Summon Undead"
           ],
           "notes": "Bought 5 Scrolls of Mage Armor, bought 5 Scrolls of Holy Weapon, paid for Hero's Feast",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-11",
@@ -5925,7 +6777,10 @@ window.DATA = {
             "Scroll of Raise Dead"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-10",
@@ -5949,7 +6804,10 @@ window.DATA = {
             "Scroll of Greater Invisibility"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-05",
@@ -5970,7 +6828,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-10-30",
@@ -5991,7 +6852,10 @@ window.DATA = {
             "Potions of heroism and superior healing"
           ],
           "notes": "Bought 1 Scroll of Holy Weapon, Scroll of Revivify, Spent 1000 gp on Heroe's Feast",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-09-04",
@@ -6008,7 +6872,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-08-01",
@@ -6025,7 +6892,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-07-26",
@@ -6044,7 +6914,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 2 scrolls of Find Familiar and 2 scrolls of Mage Armor",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-07-21",
@@ -6063,7 +6936,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-07-12",
@@ -6080,7 +6956,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-06-29",
@@ -6099,7 +6978,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 5 Scrolls of Mage Armor",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-06-02",
@@ -6118,7 +7000,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-30",
@@ -6135,7 +7020,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-29",
@@ -6154,7 +7042,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-28",
@@ -6175,7 +7066,10 @@ window.DATA = {
             "Potion of Superior Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-14",
@@ -6198,7 +7092,10 @@ window.DATA = {
           "player": null,
           "character": "Buckley",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "1 pot of Nulzor's Marvelous Pigments"
+          "itemReceived": "1 pot of Nulzor's Marvelous Pigments",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-14",
@@ -6215,7 +7112,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Bought a pirate flag with a dragon skull and crossbones",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-05-12",
@@ -6237,7 +7137,10 @@ window.DATA = {
             "Antitoxin"
           ],
           "notes": "Bought 4 scrolls of Lesser Restoration",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-04-28",
@@ -6256,7 +7159,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-04-15",
@@ -6278,7 +7184,10 @@ window.DATA = {
             "Potion of Invulnerability"
           ],
           "notes": "Spent 1000 gp on Heroe's Feast",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-04-13",
@@ -6299,7 +7208,10 @@ window.DATA = {
             "Potion of Fire Breath"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-04-07",
@@ -6320,7 +7232,10 @@ window.DATA = {
             "Spell Scroll of Teleport"
           ],
           "notes": "Bought 2 forked metal rods attuned to Material Plane and Plane of Knowledge",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-04-03",
@@ -6339,7 +7254,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Traded +3 Arrow \"Ironfang\" in exchange for an enslaved Drow",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-03-27",
@@ -6362,7 +7280,10 @@ window.DATA = {
           "player": null,
           "character": "Bryce",
           "itemTraded": "Broom of Flying",
-          "itemReceived": "Headband of Intellect"
+          "itemReceived": "Headband of Intellect",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-03-27",
@@ -6381,7 +7302,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Cast Holy Weapon in Ring of Spell Storing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-03-27",
@@ -6400,7 +7324,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-03-24",
@@ -6422,7 +7349,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": "Used +3 Arrow \"Deck of Many Things\"",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-02-24",
@@ -6445,7 +7375,10 @@ window.DATA = {
           "player": null,
           "character": "Anfer",
           "itemTraded": "FOWP - Ivory Goats",
-          "itemReceived": "Glamoured Studded Leather"
+          "itemReceived": "Glamoured Studded Leather",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-02-24",
@@ -6468,7 +7401,10 @@ window.DATA = {
           "player": null,
           "character": "Norragen",
           "itemTraded": "Splint +1",
-          "itemReceived": "Ring of Spell Storing (Harmonius)"
+          "itemReceived": "Ring of Spell Storing (Harmonius)",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-02-24",
@@ -6490,7 +7426,10 @@ window.DATA = {
             "6 +3 Arrows"
           ],
           "notes": "Spent 1 DTD casting Holy Weapon into the Ring of Spell Storing. Bought 5 Potions of Greater Healing (500 gp) and 3 diamonds (900 gp), spent 1000 gp on Hero's Feast. Table Trade of Rod of Rulership for Staff of Charming. Gave 200 gp to Pit Fiend in rare coins. Purchased 1500 gp worth of Ruby Dust (Forcecage component).",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2021-02-24",
@@ -6507,7 +7446,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 13,
+          "__levelAtStart": 7
         },
         {
           "date": "2021-02-24",
@@ -6524,7 +7466,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 7,
+          "__levelAtStart": 5
         },
         {
           "date": "2021-02-24",
@@ -6541,7 +7486,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 5,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-02-24",
@@ -6560,7 +7508,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-02-24",
@@ -6579,7 +7530,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-02-24",
@@ -6598,7 +7552,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": "2021-02-24",
@@ -6617,7 +7574,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -6634,7 +7594,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Bought 3 Potions of Lightning Resistance, 4 Poitons of Greater Healing, 1 Scroll of Death Ward",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -6657,7 +7620,10 @@ window.DATA = {
           "player": null,
           "character": "Torrin",
           "itemTraded": "Deck of Cards",
-          "itemReceived": "Short Sword +1"
+          "itemReceived": "Short Sword +1",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -6678,7 +7644,10 @@ window.DATA = {
             "Shadowneedle"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -6701,7 +7670,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Expanded Archive and Pub to vast.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -6718,7 +7690,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Sentient Hat",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -6747,7 +7722,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Arcane Grimoire +3",
-          "itemReceived": "Lance +3"
+          "itemReceived": "Lance +3",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2025-05-28",
@@ -6767,7 +7745,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-07-13",
@@ -6784,7 +7765,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-01-03",
@@ -6803,7 +7787,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 2 Potions of Greater Healing. Spent 225 hiring Babyface Yoka",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-12-30",
@@ -6822,7 +7809,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-12-27",
@@ -6842,7 +7832,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-12-10",
@@ -6863,7 +7856,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-11-25",
@@ -6882,7 +7878,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 300 gp diamond, 166 gp for Hero's Feast",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-11-01",
@@ -6905,7 +7904,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Flying Carpet",
-          "itemReceived": "Aegis of the Raven Queen Shield"
+          "itemReceived": "Aegis of the Raven Queen Shield",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-11-01",
@@ -6928,7 +7930,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Manual of Bodily Health",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-11-01",
@@ -6945,7 +7950,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-10-31",
@@ -6974,7 +7982,10 @@ window.DATA = {
             "2 Potions of Speed"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-10-31",
@@ -6991,7 +8002,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Bought 2 Scrolls of Death Ward, 1 Scroll of Revivify",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-10-02",
@@ -7014,7 +8028,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Manual of Quickness and Action",
-          "itemReceived": "Plate +2"
+          "itemReceived": "Plate +2",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-10-01",
@@ -7033,7 +8050,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 3 Potions of Greater Healing for 300 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-08-11",
@@ -7056,7 +8076,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Ioun Stone of Leadership",
-          "itemReceived": "Tome of Leadership and Influence"
+          "itemReceived": "Tome of Leadership and Influence",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-08-11",
@@ -7075,7 +8098,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-07-21",
@@ -7094,7 +8120,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought cold weather gear for 4gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-07-18",
@@ -7115,7 +8144,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-07-14",
@@ -7136,7 +8168,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-07-07",
@@ -7155,7 +8190,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-06-30",
@@ -7174,7 +8212,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-06-17",
@@ -7193,7 +8234,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Cast Find Greater Steed scroll for Griffon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-05-27",
@@ -7212,7 +8256,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-05-16",
@@ -7237,7 +8284,10 @@ window.DATA = {
             "2x Holy Weapon)"
           ],
           "notes": "Bought 300 gp diamond",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-05-14",
@@ -7260,7 +8310,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "+3 Lance",
-          "itemReceived": "Belt of For Giant Strength"
+          "itemReceived": "Belt of For Giant Strength",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-05-14",
@@ -7279,7 +8332,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-05-14",
@@ -7298,7 +8354,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-04-12",
@@ -7315,7 +8374,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-04-12",
@@ -7332,7 +8394,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-04-04",
@@ -7351,7 +8416,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-03-10",
@@ -7374,7 +8442,10 @@ window.DATA = {
           "player": null,
           "character": "Jareb",
           "itemTraded": "Berserker Axe",
-          "itemReceived": "Lance +3"
+          "itemReceived": "Lance +3",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-03-08",
@@ -7393,7 +8464,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-28",
@@ -7412,7 +8486,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-17",
@@ -7435,7 +8512,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Wand of Webs",
-          "itemReceived": "Trident of Fish Command"
+          "itemReceived": "Trident of Fish Command",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-16",
@@ -7458,7 +8538,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Trident of Fish Command",
-          "itemReceived": "Wand of Webs"
+          "itemReceived": "Wand of Webs",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-16",
@@ -7475,7 +8558,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-16",
@@ -7496,7 +8582,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-02-15",
@@ -7516,7 +8605,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-02-13",
@@ -7539,7 +8631,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Bracers of Defense",
-          "itemReceived": "Sun Blade"
+          "itemReceived": "Sun Blade",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-02-12",
@@ -7558,7 +8653,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-02-07",
@@ -7581,7 +8679,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Opal of the Ild Rune",
-          "itemReceived": "Belt of Hill Giant Strength"
+          "itemReceived": "Belt of Hill Giant Strength",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-02-07",
@@ -7600,7 +8701,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-02-07",
@@ -7619,7 +8723,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-01-20",
@@ -7639,7 +8746,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Rapier +1 renown item",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-01-08",
@@ -7662,7 +8772,10 @@ window.DATA = {
           "player": null,
           "character": "Del",
           "itemTraded": "Bag of Tricks",
-          "itemReceived": "Choraller's Companion"
+          "itemReceived": "Choraller's Companion",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-01-08",
@@ -7685,7 +8798,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Choraller's Companion",
-          "itemReceived": "Gem of Water Elemental"
+          "itemReceived": "Gem of Water Elemental",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": null,
@@ -7702,7 +8818,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": null,
@@ -7721,7 +8840,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 5 Downtime Days to take the Inspired by Torm story award",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": null,
@@ -7740,7 +8862,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": null,
@@ -7757,7 +8882,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Spent 20 DTD's leveling up to Tier 2",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -7774,7 +8902,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Arvistan Brightwave",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -7797,7 +8928,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Used Dreamwalker downtime activity to receive a new portent: 5",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2025-05-28",
@@ -7820,7 +8954,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Lance +3",
-          "itemReceived": "Arcane Grimoire +3"
+          "itemReceived": "Arcane Grimoire +3",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2024-03-23",
@@ -7843,7 +8980,10 @@ window.DATA = {
           "player": null,
           "character": "Eriol Quickfoot",
           "itemTraded": "Staff of the Magi",
-          "itemReceived": "Ascendent Dragon's Wrath Longsword (Amethyst)"
+          "itemReceived": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-10-04",
@@ -7862,7 +9002,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-10-04",
@@ -7881,7 +9024,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-10-04",
@@ -7900,7 +9046,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-10-04",
@@ -7919,7 +9068,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-06-08",
@@ -7941,7 +9093,10 @@ window.DATA = {
             "Arrow of Dragon Slaying"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-05-28",
@@ -7960,7 +9115,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Iron Golem destroyed",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-01-21",
@@ -7981,7 +9139,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Wren (Erik T.) cast Scroll of Wish for Slashing resistance. Bought scroll of Death Ward.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-01-20",
@@ -8005,7 +9166,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-01-20",
@@ -8029,7 +9193,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2023-01-20",
@@ -8046,7 +9213,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Spent 240 days and 250,000 gp to scribe a scroll of Wish.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-11-09",
@@ -8067,7 +9237,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-14",
@@ -8090,7 +9263,10 @@ window.DATA = {
           "player": null,
           "character": "Norixius",
           "itemTraded": "Moon-Touched Greatsword",
-          "itemReceived": "Pipe of Smoke Monsters (Guardian)"
+          "itemReceived": "Pipe of Smoke Monsters (Guardian)",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-14",
@@ -8114,7 +9290,10 @@ window.DATA = {
             "Oil of Sharpness"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-14",
@@ -8131,7 +9310,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Used Dreamwalker downtime activity to recieve a new portent: 18",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-14",
@@ -8154,7 +9336,10 @@ window.DATA = {
             "Potion of Vitality"
           ],
           "notes": "Used 18 Dreamwalker portent",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -8177,7 +9362,10 @@ window.DATA = {
             "Scroll of Teleport"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -8196,7 +9384,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Traded Ring of Regeneration to Trading Post for Absorbing Tattoo (Force)",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -8218,7 +9409,10 @@ window.DATA = {
             "Scroll of Dominate Monster"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -8240,7 +9434,10 @@ window.DATA = {
             "Scroll of Greater Restoration"
           ],
           "notes": "Permanently gave up 5 hit dice to power the opal pendant to hold an atropal",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-15",
@@ -8263,7 +9460,10 @@ window.DATA = {
           "player": null,
           "character": "S'arrok",
           "itemTraded": "Robe of the Archmagi (Gray)",
-          "itemReceived": "Vorpal Longsword"
+          "itemReceived": "Vorpal Longsword",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-12",
@@ -8286,7 +9486,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Robe of the Archmagi (White)"
+          "itemReceived": "Robe of the Archmagi (White)",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -8309,7 +9512,10 @@ window.DATA = {
           "player": null,
           "character": null,
           "itemTraded": "Blackrazor",
-          "itemReceived": "a Moon Blade"
+          "itemReceived": "a Moon Blade",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -8332,7 +9538,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Moon Blade",
-          "itemReceived": "Staff of the Magi"
+          "itemReceived": "Staff of the Magi",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -8355,7 +9564,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Hide +3",
-          "itemReceived": "Tome of the Stilled Tongue"
+          "itemReceived": "Tome of the Stilled Tongue",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -8378,7 +9590,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Defender Longsword",
-          "itemReceived": "Robe of the Archmage (gray)"
+          "itemReceived": "Robe of the Archmage (gray)",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -8397,7 +9612,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 20,
+          "__levelAtStart": 19
         },
         {
           "date": "2022-06-08",
@@ -8416,7 +9634,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Gained an additional 9th level spell slot",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 19,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-06-08",
@@ -8440,7 +9661,10 @@ window.DATA = {
             "Scroll of Teleport"
           ],
           "notes": "Spent 200 DTD in the Hall of Omens gaining an additional portent",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-06-07",
@@ -8459,7 +9683,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Can spend 50 downtime days to make a hidden demiplane or connect two demiplanes you have created.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-06-02",
@@ -8485,7 +9712,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-05-29",
@@ -8508,7 +9738,10 @@ window.DATA = {
           "player": null,
           "character": "AL Trading Post",
           "itemTraded": "Ring of Feather Falling",
-          "itemReceived": "Plate Barding +1"
+          "itemReceived": "Plate Barding +1",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-05-26",
@@ -8533,7 +9766,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-04-20",
@@ -8556,7 +9792,10 @@ window.DATA = {
           "player": null,
           "character": "Sir Norixius",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Ring of Shooting Stars"
+          "itemReceived": "Ring of Shooting Stars",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-04-06",
@@ -8579,7 +9818,10 @@ window.DATA = {
             "Potion of Superior Healing"
           ],
           "notes": "Bought 2 death ward scrolls, 1 greater restoration scroll, 1 heroes feast",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-03-22",
@@ -8604,7 +9846,10 @@ window.DATA = {
           ],
           "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
           "kind": "adventure",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-03-16",
@@ -8627,7 +9872,10 @@ window.DATA = {
             "potion of heroism"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-28",
@@ -8649,7 +9897,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-28",
@@ -8672,7 +9923,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-28",
@@ -8696,7 +9950,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-21",
@@ -8721,7 +9978,10 @@ window.DATA = {
             "Potion of Speed"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-20",
@@ -8743,7 +10003,10 @@ window.DATA = {
             "Potion of Invulnerability"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-19",
@@ -8766,7 +10029,10 @@ window.DATA = {
           "player": null,
           "character": "AL Trading Post",
           "itemTraded": "Grig Fiddle",
-          "itemReceived": "Ghost Step Tattoo"
+          "itemReceived": "Ghost Step Tattoo",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-02-09",
@@ -8799,7 +10065,10 @@ window.DATA = {
             "Spell Scroll of Wish"
           ],
           "notes": "Used Scroll of Wish (Quinlin wished for Necrotic Resistance)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-01-30",
@@ -8822,7 +10091,10 @@ window.DATA = {
           "player": null,
           "character": "Sir John of Cormanthor",
           "itemTraded": "Belt of Stone Giant Strength",
-          "itemReceived": "Grig Fiddle"
+          "itemReceived": "Grig Fiddle",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-01-26",
@@ -8844,7 +10116,10 @@ window.DATA = {
             "Potion of Speed"
           ],
           "notes": "Gave up Wand of Smiles and Stygian Scale Mail to a hag in exchange for a magic elixer.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2022-01-07",
@@ -8863,7 +10138,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-21",
@@ -8888,7 +10166,10 @@ window.DATA = {
             "Spell Scroll of Teleportation Circle"
           ],
           "notes": "Spent 14 days and 2150 gp copying spells from previously collected spellbooks. Bought scrolls of Arcane Eye and Tasha's Mind Whip and copied into spellbook for 2 days and 950 gp. Bought scrolls of Mold Earth and Passwall and copied them into my spell book during the adventure for 1325 gp. Received a scroll of teleportation circle and scribed it into my spellbook for 250 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-21",
@@ -8907,7 +10188,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-08",
@@ -8924,7 +10208,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Purchased components and cast clone, spent 120 days and 100,000 gp using Manual of Iron Golems, clone reached maturity.",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-07",
@@ -8945,7 +10232,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": "Captured by Yuan Ti for 61 days",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-04",
@@ -8987,7 +10277,10 @@ window.DATA = {
             "Potions of Superior Healing"
           ],
           "notes": "Purchased 3 Potions of Supreme Healing, 2 Potions of Superior Healing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-11-03",
@@ -9000,7 +10293,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": null,
+          "level_plus": 0,
           "perm_items": [
             "Efreeti Bottle"
           ],
@@ -9008,8 +10301,13 @@ window.DATA = {
             "Potion of Speed",
             "Potion of Superior Healing"
           ],
-          "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroe's Feast",
-          "kind": "adventure"
+          "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroes Feast. Opened the Efreeti Bottle and was granted three Wishes (DM rolled 96). Gained resistance to Necrotic, Force, and Bludgeoning damage.",
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "date": "2021-10-26",
@@ -9030,7 +10328,10 @@ window.DATA = {
             "Potion of Superior Healing"
           ],
           "notes": "Killed 19 Thentian commoners in combat and told to lay low. No advertising the school for one year.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2021-10-26",
@@ -9047,7 +10348,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-10-24",
@@ -9070,7 +10374,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Tome of Leadership and Influence",
-          "itemReceived": "Manual of Iron Golems"
+          "itemReceived": "Manual of Iron Golems",
+          "__charKey": "Zandarax",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-10-17",
@@ -9093,7 +10400,10 @@ window.DATA = {
             "Spell Scroll of Conjur Fey"
           ],
           "notes": "Met Caustilancer the Black Dragon (adult) and arranged a teaching position for him. Copied Synaptic Static from Nibbler (Chuck G.)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-10-12",
@@ -9118,7 +10428,10 @@ window.DATA = {
             "and Simulacrum"
           ],
           "notes": "Acquired vial of dust from the rotted corpse of a clone of Manshoon.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-10-11",
@@ -9141,7 +10454,10 @@ window.DATA = {
           "player": null,
           "character": "Jasmine",
           "itemTraded": "Angel Sting",
-          "itemReceived": "a Crystal Ball"
+          "itemReceived": "a Crystal Ball",
+          "__charKey": "Zandarax",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2021-10-10",
@@ -9163,7 +10479,10 @@ window.DATA = {
             "Potion of Flying"
           ],
           "notes": "Bought Revivify scroll (already had diamond) for 300 gp. Spent 2000 gold and 20 DTD purchasing an estate in the Little Moonsea neighborhood of Fangjaws Hold. Copied Catnap from Fotia (Bryce). Copied spells from previously collected spellbooks.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-10-03",
@@ -9186,7 +10505,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Periapt of Proof Against Poitson",
-          "itemReceived": "Wand of Lightning Bolts"
+          "itemReceived": "Wand of Lightning Bolts",
+          "__charKey": "Zandarax",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-06-20",
@@ -9205,7 +10527,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-05-11",
@@ -9225,7 +10550,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2021-05-04",
@@ -9244,7 +10572,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2021-03-03",
@@ -9263,7 +10594,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2021-02-27",
@@ -9284,7 +10618,10 @@ window.DATA = {
             "Poition of Superior Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2021-02-03",
@@ -9304,7 +10641,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 5 potions of Greater Healing for 500 gp. Spent 25 DTD's Dreamwalking, received an 18 Dreamwalker Portent. Spend 2 DTD's for Krus to copy Crown of Stars",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2021-01-29",
@@ -9327,7 +10667,10 @@ window.DATA = {
             "2nd level wizard spell (not ritual) scroll of my choice"
           ],
           "notes": "Spent 2 DTD's while Cassandra scribed Steel Wind Strike",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-01-16",
@@ -9346,7 +10689,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Gave up Ring of Protection to Efreeti, must wait one adventure before acquiring a new faction Ring",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-01-14",
@@ -9365,7 +10711,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Found the Demilich Fyndulaas's Spellbook",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2021-01-06",
@@ -9384,7 +10733,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-12-30",
@@ -9406,7 +10758,10 @@ window.DATA = {
             "Scroll of Guards and Wards"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-24",
@@ -9429,7 +10784,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Offered a spellbook (collected 9/22/2020) as payment to enter Candlekeep",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-23",
@@ -9450,7 +10808,10 @@ window.DATA = {
             "2 Potions of Mind Reading"
           ],
           "notes": "Copied True Seeing from Whirl for 300 gp and 1 DTD",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-22",
@@ -9473,7 +10834,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Dwarven Plate",
-          "itemReceived": "Flying Carpet (4x6)"
+          "itemReceived": "Flying Carpet (4x6)",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-22",
@@ -9495,7 +10859,10 @@ window.DATA = {
             "Scroll of Comprehend Languages"
           ],
           "notes": "Copied Chain Lightning from Lasharra's spellbook. Joined the Mug Club for 5 gp. Bought a 300 gp diamond. Found Necromancer's Spellbook.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-19",
@@ -9516,7 +10883,10 @@ window.DATA = {
             "Potion of Mind Reading"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-10",
@@ -9535,7 +10905,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-12-05",
@@ -9555,7 +10928,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-12-02",
@@ -9576,7 +10952,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-12-01",
@@ -9598,7 +10977,10 @@ window.DATA = {
             "Scroll of Fabricate"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-11-21",
@@ -9617,7 +10999,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-11-19",
@@ -9636,7 +11021,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-11-14",
@@ -9656,7 +11044,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-11-12",
@@ -9675,7 +11066,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-11-01",
@@ -9696,7 +11090,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 150gp and 1 DTD scribing Leomund's Tiny Hut in library in Stygia. Used Dreamwalker Portent (19)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-10-29",
@@ -9717,7 +11114,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": "Found 100 gp worth of spell incense (Find Familiar)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-10-28",
@@ -9738,7 +11138,10 @@ window.DATA = {
             "Potion of Clairvoyance"
           ],
           "notes": "Played Liar's Night Wave 3, received Candy Corn Calico Cat Construct Pet/Familiar",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-10-25",
@@ -9761,7 +11164,10 @@ window.DATA = {
             "5 rare consumables of my choice (Greater Restoration x 5)"
           ],
           "notes": "Consumed 1 Mystery Key. Returned all 3 weapons. Spent 2 downtime days for Suyin (Nicole) and Figment (Jane) to scribe Steel Wind Strike.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-25",
@@ -9782,7 +11188,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-22",
@@ -9803,7 +11212,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Cloak of the Bat and Mysterey Key from Liar's Night Wave 2. Copied Scrying from a Traveling Spellbook for 1 DTD and 125 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-21",
@@ -9822,7 +11234,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-17",
@@ -9845,7 +11260,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Cape of the Mountebank",
-          "itemReceived": "Dagger of Blindsight"
+          "itemReceived": "Dagger of Blindsight",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-17",
@@ -9864,7 +11282,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 25 downtime days on the Dreamwalker activity, portent received: 19",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-17",
@@ -9883,7 +11304,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-14",
@@ -9902,7 +11326,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-13",
@@ -9923,7 +11350,10 @@ window.DATA = {
             "Liar's Night Pumpkin Ring"
           ],
           "notes": "Picked up an amulet with the holy symbol of Mystra. Found Lasharra's Spellbook. Spent 1 day and 275gp learning Rary's Telepathic Bond and Water Breathing. Played Liar's Night Wave 1",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-11",
@@ -9942,7 +11372,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-10-07",
@@ -9961,7 +11394,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-09-23",
@@ -9984,7 +11420,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Bracelet of Rock Magic",
-          "itemReceived": "Robe of Stars"
+          "itemReceived": "Robe of Stars",
+          "__charKey": "Zandarax",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-09-23",
@@ -10005,7 +11444,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 1 day and 50gp learning Detect Thoughts from Zynn (Erik)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-09-23",
@@ -10024,7 +11466,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-09-22",
@@ -10047,7 +11492,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Dagger of Blindsight",
-          "itemReceived": "Mace of Smiting"
+          "itemReceived": "Mace of Smiting",
+          "__charKey": "Zandarax",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-09-22",
@@ -10067,7 +11515,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Collected 3 Spellbooks, turned in 1 for 100 pp distributed to each party member for 120 gp each. Bought 2x Find Familiar incense for 20gp and paid for a boat ride for 5gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-09-16",
@@ -10086,7 +11537,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-09-13",
@@ -10105,7 +11559,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 1 day and 200gp exchanging spells with Cassandra (Jon)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-09-11",
@@ -10122,7 +11579,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": "Can summon a Tressym familiar",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-09-10",
@@ -10142,7 +11602,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 2 days and 375gp exchanging spells with Skippio (Angel)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-09-08",
@@ -10161,7 +11624,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-09-07",
@@ -10184,7 +11650,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Tloque's Battleaxe",
-          "itemReceived": "Staff of Power"
+          "itemReceived": "Staff of Power",
+          "__charKey": "Zandarax",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-09-07",
@@ -10203,7 +11672,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-09-03",
@@ -10223,7 +11695,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Met Jim Jar the Deep Gnome. Visited Duergar city of Duerradain and saw Mindflayer technology modify Simulacrum spell",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 5,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-08-07",
@@ -10240,7 +11715,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-07-16",
@@ -10259,7 +11737,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 30 gp worth of incense",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-07-16",
@@ -10276,7 +11757,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Zandarax",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -10313,7 +11797,10 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "lost_perm_item": "",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2025-05-14",
@@ -10333,7 +11820,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Blessing of Magic Resistance",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2025-05-14",
@@ -10352,7 +11842,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2025-04-16",
@@ -10375,7 +11868,10 @@ window.DATA = {
           "player": null,
           "character": "Chef Ture",
           "itemTraded": "Glamoured Studded Leather",
-          "itemReceived": "Staff of the Python"
+          "itemReceived": "Staff of the Python",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2024-11-20",
@@ -10398,7 +11894,10 @@ window.DATA = {
           "player": null,
           "character": "Raguel",
           "itemTraded": "Tome of Leadership and Influence",
-          "itemReceived": "Anstruth Harp"
+          "itemReceived": "Anstruth Harp",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2024-09-11",
@@ -10415,7 +11914,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 20,
+          "__levelAtStart": 17
         },
         {
           "date": "2022-01-22",
@@ -10438,7 +11940,10 @@ window.DATA = {
             "Scroll of Sunburst"
           ],
           "notes": "Bought 10 scrolls of Hex",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2021-12-22",
@@ -10459,7 +11964,10 @@ window.DATA = {
             "Potion of Superior Healing"
           ],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2021-10-16",
@@ -10481,7 +11989,10 @@ window.DATA = {
             "Scroll of Animate Dead"
           ],
           "notes": "Used Mental Fortitude - Int save",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2021-08-08",
@@ -10500,7 +12011,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 3 potions of greater healing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2021-07-03",
@@ -10517,7 +12031,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2021-01-07",
@@ -10536,7 +12053,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-11-23",
@@ -10555,7 +12075,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 2 scrolls of Tongues",
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-11-08",
@@ -10576,7 +12099,10 @@ window.DATA = {
             "Potion of Heroism"
           ],
           "notes": "Bought 10 potions of greater healing for 50 gp each.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-11-07",
@@ -10595,7 +12121,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Read three books about the Far Realm",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-10-15",
@@ -10618,7 +12147,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Tome of Clear Thought",
-          "itemReceived": "Studded Leather +2"
+          "itemReceived": "Studded Leather +2",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-10-15",
@@ -10639,7 +12171,10 @@ window.DATA = {
             "Scroll of Plane Shift"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-10-08",
@@ -10660,7 +12195,10 @@ window.DATA = {
             "Potion of Mind Reading"
           ],
           "notes": "Advantage on each save once: WIS, INT, CHA",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-08-19",
@@ -10680,7 +12218,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-08-13",
@@ -10699,7 +12240,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-07-15",
@@ -10718,7 +12262,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Find Familiar components x10",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-07-08",
@@ -10737,7 +12284,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-07-01",
@@ -10760,7 +12310,10 @@ window.DATA = {
           "player": null,
           "character": "Morty",
           "itemTraded": "Wand of Pyrotecnics",
-          "itemReceived": "Cloak of Many Fashions"
+          "itemReceived": "Cloak of Many Fashions",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-07-01",
@@ -10781,7 +12334,10 @@ window.DATA = {
             "Potion of Vitality"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-06-16",
@@ -10804,7 +12360,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-06-10",
@@ -10823,7 +12382,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased 2 Scrolls of Catnap for 600gp. Won a free beer every day for a year at the Laughing Goblin in Phlan",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-06-03",
@@ -10842,7 +12404,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-05-06",
@@ -10861,7 +12426,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-05-05",
@@ -10880,7 +12448,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-28",
@@ -10899,7 +12470,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-23",
@@ -10918,7 +12492,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-22",
@@ -10937,7 +12514,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-18",
@@ -10958,7 +12538,10 @@ window.DATA = {
             "Scroll of Circle of Death"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-16",
@@ -10981,7 +12564,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Aegis of the Raven Queen Shield",
-          "itemReceived": "Tome of Understanding"
+          "itemReceived": "Tome of Understanding",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-16",
@@ -11000,7 +12586,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "-1 minutes on Candle of Invocation",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-08",
@@ -11019,7 +12608,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-04-01",
@@ -11038,7 +12630,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-03-27",
@@ -11057,7 +12652,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-03-14",
@@ -11076,7 +12674,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-03-07",
@@ -11097,7 +12698,10 @@ window.DATA = {
             "Scroll of Clairvoyance"
           ],
           "notes": "Bought 1 scroll of greater restoration. Unlocked Spare (legendary flame tongue Longsword that casts Vicious Mockery) available at Tier 4.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-03-06",
@@ -11116,7 +12720,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-02-27",
@@ -11136,7 +12743,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-02-20",
@@ -11155,7 +12765,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-02-15",
@@ -11177,7 +12790,10 @@ window.DATA = {
             "2 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-02-14",
@@ -11199,7 +12815,10 @@ window.DATA = {
             "5 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-02-14",
@@ -11220,7 +12839,10 @@ window.DATA = {
             "7 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-06",
@@ -11239,7 +12861,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-03",
@@ -11262,7 +12887,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Staff of Thunder and Lightning. Dropped Staff of Thunder and Lightning and acquired Ring of Evasion from Zhentarrim"
+          "itemReceived": "Staff of Thunder and Lightning. Dropped Staff of Thunder and Lightning and acquired Ring of Evasion from Zhentarrim",
+          "__charKey": "Agatha",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-03",
@@ -11281,7 +12909,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Ring of Evasion",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-02-02",
@@ -11304,7 +12935,10 @@ window.DATA = {
           "player": null,
           "character": "Audra Illumine",
           "itemTraded": "Tome of Understanding",
-          "itemReceived": "Rod of the Pact Keeper +3"
+          "itemReceived": "Rod of the Pact Keeper +3",
+          "__charKey": "Agatha",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-02-01",
@@ -11323,7 +12957,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Unlocked Oathbinder, in reserve until Tier 4",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-02-01",
@@ -11342,7 +12979,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased Revivify Scroll with components, Greater Restoration Scroll, Freedom of movement scroll. Bought Hag's Eye for 200 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-01-29",
@@ -11365,7 +13005,10 @@ window.DATA = {
           "player": null,
           "character": "Bilbo Baggins",
           "itemTraded": "Studded Leather +2",
-          "itemReceived": "Staff of Power"
+          "itemReceived": "Staff of Power",
+          "__charKey": "Agatha",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-01-23",
@@ -11388,7 +13031,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Staff of Thunder and Lightning",
-          "itemReceived": "Bad of Devouring"
+          "itemReceived": "Bad of Devouring",
+          "__charKey": "Agatha",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-01-23",
@@ -11407,7 +13053,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-01-22",
@@ -11428,7 +13077,10 @@ window.DATA = {
             "Scroll of Forcecage"
           ],
           "notes": "Ring of Evasion from Zhentarim membership. Spent 50 DTD's learning nature of the weave, got expertise in Arcana.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-01-22",
@@ -11449,7 +13101,10 @@ window.DATA = {
             "Scroll of Greater Invisibility"
           ],
           "notes": "Bought silver cage for 100 gp (Soul Cage component). Bought 10x Find Familiar components for 100 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-01-20",
@@ -11472,7 +13127,10 @@ window.DATA = {
           "player": null,
           "character": null,
           "itemTraded": "Wand of Fireballs",
-          "itemReceived": "Rod of the Pact Keeper +2"
+          "itemReceived": "Rod of the Pact Keeper +2",
+          "__charKey": "Agatha",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-01-20",
@@ -11491,7 +13149,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-01-18",
@@ -11512,7 +13173,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-01-18",
@@ -11533,7 +13197,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-01-17",
@@ -11554,7 +13221,10 @@ window.DATA = {
           "player": null,
           "character": null,
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": null
+          "itemReceived": null,
+          "__charKey": "Agatha",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-01-17",
@@ -11575,7 +13245,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-01-16",
@@ -11594,7 +13267,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-01-15",
@@ -11617,7 +13293,10 @@ window.DATA = {
           "player": null,
           "character": "Abserd",
           "itemTraded": "Wand of Wonder",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Agatha",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-01-15",
@@ -11634,7 +13313,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-01-14",
@@ -11653,7 +13335,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought studded leather. +1 Rod of the Pact Keeper renown item.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-01-10",
@@ -11670,7 +13355,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Agatha",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-01-10",
@@ -11689,7 +13377,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 50gp on 5x Find Familiar components",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-01-08",
@@ -11710,7 +13401,10 @@ window.DATA = {
             "Potion of Flying"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-01-03",
@@ -11729,7 +13423,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2002-01-17",
@@ -11752,7 +13449,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Wand of Webs",
-          "itemReceived": "Broom of Flying"
+          "itemReceived": "Broom of Flying",
+          "__charKey": "Agatha",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": "2002-01-17",
@@ -11775,7 +13475,10 @@ window.DATA = {
           "player": null,
           "character": "Sister Edwina",
           "itemTraded": "Rope of Entanglement",
-          "itemReceived": "Wand of Fireballs"
+          "itemReceived": "Wand of Fireballs",
+          "__charKey": "Agatha",
+          "__levelAfter": 2,
+          "__levelAtStart": 2
         },
         {
           "date": null,
@@ -11801,7 +13504,10 @@ window.DATA = {
             "Potion of Supreme Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         },
         {
           "date": null,
@@ -11822,7 +13528,10 @@ window.DATA = {
             "Potion of Invisibility"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Agatha",
+          "__levelAfter": 1,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -11847,7 +13556,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-24",
@@ -11870,7 +13582,10 @@ window.DATA = {
           "player": null,
           "character": "Samus",
           "itemTraded": "Manual of Bodily Health",
-          "itemReceived": "Manual of Iron Golems"
+          "itemReceived": "Manual of Iron Golems",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-24",
@@ -11893,7 +13608,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Manual of Iron Golems",
-          "itemReceived": "Tome of Leadership and Influence"
+          "itemReceived": "Tome of Leadership and Influence",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -11916,7 +13634,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Holy Avenger Longsword",
-          "itemReceived": "Ioun Stone of Mastery"
+          "itemReceived": "Ioun Stone of Mastery",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -11939,7 +13660,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Efreeti Chain"
+          "itemReceived": "Efreeti Chain",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-05-26",
@@ -11962,7 +13686,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Efreeti Chain",
-          "itemReceived": "Belt of Storm Giant Strength"
+          "itemReceived": "Belt of Storm Giant Strength",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-05-26",
@@ -11981,7 +13708,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 2 Scrolls of Holy Weapon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-04-10",
@@ -12004,7 +13734,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Ioun Stone of Mastery",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-04-10",
@@ -12023,7 +13756,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-12-22",
@@ -12046,7 +13782,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Flying Carpet",
-          "itemReceived": "Dwarven Plate"
+          "itemReceived": "Dwarven Plate",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-01",
@@ -12069,7 +13808,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Aegis of the Raven Queen Shield",
-          "itemReceived": "Flying Carpet"
+          "itemReceived": "Flying Carpet",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-01",
@@ -12092,7 +13834,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Manual of Bodily Health"
+          "itemReceived": "Manual of Bodily Health",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-02",
@@ -12115,7 +13860,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Plate +2",
-          "itemReceived": "Manual of Quickness and Action"
+          "itemReceived": "Manual of Quickness and Action",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-22",
@@ -12138,7 +13886,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Mace of Smiting",
-          "itemReceived": "Dagger of Blindsight"
+          "itemReceived": "Dagger of Blindsight",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-07",
@@ -12161,7 +13912,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Staff of Power",
-          "itemReceived": "Tloque's Battleaxe"
+          "itemReceived": "Tloque's Battleaxe",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-13",
@@ -12182,7 +13936,10 @@ window.DATA = {
             "1 Soul Coin"
           ],
           "notes": "Bought 3 Scrolls of Holy Weapon, 2 Scrolls of Find Greater Steed, and 10 Potions of Greater Healing. Used 1 DTD to cast spells. Spent 1 Soul Coin",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-13",
@@ -12199,7 +13956,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Lorien",
+          "__levelAfter": 20,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-07-10",
@@ -12218,7 +13978,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-07-01",
@@ -12237,7 +14000,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-06-24",
@@ -12256,7 +14022,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Catnap for 300gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-06-02",
@@ -12275,7 +14044,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-05-02",
@@ -12294,7 +14066,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Sold Splint Barding for 400 gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-04-05",
@@ -12317,7 +14092,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Shield +3",
-          "itemReceived": "Plate Barding +2"
+          "itemReceived": "Plate Barding +2",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-03-21",
@@ -12336,7 +14114,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-03-21",
@@ -12358,7 +14139,10 @@ window.DATA = {
             "2 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-03-21",
@@ -12377,7 +14161,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 800gp for Splint barding. Spent 300gp and 1 soul coin to make a Hag's daughters stop haunting my dreams. Spent 500gp and 5 DTD's in a bargain with Mahadi.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-03-15",
@@ -12400,7 +14187,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Longsword +3",
-          "itemReceived": "Staff of Power"
+          "itemReceived": "Staff of Power",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-03-10",
@@ -12419,7 +14209,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 1 Scroll of Find Greater Steed, 2 Scrolls of Revivify, 3 Scrolls of Enlarge/Reduce, 3 Scrolls of Alter Self. Dropped Ring of Protection",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-26",
@@ -12442,7 +14235,10 @@ window.DATA = {
           "player": null,
           "character": "Warden",
           "itemTraded": "Staff of Thunder and Lightning",
-          "itemReceived": "Shield +3"
+          "itemReceived": "Shield +3",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-26",
@@ -12464,7 +14260,10 @@ window.DATA = {
             "3 Alter Self"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-02-25",
@@ -12483,7 +14282,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought scroll of Find Greater Steed",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-02-15",
@@ -12504,7 +14306,10 @@ window.DATA = {
             "Potion of Greater Healing"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-02-13",
@@ -12527,7 +14332,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Sun Blade",
-          "itemReceived": "Bracers of Defense"
+          "itemReceived": "Bracers of Defense",
+          "__charKey": "Lorien",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-02-12",
@@ -12550,7 +14358,10 @@ window.DATA = {
           "player": null,
           "character": "Anfer",
           "itemTraded": "Glamoured Studded Leather",
-          "itemReceived": "Sun Blade"
+          "itemReceived": "Sun Blade",
+          "__charKey": "Lorien",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-02-12",
@@ -12573,7 +14384,10 @@ window.DATA = {
           "player": null,
           "character": null,
           "itemTraded": "Tome of Understanding",
-          "itemReceived": "Plate +2"
+          "itemReceived": "Plate +2",
+          "__charKey": "Lorien",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-02-11",
@@ -12596,7 +14410,10 @@ window.DATA = {
           "player": null,
           "character": "Morinth",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "+3 Longsword"
+          "itemReceived": "+3 Longsword",
+          "__charKey": "Lorien",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-02-11",
@@ -12615,7 +14432,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Find Greater Steed for 500 gp, cast for Pegasus mount",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-02-09",
@@ -12634,7 +14454,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-02-07",
@@ -12657,7 +14480,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan",
           "itemTraded": "Belt of Hill Giant Strength",
-          "itemReceived": "Opal of the Ild Rune"
+          "itemReceived": "Opal of the Ild Rune",
+          "__charKey": "Lorien",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-02-03",
@@ -12680,7 +14506,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Staff of Thunder and Lightning",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Lorien",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-01-23",
@@ -12703,7 +14532,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Bag of Devouring",
-          "itemReceived": "Staff of Thunder and Lightning"
+          "itemReceived": "Staff of Thunder and Lightning",
+          "__charKey": "Lorien",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-01-09",
@@ -12722,7 +14554,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Longsword +1 renown item.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-01-08",
@@ -12745,7 +14580,10 @@ window.DATA = {
           "player": null,
           "character": "Wandering Swordsman",
           "itemTraded": "+2 Longsword",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Lorien",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-01-02",
@@ -12764,7 +14602,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-01-02",
@@ -12783,7 +14624,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped +1 Shield",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2019-12-21",
@@ -12806,7 +14650,10 @@ window.DATA = {
           "player": null,
           "character": "Anfer",
           "itemTraded": "Gem of Seeing",
-          "itemReceived": "Belt of Hill Giant Strength"
+          "itemReceived": "Belt of Hill Giant Strength",
+          "__charKey": "Lorien",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2019-12-21",
@@ -12825,7 +14672,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Winged Boots, +1 Shield renown item",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-11-23",
@@ -12848,7 +14698,10 @@ window.DATA = {
           "player": null,
           "character": "Fei Chen",
           "itemTraded": "Elven Chain",
-          "itemReceived": "+1 plate"
+          "itemReceived": "+1 plate",
+          "__charKey": "Lorien",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-11-23",
@@ -12871,7 +14724,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "+1 plate",
-          "itemReceived": "+2 Longsword"
+          "itemReceived": "+2 Longsword",
+          "__charKey": "Lorien",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-11-15",
@@ -12894,7 +14750,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Elven Chain"
+          "itemReceived": "Elven Chain",
+          "__charKey": "Lorien",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-10-22",
@@ -12913,7 +14772,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2019-10-19",
@@ -12932,7 +14794,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used 20 DTD's to escape Ravenloft, dropped Bowl of Commanding Water Elementals",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-10-19",
@@ -12951,7 +14816,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Learned proficiency with the Lyre",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2019-10-19",
@@ -12970,7 +14838,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Amulet of Proof vs Det. Used 20 DTD's to level up. Longsword +1 renown item. Sold longsword and chainmail for 39 gp, bought splint for 200 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 5,
+          "__levelAtStart": 3
         },
         {
           "date": "2019-10-18",
@@ -12989,7 +14860,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Lorien",
+          "__levelAfter": 3,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -13014,7 +14888,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2024-04-25",
@@ -13036,7 +14913,10 @@ window.DATA = {
           "notes": "Bought 3 scrolls of Holy Weapon for 3k gp each.",
           "kind": "adventure",
           "lost_perm_item": "",
-          "traded_item": ""
+          "traded_item": "",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -13056,7 +14936,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-08-17",
@@ -13075,7 +14958,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-12",
@@ -13098,7 +14984,10 @@ window.DATA = {
           "player": null,
           "character": "Valenor Vyshaan",
           "itemTraded": "Ascendant Dragon-Touched Focus",
-          "itemReceived": "Robe of the Archmagi (White)"
+          "itemReceived": "Robe of the Archmagi (White)",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-12",
@@ -13121,7 +15010,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Robe of the Archmage (White)",
-          "itemReceived": "Belt of Storm GIant Strength"
+          "itemReceived": "Belt of Storm GIant Strength",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -13144,7 +15036,10 @@ window.DATA = {
           "player": null,
           "character": "Duke",
           "itemTraded": "Holy Avenger Longsword",
-          "itemReceived": "Hide Armor +3"
+          "itemReceived": "Hide Armor +3",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -13167,7 +15062,10 @@ window.DATA = {
           "player": null,
           "character": "Duke",
           "itemTraded": "Hide Armor +3",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-06",
@@ -13190,7 +15088,10 @@ window.DATA = {
           "player": null,
           "character": "Aiden Moonshadow",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Robe of the Archmage (Gray)"
+          "itemReceived": "Robe of the Archmage (Gray)",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-06",
@@ -13213,7 +15114,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Robe of the Archmage (Gray)",
-          "itemReceived": "Defender Longsword"
+          "itemReceived": "Defender Longsword",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-30",
@@ -13237,7 +15141,10 @@ window.DATA = {
             "Scroll of Daylight"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-29",
@@ -13258,7 +15165,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-28",
@@ -13281,7 +15191,10 @@ window.DATA = {
           "player": null,
           "character": "Jillian",
           "itemTraded": "Scarab of Protection",
-          "itemReceived": "Blood Fury Tattoo"
+          "itemReceived": "Blood Fury Tattoo",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-13",
@@ -13304,7 +15217,10 @@ window.DATA = {
           "player": null,
           "character": "Aramil",
           "itemTraded": "Oathbow",
-          "itemReceived": "Rod of Absorption"
+          "itemReceived": "Rod of Absorption",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-13",
@@ -13326,7 +15242,10 @@ window.DATA = {
             "Scroll of Dominate Monster"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13349,7 +15268,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Ioun Stone of Mastery",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13372,7 +15294,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Efreeti Chain barding",
-          "itemReceived": "Belt of Storm GIant Strength"
+          "itemReceived": "Belt of Storm GIant Strength",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13395,7 +15320,10 @@ window.DATA = {
           "player": null,
           "character": "Orakhar",
           "itemTraded": "Eyes of the Eagle",
-          "itemReceived": "Broom of Flying"
+          "itemReceived": "Broom of Flying",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13418,7 +15346,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Wand of Lightning Bolts",
-          "itemReceived": "Periapt of Proof Against Poison"
+          "itemReceived": "Periapt of Proof Against Poison",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13442,7 +15373,10 @@ window.DATA = {
             "Potion of Storm Giant Strength"
           ],
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -13461,7 +15395,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-05-26",
@@ -13484,7 +15421,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Efreeti Chain"
+          "itemReceived": "Efreeti Chain",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-04-10",
@@ -13507,7 +15447,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Holy Avenger",
-          "itemReceived": "Ioun Stone of Mastery"
+          "itemReceived": "Ioun Stone of Mastery",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-12-27",
@@ -13530,7 +15473,10 @@ window.DATA = {
           "player": null,
           "character": "Buckley",
           "itemTraded": "Adamantine Armor",
-          "itemReceived": "Eyes of the Eagle"
+          "itemReceived": "Eyes of the Eagle",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-27",
@@ -13550,7 +15496,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-30",
@@ -13569,7 +15518,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 Scrolls of Freedom of Movement, 2 Scrolls of Holy Weapon, 1 Scroll of Revivify, 4 Scrolls of Death Ward, 2 Scrolls of Greater Restoration, 1 Scroll of Find Greater Steed, and 2 Scrolls of Enlarge/Reduce for a total of 9100 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-05",
@@ -13589,7 +15541,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-05",
@@ -13611,7 +15566,10 @@ window.DATA = {
             "Soul Coin"
           ],
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-14",
@@ -13634,7 +15592,10 @@ window.DATA = {
           "player": null,
           "character": "Indy",
           "itemTraded": "Periapt of Proof Against Poison",
-          "itemReceived": "Whip +2"
+          "itemReceived": "Whip +2",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-05",
@@ -13653,7 +15614,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-06-26",
@@ -13672,7 +15636,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-06-26",
@@ -13691,7 +15658,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-18",
@@ -13710,7 +15680,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 potions of Greater Healing for 400.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-16",
@@ -13733,7 +15706,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Tome of Understanding",
-          "itemReceived": "Aegis of the Raven Queen Shield"
+          "itemReceived": "Aegis of the Raven Queen Shield",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-07",
@@ -13756,7 +15732,10 @@ window.DATA = {
           "player": null,
           "character": "Sibila",
           "itemTraded": "Rod of the Pact Keeper +3",
-          "itemReceived": "Tome of Understanding"
+          "itemReceived": "Tome of Understanding",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-05",
@@ -13779,7 +15758,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Plate Barding +2",
-          "itemReceived": "Shield +3"
+          "itemReceived": "Shield +3",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-04",
@@ -13801,7 +15783,10 @@ window.DATA = {
             "Spell Scroll of 7th level spell of my choice - Crown of Stars"
           ],
           "notes": "Dropped Shield +3 and Staff of the Magi",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-15",
@@ -13824,7 +15809,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Staff of Power",
-          "itemReceived": "Longsword +3"
+          "itemReceived": "Longsword +3",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-15",
@@ -13843,7 +15831,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-13",
@@ -13864,7 +15855,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-10",
@@ -13887,7 +15881,10 @@ window.DATA = {
           "player": null,
           "character": "Portia Porridgepot",
           "itemTraded": "Ollamh Harp",
-          "itemReceived": "Plate +3"
+          "itemReceived": "Plate +3",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-07",
@@ -13908,7 +15905,10 @@ window.DATA = {
             "3 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -13931,7 +15931,10 @@ window.DATA = {
           "player": null,
           "character": "Missmeseeks",
           "itemTraded": "Oathbinder",
-          "itemReceived": "Cloak of Invisibility"
+          "itemReceived": "Cloak of Invisibility",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -13954,7 +15957,10 @@ window.DATA = {
           "player": null,
           "character": "Winkle Paddlegear",
           "itemTraded": "Staff of Power",
-          "itemReceived": "Ioun Stone of Insight"
+          "itemReceived": "Ioun Stone of Insight",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -13971,7 +15977,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-04",
@@ -13994,7 +16003,10 @@ window.DATA = {
           "player": null,
           "character": "Darnys",
           "itemTraded": "Scarab of Protection",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-03",
@@ -14011,7 +16023,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-29",
@@ -14034,7 +16049,10 @@ window.DATA = {
           "player": null,
           "character": "Snowball",
           "itemTraded": "Ioun Stone of Greater Absorption",
-          "itemReceived": "Scarab of Protection"
+          "itemReceived": "Scarab of Protection",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-29",
@@ -14055,7 +16073,10 @@ window.DATA = {
             "Potion of Speed"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-22",
@@ -14078,7 +16099,10 @@ window.DATA = {
           "player": null,
           "character": "Yongbi",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Manual of Bodily Health"
+          "itemReceived": "Manual of Bodily Health",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-20",
@@ -14101,7 +16125,10 @@ window.DATA = {
           "player": null,
           "character": "Zelene Silrathas",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Periapt of Proof Against Poison"
+          "itemReceived": "Periapt of Proof Against Poison",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-17",
@@ -14123,7 +16150,10 @@ window.DATA = {
             "1 potion of superior healing"
           ],
           "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-17",
@@ -14146,7 +16176,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Trident of Fish Command",
-          "itemReceived": "Wand of Webs"
+          "itemReceived": "Wand of Webs",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-17",
@@ -14169,7 +16202,10 @@ window.DATA = {
           "player": null,
           "character": "Brielle Akamiir",
           "itemTraded": "Ioun Stone of Mastery",
-          "itemReceived": "Belt of Storm Giant Strength"
+          "itemReceived": "Belt of Storm Giant Strength",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-16",
@@ -14191,7 +16227,10 @@ window.DATA = {
             "10 potions of greater healing (5 consumed)"
           ],
           "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table trade Ring of Cold Resistance to Wren (Erik Tukey) for Mantle of Spell Resistance. Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 18
         },
         {
           "date": "2020-02-16",
@@ -14214,7 +16253,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Wand of Webs",
-          "itemReceived": "Trident of Fish Command"
+          "itemReceived": "Trident of Fish Command",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 18,
+          "__levelAtStart": 18
         },
         {
           "date": "2020-01-18",
@@ -14233,7 +16275,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 18,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-17",
@@ -14256,7 +16301,10 @@ window.DATA = {
           "player": null,
           "character": "Don Karnage",
           "itemTraded": "Sentinel Shield",
-          "itemReceived": "Broom of Flying"
+          "itemReceived": "Broom of Flying",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-17",
@@ -14279,7 +16327,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Broom of Flying",
-          "itemReceived": "Wand of Webs"
+          "itemReceived": "Wand of Webs",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-08",
@@ -14302,7 +16353,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Gem of Water Elemental",
-          "itemReceived": "Choraller's Companion"
+          "itemReceived": "Choraller's Companion",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-04",
@@ -14323,7 +16377,10 @@ window.DATA = {
             "4 healing potions"
           ],
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-04",
@@ -14346,7 +16403,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-21",
@@ -14365,7 +16425,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-21",
@@ -14384,7 +16447,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-19",
@@ -14403,7 +16469,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Plate +1",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-14",
@@ -14426,7 +16495,10 @@ window.DATA = {
           "player": null,
           "character": "Marina",
           "itemTraded": "Carpet of Flying",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-12",
@@ -14445,7 +16517,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-12",
@@ -14468,7 +16543,10 @@ window.DATA = {
           "player": null,
           "character": "Anfer",
           "itemTraded": "Belt of Hill Giant Strength",
-          "itemReceived": "Elven Chain"
+          "itemReceived": "Elven Chain",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-08",
@@ -14491,7 +16569,10 @@ window.DATA = {
           "player": null,
           "character": "Agnes Illumine",
           "itemTraded": "DEX tome",
-          "itemReceived": "CHA tome"
+          "itemReceived": "CHA tome",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-07",
@@ -14510,7 +16591,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped +1 Shield",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -14533,7 +16617,10 @@ window.DATA = {
           "player": null,
           "character": "Thelma Scrollroller",
           "itemTraded": "Skaggoxx",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -14556,7 +16643,10 @@ window.DATA = {
           "player": null,
           "character": "Marina",
           "itemTraded": "Staff of Thunder and Lightning",
-          "itemReceived": "+3 Shield"
+          "itemReceived": "+3 Shield",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -14579,7 +16669,10 @@ window.DATA = {
           "player": null,
           "character": "Goombus",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Staff of Power"
+          "itemReceived": "Staff of Power",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-11-30",
@@ -14598,7 +16691,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-27",
@@ -14617,7 +16713,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Fronstbrand Scimitar",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -14636,7 +16735,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 200gp on Heroe's Feast.  Traded mithral splintmail to Rolyn for +1 Shield",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -14659,7 +16761,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "+2 Longsword",
-          "itemReceived": "+1 plate"
+          "itemReceived": "+1 plate",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -14682,7 +16787,10 @@ window.DATA = {
           "player": null,
           "character": "Rolyn",
           "itemTraded": "mithral splintmail",
-          "itemReceived": "+1 Shield"
+          "itemReceived": "+1 Shield",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-16",
@@ -14701,7 +16809,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 60 DTD's and 100gp to brew 1 barrel of Vergadain's Firespirits",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2019-11-15",
@@ -14724,7 +16835,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Elven chainmail",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2019-11-14",
@@ -14743,7 +16857,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2019-11-10",
@@ -14766,7 +16883,10 @@ window.DATA = {
           "player": null,
           "character": "Fei Chen",
           "itemTraded": "Rimesplitter",
-          "itemReceived": "+2 Longsword"
+          "itemReceived": "+2 Longsword",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2019-11-10",
@@ -14785,7 +16905,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2019-11-10",
@@ -14804,7 +16927,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped +1 Longsword.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2019-11-09",
@@ -14823,7 +16949,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-11-09",
@@ -14843,7 +16972,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Epic reward: traded Necklace of Adaptation to Pipyap for casting 4th level spell, cast Find Greater Steed to aqcuire Pegasus mount named Mr. Fizzlebottom",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2019-11-07",
@@ -14862,7 +16994,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought cold weather gear for 5gp, sold Longsword and Chainmail for 44gp. +1 Longsword renown item.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2019-11-07",
@@ -14881,7 +17016,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Winged Boots",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-02",
@@ -14904,7 +17042,10 @@ window.DATA = {
           "player": null,
           "character": "Rolyn",
           "itemTraded": "Gloves of Thievery",
-          "itemReceived": "Winged Boots"
+          "itemReceived": "Winged Boots",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-02",
@@ -14923,7 +17064,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2019-11-02",
@@ -14942,7 +17086,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2019-11-02",
@@ -14961,7 +17108,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2019-10-27",
@@ -14978,7 +17128,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "0219-11-23",
@@ -15000,7 +17153,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Traded Cloak of Displacement for Belt of Hill Giant Strength (traded at table, 0 DTD's)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Darrendrian",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -15026,7 +17182,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-09-04",
@@ -15046,7 +17205,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-08-17",
@@ -15065,7 +17227,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-12",
@@ -15088,7 +17253,10 @@ window.DATA = {
           "player": null,
           "character": "Valenor Vyshaan",
           "itemTraded": "Ascendant Dragon-Touched Focus",
-          "itemReceived": "Robe of the Archmagi (White)"
+          "itemReceived": "Robe of the Archmagi (White)",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-12",
@@ -15111,7 +17279,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Robe of the Archmage (White)",
-          "itemReceived": "Belt of Storm GIant Strength"
+          "itemReceived": "Belt of Storm GIant Strength",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -15134,7 +17305,10 @@ window.DATA = {
           "player": null,
           "character": "Duke",
           "itemTraded": "Holy Avenger Longsword",
-          "itemReceived": "Hide Armor +3"
+          "itemReceived": "Hide Armor +3",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -15157,7 +17331,10 @@ window.DATA = {
           "player": null,
           "character": "Duke",
           "itemTraded": "Hide Armor +3",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-06",
@@ -15180,7 +17357,10 @@ window.DATA = {
           "player": null,
           "character": "Aiden Moonshadow",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Robe of the Archmage (Gray)"
+          "itemReceived": "Robe of the Archmage (Gray)",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-06",
@@ -15203,7 +17383,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Robe of the Archmage (Gray)",
-          "itemReceived": "Defender Longsword"
+          "itemReceived": "Defender Longsword",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-30",
@@ -15227,7 +17410,10 @@ window.DATA = {
             "Scroll of Daylight"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-29",
@@ -15248,7 +17434,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-05-28",
@@ -15271,7 +17460,10 @@ window.DATA = {
           "player": null,
           "character": "Jillian",
           "itemTraded": "Scarab of Protection",
-          "itemReceived": "Blood Fury Tattoo"
+          "itemReceived": "Blood Fury Tattoo",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-13",
@@ -15294,7 +17486,10 @@ window.DATA = {
           "player": null,
           "character": "Aramil",
           "itemTraded": "Oathbow",
-          "itemReceived": "Rod of Absorption"
+          "itemReceived": "Rod of Absorption",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-13",
@@ -15316,7 +17511,10 @@ window.DATA = {
             "Scroll of Dominate Monster"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15339,7 +17537,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Ioun Stone of Mastery",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15362,7 +17563,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Efreeti Chain barding",
-          "itemReceived": "Belt of Storm GIant Strength"
+          "itemReceived": "Belt of Storm GIant Strength",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15385,7 +17589,10 @@ window.DATA = {
           "player": null,
           "character": "Orakhar",
           "itemTraded": "Eyes of the Eagle",
-          "itemReceived": "Broom of Flying"
+          "itemReceived": "Broom of Flying",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15408,7 +17615,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Wand of Lightning Bolts",
-          "itemReceived": "Periapt of Proof Against Poison"
+          "itemReceived": "Periapt of Proof Against Poison",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15432,7 +17642,10 @@ window.DATA = {
             "Potion of Storm Giant Strength"
           ],
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-10-03",
@@ -15451,7 +17664,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-05-26",
@@ -15474,7 +17690,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Belt of Storm Giant Strength",
-          "itemReceived": "Efreeti Chain"
+          "itemReceived": "Efreeti Chain",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-04-10",
@@ -15497,7 +17716,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Holy Avenger",
-          "itemReceived": "Ioun Stone of Mastery"
+          "itemReceived": "Ioun Stone of Mastery",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-12-27",
@@ -15520,7 +17742,10 @@ window.DATA = {
           "player": null,
           "character": "Buckley",
           "itemTraded": "Adamantine Armor",
-          "itemReceived": "Eyes of the Eagle"
+          "itemReceived": "Eyes of the Eagle",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-27",
@@ -15540,7 +17765,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-30",
@@ -15559,7 +17787,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 Scrolls of Freedom of Movement, 2 Scrolls of Holy Weapon, 1 Scroll of Revivify, 4 Scrolls of Death Ward, 2 Scrolls of Greater Restoration, 1 Scroll of Find Greater Steed, and 2 Scrolls of Enlarge/Reduce for a total of 9100 gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-05",
@@ -15579,7 +17810,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-05",
@@ -15601,7 +17835,10 @@ window.DATA = {
             "Soul Coin"
           ],
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-14",
@@ -15624,7 +17861,10 @@ window.DATA = {
           "player": null,
           "character": "Indy",
           "itemTraded": "Periapt of Proof Against Poison",
-          "itemReceived": "Whip +2"
+          "itemReceived": "Whip +2",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-07-05",
@@ -15643,7 +17883,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-06-26",
@@ -15662,7 +17905,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-06-26",
@@ -15681,7 +17927,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-18",
@@ -15700,7 +17949,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 4 potions of Greater Healing for 400.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-16",
@@ -15723,7 +17975,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Tome of Understanding",
-          "itemReceived": "Aegis of the Raven Queen Shield"
+          "itemReceived": "Aegis of the Raven Queen Shield",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-07",
@@ -15746,7 +18001,10 @@ window.DATA = {
           "player": null,
           "character": "Sibila",
           "itemTraded": "Rod of the Pact Keeper +3",
-          "itemReceived": "Tome of Understanding"
+          "itemReceived": "Tome of Understanding",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-05",
@@ -15769,7 +18027,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Plate Barding +2",
-          "itemReceived": "Shield +3"
+          "itemReceived": "Shield +3",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-04-04",
@@ -15791,7 +18052,10 @@ window.DATA = {
             "Spell Scroll of 7th level spell of my choice - Crown of Stars"
           ],
           "notes": "Dropped Shield +3 and Staff of the Magi",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-15",
@@ -15814,7 +18078,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Staff of Power",
-          "itemReceived": "Longsword +3"
+          "itemReceived": "Longsword +3",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-15",
@@ -15833,7 +18100,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-13",
@@ -15854,7 +18124,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-10",
@@ -15877,7 +18150,10 @@ window.DATA = {
           "player": null,
           "character": "Portia Porridgepot",
           "itemTraded": "Ollamh Harp",
-          "itemReceived": "Plate +3"
+          "itemReceived": "Plate +3",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-07",
@@ -15898,7 +18174,10 @@ window.DATA = {
             "3 Soul Coins"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -15921,7 +18200,10 @@ window.DATA = {
           "player": null,
           "character": "Missmeseeks",
           "itemTraded": "Oathbinder",
-          "itemReceived": "Cloak of Invisibility"
+          "itemReceived": "Cloak of Invisibility",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -15944,7 +18226,10 @@ window.DATA = {
           "player": null,
           "character": "Winkle Paddlegear",
           "itemTraded": "Staff of Power",
-          "itemReceived": "Ioun Stone of Insight"
+          "itemReceived": "Ioun Stone of Insight",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-06",
@@ -15961,7 +18246,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-04",
@@ -15984,7 +18272,10 @@ window.DATA = {
           "player": null,
           "character": "Darnys",
           "itemTraded": "Scarab of Protection",
-          "itemReceived": "Holy Avenger Longsword"
+          "itemReceived": "Holy Avenger Longsword",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-03-03",
@@ -16001,7 +18292,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-29",
@@ -16024,7 +18318,10 @@ window.DATA = {
           "player": null,
           "character": "Snowball",
           "itemTraded": "Ioun Stone of Greater Absorption",
-          "itemReceived": "Scarab of Protection"
+          "itemReceived": "Scarab of Protection",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-29",
@@ -16045,7 +18342,10 @@ window.DATA = {
             "Potion of Speed"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-22",
@@ -16068,7 +18368,10 @@ window.DATA = {
           "player": null,
           "character": "Yongbi",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Manual of Bodily Health"
+          "itemReceived": "Manual of Bodily Health",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-20",
@@ -16091,7 +18394,10 @@ window.DATA = {
           "player": null,
           "character": "Zelene Silrathas",
           "itemTraded": "Ring of Spell Storing",
-          "itemReceived": "Periapt of Proof Against Poison"
+          "itemReceived": "Periapt of Proof Against Poison",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-02-17",
@@ -16113,7 +18419,10 @@ window.DATA = {
             "1 potion of superior healing"
           ],
           "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 20,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-17",
@@ -16136,7 +18445,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Trident of Fish Command",
-          "itemReceived": "Wand of Webs"
+          "itemReceived": "Wand of Webs",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-17",
@@ -16159,7 +18471,10 @@ window.DATA = {
           "player": null,
           "character": "Brielle Akamiir",
           "itemTraded": "Ioun Stone of Mastery",
-          "itemReceived": "Belt of Storm Giant Strength"
+          "itemReceived": "Belt of Storm Giant Strength",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-02-16",
@@ -16181,7 +18496,10 @@ window.DATA = {
             "10 potions of greater healing (5 consumed)"
           ],
           "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table trade Ring of Cold Resistance to Wren (Erik Tukey) for Mantle of Spell Resistance. Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 19,
+          "__levelAtStart": 18
         },
         {
           "date": "2020-02-16",
@@ -16204,7 +18522,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Wand of Webs",
-          "itemReceived": "Trident of Fish Command"
+          "itemReceived": "Trident of Fish Command",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 18,
+          "__levelAtStart": 18
         },
         {
           "date": "2020-01-18",
@@ -16223,7 +18544,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 18,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-17",
@@ -16246,7 +18570,10 @@ window.DATA = {
           "player": null,
           "character": "Don Karnage",
           "itemTraded": "Sentinel Shield",
-          "itemReceived": "Broom of Flying"
+          "itemReceived": "Broom of Flying",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-17",
@@ -16269,7 +18596,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Broom of Flying",
-          "itemReceived": "Wand of Webs"
+          "itemReceived": "Wand of Webs",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-08",
@@ -16292,7 +18622,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Gem of Water Elemental",
-          "itemReceived": "Choraller's Companion"
+          "itemReceived": "Choraller's Companion",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-04",
@@ -16313,7 +18646,10 @@ window.DATA = {
             "4 healing potions"
           ],
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-01-04",
@@ -16336,7 +18672,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-21",
@@ -16355,7 +18694,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-21",
@@ -16374,7 +18716,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-19",
@@ -16393,7 +18738,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Plate +1",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-14",
@@ -16416,7 +18764,10 @@ window.DATA = {
           "player": null,
           "character": "Marina",
           "itemTraded": "Carpet of Flying",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "date": "2019-12-12",
@@ -16435,7 +18786,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-12",
@@ -16458,7 +18812,10 @@ window.DATA = {
           "player": null,
           "character": "Anfer",
           "itemTraded": "Belt of Hill Giant Strength",
-          "itemReceived": "Elven Chain"
+          "itemReceived": "Elven Chain",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-08",
@@ -16481,7 +18838,10 @@ window.DATA = {
           "player": null,
           "character": "Agnes Illumine",
           "itemTraded": "DEX tome",
-          "itemReceived": "CHA tome"
+          "itemReceived": "CHA tome",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "date": "2019-12-07",
@@ -16500,7 +18860,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped +1 Shield",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -16523,7 +18886,10 @@ window.DATA = {
           "player": null,
           "character": "Thelma Scrollroller",
           "itemTraded": "Skaggoxx",
-          "itemReceived": "Belt of Fire Giant Strength"
+          "itemReceived": "Belt of Fire Giant Strength",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -16546,7 +18912,10 @@ window.DATA = {
           "player": null,
           "character": "Marina",
           "itemTraded": "Staff of Thunder and Lightning",
-          "itemReceived": "+3 Shield"
+          "itemReceived": "+3 Shield",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-12-02",
@@ -16569,7 +18938,10 @@ window.DATA = {
           "player": null,
           "character": "Goombus",
           "itemTraded": "Belt of Fire Giant Strength",
-          "itemReceived": "Staff of Power"
+          "itemReceived": "Staff of Power",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "date": "2019-11-30",
@@ -16588,7 +18960,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-27",
@@ -16607,7 +18982,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Fronstbrand Scimitar",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -16626,7 +19004,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 200gp on Heroe's Feast.  Traded mithral splintmail to Rolyn for +1 Shield",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -16649,7 +19030,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "+2 Longsword",
-          "itemReceived": "+1 plate"
+          "itemReceived": "+1 plate",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-20",
@@ -16672,7 +19056,10 @@ window.DATA = {
           "player": null,
           "character": "Rolyn",
           "itemTraded": "mithral splintmail",
-          "itemReceived": "+1 Shield"
+          "itemReceived": "+1 Shield",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2019-11-16",
@@ -16691,7 +19078,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 60 DTD's and 100gp to brew 1 barrel of Vergadain's Firespirits",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2019-11-15",
@@ -16714,7 +19104,10 @@ window.DATA = {
           "player": null,
           "character": "Lorien",
           "itemTraded": "Elven chainmail",
-          "itemReceived": "Ring of Spell Storing"
+          "itemReceived": "Ring of Spell Storing",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2019-11-14",
@@ -16733,7 +19126,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2019-11-10",
@@ -16756,7 +19152,10 @@ window.DATA = {
           "player": null,
           "character": "Fei Chen",
           "itemTraded": "Rimesplitter",
-          "itemReceived": "+2 Longsword"
+          "itemReceived": "+2 Longsword",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "date": "2019-11-10",
@@ -16775,7 +19174,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2019-11-10",
@@ -16794,7 +19196,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped +1 Longsword.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2019-11-09",
@@ -16813,7 +19218,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2019-11-09",
@@ -16833,7 +19241,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Epic reward: traded Necklace of Adaptation to Pipyap for casting 4th level spell, cast Find Greater Steed to aqcuire Pegasus mount named Mr. Fizzlebottom",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2019-11-07",
@@ -16852,7 +19263,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought cold weather gear for 5gp, sold Longsword and Chainmail for 44gp. +1 Longsword renown item.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 7,
+          "__levelAtStart": 7
         },
         {
           "date": "2019-11-07",
@@ -16871,7 +19285,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Dropped Winged Boots",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-02",
@@ -16894,7 +19311,10 @@ window.DATA = {
           "player": null,
           "character": "Rolyn",
           "itemTraded": "Gloves of Thievery",
-          "itemReceived": "Winged Boots"
+          "itemReceived": "Winged Boots",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2019-11-02",
@@ -16913,7 +19333,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2019-11-02",
@@ -16932,7 +19355,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2019-11-02",
@@ -16951,7 +19377,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2019-10-27",
@@ -16968,7 +19397,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "0219-11-23",
@@ -16990,7 +19422,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Traded Cloak of Displacement for Belt of Hill Giant Strength (traded at table, 0 DTD's)",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Copy of Darrendrian",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     },
@@ -17019,7 +19454,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Staff of the Magi",
-          "itemReceived": "Moon Blade"
+          "itemReceived": "Moon Blade",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2022-06-08",
@@ -17042,7 +19480,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Tome of the Stilled Tongue",
-          "itemReceived": "Hide +3"
+          "itemReceived": "Hide +3",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-01-23",
@@ -17063,7 +19504,10 @@ window.DATA = {
           "player": null,
           "character": "Darrendrian",
           "itemTraded": "Tloque's Battleaxe",
-          "itemReceived": "Shield +3"
+          "itemReceived": "Shield +3",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-01-23",
@@ -17082,7 +19526,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 15 Potions of Greater Healing",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-01-12",
@@ -17099,7 +19546,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2021-01-08",
@@ -17119,7 +19569,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 8 Potions of Superior Healing and 2 Potions of Supreme Healing and 1 Scroll of Greater Restoration",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-18",
@@ -17142,7 +19595,10 @@ window.DATA = {
           "player": null,
           "character": "Kiernan",
           "itemTraded": "Glaive +3",
-          "itemReceived": "Dwarven Thrower"
+          "itemReceived": "Dwarven Thrower",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-11-18",
@@ -17165,7 +19621,10 @@ window.DATA = {
           "player": null,
           "character": "Noraggen",
           "itemTraded": "Dwarven Thrower",
-          "itemReceived": "Tloque's Battleax"
+          "itemReceived": "Tloque's Battleax",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-18",
@@ -17184,7 +19643,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-15",
@@ -17207,7 +19669,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Studded Leather +2",
-          "itemReceived": "Tome of Clear Thought"
+          "itemReceived": "Tome of Clear Thought",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-10-03",
@@ -17226,7 +19691,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Spent 100 gp on spell components",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-23",
@@ -17249,7 +19717,10 @@ window.DATA = {
           "player": null,
           "character": "Zandarax",
           "itemTraded": "Robe of Stars",
-          "itemReceived": "Bracelet of Rock Magic"
+          "itemReceived": "Bracelet of Rock Magic",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-07",
@@ -17272,7 +19743,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-09-04",
@@ -17291,7 +19765,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought 3 Scrolls of Greater Restoration, 3 Scrolls of Freedom of Movement",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-08-11",
@@ -17314,7 +19791,10 @@ window.DATA = {
           "player": null,
           "character": "Arvistan Brightwave",
           "itemTraded": "Tome of Leadership and Influence",
-          "itemReceived": "Ioun Stone of Leadership"
+          "itemReceived": "Ioun Stone of Leadership",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "date": "2020-08-08",
@@ -17333,7 +19813,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 20,
+          "__levelAtStart": 19
         },
         {
           "date": "2020-08-08",
@@ -17350,7 +19833,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Morty",
+          "__levelAfter": 19,
+          "__levelAtStart": 18
         },
         {
           "date": "2020-08-08",
@@ -17367,7 +19853,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Morty",
+          "__levelAfter": 18,
+          "__levelAtStart": 17
         },
         {
           "date": "2020-08-08",
@@ -17384,7 +19873,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Morty",
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "date": "2020-08-07",
@@ -17403,7 +19895,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "date": "2020-08-05",
@@ -17422,7 +19917,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "date": "2020-08-01",
@@ -17443,7 +19941,10 @@ window.DATA = {
             "Scroll of Wind Walk"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 14,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-07-31",
@@ -17466,7 +19967,10 @@ window.DATA = {
           "player": null,
           "character": "Lim Dul",
           "itemTraded": "Tome of Clear Thought",
-          "itemReceived": "Tome of Understanding"
+          "itemReceived": "Tome of Understanding",
+          "__charKey": "Morty",
+          "__levelAfter": 13,
+          "__levelAtStart": 13
         },
         {
           "date": "2020-07-30",
@@ -17485,7 +19989,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Paid Planatar 200 gp (1000 total) to cast Raise Dead",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 13,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-07-21",
@@ -17508,7 +20015,10 @@ window.DATA = {
           "player": null,
           "character": "Leonardo",
           "itemTraded": "Sixth Sword",
-          "itemReceived": "Necklace of Prayer Beads"
+          "itemReceived": "Necklace of Prayer Beads",
+          "__charKey": "Morty",
+          "__levelAfter": 12,
+          "__levelAtStart": 12
         },
         {
           "date": "2020-07-09",
@@ -17527,7 +20037,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 12,
+          "__levelAtStart": 11
         },
         {
           "date": "2020-07-02",
@@ -17546,7 +20059,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Bought Scroll of Catnap for 300gp",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 11,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-07-01",
@@ -17569,7 +20085,10 @@ window.DATA = {
           "player": null,
           "character": "Agatha",
           "itemTraded": "Cloak of Many Fashions",
-          "itemReceived": "Wand of Pyrotecnics"
+          "itemReceived": "Wand of Pyrotecnics",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-06-09",
@@ -17592,7 +20111,10 @@ window.DATA = {
           "player": null,
           "character": null,
           "itemTraded": null,
-          "itemReceived": null
+          "itemReceived": null,
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-06-09",
@@ -17614,7 +20136,10 @@ window.DATA = {
             "1 Potion of Invisibility"
           ],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-06-04",
@@ -17633,7 +20158,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Met a Koala named Eugene and Awakened him.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-05-28",
@@ -17652,7 +20180,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Thora Birch left the adventure after nearly being killed. Awakened a new tree named Elijah Wood.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-05-20",
@@ -17671,7 +20202,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used 1 DTD to Awaken Ripple's (Hal's) raptor.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "date": "2020-05-19",
@@ -17690,7 +20224,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Purchased Infernal Kitty and Infernal Puppy for 25 gp each. Cast Awaken on the Kitty.",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-05-13",
@@ -17709,7 +20246,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used 1 DTD to Awaken a tree named Thora Birch. Dropped Tan Bag of Tricks",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 9,
+          "__levelAtStart": 9
         },
         {
           "date": "2020-04-15",
@@ -17728,7 +20268,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used 1 DTD to Awaken a tree named Chris Pine",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-04-14",
@@ -17747,7 +20290,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 8,
+          "__levelAtStart": 8
         },
         {
           "date": "2020-04-09",
@@ -17766,7 +20312,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Met Bitter Blossom and learned the story of Bitter Root",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "date": "2020-04-07",
@@ -17785,7 +20334,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Used one DTD to Awaken a tree named Mr. Oak",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-04-03",
@@ -17808,7 +20360,10 @@ window.DATA = {
           "player": null,
           "character": "Dino",
           "itemTraded": "Amulet of Health",
-          "itemReceived": "Staff of the Woodlands"
+          "itemReceived": "Staff of the Woodlands",
+          "__charKey": "Morty",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-03-31",
@@ -17827,7 +20382,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "date": "2020-03-25",
@@ -17844,7 +20402,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Morty",
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "date": "2020-03-25",
@@ -17863,7 +20424,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": "Received +1 Quarterstaff renown item",
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 5,
+          "__levelAtStart": 4
         },
         {
           "date": "2020-03-25",
@@ -17880,7 +20444,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "activity"
+          "kind": "activity",
+          "__charKey": "Morty",
+          "__levelAfter": 4,
+          "__levelAtStart": 3
         },
         {
           "date": "2020-03-24",
@@ -17899,7 +20466,10 @@ window.DATA = {
           ],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 3,
+          "__levelAtStart": 2
         },
         {
           "date": "2020-02-19",
@@ -17916,7 +20486,10 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
+          "kind": "adventure",
+          "__charKey": "Morty",
+          "__levelAfter": 2,
+          "__levelAtStart": 1
         }
       ]
     }
@@ -18322,7 +20895,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-10-09T22:46:18.659Z",
+    "generated": "2025-10-10T03:03:50.023Z",
     "problems": []
   }
 };
