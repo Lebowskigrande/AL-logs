@@ -353,6 +353,35 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card:not(.editing) .edit-actions{display:none}
 .card.editing .edit-actions{display:flex}
 .edit-actions .delete-btn{margin-right:auto}
+.edit-actions .btn{
+  box-shadow:none;
+  transform:none;
+  transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);
+}
+.edit-actions .btn:hover,
+.edit-actions .btn:focus-visible{
+  box-shadow:none;
+  transform:none;
+}
+.edit-actions .btn:not(.primary):not(.danger):hover,
+.edit-actions .btn:not(.primary):not(.danger):focus-visible{
+  background:#eef4ff;
+  border-color:rgba(26,115,232,.35);
+  color:var(--primary);
+}
+.edit-actions .btn.primary:hover,
+.edit-actions .btn.primary:focus-visible{
+  background:#1666d3;
+  box-shadow:none;
+  transform:none;
+}
+.edit-actions .btn.danger:hover,
+.edit-actions .btn.danger:focus-visible{
+  background:#fecaca;
+  border-color:rgba(220,38,38,.35);
+  box-shadow:none;
+  transform:none;
+}
 
 .edit-form form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .edit-form .field{margin:0}
