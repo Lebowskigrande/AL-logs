@@ -199,8 +199,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-title.scrollable:hover .display{animation:none}
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
-.log-row-chips{margin-left:auto;display:grid;grid-template-columns:repeat(3,minmax(88px,max-content));column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
+.log-row-chips{margin-left:auto;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(88px,max-content);column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
 .log-row-chips .chip-slot{display:flex;justify-content:flex-end;min-width:88px}
+.log-row-chips .chip-slot-link{justify-content:flex-start;min-width:max-content}
 .log-row-chips .chip-slot-empty{visibility:hidden}
 .log-row-chips .pill{display:inline-flex;align-items:center;white-space:nowrap;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-weight:600;font-size:12px;color:inherit;box-shadow:none}
 .log-row-chips .pill.pill-level{background:transparent;border-color:rgba(59,130,246,.32);color:#1d4ed8}
@@ -217,6 +218,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-chips .pill.pill-dtd.loss,
 .log-row-chips .pill.pill-dtd.neutral{background:#e2e8f0;border-color:#cbd5f5;color:#334155}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
+.pill-link{display:inline-flex;align-items:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
+.pill-link:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:2px}
 @keyframes log-row-scroll{
   0%{transform:translateX(0)}
   100%{transform:translateX(calc(-1 * var(--scroll-distance)))}
@@ -2684,6 +2688,27 @@ function makeDmCard(entry,idx){
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
+  const linkMeta=(DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry))||null;
+  let createLinkChip=null;
+  if(linkMeta && linkMeta.adv){
+    const charObj=(DATA && DATA.characters && DATA.characters[linkMeta.charKey])||null;
+    const charName=(charObj && (charObj.display_name || charObj.sheet)) || linkMeta.charKey;
+    const label=`View DM reward entry for ${charName}`;
+    createLinkChip=()=>{
+      const chip=document.createElement('button');
+      chip.type='button';
+      chip.className='pill pill-link';
+      chip.textContent='Reward entry';
+      chip.title=label;
+      chip.setAttribute('aria-label',label);
+      chip.addEventListener('click',(ev)=>{
+        ev.stopPropagation();
+        ev.preventDefault();
+        navigateToCharacterReward(linkMeta.charKey, linkMeta.adv);
+      });
+      return chip;
+    };
+  }
 
   const header=document.createElement('div');
   header.className='card-hd';
@@ -2703,6 +2728,8 @@ function makeDmCard(entry,idx){
     main.appendChild(left);
     const chips=document.createElement('div');
     chips.className='chips';
+    const linkChip=createLinkChip?createLinkChip():null;
+    if(linkChip){ chips.appendChild(linkChip); }
     const costVal=dmToNullableNumber(entry.cost);
     if(costVal!=null && costVal!==0){
       chips.appendChild(pill(`Cost ${fmtNumber(costVal)}`));
@@ -2732,6 +2759,8 @@ function makeDmCard(entry,idx){
     subtitleRow.appendChild(subtitleDiv);
     const chips=document.createElement('div');
     chips.className='chips';
+    const linkChip=createLinkChip?createLinkChip():null;
+    if(linkChip){ chips.appendChild(linkChip); }
     const hoursVal=dmToNullableNumber(entry.hours);
     if(hoursVal!=null && hoursVal!==0){
       chips.appendChild(pill(`Hours ${fmtNumber(hoursVal)}`));
@@ -2752,30 +2781,6 @@ function makeDmCard(entry,idx){
     }
     main.append(dateDiv,titleDiv,subtitleRow);
     header.appendChild(main);
-  }
-
-  const tools=document.createElement('div');
-  tools.className='card-tools';
-  const linkMeta=DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry);
-  if(linkMeta && linkMeta.adv){
-    const charObj=(DATA && DATA.characters && DATA.characters[linkMeta.charKey])||null;
-    const charName=(charObj && (charObj.display_name || charObj.sheet)) || linkMeta.charKey;
-    const linkBtn=document.createElement('button');
-    linkBtn.type='button';
-    linkBtn.className='icon-btn';
-    linkBtn.innerHTML=ICON_LINK;
-    const label=`View DM reward entry for ${charName}`;
-    linkBtn.title=label;
-    linkBtn.setAttribute('aria-label',label);
-    linkBtn.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      ev.preventDefault();
-      navigateToCharacterReward(linkMeta.charKey, linkMeta.adv);
-    });
-    tools.appendChild(linkBtn);
-  }
-  if(tools.children.length){
-    header.appendChild(tools);
   }
 
   header.addEventListener('click',()=>toggleCard(card));
@@ -3788,6 +3793,7 @@ function makeCard(a,idx){
   card.__dataRef=a;
   const lockedKind=(a && a.__lockedKind)?String(a.__lockedKind):'';
   const hasLockedKind=!!lockedKind;
+  const dmLinkMeta=(DM_REWARD_LINKS && DM_REWARD_LINKS.get(a))||null;
 
   const hd=document.createElement('div'); hd.className='card-hd';
   const main=document.createElement('div'); main.className='log-row';
@@ -3842,6 +3848,7 @@ function makeCard(a,idx){
     slot.setAttribute('aria-hidden','true');
     return slot;
   };
+  const linkSlot=createSlot('chip-slot-link');
   const levelSlot=createSlot('chip-slot-level');
   const gpSlot=createSlot('chip-slot-gp');
   const dtSlot=createSlot('chip-slot-dtd');
@@ -3862,6 +3869,22 @@ function makeCard(a,idx){
     else if(value<0) pillEl.classList.add('loss');
     else pillEl.classList.add('neutral');
   };
+  if(dmLinkMeta && dmLinkMeta.entry){
+    const linkChip=document.createElement('button');
+    linkChip.type='button';
+    linkChip.className='pill pill-link';
+    linkChip.textContent='DM allocation';
+    const label='View linked DM log allocation';
+    linkChip.title=label;
+    linkChip.setAttribute('aria-label',label);
+    linkChip.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      ev.preventDefault();
+      navigateToDmAllocation(dmLinkMeta.entry);
+    });
+    if(!chips.contains(linkSlot)) chips.prepend(linkSlot);
+    placeChip(linkSlot,linkChip);
+  }
   const levelStart=entryLevelAtStart(a);
   if(Number.isFinite(levelStart) && levelStart>0){
     const levelPill=pill('Level '+fmtNumber(levelStart));
@@ -3929,7 +3952,6 @@ function makeCard(a,idx){
   requestAnimationFrame(()=>refreshScrollState(nameSpan));
 
   const tools=document.createElement('div'); tools.className='card-tools';
-  const dmLinkMeta=DM_REWARD_LINKS && DM_REWARD_LINKS.get(a);
   if(dmLinkMeta && dmLinkMeta.entry){
     const linkBtn=document.createElement('button');
     linkBtn.type='button';
