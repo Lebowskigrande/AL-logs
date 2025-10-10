@@ -89,6 +89,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .btn.danger{border:1px solid rgba(220,38,38,.2);background:rgba(254,226,226,1);color:var(--danger);}
 .btn.danger:hover,.btn.danger:focus-visible{background:#fecaca;border-color:rgba(220,38,38,.35);color:#b91c1c;outline:none}
 .btn.small{padding:6px 10px;font-size:12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
+.btn.pill{border-radius:999px}
 .search{position:relative}
 .search input{padding-left:36px;outline:none;width:220px;max-width:100%}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
@@ -521,7 +522,7 @@ body.avatar-overlay-open{overflow:hidden}
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
           <input id="q" placeholder="Search adventures"/>
         </div>
-        <button id="activityToggle" class="btn small" type="button" aria-pressed="false">Hide activities</button>
+        <button id="activityToggle" class="btn primary small pill" type="button" aria-pressed="false">Hide activities</button>
         <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
