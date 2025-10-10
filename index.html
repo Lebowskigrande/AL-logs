@@ -4026,11 +4026,11 @@ function makeCard(a,idx){
     const dateText=fmtDate(entry.date);
     if(dateText && dateText!=='—') parts.push(dateText);
     const codeText=normalizeDisplayValue(entry.code);
-    if(codeText) parts.push(`Code: ${codeText}`);
+    if(codeText) parts.push(`${codeText}`);
     const dmText=normalizeDisplayValue(entry.dm);
     if(dmText) parts.push(`DM: ${dmText}`);
     if(isActivityEntry(entry)) parts.push('Downtime activity');
-    return parts.join('   •   ');
+    return parts.join('     •     ');
   };
 
   const metaSpan=document.createElement('span');
