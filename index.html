@@ -44,12 +44,29 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 .avatar:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
-.title-select-wrap{display:flex;align-items:center;gap:6px;position:relative;max-width:100%;min-width:0}
-.title-select-wrap::after{content:"";flex-shrink:0;width:12px;height:8px;clip-path:polygon(0 0,100% 0,50% 100%);background:currentColor;opacity:.55;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;transform:translateY(0)}
-.title-select-wrap:focus-within::after{opacity:1;transform:translateY(-2px)}
-.title-select{appearance:none;border:none;background:transparent;font:inherit;color:var(--ink);padding:0;margin:0;cursor:pointer;line-height:1.1;font-weight:500;letter-spacing:-0.01em;max-width:100%;min-width:0;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.title-select:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px;border-radius:6px}
-.title-select option{color:var(--ink)}
+.title-select-group{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;max-width:100%;min-width:0}
+.title-select-wrap{display:flex;align-items:center;gap:6px;position:relative;margin:0;max-width:100%;min-width:0}
+.title-select{display:none}
+.title-select-trigger{appearance:none;border:none;background:linear-gradient(135deg,#ffffff,#f3f6fb);border-radius:14px;padding:12px 18px;font:inherit;font-size:clamp(20px,3vw,28px);line-height:1.1;font-weight:800;letter-spacing:-0.01em;color:var(--ink);display:inline-flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow1);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);min-width:0;max-width:100%;text-align:left}
+.title-select-trigger:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.title-select-trigger:focus-visible{outline:3px solid rgba(26,115,232,.35);outline-offset:4px}
+.title-select-trigger[aria-expanded="true"]{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.title-select-trigger:disabled{cursor:not-allowed;opacity:.6;box-shadow:none;transform:none;background:#e2e8f0;color:#64748b}
+.title-select-trigger:disabled .char-toggle-icon{background:#cbd5f5;color:#475569}
+.char-toggle-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.char-toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#eef4ff;color:var(--primary);flex:0 0 auto;transition:transform var(--dur) var(--ease),background var(--dur) var(--ease)}
+.title-select-trigger:hover .char-toggle-icon{background:#dbeafe}
+.title-select-trigger[aria-expanded="true"] .char-toggle-icon{transform:rotate(180deg)}
+.title-select-trigger svg{width:16px;height:16px}
+.char-menu{position:absolute;top:calc(100% + 12px);left:0;min-width:280px;max-width:min(360px,calc(100vw - 32px));max-height:360px;padding:8px 0;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow2);display:flex;flex-direction:column;gap:2px;z-index:55;overflow:auto}
+.char-menu[hidden]{display:none}
+.char-menu-item{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;font:inherit;font-size:16px;color:var(--ink);background:none;border:none;cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.char-menu-item:hover,.char-menu-item:focus-visible{background:#eef4ff;color:var(--primary);outline:none}
+.char-menu-item.active{color:var(--primary);font-weight:600}
+.char-menu-text{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.char-menu-check{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--primary);opacity:0;transform:scale(.7);transition:transform var(--dur) var(--ease),opacity var(--dur) var(--ease)}
+.char-menu-item.active .char-menu-check{opacity:1;transform:scale(1)}
+.char-menu-check svg{width:18px;height:18px}
 .char-badges{margin-top:4px;display:none;gap:8px;flex-wrap:wrap;align-items:center}
 .char-badges .identity-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;color:#1e293b;font-weight:600;font-size:12px}
 .char-badges .identity-badge .label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
@@ -137,8 +154,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 @media (max-width:520px){
   .row{flex-wrap:nowrap;gap:10px}
   .header-main{flex:1 1 auto;min-width:0}
-  .title-select-wrap{flex:1 1 auto}
-  .title-select{font-size:clamp(18px,5vw,22px)}
+  .title-select-group{flex:1 1 auto;width:100%}
+  .title-select-wrap{flex:1 1 auto;width:100%}
+  .title-select-trigger{width:100%;font-size:clamp(20px,5vw,24px)}
+  .char-menu{min-width:100%;max-width:calc(100vw - 32px)}
   .header-quick{flex-direction:column;align-items:flex-start;gap:12px}
   .inventory-buttons{margin-left:0}
   .log-row{flex-direction:column;align-items:flex-start}
@@ -440,10 +459,21 @@ body.avatar-overlay-open{overflow:hidden}
       <div class="row">
         <img id="charAvatar" class="avatar" alt="Character avatar"/>
         <div class="header-main">
-          <h1 class="title-select-wrap" id="charTitle">
-            <label for="charSel" class="sr-only">Select a sheet or character</label>
-            <select id="charSel" class="title-select"></select>
-          </h1>
+          <div class="title-select-group">
+            <label id="charSelToggleLabel" for="charSelToggle" class="sr-only">Select a sheet or character</label>
+            <h1 class="title-select-wrap" id="charTitle">
+              <button id="charSelToggle" class="title-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="charSelMenu" aria-labelledby="charSelToggleLabel charSelDisplay">
+                <span id="charSelDisplay" class="char-toggle-text">Select a character</span>
+                <span class="char-toggle-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </button>
+              <select id="charSel" class="title-select" aria-hidden="true" tabindex="-1"></select>
+            </h1>
+            <div id="charSelMenu" class="char-menu" role="listbox" aria-labelledby="charSelToggle" aria-hidden="true" hidden></div>
+          </div>
           <div id="charMeta" class="char-meta muted" aria-live="polite"></div>
           <div id="charBadges" class="char-badges" aria-live="polite"></div>
         </div>
@@ -628,6 +658,10 @@ let DATA = window.DATA || null;
 
 /* --- DOM handles --- */
 const charSel  = document.getElementById('charSel');
+const charSelToggle = document.getElementById('charSelToggle');
+const charSelMenu = document.getElementById('charSelMenu');
+const charSelDisplay = document.getElementById('charSelDisplay');
+const DEFAULT_CHARACTER_MENU_LABEL='Select a character';
 const avatarEl = document.getElementById('charAvatar');
 const downloadBtn = document.getElementById('downloadData');
 const qEl      = document.getElementById('q');
@@ -981,6 +1015,7 @@ function buildAddMenuOptions(){
 
 function openAddMenu(){
   if(!addCardMenu||!addCardBtn) return;
+  closeCharMenu();
   const options=buildAddMenuOptions();
   if(!options.length){
     closeAddMenu();
@@ -1415,6 +1450,137 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
   }
 }
 
+function getCharMenuItems(){
+  if(!charSelMenu) return [];
+  return Array.from(charSelMenu.querySelectorAll('.char-menu-item'));
+}
+
+function focusCharMenuItem(item){
+  if(!item) return;
+  try{ item.focus({preventScroll:true}); }
+  catch(err){ item.focus(); }
+  try{ item.scrollIntoView({block:'nearest'}); }
+  catch(err){ /* no-op */ }
+}
+
+function syncCharacterSelectorUI(){
+  const selectedOption=(charSel && charSel.options && charSel.selectedIndex>=0)?charSel.options[charSel.selectedIndex]:null;
+  const labelText=selectedOption?selectedOption.textContent.trim():'';
+  const finalLabel=labelText||DEFAULT_CHARACTER_MENU_LABEL;
+  if(charSelDisplay){
+    charSelDisplay.textContent=finalLabel;
+  }
+  if(charSelToggle){
+    charSelToggle.title=finalLabel;
+    const hasOptions=!!(charSel && charSel.options && charSel.options.length);
+    charSelToggle.disabled=!hasOptions;
+    charSelToggle.setAttribute('aria-disabled',hasOptions?'false':'true');
+  }
+  if(!charSelMenu) return;
+  const currentValue=(charSel&&charSel.value)||'';
+  getCharMenuItems().forEach(item=>{
+    const isActive=item.dataset&&item.dataset.value===currentValue;
+    item.classList.toggle('active',isActive);
+    item.setAttribute('aria-selected',isActive?'true':'false');
+  });
+}
+
+function rebuildCharacterMenu(){
+  if(!charSelMenu||!charSel) return;
+  const previousScroll=charSelMenu.scrollTop||0;
+  charSelMenu.innerHTML='';
+  const options=Array.from(charSel.options||[]);
+  if(!options.length){
+    charSelMenu.scrollTop=0;
+    syncCharacterSelectorUI();
+    return;
+  }
+  options.forEach((opt,index)=>{
+    if(opt.disabled) return;
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='char-menu-item';
+    btn.id=`char-menu-item-${index}`;
+    btn.dataset.value=opt.value;
+    btn.setAttribute('role','option');
+    const text=document.createElement('span');
+    text.className='char-menu-text';
+    text.textContent=opt.textContent||opt.value||DEFAULT_CHARACTER_MENU_LABEL;
+    const check=document.createElement('span');
+    check.className='char-menu-check';
+    check.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg>';
+    btn.appendChild(text);
+    btn.appendChild(check);
+    btn.addEventListener('click',()=>{
+      selectCharacterFromMenu(opt.value);
+    });
+    charSelMenu.appendChild(btn);
+  });
+  charSelMenu.scrollTop=previousScroll;
+  syncCharacterSelectorUI();
+}
+
+function closeCharMenu({focusToggle=false}={}){
+  if(charSelMenu){
+    charSelMenu.hidden=true;
+    charSelMenu.setAttribute('aria-hidden','true');
+  }
+  if(charSelToggle){
+    charSelToggle.setAttribute('aria-expanded','false');
+    if(focusToggle){
+      try{ charSelToggle.focus({preventScroll:true}); }
+      catch(err){ charSelToggle.focus(); }
+    }
+  }
+}
+
+function openCharMenu({focusLast=false}={}){
+  if(!charSelToggle||!charSelMenu) return;
+  rebuildCharacterMenu();
+  const items=getCharMenuItems();
+  if(!items.length){
+    closeCharMenu();
+    return;
+  }
+  closeAddMenu();
+  charSelMenu.hidden=false;
+  charSelMenu.setAttribute('aria-hidden','false');
+  charSelToggle.setAttribute('aria-expanded','true');
+  const active=items.find(item=>item.classList.contains('active'));
+  let target=active||null;
+  if(focusLast){
+    target=items[items.length-1];
+  }else if(!target){
+    target=items[0];
+  }
+  if(target){
+    requestAnimationFrame(()=>focusCharMenuItem(target));
+  }
+}
+
+function toggleCharMenu(){
+  if(!charSelMenu) return;
+  if(charSelMenu.hidden){
+    openCharMenu();
+  }else{
+    closeCharMenu();
+  }
+}
+
+function selectCharacterFromMenu(value){
+  if(!charSel) return;
+  const previous=charSel.value;
+  if(previous!==value){
+    charSel.value=value;
+    const event=new Event('change',{bubbles:true});
+    charSel.dispatchEvent(event);
+    closeCharMenu({focusToggle:true});
+  }else{
+    syncCharacterSelectorUI();
+    closeCharMenu({focusToggle:true});
+  }
+}
+
 /* --- character selector (no session counts) --- */
 function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={}){
   if(!charSel) return null;
@@ -1475,6 +1641,8 @@ function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={})
   if(typeof charSel.scrollTop==='number'){
     charSel.scrollTop=scrollTop;
   }
+  rebuildCharacterMenu();
+  syncCharacterSelectorUI();
   return charSel.value||nextKey||null;
 }
 
@@ -2595,6 +2763,7 @@ function setDmHeader(){
   }
 }
 function updateUiForSelection(key){
+  closeCharMenu();
   closeAddMenu();
   const isDm=isDmLogKey(key);
   if(headerQuick){
@@ -4906,6 +5075,7 @@ function filterAndRender(){
     }
   }
   rememberCharacterKey(key);
+  syncCharacterSelectorUI();
   updateUiForSelection(key);
   if(isDmLogKey(key)){
     setEmptyStateMessage(DM_EMPTY_MESSAGE);
@@ -4939,7 +5109,66 @@ function filterAndRender(){
 
 /* --- events --- */
 qEl.addEventListener('input',filterAndRender);
-charSel.addEventListener('change',filterAndRender);
+if(charSel){
+  charSel.addEventListener('change',()=>{
+    syncCharacterSelectorUI();
+    filterAndRender();
+  });
+}
+if(charSelToggle){
+  charSelToggle.addEventListener('click',(event)=>{
+    event.preventDefault();
+    toggleCharMenu();
+  });
+  charSelToggle.addEventListener('keydown',(event)=>{
+    if(event.key==='ArrowDown'){
+      event.preventDefault();
+      openCharMenu();
+    }else if(event.key==='ArrowUp'){
+      event.preventDefault();
+      openCharMenu({focusLast:true});
+    }else if(event.key==='Enter' || event.key===' '){
+      event.preventDefault();
+      toggleCharMenu();
+    }
+  });
+}
+if(charSelMenu){
+  charSelMenu.addEventListener('keydown',(event)=>{
+    const items=getCharMenuItems();
+    if(!items.length) return;
+    const currentIndex=items.indexOf(document.activeElement);
+    if(event.key==='ArrowDown'){
+      event.preventDefault();
+      const nextIndex=currentIndex>=0?((currentIndex+1)%items.length):0;
+      const target=items[nextIndex];
+      focusCharMenuItem(target||items[0]);
+    }else if(event.key==='ArrowUp'){
+      event.preventDefault();
+      const prevIndex=currentIndex>=0?((currentIndex-1+items.length)%items.length):items.length-1;
+      const target=items[prevIndex]||items[items.length-1];
+      focusCharMenuItem(target);
+    }else if(event.key==='Home'){
+      event.preventDefault();
+      focusCharMenuItem(items[0]);
+    }else if(event.key==='End'){
+      event.preventDefault();
+      focusCharMenuItem(items[items.length-1]);
+    }else if(event.key==='Escape'){
+      event.preventDefault();
+      closeCharMenu({focusToggle:true});
+    }else if(event.key==='Tab'){
+      closeCharMenu();
+    }else if(event.key==='Enter' || event.key===' '){
+      const target=event.target && event.target.closest ? event.target.closest('.char-menu-item') : null;
+      if(target){
+        event.preventDefault();
+        target.click();
+      }
+    }
+  });
+}
+syncCharacterSelectorUI();
 if(dmItemsBtnEl){
   dmItemsBtnEl.addEventListener('click',()=>{
     const isOpen=dmItemsModal && dmItemsModal.classList.contains('open');
@@ -4970,12 +5199,23 @@ document.addEventListener('click',(event)=>{
       closeAddMenu();
     }
   }
+  if(charSelMenu && !charSelMenu.hidden){
+    const withinMenu=charSelMenu.contains(event.target);
+    const withinToggle=charSelToggle && charSelToggle.contains(event.target);
+    if(!withinMenu && !withinToggle){
+      closeCharMenu();
+    }
+  }
 });
 document.addEventListener('keydown',(event)=>{
   if(event.key==='Escape'){
     let handled=false;
     if(addCardMenu && !addCardMenu.hidden){
       closeAddMenu();
+      handled=true;
+    }
+    if(charSelMenu && !charSelMenu.hidden){
+      closeCharMenu({focusToggle:true});
       handled=true;
     }
     if(dmItemsModal && dmItemsModal.classList.contains('open')){
