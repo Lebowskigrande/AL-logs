@@ -205,6 +205,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;width:100%;min-height:0}
 .log-row-info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;flex:1 1 auto}
 .log-row-meta{color:var(--muted);font-size:12px;line-height:1.4}
+.log-row-meta-text{display:inline;white-space:pre-wrap;font:inherit;margin:0}
 .log-row-date{display:none;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap}
 .card.editing .log-row-meta{display:none}
 .card.editing .log-row-date{display:flex;align-items:center;gap:8px}
@@ -4047,14 +4048,17 @@ function makeCard(a,idx){
 
   const metaSpan=document.createElement('span');
   metaSpan.className='log-row-meta';
-  metaDisplayEl=metaSpan;
+  const metaPre=document.createElement('pre');
+  metaPre.className='log-row-meta-text';
+  metaSpan.appendChild(metaPre);
+  metaDisplayEl=metaPre;
 
   info.appendChild(nameSpan);
   info.appendChild(metaSpan);
   info.appendChild(dateSpan);
   main.appendChild(info);
 
-  metaSpan.textContent=buildHeaderMeta(a);
+  metaDisplayEl.textContent=buildHeaderMeta(a);
 
   const chips=document.createElement('div'); chips.className='chips log-row-chips';
   const createSlot=(className)=>{
