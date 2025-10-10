@@ -292,6 +292,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .field.inline-field .editor{display:flex;align-items:center}
 .card.editing .field.inline-field .editor > *{flex:1 1 220px;max-width:100%}
 .card.editing .field.inline-field input{width:100%;min-width:0}
+.card.editing .field.inline-field .editor > input[type="number"]{
+  flex:0 0 auto;
+  width:2ch;
+  min-width:2ch;
+  max-width:2ch;
+}
 .show-when-editing{display:none}
 .card.editing .show-when-editing{display:block}
 .field.show-when-editing{display:none}
