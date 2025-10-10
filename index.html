@@ -3559,7 +3559,7 @@ function openInventoryModal(charKey, opts={}){
     const activeEditing=editing && ordered.length>0;
     invModal.classList.toggle('editing', activeEditing);
     if(editToggle){
-      editToggle.textContent=activeEditing?'Done':'Edit items';
+      editToggle.textContent=activeEditing?'Finish editing':'Edit items';
       editToggle.setAttribute('aria-pressed', activeEditing?'true':'false');
     }
   }
@@ -4686,8 +4686,14 @@ function makeCard(a,idx){
     }
     exitEditMode(card,true);
   });
-  const saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn small primary'; saveBtn.textContent='OK';
-  saveBtn.addEventListener('click',async(ev)=>{ ev.preventDefault(); await saveCardChanges(card); });
+  const saveBtn=document.createElement('button');
+  saveBtn.type='button';
+  saveBtn.className='btn small primary';
+  saveBtn.textContent='Save';
+  saveBtn.addEventListener('click',async(ev)=>{
+    ev.preventDefault();
+    await saveCardChanges(card);
+  });
   actions.appendChild(deleteBtn);
   actions.appendChild(cancelBtn); actions.appendChild(saveBtn);
   view.appendChild(actions);
@@ -4850,7 +4856,7 @@ function makeCard(a,idx){
   card.appendChild(hd);
   card.appendChild(bd);
 
-  card.__edit={button:editBtn, form:formWrap, populate, collect};
+  card.__edit={button:editBtn, form:formWrap, populate, collect, saveButton:saveBtn};
 
   if(a && a.__openEdit){
     delete a.__openEdit;
@@ -4873,7 +4879,6 @@ function enterEditMode(card){
   if(card.__edit.button){
     card.__edit.button.setAttribute('aria-pressed','true');
     card.__edit.button.title='Exit edit mode';
-    card.__edit.button.textContent='Done';
   }
 }
 
@@ -4892,47 +4897,85 @@ async function saveCardChanges(card){
   if(!card||!card.__edit) return;
   const data=card.__dataRef;
   if(!data) return;
-  const updates=card.__edit.collect();
-  data.title=updates.title||null;
-  data.date=updates.date||null;
-  data.code=updates.code||'';
-  data.dm=updates.dm||null;
-  data.kind=updates.kind||'adventure';
-  data.gp_plus=Number.isFinite(updates.gp_plus)?updates.gp_plus:0;
-  data.gp_minus=Number.isFinite(updates.gp_minus)?updates.gp_minus:0;
-  data.gp_net=data.gp_plus-data.gp_minus;
-  data.dtd_plus=Number.isFinite(updates.dtd_plus)?updates.dtd_plus:0;
-  data.dtd_minus=Number.isFinite(updates.dtd_minus)?updates.dtd_minus:0;
-  data.dtd_net=data.dtd_plus-data.dtd_minus;
-  data.level_plus=Number.isFinite(updates.level_plus)?updates.level_plus:0;
-  data.perm_items=[...updates.perm_items];
-  data.lost_perm_item=updates.lost_perm_item||'';
-  data.consumable_items=[...updates.consumable_items];
-  const trimmedNotes=(updates.notes||'').trim();
-  data.notes=trimmedNotes||'';
-  data.traded_item=data.kind!=='adventure'?(updates.traded_item||''):'';
-  const keyOverride=data.__charKey||null;
-  const wasNew=!!data.__isNew;
-  const targetKey=keyOverride||charSel.value;
-  if(wasNew){
-    const targetChar=DATA.characters[targetKey];
-    if(targetChar){
-      targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
-      targetChar.adventures.unshift(data);
+  const saveButton=card.__edit.saveButton||null;
+  const originalSaveLabel=saveButton?saveButton.textContent:null;
+  if(saveButton){
+    saveButton.disabled=true;
+    saveButton.setAttribute('aria-busy','true');
+    saveButton.textContent='Saving...';
+  }
+  try{
+    const updates=card.__edit.collect();
+    data.title=updates.title||null;
+    data.date=updates.date||null;
+    data.code=updates.code||'';
+    data.dm=updates.dm||null;
+    data.kind=updates.kind||'adventure';
+    data.gp_plus=Number.isFinite(updates.gp_plus)?updates.gp_plus:0;
+    data.gp_minus=Number.isFinite(updates.gp_minus)?updates.gp_minus:0;
+    data.gp_net=data.gp_plus-data.gp_minus;
+    data.dtd_plus=Number.isFinite(updates.dtd_plus)?updates.dtd_plus:0;
+    data.dtd_minus=Number.isFinite(updates.dtd_minus)?updates.dtd_minus:0;
+    data.dtd_net=data.dtd_plus-data.dtd_minus;
+    data.level_plus=Number.isFinite(updates.level_plus)?updates.level_plus:0;
+    data.perm_items=[...updates.perm_items];
+    data.lost_perm_item=updates.lost_perm_item||'';
+    data.consumable_items=[...updates.consumable_items];
+    const trimmedNotes=(updates.notes||'').trim();
+    data.notes=trimmedNotes||'';
+    data.traded_item=data.kind!=='adventure'?(updates.traded_item||''):'';
+    const keyOverride=data.__charKey||null;
+    const wasNew=!!data.__isNew;
+    const targetKey=keyOverride||charSel.value;
+    let targetChar=null;
+    let insertedNew=false;
+    if(wasNew){
+      targetChar=DATA.characters[targetKey]||null;
+      if(targetChar){
+        targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
+        if(!targetChar.adventures.includes(data)){
+          targetChar.adventures.unshift(data);
+          insertedNew=true;
+        }
+      }
     }
-    delete data.__isNew;
-    delete data.__charKey;
+    markDirty();
+    const mutationKey=wasNew?targetKey:charSel.value;
+    let saveError=null;
+    try{
+      await saveDataJs();
+    }catch(err){
+      saveError=err;
+    }
+    if(saveError){
+      if(wasNew && insertedNew && targetChar){
+        const idx=targetChar.adventures.indexOf(data);
+        if(idx!==-1){
+          targetChar.adventures.splice(idx,1);
+        }
+      }
+      return false;
+    }
+    if(wasNew){
+      delete data.__isNew;
+      delete data.__charKey;
+    }
+    if(Object.prototype.hasOwnProperty.call(data,'__lockedKind')){
+      delete data.__lockedKind;
+    }
+    exitEditMode(card);
+    if(card.classList.contains('overlay-card')){
+      closeCardOverlay();
+    }
+    applyDataMutation(mutationKey);
+    return true;
+  }finally{
+    if(saveButton){
+      saveButton.disabled=false;
+      saveButton.removeAttribute('aria-busy');
+      saveButton.textContent=originalSaveLabel!=null?originalSaveLabel:'Save';
+    }
   }
-  if(Object.prototype.hasOwnProperty.call(data,'__lockedKind')){
-    delete data.__lockedKind;
-  }
-  markDirty();
-  exitEditMode(card);
-  if(wasNew){
-    closeCardOverlay();
-  }
-  const mutationKey=wasNew?targetKey:charSel.value;
-  applyDataMutation(mutationKey);
 }
 
 function deleteCard(card){
@@ -5315,15 +5358,6 @@ if(activityToggleBtn){
     filterAndRender();
   });
 }
-window.addEventListener('beforeunload',(event)=>{
-  if(pendingChanges || hasLocalDraft){
-    const message='You have unsaved changes. Save them before leaving or they will be discarded.';
-    event.preventDefault();
-    event.returnValue=message;
-    return message;
-  }
-});
-
 /* --- init --- */
 function initApp(){
   DATA=window.DATA||null;
