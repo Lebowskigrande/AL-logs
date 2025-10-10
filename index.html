@@ -217,6 +217,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-chips .pill.pill-dtd.loss,
 .log-row-chips .pill.pill-dtd.neutral{background:#e2e8f0;border-color:#cbd5f5;color:#334155}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
+.pill-link{display:inline-flex;align-items:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
+.pill-link:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:2px}
 @keyframes log-row-scroll{
   0%{transform:translateX(0)}
   100%{transform:translateX(calc(-1 * var(--scroll-distance)))}
@@ -2684,6 +2687,27 @@ function makeDmCard(entry,idx){
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
+  const linkMeta=(DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry))||null;
+  let createLinkChip=null;
+  if(linkMeta && linkMeta.adv){
+    const charObj=(DATA && DATA.characters && DATA.characters[linkMeta.charKey])||null;
+    const charName=(charObj && (charObj.display_name || charObj.sheet)) || linkMeta.charKey;
+    const label=`View DM reward entry for ${charName}`;
+    createLinkChip=()=>{
+      const chip=document.createElement('button');
+      chip.type='button';
+      chip.className='pill pill-link';
+      chip.textContent='Reward entry';
+      chip.title=label;
+      chip.setAttribute('aria-label',label);
+      chip.addEventListener('click',(ev)=>{
+        ev.stopPropagation();
+        ev.preventDefault();
+        navigateToCharacterReward(linkMeta.charKey, linkMeta.adv);
+      });
+      return chip;
+    };
+  }
 
   const header=document.createElement('div');
   header.className='card-hd';
@@ -2703,6 +2727,8 @@ function makeDmCard(entry,idx){
     main.appendChild(left);
     const chips=document.createElement('div');
     chips.className='chips';
+    const linkChip=createLinkChip?createLinkChip():null;
+    if(linkChip){ chips.appendChild(linkChip); }
     const costVal=dmToNullableNumber(entry.cost);
     if(costVal!=null && costVal!==0){
       chips.appendChild(pill(`Cost ${fmtNumber(costVal)}`));
@@ -2732,6 +2758,8 @@ function makeDmCard(entry,idx){
     subtitleRow.appendChild(subtitleDiv);
     const chips=document.createElement('div');
     chips.className='chips';
+    const linkChip=createLinkChip?createLinkChip():null;
+    if(linkChip){ chips.appendChild(linkChip); }
     const hoursVal=dmToNullableNumber(entry.hours);
     if(hoursVal!=null && hoursVal!==0){
       chips.appendChild(pill(`Hours ${fmtNumber(hoursVal)}`));
@@ -2752,30 +2780,6 @@ function makeDmCard(entry,idx){
     }
     main.append(dateDiv,titleDiv,subtitleRow);
     header.appendChild(main);
-  }
-
-  const tools=document.createElement('div');
-  tools.className='card-tools';
-  const linkMeta=DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry);
-  if(linkMeta && linkMeta.adv){
-    const charObj=(DATA && DATA.characters && DATA.characters[linkMeta.charKey])||null;
-    const charName=(charObj && (charObj.display_name || charObj.sheet)) || linkMeta.charKey;
-    const linkBtn=document.createElement('button');
-    linkBtn.type='button';
-    linkBtn.className='icon-btn';
-    linkBtn.innerHTML=ICON_LINK;
-    const label=`View DM reward entry for ${charName}`;
-    linkBtn.title=label;
-    linkBtn.setAttribute('aria-label',label);
-    linkBtn.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      ev.preventDefault();
-      navigateToCharacterReward(linkMeta.charKey, linkMeta.adv);
-    });
-    tools.appendChild(linkBtn);
-  }
-  if(tools.children.length){
-    header.appendChild(tools);
   }
 
   header.addEventListener('click',()=>toggleCard(card));
