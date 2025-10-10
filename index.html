@@ -199,8 +199,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-title.scrollable:hover .display{animation:none}
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
-.log-row-chips{margin-left:auto;display:grid;grid-template-columns:repeat(3,minmax(88px,max-content));column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
+.log-row-chips{margin-left:auto;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(88px,max-content);column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
 .log-row-chips .chip-slot{display:flex;justify-content:flex-end;min-width:88px}
+.log-row-chips .chip-slot-link{justify-content:flex-start;min-width:max-content}
 .log-row-chips .chip-slot-empty{visibility:hidden}
 .log-row-chips .pill{display:inline-flex;align-items:center;white-space:nowrap;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-weight:600;font-size:12px;color:inherit;box-shadow:none}
 .log-row-chips .pill.pill-level{background:transparent;border-color:rgba(59,130,246,.32);color:#1d4ed8}
@@ -3792,6 +3793,7 @@ function makeCard(a,idx){
   card.__dataRef=a;
   const lockedKind=(a && a.__lockedKind)?String(a.__lockedKind):'';
   const hasLockedKind=!!lockedKind;
+  const dmLinkMeta=(DM_REWARD_LINKS && DM_REWARD_LINKS.get(a))||null;
 
   const hd=document.createElement('div'); hd.className='card-hd';
   const main=document.createElement('div'); main.className='log-row';
@@ -3846,6 +3848,7 @@ function makeCard(a,idx){
     slot.setAttribute('aria-hidden','true');
     return slot;
   };
+  const linkSlot=createSlot('chip-slot-link');
   const levelSlot=createSlot('chip-slot-level');
   const gpSlot=createSlot('chip-slot-gp');
   const dtSlot=createSlot('chip-slot-dtd');
@@ -3866,6 +3869,22 @@ function makeCard(a,idx){
     else if(value<0) pillEl.classList.add('loss');
     else pillEl.classList.add('neutral');
   };
+  if(dmLinkMeta && dmLinkMeta.entry){
+    const linkChip=document.createElement('button');
+    linkChip.type='button';
+    linkChip.className='pill pill-link';
+    linkChip.textContent='DM allocation';
+    const label='View linked DM log allocation';
+    linkChip.title=label;
+    linkChip.setAttribute('aria-label',label);
+    linkChip.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      ev.preventDefault();
+      navigateToDmAllocation(dmLinkMeta.entry);
+    });
+    if(!chips.contains(linkSlot)) chips.prepend(linkSlot);
+    placeChip(linkSlot,linkChip);
+  }
   const levelStart=entryLevelAtStart(a);
   if(Number.isFinite(levelStart) && levelStart>0){
     const levelPill=pill('Level '+fmtNumber(levelStart));
@@ -3933,7 +3952,6 @@ function makeCard(a,idx){
   requestAnimationFrame(()=>refreshScrollState(nameSpan));
 
   const tools=document.createElement('div'); tools.className='card-tools';
-  const dmLinkMeta=DM_REWARD_LINKS && DM_REWARD_LINKS.get(a);
   if(dmLinkMeta && dmLinkMeta.entry){
     const linkBtn=document.createElement('button');
     linkBtn.type='button';
