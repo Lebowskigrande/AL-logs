@@ -310,9 +310,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .kvsingle .editor{display:flex}
 .card.editing .kvsingle .editor > *{flex:1 1 auto;width:100%;min-width:0}
 .kvsingle .editor input,.kvsingle .editor select{font:inherit;padding:4px 6px;border:1px solid var(--border);border-radius:10px;outline:none;background:#fff;max-width:100%;min-width:0;box-shadow:none}
-.scrollbox{background:#f9fafb;border:1px dashed var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
+.scrollbox{background:none;border:none;border-radius:0;padding:0;max-height:160px;overflow:auto}
 .scrollbox .item{margin:2px 0}
-.notesbox{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px;max-height:160px;overflow:auto}
+.notesbox{background:none;border:none;border-radius:0;padding:0;max-height:160px;overflow:auto}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
 .list-editor{display:flex;flex-direction:column;gap:8px}
 .list-editor .list{display:flex;flex-direction:column;gap:8px}
@@ -1993,7 +1993,7 @@ function listBox(items){
   const wrap=document.createElement('div'); wrap.className='scrollbox';
   const normalized=Array.isArray(items)?items.map(normalizeDisplayValue).filter(Boolean):[];
   if(!normalized.length){ wrap.innerHTML='<div class="muted">—</div>'; return wrap; }
-  normalized.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent='• '+name; wrap.appendChild(row); });
+  normalized.forEach(name=>{ const row=document.createElement('div'); row.className='item'; row.textContent=name; wrap.appendChild(row); });
   return wrap;
 }
 
