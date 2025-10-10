@@ -25,7 +25,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 .sheet-card-body{flex:1 1 auto;display:flex;flex-direction:column;gap:16px;padding:20px;background:inherit;min-height:0}
 .log-window{flex:1 1 auto;display:flex;flex-direction:column;position:relative;border-radius:0;border:none;background:var(--surface);box-shadow:none;overflow:hidden;min-height:0}
 .log-window::before{content:none}
-.log-list{--log-row-gap:0;flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow:auto;scrollbar-gutter:stable;padding:6px;margin:0;gap:var(--log-row-gap);min-height:0}
+.log-list{--log-row-gap:0;flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;padding:6px;margin:0;gap:var(--log-row-gap);min-height:0}
 .log-list::after{content:none}
 .log-window>.empty{padding:48px 24px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:var(--muted)}
 @media (max-width:768px){
@@ -210,12 +210,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .log-row-date{display:flex;align-items:center;gap:8px}
 .log-row-date .display{white-space:nowrap}
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
-.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px}
+.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s}
 .log-row-title.is-adventure .display{font-weight:700}
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
-.log-row-title.scrollable:hover .display{animation:log-row-scroll 6s ease-in-out alternate forwards}
+.log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 @media (prefers-reduced-motion:reduce){
-  .log-row-title.scrollable:hover .display{animation:none}
+  .log-row-title.scrollable .display{animation:none}
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
 .log-row-chips{margin-left:auto;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(88px,max-content);column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
@@ -242,8 +242,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
 .pill-link:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:2px}
 @keyframes log-row-scroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(calc(-1 * var(--scroll-distance)))}
+  0%,12%{transform:translateX(0)}
+  88%,100%{transform:translateX(calc(-1 * var(--scroll-distance)))}
 }
 .titleLine{display:flex;flex-direction:column;gap:6px}
 .date{color:var(--muted);font-size:13px;line-height:1.35}
@@ -726,6 +726,39 @@ let DM_ENTRIES=[];
 let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
+const scrollableTitleRegistry=(()=>{
+  const wrappers=new Set();
+  let rafId=null;
+  const schedule=()=>{
+    if(rafId!=null) return;
+    rafId=requestAnimationFrame(()=>{
+      rafId=null;
+      wrappers.forEach((wrapper)=>{
+        if(wrapper && typeof wrapper.__refreshScroll==='function'){
+          try{
+            wrapper.__refreshScroll();
+          }catch(err){
+            /* no-op */
+          }
+        }
+      });
+    });
+  };
+  if(typeof window!=='undefined'){
+    window.addEventListener('resize',schedule,{passive:true});
+  }
+  return{
+    register(wrapper){
+      if(!wrapper) return;
+      wrappers.add(wrapper);
+      schedule();
+    },
+    unregister(wrapper){
+      wrappers.delete(wrapper);
+    },
+    schedule
+  };
+})();
 buildDmEntries();
 if(avatarEl){
   try{ avatarEl.decoding='async'; }catch(err){ /* no-op */ }
@@ -4104,19 +4137,38 @@ function makeCard(a,idx){
     const displayEl=wrapper.__display;
     const distance=Math.max(0,displayEl.scrollWidth-displayEl.clientWidth);
     if(distance>1){
-      displayEl.style.setProperty('--scroll-distance', distance+'px');
+      const duration=Math.min(24,Math.max(7,distance/32+6));
+      const delay=Math.min(2.5,Math.max(0.8,duration/4));
+      displayEl.style.setProperty('--scroll-distance',distance+'px');
+      displayEl.style.setProperty('--scroll-duration',duration+'s');
+      displayEl.style.setProperty('--scroll-delay',delay+'s');
       wrapper.classList.add('scrollable');
     }else{
       displayEl.style.removeProperty('--scroll-distance');
+      displayEl.style.removeProperty('--scroll-duration');
+      displayEl.style.removeProperty('--scroll-delay');
       wrapper.classList.remove('scrollable');
     }
   };
   const bindScrollObserver=(wrapper)=>{
     if(!wrapper) return;
     const trigger=()=>refreshScrollState(wrapper);
+    wrapper.__refreshScroll=trigger;
+    scrollableTitleRegistry.register(wrapper);
     wrapper.addEventListener('pointerenter',trigger);
     wrapper.addEventListener('pointerdown',trigger);
     wrapper.addEventListener('focus',trigger);
+    if(typeof ResizeObserver!=='undefined'){
+      if(wrapper.__resizeObserver){
+        try{ wrapper.__resizeObserver.disconnect(); }catch(err){ /* no-op */ }
+      }
+      const observer=new ResizeObserver(()=>{
+        scrollableTitleRegistry.schedule();
+      });
+      observer.observe(wrapper);
+      if(wrapper.__display){ observer.observe(wrapper.__display); }
+      wrapper.__resizeObserver=observer;
+    }
   };
   bindScrollObserver(nameSpan);
   requestAnimationFrame(()=>refreshScrollState(nameSpan));
@@ -4613,6 +4665,7 @@ function makeCard(a,idx){
     if(titleDisplayEl){
       const fallback=isActivityMode?'Activity':'Untitled Adventure';
       titleDisplayEl.textContent=sanitizeTitle(titleRaw||fallback);
+      refreshScrollState(nameSpan);
     }
 
     const dateValue=a.date?String(a.date).slice(0,10):'';
