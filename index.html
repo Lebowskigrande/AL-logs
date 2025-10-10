@@ -172,12 +172,14 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card:first-child{border-top:1px solid var(--border)}
 .log-list .card::before{content:"";position:absolute;inset:0;pointer-events:none;border-left:3px solid transparent;transition:border-color var(--dur) var(--ease);z-index:1}
-.log-list .card::after{content:"";position:absolute;top:-1px;right:0;bottom:-1px;left:0;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease);z-index:0}
+.log-list .card::after{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:0;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);z-index:0;border-radius:14px;border:3px solid transparent;border-left:0}
 .log-list .card>*{position:relative;z-index:1}
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card.open{--row-bg:#fff}
 .log-list .card.open::before{border-left-color:rgba(148,163,184,.7)}
 .log-list .card.open .card-hd{background:#f1f5f9}
+.log-list .card.open::after{border-color:rgba(148,163,184,.7)}
+.log-list .card.editing::after{border-color:rgba(148,163,184,.55)}
 .log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
 .log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
 .log-list .card.editing::before{border-left-color:rgba(100,116,139,.45)}
