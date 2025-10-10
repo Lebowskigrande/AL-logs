@@ -2022,6 +2022,14 @@ function sanitizeTitle(title){
   if(!title) return '';
   return String(title).replace(/\bdown\s*time\s*activity\b/gi,'').replace(/\s{2,}/g,' ').replace(/^[\s:,.–—-]+|[\s:,.–—-]+$/g,'').trim();
 }
+function shortenTitleForCrowdedChips(title,count){
+  const text=title==null?'':String(title);
+  if(!text) return '';
+  const limit=count>4?36:44;
+  if(text.length<=limit) return text;
+  const slice=text.slice(0,limit-1).replace(/\s+$/,'');
+  return slice?slice+'…':'…';
+}
 function listBox(items){
   const wrap=document.createElement('div'); wrap.className='scrollbox';
   const normalized=Array.isArray(items)?items.map(normalizeDisplayValue).filter(Boolean):[];
@@ -4015,7 +4023,8 @@ function makeCard(a,idx){
 
   const nameSpan=document.createElement('span'); nameSpan.className='log-row-title editable-inline '+(act?'is-activity':'is-adventure');
   const nameDisplay=document.createElement('span'); nameDisplay.className='display';
-  nameDisplay.textContent=sanitizeTitle((a.title&&a.title.trim())||(act?'Activity':'Untitled Adventure'));
+  const fullTitle=sanitizeTitle((a.title&&a.title.trim())||(act?'Activity':'Untitled Adventure'));
+  nameDisplay.textContent=fullTitle;
   const nameEditor=document.createElement('span'); nameEditor.className='editor';
   nameSpan.append(nameDisplay,nameEditor); nameSpan.__display=nameDisplay; nameSpan.__editor=nameEditor;
   titleEditorSlot=nameEditor; titleDisplayEl=nameDisplay;
@@ -4057,6 +4066,7 @@ function makeCard(a,idx){
   const dtSlot=createSlot('chip-slot-dtd');
   chips.append(levelSlot,gpSlot,dtSlot);
   let hasChip=false;
+  let chipCount=0;
   const placeChip=(slot,pillEl)=>{
     if(!slot||!pillEl) return;
     slot.innerHTML='';
@@ -4064,6 +4074,7 @@ function makeCard(a,idx){
     slot.classList.remove('chip-slot-empty');
     slot.removeAttribute('aria-hidden');
     hasChip=true;
+    chipCount++;
   };
   const applyValueStyle=(pillEl,value)=>{
     if(!pillEl) return;
@@ -4129,6 +4140,19 @@ function makeCard(a,idx){
   }
   if(hasChip){
     main.appendChild(chips);
+  }
+  if(chipCount>3){
+    const shortened=shortenTitleForCrowdedChips(fullTitle, chipCount);
+    if(shortened && shortened!==fullTitle){
+      nameDisplay.textContent=shortened;
+      nameDisplay.setAttribute('title', fullTitle);
+    }else{
+      nameDisplay.textContent=fullTitle;
+      nameDisplay.removeAttribute('title');
+    }
+  }else{
+    nameDisplay.textContent=fullTitle;
+    nameDisplay.removeAttribute('title');
   }
   hd.appendChild(main);
 
