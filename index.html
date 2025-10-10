@@ -201,6 +201,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .card-tools .icon-btn,
 .card .card-tools .icon-btn:focus-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .card.editing .card-hd{cursor:default}
+.card-actions{display:flex;justify-content:flex-end;padding:16px 0 0}
+.card-edit-btn{padding:8px 16px;font-size:13px;border-radius:12px}
+.card-edit-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+.card-edit-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
+.card.editing .card-edit-btn{background:var(--primary);color:#fff;border-color:var(--primary)}
+.card.editing .card-edit-btn:hover{box-shadow:var(--shadow2)}
 .card.editing{border-color:rgba(148,163,184,.45);box-shadow:var(--card-shadow,0 0 0 2px rgba(15,23,42,.08));background:var(--row-bg,#f8fafc)}
 .log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;width:100%;min-height:0}
 .log-row-info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;flex:1 1 auto}
@@ -4187,12 +4193,16 @@ function makeCard(a,idx){
   bindScrollObserver(nameSpan);
   requestAnimationFrame(()=>refreshScrollState(nameSpan));
 
-  const tools=document.createElement('div'); tools.className='card-tools';
+  hd.addEventListener('click',(ev)=>{ if(card.classList.contains('editing')) return; toggleCard(card); });
+
+  const bd=document.createElement('div'); bd.className='card-bd';
+  const cardActions=document.createElement('div'); cardActions.className='card-actions';
   const editBtn=document.createElement('button');
   editBtn.type='button';
-  editBtn.className='icon-btn';
+  editBtn.className='btn card-edit-btn';
   editBtn.setAttribute('aria-label','Toggle edit mode');
-  editBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.1 5.1 5 12.2V19h6.8l7.1-7.1-6.8-6.8Z"/><path d="M3 21h18"/></svg>';
+  editBtn.setAttribute('aria-pressed','false');
+  editBtn.textContent='Edit';
   editBtn.title='Edit entry';
   editBtn.addEventListener('click',(ev)=>{
     ev.stopPropagation();
@@ -4202,12 +4212,8 @@ function makeCard(a,idx){
       enterEditMode(card);
     }
   });
-  tools.appendChild(editBtn);
-  hd.appendChild(tools);
-
-  hd.addEventListener('click',(ev)=>{ if(card.classList.contains('editing')) return; toggleCard(card); });
-
-  const bd=document.createElement('div'); bd.className='card-bd';
+  cardActions.appendChild(editBtn);
+  bd.appendChild(cardActions);
   const view=document.createElement('div'); view.className='bd-in';
   view.innerHTML='';
 
@@ -4867,6 +4873,7 @@ function enterEditMode(card){
   if(card.__edit.button){
     card.__edit.button.setAttribute('aria-pressed','true');
     card.__edit.button.title='Exit edit mode';
+    card.__edit.button.textContent='Done';
   }
 }
 
@@ -4877,6 +4884,7 @@ function exitEditMode(card,reset){
   if(card.__edit.button){
     card.__edit.button.setAttribute('aria-pressed','false');
     card.__edit.button.title='Edit entry';
+    card.__edit.button.textContent='Edit';
   }
 }
 
