@@ -178,19 +178,19 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.open{--row-bg:#fff}
 .log-list .card.open::before{border-left-color:rgba(148,163,184,.7)}
 .log-list .card.open .card-hd{background:#f1f5f9}
-.log-list .card.editing .card-hd{background:var(--row-bg,#e8f0ff)}
-.log-list .card.editing{--row-bg:rgba(232,240,255,.85)}
-.log-list .card.editing::before{border-left-color:rgba(26,115,232,.7)}
+.log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
+.log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
+.log-list .card.editing::before{border-left-color:rgba(100,116,139,.45)}
 .log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85)}
 .log-list .card .bd-in{padding:18px 0 20px}
 .log-list .card .edit-form{padding:18px 0 24px}
-.card:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:4px}
+.card:focus-visible{outline:2px solid rgba(100,116,139,.45);outline-offset:4px}
 .card.focus-glow{animation:card-focus-glow 1300ms ease-out}
 @keyframes card-focus-glow{
   0%{box-shadow:none;background-color:var(--row-bg,#fff)}
-  40%{box-shadow:0 0 0 4px rgba(37,99,235,.28);background-color:rgba(148,163,184,.16)}
+  40%{box-shadow:0 0 0 4px rgba(100,116,139,.32);background-color:rgba(148,163,184,.16)}
   100%{box-shadow:none;background-color:var(--row-bg,#fff)}
 }
 .card-hd{display:flex;align-items:flex-start;justify-content:flex-start;gap:16px;padding:16px 20px;cursor:pointer;min-height:0}
@@ -201,7 +201,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .card-tools .icon-btn,
 .card .card-tools .icon-btn:focus-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
 .card.editing .card-hd{cursor:default}
-.card.editing{border-color:rgba(26,115,232,.35);box-shadow:var(--card-shadow,0 0 0 2px rgba(26,115,232,.08));background:var(--row-bg,#e8f0ff)}
+.card.editing{border-color:rgba(148,163,184,.45);box-shadow:var(--card-shadow,0 0 0 2px rgba(15,23,42,.08));background:var(--row-bg,#f8fafc)}
 .log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;width:100%;min-height:0}
 .log-row-info{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;flex:1 1 auto}
 .log-row-meta{color:var(--muted);font-size:12px;line-height:1.4}
@@ -302,6 +302,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing .activity-line .chips{margin-left:0;width:100%;justify-content:flex-start}
 .field input,.field textarea,.field select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;resize:vertical}
 .field textarea{min-height:80px}
+.notes-field .v{display:flex;flex-direction:column}
+.notes-field .v textarea{min-height:200px;width:100%}
 .kv2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
 .kvsingle{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center;margin:6px 0}
 .kvsingle .k{color:var(--muted);font-size:12px;font-weight:400}
@@ -326,7 +328,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .list-editor .add-row{align-self:flex-start;border:1px dashed var(--border);background:#f8fafc;color:var(--primary);border-radius:10px;padding:6px 10px;font-size:12px;cursor:pointer}
 .list-editor .add-row:hover{background:#eef4ff}
 .list-editor .list-row select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 16px) calc(50% + 3px),calc(100% - 11px) calc(50% + 3px);background-size:5px 5px;background-repeat:no-repeat;padding-right:28px;cursor:pointer}
-.list-editor .list-row select:focus{outline:none;box-shadow:0 0 0 2px rgba(26,115,232,.2)}
+.list-editor .list-row select:focus{outline:none;box-shadow:0 0 0 2px rgba(15,23,42,.18)}
 .edit-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
 .card:not(.editing) .edit-actions{display:none}
 .card.editing .edit-actions{display:flex}
@@ -345,7 +347,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .edit-form .edit-actions{grid-column:1 / -1;margin-top:4px}
 
 .card.editing input,.card.editing textarea,.card.editing select,.card.editing .list-editor .list-row input,.card.editing .list-editor .list-row select{outline:none;box-shadow:none;border-radius:10px;background:#fff}
-.card.editing input:focus,.card.editing textarea:focus,.card.editing select:focus,.card.editing .editable-inline .editor input:focus,.card.editing .editable-inline .editor select:focus{outline:none;box-shadow:0 0 0 2px rgba(26,115,232,.2)}
+.card.editing input:focus,.card.editing textarea:focus,.card.editing select:focus,.card.editing .editable-inline .editor input:focus,.card.editing .editable-inline .editor select:focus{outline:none;box-shadow:0 0 0 2px rgba(15,23,42,.18)}
 
 body.modal-open{overflow:hidden;}
 body.modal-open #addCard{display:none;}
@@ -4622,7 +4624,7 @@ function makeCard(a,idx){
   addField('Consumables', controls.consumable_items);
   controls.notes=addField('Notes', makeTextarea());
   if(controls.notes){
-    controls.notes.rows=4;
+    controls.notes.rows=8;
     const notesControlField=controls.notes.closest('.field');
     if(notesControlField){
       notesControlField.classList.add('full');
