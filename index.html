@@ -220,7 +220,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
 .log-row-chips{margin-left:auto;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(88px,max-content);column-gap:10px;row-gap:6px;align-items:center;justify-items:end;overflow:hidden;padding-left:8px;font-size:13px;color:var(--muted);flex-shrink:0}
 .log-row-chips .chip-slot{display:flex;justify-content:flex-end;min-width:88px}
-.log-row-chips .chip-slot-link{justify-content:flex-start;min-width:max-content}
 .log-row-chips .chip-slot-empty{visibility:hidden}
 .log-row-chips .pill{display:inline-flex;align-items:center;white-space:nowrap;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-weight:600;font-size:12px;color:inherit;box-shadow:none}
 .log-row-chips .pill.pill-level{background:transparent;border-color:rgba(59,130,246,.32);color:#1d4ed8}
@@ -236,6 +235,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-chips .pill.pill-dtd.gain,
 .log-row-chips .pill.pill-dtd.loss,
 .log-row-chips .pill.pill-dtd.neutral{background:#e2e8f0;border-color:#cbd5f5;color:#334155}
+.card-link-chip-row{display:none;margin-bottom:16px;justify-content:flex-start}
+.card-link-chip{align-self:flex-start}
+.card.open .card-link-chip-row{display:flex}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
 .pill-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .pill-link svg{width:14px;height:14px;display:block;pointer-events:none}
@@ -861,7 +863,6 @@ function forgetAvatarPath(key){
   rememberAvatarPath(key,null);
 }
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
-const ICON_LINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.59 13.41a1.5 1.5 0 0 0 2.12 0l4.95-4.95a3 3 0 0 0-4.24-4.24l-1.77 1.77"/><path d="M13.41 10.59a1.5 1.5 0 0 0-2.12 0l-4.95 4.95a3 3 0 0 0 4.24 4.24l1.77-1.77"/></svg>';
 const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
 const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
 
@@ -4060,7 +4061,6 @@ function makeCard(a,idx){
     slot.setAttribute('aria-hidden','true');
     return slot;
   };
-  const linkSlot=createSlot('chip-slot-link');
   const levelSlot=createSlot('chip-slot-level');
   const gpSlot=createSlot('chip-slot-gp');
   const dtSlot=createSlot('chip-slot-dtd');
@@ -4083,22 +4083,6 @@ function makeCard(a,idx){
     else if(value<0) pillEl.classList.add('loss');
     else pillEl.classList.add('neutral');
   };
-  if(dmLinkMeta && dmLinkMeta.entry){
-    const linkChip=document.createElement('button');
-    linkChip.type='button';
-    linkChip.className='pill pill-link';
-    linkChip.innerHTML=ICON_LINK;
-    const label='View linked DM log allocation';
-    linkChip.title=label;
-    linkChip.setAttribute('aria-label',label);
-    linkChip.addEventListener('click',(ev)=>{
-      ev.stopPropagation();
-      ev.preventDefault();
-      navigateToDmAllocation(dmLinkMeta.entry);
-    });
-    if(!chips.contains(linkSlot)) chips.prepend(linkSlot);
-    placeChip(linkSlot,linkChip);
-  }
   const levelStart=entryLevelAtStart(a);
   if(Number.isFinite(levelStart) && levelStart>0){
     const levelPill=pill('Level '+fmtNumber(levelStart));
@@ -4220,6 +4204,25 @@ function makeCard(a,idx){
   const bd=document.createElement('div'); bd.className='card-bd';
   const view=document.createElement('div'); view.className='bd-in';
   view.innerHTML='';
+
+  if(dmLinkMeta && dmLinkMeta.entry){
+    const linkRow=document.createElement('div');
+    linkRow.className='card-link-chip-row';
+    const linkChip=document.createElement('button');
+    linkChip.type='button';
+    linkChip.className='pill pill-link card-link-chip';
+    const label='View linked DM log allocation';
+    linkChip.textContent=label;
+    linkChip.title=label;
+    linkChip.setAttribute('aria-label',label);
+    linkChip.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      ev.preventDefault();
+      navigateToDmAllocation(dmLinkMeta.entry);
+    });
+    linkRow.appendChild(linkChip);
+    view.appendChild(linkRow);
+  }
 
   function makeValue(val, empty='—'){
     const text=normalizeDisplayValue(val);
