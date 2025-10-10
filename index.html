@@ -4043,7 +4043,7 @@ function makeCard(a,idx){
     const dmText=normalizeDisplayValue(entry.dm);
     if(dmText) parts.push(`DM: ${dmText}`);
     if(isActivityEntry(entry)) parts.push('Downtime activity');
-    return parts.join('     •     ');
+    return parts.join('   •   ');
   };
 
   const metaSpan=document.createElement('span');
