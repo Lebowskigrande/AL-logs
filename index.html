@@ -191,13 +191,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card:hover,.log-list .card.open{z-index:1}
 .log-list .card.open{--row-bg:#fff}
-.log-list .card.open::before{border-left-color:#eef1f7}
 .log-list .card.open .card-hd{background:#f1f5f9;border-top-left-radius:var(--log-card-radius);border-top-right-radius:var(--log-card-radius)}
 .log-list .card.open::after{border-color:#eef1f7}
 .log-list .card.editing::after{border-color:#eef1f7}
 .log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
 .log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
-.log-list .card.editing::before{border-left-color:#eef1f7}
+.log-list .card.open::before,
+.log-list .card.editing::before{top:0;right:0;bottom:0;left:0;border-left:none;border-radius:var(--log-card-radius);box-shadow:inset 3px 0 0 #eef1f7}
 .log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85)}
