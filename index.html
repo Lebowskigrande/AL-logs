@@ -254,6 +254,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-link-chip{align-self:flex-start}
 .card.open .card-link-chip-row{display:flex}
 .pill{background:#fff7e6;color:#a05a00;border:1px solid #ffe3b0;border-radius:999px;padding:4px 8px;font-weight:700;font-size:11px}
+.btn.pill{background:#fff;color:var(--ink);border:1px solid var(--border);border-radius:999px;box-shadow:none}
 .pill-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;appearance:none;font:inherit;font-weight:600;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;background:#eef4ff;color:#1a73e8;border:1px solid rgba(26,115,232,.35);border-radius:999px;padding:4px 10px;cursor:pointer;box-shadow:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .pill-link svg{width:14px;height:14px;display:block;pointer-events:none}
 .pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
@@ -986,7 +987,6 @@ function updateActivityToggle(){
   const hiding=!showActivities;
   activityToggleBtn.textContent=hiding?'Show activities':'Hide activities';
   activityToggleBtn.setAttribute('aria-pressed', hiding?'true':'false');
-  activityToggleBtn.classList.toggle('primary', hiding);
   const label=hiding?'Show downtime activities':'Hide downtime activities';
   activityToggleBtn.setAttribute('aria-label', label);
   activityToggleBtn.title=label;
