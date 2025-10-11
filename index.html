@@ -25,7 +25,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 .sheet-card-body{flex:1 1 auto;display:flex;flex-direction:column;gap:16px;padding:20px;background:inherit;min-height:0}
 .log-window{flex:1 1 auto;display:flex;flex-direction:column;position:relative;border-radius:0;border:none;background:var(--surface);box-shadow:none;overflow:hidden;min-height:0}
 .log-window::before{content:none}
-.log-list{--log-row-gap:0;flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;padding:6px;margin:0;gap:var(--log-row-gap);min-height:0}
+.log-list{--log-row-gap:0;--log-card-radius:14px;flex:1 1 auto;display:flex;flex-direction:column;align-items:stretch;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;padding:6px;margin:0;gap:var(--log-row-gap);min-height:0}
 .log-list::after{content:none}
 .log-window>.empty{padding:48px 24px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:var(--muted)}
 @media (max-width:768px){
@@ -171,23 +171,22 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
-.log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
+.log-list .card{--row-bg:transparent;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card:first-child{border-top:1px solid var(--border)}
-.log-list .card::before{content:"";position:absolute;inset:0;pointer-events:none;border-left:3px solid transparent;transition:border-color var(--dur) var(--ease);z-index:1}
-.log-list .card::after{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:0;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);z-index:0;border-radius:14px;border:3px solid transparent;border-left:0}
+.log-list .card::after{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);z-index:0;border-radius:var(--log-card-radius);border:3px solid transparent}
 .log-list .card>*{position:relative;z-index:1}
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
+.log-list .card:hover,.log-list .card.open{z-index:1}
 .log-list .card.open{--row-bg:#fff}
-.log-list .card.open::before{border-left-color:rgba(148,163,184,.7)}
-.log-list .card.open .card-hd{background:#f1f5f9}
-.log-list .card.open::after{border-color:rgba(148,163,184,.7)}
-.log-list .card.editing::after{border-color:rgba(148,163,184,.55)}
+.log-list .card.open .card-hd{background:#f1f5f9;border-top-left-radius:var(--log-card-radius);border-top-right-radius:var(--log-card-radius)}
+.log-list .card.open::after{border-color:#eef1f7}
+.log-list .card.editing::after{border-color:#eef1f7}
 .log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
 .log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
-.log-list .card.editing::before{border-left-color:rgba(100,116,139,.45)}
 .log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85)}
+.log-list .card.open .card-bd{border-bottom-left-radius:var(--log-card-radius);border-bottom-right-radius:var(--log-card-radius)}
 .log-list .card .bd-in{padding:18px 0 20px}
 .log-list .card .edit-form{padding:18px 0 24px}
 .card:focus-visible{outline:2px solid rgba(100,116,139,.45);outline-offset:4px}
