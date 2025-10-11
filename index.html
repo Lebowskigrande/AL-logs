@@ -97,8 +97,14 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 #activityToggle[aria-pressed="true"]:hover,
 #activityToggle[aria-pressed="true"]:focus-visible{background:#155ccb;border-color:#0b57d0;color:#fff;outline:none}
 .search{position:relative}
-.search input{padding-left:36px;outline:none;width:220px;max-width:100%}
+.search input{padding-left:36px;padding-right:34px;outline:none;width:220px;max-width:100%;transition:border-color var(--dur) var(--ease),background var(--dur) var(--ease)}
+.search input::placeholder{color:#94a3b8;opacity:1}
+.search input:hover{border-color:#cbd5f5}
+.search input:focus-visible{border-color:#475569}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
+.search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:none;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;padding:0;transition:color var(--dur) var(--ease),background var(--dur) var(--ease)}
+.search-clear svg{width:14px;height:14px;pointer-events:none}
+.search-clear:hover,.search-clear:focus-visible{color:var(--primary);background:#eef4ff;outline:none}
 .toolbar .spacer{flex:1 1 auto}
 
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);box-shadow:none}
@@ -530,6 +536,11 @@ body.avatar-overlay-open{overflow:hidden}
         <div class="search">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
           <input id="q" placeholder="Search adventures"/>
+          <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 9l-6 6M9 9l6 6"/>
+            </svg>
+          </button>
         </div>
         <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
         <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
@@ -701,6 +712,7 @@ const DEFAULT_CHARACTER_MENU_LABEL='Select a character';
 const avatarEl = document.getElementById('charAvatar');
 const downloadBtn = document.getElementById('downloadData');
 const qEl      = document.getElementById('q');
+const searchClearBtn = document.getElementById('qClear');
 const grid     = document.getElementById('grid');
 const emptyEl  = document.getElementById('empty');
 const badgesEl = document.getElementById('charBadges');
@@ -2837,6 +2849,13 @@ function setDmHeader(){
     badgesEl.setAttribute('aria-hidden','true');
   }
 }
+
+function updateSearchClearButton(){
+  if(!qEl || !searchClearBtn) return;
+  const hasValue=typeof qEl.value==='string' && qEl.value.trim()!=='';
+  searchClearBtn.hidden=!hasValue;
+  searchClearBtn.setAttribute('aria-hidden', hasValue?'false':'true');
+}
 function updateUiForSelection(key){
   closeCharMenu();
   closeAddMenu();
@@ -2873,6 +2892,7 @@ function updateUiForSelection(key){
     }else{
       qEl.removeAttribute('aria-label');
     }
+    updateSearchClearButton();
   }
   updateAddButtonContext(isDm);
 }
@@ -3183,6 +3203,7 @@ function focusCardElement(card,{expand=true}={}){
 function clearSearchForNavigation(){
   if(qEl && qEl.value){
     qEl.value='';
+    updateSearchClearButton();
     return true;
   }
   return false;
@@ -5254,7 +5275,27 @@ function filterAndRender(){
 }
 
 /* --- events --- */
-qEl.addEventListener('input',filterAndRender);
+if(qEl){
+  const handleSearchInput=()=>{
+    updateSearchClearButton();
+    filterAndRender();
+  };
+  qEl.addEventListener('input', handleSearchInput);
+  updateSearchClearButton();
+}
+if(qEl && searchClearBtn){
+  searchClearBtn.addEventListener('click',()=>{
+    if(qEl.value){
+      qEl.value='';
+      updateSearchClearButton();
+      filterAndRender();
+    }else{
+      updateSearchClearButton();
+    }
+    try{ qEl.focus({preventScroll:true}); }
+    catch(err){ qEl.focus(); }
+  });
+}
 if(charSel){
   charSel.addEventListener('change',()=>{
     syncCharacterSelectorUI();
