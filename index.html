@@ -90,6 +90,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .btn.danger:hover,.btn.danger:focus-visible{background:#fecaca;border-color:rgba(220,38,38,.35);color:#b91c1c;outline:none}
 .btn.small{padding:6px 10px;font-size:12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
 .btn.pill{border-radius:999px}
+#activityToggle{background:#fff;color:var(--ink);border-color:var(--border)}
+#activityToggle[aria-pressed="true"]{background:var(--primary);color:#fff;border-color:transparent}
+#activityToggle[aria-pressed="true"]:hover,
+#activityToggle[aria-pressed="true"]:focus-visible{background:#155ccb;border-color:#0b57d0;color:#fff;outline:none}
 .search{position:relative}
 .search input{padding-left:36px;outline:none;width:220px;max-width:100%}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;opacity:.6}
