@@ -561,6 +561,14 @@ body.avatar-overlay-open{overflow:hidden}
             </span>
             <span class="sr-only" id="consumablesCount">0</span>
           </button>
+          <button id="giftsBtn" class="inventory-link" type="button" title="View supernatural gifts" aria-label="View supernatural gifts">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 15.9l-4.8 2.86.92-5.34-3.88-3.78 5.36-.78L12 3z"/>
+              </svg>
+            </span>
+            <span class="sr-only" id="giftsCount">0</span>
+          </button>
           <div class="inventory-metric" id="goldMetric" role="group" aria-label="Gold pieces total">
             <span class="text">Gold</span>
             <span class="amount" id="goldValue">0</span>
@@ -568,6 +576,10 @@ body.avatar-overlay-open{overflow:hidden}
           <div class="inventory-metric" id="downtimeMetric" role="group" aria-label="Downtime days total">
             <span class="text">Downtime</span>
             <span class="amount" id="downtimeValue">0</span>
+          </div>
+          <div class="inventory-metric" id="giftsMetric" role="group" aria-label="Supernatural gifts total">
+            <span class="text">Gifts</span>
+            <span class="amount" id="giftsValue">0</span>
           </div>
         </div>
       </div>
@@ -648,6 +660,23 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
+<!-- Supernatural Gifts Modal -->
+<div id="giftsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="giftsTitle">
+  <div class="modal-card">
+    <div class="modal-hd">
+      <div id="giftsTitle">Supernatural Gifts</div>
+      <div class="inv-meta" id="giftsMeta"></div>
+    </div>
+    <div class="modal-body">
+      <div id="giftsSummary" class="inv-meta" style="margin-bottom:8px;"></div>
+      <div id="giftsList" class="inv-list"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="giftsClose">Close</button>
+    </div>
+  </div>
+</div>
+
 <div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-hidden="true"></div>
 <div id="avatarOverlay" class="avatar-overlay" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
   <div class="avatar-preview">
@@ -655,48 +684,41 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
-<script>
-(function(){
-  var KEY='al_logs_data_version';
-  window.AL_DATA_VERSION_KEY=KEY;
-  var version='';
-  try{
-    version=localStorage.getItem(KEY)||'';
-  }catch(err){
-    version='';
+<script type="module" id="dataScript">
+const KEY='al_logs_data_version';
+window.AL_DATA_VERSION_KEY=KEY;
+let version='';
+try{ version=localStorage.getItem(KEY)||''; }
+catch(err){ version=''; }
+if(!version){
+  try{ version=sessionStorage.getItem(KEY)||''; }
+  catch(err){ version=''; }
+}
+window.AL_DATA_VERSION=version;
+const cacheBust=String(Date.now());
+window.AL_DATA_CACHE_BUST=cacheBust;
+
+import { loadLegacyData } from './legacy-data-loader.js';
+
+try{
+  const { data, raw, versionToken } = await loadLegacyData({ version, cacheBust });
+  window.RAW_DATA = raw;
+  window.DATA = data;
+  window.AL_DATA_VERSION = versionToken || version || window.AL_DATA_VERSION || '';
+  const scriptEl=document.currentScript;
+  if(scriptEl){
+    if(versionToken){ scriptEl.setAttribute('data-version', versionToken); }
+    scriptEl.setAttribute('data-cache-bust', cacheBust);
+    scriptEl.dispatchEvent(new Event('load'));
   }
-  if(!version){
-    try{
-      version=sessionStorage.getItem(KEY)||'';
-    }catch(err){
-      version='';
-    }
+}catch(error){
+  console.error('Failed to load data.js', error);
+  const scriptEl=document.currentScript;
+  if(scriptEl){
+    const evt=new Event('error');
+    scriptEl.dispatchEvent(evt);
   }
-  window.AL_DATA_VERSION=version;
-  var cacheBust=String(Date.now());
-  window.AL_DATA_CACHE_BUST=cacheBust;
-  var srcBase=version?('data.js?v='+encodeURIComponent(version)):'data.js';
-  var separator=srcBase.indexOf('?')===-1?'?':'&';
-  var src=srcBase+separator+'cb='+encodeURIComponent(cacheBust);
-  try {
-    var script=document.createElement('script');
-    script.src=src;
-    script.id='dataScript';
-    script.async=false;
-    script.setAttribute('data-version', version||'');
-    script.setAttribute('data-cache-bust', cacheBust);
-    var parent=document.currentScript&&document.currentScript.parentNode;
-    (parent||document.head||document.body||document.documentElement).appendChild(script);
-  } catch(err){
-    var fallback=document.createElement('script');
-    fallback.src=src;
-    fallback.id='dataScript';
-    fallback.async=false;
-    fallback.setAttribute('data-version', version||'');
-    fallback.setAttribute('data-cache-bust', cacheBust);
-    (document.head||document.body||document.documentElement).appendChild(fallback);
-  }
-})();
+}
 </script>
 <script src="dmData.js"></script>
 <script>
@@ -761,8 +783,12 @@ const downtimeMetricEl=document.getElementById('downtimeMetric');
 const downtimeValueEl=document.getElementById('downtimeValue');
 const magicItemsBtn=document.getElementById('magicItemsBtn');
 const consumablesBtn=document.getElementById('consumablesBtn');
+const giftsBtn=document.getElementById('giftsBtn');
 const magicItemsCountEl=document.getElementById('magicItemsCount');
 const consumablesCountEl=document.getElementById('consumablesCount');
+const giftsCountEl=document.getElementById('giftsCount');
+const giftsMetricEl=document.getElementById('giftsMetric');
+const giftsValueEl=document.getElementById('giftsValue');
 const defaultEmptyMessage=emptyEl?(emptyEl.textContent||''):'';
 const defaultSearchPlaceholder=qEl?(qEl.getAttribute('placeholder')||''):'';
 const DM_EMPTY_MESSAGE='No log entries match your filters.';
@@ -924,6 +950,7 @@ function bindButtonLike(el, handler){
 
 bindButtonLike(magicItemsBtn, () => openInventoryModal(charSel.value));
 bindButtonLike(consumablesBtn, () => openConsumableModal(charSel.value));
+bindButtonLike(giftsBtn, () => openSupernaturalModal(charSel.value));
 
 let pendingChanges=false;
 let savingData=false;
@@ -1164,6 +1191,7 @@ function createCharacterNewEntry(kind){
     perm_items:[],
     lost_perm_item:'',
     consumable_items:[],
+    supernatural_gifts:[],
     notes:'',
     kind:normalized,
     traded_item:'',
@@ -3360,6 +3388,27 @@ function collectPermanentInventory(charKey){
   const kept=[...keptMap.values()].sort((a,b)=>a.name.localeCompare(b.name));
   return {kept,map:keptMap};
 }
+
+function collectSupernaturalGifts(charKey){
+  const ch=DATA.characters[charKey];
+  if(!ch||!Array.isArray(ch.adventures)) return [];
+  const giftsMap=new Map();
+  const registerGift=(name,adv)=>{
+    const cleaned=normalizeDisplayValue(name);
+    if(!cleaned) return;
+    const key=cleaned.toLowerCase();
+    if(!giftsMap.has(key)){
+      giftsMap.set(key,{name:cleaned,adv});
+    }
+  };
+  ch.adventures.forEach(adv=>{
+    const list=Array.isArray(adv.supernatural_gifts)?adv.supernatural_gifts:[];
+    list.forEach(item=>registerGift(item,adv));
+  });
+  const finalList=Array.isArray(ch.supernatural_gifts)?ch.supernatural_gifts:[];
+  finalList.forEach(item=>registerGift(item,null));
+  return [...giftsMap.values()].sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+}
 function currentLevelFor(charKey){
   const ch=DATA.characters[charKey]; const lvl=1+Math.floor((ch.adventures||[]).reduce((s,a)=>s+(+a.level_plus||0),0)); return Math.max(1,lvl);
 }
@@ -3550,6 +3599,11 @@ const consTitle=document.getElementById('consTitle');
 const consMeta=document.getElementById('consMeta');
 const consList=document.getElementById('consList');
 const consSummary=document.getElementById('consSummary');
+const giftsModal=document.getElementById('giftsModal');
+const giftsTitle=document.getElementById('giftsTitle');
+const giftsMeta=document.getElementById('giftsMeta');
+const giftsList=document.getElementById('giftsList');
+const giftsSummary=document.getElementById('giftsSummary');
 document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
 function closeConsumableModal(){
   consModal.classList.remove('open','editing');
@@ -3558,6 +3612,8 @@ function closeConsumableModal(){
 document.getElementById('consClose').addEventListener('click',closeConsumableModal);
 invModal.addEventListener('click',(e)=>{ if(e.target===invModal){ invModal.classList.remove('open','editing'); refreshModalState(); } });
 consModal.addEventListener('click',(e)=>{ if(e.target===consModal) closeConsumableModal(); });
+document.getElementById('giftsClose').addEventListener('click',()=>{ giftsModal.classList.remove('open'); refreshModalState(); });
+giftsModal.addEventListener('click',(e)=>{ if(e.target===giftsModal){ giftsModal.classList.remove('open'); refreshModalState(); } });
 
 function openInventoryModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
@@ -4051,6 +4107,52 @@ function openConsumableModal(charKey){
   refreshModalState();
 }
 
+function openSupernaturalModal(charKey){
+  const ch=DATA.characters[charKey];
+  if(!ch) return;
+  const level=currentLevelFor(charKey);
+  const gifts=collectSupernaturalGifts(charKey);
+  giftsTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Supernatural Gifts';
+  giftsMeta.textContent=`Level ${fmtNumber(level)}`;
+  giftsList.innerHTML='';
+
+  if(!gifts.length){
+    const empty=document.createElement('div');
+    empty.className='muted';
+    empty.textContent='No supernatural gifts recorded.';
+    giftsList.appendChild(empty);
+  }else{
+    gifts.forEach(gift=>{
+      const row=document.createElement('div');
+      row.className='inv-row';
+      const nameDiv=document.createElement('div');
+      nameDiv.className='inv-name';
+      nameDiv.textContent=gift.name;
+      row.appendChild(nameDiv);
+      if(gift.adv){
+        const metaDiv=document.createElement('div');
+        metaDiv.className='inv-tools';
+        const linkBtn=document.createElement('button');
+        linkBtn.type='button';
+        linkBtn.className='btn small';
+        linkBtn.textContent='View entry';
+        linkBtn.addEventListener('click',()=>{
+          giftsModal.classList.remove('open');
+          refreshModalState();
+          navigateToCharacterReward(charKey, gift.adv);
+        });
+        metaDiv.appendChild(linkBtn);
+        row.appendChild(metaDiv);
+      }
+      giftsList.appendChild(row);
+    });
+  }
+
+  giftsSummary.textContent=`Total gifts: ${fmtNumber(gifts.length)}`;
+  giftsModal.classList.add('open');
+  refreshModalState();
+}
+
 /* --- cards --- */
 function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
@@ -4411,6 +4513,10 @@ function makeCard(a,idx){
   const consField=appendField('Consumables', listBox(a.consumable_items),'cons');
   const showCons=(!act || hasConsumables);
   if(!showCons){ consField.style.display='none'; }
+  const hasGifts=Array.isArray(a.supernatural_gifts)&&a.supernatural_gifts.some(item=>hasMeaningfulValue(item));
+  const giftsField=appendField('Supernatural gifts', listBox(a.supernatural_gifts),'gifts');
+  const showGifts=(!act || hasGifts);
+  if(!showGifts){ giftsField.style.display='none'; }
   const noteText=normalizeDisplayValue(a.notes);
   const notesBox=document.createElement('div');
   notesBox.className='notesbox';
@@ -4675,6 +4781,8 @@ function makeCard(a,idx){
   controls.lost_perm_item=addField('Magic items lost', createLostItemEditor(lostValueList));
   controls.consumable_items=createListEditor(a.consumable_items||[]);
   addField('Consumables', controls.consumable_items);
+  controls.supernatural_gifts=createListEditor(a.supernatural_gifts||[]);
+  addField('Supernatural gifts', controls.supernatural_gifts);
   controls.notes=addField('Notes', makeTextarea());
   if(controls.notes){
     controls.notes.rows=8;
@@ -4709,6 +4817,7 @@ function makeCard(a,idx){
   mountControl(controls.perm_items, permField.__editor);
   mountControl(controls.lost_perm_item, lostField.__editor);
   mountControl(controls.consumable_items, consField.__editor);
+  mountControl(controls.supernatural_gifts, giftsField.__editor);
   mountControl(controls.notes, notesField.__editor);
 
   permField.classList.add('full');
@@ -4832,6 +4941,15 @@ function makeCard(a,idx){
     const hasConsNow=consValues.some(item=>hasMeaningfulValue(item));
     consField.style.display=(editing || (!isActivityMode || hasConsNow))?'':'none';
 
+    const giftValues=Array.isArray(a.supernatural_gifts)?a.supernatural_gifts:[];
+    if(controls.supernatural_gifts){
+      controls.supernatural_gifts.setValues(giftValues);
+    }
+    giftsField.__display.innerHTML='';
+    giftsField.__display.appendChild(listBox(giftValues));
+    const hasGiftsNow=giftValues.some(item=>hasMeaningfulValue(item));
+    giftsField.style.display=(editing || (!isActivityMode || hasGiftsNow))?'':'none';
+
     const notesRaw=a.notes||'';
     controls.notes.value=notesRaw;
     const notesDisplay=normalizeDisplayValue(notesRaw)||'—';
@@ -4886,6 +5004,7 @@ function makeCard(a,idx){
       perm_items:controls.perm_items.getValues(),
       lost_perm_item:controls.lost_perm_item?controls.lost_perm_item.getValues().join('\n'):'',
       consumable_items:controls.consumable_items.getValues(),
+      supernatural_gifts:controls.supernatural_gifts.getValues(),
       notes:controls.notes.value||'',
       traded_item:isActivity?(controls.traded_item.value||'').trim():''
     };
@@ -5096,13 +5215,15 @@ function updateDerivedDataFor(key){
   DATA.years[key]=Array.from(years).sort((a,b)=>a-b);
   const perm=collectPermanentInventory(key);
   const cons=buildConsumableInventory(key);
+  const gifts=collectSupernaturalGifts(key);
   DATA.stats[key]={
     sessions,
     net_gp:netGP,
     net_dtd:netDTD,
     level_ups:levelUps,
     perm_count:(perm.kept||[]).length,
-    cons_count:cons.size||0
+    cons_count:cons.size||0,
+    gifts_count:gifts.length||0
   };
 }
 
@@ -5168,8 +5289,10 @@ function renderStats(key){
   if(downtimeMetricEl) downtimeMetricEl.setAttribute('aria-label', `Downtime: ${dtdVal} downtime days total`);
   const permCount=Number(s.perm_count||0);
   const consCount=Number(s.cons_count||0);
+  const giftsCount=Number(s.gifts_count||0);
   if(magicItemsCountEl) magicItemsCountEl.textContent=`${fmtNumber(permCount)} permanent items`;
   if(consumablesCountEl) consumablesCountEl.textContent=`${fmtNumber(consCount)} consumables`;
+  if(giftsCountEl) giftsCountEl.textContent=`${fmtNumber(giftsCount)} supernatural gifts`;
   if(magicItemsBtn){
     const label=`View permanent magic items (${fmtNumber(permCount)} total)`;
     magicItemsBtn.setAttribute('aria-label',label);
@@ -5179,6 +5302,15 @@ function renderStats(key){
     const label=`View consumables (${fmtNumber(consCount)} total)`;
     consumablesBtn.setAttribute('aria-label',label);
     consumablesBtn.title=label;
+  }
+  if(giftsBtn){
+    const label=`View supernatural gifts (${fmtNumber(giftsCount)} total)`;
+    giftsBtn.setAttribute('aria-label',label);
+    giftsBtn.title=label;
+  }
+  if(giftsValueEl) giftsValueEl.textContent=fmtNumber(giftsCount);
+  if(giftsMetricEl){
+    giftsMetricEl.style.display='';
   }
 }
 function setHeader(key){
