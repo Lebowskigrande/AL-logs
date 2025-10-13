@@ -119,7 +119,14 @@ function transformLog(log, { index, charKey }) {
   const storyRewards = sanitizeList(log.storyRewards);
   const supernatural = sanitizeList(log.supernaturalGiftsFoundHere);
   const losses = sanitizeList(log.lossesParsed);
-  const trades = Array.isArray(log.tradesParsed) ? log.tradesParsed : [];
+  const tradesRaw = Array.isArray(log.tradesParsed)
+    ? log.tradesParsed
+    : Array.isArray(log.trades)
+      ? log.trades
+      : (log.trades && typeof log.trades === 'object')
+        ? [log.trades]
+        : [];
+  const trades = tradesRaw.filter((entry) => entry && typeof entry === 'object');
 
   const baseTitle = sanitizeText(log.adventureName) || sanitizeText(log.adventureCode);
   const derivedTitle = trades.length ? 'Trade' : (baseTitle || 'Log Entry');
