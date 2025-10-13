@@ -3,8 +3,25 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
   if (version) params.set('v', version);
   if (cacheBust) params.set('cb', cacheBust);
   const specifier = `./data.js${params.toString() ? `?${params}` : ''}`;
-  const module = await import(specifier);
-  const raw = module?.DATA ?? module?.default ?? null;
+  let raw = null;
+  let importError = null;
+
+  try {
+    const module = await import(specifier);
+    raw = module?.DATA ?? module?.default ?? null;
+  } catch (error) {
+    importError = error;
+  }
+
+  if (!raw || typeof raw !== 'object') {
+    const fetched = await loadDataFromText(specifier);
+    if (fetched) {
+      raw = fetched;
+    } else if (importError) {
+      throw importError;
+    }
+  }
+
   const transformed = transformData(raw);
   const meta = (raw && typeof raw === 'object') ? raw.meta || {} : {};
   const versionToken = deriveVersionToken(meta, version);
@@ -13,6 +30,50 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
     raw,
     versionToken
   };
+}
+
+async function loadDataFromText(specifier) {
+  if (typeof fetch !== 'function') return null;
+  try {
+    const response = await fetch(specifier, { cache: 'no-cache' });
+    if (!response || !response.ok) {
+      return null;
+    }
+    const text = await response.text();
+    return parseDataText(text);
+  } catch (error) {
+    return null;
+  }
+}
+
+function parseDataText(text) {
+  if (typeof text !== 'string') {
+    return null;
+  }
+  const payload = extractDataPayload(text);
+  if (!payload) {
+    return null;
+  }
+  try {
+    return JSON.parse(payload);
+  } catch (error) {
+    return null;
+  }
+}
+
+function extractDataPayload(text) {
+  const patterns = [
+    /window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
+    /export\s+const\s+DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
+    /export\s+default\s*(\{[\s\S]*\})\s*;?\s*$/
+  ];
+  for (const pattern of patterns) {
+    const match = typeof text === 'string' ? text.match(pattern) : null;
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  return null;
 }
 
 function deriveVersionToken(meta = {}, fallback = '') {
