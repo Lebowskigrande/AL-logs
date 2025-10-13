@@ -1,4 +1,4 @@
-export const DMDATA = {
+window.DMDATA = {
   "meta": {
     "generated": "2025-10-03T07:03:46.259006+00:00",
     "schema_version": 2
@@ -2611,7 +2611,3 @@ export const DMDATA = {
     }
   }
 };
-
-if (typeof window !== 'undefined') {
-  window.DMDATA = DMDATA;
-}
