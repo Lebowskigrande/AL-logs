@@ -169,11 +169,14 @@ function transformLog(log, { index, charKey }) {
 }
 
 function determineEntryKind(log, context) {
-  const candidates = [log.entryKind, log.entryType, log.kind, log.category, log.type];
-  for (const candidate of candidates) {
-    const normalized = sanitizeText(candidate).toLowerCase();
-    if (!normalized) continue;
-    if (normalized.includes('activity') || normalized.includes('downtime') || normalized.includes('trade') || normalized.includes('reward')) {
+  const normalizedText = (value) => sanitizeText(value).toLowerCase();
+  const explicitKind = normalizedText(log.entryKind || log.entryType || log.kind || log.category || log.type);
+
+  if (explicitKind) {
+    if (explicitKind.includes('adventure') || explicitKind.includes('session')) {
+      return 'adventure';
+    }
+    if (explicitKind.includes('activity') || explicitKind.includes('downtime') || explicitKind.includes('trade') || explicitKind.includes('reward')) {
       return 'Downtime Activity';
     }
   }
@@ -182,12 +185,41 @@ function determineEntryKind(log, context) {
     return 'Downtime Activity';
   }
 
-  const hasAdventureData = Boolean(sanitizeText(log.adventureCode) || sanitizeText(log.adventureName));
-  if (!hasAdventureData) {
-    const hasDowntimeValues = context.supernatural.length || context.storyRewards.length || context.permItems.length || context.consumables.length;
-    if (hasDowntimeValues || toNumber(log.downtimePlus) || toNumber(log.downtimeMinus) || !toNumber(log.levelPlus)) {
+  const titleText = normalizedText(log.adventureName) || normalizedText(log.adventureCode);
+  if (titleText) {
+    if (/(downtime|activity|reward|trade|training)/.test(titleText)) {
       return 'Downtime Activity';
     }
+    return 'adventure';
+  }
+
+  const noteText = normalizedText(log.notes);
+  if (noteText) {
+    if (/(downtime|training|crafting|carousing|sow|harvest|lifestyle|purchase|dm reward|reward|trade|traded|sell|sold|buy|bought)/.test(noteText)) {
+      return 'Downtime Activity';
+    }
+    if (/(session|played|adventure|module|scenario)/.test(noteText)) {
+      return 'adventure';
+    }
+  }
+
+  const levelGain = toNumber(log.levelPlus);
+  if (levelGain > 0) {
+    return 'adventure';
+  }
+
+  const gpEarned = toNumber(log.goldPlus);
+  const gpSpent = toNumber(log.goldMinus);
+  const downtimeEarned = toNumber(log.downtimePlus);
+  const downtimeSpent = toNumber(log.downtimeMinus);
+
+  const hasRewards = context.permItems.length || context.storyRewards.length || context.supernatural.length || context.consumables.length;
+  if (!hasRewards && levelGain === 0 && gpEarned === 0 && gpSpent === 0 && downtimeEarned === 0 && downtimeSpent > 0) {
+    return 'Downtime Activity';
+  }
+
+  if (hasRewards || gpEarned > 0 || gpSpent > 0 || downtimeEarned > 0) {
+    return 'adventure';
   }
 
   return 'adventure';
