@@ -28,7 +28,7 @@ export const DATA = {
         },
         {
           "date": "2022-10-08",
-          "adventureCode": null,
+          "adventureCode": "DT-LEVEL-UP",
           "adventureName": "Level up",
           "dm": null,
           "levelPlus": 1,
@@ -71,7 +71,7 @@ export const DATA = {
         },
         {
           "date": "2022-10-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -85,14 +85,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Eldritch Claw Tattoo to Squelch for Wand of Magic Missiles",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Eldritch Claw Tattoo",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Magic Missiles",
               "tradePlayerName": null,
-              "tradeCharacterName": "Squelch for Wand of Magic Missiles",
+              "tradeCharacterName": "Squelch",
               "tradeNotes": null
             }
           ],
@@ -274,7 +274,7 @@ export const DATA = {
         },
         {
           "date": "2025-08-12",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Acquired Bastion",
           "dm": null,
           "levelPlus": 0,
@@ -293,7 +293,7 @@ export const DATA = {
         },
         {
           "date": "2025-08-13",
-          "adventureCode": null,
+          "adventureCode": "DT-CRAFT",
           "adventureName": "Downtime Activity: Craft",
           "dm": null,
           "levelPlus": 0,
@@ -314,7 +314,7 @@ export const DATA = {
         },
         {
           "date": "2025-08-13",
-          "adventureCode": null,
+          "adventureCode": "DT-CRAFT",
           "adventureName": "Downtime Activity: Craft",
           "dm": null,
           "levelPlus": 0,
@@ -335,7 +335,7 @@ export const DATA = {
         },
         {
           "date": "2025-08-13",
-          "adventureCode": null,
+          "adventureCode": "DT-LEVEL-UP",
           "adventureName": "Downtime Activity: Level up",
           "dm": null,
           "levelPlus": 1,
@@ -432,7 +432,7 @@ export const DATA = {
         },
         {
           "date": "2025-03-19",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -446,14 +446,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Lash of Immolation to Norragen for Belt of Hill Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Lash of Immolation",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Hill Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Norragen for Belt of Hill Giant Strength",
+              "tradeCharacterName": "Noraggen",
               "tradeNotes": null
             }
           ],
@@ -508,7 +508,7 @@ export const DATA = {
         },
         {
           "date": "2025-04-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -522,14 +522,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded to Staff of the Python to Agatha for Glamoured Studed Leather",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "to Staff of the Python",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Staff of the Python",
+              "tradeItemReceived": "Glamoured Studded Leather",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Glamoured Studed Leather",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -558,7 +558,7 @@ export const DATA = {
         },
         {
           "date": "2025-04-23",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Built Bastion",
           "dm": null,
           "levelPlus": 0,
@@ -577,7 +577,7 @@ export const DATA = {
         },
         {
           "date": "2025-04-23",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -600,7 +600,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-11",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -670,7 +670,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-15",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -723,7 +723,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-18",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -769,7 +769,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-25",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -819,7 +819,7 @@ export const DATA = {
         },
         {
           "date": "2025-07-02",
-          "adventureCode": null,
+          "adventureCode": "DT-BASTION",
           "adventureName": "Bastion Turn",
           "dm": null,
           "levelPlus": 0,
@@ -846,7 +846,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2025-02-16",
-          "adventureCode": "DM Reward",
+          "adventureCode": "DM-REWARD",
           "adventureName": null,
           "dm": null,
           "levelPlus": 5,
@@ -951,7 +951,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2021-09-29",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -970,7 +970,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-29",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -991,7 +991,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-29",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -1012,7 +1012,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-29",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -1026,14 +1026,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Marvelous Pigments to Arvistan for Belt of Fire Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Marvelous Pigments",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -1065,7 +1065,7 @@ export const DATA = {
         },
         {
           "date": "2025-01-15",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -1107,7 +1107,7 @@ export const DATA = {
         },
         {
           "date": "2025-03-05",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -1153,7 +1153,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2023-07-06",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x2)",
           "dm": null,
           "levelPlus": 1,
@@ -1174,7 +1174,7 @@ export const DATA = {
         },
         {
           "date": "2023-07-06",
-          "adventureCode": DDHC-KGV-07,
+          "adventureCode": "DDHC-KGV-07",
           "adventureName": "Axe to the Grave",
           "dm": "Alexis P.",
           "levelPlus": 1,
@@ -1195,7 +1195,7 @@ export const DATA = {
         },
         {
           "date": "2023-07-12",
-          "adventureCode": DDHC-CM-07,
+          "adventureCode": "DDHC-CM-07",
           "adventureName": "Book of Cylinders",
           "dm": "Alexis P.",
           "levelPlus": 1,
@@ -1244,7 +1244,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-30",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (12a VR)",
           "dm": null,
           "levelPlus": 1,
@@ -1265,7 +1265,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-30",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (11b VR)",
           "dm": null,
           "levelPlus": 1,
@@ -1310,7 +1310,7 @@ export const DATA = {
         },
         {
           "date": "2022-10-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -1324,14 +1324,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Magic Missiles to Squelch (prequel) for Eldritch Claw tattoo (temperate)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Magic Missiles",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Eldritch Claw tattoo (temperate)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Squelch",
+              "tradeCharacterName": "Squelch (prequel)",
               "tradeNotes": null
             }
           ],
@@ -1367,7 +1367,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2022-04-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11b DM Reward (R)",
           "dm": null,
           "levelPlus": 0,
@@ -1409,7 +1409,7 @@ export const DATA = {
         },
         {
           "date": "2022-04-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -1423,14 +1423,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Shooting Stars to Zandarax for Belt of Fire Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Shooting Stars",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -1438,7 +1438,7 @@ export const DATA = {
         },
         {
           "date": "2022-05-02",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11b DM Reward (R)",
           "dm": null,
           "levelPlus": 0,
@@ -1459,7 +1459,7 @@ export const DATA = {
         },
         {
           "date": "2022-05-02",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11b DM Reward (R)",
           "dm": null,
           "levelPlus": 0,
@@ -1612,7 +1612,7 @@ export const DATA = {
         },
         {
           "date": "2022-07-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Dave N.",
           "levelPlus": 0,
@@ -1686,7 +1686,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -1700,14 +1700,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Pipe of Smoke Monsters (Guardian) to Zandarax for a Moon-Tcouhed Greatsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Pipe of Smoke Monsters (Guardian)",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Pipe of Smoke Monsters (guardian)",
+              "tradeItemReceived": "a Moon-Tcouhed Greatsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for a Moon-Tcouhed Greatsword",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -1812,7 +1812,7 @@ export const DATA = {
         },
         {
           "date": "2024-03-23",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -1833,7 +1833,7 @@ export const DATA = {
         },
         {
           "date": "2024-03-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Gerald R.",
           "levelPlus": 0,
@@ -1847,14 +1847,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sixth Sword to Faramir Quickfoot for Periapt of Proof Against Poison",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Sixth Sword",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "The Sixth Sword",
+              "tradeItemReceived": "Periapt of Proof Against Poison",
               "tradePlayerName": null,
-              "tradeCharacterName": "Faramir Quickfoot for Periapt of Proof Against Poison",
+              "tradeCharacterName": "Faramir Quickfoot",
               "tradeNotes": null
             }
           ],
@@ -1947,7 +1947,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -1961,14 +1961,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Half-plate +1 to Raguel for Vicious Lance",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Half-plate +1",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Vicious Lance",
               "tradePlayerName": null,
-              "tradeCharacterName": "Raguel for Vicious Lance",
+              "tradeCharacterName": "Raguel",
               "tradeNotes": null
             }
           ],
@@ -1976,7 +1976,7 @@ export const DATA = {
         },
         {
           "date": "2025-08-27",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -2002,7 +2002,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2020-02-21",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -2202,7 +2202,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2216,14 +2216,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Headband of Intellect to Madam Renata for Winged Boots",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Headband of Intellect",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Winged Boots",
               "tradePlayerName": null,
-              "tradeCharacterName": "Madam Renata for Winged Boots",
+              "tradeCharacterName": "Madam Renata",
               "tradeNotes": null
             }
           ],
@@ -2235,7 +2235,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2021-09-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward x 3",
           "dm": null,
           "levelPlus": 3,
@@ -2254,7 +2254,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -2275,7 +2275,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2289,14 +2289,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Winged Boots to Jerry Garcia for Headband of Intellect",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Winged Boots",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Headband of Intellect",
               "tradePlayerName": null,
-              "tradeCharacterName": "Jerry Garcia for Headband of Intellect",
+              "tradeCharacterName": "Jerry Garcia",
               "tradeNotes": null
             }
           ],
@@ -2416,7 +2416,7 @@ export const DATA = {
         },
         {
           "date": "2022-01-21",
-          "adventureCode": null,
+          "adventureCode": "DT-LEVEL-UP",
           "adventureName": "Level up x 4",
           "dm": null,
           "levelPlus": 4,
@@ -2526,7 +2526,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2540,14 +2540,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Raguel for Spider Staff",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Spider Staff",
               "tradePlayerName": null,
-              "tradeCharacterName": "Raguel for Spider Staff",
+              "tradeCharacterName": "Raguel",
               "tradeNotes": null
             }
           ],
@@ -2580,7 +2580,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x4)",
           "dm": null,
           "levelPlus": 4,
@@ -2599,7 +2599,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -2618,7 +2618,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -2639,7 +2639,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2653,14 +2653,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tloque's Battleaxe to Morty for Dwarven Thrower",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tloque's Battleaxe",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dwarven Thrower",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Dwarven Thrower",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -2715,7 +2715,7 @@ export const DATA = {
         },
         {
           "date": "2021-01-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2729,14 +2729,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Plauge Fly to Sookie Stackhouse for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Plauge Fly",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Plague Fly",
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sookie Stackhouse for Ring of Spell Storing",
+              "tradeCharacterName": "Sookie Stackhouse",
               "tradeNotes": null
             }
           ],
@@ -2765,7 +2765,7 @@ export const DATA = {
         },
         {
           "date": "2021-04-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -2779,14 +2779,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Sentient Hat for Splint +1",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Splint +1",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sentient Hat for Splint",
+              "tradeCharacterName": "Sentient Hat",
               "tradeNotes": null
             }
           ],
@@ -2794,7 +2794,7 @@ export const DATA = {
         },
         {
           "date": "2021-04-01",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -2923,7 +2923,7 @@ export const DATA = {
         },
         {
           "date": "2025-03-19",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -2937,14 +2937,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of HIll Giant Strength to Chef Ture for Lash of Immolation",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Belt of HIll Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Belt of Hill Giant Strength",
+              "tradeItemReceived": "Lash of Immolation",
               "tradePlayerName": null,
-              "tradeCharacterName": "Chef Ture for Lash of Immolation",
+              "tradeCharacterName": "Chef Ture",
               "tradeNotes": null
             }
           ],
@@ -2956,7 +2956,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2020-06-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward x2",
           "dm": null,
           "levelPlus": 2,
@@ -2996,7 +2996,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -3017,7 +3017,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Diego U.",
           "levelPlus": 0,
@@ -3031,14 +3031,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Mithral Splintmail to Jormund Khan for Helm of Telepathy",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Mithral Splintmail",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Helm of Telepathy",
               "tradePlayerName": null,
-              "tradeCharacterName": "Jormund Khan for Helm of Telepathy",
+              "tradeCharacterName": "Jormund Khan",
               "tradeNotes": null
             }
           ],
@@ -3128,7 +3128,7 @@ export const DATA = {
         },
         {
           "date": "2021-01-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3145,14 +3145,14 @@ export const DATA = {
           ],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Noraggen for Plague Fly",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Plague Fly",
               "tradePlayerName": null,
-              "tradeCharacterName": "Noraggen for Plague Fly",
+              "tradeCharacterName": "Noraggen",
               "tradeNotes": null
             }
           ],
@@ -3189,7 +3189,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-03",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -3312,7 +3312,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-14",
-          "adventureCode": null,
+          "adventureCode": "DT-FAI-CHEN",
           "adventureName": "Fai Chen's Fantastical Faire",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -3326,14 +3326,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Portable Hole to Fai Chen for Maul +2",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Portable Hole",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Maul +2",
               "tradePlayerName": null,
-              "tradeCharacterName": "Fai Chen for Maul",
+              "tradeCharacterName": "Fai Chen",
               "tradeNotes": null
             }
           ],
@@ -3341,7 +3341,7 @@ export const DATA = {
         },
         {
           "date": "2020-12-27",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3355,14 +3355,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Eyes of the Eagle to Darrendrian for Adamantine Plate Armor",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Eyes of the Eagle",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Adamantine Plate Armor",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Adamantine Plate Armor",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -3458,7 +3458,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3472,14 +3472,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Noraggen for Belt of Hill GIant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Hill GIant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Noraggen for Belt of Hill GIant Strength",
+              "tradeCharacterName": "Noraggen",
               "tradeNotes": null
             }
           ],
@@ -3508,7 +3508,7 @@ export const DATA = {
         },
         {
           "date": "2021-05-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3522,14 +3522,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded 1 pot of Nulzor's Marvelous Pigments to Sentient Hat for Belt of Fire Giant Strength to Buckley",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "1 pot of Nulzor's Marvelous Pigments",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sentient Hat for Belt of Fire Giant Strength to Buckley",
+              "tradeCharacterName": "Sentient Hat",
               "tradeNotes": null
             }
           ],
@@ -3691,7 +3691,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3705,14 +3705,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ruby of the War Mage to Darrendrian for Dread Helm",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ruby of the War Mage",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dread Helm",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Dread Helm",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -3720,7 +3720,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Marco S.",
           "levelPlus": 0,
@@ -3734,14 +3734,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Cloak of Many Fashions to Zeras Brid for Ruby of the War Mage",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Cloak of Many Fashions",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ruby of the War Mage",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zeras Brid for Ruby of the War Mage",
+              "tradeCharacterName": "Zeras Brid",
               "tradeNotes": null
             }
           ],
@@ -3799,7 +3799,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-19",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -3820,7 +3820,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-21",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3834,14 +3834,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Necklace of Prayer Beads to Morty for the Sixth Sword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Necklace of Prayer Beads",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "the Sixth Sword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for the Sixth Sword",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -3918,7 +3918,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -3932,14 +3932,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sixth Sword to Lyrielle for Necklace of Fireballs",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Sixth Sword",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "The Sixth Sword",
+              "tradeItemReceived": "Necklace of Fireballs",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lyrielle for Necklace of Fireballs",
+              "tradeCharacterName": "Lyrielle",
               "tradeNotes": null
             }
           ],
@@ -4071,7 +4071,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4085,14 +4085,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Winged Boots to Darrendrian for Gloves of Thievery",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Winged Boots",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Gloves of Thievery",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Gloves of Thievery",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -4100,7 +4100,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-09",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4114,14 +4114,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sending Stones to Fei Chen for Shield +1",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Sending Stones",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Shield +1",
               "tradePlayerName": null,
-              "tradeCharacterName": "Fei Chen for Shield",
+              "tradeCharacterName": "Fei Chen",
               "tradeNotes": null
             }
           ],
@@ -4129,7 +4129,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4143,14 +4143,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Shield +1 to Darrendrian for Mithral Splintmail",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Shield +1",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Mithral Splintmail",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Mithral Splintmail",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -4158,7 +4158,7 @@ export const DATA = {
         },
         {
           "date": "2023-10-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -4265,7 +4265,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4279,14 +4279,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Elven Chain to Darrendrian for Belt of Hill Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Elven Chain",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Hill Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Belt of Hill Giant Strength",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -4294,7 +4294,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-21",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4308,14 +4308,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Hill Giant Strength to Lorien for Gem of Seeing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Hill Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Gem of Seeing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Gem of Seeing",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -4323,7 +4323,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Tako",
           "levelPlus": 0,
@@ -4337,14 +4337,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Gem of Seeing to Tifa Heartlock for Sun Blade",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Gem of Seeing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Sun Blade",
               "tradePlayerName": null,
-              "tradeCharacterName": "Tifa Heartlock for Sun Blade",
+              "tradeCharacterName": "Tifa Heartlock",
               "tradeNotes": null
             }
           ],
@@ -4352,7 +4352,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4366,14 +4366,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sun Blade to Lorien for Glamoured Studded Leather",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Sun Blade",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Glamoured Studded Leather",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Glamoured Studded Leather",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -4381,7 +4381,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -4400,7 +4400,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4414,14 +4414,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Glamoured Studded Leather to Sentient Hat for Glamoured Studded Leather",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Glamoured Studded Leather",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Glamoured Studded Leather",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sentient Hat for Glamoured Studded Leather",
+              "tradeCharacterName": "Sentient Hat",
               "tradeNotes": null
             }
           ],
@@ -4507,7 +4507,7 @@ export const DATA = {
         },
         {
           "date": "2022-01-15",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -4528,7 +4528,7 @@ export const DATA = {
         },
         {
           "date": "2022-01-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Kristy D.",
           "levelPlus": 0,
@@ -4542,14 +4542,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Nolzur's Pigments to Amaretto for Rod of the Pact Keeper +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Nolzur's Pigments",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Rod of the Pact Keeper +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Amaretto for Rod of the Pact Keeper",
+              "tradeCharacterName": "Amaretto",
               "tradeNotes": null
             }
           ],
@@ -4557,7 +4557,7 @@ export const DATA = {
         },
         {
           "date": "2022-01-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Mary P.",
           "levelPlus": 0,
@@ -4571,14 +4571,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Rod of the Pact Keeper +3 to Barbara Jean for Wand of the War Mage +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Rod of the Pact Keeper +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of the War Mage +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Barbara Jean for Wand of the War Mage",
+              "tradeCharacterName": "Barbara Jean",
               "tradeNotes": null
             }
           ],
@@ -4758,7 +4758,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 8,
@@ -4777,7 +4777,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -4798,7 +4798,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -4840,7 +4840,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -4861,7 +4861,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -4882,7 +4882,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4896,14 +4896,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Spider Staff to Madam Renata for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Spider Staff",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Madam Renata for Ring of Spell Storing",
+              "tradeCharacterName": "Madam Renata",
               "tradeNotes": null
             }
           ],
@@ -4911,7 +4911,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4925,14 +4925,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Vicious Lance to Norixious for Half-plate +1",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Vicious Lance",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Half-plate +1",
               "tradePlayerName": null,
-              "tradeCharacterName": "Norixious for Half-plate",
+              "tradeCharacterName": "Norixius",
               "tradeNotes": null
             }
           ],
@@ -4940,7 +4940,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -4955,14 +4955,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Anstruth Hapr to Agatha for Tome of Leadership and Influence",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Anstruth Hapr",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Anstruth Harp",
+              "tradeItemReceived": "Tome of Leadership and Influence",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Tome of Leadership and Influence",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -5041,7 +5041,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2021-03-26",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x2)",
           "dm": null,
           "levelPlus": 2,
@@ -5082,7 +5082,7 @@ export const DATA = {
         },
         {
           "date": "2021-04-02",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -5124,7 +5124,7 @@ export const DATA = {
         },
         {
           "date": "2021-05-07",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -5249,7 +5249,7 @@ export const DATA = {
         },
         {
           "date": "2021-06-11",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Rewards x 2",
           "dm": null,
           "levelPlus": 2,
@@ -5332,7 +5332,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-16",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -5353,7 +5353,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -5367,14 +5367,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Scrimitar of Speed to Lyrielle for Ring of Telekenesis",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Scrimitar of Speed",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Telekenesis",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lyrielle for Ring of Telekenesis",
+              "tradeCharacterName": "Lyrielle",
               "tradeNotes": null
             }
           ],
@@ -5382,7 +5382,7 @@ export const DATA = {
         },
         {
           "date": "2021-08-27",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward x 4",
           "dm": null,
           "levelPlus": 4,
@@ -5401,7 +5401,7 @@ export const DATA = {
         },
         {
           "date": "2021-08-27",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -5453,7 +5453,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -5467,14 +5467,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Broom of Flying to Darrendrian for Eyes of the Eagle",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Broom of Flying",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Eyes of the Eagle",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Eyes of the Eagle",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -5486,7 +5486,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2021-07-06",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward x 3",
           "dm": null,
           "levelPlus": 3,
@@ -5505,7 +5505,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-06",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -5526,7 +5526,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -5540,14 +5540,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Necklace of Fireballs to Leonardo for the Sixth Sword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Necklace of Fireballs",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "the Sixth Sword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Leonardo for the Sixth Sword",
+              "tradeCharacterName": "Leonardo",
               "tradeNotes": null
             }
           ],
@@ -5640,7 +5640,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-15",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -5661,7 +5661,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-15",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -5680,7 +5680,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-15",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -5699,7 +5699,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -5713,14 +5713,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Telekenesis to Orakhar for Scimitar of Speed",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Telekenesis",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Scimitar of Speed",
               "tradePlayerName": null,
-              "tradeCharacterName": "Orakhar for Scimitar of Speed",
+              "tradeCharacterName": "Orakhar",
               "tradeNotes": null
             }
           ],
@@ -5728,7 +5728,7 @@ export const DATA = {
         },
         {
           "date": "2021-07-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Andrew B.",
           "levelPlus": 0,
@@ -5742,14 +5742,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded the Sixth Sword to Z'la'ssh for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "the Sixth Sword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Z'la'ssh for Ring of Spell Storing",
+              "tradeCharacterName": "Z'la'ssh",
               "tradeNotes": null
             }
           ],
@@ -5835,7 +5835,7 @@ export const DATA = {
         },
         {
           "date": "2021-08-27",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -5873,7 +5873,7 @@ export const DATA = {
         },
         {
           "date": "2021-09-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward x 2",
           "dm": null,
           "levelPlus": 2,
@@ -6167,7 +6167,7 @@ export const DATA = {
         },
         {
           "date": "2022-03-30",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Corey F.",
           "levelPlus": 0,
@@ -6181,14 +6181,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Trade Opal of the ild rune to Tengen Uzui for Iron Bands of Bilaro",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Opal of the ild rune",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Opal of the Ild Rune",
+              "tradeItemReceived": "Iron Bands of Bilaro",
               "tradePlayerName": null,
-              "tradeCharacterName": "Tengen Uzui for Iron Bands of Bilaro",
+              "tradeCharacterName": "Tengen Uzui",
               "tradeNotes": null
             }
           ],
@@ -6217,7 +6217,7 @@ export const DATA = {
         },
         {
           "date": "2022-07-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": "James",
           "levelPlus": 6,
@@ -6349,7 +6349,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x2)",
           "dm": null,
           "levelPlus": 2,
@@ -6368,7 +6368,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x6)",
           "dm": null,
           "levelPlus": 6,
@@ -6387,7 +6387,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x2)",
           "dm": null,
           "levelPlus": 2,
@@ -6406,7 +6406,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -6427,7 +6427,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -6448,7 +6448,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -6469,7 +6469,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -6490,7 +6490,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -6504,14 +6504,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded FOWP - Ivory Goats to Anfer for Glamoured Studded Leather",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "FOWP - Ivory Goats",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Glamoured Studded Leather",
               "tradePlayerName": null,
-              "tradeCharacterName": "Anfer for Glamoured Studded Leather",
+              "tradeCharacterName": "Anfer",
               "tradeNotes": null
             }
           ],
@@ -6519,7 +6519,7 @@ export const DATA = {
         },
         {
           "date": "2021-02-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -6533,14 +6533,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Splint +1 to Norragen for Ring of Spell Storing (Harmonius)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Splint +1",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing (Harmonius)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Norragen for Ring of Spell Storing",
+              "tradeCharacterName": "Noraggen",
               "tradeNotes": null
             }
           ],
@@ -6631,7 +6631,7 @@ export const DATA = {
         },
         {
           "date": "2021-03-27",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -6652,7 +6652,7 @@ export const DATA = {
         },
         {
           "date": "2021-03-27",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Bryce C.",
           "levelPlus": 0,
@@ -6666,14 +6666,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Trade Broom of Flying to Bryce for Headband of Intellect",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Broom of Flying",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Headband of Intellect",
               "tradePlayerName": null,
-              "tradeCharacterName": "Bryce for Headband of Intellect",
+              "tradeCharacterName": "Bryce",
               "tradeNotes": null
             }
           ],
@@ -6838,7 +6838,7 @@ export const DATA = {
         },
         {
           "date": "2021-05-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -6852,14 +6852,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Buckley for 1 pot of Nulzor's Marvelous Pigments",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "1 pot of Nulzor's Marvelous Pigments",
               "tradePlayerName": null,
-              "tradeCharacterName": "Buckley for 1 pot of Nulzor's Marvelous Pigments",
+              "tradeCharacterName": "Buckley",
               "tradeNotes": null
             }
           ],
@@ -7463,7 +7463,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2020-01-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -7477,14 +7477,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Bag of Tricks to Del for Choraller's Companion",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Bag of Tricks",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Choraller's Companion",
               "tradePlayerName": null,
-              "tradeCharacterName": "Del for Choraller's Companion",
+              "tradeCharacterName": "Del",
               "tradeNotes": null
             }
           ],
@@ -7492,7 +7492,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7506,14 +7506,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Choraller's Companion to Darrendrian for Gem of Water Elemental",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Choraller's Companion",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Gem of Water Elemental",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Gem of Water Elemental",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -7584,7 +7584,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-07",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7598,14 +7598,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Opal of the Ild Rune to Lorien for Belt of Hill Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Opal of the Ild Rune",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Hill Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Belt of Hill Giant Strength",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -7636,7 +7636,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-13",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7650,14 +7650,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Bracers of Defense to Lorien for Sun Blade",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Bracers of Defense",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Sun Blade",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Sun Blade",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -7724,7 +7724,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7738,14 +7738,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Trident of Fish Command to Darrendrian for Wand of Webs",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Trident of Fish Command",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Webs",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Wand of Webs",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -7753,7 +7753,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7767,14 +7767,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Webs to Darrendrian for Trident of Fish Command",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Webs",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Trident of Fish Command",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Trident of Fish Command",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -7822,7 +7822,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Jason M.",
           "levelPlus": 0,
@@ -7836,14 +7836,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Berserker Axe to Jareb for Lance +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Berserker Axe",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Lance +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Jareb for Lance",
+              "tradeCharacterName": "Jareb",
               "tradeNotes": null
             }
           ],
@@ -7933,7 +7933,7 @@ export const DATA = {
         },
         {
           "date": "2020-05-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -7947,14 +7947,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded +3 Lance to Darrendrian for Belt of For Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "+3 Lance",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of For Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Belt of For Giant Strength",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -8179,7 +8179,7 @@ export const DATA = {
         },
         {
           "date": "2020-08-11",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8194,14 +8194,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ioun Stone of Leadership to Morty for Tome of Leadership and Influence",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ioun Stone of Leadership",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Leadership and Influence",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Tome of Leadership and Influence",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -8231,7 +8231,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8245,14 +8245,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Manual of Quickness and Action to Lorien for Plate +2",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Manual of Quickness and Action",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Plate +2",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Plate",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -8310,7 +8310,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-01",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -8329,7 +8329,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8343,14 +8343,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Flying Carpet to Lorien for Aegis of the Raven Queen Shield",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Flying Carpet",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Aegis of the Raven Queen Shield",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Aegis of the Raven Queen Shield",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -8358,7 +8358,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8372,14 +8372,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Manual of Bodily Health to Lorien for Belt of Fire Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Manual of Bodily Health",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -8524,7 +8524,7 @@ export const DATA = {
         },
         {
           "date": "2025-05-28",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -8548,7 +8548,7 @@ export const DATA = {
         },
         {
           "date": "2025-05-28",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -8562,14 +8562,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Arcane Grimoire +3 to Zandarax for Lance +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Arcane Grimoire +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Lance +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Lance",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -8581,7 +8581,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2020-07-16",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward (x2)",
           "dm": null,
           "levelPlus": 2,
@@ -8668,7 +8668,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-07",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -8689,7 +8689,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-07",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8703,14 +8703,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tloque's Battleaxe to Lorien for Staff of Power",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tloque's Battleaxe",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Power",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Staff of Power",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -8718,7 +8718,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-08",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -8761,7 +8761,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-11",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward S9 (x3)",
           "dm": null,
           "levelPlus": 0,
@@ -8851,7 +8851,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-22",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8865,14 +8865,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Dagger of Blindsight to Lorien for Mace of Smiting",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Dagger of Blindsight",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Mace of Smiting",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Mace of Smiting",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -8905,7 +8905,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-23",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -8926,7 +8926,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -8940,14 +8940,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Bracelet of Rock Magic to Morty for Robe of Stars",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Bracelet of Rock Magic",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Robe of Stars",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Robe of Stars",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -9044,7 +9044,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-17",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -9065,7 +9065,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -9079,14 +9079,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Cape of the Mountebank to Lorien for Dagger of Blindsight",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Cape of the Mountebank",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dagger of Blindsight",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Dagger of Blindsight",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -9452,7 +9452,7 @@ export const DATA = {
         },
         {
           "date": "2020-12-10",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -9524,7 +9524,7 @@ export const DATA = {
         },
         {
           "date": "2020-12-22",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -9538,14 +9538,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Dwarven Plate to Lorien for Flying Carpet (4x6)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Dwarven Plate",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Flying Carpet (4x6)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Flying Carpet",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -9869,7 +9869,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -9883,14 +9883,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Periapt of Proof Against Poitson to Darrendrian for Wand of Lightning Bolts",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Periapt of Proof Against Poitson",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Lightning Bolts",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Wand of Lightning Bolts",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -9922,7 +9922,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-11",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Michelle C.",
           "levelPlus": 0,
@@ -9936,14 +9936,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Angel Sting to Jasmine for a Crystal Ball",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Angel Sting",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "a Crystal Ball",
               "tradePlayerName": null,
-              "tradeCharacterName": "Jasmine for a Crystal Ball",
+              "tradeCharacterName": "Jasmine",
               "tradeNotes": null
             }
           ],
@@ -10006,7 +10006,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10020,14 +10020,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Leadership and Influence to Lorien for Manual of Iron Golems",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Leadership and Influence",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Manual of Iron Golems",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Manual of Iron Golems",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -10060,7 +10060,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-26",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -10189,7 +10189,7 @@ export const DATA = {
         },
         {
           "date": "2021-11-21",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11 DM Reward UC",
           "dm": null,
           "levelPlus": 0,
@@ -10284,7 +10284,7 @@ export const DATA = {
         },
         {
           "date": "2022-01-30",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Larry E.",
           "levelPlus": 0,
@@ -10298,14 +10298,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Stone Giant Strength to Sir John of Cormanthor for Grig Fiddle",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Stone Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Grig Fiddle",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sir John of Cormanthor for Grig Fiddle",
+              "tradeCharacterName": "Sir John of Cormanthor",
               "tradeNotes": null
             }
           ],
@@ -10348,7 +10348,7 @@ export const DATA = {
         },
         {
           "date": "2022-02-19",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -10362,14 +10362,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Grig Fiddle to AL Trading Post for Ghost Step Tattoo",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Grig Fiddle",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ghost Step Tattoo",
               "tradePlayerName": null,
-              "tradeCharacterName": "AL Trading Post for Ghost Step Tattoo",
+              "tradeCharacterName": "AL Trading Post",
               "tradeNotes": null
             }
           ],
@@ -10430,7 +10430,7 @@ export const DATA = {
         },
         {
           "date": "2022-02-28",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11 DM Reward (R) x 6",
           "dm": null,
           "levelPlus": 0,
@@ -10456,7 +10456,7 @@ export const DATA = {
         },
         {
           "date": "2022-02-28",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11 DM Reward (VR) x 4",
           "dm": null,
           "levelPlus": 0,
@@ -10480,7 +10480,7 @@ export const DATA = {
         },
         {
           "date": "2022-02-28",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11 DM Reward (UC) x 5",
           "dm": null,
           "levelPlus": 0,
@@ -10583,7 +10583,7 @@ export const DATA = {
         },
         {
           "date": "2022-04-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10597,14 +10597,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Sir Norixius for Ring of Shooting Stars",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Shooting Stars",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sir Norixius for Ring of Shooting Stars",
+              "tradeCharacterName": "Sir Norixius",
               "tradeNotes": null
             }
           ],
@@ -10641,7 +10641,7 @@ export const DATA = {
         },
         {
           "date": "2022-05-29",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -10655,14 +10655,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Feather Falling to AL Trading Post for Plate Barding +1",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Feather Falling",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Plate Barding +1",
               "tradePlayerName": null,
-              "tradeCharacterName": "AL Trading Post for Plate Barding",
+              "tradeCharacterName": "AL Trading Post",
               "tradeNotes": null
             }
           ],
@@ -10721,7 +10721,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10735,14 +10735,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Defender Longsword to Darrendrian for Robe of the Archmage (gray)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Defender Longsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Robe of the Archmage (gray)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Robe of the Archmage",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -10778,7 +10778,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10792,14 +10792,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Hide +3 to Morty for Tome of the Stilled Tongue",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Hide +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of the Stilled Tongue",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Tome of the Stilled Tongue",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -10807,7 +10807,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10821,15 +10821,15 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Recieved Blackrazor from completion of White Plume Mountain. Used House Moonstar Traded Downtime Activity to trade Blackrazor for a Moon Blade",
+          "notes": "Recieved Blackrazor from completion of White Plume Mountain. Used House Moonstar",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Downtime Activity",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "a Moon Blade",
               "tradePlayerName": null,
-              "tradeCharacterName": "trade Blackrazor for a Moon Blade",
-              "tradeNotes": null
+              "tradeCharacterName": "trade Blackrazor",
+              "tradeNotes": "Recieved Blackrazor from completion of White Plume Mountain. Used House Moonstar"
             }
           ],
           "kind": "Downtime Activity"
@@ -10857,7 +10857,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 3,
@@ -10880,7 +10880,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10894,14 +10894,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Moon Blade to Morty for Staff of the Magi",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Moon Blade",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of the Magi",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Staff of the Magi",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -10909,7 +10909,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -10923,14 +10923,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Storm Giant Strength to Darrendrian for Robe of the Archmagi (White)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Storm Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Robe of the Archmagi (White)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Robe of the Archmagi",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -10938,7 +10938,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Edoardo L.",
           "levelPlus": 0,
@@ -10952,14 +10952,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Robe of the Archmagi (Gray) to S'arrok for Vorpal Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Robe of the Archmagi (Gray)",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Vorpal Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "S'arrok for Vorpal Longsword",
+              "tradeCharacterName": "S'arrok",
               "tradeNotes": null
             }
           ],
@@ -11042,7 +11042,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-04",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade with Trading Post",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -11056,14 +11056,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Regeneration to Trading Post for Absorbing Tattoo (Force)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Regeneration",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Absorbing Tattoo (Force)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Trading Post for Absorbing Tattoo",
+              "tradeCharacterName": "Trading Post",
               "tradeNotes": null
             }
           ],
@@ -11071,7 +11071,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-14",
-          "adventureCode": null,
+          "adventureCode": "DT-DREAMWALKER",
           "adventureName": "Dreamwalker: 18",
           "dm": "Kristy D.",
           "levelPlus": 0,
@@ -11116,7 +11116,7 @@ export const DATA = {
         },
         {
           "date": "2022-09-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -11130,14 +11130,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Moon-Touched Greatsword to Norixius for Pipe of Smoke Monsters (Guardian)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Moon-Touched Greatsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Pipe of Smoke Monsters (guardian)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Norixius for Pipe of Smoke Monsters",
+              "tradeCharacterName": "Norixius",
               "tradeNotes": null
             }
           ],
@@ -11195,7 +11195,7 @@ export const DATA = {
         },
         {
           "date": "2023-01-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 11b DM Rewards (UC x 3, R x 2, VR x 1)",
           "dm": null,
           "levelPlus": 0,
@@ -11221,7 +11221,7 @@ export const DATA = {
         },
         {
           "date": "2023-01-20",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "Season 12a DM Rewards (UC x 3, R x 3)",
           "dm": null,
           "levelPlus": 0,
@@ -11247,7 +11247,7 @@ export const DATA = {
         },
         {
           "date": "2023-01-20",
-          "adventureCode": null,
+          "adventureCode": "DT-SCRIBE",
           "adventureName": "Scribing a Scroll",
           "dm": null,
           "levelPlus": 0,
@@ -11336,7 +11336,7 @@ export const DATA = {
         },
         {
           "date": "2023-10-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -11357,7 +11357,7 @@ export const DATA = {
         },
         {
           "date": "2023-10-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -11378,7 +11378,7 @@ export const DATA = {
         },
         {
           "date": "2023-10-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -11399,7 +11399,7 @@ export const DATA = {
         },
         {
           "date": "2023-10-04",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -11420,7 +11420,7 @@ export const DATA = {
         },
         {
           "date": "2024-03-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Gerald R.",
           "levelPlus": 0,
@@ -11434,14 +11434,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of the Magi to Eriol Quickfoot for Ascendent Dragon's Wrath Longsword (Amethyst).",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of the Magi",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ascendent Dragon's Wrath Longsword (Amethyst)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Eriol Quickfoot for Ascendent Dragon's Wrath Longsword",
+              "tradeCharacterName": "Eriol Quickfoot",
               "tradeNotes": null
             }
           ],
@@ -11449,7 +11449,7 @@ export const DATA = {
         },
         {
           "date": "2025-05-28",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -11463,14 +11463,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Lance +3 to Arvistan for Arcane Grimoire +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Lance +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Arcane Grimoire +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Arcane Grimoire",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -11478,7 +11478,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-27",
-          "adventureCode": null,
+          "adventureCode": "DT-DREAMWALKER",
           "adventureName": "Dreamwalker: 5",
           "dm": null,
           "levelPlus": 0,
@@ -11501,7 +11501,7 @@ export const DATA = {
       "logs": [
         {
           "date": "2002-01-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -11515,14 +11515,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Webs to Darrendrian for Broom of Flying",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Webs",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Broom of Flying",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Broom of Flying",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -11530,7 +11530,7 @@ export const DATA = {
         },
         {
           "date": "2002-01-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Patrick W.",
           "levelPlus": 0,
@@ -11544,14 +11544,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Rope of Entanglement to Sister Edwina for Wand of Fireballs",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Rope of Entanglement",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Fireballs",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sister Edwina for Wand of Fireballs",
+              "tradeCharacterName": "Sister Edwina",
               "tradeNotes": null
             }
           ],
@@ -11620,7 +11620,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-10",
-          "adventureCode": null,
+          "adventureCode": "DT-LEVEL-UP",
           "adventureName": "Tier up with DTD's",
           "dm": null,
           "levelPlus": 1,
@@ -11660,7 +11660,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Jonathan C.",
           "levelPlus": 0,
@@ -11674,14 +11674,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Wonder to Abserd for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Wonder",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Abserd for Ring of Spell Storing",
+              "tradeCharacterName": "Abserd",
               "tradeNotes": null
             }
           ],
@@ -11729,7 +11729,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -11811,7 +11811,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -11907,7 +11907,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -11921,14 +11921,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Thunder and Lightning to Lorien for Bad of Devouring",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Thunder and Lightning",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Bad of Devouring",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Bad of Devouring",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -11957,7 +11957,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-29",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Carlos L.",
           "levelPlus": 0,
@@ -11971,14 +11971,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Studded Leather +2 to Bilbo Baggins for Staff of Power",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Studded Leather +2",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Power",
               "tradePlayerName": null,
-              "tradeCharacterName": "Bilbo Baggins for Staff of Power",
+              "tradeCharacterName": "Bilbo Baggins",
               "tradeNotes": null
             }
           ],
@@ -12026,7 +12026,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -12040,14 +12040,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Understanding to Audra Illumine for Rod of the Pact Keeper +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Understanding",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Rod of the Pact Keeper +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Audra Illumine for Rod of the Pact Keeper",
+              "tradeCharacterName": "Audra Illumine",
               "tradeNotes": null
             }
           ],
@@ -12055,7 +12055,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -12070,15 +12070,15 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Lorien for Staff of Thunder and Lightning. Dropped Staff of Thunder and Lightning and acquired Ring of Evasion from Zhentarrim",
+          "notes": "Dropped Staff of Thunder and Lightning and acquired Ring of Evasion from Zhentarrim",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Thunder and Lightning",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Staff of Thunder and Lightning",
-              "tradeNotes": null
+              "tradeCharacterName": "Lorien",
+              "tradeNotes": "Dropped Staff of Thunder and Lightning and acquired Ring of Evasion from Zhentarrim"
             }
           ],
           "kind": "Downtime Activity"
@@ -12367,7 +12367,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -12381,14 +12381,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Aegis of the Raven Queen Shield to Darrendrian for Tome of Understanding",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Aegis of the Raven Queen Shield",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Understanding",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Tome of Understanding",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -12596,7 +12596,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -12610,14 +12610,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Pyrotecnics to Morty for Cloak of Many Fashions",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Pyrotecnics",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Cloak of Many Fashions",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Cloak of Many Fashions",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -12754,7 +12754,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -12768,14 +12768,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Clear Thought to Morty for Studded Leather +2",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Clear Thought",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Studded Leather +2",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morty for Studded Leather",
+              "tradeCharacterName": "Morty",
               "tradeNotes": null
             }
           ],
@@ -12855,7 +12855,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-23",
-          "adventureCode": DDHC-MORD,
+          "adventureCode": "DDHC-MORD",
           "adventureName": "Lich Queen's Begotten",
           "dm": "Tim H.",
           "levelPlus": 0,
@@ -12939,7 +12939,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-16",
-          "adventureCode": CCC-TRI-10,
+          "adventureCode": "CCC-TRI-10",
           "adventureName": "Contact",
           "dm": "Corey F.",
           "levelPlus": 0,
@@ -12963,7 +12963,7 @@ export const DATA = {
         },
         {
           "date": "2021-12-22",
-          "adventureCode": CCC-RCC-01-06,
+          "adventureCode": "CCC-RCC-01-06",
           "adventureName": "The Handfasting",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -13013,7 +13013,7 @@ export const DATA = {
         },
         {
           "date": "2024-09-11",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": "James",
           "levelPlus": 3,
@@ -13032,7 +13032,7 @@ export const DATA = {
         },
         {
           "date": "2024-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -13046,14 +13046,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Leadership and Influence to Raguel for Anstruth Harp",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Leadership and Influence",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Anstruth Harp",
               "tradePlayerName": null,
-              "tradeCharacterName": "Raguel for Anstruth Harp",
+              "tradeCharacterName": "Raguel",
               "tradeNotes": null
             }
           ],
@@ -13061,7 +13061,7 @@ export const DATA = {
         },
         {
           "date": "2025-04-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "James",
           "levelPlus": 0,
@@ -13075,14 +13075,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Glamoured Studded Leather to Chef Ture for Staff of the Python",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Glamoured Studded Leather",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of the Python",
               "tradePlayerName": null,
-              "tradeCharacterName": "Chef Ture for Staff of the Python",
+              "tradeCharacterName": "Chef Ture",
               "tradeNotes": null
             }
           ],
@@ -13090,7 +13090,7 @@ export const DATA = {
         },
         {
           "date": "2025-05-14",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": "James",
           "levelPlus": 0,
@@ -13265,7 +13265,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13279,14 +13279,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Darrendrian for Elven Chain",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Elven Chain",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Elven Chain",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -13294,7 +13294,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -13308,14 +13308,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Elven Chain to Fei Chen for +1 plate",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Elven Chain",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+1 plate",
               "tradePlayerName": null,
-              "tradeCharacterName": "Fei Chen for",
+              "tradeCharacterName": "Fei Chen",
               "tradeNotes": null
             }
           ],
@@ -13323,7 +13323,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13337,14 +13337,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded +1 plate to Darrendrian for +2 Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "+1 plate",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+2 Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -13373,7 +13373,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-21",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13387,14 +13387,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Gem of Seeing to Anfer for Belt of Hill Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Gem of Seeing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Hill Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Anfer for Belt of Hill Giant Strength",
+              "tradeCharacterName": "Anfer",
               "tradeNotes": null
             }
           ],
@@ -13444,7 +13444,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -13458,14 +13458,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded +2 Longsword to Wandering Swordsman for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "+2 Longsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Wandering Swordsman for Ring of Spell Storing",
+              "tradeCharacterName": "Wandering Swordsman",
               "tradeNotes": null
             }
           ],
@@ -13494,7 +13494,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13509,14 +13509,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Bag of Devouring to Agatha for Staff of Thunder and Lightning",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Bag of Devouring",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Thunder and Lightning",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Staff of Thunder and Lightning",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -13524,7 +13524,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13538,14 +13538,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Thunder and Lightning to Agatha for Belt of Fire Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Thunder and Lightning",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -13553,7 +13553,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-07",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13567,14 +13567,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Hill Giant Strength to Arvistan for Opal of the Ild Rune",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Hill Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Opal of the Ild Rune",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Opal of the Ild Rune",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -13624,7 +13624,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-11",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Aaron M.",
           "levelPlus": 0,
@@ -13638,14 +13638,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Morinth for +3 Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+3 Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Morinth for",
+              "tradeCharacterName": "Morinth",
               "tradeNotes": null
             }
           ],
@@ -13653,7 +13653,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13667,14 +13667,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Glamoured Studded Leather to Anfer for Sun Blade",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Glamoured Studded Leather",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Sun Blade",
               "tradePlayerName": null,
-              "tradeCharacterName": "Anfer for Sun Blade",
+              "tradeCharacterName": "Anfer",
               "tradeNotes": null
             }
           ],
@@ -13682,7 +13682,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -13711,7 +13711,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-13",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13725,14 +13725,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sun Blade to Arvistan Brightwave for Bracers of Defense",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Sun Blade",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Bracers of Defense",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan Brightwave for Bracers of Defense",
+              "tradeCharacterName": "Arvistan Brightwave",
               "tradeNotes": null
             }
           ],
@@ -13785,7 +13785,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-26",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Craig H.",
           "levelPlus": 0,
@@ -13799,14 +13799,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Thunder and Lightning to Warden for Shield +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Thunder and Lightning",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Shield +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Warden for Shield",
+              "tradeCharacterName": "Warden",
               "tradeNotes": null
             }
           ],
@@ -13860,7 +13860,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13874,14 +13874,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Longsword +3 to Darrendrian for Staff of Power",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Longsword +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Power",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Staff of Power",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -13948,7 +13948,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-05",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -13962,14 +13962,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Shield +3 to Darrendrian for Plate Barding +2",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Shield +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Plate Barding +2",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Plate Barding",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -14078,7 +14078,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-13",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Rewards x3",
           "dm": null,
           "levelPlus": 3,
@@ -14120,7 +14120,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-07",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14134,14 +14134,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Power to Zandarax for Tloque's Battleaxe",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Power",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tloque's Battleaxe",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Tloque's Battleaxe",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -14149,7 +14149,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-22",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14163,14 +14163,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Mace of Smiting to Zandarax for Dagger of Blindsight",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Mace of Smiting",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dagger of Blindsight",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Dagger of Blindsight",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -14178,7 +14178,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14192,14 +14192,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Plate +2 to Arvistan for Manual of Quickness and Action",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Plate +2",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Manual of Quickness and Action",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Manual of Quickness and Action",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -14207,7 +14207,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14221,14 +14221,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Aegis of the Raven Queen Shield to Arvistan for Flying Carpet",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Aegis of the Raven Queen Shield",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Flying Carpet",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Flying Carpet",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -14236,7 +14236,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14250,14 +14250,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Arvistan for Manual of Bodily Health",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Manual of Bodily Health",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan for Manual of Bodily Health",
+              "tradeCharacterName": "Arvistan",
               "tradeNotes": null
             }
           ],
@@ -14265,7 +14265,7 @@ export const DATA = {
         },
         {
           "date": "2020-12-22",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14279,14 +14279,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Flying Carpet to Zandarax for Dwarven Plate",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Flying Carpet",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dwarven Plate",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Dwarven Plate",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -14294,7 +14294,7 @@ export const DATA = {
         },
         {
           "date": "2021-04-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14308,14 +14308,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ioun Stone of Mastery to Darrendrian for Holy Avenger Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ioun Stone of Mastery",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Holy Avenger Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Holy Avenger Longsword",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -14344,7 +14344,7 @@ export const DATA = {
         },
         {
           "date": "2021-05-26",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14358,14 +14358,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Efreeti Chain to Darrendrian for Belt of Storm Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Efreeti Chain",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Storm Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Belt of Storm Giant Strength",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -14394,7 +14394,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14408,14 +14408,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Holy Avenger Longsword to Darrendrian for Ioun Stone of Mastery",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Holy Avenger Longsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ioun Stone of Mastery",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Ioun Stone of Mastery",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -14423,7 +14423,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14437,14 +14437,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Storm Giant Strength to Darrendrian for Efreeti Chain",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Storm Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Efreeti Chain",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Efreeti Chain",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -14452,7 +14452,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -14466,14 +14466,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Manual of Bodily Health to Samus for Manual of Iron Golems",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Manual of Bodily Health",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Manual of Iron Golems",
               "tradePlayerName": null,
-              "tradeCharacterName": "Samus for Manual of Iron Golems",
+              "tradeCharacterName": "Samus",
               "tradeNotes": null
             }
           ],
@@ -14481,7 +14481,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-24",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14496,14 +14496,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Manual of Iron Golems to Zandarax for Tome of Leadership and Influence",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Manual of Iron Golems",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Leadership and Influence",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Tome of Leadership and Influence",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -14511,7 +14511,7 @@ export const DATA = {
         },
         {
           "date": "2024-01-31",
-          "adventureCode": "DM Reward",
+          "adventureCode": "DM-REWARD",
           "adventureName": null,
           "dm": null,
           "levelPlus": 0,
@@ -14616,7 +14616,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14630,14 +14630,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Gloves of Thievery to Rolyn for Winged Boots",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Gloves of Thievery",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Winged Boots",
               "tradePlayerName": null,
-              "tradeCharacterName": "Rolyn for Winged Boots",
+              "tradeCharacterName": "Rolyn",
               "tradeNotes": null
             }
           ],
@@ -14708,15 +14708,15 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Epic reward: traded Necklace of Adaptation to Pipyap for casting 4th level spell, cast Find Greater Steed to aqcuire Pegasus mount named Mr. Fizzlebottom",
+          "notes": "Epic reward: Fizzlebottom",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Necklace of Adaptation",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "casting 4th level spell, cast Find Greater Steed to aqcuire Pegasus mount named Mr",
               "tradePlayerName": null,
-              "tradeCharacterName": "Pipyap for casting 4th level spell",
-              "tradeNotes": null
+              "tradeCharacterName": "Pipyap",
+              "tradeNotes": "Epic reward: Fizzlebottom"
             }
           ],
           "kind": "adventure"
@@ -14761,7 +14761,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14775,14 +14775,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Rimesplitter to Fei Chen for +2 Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Rimesplitter",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+2 Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Fei Chen for",
+              "tradeCharacterName": "Fei Chen",
               "tradeNotes": null
             }
           ],
@@ -14834,7 +14834,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14848,14 +14848,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Elven chainmail to Lorien for Ring of Spell Storing",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Elven chainmail",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ring of Spell Storing",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Ring of Spell Storing",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -14898,22 +14898,22 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Spent 200gp on Heroe's Feast.  Traded mithral splintmail to Rolyn for +1 Shield",
+          "notes": "Spent 200gp on Heroe's Feast",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "mithral splintmail",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+1 Shield",
               "tradePlayerName": null,
-              "tradeCharacterName": "Rolyn for",
-              "tradeNotes": null
+              "tradeCharacterName": "Rolyn",
+              "tradeNotes": "Spent 200gp on Heroe's Feast"
             }
           ],
           "kind": "adventure"
         },
         {
           "date": "2019-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14927,14 +14927,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded +2 Longsword to Lorien for +1 plate.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "+2 Longsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+1 plate",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -14942,7 +14942,7 @@ export const DATA = {
         },
         {
           "date": "2019-11-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -14956,14 +14956,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded mithral splintmail to Rolyn for +1 Shield",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "mithral splintmail",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+1 Shield",
               "tradePlayerName": null,
-              "tradeCharacterName": "Rolyn for",
+              "tradeCharacterName": "Rolyn",
               "tradeNotes": null
             }
           ],
@@ -15013,7 +15013,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15027,14 +15027,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Thunder and Lightning to Marina for +3 Shield.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Thunder and Lightning",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "+3 Shield",
               "tradePlayerName": null,
-              "tradeCharacterName": "Marina for",
+              "tradeCharacterName": "Marina",
               "tradeNotes": null
             }
           ],
@@ -15042,7 +15042,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Jake W.",
           "levelPlus": 0,
@@ -15056,14 +15056,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Goombus for Staff of Power.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of Power",
               "tradePlayerName": null,
-              "tradeCharacterName": "Goombus for Staff of Power",
+              "tradeCharacterName": "Goombus",
               "tradeNotes": null
             }
           ],
@@ -15071,7 +15071,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-02",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15085,14 +15085,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Skaggoxx to Thelma Scrollroller for Belt of Fire Giant Strength.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Skaggoxx",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Thelma Scrollroller for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Thelma Scrollroller",
               "tradeNotes": null
             }
           ],
@@ -15121,7 +15121,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15135,14 +15135,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded DEX tome to Agnes Illumine for CHA tome.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "DEX tome",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "CHA tome",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agnes Illumine for CHA tome",
+              "tradeCharacterName": "Agnes Illumine",
               "tradeNotes": null
             }
           ],
@@ -15150,7 +15150,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15164,14 +15164,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Hill Giant Strength to Anfer for Elven Chain.",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Hill Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Elven Chain",
               "tradePlayerName": null,
-              "tradeCharacterName": "Anfer for Elven Chain",
+              "tradeCharacterName": "Anfer",
               "tradeNotes": null
             }
           ],
@@ -15200,7 +15200,7 @@ export const DATA = {
         },
         {
           "date": "2019-12-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15214,14 +15214,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Carpet of Flying to Marina for Belt of Fire Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Carpet of Flying",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Fire Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Marina for Belt of Fire Giant Strength",
+              "tradeCharacterName": "Marina",
               "tradeNotes": null
             }
           ],
@@ -15338,7 +15338,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15352,14 +15352,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Gem of Water Elemental to Arvistan Brightwave for Choraller's Companion",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Gem of Water Elemental",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Choraller's Companion",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan Brightwave for Choraller's Companion",
+              "tradeCharacterName": "Arvistan Brightwave",
               "tradeNotes": null
             }
           ],
@@ -15367,7 +15367,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Carl R.",
           "levelPlus": 0,
@@ -15381,14 +15381,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sentinel Shield to Don Karnage for Broom of Flying",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Sentinel Shield",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Broom of Flying",
               "tradePlayerName": null,
-              "tradeCharacterName": "Don Karnage for Broom of Flying",
+              "tradeCharacterName": "Don Karnage",
               "tradeNotes": null
             }
           ],
@@ -15396,7 +15396,7 @@ export const DATA = {
         },
         {
           "date": "2020-01-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15410,14 +15410,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Broom of Flying to Agatha for Wand of Webs",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Broom of Flying",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Webs",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Wand of Webs",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -15461,22 +15461,22 @@ export const DATA = {
           ],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table trade Ring of Cold Resistance to Wren (Erik Tukey) for Mantle of Spell Resistance. Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
+          "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Cold Resistance",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Mantle of Spell Resistance",
               "tradePlayerName": null,
-              "tradeCharacterName": "Wren",
-              "tradeNotes": null
+              "tradeCharacterName": "Wren (Erik Tukey)",
+              "tradeNotes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage."
             }
           ],
           "kind": "adventure"
         },
         {
           "date": "2020-02-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15490,14 +15490,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Webs to Arvistan Brightwave for Trident of Fish Command",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Webs",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Trident of Fish Command",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan Brightwave for Trident of Fish Command",
+              "tradeCharacterName": "Arvistan Brightwave",
               "tradeNotes": null
             }
           ],
@@ -15505,7 +15505,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15519,14 +15519,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Trident of Fish Command to Arvistan Brightwave for Wand of Webs",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Trident of Fish Command",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Webs",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan Brightwave for Wand of Webs",
+              "tradeCharacterName": "Arvistan Brightwave",
               "tradeNotes": null
             }
           ],
@@ -15534,7 +15534,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-17",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Nina B.",
           "levelPlus": 0,
@@ -15548,14 +15548,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ioun Stone of Mastery to Brielle Akamiir for Belt of Storm Giant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ioun Stone of Mastery",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Storm Giant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Brielle Akamiir for Belt of Storm Giant Strength",
+              "tradeCharacterName": "Brielle Akamiir",
               "tradeNotes": null
             }
           ],
@@ -15587,7 +15587,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-20",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Bryce C.",
           "levelPlus": 0,
@@ -15601,14 +15601,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to Zelene Silrathas for Periapt of Proof Against Poison",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Spell Storing",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Periapt of Proof Against Poison",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zelene Silrathas for Periapt of Proof Against Poison",
+              "tradeCharacterName": "Zelene Silrathas",
               "tradeNotes": null
             }
           ],
@@ -15616,7 +15616,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-22",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Gregory H.",
           "levelPlus": 0,
@@ -15630,14 +15630,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Fire Giant Strength to Yongbi for Manual of Bodily Health",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Fire Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Manual of Bodily Health",
               "tradePlayerName": null,
-              "tradeCharacterName": "Yongbi for Manual of Bodily Health",
+              "tradeCharacterName": "Yongbi",
               "tradeNotes": null
             }
           ],
@@ -15668,7 +15668,7 @@ export const DATA = {
         },
         {
           "date": "2020-02-29",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Carl M.",
           "levelPlus": 0,
@@ -15682,14 +15682,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ioun Stone of Greater Absorption to Snowball for Scarab of Protection",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ioun Stone of Greater Absorption",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Scarab of Protection",
               "tradePlayerName": null,
-              "tradeCharacterName": "Snowball for Scarab of Protection",
+              "tradeCharacterName": "Snowball",
               "tradeNotes": null
             }
           ],
@@ -15697,7 +15697,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-03",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -15716,7 +15716,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-04",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15730,14 +15730,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Scarab of Protection to Darnys for Holy Avenger Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Scarab of Protection",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Holy Avenger Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darnys for Holy Avenger Longsword",
+              "tradeCharacterName": "Darnys",
               "tradeNotes": null
             }
           ],
@@ -15745,7 +15745,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-06",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -15764,7 +15764,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Eduardo R.",
           "levelPlus": 0,
@@ -15778,14 +15778,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Oathbinder to Missmeseeks for Cloak of Invisibility",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Oathbinder",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Cloak of Invisibility",
               "tradePlayerName": null,
-              "tradeCharacterName": "Missmeseeks for Cloak of Invisibility",
+              "tradeCharacterName": "Missmeseeks",
               "tradeNotes": null
             }
           ],
@@ -15793,7 +15793,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Eduardo R.",
           "levelPlus": 0,
@@ -15807,14 +15807,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Power to Winkle Paddlegear for Ioun Stone of Insight",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Power",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ioun Stone of Insight",
               "tradePlayerName": null,
-              "tradeCharacterName": "Winkle Paddlegear for Ioun Stone of Insight",
+              "tradeCharacterName": "Winkle Paddlegear",
               "tradeNotes": null
             }
           ],
@@ -15845,7 +15845,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "David T.",
           "levelPlus": 0,
@@ -15859,14 +15859,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ollamh Harp to Portia Porridgepot for Plate +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ollamh Harp",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Plate +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Portia Porridgepot for Plate",
+              "tradeCharacterName": "Portia Porridgepot",
               "tradeNotes": null
             }
           ],
@@ -15897,7 +15897,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15911,14 +15911,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of Power to Lorien for Longsword +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of Power",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Longsword +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Longsword",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -15971,7 +15971,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-05",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -15985,14 +15985,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Plate Barding +2 to Lorien for Shield +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Plate Barding +2",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Shield +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Shield",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -16000,7 +16000,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-07",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Cheryl F.",
           "levelPlus": 0,
@@ -16014,14 +16014,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Rod of the Pact Keeper +3 to Sibila for Tome of Understanding",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Rod of the Pact Keeper +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Understanding",
               "tradePlayerName": null,
-              "tradeCharacterName": "Sibila for Tome of Understanding",
+              "tradeCharacterName": "Sibila",
               "tradeNotes": null
             }
           ],
@@ -16029,7 +16029,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-16",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16043,14 +16043,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Understanding to Agatha for Aegis of the Raven Queen Shield",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Understanding",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Aegis of the Raven Queen Shield",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Aegis of the Raven Queen Shield",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -16077,7 +16077,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-26",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -16142,7 +16142,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-14",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -16156,14 +16156,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Periapt of Proof Against Poison to Indy for Whip +2",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Periapt of Proof Against Poison",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Whip +2",
               "tradePlayerName": null,
-              "tradeCharacterName": "Indy for Whip",
+              "tradeCharacterName": "Indy",
               "tradeNotes": null
             }
           ],
@@ -16270,7 +16270,7 @@ export const DATA = {
         },
         {
           "date": "2020-12-27",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16284,14 +16284,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Adamantine Armor to Buckley for Eyes of the Eagle",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Adamantine Armor",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Eyes of the Eagle",
               "tradePlayerName": null,
-              "tradeCharacterName": "Buckley for Eyes of the Eagle",
+              "tradeCharacterName": "Buckley",
               "tradeNotes": null
             }
           ],
@@ -16299,7 +16299,7 @@ export const DATA = {
         },
         {
           "date": "2021-04-10",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16313,14 +16313,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Holy Avenger to Lorien for Ioun Stone of Mastery",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Holy Avenger",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ioun Stone of Mastery",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Ioun Stone of Mastery",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -16328,7 +16328,7 @@ export const DATA = {
         },
         {
           "date": "2021-05-26",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16342,14 +16342,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Storm Giant Strength to Lorien for Efreeti Chain",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Storm Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Efreeti Chain",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Efreeti Chain",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -16357,7 +16357,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16371,14 +16371,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ioun Stone of Mastery to Lorien for Holy Avenger Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ioun Stone of Mastery",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Holy Avenger Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Holy Avenger Longsword",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -16386,7 +16386,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16400,14 +16400,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Efreeti Chain barding to Lorien for Belt of Storm GIant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Efreeti Chain barding",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Storm GIant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lorien for Belt of Storm GIant Strength",
+              "tradeCharacterName": "Lorien",
               "tradeNotes": null
             }
           ],
@@ -16415,7 +16415,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16429,14 +16429,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Eyes of the Eagle to Orakhar for Broom of Flying",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Eyes of the Eagle",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Broom of Flying",
               "tradePlayerName": null,
-              "tradeCharacterName": "Orakhar for Broom of Flying",
+              "tradeCharacterName": "Orakhar",
               "tradeNotes": null
             }
           ],
@@ -16444,7 +16444,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 0,
@@ -16465,7 +16465,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16479,14 +16479,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Wand of Lightning Bolts to Zandarax for Periapt of Proof Against Poison",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Wand of Lightning Bolts",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Periapt of Proof Against Poison",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Periapt of Proof Against Poison",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -16548,7 +16548,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-13",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Corey F.",
           "levelPlus": 0,
@@ -16562,14 +16562,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Oathbow to Aramil for Rod of Absorption",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Oathbow",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Rod of Absorption",
               "tradePlayerName": null,
-              "tradeCharacterName": "Aramil for Rod of Absorption",
+              "tradeCharacterName": "Aramil",
               "tradeNotes": null
             }
           ],
@@ -16577,7 +16577,7 @@ export const DATA = {
         },
         {
           "date": "2022-05-28",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Kristy D.",
           "levelPlus": 0,
@@ -16591,14 +16591,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Scarab of Protection to Jillian for Blood Fury Tattoo",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Scarab of Protection",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Blood Fury Tattoo",
               "tradePlayerName": null,
-              "tradeCharacterName": "Jillian for Blood Fury Tattoo",
+              "tradeCharacterName": "Jillian",
               "tradeNotes": null
             }
           ],
@@ -16655,7 +16655,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Erik T.",
           "levelPlus": 0,
@@ -16669,14 +16669,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Belt of Storm Giant Strength to Aiden Moonshadow for Robe of the Archmage (Gray)",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Belt of Storm Giant Strength",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Robe of the Archmage (Gray)",
               "tradePlayerName": null,
-              "tradeCharacterName": "Aiden Moonshadow for Robe of the Archmage",
+              "tradeCharacterName": "Aiden Moonshadow",
               "tradeNotes": null
             }
           ],
@@ -16684,7 +16684,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-06",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16698,14 +16698,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Robe of the Archmage (Gray) to Zandarax for Defender Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Robe of the Archmage (Gray)",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Defender Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Defender Longsword",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -16713,7 +16713,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Dave N.",
           "levelPlus": 0,
@@ -16727,14 +16727,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Holy Avenger Longsword to Duke for Hide Armor +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Holy Avenger Longsword",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Hide Armor +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Duke for Hide Armor",
+              "tradeCharacterName": "Duke",
               "tradeNotes": null
             }
           ],
@@ -16742,7 +16742,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Dave N.",
           "levelPlus": 0,
@@ -16756,14 +16756,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Hide Armor +3 to Duke for Holy Avenger Longsword",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Hide Armor +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Holy Avenger Longsword",
               "tradePlayerName": null,
-              "tradeCharacterName": "Duke for Holy Avenger Longsword",
+              "tradeCharacterName": "Duke",
               "tradeNotes": null
             }
           ],
@@ -16771,7 +16771,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Dario C.",
           "levelPlus": 0,
@@ -16800,7 +16800,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-12",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -16814,14 +16814,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Robe of the Archmage (White) to Zandarax for Belt of Storm GIant Strength",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Robe of the Archmage (White)",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Belt of Storm GIant Strength",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Belt of Storm GIant Strength",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -16986,7 +16986,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-25",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -17005,7 +17005,7 @@ export const DATA = {
         },
         {
           "date": "2020-03-25",
-          "adventureCode": null,
+          "adventureCode": "DT-LEVEL-UP",
           "adventureName": "Tier up with DTD's",
           "dm": null,
           "levelPlus": 1,
@@ -17064,7 +17064,7 @@ export const DATA = {
         },
         {
           "date": "2020-04-03",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Jesse S.",
           "levelPlus": 0,
@@ -17078,14 +17078,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Amulet of Health to Dino for Staff of the Woodlands",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Amulet of Health",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Staff of the Woodlands",
               "tradePlayerName": null,
-              "tradeCharacterName": "Dino for Staff of the Woodlands",
+              "tradeCharacterName": "Dino",
               "tradeNotes": null
             }
           ],
@@ -17282,7 +17282,7 @@ export const DATA = {
         },
         {
           "date": "2020-06-09",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Edoardo R.",
           "levelPlus": 0,
@@ -17329,7 +17329,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-01",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17343,14 +17343,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Cloak of Many Fashions to Agatha for Wand of Pyrotecnics",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Cloak of Many Fashions",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Wand of Pyrotecnics",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Wand of Pyrotecnics",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -17404,7 +17404,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-21",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17418,14 +17418,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Sixth Sword to Leonardo for Necklace of Prayer Beads",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "Sixth Sword",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "The Sixth Sword",
+              "tradeItemReceived": "Necklace of Prayer Beads",
               "tradePlayerName": null,
-              "tradeCharacterName": "Leonardo for Necklace of Prayer Beads",
+              "tradeCharacterName": "Leonardo",
               "tradeNotes": null
             }
           ],
@@ -17454,7 +17454,7 @@ export const DATA = {
         },
         {
           "date": "2020-07-31",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Zebulon T.",
           "levelPlus": 0,
@@ -17468,14 +17468,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Clear Thought to Lim Dul for Tome of Understanding",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Clear Thought",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Understanding",
               "tradePlayerName": null,
-              "tradeCharacterName": "Lim Dul for Tome of Understanding",
+              "tradeCharacterName": "Lim Dul",
               "tradeNotes": null
             }
           ],
@@ -17550,7 +17550,7 @@ export const DATA = {
         },
         {
           "date": "2020-08-08",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -17569,7 +17569,7 @@ export const DATA = {
         },
         {
           "date": "2020-08-08",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -17613,7 +17613,7 @@ export const DATA = {
         },
         {
           "date": "2020-08-08",
-          "adventureCode": null,
+          "adventureCode": "DM-REWARD",
           "adventureName": "DM Reward",
           "dm": null,
           "levelPlus": 1,
@@ -17632,7 +17632,7 @@ export const DATA = {
         },
         {
           "date": "2020-08-11",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17646,14 +17646,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of Leadership and Influence to Arvistan Brightwave for Ioun Stone of Leadership",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of Leadership and Influence",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Ioun Stone of Leadership",
               "tradePlayerName": null,
-              "tradeCharacterName": "Arvistan Brightwave for Ioun Stone of Leadership",
+              "tradeCharacterName": "Arvistan Brightwave",
               "tradeNotes": null
             }
           ],
@@ -17707,7 +17707,7 @@ export const DATA = {
         },
         {
           "date": "2020-09-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17721,14 +17721,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Robe of Stars to Zandarax for Bracelet of Rock Magic",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Robe of Stars",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Bracelet of Rock Magic",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Bracelet of Rock Magic",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -17757,7 +17757,7 @@ export const DATA = {
         },
         {
           "date": "2020-10-15",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17771,14 +17771,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Studded Leather +2 to Agatha for Tome of Clear Thought",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Studded Leather +2",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tome of Clear Thought",
               "tradePlayerName": null,
-              "tradeCharacterName": "Agatha for Tome of Clear Thought",
+              "tradeCharacterName": "Agatha",
               "tradeNotes": null
             }
           ],
@@ -17809,7 +17809,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Tom P.",
           "levelPlus": 0,
@@ -17823,14 +17823,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Glaive +3 to Kiernan for Dwarven Thrower",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Glaive +3",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Dwarven Thrower",
               "tradePlayerName": null,
-              "tradeCharacterName": "Kiernan for Dwarven Thrower",
+              "tradeCharacterName": "Kiernan",
               "tradeNotes": null
             }
           ],
@@ -17838,7 +17838,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-18",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17852,14 +17852,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Dwarven Thrower to Noraggen for Tloque's Battleax",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Dwarven Thrower",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Tloque's Battleax",
               "tradePlayerName": null,
-              "tradeCharacterName": "Noraggen for Tloque's Battleax",
+              "tradeCharacterName": "Noraggen",
               "tradeNotes": null
             }
           ],
@@ -17910,7 +17910,7 @@ export const DATA = {
         },
         {
           "date": "2021-01-23",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17922,14 +17922,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tloque's Battleaxe to Darrendrian for Shield +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tloque's Battleaxe",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Shield +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Darrendrian for Shield",
+              "tradeCharacterName": "Darrendrian",
               "tradeNotes": null
             }
           ],
@@ -17960,7 +17960,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -17974,14 +17974,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Staff of the Magi to Zandarax for Moon Blade",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Staff of the Magi",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Moon Blade",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Moon Blade",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
@@ -17989,7 +17989,7 @@ export const DATA = {
         },
         {
           "date": "2022-06-08",
-          "adventureCode": null,
+          "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
           "levelPlus": 0,
@@ -18003,14 +18003,14 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Tome of the Stilled Tongue to Zandarax for Hide +3",
+          "notes": null,
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Tome of the Stilled Tongue",
-              "tradeItemReceived": null,
+              "tradeItemReceived": "Hide +3",
               "tradePlayerName": null,
-              "tradeCharacterName": "Zandarax for Hide",
+              "tradeCharacterName": "Zandarax",
               "tradeNotes": null
             }
           ],
