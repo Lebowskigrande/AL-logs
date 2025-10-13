@@ -1125,7 +1125,7 @@ export const DATA = {
         },
         {
           "date": "2023-07-06",
-          "adventureCode": null,
+          "adventureCode": DDHC-KGV-07,
           "adventureName": "Axe to the Grave",
           "dm": "Alexis P.",
           "levelPlus": 1,
@@ -1145,7 +1145,7 @@ export const DATA = {
         },
         {
           "date": "2023-07-12",
-          "adventureCode": null,
+          "adventureCode": DDHC-CM-07,
           "adventureName": "Book of Cylinders",
           "dm": "Alexis P.",
           "levelPlus": 1,
@@ -1418,7 +1418,7 @@ export const DATA = {
         },
         {
           "date": "2022-05-04",
-          "adventureCode": "DDHC-CM 07",
+          "adventureCode": "DDHC-CM-07",
           "adventureName": "Book of Cylinders",
           "dm": "Alexis P.",
           "levelPlus": 1,
@@ -12314,7 +12314,7 @@ export const DATA = {
         },
         {
           "date": "2020-11-23",
-          "adventureCode": null,
+          "adventureCode": DDHC-MORD,
           "adventureName": "Lich Queen's Begotten",
           "dm": "Tim H.",
           "levelPlus": 0,
@@ -12394,7 +12394,7 @@ export const DATA = {
         },
         {
           "date": "2021-10-16",
-          "adventureCode": null,
+          "adventureCode": CCC-TRI-10,
           "adventureName": "Contact",
           "dm": "Corey F.",
           "levelPlus": 0,
@@ -12417,7 +12417,7 @@ export const DATA = {
         },
         {
           "date": "2021-12-22",
-          "adventureCode": null,
+          "adventureCode": CCC-RCC-01-06,
           "adventureName": "The Handfasting",
           "dm": "Erik T.",
           "levelPlus": 0,
