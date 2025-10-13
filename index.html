@@ -1479,13 +1479,11 @@ function setDataVersion(version){
 
 function applyDataJs(text){
   if(typeof text!=='string' || !text.trim()) return;
-  try{
-    const fn=new Function(text+'\n//# sourceURL=data.js');
-    fn();
-  }catch(err){
-    console.error('Failed to evaluate data.js', err);
-    throw err;
+  const parsed=parseDataPayload(text);
+  if(!parsed){
+    throw new Error('Unable to parse data.js payload');
   }
+  window.DATA=parsed;
   const next=window.DATA||null;
   if(!next || !next.characters){
     throw new Error('DATA missing after applying data.js');
@@ -1498,8 +1496,18 @@ function applyDataJs(text){
 
 function extractDataPayload(text){
   if(typeof text!=='string') return null;
-  const match=text.match(/window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
-  return match && match[1]?match[1]:null;
+  const patterns=[
+    /window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
+    /export\s+const\s+DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
+    /export\s+default\s*(\{[\s\S]*\})\s*;?\s*$/
+  ];
+  for(const pattern of patterns){
+    const match=text.match(pattern);
+    if(match && match[1]){
+      return match[1];
+    }
+  }
+  return null;
 }
 
 function parseDataPayload(text){
