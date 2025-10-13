@@ -23,7 +23,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-10-08",
@@ -41,7 +42,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-10-08",
@@ -64,7 +66,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-10-08",
@@ -92,7 +95,8 @@ export const DATA = {
               "tradeCharacterName": "Squelch for Wand of Magic Missiles",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -121,7 +125,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-30",
@@ -139,7 +144,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-17",
@@ -166,7 +172,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -199,7 +206,8 @@ export const DATA = {
           "lossesParsed": [
             "chain shirt for 25 gp"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-08-05",
@@ -225,7 +233,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-08-12",
@@ -260,7 +269,8 @@ export const DATA = {
             "Holy Water for 12 gp",
             "2 Potions of Healing for 25 gp each"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-08-12",
@@ -278,7 +288,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-08-13",
@@ -298,7 +309,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Crafted a Longhorn of Illusions with help from my Arcane Workshop hireling.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-08-13",
@@ -318,7 +330,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Crafted an Enspelled Breastplate with the spell Armor of Agathys, using my existing breastplate, with help from my Smithy hireling.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-08-13",
@@ -336,7 +349,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-08-19",
@@ -362,7 +376,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 30 days training in Nature under the tutelage of Youngster Joey during journey to Aglarond. Killed the young brass dragon Ylagan in his lair and steeped all four of my hoard items to Stirring.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-09-24",
@@ -387,7 +402,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -411,7 +427,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Table trade for Heward's Handy Spicepouch",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-03-19",
@@ -439,7 +456,8 @@ export const DATA = {
               "tradeCharacterName": "Norragen for Belt of Hill Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-04-02",
@@ -461,7 +479,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-04-16",
@@ -484,7 +503,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-04-16",
@@ -512,7 +532,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Glamoured Studed Leather",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-04-23",
@@ -532,7 +553,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-04-23",
@@ -550,7 +572,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Basic Facilities: Cramped Kitchen, Roomy Dining Room. Expanded Kitchen to Roomy for 500 gp and 25 days (out of 200 alotted). Special Facilities: Garden, Greenhouose, Laboratory, Training Area.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-04-23",
@@ -572,7 +595,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-06-11",
@@ -594,7 +618,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (truth serum); Laboratory: Craft Poison (burnt othur fumes).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-06-11",
@@ -615,7 +640,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-06-15",
@@ -639,7 +665,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased book on history of Faerun (including culinary) for 200 gp. Spent 50 gp making 4 doses of Weapon Poison.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-06-15",
@@ -661,7 +688,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-06-18",
@@ -690,7 +718,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 3 vials of Oil of Slipperiness.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-06-18",
@@ -712,7 +741,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-06-25",
@@ -734,7 +764,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-06-25",
@@ -756,7 +787,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-07-02",
@@ -782,7 +814,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-07-02",
@@ -804,7 +837,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -826,7 +860,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-02-16",
@@ -844,7 +879,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-02-26",
@@ -864,7 +900,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-03-12",
@@ -884,7 +921,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-07-16",
@@ -904,7 +942,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -926,7 +965,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-29",
@@ -946,7 +986,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-29",
@@ -966,7 +1007,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-29",
@@ -994,7 +1036,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-11-01",
@@ -1017,7 +1060,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-01-15",
@@ -1037,7 +1081,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-01-15",
@@ -1057,7 +1102,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-03-05",
@@ -1077,7 +1123,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-03-05",
@@ -1097,7 +1144,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -1121,7 +1169,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-07-06",
@@ -1141,7 +1190,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-07-12",
@@ -1162,7 +1212,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -1188,7 +1239,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-30",
@@ -1208,7 +1260,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-09-30",
@@ -1228,7 +1281,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-10-05",
@@ -1251,7 +1305,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-10-08",
@@ -1279,7 +1334,8 @@ export const DATA = {
               "tradeCharacterName": "Squelch",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-01-24",
@@ -1302,7 +1358,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -1326,7 +1383,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-04-20",
@@ -1346,7 +1404,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-04-20",
@@ -1374,7 +1433,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-02",
@@ -1394,7 +1454,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-02",
@@ -1414,7 +1475,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-04",
@@ -1437,7 +1499,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Learned Grippli",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-11",
@@ -1459,7 +1522,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Scavenged plate and a greatsword",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-12",
@@ -1482,7 +1546,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-15",
@@ -1500,7 +1565,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-22",
@@ -1522,7 +1588,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-29",
@@ -1540,7 +1607,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-07-10",
@@ -1562,7 +1630,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded to Pruxx for Necklace of Prayer Beads",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-07-10",
@@ -1585,7 +1654,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-08-25",
@@ -1611,7 +1681,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-14",
@@ -1639,7 +1710,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for a Moon-Tcouhed Greatsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-02-22",
@@ -1663,7 +1735,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-04-12",
@@ -1686,7 +1759,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-05-10",
@@ -1706,7 +1780,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-05-27",
@@ -1732,7 +1807,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Triceratops for 500 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-03-23",
@@ -1752,7 +1828,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-03-23",
@@ -1780,7 +1857,8 @@ export const DATA = {
               "tradeCharacterName": "Faramir Quickfoot for Periapt of Proof Against Poison",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-08-21",
@@ -1798,7 +1876,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-08-31",
@@ -1821,7 +1900,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-08-31",
@@ -1841,7 +1921,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-10-16",
@@ -1861,7 +1942,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-11-20",
@@ -1889,7 +1971,8 @@ export const DATA = {
               "tradeCharacterName": "Raguel for Vicious Lance",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-08-27",
@@ -1910,7 +1993,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -1932,7 +2016,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-20",
@@ -1953,7 +2038,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought snow shoes and crampons",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-29",
@@ -1977,7 +2063,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-03",
@@ -1995,7 +2082,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-26",
@@ -2015,7 +2103,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-26",
@@ -2036,7 +2125,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-13",
@@ -2060,7 +2150,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Successfully defended Easthaven",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-21",
@@ -2084,7 +2175,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-03-09",
@@ -2105,7 +2197,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Studded Leather Armor for 45 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-09-24",
@@ -2133,7 +2226,8 @@ export const DATA = {
               "tradeCharacterName": "Madam Renata for Winged Boots",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -2155,7 +2249,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-24",
@@ -2175,7 +2270,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-24",
@@ -2203,7 +2299,8 @@ export const DATA = {
               "tradeCharacterName": "Jerry Garcia for Headband of Intellect",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-24",
@@ -2223,7 +2320,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-01",
@@ -2243,7 +2341,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-15",
@@ -2267,7 +2366,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-22",
@@ -2290,7 +2390,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-19",
@@ -2310,7 +2411,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-21",
@@ -2328,7 +2430,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-01-21",
@@ -2348,7 +2451,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dark Gift: +30 max hp, twitchy, can't give a straight answer to any question, covered in dark fur",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-28",
@@ -2368,7 +2472,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-04",
@@ -2389,7 +2494,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 2 potions of healing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-25",
@@ -2415,7 +2521,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-11-20",
@@ -2443,7 +2550,8 @@ export const DATA = {
               "tradeCharacterName": "Raguel for Spider Staff",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -2467,7 +2575,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-18",
@@ -2485,7 +2594,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-18",
@@ -2503,7 +2613,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-18",
@@ -2523,7 +2634,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-18",
@@ -2551,7 +2663,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Dwarven Thrower",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-18",
@@ -2573,7 +2686,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-24",
@@ -2596,7 +2710,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-24",
@@ -2624,7 +2739,8 @@ export const DATA = {
               "tradeCharacterName": "Sookie Stackhouse for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-01-27",
@@ -2644,7 +2760,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Added spells to Ring of Spell Storing: Hex, Shield, Haste",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-01",
@@ -2672,7 +2789,8 @@ export const DATA = {
               "tradeCharacterName": "Sentient Hat for Splint",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-01",
@@ -2690,7 +2808,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-01",
@@ -2711,7 +2830,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-05",
@@ -2733,7 +2853,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-30",
@@ -2751,7 +2872,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-08",
@@ -2775,7 +2897,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-22",
@@ -2795,7 +2918,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-03-19",
@@ -2823,7 +2947,8 @@ export const DATA = {
               "tradeCharacterName": "Chef Ture for Lash of Immolation",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -2845,7 +2970,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-20",
@@ -2865,7 +2991,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought cold weather gear",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-20",
@@ -2885,7 +3012,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-20",
@@ -2913,7 +3041,8 @@ export const DATA = {
               "tradeCharacterName": "Jormund Khan for Helm of Telepathy",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-20",
@@ -2933,7 +3062,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-04",
@@ -2951,7 +3081,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-04",
@@ -2971,7 +3102,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-01",
@@ -2991,7 +3123,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-24",
@@ -3022,7 +3155,8 @@ export const DATA = {
               "tradeCharacterName": "Noraggen for Plague Fly",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -3050,7 +3184,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-03",
@@ -3068,7 +3203,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-07",
@@ -3090,7 +3226,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-19",
@@ -3120,7 +3257,8 @@ export const DATA = {
               "tradeCharacterName": "UAW",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-11",
@@ -3148,7 +3286,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Paid 10 gp for healing services",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-04",
@@ -3168,7 +3307,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-14",
@@ -3196,7 +3336,8 @@ export const DATA = {
               "tradeCharacterName": "Fai Chen for Maul",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-12-27",
@@ -3224,7 +3365,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Adamantine Plate Armor",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-12-27",
@@ -3248,7 +3390,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Met Foxwere companion",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-20",
@@ -3268,7 +3411,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-11",
@@ -3288,7 +3432,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-17",
@@ -3308,7 +3453,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-20",
@@ -3336,7 +3482,8 @@ export const DATA = {
               "tradeCharacterName": "Noraggen for Belt of Hill GIant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-20",
@@ -3356,7 +3503,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-14",
@@ -3384,7 +3532,8 @@ export const DATA = {
               "tradeCharacterName": "Sentient Hat for Belt of Fire Giant Strength to Buckley",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -3408,7 +3557,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Joined faction Force Grey (which I prefer to call Force Green)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-03",
@@ -3426,7 +3576,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-17",
@@ -3446,7 +3597,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-24",
@@ -3466,7 +3618,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-07",
@@ -3484,7 +3637,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Recieved Stone of Golorr",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-14",
@@ -3502,7 +3656,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-23",
@@ -3531,7 +3686,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-24",
@@ -3559,7 +3715,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Dread Helm",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-24",
@@ -3587,7 +3744,8 @@ export const DATA = {
               "tradeCharacterName": "Zeras Brid for Ruby of the War Mage",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-12",
@@ -3607,7 +3765,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Received Renown Item Katana (Longsword) +1",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-19",
@@ -3635,7 +3794,8 @@ export const DATA = {
               "tradeCharacterName": "Force Grey",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-19",
@@ -3655,7 +3815,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-21",
@@ -3683,7 +3844,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for the Sixth Sword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-23",
@@ -3706,7 +3868,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Gained one portent from Dreamwalker: 1 (used)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-29",
@@ -3731,7 +3894,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used Dreamwalker portent",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-29",
@@ -3749,7 +3913,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-06",
@@ -3777,7 +3942,8 @@ export const DATA = {
               "tradeCharacterName": "Lyrielle for Necklace of Fireballs",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -3799,7 +3965,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-09-25",
@@ -3819,7 +3986,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-09-27",
@@ -3837,7 +4005,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-09-27",
@@ -3857,7 +4026,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-04",
@@ -3875,7 +4045,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-05",
@@ -3895,7 +4066,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-02",
@@ -3923,7 +4095,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Gloves of Thievery",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-09",
@@ -3951,7 +4124,8 @@ export const DATA = {
               "tradeCharacterName": "Fei Chen for Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-20",
@@ -3979,7 +4153,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Mithral Splintmail",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-10-04",
@@ -3999,7 +4174,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -4021,7 +4197,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-01",
@@ -4041,7 +4218,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-08",
@@ -4059,7 +4237,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-04",
@@ -4081,7 +4260,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Longbow +1 renown item",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-12",
@@ -4109,7 +4289,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Belt of Hill Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-21",
@@ -4137,7 +4318,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Gem of Seeing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-12",
@@ -4165,7 +4347,8 @@ export const DATA = {
               "tradeCharacterName": "Tifa Heartlock for Sun Blade",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-12",
@@ -4193,7 +4376,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Glamoured Studded Leather",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -4211,7 +4395,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -4239,7 +4424,8 @@ export const DATA = {
               "tradeCharacterName": "Sentient Hat for Glamoured Studded Leather",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -4263,7 +4449,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-05",
@@ -4290,7 +4477,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-12",
@@ -4314,7 +4502,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-15",
@@ -4334,7 +4523,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-01-15",
@@ -4362,7 +4552,8 @@ export const DATA = {
               "tradeCharacterName": "Amaretto for Rod of the Pact Keeper",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-01-15",
@@ -4390,7 +4581,8 @@ export const DATA = {
               "tradeCharacterName": "Barbara Jean for Wand of the War Mage",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-01-16",
@@ -4411,7 +4603,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-19",
@@ -4434,7 +4627,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-29",
@@ -4454,7 +4648,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-02",
@@ -4480,7 +4675,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Revivify",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-18",
@@ -4503,7 +4699,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-23",
@@ -4526,7 +4723,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-30",
@@ -4551,7 +4749,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -4573,7 +4772,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4593,7 +4793,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4613,7 +4814,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4633,7 +4835,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-11-20",
@@ -4653,7 +4856,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4673,7 +4877,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4701,7 +4906,8 @@ export const DATA = {
               "tradeCharacterName": "Madam Renata for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4729,7 +4935,8 @@ export const DATA = {
               "tradeCharacterName": "Norixious for Half-plate",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4758,7 +4965,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Tome of Leadership and Influence",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -4782,7 +4990,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-01-11",
@@ -4802,7 +5011,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-03-26",
@@ -4822,7 +5032,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -4844,7 +5055,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-03-26",
@@ -4865,7 +5077,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-02",
@@ -4885,7 +5098,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-02",
@@ -4905,7 +5119,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-07",
@@ -4923,7 +5138,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-05-07",
@@ -4944,7 +5160,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-14",
@@ -4962,7 +5179,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-21",
@@ -4982,7 +5200,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Scribed Counterspell from a scroll",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-21",
@@ -5004,7 +5223,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-04",
@@ -5024,7 +5244,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-11",
@@ -5042,7 +5263,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-06-11",
@@ -5062,7 +5284,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-18",
@@ -5083,7 +5306,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-25",
@@ -5103,7 +5327,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-16",
@@ -5123,7 +5348,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-16",
@@ -5151,7 +5377,8 @@ export const DATA = {
               "tradeCharacterName": "Lyrielle for Ring of Telekenesis",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-08-27",
@@ -5169,7 +5396,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-08-27",
@@ -5189,7 +5417,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-08-27",
@@ -5219,7 +5448,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Wished for resistance to Necrotic, spell was cast from a scroll with the help of Divine Intervention by Deneir called upon by Myka (Nicole)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-03",
@@ -5247,7 +5477,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Eyes of the Eagle",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -5269,7 +5500,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Bruce the Elephant for 200 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-06",
@@ -5289,7 +5521,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-06",
@@ -5317,7 +5550,8 @@ export const DATA = {
               "tradeCharacterName": "Leonardo for the Sixth Sword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-06",
@@ -5338,7 +5572,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-14",
@@ -5356,7 +5591,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Yeti horn recorder (Flute) in Baldur's Gate",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-14",
@@ -5374,7 +5610,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-15",
@@ -5398,7 +5635,8 @@ export const DATA = {
           "lossesParsed": [
             "Leather Armor for 5gp"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-15",
@@ -5418,7 +5656,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-15",
@@ -5436,7 +5675,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-15",
@@ -5454,7 +5694,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-16",
@@ -5482,7 +5723,8 @@ export const DATA = {
               "tradeCharacterName": "Orakhar for Scimitar of Speed",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-07-16",
@@ -5510,7 +5752,8 @@ export const DATA = {
               "tradeCharacterName": "Z'la'ssh for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-08-03",
@@ -5528,7 +5771,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-08-04",
@@ -5548,7 +5792,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-08-06",
@@ -5566,7 +5811,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-08-25",
@@ -5584,7 +5830,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-08-27",
@@ -5602,7 +5849,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-04",
@@ -5620,7 +5868,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-09-04",
@@ -5638,7 +5887,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-09-07",
@@ -5656,7 +5906,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-09-25",
@@ -5698,7 +5949,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-19",
@@ -5724,7 +5976,8 @@ export const DATA = {
           ],
           "notes": "Purchased Studded Leather, cold weather gear, and 5 Potions of Superior Healing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-25",
@@ -5748,7 +6001,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Skin turned blue, hair turned purple, gained the flaw \"I am terrified of children.\"",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-27",
@@ -5771,7 +6025,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-17",
@@ -5793,7 +6048,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-23",
@@ -5813,7 +6069,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Killed in the Shadowfell, raised by clerics of Shantea for 1500 gp, purchased Greater Restoration to clear Shadowfell Despair for 550 gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-12-15",
@@ -5838,7 +6095,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-29",
@@ -5862,7 +6120,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 2 castings of Greater Restoration to remove effects from 10/25/21",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-15",
@@ -5880,7 +6139,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-20",
@@ -5902,7 +6162,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-30",
@@ -5930,7 +6191,8 @@ export const DATA = {
               "tradeCharacterName": "Tengen Uzui for Iron Bands of Bilaro",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-04-08",
@@ -5950,7 +6212,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Greater Restoration, Scroll of Revivify",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-07-04",
@@ -5968,7 +6231,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-07-04",
@@ -5992,7 +6256,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-08-03",
@@ -6012,7 +6277,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-01-18",
@@ -6034,7 +6300,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-11-09",
@@ -6054,7 +6321,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 15 elephants in Waterdeep and freed them",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-06-18",
@@ -6072,7 +6340,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -6094,7 +6363,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6112,7 +6382,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6130,7 +6401,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6150,7 +6422,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6170,7 +6443,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6190,7 +6464,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6210,7 +6485,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6238,7 +6514,8 @@ export const DATA = {
               "tradeCharacterName": "Anfer for Glamoured Studded Leather",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6266,7 +6543,8 @@ export const DATA = {
               "tradeCharacterName": "Norragen for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-02-24",
@@ -6299,7 +6577,8 @@ export const DATA = {
               "tradeCharacterName": "Pit Fiend in rare coins",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2021-03-24",
@@ -6322,7 +6601,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used +3 Arrow \"Deck of Many Things\"",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-03-27",
@@ -6346,7 +6626,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Cast Holy Weapon in Ring of Spell Storing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-03-27",
@@ -6366,7 +6647,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-03-27",
@@ -6394,7 +6676,8 @@ export const DATA = {
               "tradeCharacterName": "Bryce for Headband of Intellect",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-03",
@@ -6414,7 +6697,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded +3 Arrow \"Ironfang\" in exchange for an enslaved Drow",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-07",
@@ -6438,7 +6722,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 forked metal rods attuned to Material Plane and Plane of Knowledge",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-13",
@@ -6460,7 +6745,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-15",
@@ -6483,7 +6769,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 1000 gp on Heroe's Feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-04-28",
@@ -6503,7 +6790,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-12",
@@ -6526,7 +6814,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 4 scrolls of Lesser Restoration",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-14",
@@ -6544,7 +6833,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought a pirate flag with a dragon skull and crossbones",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-14",
@@ -6572,7 +6862,8 @@ export const DATA = {
               "tradeCharacterName": "Buckley for 1 pot of Nulzor's Marvelous Pigments",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-05-28",
@@ -6597,7 +6888,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-29",
@@ -6619,7 +6911,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-30",
@@ -6637,7 +6930,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-02",
@@ -6659,7 +6953,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-29",
@@ -6682,7 +6977,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 5 Scrolls of Mage Armor",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-12",
@@ -6700,7 +6996,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-21",
@@ -6720,7 +7017,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-26",
@@ -6740,7 +7038,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 scrolls of Find Familiar and 2 scrolls of Mage Armor",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-08-01",
@@ -6758,7 +7057,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-09-04",
@@ -6776,7 +7076,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-30",
@@ -6801,7 +7102,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 1 Scroll of Holy Weapon, Scroll of Revivify, Spent 1000 gp on Heroe's Feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-05",
@@ -6825,7 +7127,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-10",
@@ -6851,7 +7154,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-11",
@@ -6877,7 +7181,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-13",
@@ -6904,7 +7209,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 5 Scrolls of Mage Armor, bought 5 Scrolls of Holy Weapon, paid for Hero's Feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-29",
@@ -6928,7 +7234,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Saved the Lich Queen's Begotten (Janeane) because she's great and likes crepes. Plane Shifted to the House of Knowledge to let Oghma deal with her being a vessel for the Lich Queen. Stayed and performed many new stories and songs for Oghma.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-04-01",
@@ -6950,7 +7257,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-04-03",
@@ -6972,7 +7280,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-18",
@@ -6992,7 +7301,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-07-02",
@@ -7019,7 +7329,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-11-30",
@@ -7037,7 +7348,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-04-05",
@@ -7055,7 +7367,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-05-17",
@@ -7073,7 +7386,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-11-14",
@@ -7098,7 +7412,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Kendrick Camaraderie story award. Purchased Heroes' Feast component (1000gp), 3 scrolls of Teleportation Circle (3000 gp)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-04-30",
@@ -7118,7 +7433,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-05-21",
@@ -7138,7 +7454,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -7170,7 +7487,8 @@ export const DATA = {
               "tradeCharacterName": "Del for Choraller's Companion",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-08",
@@ -7198,7 +7516,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Gem of Water Elemental",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-20",
@@ -7218,7 +7537,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Rapier +1 renown item",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-07",
@@ -7238,7 +7558,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-07",
@@ -7258,7 +7579,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-07",
@@ -7286,7 +7608,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Belt of Hill Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-12",
@@ -7308,7 +7631,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-13",
@@ -7336,7 +7660,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Sun Blade",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-15",
@@ -7354,7 +7679,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-16",
@@ -7374,7 +7700,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-16",
@@ -7392,7 +7719,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-16",
@@ -7420,7 +7748,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Wand of Webs",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-17",
@@ -7448,7 +7777,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Trident of Fish Command",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-28",
@@ -7466,7 +7796,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-08",
@@ -7486,7 +7817,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-10",
@@ -7514,7 +7846,8 @@ export const DATA = {
               "tradeCharacterName": "Jareb for Lance",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-04",
@@ -7534,7 +7867,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-12",
@@ -7554,7 +7888,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-12",
@@ -7572,7 +7907,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-14",
@@ -7592,7 +7928,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-14",
@@ -7620,7 +7957,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Belt of For Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-05-14",
@@ -7640,7 +7978,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-16",
@@ -7671,7 +8010,8 @@ export const DATA = {
           ],
           "notes": "Bought 300 gp diamond",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-27",
@@ -7689,7 +8029,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-17",
@@ -7709,7 +8050,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Cast Find Greater Steed scroll for Griffon",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-30",
@@ -7729,7 +8071,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-07",
@@ -7749,7 +8092,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-14",
@@ -7769,7 +8113,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-18",
@@ -7787,7 +8132,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-21",
@@ -7807,7 +8153,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought cold weather gear for 4gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-11",
@@ -7827,7 +8174,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-11",
@@ -7856,7 +8204,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Tome of Leadership and Influence",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-01",
@@ -7877,7 +8226,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 3 Potions of Greater Healing for 300 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-02",
@@ -7905,7 +8255,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Plate",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-31",
@@ -7935,7 +8286,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-31",
@@ -7953,7 +8305,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 Scrolls of Death Ward, 1 Scroll of Revivify",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-01",
@@ -7971,7 +8324,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-01",
@@ -7999,7 +8353,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Aegis of the Raven Queen Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-01",
@@ -8027,7 +8382,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-25",
@@ -8049,7 +8405,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 300 gp diamond, 166 gp for Hero's Feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-10",
@@ -8073,7 +8430,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-27",
@@ -8096,7 +8454,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-30",
@@ -8118,7 +8477,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-03",
@@ -8140,7 +8500,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 Potions of Greater Healing. Spent 225 hiring Babyface Yoka",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-13",
@@ -8158,7 +8519,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-05-28",
@@ -8181,7 +8543,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-05-28",
@@ -8209,7 +8572,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Lance",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -8231,7 +8595,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-16",
@@ -8251,7 +8616,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 30 gp worth of incense",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-07",
@@ -8272,7 +8638,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-03",
@@ -8296,7 +8663,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Met Jim Jar the Deep Gnome. Visited Duergar city of Duerradain and saw Mindflayer technology modify Simulacrum spell",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-07",
@@ -8316,7 +8684,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-07",
@@ -8344,7 +8713,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Staff of Power",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-08",
@@ -8364,7 +8734,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-10",
@@ -8385,7 +8756,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 2 days and 375gp exchanging spells with Skippio (Angel)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-11",
@@ -8405,7 +8777,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Can summon a Tressym familiar",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-13",
@@ -8427,7 +8800,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 1 day and 200gp exchanging spells with Cassandra (Jon)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-16",
@@ -8450,7 +8824,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-22",
@@ -8471,7 +8846,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Collected 3 Spellbooks, turned in 1 for 100 pp distributed to each party member for 120 gp each. Bought 2x Find Familiar incense for 20gp and paid for a boat ride for 5gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-22",
@@ -8499,7 +8875,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Mace of Smiting",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-23",
@@ -8523,7 +8900,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 1 day and 50gp learning Detect Thoughts from Zynn (Erik)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-23",
@@ -8543,7 +8921,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-23",
@@ -8571,7 +8950,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Robe of Stars",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-07",
@@ -8591,7 +8971,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-11",
@@ -8611,7 +8992,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-13",
@@ -8636,7 +9018,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Picked up an amulet with the holy symbol of Mystra. Found Lasharra's Spellbook. Spent 1 day and 275gp learning Rary's Telepathic Bond and Water Breathing. Played Liar's Night Wave 1",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-14",
@@ -8656,7 +9039,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-17",
@@ -8676,7 +9060,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-17",
@@ -8704,7 +9089,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Dagger of Blindsight",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-17",
@@ -8726,7 +9112,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 25 downtime days on the Dreamwalker activity, portent received: 19",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-21",
@@ -8749,7 +9136,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-22",
@@ -8774,7 +9162,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Cloak of the Bat and Mysterey Key from Liar's Night Wave 2. Copied Scrying from a Traveling Spellbook for 1 DTD and 125 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-25",
@@ -8800,7 +9189,8 @@ export const DATA = {
           "lossesParsed": [
             "1 Mystery Key"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-25",
@@ -8822,7 +9212,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-28",
@@ -8847,7 +9238,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Played Liar's Night Wave 3, received Candy Corn Calico Cat Construct Pet/Familiar",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-29",
@@ -8871,7 +9263,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Found 100 gp worth of spell incense (Find Familiar)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-01",
@@ -8895,7 +9288,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 150gp and 1 DTD scribing Leomund's Tiny Hut in library in Stygia. Used Dreamwalker Portent (19)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-12",
@@ -8915,7 +9309,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-14",
@@ -8938,7 +9333,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-19",
@@ -8958,7 +9354,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-21",
@@ -8981,7 +9378,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-01",
@@ -9004,7 +9402,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-02",
@@ -9026,7 +9425,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-05",
@@ -9047,7 +9447,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-10",
@@ -9067,7 +9468,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-12-19",
@@ -9091,7 +9493,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-22",
@@ -9116,7 +9519,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Copied Chain Lightning from Lasharra's spellbook. Joined the Mug Club for 5 gp. Bought a 300 gp diamond. Found Necromancer's Spellbook.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-22",
@@ -9144,7 +9548,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Flying Carpet",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-12-23",
@@ -9169,7 +9574,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Copied True Seeing from Whirl for 300 gp and 1 DTD",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-24",
@@ -9197,7 +9603,8 @@ export const DATA = {
           ],
           "notes": "Offered a spellbook (collected 9/22/2020) as payment to enter Candlekeep",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-30",
@@ -9223,7 +9630,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-06",
@@ -9243,7 +9651,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-14",
@@ -9263,7 +9672,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Found the Demilich Fyndulaas's Spellbook",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-16",
@@ -9286,7 +9696,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Gave up Ring of Protection to Efreeti, must wait one adventure before acquiring a new faction Ring",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-29",
@@ -9314,7 +9725,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 2 DTD's while Cassandra scribed Steel Wind Strike",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-03",
@@ -9337,7 +9749,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 5 potions of Greater Healing for 500 gp. Spent 25 DTD's Dreamwalking, received an 18 Dreamwalker Portent. Spend 2 DTD's for Krus to copy Crown of Stars",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-02-27",
@@ -9363,7 +9776,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-03-03",
@@ -9383,7 +9797,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-04",
@@ -9403,7 +9818,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-11",
@@ -9427,7 +9843,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-06-20",
@@ -9447,7 +9864,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-03",
@@ -9475,7 +9893,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Wand of Lightning Bolts",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-10",
@@ -9498,7 +9917,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Revivify scroll (already had diamond) for 300 gp. Spent 2000 gold and 20 DTD purchasing an estate in the Little Moonsea neighborhood of Fangjaws Hold. Copied Catnap from Fotia (Bryce). Copied spells from previously collected spellbooks.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-11",
@@ -9526,7 +9946,8 @@ export const DATA = {
               "tradeCharacterName": "Jasmine for a Crystal Ball",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-12",
@@ -9555,7 +9976,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Acquired vial of dust from the rotted corpse of a clone of Manshoon.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-17",
@@ -9579,7 +10001,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Met Caustilancer the Black Dragon (adult) and arranged a teaching position for him. Copied Synaptic Static from Nibbler (Chuck G.)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-24",
@@ -9607,7 +10030,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Manual of Iron Golems",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-26",
@@ -9631,7 +10055,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Killed 19 Thentian commoners in combat and told to lay low. No advertising the school for one year.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-26",
@@ -9649,7 +10074,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-11-03",
@@ -9672,7 +10098,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroe's Feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-04",
@@ -9715,7 +10142,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 3 Potions of Supreme Healing, 2 Potions of Superior Healing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-07",
@@ -9737,7 +10165,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Captured by Yuan Ti for 61 days",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-11-08",
@@ -9755,7 +10184,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased components and cast clone, spent 120 days and 100,000 gp using Manual of Iron Golems, clone reached maturity.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-11-21",
@@ -9775,7 +10205,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-11-21",
@@ -9803,7 +10234,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 14 days and 2150 gp copying spells from previously collected spellbooks. Bought scrolls of Arcane Eye and Tasha's Mind Whip and copied into spellbook for 2 days and 950 gp. Bought scrolls of Mold Earth and Passwall and copied them into my spell book during the adventure for 1325 gp. Received a scroll of teleportation circle and scribed it into my spellbook for 250 gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-07",
@@ -9823,7 +10255,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-26",
@@ -9846,7 +10279,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Gave up Wand of Smiles and Stygian Scale Mail to a hag in exchange for a magic elixer.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-01-30",
@@ -9874,7 +10308,8 @@ export const DATA = {
               "tradeCharacterName": "Sir John of Cormanthor for Grig Fiddle",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-02-09",
@@ -9908,7 +10343,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used Scroll of Wish (Quinlin wished for Necrotic Resistance)",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-19",
@@ -9936,7 +10372,8 @@ export const DATA = {
               "tradeCharacterName": "AL Trading Post for Ghost Step Tattoo",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-02-20",
@@ -9959,7 +10396,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-21",
@@ -9987,7 +10425,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-02-28",
@@ -10012,7 +10451,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-02-28",
@@ -10035,7 +10475,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-02-28",
@@ -10059,7 +10500,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-03-16",
@@ -10085,7 +10527,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-03-22",
@@ -10110,7 +10553,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-04-06",
@@ -10134,7 +10578,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 death ward scrolls, 1 greater restoration scroll, 1 heroes feast",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-04-20",
@@ -10162,7 +10607,8 @@ export const DATA = {
               "tradeCharacterName": "Sir Norixius for Ring of Shooting Stars",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-26",
@@ -10190,7 +10636,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-29",
@@ -10218,7 +10665,8 @@ export const DATA = {
               "tradeCharacterName": "AL Trading Post for Plate Barding",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-02",
@@ -10245,7 +10693,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-07",
@@ -10267,7 +10716,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Can spend 50 downtime days to make a hidden demiplane or connect two demiplanes you have created.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-08",
@@ -10295,7 +10745,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Robe of the Archmage",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -10322,7 +10773,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 200 DTD in the Hall of Omens gaining an additional portent",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-08",
@@ -10350,7 +10802,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Tome of the Stilled Tongue",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -10378,7 +10831,8 @@ export const DATA = {
               "tradeCharacterName": "trade Blackrazor for a Moon Blade",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -10398,7 +10852,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-08",
@@ -10420,7 +10875,8 @@ export const DATA = {
           ],
           "notes": "Gained an additional 9th level spell slot",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -10448,7 +10904,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Staff of the Magi",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-12",
@@ -10476,7 +10933,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Robe of the Archmagi",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-15",
@@ -10504,7 +10962,8 @@ export const DATA = {
               "tradeCharacterName": "S'arrok for Vorpal Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-09-04",
@@ -10527,7 +10986,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-04",
@@ -10552,7 +11012,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Permanently gave up 5 hit dice to power the opal pendant to hold an atropal",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-04",
@@ -10576,7 +11037,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-04",
@@ -10604,7 +11066,8 @@ export const DATA = {
               "tradeCharacterName": "Trading Post for Absorbing Tattoo",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-09-14",
@@ -10622,7 +11085,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used Dreamwalker downtime activity to recieve a new portent: 18",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-09-14",
@@ -10647,7 +11111,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-14",
@@ -10675,7 +11140,8 @@ export const DATA = {
               "tradeCharacterName": "Norixius for Pipe of Smoke Monsters",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-09-14",
@@ -10701,7 +11167,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used 18 Dreamwalker portent",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-11-09",
@@ -10723,7 +11190,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-01-20",
@@ -10748,7 +11216,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-01-20",
@@ -10773,7 +11242,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-01-20",
@@ -10791,7 +11261,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 240 days and 250,000 gp to scribe a scroll of Wish.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-01-21",
@@ -10815,7 +11286,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Wren (Erik T.) cast Scroll of Wish for Slashing resistance. Bought scroll of Death Ward.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-05-28",
@@ -10835,7 +11307,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Iron Golem destroyed",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-06-07",
@@ -10858,7 +11331,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2023-10-04",
@@ -10878,7 +11352,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-10-04",
@@ -10898,7 +11373,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-10-04",
@@ -10918,7 +11394,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2023-10-04",
@@ -10938,7 +11415,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-03-23",
@@ -10966,7 +11444,8 @@ export const DATA = {
               "tradeCharacterName": "Eriol Quickfoot for Ascendent Dragon's Wrath Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-05-28",
@@ -10994,7 +11473,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Arcane Grimoire",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-06-27",
@@ -11012,7 +11492,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used Dreamwalker downtime activity to receive a new portent: 5",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -11044,7 +11525,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Broom of Flying",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2002-01-17",
@@ -11072,7 +11554,8 @@ export const DATA = {
               "tradeCharacterName": "Sister Edwina for Wand of Fireballs",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-03",
@@ -11092,7 +11575,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-08",
@@ -11112,7 +11596,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-10",
@@ -11130,7 +11615,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 50gp on 5x Find Familiar components",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-10",
@@ -11148,7 +11634,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-14",
@@ -11168,7 +11655,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought studded leather. +1 Rod of the Pact Keeper renown item.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-15",
@@ -11196,7 +11684,8 @@ export const DATA = {
               "tradeCharacterName": "Abserd for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-15",
@@ -11214,7 +11703,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-16",
@@ -11234,7 +11724,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-17",
@@ -11252,7 +11743,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded Ring of Spell Storing to",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-17",
@@ -11272,7 +11764,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-18",
@@ -11292,7 +11785,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-18",
@@ -11312,7 +11806,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-20",
@@ -11332,7 +11827,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded Wand of Fireballs for Rod of the Pact Keeper +2",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-20",
@@ -11354,7 +11850,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-22",
@@ -11379,7 +11876,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought silver cage for 100 gp (Soul Cage component). Bought 10x Find Familiar components for 100 gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-22",
@@ -11404,7 +11902,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Ring of Evasion from Zhentarim membership. Spent 50 DTD's learning nature of the weave, got expertise in Arcana.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-23",
@@ -11432,7 +11931,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Bad of Devouring",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-23",
@@ -11452,7 +11952,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-29",
@@ -11480,7 +11981,8 @@ export const DATA = {
               "tradeCharacterName": "Bilbo Baggins for Staff of Power",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-01",
@@ -11498,7 +12000,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Revivify Scroll with components, Greater Restoration Scroll, Freedom of movement scroll. Bought Hag's Eye for 200 gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-01",
@@ -11518,7 +12021,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Unlocked Oathbinder, in reserve until Tier 4",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-02",
@@ -11546,7 +12050,8 @@ export const DATA = {
               "tradeCharacterName": "Audra Illumine for Rod of the Pact Keeper",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-03",
@@ -11575,7 +12080,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Staff of Thunder and Lightning",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-03",
@@ -11595,7 +12101,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Ring of Evasion",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-06",
@@ -11613,7 +12120,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-14",
@@ -11633,7 +12141,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-14",
@@ -11653,7 +12162,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-15",
@@ -11673,7 +12183,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-20",
@@ -11691,7 +12202,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-27",
@@ -11709,7 +12221,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-06",
@@ -11727,7 +12240,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-07",
@@ -11747,7 +12261,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 1 scroll of greater restoration. Unlocked Spare (legendary flame tongue Longsword that casts Vicious Mockery) available at Tier 4.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-14",
@@ -11765,7 +12280,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-27",
@@ -11785,7 +12301,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-01",
@@ -11803,7 +12320,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-08",
@@ -11823,7 +12341,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-16",
@@ -11843,7 +12362,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "-1 minutes on Candle of Invocation",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-16",
@@ -11871,7 +12391,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Tome of Understanding",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-18",
@@ -11893,7 +12414,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-22",
@@ -11919,7 +12441,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-23",
@@ -11941,7 +12464,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-28",
@@ -11959,7 +12483,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-05",
@@ -11977,7 +12502,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-06",
@@ -11995,7 +12521,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-03",
@@ -12015,7 +12542,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-10",
@@ -12040,7 +12568,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased 2 Scrolls of Catnap for 600gp. Won a free beer every day for a year at the Laughing Goblin in Phlan",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-16",
@@ -12062,7 +12591,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-01",
@@ -12090,7 +12620,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Cloak of Many Fashions",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-01",
@@ -12110,7 +12641,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-08",
@@ -12128,7 +12660,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-15",
@@ -12146,7 +12679,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Find Familiar components x10",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-13",
@@ -12168,7 +12702,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-19",
@@ -12189,7 +12724,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-08",
@@ -12213,7 +12749,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Advantage on each save once: WIS, INT, CHA",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-15",
@@ -12241,7 +12778,8 @@ export const DATA = {
               "tradeCharacterName": "Morty for Studded Leather",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-15",
@@ -12265,7 +12803,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-07",
@@ -12286,7 +12825,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Read three books about the Far Realm",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-08",
@@ -12310,7 +12850,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 10 potions of greater healing for 50 gp each.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-23",
@@ -12330,7 +12871,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 scrolls of Tongues",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-01-07",
@@ -12352,7 +12894,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-07-03",
@@ -12370,7 +12913,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-08-08",
@@ -12390,7 +12934,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 3 potions of greater healing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-16",
@@ -12413,7 +12958,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used Mental Fortitude - Int save",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-12-22",
@@ -12437,7 +12983,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-01-22",
@@ -12461,7 +13008,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 10 scrolls of Hex",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-09-11",
@@ -12479,7 +13027,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-11-20",
@@ -12507,7 +13056,8 @@ export const DATA = {
               "tradeCharacterName": "Raguel for Anstruth Harp",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-04-16",
@@ -12535,7 +13085,8 @@ export const DATA = {
               "tradeCharacterName": "Chef Ture for Staff of the Python",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-05-14",
@@ -12555,7 +13106,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-05-14",
@@ -12578,7 +13130,8 @@ export const DATA = {
           ],
           "notes": "Blessing of Magic Resistance",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-05-25",
@@ -12598,7 +13151,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -12622,7 +13176,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-19",
@@ -12644,7 +13199,8 @@ export const DATA = {
           "lossesParsed": [
             "longsword and chainmail for 39 gp"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-19",
@@ -12664,7 +13220,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Learned proficiency with the Lyre",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-19",
@@ -12684,7 +13241,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used 20 DTD's to escape Ravenloft, dropped Bowl of Commanding Water Elementals",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-10-22",
@@ -12702,7 +13260,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-15",
@@ -12730,7 +13289,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Elven Chain",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-23",
@@ -12758,7 +13318,8 @@ export const DATA = {
               "tradeCharacterName": "Fei Chen for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-23",
@@ -12786,7 +13347,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-21",
@@ -12806,7 +13368,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Winged Boots, +1 Shield renown item",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-21",
@@ -12834,7 +13397,8 @@ export const DATA = {
               "tradeCharacterName": "Anfer for Belt of Hill Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-02",
@@ -12854,7 +13418,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped +1 Shield",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-02",
@@ -12874,7 +13439,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-08",
@@ -12902,7 +13468,8 @@ export const DATA = {
               "tradeCharacterName": "Wandering Swordsman for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-09",
@@ -12922,7 +13489,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Longsword +1 renown item.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-23",
@@ -12951,7 +13519,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Staff of Thunder and Lightning",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-03",
@@ -12979,7 +13548,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-07",
@@ -13007,7 +13577,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Opal of the Ild Rune",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-09",
@@ -13027,7 +13598,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-11",
@@ -13047,7 +13619,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Find Greater Steed for 500 gp, cast for Pegasus mount",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-11",
@@ -13075,7 +13648,8 @@ export const DATA = {
               "tradeCharacterName": "Morinth for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-12",
@@ -13103,7 +13677,8 @@ export const DATA = {
               "tradeCharacterName": "Anfer for Sun Blade",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-12",
@@ -13131,7 +13706,8 @@ export const DATA = {
               "tradeCharacterName": "for Plate",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-13",
@@ -13159,7 +13735,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan Brightwave for Bracers of Defense",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-15",
@@ -13181,7 +13758,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-25",
@@ -13202,7 +13780,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought scroll of Find Greater Steed",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-26",
@@ -13230,7 +13809,8 @@ export const DATA = {
               "tradeCharacterName": "Warden for Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-26",
@@ -13253,7 +13833,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-10",
@@ -13274,7 +13855,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 1 Scroll of Find Greater Steed, 2 Scrolls of Revivify, 3 Scrolls of Enlarge/Reduce, 3 Scrolls of Alter Self. Dropped Ring of Protection",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-15",
@@ -13302,7 +13884,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Staff of Power",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-21",
@@ -13320,7 +13903,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 800gp for Splint barding. Spent 300gp and 1 soul coin to make a Hag's daughters stop haunting my dreams. Spent 500gp and 5 DTD's in a bargain with Mahadi.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-21",
@@ -13340,7 +13924,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-21",
@@ -13358,7 +13943,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-05",
@@ -13386,7 +13972,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Plate Barding",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-05-02",
@@ -13406,7 +13993,8 @@ export const DATA = {
           "lossesParsed": [
             "Splint Barding for 400 gp"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-02",
@@ -13424,7 +14012,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-24",
@@ -13442,7 +14031,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Catnap for 300gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-01",
@@ -13462,7 +14052,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-10",
@@ -13482,7 +14073,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-13",
@@ -13500,7 +14092,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-13",
@@ -13522,7 +14115,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 3 Scrolls of Holy Weapon, 2 Scrolls of Find Greater Steed, and 10 Potions of Greater Healing. Used 1 DTD to cast spells. Spent 1 Soul Coin",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-07",
@@ -13550,7 +14144,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Tloque's Battleaxe",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-22",
@@ -13578,7 +14173,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Dagger of Blindsight",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-02",
@@ -13606,7 +14202,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Manual of Quickness and Action",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-01",
@@ -13634,7 +14231,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Flying Carpet",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-01",
@@ -13662,7 +14260,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan for Manual of Bodily Health",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-12-22",
@@ -13690,7 +14289,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Dwarven Plate",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-10",
@@ -13718,7 +14318,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Holy Avenger Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-10",
@@ -13738,7 +14339,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-05-26",
@@ -13766,7 +14368,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Belt of Storm Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-05-26",
@@ -13786,7 +14389,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 Scrolls of Holy Weapon",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-03",
@@ -13814,7 +14418,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Ioun Stone of Mastery",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -13842,7 +14447,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Efreeti Chain",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-24",
@@ -13870,7 +14476,8 @@ export const DATA = {
               "tradeCharacterName": "Samus for Manual of Iron Golems",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-24",
@@ -13899,7 +14506,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Tome of Leadership and Influence",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2024-01-31",
@@ -13919,7 +14527,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -13941,7 +14550,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-02",
@@ -13961,7 +14571,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-02",
@@ -13981,7 +14592,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-02",
@@ -13999,7 +14611,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-02",
@@ -14027,7 +14640,8 @@ export const DATA = {
               "tradeCharacterName": "Rolyn for Winged Boots",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-07",
@@ -14053,7 +14667,8 @@ export const DATA = {
           "lossesParsed": [
             "Longsword and Chainmail for 44gp"
           ],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-07",
@@ -14073,7 +14688,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Winged Boots",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-09",
@@ -14102,7 +14718,8 @@ export const DATA = {
               "tradeCharacterName": "Pipyap for casting 4th level spell",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-09",
@@ -14120,7 +14737,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-10",
@@ -14138,7 +14756,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-10",
@@ -14166,7 +14785,8 @@ export const DATA = {
               "tradeCharacterName": "Fei Chen for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-10",
@@ -14186,7 +14806,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped +1 Longsword.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-14",
@@ -14208,7 +14829,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-15",
@@ -14236,7 +14858,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Ring of Spell Storing",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-16",
@@ -14258,7 +14881,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 60 DTD's and 100gp to brew 1 barrel of Vergadain's Firespirits",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-20",
@@ -14284,7 +14908,8 @@ export const DATA = {
               "tradeCharacterName": "Rolyn for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-20",
@@ -14312,7 +14937,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-20",
@@ -14340,7 +14966,8 @@ export const DATA = {
               "tradeCharacterName": "Rolyn for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-11-27",
@@ -14360,7 +14987,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Fronstbrand Scimitar",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-11-30",
@@ -14380,7 +15008,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-02",
@@ -14408,7 +15037,8 @@ export const DATA = {
               "tradeCharacterName": "Marina for",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-02",
@@ -14436,7 +15066,8 @@ export const DATA = {
               "tradeCharacterName": "Goombus for Staff of Power",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-02",
@@ -14464,7 +15095,8 @@ export const DATA = {
               "tradeCharacterName": "Thelma Scrollroller for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-07",
@@ -14484,7 +15116,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped +1 Shield",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-08",
@@ -14512,7 +15145,8 @@ export const DATA = {
               "tradeCharacterName": "Agnes Illumine for CHA tome",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-12",
@@ -14540,7 +15174,8 @@ export const DATA = {
               "tradeCharacterName": "Anfer for Elven Chain",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-12",
@@ -14560,7 +15195,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-14",
@@ -14588,7 +15224,8 @@ export const DATA = {
               "tradeCharacterName": "Marina for Belt of Fire Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2019-12-19",
@@ -14608,7 +15245,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Plate +1",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-21",
@@ -14628,7 +15266,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2019-12-21",
@@ -14646,7 +15285,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-04",
@@ -14670,7 +15310,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-04",
@@ -14692,7 +15333,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-01-08",
@@ -14720,7 +15362,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan Brightwave for Choraller's Companion",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-17",
@@ -14748,7 +15391,8 @@ export const DATA = {
               "tradeCharacterName": "Don Karnage for Broom of Flying",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-17",
@@ -14776,7 +15420,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Wand of Webs",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-18",
@@ -14794,7 +15439,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-16",
@@ -14825,7 +15471,8 @@ export const DATA = {
               "tradeCharacterName": "Wren",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-16",
@@ -14853,7 +15500,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan Brightwave for Trident of Fish Command",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-17",
@@ -14881,7 +15529,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan Brightwave for Wand of Webs",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-17",
@@ -14909,7 +15558,8 @@ export const DATA = {
               "tradeCharacterName": "Brielle Akamiir for Belt of Storm Giant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-17",
@@ -14932,7 +15582,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-20",
@@ -14960,7 +15611,8 @@ export const DATA = {
               "tradeCharacterName": "Zelene Silrathas for Periapt of Proof Against Poison",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-22",
@@ -14988,7 +15640,8 @@ export const DATA = {
               "tradeCharacterName": "Yongbi for Manual of Bodily Health",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-02-29",
@@ -15010,7 +15663,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-02-29",
@@ -15038,7 +15692,8 @@ export const DATA = {
               "tradeCharacterName": "Snowball for Scarab of Protection",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-03",
@@ -15056,7 +15711,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-04",
@@ -15084,7 +15740,8 @@ export const DATA = {
               "tradeCharacterName": "Darnys for Holy Avenger Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-06",
@@ -15102,7 +15759,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-06",
@@ -15130,7 +15788,8 @@ export const DATA = {
               "tradeCharacterName": "Missmeseeks for Cloak of Invisibility",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-06",
@@ -15158,7 +15817,8 @@ export const DATA = {
               "tradeCharacterName": "Winkle Paddlegear for Ioun Stone of Insight",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-07",
@@ -15180,7 +15840,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-10",
@@ -15208,7 +15869,8 @@ export const DATA = {
               "tradeCharacterName": "Portia Porridgepot for Plate",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-13",
@@ -15230,7 +15892,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-15",
@@ -15258,7 +15921,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-15",
@@ -15278,7 +15942,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-04",
@@ -15301,7 +15966,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Dropped Shield +3 and Staff of the Magi",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-05",
@@ -15329,7 +15995,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-07",
@@ -15357,7 +16024,8 @@ export const DATA = {
               "tradeCharacterName": "Sibila for Tome of Understanding",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-16",
@@ -15385,7 +16053,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Aegis of the Raven Queen Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-18",
@@ -15403,7 +16072,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 4 potions of Greater Healing for 400.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-26",
@@ -15423,7 +16093,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-26",
@@ -15441,7 +16112,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-05",
@@ -15465,7 +16137,8 @@ export const DATA = {
           ],
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-14",
@@ -15493,7 +16166,8 @@ export const DATA = {
               "tradeCharacterName": "Indy for Whip",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-05",
@@ -15518,7 +16192,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-05",
@@ -15541,7 +16216,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-30",
@@ -15563,7 +16239,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 4 Scrolls of Freedom of Movement, 2 Scrolls of Holy Weapon, 1 Scroll of Revivify, 4 Scrolls of Death Ward, 2 Scrolls of Greater Restoration, 1 Scroll of Find Greater Steed, and 2 Scrolls of Enlarge/Reduce for a total of 9100 gp.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-27",
@@ -15588,7 +16265,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-12-27",
@@ -15616,7 +16294,8 @@ export const DATA = {
               "tradeCharacterName": "Buckley for Eyes of the Eagle",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-04-10",
@@ -15644,7 +16323,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Ioun Stone of Mastery",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-05-26",
@@ -15672,7 +16352,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Efreeti Chain",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15700,7 +16381,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Holy Avenger Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15728,7 +16410,8 @@ export const DATA = {
               "tradeCharacterName": "Lorien for Belt of Storm GIant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15756,7 +16439,8 @@ export const DATA = {
               "tradeCharacterName": "Orakhar for Broom of Flying",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15776,7 +16460,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15804,7 +16489,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Periapt of Proof Against Poison",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-10-03",
@@ -15831,7 +16517,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-13",
@@ -15856,7 +16543,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-10-13",
@@ -15884,7 +16572,8 @@ export const DATA = {
               "tradeCharacterName": "Aramil for Rod of Absorption",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-28",
@@ -15912,7 +16601,8 @@ export const DATA = {
               "tradeCharacterName": "Jillian for Blood Fury Tattoo",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-05-29",
@@ -15934,7 +16624,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-05-30",
@@ -15959,7 +16650,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-06",
@@ -15987,7 +16679,8 @@ export const DATA = {
               "tradeCharacterName": "Aiden Moonshadow for Robe of the Archmage",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-06",
@@ -16015,7 +16708,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Defender Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -16043,7 +16737,8 @@ export const DATA = {
               "tradeCharacterName": "Duke for Hide Armor",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -16071,7 +16766,8 @@ export const DATA = {
               "tradeCharacterName": "Duke for Holy Avenger Longsword",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-12",
@@ -16099,7 +16795,8 @@ export const DATA = {
               "tradeCharacterName": "Valenor Vyshaan to Robe of the Archmagi",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-12",
@@ -16127,7 +16824,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Belt of Storm GIant Strength",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-08-17",
@@ -16147,7 +16845,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-09-04",
@@ -16168,7 +16867,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2024-04-25",
@@ -16191,7 +16891,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2025-01-29",
@@ -16215,7 +16916,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2025-05-25",
@@ -16235,7 +16937,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         }
       ]
     },
@@ -16257,7 +16960,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-24",
@@ -16277,7 +16981,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-25",
@@ -16295,7 +17000,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-25",
@@ -16313,7 +17019,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-03-25",
@@ -16331,7 +17038,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Received +1 Quarterstaff renown item",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-03-31",
@@ -16351,7 +17059,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-03",
@@ -16379,7 +17088,8 @@ export const DATA = {
               "tradeCharacterName": "Dino for Staff of the Woodlands",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-04-07",
@@ -16399,7 +17109,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used one DTD to Awaken a tree named Mr. Oak",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-09",
@@ -16417,7 +17128,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Met Bitter Blossom and learned the story of Bitter Root",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-14",
@@ -16437,7 +17149,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-04-15",
@@ -16455,7 +17168,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used 1 DTD to Awaken a tree named Chris Pine",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-13",
@@ -16475,7 +17189,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used 1 DTD to Awaken a tree named Thora Birch. Dropped Tan Bag of Tricks",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-19",
@@ -16503,7 +17218,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Purchased Infernal Kitty and Infernal Puppy for 25 gp each. Cast Awaken on the Kitty.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-20",
@@ -16521,7 +17237,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Used 1 DTD to Awaken Ripple's (Hal's) raptor.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-05-28",
@@ -16539,7 +17256,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Thora Birch left the adventure after nearly being killed. Awakened a new tree named Elijah Wood.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-04",
@@ -16559,7 +17277,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Met a Koala named Eugene and Awakened him.",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-06-09",
@@ -16581,7 +17300,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-06-09",
@@ -16604,7 +17324,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-01",
@@ -16632,7 +17353,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Wand of Pyrotecnics",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-02",
@@ -16655,7 +17377,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought Scroll of Catnap for 300gp",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-09",
@@ -16676,7 +17399,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-21",
@@ -16704,7 +17428,8 @@ export const DATA = {
               "tradeCharacterName": "Leonardo for Necklace of Prayer Beads",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-07-30",
@@ -16724,7 +17449,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Paid Planatar 200 gp (1000 total) to cast Raise Dead",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-07-31",
@@ -16752,7 +17478,8 @@ export const DATA = {
               "tradeCharacterName": "Lim Dul for Tome of Understanding",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-08-01",
@@ -16772,7 +17499,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-05",
@@ -16798,7 +17526,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-07",
@@ -16816,7 +17545,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-08",
@@ -16834,7 +17564,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-08-08",
@@ -16852,7 +17583,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-08-08",
@@ -16876,7 +17608,8 @@ export const DATA = {
           ],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-08-08",
@@ -16894,7 +17627,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-08-11",
@@ -16922,7 +17656,8 @@ export const DATA = {
               "tradeCharacterName": "Arvistan Brightwave for Ioun Stone of Leadership",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-09-04",
@@ -16942,7 +17677,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 3 Scrolls of Greater Restoration, 3 Scrolls of Freedom of Movement",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-07",
@@ -16966,7 +17702,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-09-23",
@@ -16994,7 +17731,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Bracelet of Rock Magic",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-03",
@@ -17014,7 +17752,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Spent 100 gp on spell components",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-10-15",
@@ -17042,7 +17781,8 @@ export const DATA = {
               "tradeCharacterName": "Agatha for Tome of Clear Thought",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-10-18",
@@ -17064,7 +17804,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2020-11-18",
@@ -17092,7 +17833,8 @@ export const DATA = {
               "tradeCharacterName": "Kiernan for Dwarven Thrower",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2020-11-18",
@@ -17120,7 +17862,8 @@ export const DATA = {
               "tradeCharacterName": "Noraggen for Tloque's Battleax",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-01-08",
@@ -17143,7 +17886,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 8 Potions of Superior Healing and 2 Potions of Supreme Healing and 1 Scroll of Greater Restoration",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-12",
@@ -17161,7 +17905,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2021-01-23",
@@ -17187,7 +17932,8 @@ export const DATA = {
               "tradeCharacterName": "Darrendrian for Shield",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2021-01-23",
@@ -17209,7 +17955,8 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Bought 15 Potions of Greater Healing",
           "lossesParsed": [],
-          "trades": []
+          "trades": [],
+          "kind": "adventure"
         },
         {
           "date": "2022-06-08",
@@ -17237,7 +17984,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Moon Blade",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         },
         {
           "date": "2022-06-08",
@@ -17265,7 +18013,8 @@ export const DATA = {
               "tradeCharacterName": "Zandarax for Hide",
               "tradeNotes": null
             }
-          ]
+          ],
+          "kind": "Downtime Activity"
         }
       ]
     }
