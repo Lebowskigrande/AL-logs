@@ -168,7 +168,8 @@ function transformLog(log, { index, charKey }) {
     }
   }
 
-  if (!hasMeaningfulContent(entry)) {
+  const usedFallbackTitle = !baseTitle && !trades.length;
+  if (!hasMeaningfulContent(entry, { ignoreTitle: usedFallbackTitle })) {
     return null;
   }
 
@@ -232,10 +233,10 @@ function determineEntryKind(log, context) {
   return 'adventure';
 }
 
-function hasMeaningfulContent(entry) {
+function hasMeaningfulContent(entry, { ignoreTitle = false } = {}) {
   if (!entry) return false;
   return Boolean(
-    sanitizeText(entry.title) ||
+    (!ignoreTitle && sanitizeText(entry.title)) ||
     sanitizeText(entry.code) ||
     sanitizeText(entry.dm) ||
     sanitizeText(entry.notes) ||
