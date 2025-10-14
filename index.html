@@ -1019,6 +1019,7 @@ let hasLocalDraft=false;
 let draftStateApplied=false;
 let draftPersistWarningShown=false;
 let draftLoadWarningShown=false;
+const pendingDerivedUpdates=new Set();
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
@@ -1036,6 +1037,31 @@ function isValidSheetKey(key){
   if(!key) return false;
   if(isDmLogKey(key)) return hasDmLogData();
   return !!(DATA && DATA.characters && DATA.characters[key]);
+}
+
+function registerDerivedUpdate(key){
+  if(!key || isDmLogKey(key)) return;
+  if(!isValidSheetKey(key)) return;
+  pendingDerivedUpdates.add(key);
+}
+
+function syncPendingDerivedData(){
+  if(!pendingDerivedUpdates.size) return;
+  const keys=[...pendingDerivedUpdates].filter(key=>isValidSheetKey(key) && !isDmLogKey(key));
+  if(!keys.length) return;
+  let updated=false;
+  keys.forEach(key=>{
+    try{
+      updateDerivedDataFor(key);
+      pendingDerivedUpdates.delete(key);
+      updated=true;
+    }catch(err){
+      console.warn('Unable to refresh derived data before save', key, err);
+    }
+  });
+  if(updated){
+    rebuildDmRewardLinks();
+  }
 }
 
 let showActivities=true;
@@ -1392,6 +1418,7 @@ function touchDataMetaTimestamp(){
 async function saveDataJs(options={}){
   const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
   if(typeof customDataJs!=='string'){
+    syncPendingDerivedData();
     touchDataMetaTimestamp();
   }
   const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
@@ -3879,6 +3906,7 @@ function incrementConsumableUse(charKey,name){
   ch.consumable_uses[name]=next;
   if(ch.consumable_uses[name]<=0) delete ch.consumable_uses[name];
   if(ch.consumable_uses && !Object.keys(ch.consumable_uses).length) delete ch.consumable_uses;
+  registerDerivedUpdate(charKey);
   markDirty();
   applyDataMutation(charKey);
   return true;
@@ -4165,6 +4193,7 @@ function openInventoryModal(charKey, opts={}){
       saveActive(charKey, loadActive(charKey).filter(n=>n.toLowerCase()!==lc));
       saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lc));
       saveCommon(charKey, loadCommon(charKey).filter(n=>n.toLowerCase()!==lc));
+      registerDerivedUpdate(charKey);
       markDirty();
       applyDataMutation(charKey);
       openInventoryModal(charKey,{editing:true});
@@ -5945,6 +5974,7 @@ async function saveCardChanges(card){
     data.perm_items=[...updates.perm_items];
     data.lost_perm_item=updates.lost_perm_item||'';
     data.consumable_items=[...updates.consumable_items];
+    data.supernatural_gifts=[...updates.supernatural_gifts];
     const trimmedNotes=(updates.notes||'').trim();
     data.notes=trimmedNotes||'';
     data.traded_item=data.kind!=='adventure'?(updates.traded_item||''):'';
@@ -5967,6 +5997,7 @@ async function saveCardChanges(card){
     const mutationKey=wasNew?targetKey:charSel.value;
     let saveError=null;
     try{
+      registerDerivedUpdate(mutationKey);
       await saveDataJs();
     }catch(err){
       saveError=err;
@@ -5977,6 +6008,9 @@ async function saveCardChanges(card){
         if(idx!==-1){
           targetChar.adventures.splice(idx,1);
         }
+      }
+      if(wasNew){
+        pendingDerivedUpdates.delete(mutationKey);
       }
       return false;
     }
@@ -6017,6 +6051,7 @@ function deleteCard(card){
   const confirmed=window.confirm('Delete this entry?');
   if(!confirmed) return;
   ch.adventures.splice(idx,1);
+  registerDerivedUpdate(key);
   markDirty();
   applyDataMutation(key);
 }
@@ -6095,10 +6130,20 @@ function refreshAllDerivedData(){
     updateDerivedDataFor(key);
   });
   rebuildDmRewardLinks();
+  pendingDerivedUpdates.clear();
 }
 
 function applyDataMutation(key){
-  updateDerivedDataFor(key);
+  let updated=false;
+  try{
+    updateDerivedDataFor(key);
+    updated=true;
+  }catch(err){
+    console.error('Failed to update derived data for', key, err);
+  }
+  if(updated && key){
+    pendingDerivedUpdates.delete(key);
+  }
   rebuildDmRewardLinks();
   filterAndRender();
   scheduleAvatarPreload();
