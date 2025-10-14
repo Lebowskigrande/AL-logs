@@ -13,7 +13,7 @@
 :root{
   --bg:#e0e4ea; --surface:#fff; --ink:#0f172a; --muted:#64748b; --primary:#1a73e8; --border:#e5eaf3;
   --radius:16px; --shadow1:0 3px 12px rgba(16,24,40,.08); --shadow2:0 22px 44px rgba(16,24,40,.14);
-  --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --gap:14px; --min-card:320px;
+  --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --accordion-ease:cubic-bezier(.33,1,.68,1); --gap:14px; --min-card:320px;
   --menu-dur:260ms; --danger:#dc2626;
 }
 *{box-sizing:border-box}
@@ -188,9 +188,18 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card{display:block;position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
 .log-list .card{--row-bg:transparent;--card-highlight-opacity:0;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
+.log-list .card,
+.log-list .card::before,
+.log-list .card::after{border-radius:0}
+.log-list .card.open,
+.log-list .card.open::before,
+.log-list .card.open::after,
+.log-list .card.editing,
+.log-list .card.editing::before,
+.log-list .card.editing::after{border-radius:var(--log-card-radius)}
 .log-list .card:first-child{border-top:1px solid var(--border)}
-.log-list .card::before{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;pointer-events:none;border-radius:var(--log-card-radius);background:transparent;box-shadow:inset 0 0 0 0 rgba(238,241,247,0);opacity:0;transition:box-shadow var(--dur) var(--ease),opacity var(--dur) var(--ease);z-index:1;will-change:box-shadow,opacity}
-.log-list .card::after{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);z-index:0;border-radius:var(--log-card-radius);border:3px solid transparent;border-left:0}
+.log-list .card::before{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;pointer-events:none;border-radius:inherit;background:transparent;box-shadow:inset 0 0 0 0 rgba(238,241,247,0);opacity:0;transition:box-shadow var(--dur) var(--ease),opacity var(--dur) var(--ease);z-index:1;will-change:box-shadow,opacity}
+.log-list .card::after{content:"";position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;background:var(--row-bg);pointer-events:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);z-index:0;border-radius:inherit;border:3px solid transparent;border-left:0}
 .log-list .card>*{position:relative;z-index:1}
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card:hover,.log-list .card.open{z-index:1}
@@ -292,7 +301,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.open .subtitle-row .chips{margin-left:0;justify-content:flex-start}
 
 /* Collapsible */
-.card-bd{position:relative;height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--ease),opacity var(--card-dur,var(--dur)) var(--ease);padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
+.card-bd{position:relative;height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--card-ease,var(--accordion-ease)),opacity calc(var(--card-dur,var(--dur))*0.85) ease;transition-behavior:smooth;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
 .card.open .card-bd{overflow:visible;opacity:1}
 .bd-in{padding:12px 0 16px}
 .edit-form{padding:12px 0 16px;display:none}
@@ -3239,9 +3248,26 @@ function compareChronoAsc(a,b){
 function isAnimating(card){ return card.dataset.anim==='1'; }
 function setAnimating(card,on){ if(on) card.dataset.anim='1'; else delete card.dataset.anim; }
 function afterTransition(el,prop,ms,cb){ let done=false; const onEnd=e=>{ if(e.propertyName!==prop||done)return; done=true; el.removeEventListener('transitionend',onEnd); cb(); }; el.addEventListener('transitionend',onEnd); setTimeout(()=>{ if(done)return; done=true; el.removeEventListener('transitionend',onEnd); cb(); },ms); }
+const ACCORDION_EASE='cubic-bezier(0.33,1,0.68,1)';
 function calcCardDuration(px){ if(!px||px<=0) return 220; const dur=200+px*0.35; return Math.round(Math.max(220, Math.min(620, dur))); }
 function setCardDuration(bd,px){ const dur=calcCardDuration(px); bd.style.setProperty('--card-dur', dur+'ms'); return dur; }
 function clearCardDuration(bd){ bd.style.removeProperty('--card-dur'); }
+function cancelCardAnimation(card){
+  if(!card) return;
+  const bd=card.querySelector('.card-bd');
+  if(!bd) return;
+  const anim=bd.__accordionAnim;
+  if(anim){
+    anim.onfinish=null;
+    anim.oncancel=null;
+    try{ anim.cancel(); }
+    catch(err){ /* no-op */ }
+    bd.__accordionAnim=null;
+  }
+  bd.style.removeProperty('--card-ease');
+  clearCardDuration(bd);
+  setAnimating(card,false);
+}
 const MENU_TRANSITION_MS=260;
 function setMenuTransitionDuration(menu){ if(menu) menu.style.setProperty('--menu-dur', MENU_TRANSITION_MS+'ms'); }
 function clearMenuTransitionDuration(menu){ if(menu) menu.style.removeProperty('--menu-dur'); }
@@ -3287,8 +3313,106 @@ function animateMenuClose(menu,callback){
   menu.dataset.menuState='closing';
   afterTransition(menu,'opacity',MENU_TRANSITION_MS+80,finalize);
 }
-function expandCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); const start=Math.max(0,bd.offsetHeight||0); bd.style.height=start+'px'; bd.style.opacity='0'; card.classList.add('open'); void bd.offsetHeight; requestAnimationFrame(()=>{ const target=Math.max(bd.scrollHeight,start); const duration=setCardDuration(bd,target); bd.style.height=target+'px'; bd.style.opacity='1'; afterTransition(bd,'height',duration+100,()=>{ bd.style.height='auto'; bd.style.removeProperty('opacity'); clearCardDuration(bd); setAnimating(card,false); }); }); }
-function collapseCard(card){ if(isAnimating(card))return; const bd=card.querySelector('.card-bd'); if(!bd)return; setAnimating(card,true); const start=Math.max(0,bd.offsetHeight||bd.scrollHeight||0); const duration=setCardDuration(bd,start); bd.style.height=start+'px'; bd.style.opacity='1'; void bd.offsetHeight; requestAnimationFrame(()=>{ bd.style.height='0px'; bd.style.opacity='0'; }); afterTransition(bd,'height',duration+100,()=>{ card.classList.remove('open'); bd.style.removeProperty('height'); bd.style.removeProperty('opacity'); clearCardDuration(bd); setAnimating(card,false); }); }
+function expandCard(card){
+  if(!card) return;
+  const bd=card.querySelector('.card-bd');
+  if(!bd) return;
+  if(isAnimating(card)) cancelCardAnimation(card);
+  const start=Math.max(0,bd.offsetHeight||0);
+  const target=Math.max(bd.scrollHeight,start);
+  bd.style.setProperty('--card-ease', ACCORDION_EASE);
+  bd.style.height=start+'px';
+  bd.style.opacity='0';
+  card.classList.add('open');
+  void bd.offsetHeight;
+  const duration=setCardDuration(bd,target);
+  setAnimating(card,true);
+  const canAnimate=typeof bd.animate==='function';
+  if(canAnimate){
+    try{
+      const animation=bd.animate([
+        {height:start+'px',opacity:0},
+        {height:target+'px',opacity:1}
+      ],{duration,easing:ACCORDION_EASE,fill:'none'});
+      bd.__accordionAnim=animation;
+      animation.onfinish=()=>{
+        if(bd.__accordionAnim!==animation) return;
+        bd.__accordionAnim=null;
+        bd.style.height='auto';
+        bd.style.removeProperty('opacity');
+        bd.style.removeProperty('--card-ease');
+        clearCardDuration(bd);
+        setAnimating(card,false);
+      };
+      animation.oncancel=()=>{
+        if(bd.__accordionAnim===animation) bd.__accordionAnim=null;
+      };
+      return;
+    }
+    catch(err){ /* fall through to transition fallback */ }
+  }
+  requestAnimationFrame(()=>{
+    bd.style.height=target+'px';
+    bd.style.opacity='1';
+    afterTransition(bd,'height',duration+100,()=>{
+      bd.style.height='auto';
+      bd.style.removeProperty('opacity');
+      bd.style.removeProperty('--card-ease');
+      clearCardDuration(bd);
+      setAnimating(card,false);
+    });
+  });
+}
+function collapseCard(card){
+  if(!card) return;
+  const bd=card.querySelector('.card-bd');
+  if(!bd) return;
+  if(isAnimating(card)) cancelCardAnimation(card);
+  const start=Math.max(0,bd.offsetHeight||bd.scrollHeight||0);
+  const duration=setCardDuration(bd,start);
+  bd.style.setProperty('--card-ease', ACCORDION_EASE);
+  bd.style.height=start+'px';
+  bd.style.opacity='1';
+  void bd.offsetHeight;
+  setAnimating(card,true);
+  const canAnimate=typeof bd.animate==='function';
+  if(canAnimate){
+    try{
+      const animation=bd.animate([
+        {height:start+'px',opacity:1},
+        {height:'0px',opacity:0}
+      ],{duration,easing:ACCORDION_EASE,fill:'none'});
+      bd.__accordionAnim=animation;
+      animation.onfinish=()=>{
+        if(bd.__accordionAnim!==animation) return;
+        bd.__accordionAnim=null;
+        card.classList.remove('open');
+        bd.style.removeProperty('height');
+        bd.style.removeProperty('opacity');
+        bd.style.removeProperty('--card-ease');
+        clearCardDuration(bd);
+        setAnimating(card,false);
+      };
+      animation.oncancel=()=>{
+        if(bd.__accordionAnim===animation) bd.__accordionAnim=null;
+      };
+      return;
+    }
+    catch(err){ /* fall through to transition fallback */ }
+  }
+  requestAnimationFrame(()=>{
+    bd.style.height='0px';
+    bd.style.opacity='0';
+  });
+  afterTransition(bd,'height',duration+100,()=>{
+    card.classList.remove('open');
+    bd.style.removeProperty('height');
+    bd.style.removeProperty('opacity');
+    bd.style.removeProperty('--card-ease');
+    clearCardDuration(bd);
+    setAnimating(card,false);
+  });
+}
 function toggleCard(card){ card.classList.contains('open')?collapseCard(card):expandCard(card); }
 
 function focusCardElement(card,{expand=true}={}){
