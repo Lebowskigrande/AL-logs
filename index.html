@@ -452,7 +452,9 @@ body.modal-open #addCardMenu{display:none;}
 .inv-row:nth-child(odd){background:#fafbfc}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{background:#e8f0ff;font-weight:600}
-.inv-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inv-row.common .inv-label{font-weight:600}
+.inv-name{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
+.inv-name .inv-label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .inv-name.consumable-name{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
 .inv-name.consumable-name .cons-primary{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
 .inv-name.consumable-name .cons-name{display:block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 auto}
@@ -462,12 +464,19 @@ body.modal-open #addCardMenu{display:none;}
 .modal.editing .inv-row{cursor:default}
 .modal.editing .inv-row .delete-btn{display:inline-flex}
 .modal.editing .inv-row .attune-pill{pointer-events:none;opacity:.6}
+.modal.editing .inv-row .common-chip{pointer-events:none;opacity:.6}
 .modal.editing .inv-row .qty-icon{pointer-events:none;opacity:.6}
 .modal.editing .inv-row .qty-pill{opacity:.6}
 
 /* Attunement pill (perm modal, active rows only) */
 .attune-pill{display:inline-block;border:1px solid #cfe0ff;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;user-select:none;cursor:pointer;transition:background .2s,color .2s}
 .attune-pill.on{background:#1a73e8;color:#fff}
+
+/* Common item toggle */
+.common-chip{appearance:none;border:1px solid rgba(148,163,184,.4);background:#fff;color:#475569;border-radius:999px;padding:2px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;user-select:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.common-chip:hover,.common-chip:focus-visible{border-color:rgba(26,115,232,.4);color:#1a73e8;outline:none}
+.common-chip.on{background:#1a73e8;color:#fff;border-color:#1a73e8}
+.common-chip:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -3518,6 +3527,43 @@ function loadActive(k){ try{return JSON.parse(localStorage.getItem(activeKey(k))
 function saveActive(k,a){ localStorage.setItem(activeKey(k),JSON.stringify(a||[])) }
 function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k))||'[]')}catch(_){return[]} }
 function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
+function commonKey(k){ return 'COMMON_INV__'+k; }
+function loadCommon(k){
+  try{
+    const raw=JSON.parse(localStorage.getItem(commonKey(k))||'[]');
+    if(Array.isArray(raw)){
+      const seen=new Set();
+      const cleaned=[];
+      raw.forEach(name=>{
+        const cleanedName=normItemName(name);
+        if(!cleanedName) return;
+        const lower=cleanedName.toLowerCase();
+        if(seen.has(lower)) return;
+        seen.add(lower);
+        cleaned.push(cleanedName);
+      });
+      return cleaned;
+    }
+  }catch(_){ /* ignore */ }
+  return [];
+}
+function saveCommon(k,list){
+  if(!Array.isArray(list)){
+    localStorage.removeItem(commonKey(k));
+    return;
+  }
+  const seen=new Set();
+  const cleaned=[];
+  list.forEach(name=>{
+    const cleanedName=normItemName(name);
+    if(!cleanedName) return;
+    const lower=cleanedName.toLowerCase();
+    if(seen.has(lower)) return;
+    seen.add(lower);
+    cleaned.push(cleanedName);
+  });
+  localStorage.setItem(commonKey(k),JSON.stringify(cleaned));
+}
 
 function parseConsumableName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
 function formatConsumableDisplay(raw){
@@ -3692,22 +3738,103 @@ function openInventoryModal(charKey, opts={}){
   const level=currentLevelFor(charKey);
   const cap=activeSlotsFor(level);
   const {kept:keptMeta}=collectPermanentInventory(charKey);
+  const metaByName=new Map(keptMeta.map(item=>[item.name.toLowerCase(),item]));
   const keptNames=keptMeta.map(item=>item.name);
-  let active=loadActive(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
-  let attuned=loadAttuned(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
-  if(active.length>cap) active=active.slice(0,cap);
-  if(attuned.length>3) attuned=attuned.slice(0,3);
+
+  const rawCommon=loadCommon(charKey);
+  const normalizedCommon=[];
+  const commonSeen=new Set();
+  rawCommon.forEach(name=>{
+    const cleaned=normItemName(name);
+    if(!cleaned) return;
+    const lower=cleaned.toLowerCase();
+    const meta=metaByName.get(lower);
+    if(!meta) return;
+    if(commonSeen.has(lower)) return;
+    commonSeen.add(lower);
+    normalizedCommon.push(meta.name);
+  });
+  const commonChanged=normalizedCommon.length!==rawCommon.length || normalizedCommon.some((name,idx)=>name!==rawCommon[idx]);
+  if(commonChanged){
+    saveCommon(charKey, normalizedCommon);
+  }
+  const commonList=normalizedCommon;
+  const commonSet=new Set(commonList.map(name=>name.toLowerCase()));
+
+  const rawActive=loadActive(charKey);
+  const normalizedActive=[];
+  const activeSeen=new Set();
+  rawActive.forEach(name=>{
+    const cleaned=normItemName(name);
+    if(!cleaned) return;
+    const lower=cleaned.toLowerCase();
+    const meta=metaByName.get(lower);
+    if(!meta) return;
+    if(activeSeen.has(lower)) return;
+    activeSeen.add(lower);
+    normalizedActive.push(meta.name);
+  });
+  let active=[...normalizedActive];
+  let activeChanged=normalizedActive.length!==rawActive.length || normalizedActive.some((name,idx)=>name!==rawActive[idx]);
+  const nonCommonActiveCount=active.filter(name=>!commonSet.has(name.toLowerCase())).length;
+  if(nonCommonActiveCount>cap){
+    const trimmed=[];
+    let used=0;
+    active.forEach(name=>{
+      const lower=name.toLowerCase();
+      if(commonSet.has(lower)){
+        trimmed.push(name);
+      }else if(used<cap){
+        trimmed.push(name);
+        used++;
+      }
+    });
+    if(trimmed.length!==active.length){
+      active=trimmed;
+      activeChanged=true;
+    }
+  }
+  if(activeChanged){
+    saveActive(charKey, active);
+  }
+
+  const activeSet=new Set(active.map(a=>a.toLowerCase()));
+
+  const rawAttuned=loadAttuned(charKey);
+  const normalizedAttuned=[];
+  const attunedSeen=new Set();
+  rawAttuned.forEach(name=>{
+    const cleaned=normItemName(name);
+    if(!cleaned) return;
+    const lower=cleaned.toLowerCase();
+    const meta=metaByName.get(lower);
+    if(!meta) return;
+    if(!activeSet.has(lower)) return;
+    if(attunedSeen.has(lower)) return;
+    attunedSeen.add(lower);
+    normalizedAttuned.push(meta.name);
+  });
+  let attuned=normalizedAttuned.slice(0,3);
+  const attunedChanged=normalizedAttuned.length!==rawAttuned.length || normalizedAttuned.some((name,idx)=>name!==rawAttuned[idx]) || attuned.length!==normalizedAttuned.length;
+  if(attunedChanged){
+    saveAttuned(charKey, attuned);
+  }
+  const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
 
   invTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Permanent Items';
   invMeta.textContent=`Level ${level} • Active slots: ${cap} • Attunement max: 3`;
 
-  const activeSet=new Set(active.map(a=>a.toLowerCase()));
-  const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
-  const metaByName=new Map(keptMeta.map(item=>[item.name.toLowerCase(),item]));
   const activeOrdered=active
     .map(name=>metaByName.get(name.toLowerCase()))
     .filter(Boolean)
-    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+    .sort((a,b)=>{
+      const aCommon=commonSet.has(a.name.toLowerCase());
+      const bCommon=commonSet.has(b.name.toLowerCase());
+      if(aCommon!==bCommon){
+        return aCommon?1:-1;
+      }
+      return a.name.localeCompare(b.name,undefined,{sensitivity:'base'});
+    });
   const rest=keptMeta
     .filter(item=>!activeSet.has(item.name.toLowerCase()))
     .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
@@ -3747,13 +3874,68 @@ function openInventoryModal(charKey, opts={}){
     const label=item&&item.name?item.name:String(item||'');
     const lower=label.toLowerCase();
     const isActive=activeSet.has(lower);
+    const isCommon=commonSet.has(lower);
     const row=document.createElement('div');
-    row.className='inv-row'+(isActive?' active':'');
+    const rowClasses=['inv-row'];
+    if(isActive) rowClasses.push('active');
+    if(isCommon) rowClasses.push('common');
+    row.className=rowClasses.join(' ');
     row.dataset.name=label;
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
-    nameDiv.textContent=label;
+    const labelSpan=document.createElement('span');
+    labelSpan.className='inv-label';
+    labelSpan.textContent=label;
+    nameDiv.appendChild(labelSpan);
+
+    const commonChip=document.createElement('button');
+    commonChip.type='button';
+    commonChip.className='common-chip'+(isCommon?' on':'');
+    commonChip.textContent='Common';
+    commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
+    commonChip.title=isCommon
+      ?'Marked as common. Common items do not count against the active limit.'
+      :'Mark this item as common so it does not count against the active limit.';
+    commonChip.addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      ev.stopPropagation();
+      const stored=loadCommon(charKey);
+      const normalized=[];
+      const seen=new Set();
+      stored.forEach(name=>{
+        const cleaned=normItemName(name);
+        if(!cleaned) return;
+        const lc=cleaned.toLowerCase();
+        const meta=metaByName.get(lc);
+        if(!meta) return;
+        if(seen.has(lc)) return;
+        seen.add(lc);
+        normalized.push(meta.name);
+      });
+      const exists=normalized.some(name=>name.toLowerCase()===lower);
+      if(exists){
+        const next=normalized.filter(name=>name.toLowerCase()!==lower);
+        const nextSet=new Set(next.map(name=>name.toLowerCase()));
+        if(isActive){
+          const activeNames=loadActive(charKey)
+            .map(normItemName)
+            .filter(name=>name && metaByName.has(name.toLowerCase()))
+            .map(name=>metaByName.get(name.toLowerCase()).name);
+          const activeNonCommon=activeNames.filter(name=>!nextSet.has(name.toLowerCase())).length;
+          if(activeNonCommon>cap){
+            window.alert('Removing the Common tag would exceed your active item limit. Deactivate another item first.');
+            return;
+          }
+        }
+        saveCommon(charKey,next);
+      }else{
+        const next=normalized.concat([label]);
+        saveCommon(charKey,next);
+      }
+      openInventoryModal(charKey,{editing});
+    });
+    nameDiv.appendChild(commonChip);
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
@@ -3765,7 +3947,10 @@ function openInventoryModal(charKey, opts={}){
       pill.addEventListener('click',(ev)=>{
         if(editing) return;
         ev.stopPropagation();
-        let cur=loadAttuned(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
+        let cur=loadAttuned(charKey)
+          .map(normItemName)
+          .filter(name=>name && metaByName.has(name.toLowerCase()))
+          .map(name=>metaByName.get(name.toLowerCase()).name);
         const on=attunedSet.has(lower);
         if(!on){
           if(cur.length>=3){ alert('You can only be attuned to 3 items at a time.'); return; }
@@ -3801,6 +3986,7 @@ function openInventoryModal(charKey, opts={}){
       const lc=lower;
       saveActive(charKey, loadActive(charKey).filter(n=>n.toLowerCase()!==lc));
       saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lc));
+      saveCommon(charKey, loadCommon(charKey).filter(n=>n.toLowerCase()!==lc));
       markDirty();
       applyDataMutation(charKey);
       openInventoryModal(charKey,{editing:true});
@@ -3812,10 +3998,17 @@ function openInventoryModal(charKey, opts={}){
 
     row.addEventListener('click',()=>{
       if(editing) return;
-      let cur=loadActive(charKey).filter(n=>keptNames.some(k=>k.toLowerCase()===n.toLowerCase()));
+      let cur=loadActive(charKey)
+        .map(normItemName)
+        .filter(name=>name && metaByName.has(name.toLowerCase()))
+        .map(name=>metaByName.get(name.toLowerCase()).name);
       const on=cur.some(n=>n.toLowerCase()===lower);
       if(!on){
-        if(cur.length>=cap){ alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`); return; }
+        const nonCommonCount=cur.filter(name=>!commonSet.has(name.toLowerCase())).length;
+        if(!commonSet.has(lower) && nonCommonCount>=cap){
+          alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
+          return;
+        }
         cur.push(label);
       }else{
         cur=cur.filter(n=>n.toLowerCase()!==lower);
@@ -3831,9 +4024,40 @@ function openInventoryModal(charKey, opts={}){
   syncEditing();
 
   function updateSummary(){
-    const aCount=loadActive(charKey).length;
-    const tCount=loadAttuned(charKey).length;
-    invSummary.textContent=`Kept: ${keptMeta.length} • Active: ${aCount}/${cap} • Attuned: ${tCount}/3`;
+    const storedActive=loadActive(charKey);
+    const sanitizedActive=[];
+    const activeLower=new Set();
+    storedActive.forEach(name=>{
+      const cleaned=normItemName(name);
+      if(!cleaned) return;
+      const lower=cleaned.toLowerCase();
+      if(!metaByName.has(lower)) return;
+      if(activeLower.has(lower)) return;
+      activeLower.add(lower);
+      sanitizedActive.push(metaByName.get(lower).name);
+    });
+    const nonCommonCount=sanitizedActive.filter(name=>!commonSet.has(name.toLowerCase())).length;
+    const commonActiveCount=sanitizedActive.length-nonCommonCount;
+    const storedAttuned=loadAttuned(charKey);
+    const attunedActive=new Set();
+    const attunedList=[];
+    storedAttuned.forEach(name=>{
+      const cleaned=normItemName(name);
+      if(!cleaned) return;
+      const lower=cleaned.toLowerCase();
+      if(!metaByName.has(lower)) return;
+      if(attunedActive.has(lower)) return;
+      attunedActive.add(lower);
+      attunedList.push(metaByName.get(lower).name);
+    });
+    const activeLowerSet=new Set(sanitizedActive.map(name=>name.toLowerCase()));
+    const attunedCount=Math.min(3, attunedList.filter(name=>activeLowerSet.has(name.toLowerCase())).length);
+    let summary=`Kept: ${keptMeta.length} • Active: ${nonCommonCount}/${cap}`;
+    if(commonActiveCount>0){
+      summary+=` (Common active: ${commonActiveCount})`;
+    }
+    summary+=` • Attuned: ${attunedCount}/3`;
+    invSummary.textContent=summary;
   }
   updateSummary();
   invModal.classList.add('open');
