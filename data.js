@@ -6339,7 +6339,7 @@ export const DATA = {
         },
         {
           "date": "2025-06-18",
-          "adventureCode": DDHC-DMM-CH18,
+          "adventureCode": "DDHC-DMM-CH18",
           "adventureName": "Save the Dragon",
           "dm": "Alexis P.",
           "levelPlus": 0,
