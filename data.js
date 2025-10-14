@@ -11962,7 +11962,9 @@ window.DATA = {
             "5 rare consumables of my choice (Greater Restoration x 5)"
           ],
           "story_awards": [],
-          "supernatural_gifts": [],
+          "supernatural_gifts": [
+            "Blessing of Protection"
+          ],
           "notes": "Consumed 1 Mystery Key. Returned all 3 weapons. Spent 2 downtime days for Suyin (Nicole) and Figment (Jane) to scribe Steel Wind Strike.",
           "kind": "adventure",
           "lost_perm_item": "1 Mystery Key",
@@ -19764,7 +19766,7 @@ window.DATA = {
       "level_ups": 19,
       "perm_count": 164,
       "cons_count": 67,
-      "gifts_count": 5
+      "gifts_count": 6
     },
     "Agatha": {
       "sessions": 52,
@@ -19785,7 +19787,7 @@ window.DATA = {
       "gifts_count": 0
     },
     "Darrendrian": {
-      "sessions": 45,
+      "sessions": 46,
       "net_gp": 75879,
       "net_dtd": 85,
       "level_ups": 18,
@@ -19939,7 +19941,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-14T05:41:59.013Z",
+    "generated": "2025-10-14T16:50:57.682Z",
     "problems": []
   }
 };
