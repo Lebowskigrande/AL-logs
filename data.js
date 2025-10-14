@@ -15945,10 +15945,12 @@ window.DATA = {
             "Boon of Recovery"
           ],
           "notes": "",
-          "kind": "Downtime Activity",
+          "kind": "adventure",
           "__charKey": "Darrendrian",
           "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAtStart": 19,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "The Death of Szazz Tam",
@@ -19937,7 +19939,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-14T03:36:52.298Z",
+    "generated": "2025-10-14T05:41:59.013Z",
     "problems": []
   }
 };
