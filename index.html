@@ -302,6 +302,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-section{background:rgba(15,23,42,.02);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:12px}
 .log-list .card.open .card-section{background:#fff;border-radius:14px;border:1px solid rgba(148,163,184,.18)}
 .card-section:first-of-type{margin-top:0}
+.card-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:16px}
+.card-overview .field,.card-overview .kvsingle,.card-overview .kv2{margin:0}
 .card-section-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .card-section-title{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .card-section-content{display:flex;flex-direction:column;gap:16px}
@@ -5005,12 +5007,8 @@ function makeCard(a,idx){
   const applyTotalsState=(el,label,value,editing=false)=>{
     if(!el) return false;
     const num=Number(value||0);
-    el.classList.remove('gain','loss','neutral');
-    if(num>0){
-      el.classList.add('gain');
-    }else if(num<0){
-      el.classList.add('loss');
-    }else{
+    el.classList.remove('gain','loss');
+    if(!el.classList.contains('neutral')){
       el.classList.add('neutral');
     }
     el.textContent=`${label} ${formatSignedValue(num)}`;
@@ -5197,8 +5195,9 @@ function makeCard(a,idx){
     view.appendChild(linkRow);
   }
 
-  const overviewSection=createSection('Log details');
-  const overviewContent=overviewSection.content;
+  const overviewContent=document.createElement('div');
+  overviewContent.className='card-overview card-section-content card-section-content--grid';
+  view.appendChild(overviewContent);
   const rewardsSection=createSection('Rewards & Progress');
   const rewardsContent=rewardsSection.content;
   const inventorySectionLabel='Magic & Consumables';
@@ -5302,11 +5301,6 @@ function makeCard(a,idx){
   codeEditorSlot=codeEditor;
   codeDisplayEl=codeDisplay;
   if(!(a.code||'').trim()){ codeFieldView.style.display='none'; }
-
-  const dmField=makeKVS('DM', dmDisplay||'—');
-  const showDM=!act || (dmDisplay && !usedDmAsPlayer);
-  if(!showDM){ dmField.style.display='none'; }
-  overviewContent.appendChild(dmField);
 
   if(hasTradeMeta){
     const tradedAway=normalizeDisplayValue(a.itemTraded);
@@ -5861,6 +5855,10 @@ function makeCard(a,idx){
     lostField.style.display=(editing || lostItems.length)?'':'none';
 
     const totalInventoryEntries=permCount+consCount+giftCount+lostItems.length;
+    const hasRewardsSectionContent=(gpRowView.style.display!=='none')||(dtRowView.style.display!=='none')||(levelField.style.display!=='none');
+    const showRewardsSection=editing || hasRewardsSectionContent;
+    rewardsSection.section.style.display=showRewardsSection?'':'none';
+
     if(inventorySection.toggle){
       inventorySection.toggle.textContent=`${inventorySectionLabel}${totalInventoryEntries?` (${totalInventoryEntries})`:''}`;
     }
@@ -5878,6 +5876,14 @@ function makeCard(a,idx){
     if(showNotesSection){
       notesSection.setOpen(editing || notesDisplay!=='—');
     }
+
+    const hasOverviewContent=Array.from(overviewContent.children||[]).some(child=>{
+      if(!(child instanceof HTMLElement)) return true;
+      if(child.style.display==='none' || child.hidden) return false;
+      if(!editing && child.classList.contains('show-when-editing')) return false;
+      return true;
+    });
+    overviewContent.style.display=(editing || hasOverviewContent)?'':'none';
 
     updateHeaderMeta();
 
@@ -5910,6 +5916,8 @@ function makeCard(a,idx){
 
   formWrap.populate=populate;
   formWrap.collect=collect;
+
+  populate(false);
 
   bd.appendChild(cardActions);
   bd.appendChild(view);
