@@ -193,7 +193,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card::after{border-radius:0}
 .log-list .card.open,
 .log-list .card.open::before,
-.log-list .card.open::after,
+.log-list .card.open::after{border-radius:0}
 .log-list .card.editing,
 .log-list .card.editing::before,
 .log-list .card.editing::after{border-radius:var(--log-card-radius)}
@@ -204,7 +204,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card:hover,.log-list .card.open{z-index:1}
 .log-list .card.open{--row-bg:#fff;--card-highlight-opacity:1}
-.log-list .card.open .card-hd{background:#f1f5f9;border-top-left-radius:var(--log-card-radius);border-top-right-radius:var(--log-card-radius)}
+.log-list .card.open .card-hd{background:#f1f5f9;border-top-left-radius:0;border-top-right-radius:0}
 .log-list .card.open::after{border-color:#eef1f7}
 .log-list .card.editing::after{border-color:#eef1f7}
 .log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
@@ -214,7 +214,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease)}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85);transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
-.log-list .card.open .card-bd{border-bottom-left-radius:var(--log-card-radius);border-bottom-right-radius:var(--log-card-radius)}
+.log-list .card.open .card-bd{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .log-list .card .bd-in{padding:18px 0 20px}
 .log-list .card .edit-form{padding:18px 0 24px}
 .card:focus-visible{outline:2px solid rgba(100,116,139,.45);outline-offset:4px}
@@ -602,8 +602,8 @@ body.avatar-overlay-open{overflow:hidden}
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
           <input id="q" placeholder="Search adventures"/>
           <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <path d="m6 6 8 8M14 6l-8 8"/>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M16.95 5.64a1 1 0 0 1 1.41 1.41L13.41 12l4.95 4.95a1 1 0 0 1-1.41 1.41L12 13.41l-4.95 4.95a1 1 0 0 1-1.41-1.41L10.59 12 5.64 7.05a1 1 0 0 1 1.41-1.41L12 10.59l4.95-4.95Z"/>
             </svg>
           </button>
         </div>
