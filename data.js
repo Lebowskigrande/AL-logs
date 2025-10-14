@@ -10103,8 +10103,8 @@ export const DATA = {
             "Potion of Superior Healing"
           ],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
-          "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroe's Feast",
+          "supernaturalGiftsFoundHere": ["Resistance to Force", "Resistance to Necrotic", "Resistance to Bludgeoning"],
+          "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroe's Feast. Opened Efreeti Bottle, DM rolled 96 granting three Wishes. Wished for Resistance to Force, Necrotic, and Bludgeoning.",
           "lossesParsed": [],
           "trades": [],
           "kind": "adventure"
@@ -11334,8 +11334,8 @@ export const DATA = {
             "Arrow of Dragon Slaying"
           ],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
-          "notes": null,
+          "supernaturalGiftsFoundHere": ["Resistance to Bludgeoning"],
+          "notes": ["Kaxora (Ryan L.) Wished for Bludgeoning resistance"],
           "lossesParsed": [],
           "trades": [],
           "kind": "adventure"
