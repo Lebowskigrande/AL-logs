@@ -726,6 +726,7 @@ if(!version){
 window.AL_DATA_VERSION=version;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
+const scriptEl=document.getElementById('dataScript')||document.querySelector('script[type="module"][data-loader="data"]');
 
 import { loadLegacyData } from './legacy-data-loader.js';
 
@@ -734,7 +735,6 @@ try{
   window.RAW_DATA = raw;
   window.DATA = data;
   window.AL_DATA_VERSION = versionToken || version || window.AL_DATA_VERSION || '';
-  const scriptEl=document.currentScript;
   if(scriptEl){
     if(versionToken){ scriptEl.setAttribute('data-version', versionToken); }
     scriptEl.setAttribute('data-cache-bust', cacheBust);
@@ -742,7 +742,6 @@ try{
   }
 }catch(error){
   console.error('Failed to load data.js', error);
-  const scriptEl=document.currentScript;
   if(scriptEl){
     const evt=new Event('error');
     scriptEl.dispatchEvent(evt);
