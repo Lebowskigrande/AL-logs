@@ -109,6 +109,53 @@ function transformData(source) {
     };
   }
 
+  const characters = (source && typeof source === 'object' && source.characters && typeof source.characters === 'object')
+    ? source.characters
+    : {};
+
+  const hasModernStructure = Object.values(characters).some((value) => Array.isArray(value?.adventures));
+
+  if (hasModernStructure) {
+    const extras = { ...source };
+    delete extras.characters;
+    delete extras.stats;
+    delete extras.years;
+    delete extras.meta;
+
+    const output = {
+      characters: {},
+      stats: (source.stats && typeof source.stats === 'object') ? { ...source.stats } : {},
+      years: (source.years && typeof source.years === 'object') ? { ...source.years } : {},
+      meta: {
+        source_file: sanitizeText(source.meta?.source_file || source.meta?.sourceFile || ''),
+        generated: sanitizeText(source.meta?.generated || source.meta?.generatedAt || safeIsoString()),
+        problems: Array.isArray(source.meta?.problems) ? [...source.meta.problems] : []
+      }
+    };
+
+    for (const [key, value] of Object.entries(characters)) {
+      if (!value || typeof value !== 'object') {
+        output.characters[key] = { adventures: [] };
+        continue;
+      }
+      const character = { ...value };
+      const adventures = Array.isArray(character.adventures)
+        ? character.adventures.map((entry) => {
+            if (!entry || typeof entry !== 'object') return entry;
+            const copy = { ...entry };
+            if (!copy.__charKey) {
+              copy.__charKey = key;
+            }
+            return copy;
+          })
+        : [];
+      character.adventures = adventures;
+      output.characters[key] = character;
+    }
+
+    return { ...extras, ...output };
+  }
+
   const output = {
     characters: {},
     stats: {},
@@ -119,10 +166,6 @@ function transformData(source) {
       problems: Array.isArray(source.meta?.problems) ? [...source.meta.problems] : []
     }
   };
-
-  const characters = (source && typeof source === 'object' && source.characters && typeof source.characters === 'object')
-    ? source.characters
-    : {};
 
   for (const [key, value] of Object.entries(characters)) {
     output.characters[key] = transformCharacter(key, value);
