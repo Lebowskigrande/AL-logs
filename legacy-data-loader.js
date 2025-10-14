@@ -219,12 +219,28 @@ function transformLog(log, { index, charKey }) {
   if (trades.length) {
     const [firstTrade] = trades;
     if (firstTrade && typeof firstTrade === 'object') {
-      entry.itemTraded = sanitizeText(firstTrade.itemGiven || firstTrade.itemTraded);
-      entry.itemReceived = sanitizeText(firstTrade.itemReceived);
-      entry.player = sanitizeText(firstTrade.withPlayer || firstTrade.player);
-      entry.character = sanitizeText(firstTrade.withCharacter || firstTrade.character);
+      entry.itemTraded = sanitizeText(
+        firstTrade.itemGiven ||
+        firstTrade.itemTraded ||
+        firstTrade.tradeItemGiven ||
+        firstTrade.tradeItem
+      );
+      entry.itemReceived = sanitizeText(
+        firstTrade.itemReceived ||
+        firstTrade.tradeItemReceived
+      );
+      entry.player = sanitizeText(
+        firstTrade.withPlayer ||
+        firstTrade.player ||
+        firstTrade.tradePlayerName
+      );
+      entry.character = sanitizeText(
+        firstTrade.withCharacter ||
+        firstTrade.character ||
+        firstTrade.tradeCharacterName
+      );
       if (!entry.notes) {
-        entry.notes = sanitizeText(firstTrade.notes);
+        entry.notes = sanitizeText(firstTrade.notes || firstTrade.tradeNotes);
       }
     }
   }
