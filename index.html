@@ -453,6 +453,7 @@ body.modal-open #addCardMenu{display:none;}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{background:#e8f0ff;font-weight:600}
 .inv-row.common .inv-label{font-weight:600}
+.inv-row.static{cursor:default}
 .inv-name{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
 .inv-name .inv-label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .inv-name.consumable-name{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
@@ -501,6 +502,15 @@ body.modal-open #addCardMenu{display:none;}
 .cons-chip--potion{background:#fef3c7;color:#b45309}
 .cons-chip--scroll{background:#ede9fe;color:#5b21b6}
 .cons-secondary{display:block;margin-top:3px;font-size:11px;color:var(--muted);white-space:normal}
+.gifts-section{display:flex;flex-direction:column;gap:6px;padding:2px 0}
+.gifts-section+.gifts-section{margin-top:16px}
+.gifts-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 4px}
+.gifts-sublist{display:flex;flex-direction:column;gap:6px}
+.gift-chip{display:inline-flex;align-items:center;justify-content:center;padding:2px 6px;border-radius:999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:#eef4ff;color:#1a73e8}
+.gift-chip--blessing{background:#fef3c7;color:#b45309}
+.gift-chip--boon{background:#ede9fe;color:#5b21b6}
+.gift-chip--resistance{background:#dcfce7;color:#166534}
+.gift-note{font-size:11px;color:var(--muted)}
 
 /* Reduce scroll anchoring jumps */
 html,body,.log-list,.card-bd{overflow-anchor:none}
@@ -3473,6 +3483,39 @@ function collectPermanentInventory(charKey){
   return {kept,map:keptMap};
 }
 
+function giftsActiveKey(k){ return 'ACTIVE_GIFTS__'+k; }
+function loadActiveSupernatural(k){
+  try{
+    const raw=JSON.parse(localStorage.getItem(giftsActiveKey(k))||'{}');
+    if(raw&&typeof raw==='object'){
+      const blessing=typeof raw.blessing==='string'?raw.blessing.trim():'';
+      const boon=typeof raw.boon==='string'?raw.boon.trim():'';
+      return {blessing,boon};
+    }
+  }catch(_){ /* ignore */ }
+  return {blessing:'',boon:''};
+}
+function saveActiveSupernatural(k,state){
+  const payload={};
+  if(state&&typeof state==='object'){
+    if(typeof state.blessing==='string'&&state.blessing.trim()) payload.blessing=state.blessing.trim();
+    if(typeof state.boon==='string'&&state.boon.trim()) payload.boon=state.boon.trim();
+  }
+  const key=giftsActiveKey(k);
+  if(Object.keys(payload).length){
+    localStorage.setItem(key,JSON.stringify(payload));
+  }else{
+    localStorage.removeItem(key);
+  }
+}
+function detectGiftType(name){
+  const value=String(name||'');
+  const lower=value.toLowerCase();
+  if(lower.includes('resistance')) return 'resistance';
+  if(lower.includes('boon')) return 'boon';
+  if(lower.includes('blessing')) return 'blessing';
+  return 'other';
+}
 function collectSupernaturalGifts(charKey){
   const ch=DATA.characters[charKey];
   if(!ch||!Array.isArray(ch.adventures)) return [];
@@ -3482,7 +3525,7 @@ function collectSupernaturalGifts(charKey){
     if(!cleaned) return;
     const key=cleaned.toLowerCase();
     if(!giftsMap.has(key)){
-      giftsMap.set(key,{name:cleaned,adv});
+      giftsMap.set(key,{name:cleaned,adv,type:detectGiftType(cleaned)});
     }
   };
   ch.adventures.forEach(adv=>{
@@ -4411,43 +4454,284 @@ function openSupernaturalModal(charKey){
   if(!ch) return;
   const level=currentLevelFor(charKey);
   const gifts=collectSupernaturalGifts(charKey);
+  const typeGroups={blessing:[],boon:[],resistance:[],other:[]};
+  const nameMap=new Map();
+  gifts.forEach(gift=>{
+    const key=gift.name.toLowerCase();
+    nameMap.set(key,gift);
+    const bucket=typeGroups[gift.type]||typeGroups.other;
+    bucket.push(gift);
+  });
+  const TYPE_META={
+    blessing:{label:'Blessing',chip:'blessing'},
+    boon:{label:'Boon',chip:'boon'},
+    resistance:{label:'Resistance',chip:'resistance'},
+    other:{label:'Gift',chip:''}
+  };
+  const canonicalName=(value)=>{
+    if(!value) return '';
+    const lower=String(value).trim().toLowerCase();
+    if(!lower) return '';
+    const match=nameMap.get(lower);
+    return match?match.name:'';
+  };
+  const storedSelections=loadActiveSupernatural(charKey);
+  const state={
+    blessing:canonicalName(storedSelections.blessing),
+    boon:canonicalName(storedSelections.boon)
+  };
+  const canActivateBoon=level>=17;
+  const persistState=()=>{
+    saveActiveSupernatural(charKey,state);
+  };
+  const sanitizeState=()=>{
+    let changed=false;
+    if(state.blessing && !nameMap.has(state.blessing.toLowerCase())){
+      state.blessing='';
+      changed=true;
+    }
+    if(state.boon && !nameMap.has(state.boon.toLowerCase())){
+      state.boon='';
+      changed=true;
+    }
+    if(changed) persistState();
+  };
+  sanitizeState();
   giftsTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Supernatural Gifts';
   giftsMeta.textContent=`Level ${fmtNumber(level)}`;
-  giftsList.innerHTML='';
 
-  if(!gifts.length){
-    const empty=document.createElement('div');
-    empty.className='muted';
-    empty.textContent='No supernatural gifts recorded.';
-    giftsList.appendChild(empty);
-  }else{
-    gifts.forEach(gift=>{
-      const row=document.createElement('div');
-      row.className='inv-row';
-      const nameDiv=document.createElement('div');
-      nameDiv.className='inv-name';
-      nameDiv.textContent=gift.name;
-      row.appendChild(nameDiv);
-      if(gift.adv){
-        const metaDiv=document.createElement('div');
-        metaDiv.className='inv-tools';
-        const linkBtn=document.createElement('button');
-        linkBtn.type='button';
-        linkBtn.className='btn small';
-        linkBtn.textContent='View entry';
-        linkBtn.addEventListener('click',()=>{
-          giftsModal.classList.remove('open');
-          refreshModalState();
-          navigateToCharacterReward(charKey, gift.adv);
-        });
-        metaDiv.appendChild(linkBtn);
-        row.appendChild(metaDiv);
+  const createSection=(title)=>{
+    const section=document.createElement('section');
+    section.className='gifts-section';
+    const heading=document.createElement('div');
+    heading.className='gifts-section-title';
+    heading.textContent=title;
+    const list=document.createElement('div');
+    list.className='gifts-sublist';
+    section.appendChild(heading);
+    section.appendChild(list);
+    return {section,list};
+  };
+  const buildGiftRow=(gift,options={})=>{
+    const {
+      typeLabel='',
+      chipModifier='',
+      isActive=false,
+      showActivate=false,
+      onActivate=null,
+      onClear=null,
+      canActivate=true,
+      note=''
+    }=options;
+    const row=document.createElement('div');
+    row.className='inv-row static';
+    if(isActive) row.classList.add('active');
+    const nameDiv=document.createElement('div');
+    nameDiv.className='inv-name';
+    const labelSpan=document.createElement('span');
+    labelSpan.className='inv-label';
+    labelSpan.textContent=gift.name;
+    nameDiv.appendChild(labelSpan);
+    if(typeLabel){
+      const chip=document.createElement('span');
+      chip.className='gift-chip'+(chipModifier?` gift-chip--${chipModifier}`:'');
+      chip.textContent=typeLabel;
+      nameDiv.appendChild(chip);
+    }
+    row.appendChild(nameDiv);
+    const tools=document.createElement('div');
+    tools.className='inv-tools';
+    let hasTools=false;
+    let activateBtn=null;
+    if(showActivate){
+      if(isActive){
+        const clearBtn=document.createElement('button');
+        clearBtn.type='button';
+        clearBtn.className='btn small';
+        clearBtn.textContent='Clear active';
+        if(typeof onClear==='function'){
+          clearBtn.addEventListener('click',(ev)=>{
+            ev.preventDefault();
+            ev.stopPropagation();
+            onClear();
+          });
+        }else{
+          clearBtn.disabled=true;
+        }
+        tools.appendChild(clearBtn);
+        hasTools=true;
+      }else{
+        activateBtn=document.createElement('button');
+        activateBtn.type='button';
+        activateBtn.className='btn small';
+        activateBtn.textContent='Set active';
+        if(!canActivate || typeof onActivate!=='function'){
+          activateBtn.disabled=true;
+        }else{
+          activateBtn.addEventListener('click',(ev)=>{
+            ev.preventDefault();
+            ev.stopPropagation();
+            onActivate();
+          });
+        }
+        tools.appendChild(activateBtn);
+        hasTools=true;
       }
-      giftsList.appendChild(row);
-    });
-  }
+    }
+    if(note){
+      const noteSpan=document.createElement('span');
+      noteSpan.className='gift-note';
+      noteSpan.textContent=note;
+      tools.appendChild(noteSpan);
+      hasTools=true;
+      if(activateBtn && activateBtn.disabled){
+        activateBtn.title=note;
+      }
+    }
+    if(gift.adv){
+      const linkBtn=document.createElement('button');
+      linkBtn.type='button';
+      linkBtn.className='btn small';
+      linkBtn.textContent='View entry';
+      linkBtn.addEventListener('click',(ev)=>{
+        ev.preventDefault();
+        ev.stopPropagation();
+        giftsModal.classList.remove('open');
+        refreshModalState();
+        navigateToCharacterReward(charKey,gift.adv);
+      });
+      tools.appendChild(linkBtn);
+      hasTools=true;
+    }
+    if(hasTools){
+      row.appendChild(tools);
+    }
+    return row;
+  };
 
-  giftsSummary.textContent=`Total gifts: ${fmtNumber(gifts.length)}`;
+  const persistAndRender=()=>{
+    persistState();
+    render();
+  };
+  const setActiveBlessing=(name)=>{
+    const next=String(name||'').trim();
+    if(next===state.blessing) return;
+    state.blessing=next;
+    persistAndRender();
+  };
+  const setActiveBoon=(name)=>{
+    if(!canActivateBoon) return;
+    const next=String(name||'').trim();
+    if(next===state.boon) return;
+    state.boon=next;
+    persistAndRender();
+  };
+
+  const render=()=>{
+    giftsList.innerHTML='';
+    const activeSection=createSection('Active');
+    const activeEntries=[];
+    const blessingKey=state.blessing?state.blessing.toLowerCase():'';
+    const boonKey=state.boon?state.boon.toLowerCase():'';
+    if(blessingKey && nameMap.has(blessingKey)){
+      activeEntries.push({gift:nameMap.get(blessingKey),type:'blessing'});
+    }
+    if(canActivateBoon && boonKey && nameMap.has(boonKey)){
+      activeEntries.push({gift:nameMap.get(boonKey),type:'boon'});
+    }
+    typeGroups.resistance.forEach(gift=>{
+      activeEntries.push({gift,type:'resistance'});
+    });
+    activeEntries.forEach(({gift,type})=>{
+      const meta=TYPE_META[type]||TYPE_META.other;
+      const row=buildGiftRow(gift,{
+        typeLabel:meta.label,
+        chipModifier:meta.chip,
+        isActive:true,
+        showActivate:type==='blessing'||type==='boon',
+        onClear:type==='blessing'?()=>setActiveBlessing(''):type==='boon'?()=>setActiveBoon(''):null,
+        note:type==='resistance'?'Always active':''
+      });
+      activeSection.list.appendChild(row);
+    });
+    const addActiveNote=(text)=>{
+      if(!text) return;
+      const note=document.createElement('div');
+      note.className='muted';
+      note.textContent=text;
+      activeSection.list.appendChild(note);
+    };
+    if(!activeEntries.length){
+      addActiveNote('No active supernatural gifts yet.');
+    }
+    if(!state.blessing && typeGroups.blessing.length){
+      addActiveNote('No blessing selected. Choose one below to set it active.');
+    }
+    if(typeGroups.boon.length){
+      if(canActivateBoon){
+        if(!state.boon){
+          addActiveNote('No boon selected. Choose one below to set it active.');
+        }
+      }else{
+        addActiveNote('Boons unlock at level 17.');
+      }
+    }
+    giftsList.appendChild(activeSection.section);
+
+    const addTypeSection=(type,title,items)=>{
+      const section=createSection(title);
+      if(!items.length){
+        const empty=document.createElement('div');
+        empty.className='muted';
+        empty.textContent=`No ${title.toLowerCase()} recorded.`;
+        section.list.appendChild(empty);
+        giftsList.appendChild(section.section);
+        return;
+      }
+      const meta=TYPE_META[type]||TYPE_META.other;
+      items.forEach(gift=>{
+        const lower=gift.name.toLowerCase();
+        const isActive=type==='blessing'?lower===blessingKey: type==='boon'?canActivateBoon&&lower===boonKey: type==='resistance';
+        const row=buildGiftRow(gift,{
+          typeLabel:meta.label,
+          chipModifier:meta.chip,
+          isActive,
+          showActivate:type==='blessing'||type==='boon',
+          onActivate:type==='blessing'?()=>setActiveBlessing(gift.name):type==='boon'?()=>setActiveBoon(gift.name):null,
+          onClear:type==='blessing'?()=>setActiveBlessing(''):type==='boon'?()=>setActiveBoon(''):null,
+          canActivate:type==='boon'?canActivateBoon:true,
+          note:type==='boon'&&!canActivateBoon?'Unlocks at level 17':type==='resistance'?'Always active':''
+        });
+        section.list.appendChild(row);
+      });
+      giftsList.appendChild(section.section);
+    };
+
+    addTypeSection('blessing','Blessings',typeGroups.blessing);
+    addTypeSection('boon','Boons',typeGroups.boon);
+    addTypeSection('resistance','Resistances',typeGroups.resistance);
+    if(typeGroups.other.length){
+      addTypeSection('other','Other gifts',typeGroups.other);
+    }
+
+    const summaryParts=[`Total gifts: ${fmtNumber(gifts.length)}`];
+    summaryParts.push(`Blessings active: ${state.blessing? '1':'0'}/1`);
+    const boonCount=typeGroups.boon.length;
+    if(boonCount){
+      if(canActivateBoon){
+        summaryParts.push(`Boons active: ${state.boon? '1':'0'}/1`);
+      }else{
+        summaryParts.push(`Boons: ${fmtNumber(boonCount)} (unlock at level 17)`);
+      }
+    }
+    summaryParts.push(`Resistances: ${fmtNumber(typeGroups.resistance.length)} (always active)`);
+    if(typeGroups.other.length){
+      summaryParts.push(`Other gifts: ${fmtNumber(typeGroups.other.length)}`);
+    }
+    giftsSummary.textContent=summaryParts.join(' • ');
+  };
+
+  render();
   giftsModal.classList.add('open');
   refreshModalState();
 }
