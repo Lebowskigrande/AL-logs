@@ -473,11 +473,13 @@ body.modal-open #addCardMenu{display:none;}
 .attune-pill.on{background:#1a73e8;color:#fff}
 
 /* Common item toggle */
-.common-chip{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:1px solid rgba(148,163,184,.45);background:#fff;color:#475569;border-radius:50%;padding:0;font-size:12px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1;cursor:pointer;user-select:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.common-chip{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid rgba(148,163,184,.45);background:#f1f5f9;color:#475569;border-radius:50%;padding:0;font-size:11px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1;cursor:pointer;user-select:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .common-chip>[aria-hidden]{display:inline-flex;align-items:center;justify-content:center;width:100%;height:100%}
-.common-chip:hover,.common-chip:focus-visible{border-color:#94a3b8;color:#1f2937;outline:none}
-.common-chip.on{background:#334155;color:#fff;border-color:#334155}
+.common-chip:hover,.common-chip:focus-visible{background:#e2e8f0;border-color:#94a3b8;color:#334155;outline:none}
+.common-chip.on{background:#475569;color:#f8fafc;border-color:#475569}
+.common-chip.on:hover,.common-chip.on:focus-visible{background:#334155;border-color:#334155;color:#f8fafc}
 .common-chip:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
+.inv-name .common-chip{margin-left:auto}
 
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:8px;white-space:nowrap}
