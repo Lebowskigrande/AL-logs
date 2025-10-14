@@ -15,6 +15,11 @@
   --radius:16px; --shadow1:0 3px 12px rgba(16,24,40,.08); --shadow2:0 22px 44px rgba(16,24,40,.14);
   --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --accordion-ease:cubic-bezier(.33,1,.68,1); --gap:14px; --min-card:320px;
   --menu-dur:260ms; --danger:#dc2626;
+  --open-card-header:#dce6f5;
+  --open-card-body:#f4f7fb;
+  --open-card-border:rgba(148,163,184,.35);
+  --open-card-shadow:none;
+  --open-card-accent:transparent;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--ink);background:var(--bg);scrollbar-gutter:stable}
@@ -187,13 +192,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
-.log-list .card{--row-bg:transparent;--card-highlight-opacity:0;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease);flex:0 0 auto}
+.log-list .card{--row-bg:transparent;--card-highlight-opacity:0;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease),background var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card,
 .log-list .card::before,
 .log-list .card::after{border-radius:0}
 .log-list .card.open,
 .log-list .card.open::before,
-.log-list .card.open::after{border-radius:0}
+.log-list .card.open::after{border-radius:var(--log-card-radius)}
 .log-list .card.editing,
 .log-list .card.editing::before,
 .log-list .card.editing::after{border-radius:var(--log-card-radius)}
@@ -203,18 +208,18 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card>*{position:relative;z-index:1}
 .log-list .card:hover{--row-bg:rgba(15,23,42,.03)}
 .log-list .card:hover,.log-list .card.open{z-index:1}
-.log-list .card.open{--row-bg:#fff;--card-highlight-opacity:1}
-.log-list .card.open .card-hd{background:#f1f5f9;border-top-left-radius:0;border-top-right-radius:0}
-.log-list .card.open::after{border-color:#eef1f7}
+.log-list .card.open{--row-bg:rgba(148,163,184,.12);--card-highlight-opacity:1;background:var(--open-card-body);border:1px solid var(--open-card-border);box-shadow:var(--open-card-shadow);transform:none;border-radius:0}
+.log-list .card.open .card-hd{background:var(--open-card-header);border-radius:0;border-bottom:1px solid rgba(148,163,184,.3);box-shadow:none}
+.log-list .card.open::after{border-color:var(--open-card-border);background:var(--open-card-body);border-radius:0}
 .log-list .card.editing::after{border-color:#eef1f7}
 .log-list .card.editing .card-hd{background:var(--row-bg,#f1f5f9)}
 .log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
-.log-list .card.open::before,
+.log-list .card.open::before{box-shadow:none;opacity:0;border-radius:0}
 .log-list .card.editing::before{box-shadow:inset 3px 0 0 #eef1f7;opacity:1}
-.log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease)}
+.log-list .card .card-hd{padding:14px 20px;display:flex;align-items:flex-start;gap:16px;min-height:0;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
-.log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85);transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
-.log-list .card.open .card-bd{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.log-list .card-bd{border-top:1px solid rgba(148,163,184,.35);padding:0 20px;background:rgba(248,250,252,.85);transition:background-color var(--dur) var(--ease),background var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.log-list .card.open .card-bd{border-radius:0;background:transparent;border-color:rgba(148,163,184,.28)}
 .log-list .card .bd-in{padding:18px 0 20px}
 .log-list .card .edit-form{padding:18px 0 24px}
 .card:focus-visible{outline:2px solid rgba(100,116,139,.45);outline-offset:4px}
@@ -295,6 +300,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .pill-link:hover{background:#dbeafe;color:#0b57d0;box-shadow:var(--shadow1)}
 .pill-link:focus-visible{outline:2px solid rgba(26,115,232,.45);outline-offset:2px}
 .card-section{background:rgba(15,23,42,.02);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.log-list .card.open .card-section{background:#fff;border-radius:12px;border:1px solid rgba(148,163,184,.24)}
 .card-section:first-of-type{margin-top:0}
 .card-section-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .card-section-title{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -320,6 +326,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .subtitle-row .chips{margin-top:0;margin-left:0;justify-content:flex-start}
 .card.open .subtitle-row{flex-wrap:wrap;gap:8px}
 .card.open .subtitle-row .chips{margin-left:0;justify-content:flex-start}
+.log-list .card.open .log-row-title .display{color:var(--ink)}
+.log-list .card.open .log-row-meta,.log-list .card.open .log-row-date{color:rgba(15,23,42,.72)}
 
 /* Collapsible */
 .card-bd{position:relative;height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--card-ease,var(--accordion-ease)),opacity calc(var(--card-dur,var(--dur))*0.85) ease;transition-behavior:smooth;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
