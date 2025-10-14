@@ -451,7 +451,10 @@ body.modal-open #addCardMenu{display:none;}
 .inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background .2s;column-gap:18px}
 .inv-row:nth-child(odd){background:#fafbfc}
 .inv-row:nth-child(even){background:#f2f5f8}
-.inv-row.active{background:#e8f0ff;font-weight:600}
+.inv-row.active{font-weight:600;background:var(--gift-active-bg,#e8f0ff);color:var(--gift-active-fg,inherit)}
+.inv-row.active--blessing{--gift-active-bg:#dbeafe}
+.inv-row.active--boon{--gift-active-bg:#fef3c7}
+.inv-row.active--resistance{--gift-active-bg:#e5e7eb}
 .inv-row.common .inv-label{font-weight:600}
 .inv-row.static{cursor:default}
 .inv-name{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
@@ -502,14 +505,8 @@ body.modal-open #addCardMenu{display:none;}
 .cons-chip--potion{background:#fef3c7;color:#b45309}
 .cons-chip--scroll{background:#ede9fe;color:#5b21b6}
 .cons-secondary{display:block;margin-top:3px;font-size:11px;color:var(--muted);white-space:normal}
-.gifts-section{display:flex;flex-direction:column;gap:6px;padding:2px 0}
-.gifts-section+.gifts-section{margin-top:16px}
-.gifts-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 4px}
 .gifts-sublist{display:flex;flex-direction:column;gap:6px}
-.gift-chip{display:inline-flex;align-items:center;justify-content:center;padding:2px 6px;border-radius:999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:#eef4ff;color:#1a73e8}
-.gift-chip--blessing{background:#fef3c7;color:#b45309}
-.gift-chip--boon{background:#ede9fe;color:#5b21b6}
-.gift-chip--resistance{background:#dcfce7;color:#166534}
+.gifts-list-note{font-size:12px;color:var(--muted);padding:0 4px}
 .gift-note{font-size:11px;color:var(--muted)}
 
 /* Reduce scroll anchoring jumps */
@@ -597,9 +594,7 @@ body.avatar-overlay-open{overflow:hidden}
           </button>
           <button id="giftsBtn" class="inventory-link" type="button" title="View supernatural gifts" aria-label="View supernatural gifts">
             <span class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 3l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 15.9l-4.8 2.86.92-5.34-3.88-3.78 5.36-.78L12 3z"/>
-              </svg>
+              <img src="gift-svgrepo-com.svg" alt="" width="24" height="24"/>
             </span>
             <span class="sr-only" id="giftsCount">0</span>
           </button>
@@ -4462,12 +4457,6 @@ function openSupernaturalModal(charKey){
     const bucket=typeGroups[gift.type]||typeGroups.other;
     bucket.push(gift);
   });
-  const TYPE_META={
-    blessing:{label:'Blessing',chip:'blessing'},
-    boon:{label:'Boon',chip:'boon'},
-    resistance:{label:'Resistance',chip:'resistance'},
-    other:{label:'Gift',chip:''}
-  };
   const canonicalName=(value)=>{
     if(!value) return '';
     const lower=String(value).trim().toLowerCase();
@@ -4500,22 +4489,9 @@ function openSupernaturalModal(charKey){
   giftsTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Supernatural Gifts';
   giftsMeta.textContent=`Level ${fmtNumber(level)}`;
 
-  const createSection=(title)=>{
-    const section=document.createElement('section');
-    section.className='gifts-section';
-    const heading=document.createElement('div');
-    heading.className='gifts-section-title';
-    heading.textContent=title;
-    const list=document.createElement('div');
-    list.className='gifts-sublist';
-    section.appendChild(heading);
-    section.appendChild(list);
-    return {section,list};
-  };
   const buildGiftRow=(gift,options={})=>{
     const {
-      typeLabel='',
-      chipModifier='',
+      type='',
       isActive=false,
       showActivate=false,
       onActivate=null,
@@ -4524,75 +4500,58 @@ function openSupernaturalModal(charKey){
       note=''
     }=options;
     const row=document.createElement('div');
-    row.className='inv-row static';
-    if(isActive) row.classList.add('active');
+    row.className='inv-row';
+    const canToggle=showActivate && (canActivate || isActive);
+    if(!canToggle){
+      row.classList.add('static');
+    }else{
+      row.setAttribute('role','button');
+      row.tabIndex=0;
+      row.setAttribute('aria-pressed',isActive?'true':'false');
+    }
+    if(isActive){
+      row.classList.add('active');
+      if(type==='blessing'||type==='boon'||type==='resistance'){
+        row.classList.add(`active--${type}`);
+      }
+    }
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
     const labelSpan=document.createElement('span');
     labelSpan.className='inv-label';
     labelSpan.textContent=gift.name;
     nameDiv.appendChild(labelSpan);
-    if(typeLabel){
-      const chip=document.createElement('span');
-      chip.className='gift-chip'+(chipModifier?` gift-chip--${chipModifier}`:'');
-      chip.textContent=typeLabel;
-      nameDiv.appendChild(chip);
-    }
     row.appendChild(nameDiv);
     const tools=document.createElement('div');
     tools.className='inv-tools';
     let hasTools=false;
-    let activateBtn=null;
-    if(showActivate){
-      if(isActive){
-        const clearBtn=document.createElement('button');
-        clearBtn.type='button';
-        clearBtn.className='btn small';
-        clearBtn.textContent='Clear active';
-        if(typeof onClear==='function'){
-          clearBtn.addEventListener('click',(ev)=>{
-            ev.preventDefault();
-            ev.stopPropagation();
-            onClear();
-          });
-        }else{
-          clearBtn.disabled=true;
-        }
-        tools.appendChild(clearBtn);
-        hasTools=true;
-      }else{
-        activateBtn=document.createElement('button');
-        activateBtn.type='button';
-        activateBtn.className='btn small';
-        activateBtn.textContent='Set active';
-        if(!canActivate || typeof onActivate!=='function'){
-          activateBtn.disabled=true;
-        }else{
-          activateBtn.addEventListener('click',(ev)=>{
-            ev.preventDefault();
-            ev.stopPropagation();
-            onActivate();
-          });
-        }
-        tools.appendChild(activateBtn);
-        hasTools=true;
-      }
-    }
     if(note){
       const noteSpan=document.createElement('span');
       noteSpan.className='gift-note';
       noteSpan.textContent=note;
       tools.appendChild(noteSpan);
       hasTools=true;
-      if(activateBtn && activateBtn.disabled){
-        activateBtn.title=note;
-      }
     }
     if(gift.adv){
       const linkBtn=document.createElement('button');
       linkBtn.type='button';
-      linkBtn.className='btn small';
-      linkBtn.textContent='View entry';
+      linkBtn.className='icon-btn';
+      linkBtn.setAttribute('aria-label','View entry');
+      linkBtn.title='View entry';
+      const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      icon.setAttribute('viewBox','0 0 24 24');
+      icon.setAttribute('width','20');
+      icon.setAttribute('height','20');
+      icon.setAttribute('fill','none');
+      icon.setAttribute('stroke','currentColor');
+      icon.setAttribute('stroke-width','2');
+      icon.setAttribute('stroke-linecap','round');
+      icon.setAttribute('stroke-linejoin','round');
+      icon.setAttribute('aria-hidden','true');
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z');
+      icon.appendChild(path);
+      linkBtn.appendChild(icon);
       linkBtn.addEventListener('click',(ev)=>{
         ev.preventDefault();
         ev.stopPropagation();
@@ -4605,6 +4564,29 @@ function openSupernaturalModal(charKey){
     }
     if(hasTools){
       row.appendChild(tools);
+    }
+    if(canToggle){
+      const triggerToggle=()=>{
+        if(isActive){
+          if(typeof onClear==='function'){
+            onClear();
+          }
+          return;
+        }
+        if(canActivate && typeof onActivate==='function'){
+          onActivate();
+        }
+      };
+      row.addEventListener('click',(ev)=>{
+        ev.preventDefault();
+        triggerToggle();
+      });
+      row.addEventListener('keydown',(ev)=>{
+        if(ev.key==='Enter'||ev.key===' '||ev.key==='Spacebar'){
+          ev.preventDefault();
+          triggerToggle();
+        }
+      });
     }
     return row;
   };
@@ -4629,89 +4611,98 @@ function openSupernaturalModal(charKey){
 
   const render=()=>{
     giftsList.innerHTML='';
-    const activeSection=createSection('Active');
-    const activeEntries=[];
     const blessingKey=state.blessing?state.blessing.toLowerCase():'';
     const boonKey=state.boon?state.boon.toLowerCase():'';
+    const activeEntries=[];
     if(blessingKey && nameMap.has(blessingKey)){
-      activeEntries.push({gift:nameMap.get(blessingKey),type:'blessing'});
+      activeEntries.push(nameMap.get(blessingKey));
     }
     if(canActivateBoon && boonKey && nameMap.has(boonKey)){
-      activeEntries.push({gift:nameMap.get(boonKey),type:'boon'});
+      activeEntries.push(nameMap.get(boonKey));
     }
     typeGroups.resistance.forEach(gift=>{
-      activeEntries.push({gift,type:'resistance'});
+      activeEntries.push(gift);
     });
-    activeEntries.forEach(({gift,type})=>{
-      const meta=TYPE_META[type]||TYPE_META.other;
-      const row=buildGiftRow(gift,{
-        typeLabel:meta.label,
-        chipModifier:meta.chip,
-        isActive:true,
-        showActivate:type==='blessing'||type==='boon',
-        onClear:type==='blessing'?()=>setActiveBlessing(''):type==='boon'?()=>setActiveBoon(''):null,
-        note:type==='resistance'?'Always active':''
-      });
-      activeSection.list.appendChild(row);
-    });
-    const addActiveNote=(text)=>{
+
+    const noteFragment=document.createDocumentFragment();
+    const addNote=(text)=>{
       if(!text) return;
       const note=document.createElement('div');
-      note.className='muted';
+      note.className='gifts-list-note';
       note.textContent=text;
-      activeSection.list.appendChild(note);
+      noteFragment.appendChild(note);
     };
+
     if(!activeEntries.length){
-      addActiveNote('No active supernatural gifts yet.');
+      addNote('No active supernatural gifts yet.');
     }
     if(!state.blessing && typeGroups.blessing.length){
-      addActiveNote('No blessing selected. Choose one below to set it active.');
+      addNote('No blessing selected. Choose one below to set it active.');
     }
     if(typeGroups.boon.length){
       if(canActivateBoon){
         if(!state.boon){
-          addActiveNote('No boon selected. Choose one below to set it active.');
+          addNote('No boon selected. Choose one below to set it active.');
         }
       }else{
-        addActiveNote('Boons unlock at level 17.');
+        addNote('Boons unlock at level 17.');
       }
     }
-    giftsList.appendChild(activeSection.section);
 
-    const addTypeSection=(type,title,items)=>{
-      const section=createSection(title);
-      if(!items.length){
-        const empty=document.createElement('div');
-        empty.className='muted';
-        empty.textContent=`No ${title.toLowerCase()} recorded.`;
-        section.list.appendChild(empty);
-        giftsList.appendChild(section.section);
-        return;
-      }
-      const meta=TYPE_META[type]||TYPE_META.other;
-      items.forEach(gift=>{
+    if(noteFragment.childNodes.length){
+      giftsList.appendChild(noteFragment);
+    }
+
+    if(gifts.length){
+      const list=document.createElement('div');
+      list.className='gifts-sublist';
+      giftsList.appendChild(list);
+
+      const appendGift=(gift,type,options={})=>{
+        list.appendChild(buildGiftRow(gift,{type,...options}));
+      };
+
+      typeGroups.blessing.forEach(gift=>{
         const lower=gift.name.toLowerCase();
-        const isActive=type==='blessing'?lower===blessingKey: type==='boon'?canActivateBoon&&lower===boonKey: type==='resistance';
-        const row=buildGiftRow(gift,{
-          typeLabel:meta.label,
-          chipModifier:meta.chip,
+        const isActive=lower===blessingKey;
+        appendGift(gift,'blessing',{
           isActive,
-          showActivate:type==='blessing'||type==='boon',
-          onActivate:type==='blessing'?()=>setActiveBlessing(gift.name):type==='boon'?()=>setActiveBoon(gift.name):null,
-          onClear:type==='blessing'?()=>setActiveBlessing(''):type==='boon'?()=>setActiveBoon(''):null,
-          canActivate:type==='boon'?canActivateBoon:true,
-          note:type==='boon'&&!canActivateBoon?'Unlocks at level 17':type==='resistance'?'Always active':''
+          showActivate:true,
+          onActivate:()=>setActiveBlessing(gift.name),
+          onClear:()=>setActiveBlessing('')
         });
-        section.list.appendChild(row);
       });
-      giftsList.appendChild(section.section);
-    };
 
-    addTypeSection('blessing','Blessings',typeGroups.blessing);
-    addTypeSection('boon','Boons',typeGroups.boon);
-    addTypeSection('resistance','Resistances',typeGroups.resistance);
-    if(typeGroups.other.length){
-      addTypeSection('other','Other gifts',typeGroups.other);
+      typeGroups.boon.forEach(gift=>{
+        const lower=gift.name.toLowerCase();
+        const isActive=canActivateBoon && lower===boonKey;
+        appendGift(gift,'boon',{
+          isActive,
+          showActivate:true,
+          onActivate:()=>setActiveBoon(gift.name),
+          onClear:()=>setActiveBoon(''),
+          canActivate:canActivateBoon,
+          note:!canActivateBoon?'Unlocks at level 17':''
+        });
+      });
+
+      typeGroups.resistance.forEach(gift=>{
+        appendGift(gift,'resistance',{
+          isActive:true,
+          note:'Always active'
+        });
+      });
+
+      typeGroups.other.forEach(gift=>{
+        appendGift(gift,'',{
+          isActive:false
+        });
+      });
+    }else{
+      const empty=document.createElement('div');
+      empty.className='gifts-list-note';
+      empty.textContent='No supernatural gifts recorded.';
+      giftsList.appendChild(empty);
     }
 
     const summaryParts=[`Total gifts: ${fmtNumber(gifts.length)}`];
