@@ -240,6 +240,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-actions .card-edit-btn{box-shadow:none}
 @media (max-width:520px){
   .card-actions{right:12px}
+  .log-row{flex-direction:column;align-items:stretch;gap:12px}
+  .log-row-stats{margin-left:0;justify-content:flex-start;width:100%}
 }
 .card-edit-btn{padding:8px 16px;font-size:13px;border-radius:12px;box-shadow:none;transform:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .card-edit-btn:hover{transform:none;box-shadow:none;background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.45)}
@@ -256,6 +258,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-tags{display:flex;flex-wrap:wrap;gap:6px;width:100%}
 .log-row-tags:empty{display:none}
 .log-row-stats{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;min-height:0}
+@media (max-width:520px){
+  .log-row-info{flex:1 1 auto;width:100%}
+}
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
 .log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;transition:color var(--dur) var(--ease)}
 .log-row-title.is-adventure .display{font-weight:700}
