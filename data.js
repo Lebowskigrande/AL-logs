@@ -2072,7 +2072,7 @@ export const DATA = {
             "Blessing of the Morninglord"
           ],
           "supernaturalGiftsFoundHere": [
-            "the Morninglord"
+            "Blessing of the Morninglord"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -5458,7 +5458,7 @@ export const DATA = {
             "Charm of the Mirage. This charm allows you to cast the hallucinatory terrain spell (save DC 15) as an action. Once used",
             "this charm vanishes from you. Charm of Lightning Resistance (10 days)"
           ],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Necrotic"],
           "notes": "Wished for resistance to Necrotic, spell was cast from a scroll with the help of Divine Intervention by Deneir called upon by Myka (Nicole)",
           "lossesParsed": [],
           "trades": [],
@@ -5958,7 +5958,7 @@ export const DATA = {
             "Blessing of Protection"
           ],
           "supernaturalGiftsFoundHere": [
-            "Protection"
+            "Blessing of Protection"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -5985,7 +5985,7 @@ export const DATA = {
             "Blessing of the Frostmaiden"
           ],
           "supernaturalGiftsFoundHere": [
-            "the Frostmaiden"
+            "Blessing the Frostmaiden"
           ],
           "notes": "Purchased Studded Leather, cold weather gear, and 5 Potions of Superior Healing",
           "lossesParsed": [],
@@ -8019,7 +8019,7 @@ export const DATA = {
             "Wave"
           ],
           "supernaturalGiftsFoundHere": [
-            "Protection"
+            "Blessing of Protection"
           ],
           "notes": "Bought 300 gp diamond",
           "lossesParsed": [],
@@ -8552,7 +8552,7 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "Protection"
+            "Blessing of Protection"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -9602,18 +9602,13 @@ export const DATA = {
           "goldMinus": 0,
           "permItems": [
             "Ioun Stone of Vitality",
-            "Necklace of Prayer Beads (Blessing",
-            "Curing",
-            "Favor",
-            "Wind walking)"
+            "Necklace of Prayer Beads (Blessing, Curing, Favor, Wind walking)"
           ],
           "consumables": [],
           "storyRewards": [
             "Code Breaker"
           ],
-          "supernaturalGiftsFoundHere": [
-            "Blessing"
-          ],
+          "supernaturalGiftsFoundHere": [],
           "notes": "Offered a spellbook (collected 9/22/2020) as payment to enter Candlekeep",
           "lossesParsed": [],
           "trades": [],
@@ -10353,7 +10348,7 @@ export const DATA = {
             "Spell Scroll of Wish"
           ],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Necrotic"],
           "notes": "Used Scroll of Wish (Quinlin wished for Necrotic Resistance)",
           "lossesParsed": [],
           "trades": [],
@@ -10878,13 +10873,11 @@ export const DATA = {
           "downtimeMinus": 0,
           "goldPlus": 0,
           "goldMinus": 0,
-          "permItems": [
-            "Szass Tam's Essence (Boon of High Magic)"
-          ],
+          "permItems": [],
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "High Magic)"
+            "Boon of High Magic"
           ],
           "notes": "Gained an additional 9th level spell slot",
           "lossesParsed": [],
@@ -11296,7 +11289,7 @@ export const DATA = {
           "storyRewards": [
             "Knight of the Giant Queen"
           ],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Slashing"],
           "notes": "Wren (Erik T.) cast Scroll of Wish for Slashing resistance. Bought scroll of Death Ward.",
           "lossesParsed": [],
           "trades": [],
@@ -12699,7 +12692,7 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "Luck"
+            "Tyr's Blessing of Luck"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -13108,7 +13101,7 @@ export const DATA = {
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "Magic Resistance"
+            "Blessing of Magic Resistance"
           ],
           "notes": "Blessing of Magic Resistance",
           "lossesParsed": [],
@@ -15442,15 +15435,15 @@ export const DATA = {
             "10 potions of greater healing (5 consumed)"
           ],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Necrotic", "Resistance to Fire"],
           "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
           "lossesParsed": [],
           "trades": [
             {
               "tradeItemGiven": "Ring of Cold Resistance",
               "tradeItemReceived": "Mantle of Spell Resistance",
-              "tradePlayerName": null,
-              "tradeCharacterName": "Wren (Erik Tukey)",
+              "tradePlayerName": "Erik T.",
+              "tradeCharacterName": "Wren",
               "tradeNotes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage."
             }
           ],
@@ -15921,7 +15914,7 @@ export const DATA = {
           ],
           "consumables": [],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Lightning", "Resistance to Acid"],
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
           "lossesParsed": [],
           "trades": [],
@@ -16115,7 +16108,7 @@ export const DATA = {
             "Lost Lore of the Illithilich"
           ],
           "supernaturalGiftsFoundHere": [
-            "Protection"
+            "Blessing of Protection"
           ],
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
           "lossesParsed": [],
@@ -16824,7 +16817,7 @@ export const DATA = {
           ],
           "consumables": [],
           "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
+          "supernaturalGiftsFoundHere": ["Resistance to Force"],
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
           "lossesParsed": [],
           "trades": [],
@@ -16864,12 +16857,11 @@ export const DATA = {
           "goldMinus": 20000.0,
           "permItems": [
             "Plate +3 (Crystal)",
-            "Boon of Recovery"
           ],
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "Recovery"
+            "Boon of Recovery"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -16888,13 +16880,12 @@ export const DATA = {
           "goldMinus": 0,
           "permItems": [
             "Plate +3",
-            "Boon of Resilience",
             "Half-plate of Gleaming"
           ],
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [
-            "Resilience"
+            "Boon of Resilience"
           ],
           "notes": null,
           "lossesParsed": [],
@@ -17578,15 +17569,13 @@ export const DATA = {
           "downtimeMinus": 0,
           "goldPlus": 3000.0,
           "goldMinus": 0,
-          "permItems": [
-            "Boon of High Magic"
-          ],
+          "permItems": [],
           "consumables": [],
           "storyRewards": [
             "Essence of Zsasz Tamm"
           ],
           "supernaturalGiftsFoundHere": [
-            "High Magic"
+            "Boon of High Magic"
           ],
           "notes": null,
           "lossesParsed": [],
