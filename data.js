@@ -420,14 +420,22 @@ export const DATA = {
           "goldPlus": 1000.0,
           "goldMinus": 0,
           "permItems": [
-            "Lash of Immolation"
+            "Lash of Immolation",
+            "Hat of Wizardry"
           ],
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
           "notes": "Table trade for Heward's Handy Spicepouch",
           "lossesParsed": [],
-          "trades": [],
+          "trades": [    
+          {
+              "tradeItemGiven": "Hat of Wizardry",
+              "tradeItemReceived": "Heward's Handy Spicepouch",
+              "tradePlayerName": null,
+              "tradeCharacterName": null,
+              "tradeNotes": null
+          }],
           "kind": "adventure"
         },
         {
@@ -1621,16 +1629,21 @@ export const DATA = {
           "goldPlus": 0,
           "goldMinus": 0,
           "permItems": [
-            "Necklace of Prayer Beads (4x Bless",
-            "1x Smite",
-            "1x Greater Restoration)"
+            "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)"
           ],
           "consumables": [],
           "storyRewards": [],
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded to Pruxx for Necklace of Prayer Beads",
           "lossesParsed": [],
-          "trades": [],
+          "trades": [
+          {    
+              "tradeItemGiven": "Dagger of Blindsight",
+              "tradeItemReceived": "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
+              "tradePlayerName": "Dave N.",
+              "tradeCharacterName": "Pruxx",
+              "tradeNotes": null
+          }],
           "kind": "Downtime Activity"
         },
         {
@@ -6326,9 +6339,9 @@ export const DATA = {
         },
         {
           "date": "2025-06-18",
-          "adventureCode": null,
-          "adventureName": null,
-          "dm": null,
+          "adventureCode": DDHC-DMM-CH18,
+          "adventureName": "Save the Dragon",
+          "dm": "Alexis P.",
           "levelPlus": 0,
           "downtimePlus": 0,
           "downtimeMinus": 0,
@@ -6336,7 +6349,7 @@ export const DATA = {
           "goldMinus": 0,
           "permItems": [],
           "consumables": [],
-          "storyRewards": [],
+          "storyRewards": ["House Moonstar Trade"],
           "supernaturalGiftsFoundHere": [],
           "notes": null,
           "lossesParsed": [],
@@ -6558,7 +6571,7 @@ export const DATA = {
           "goldMinus": 4100.0,
           "permItems": [
             "Pot of Awakening",
-            "Rod of Rulership (traded for Staff of Charming)"
+            "Rod of Rulership"
           ],
           "consumables": [
             "6 +3 Arrows"
@@ -6571,11 +6584,11 @@ export const DATA = {
           "lossesParsed": [],
           "trades": [
             {
-              "tradeItemGiven": "of Rod of Rulership for Staff of Charming. Gave 200 gp",
-              "tradeItemReceived": null,
+              "tradeItemGiven": "Rod of Rulership",
+              "tradeItemReceived": "Staff of Charming",
               "tradePlayerName": null,
-              "tradeCharacterName": "Pit Fiend in rare coins",
-              "tradeNotes": null
+              "tradeCharacterName": null,
+              "tradeNotes": "Table trade"
             }
           ],
           "kind": "adventure"
@@ -11500,7 +11513,7 @@ export const DATA = {
     "Agatha": {
       "logs": [
         {
-          "date": "2002-01-17",
+          "date": "2020-01-17",
           "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": null,
@@ -11529,7 +11542,7 @@ export const DATA = {
           "kind": "Downtime Activity"
         },
         {
-          "date": "2002-01-17",
+          "date": "2020-01-17",
           "adventureCode": "DT-TRADE",
           "adventureName": "Trade",
           "dm": "Patrick W.",
@@ -11729,25 +11742,6 @@ export const DATA = {
         },
         {
           "date": "2020-01-17",
-          "adventureCode": "DT-TRADE",
-          "adventureName": "Trade",
-          "dm": null,
-          "levelPlus": 0,
-          "downtimePlus": 0,
-          "downtimeMinus": 15.0,
-          "goldPlus": 0,
-          "goldMinus": 0,
-          "permItems": [],
-          "consumables": [],
-          "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
-          "notes": "Traded Ring of Spell Storing to",
-          "lossesParsed": [],
-          "trades": [],
-          "kind": "Downtime Activity"
-        },
-        {
-          "date": "2020-01-17",
           "adventureCode": "DDAL 09-06",
           "adventureName": "Infernal Insurgency",
           "dm": "Justin C.",
@@ -11827,8 +11821,15 @@ export const DATA = {
           "supernaturalGiftsFoundHere": [],
           "notes": "Traded Wand of Fireballs for Rod of the Pact Keeper +2",
           "lossesParsed": [],
-          "trades": [],
-          "kind": "Downtime Activity"
+          "trades": [
+            {
+              "tradeItemGiven": "Wand of Fireballs",
+              "tradeItemReceived": "Rod of the Pact Keeper +2",
+              "tradePlayerName": null,
+              "tradeCharacterName": null,
+              "tradeNotes": null
+            }
+          ],          "kind": "Downtime Activity"
         },
         {
           "date": "2020-01-20",
@@ -12898,25 +12899,6 @@ export const DATA = {
           "kind": "adventure"
         },
         {
-          "date": "2021-07-03",
-          "adventureCode": null,
-          "adventureName": null,
-          "dm": null,
-          "levelPlus": 0,
-          "downtimePlus": 0,
-          "downtimeMinus": 0,
-          "goldPlus": 0,
-          "goldMinus": 1000.0,
-          "permItems": [],
-          "consumables": [],
-          "storyRewards": [],
-          "supernaturalGiftsFoundHere": [],
-          "notes": null,
-          "lossesParsed": [],
-          "trades": [],
-          "kind": "Downtime Activity"
-        },
-        {
           "date": "2021-08-08",
           "adventureCode": "CCC-MIND01-03",
           "adventureName": "Dream Walkers",
@@ -13701,9 +13683,9 @@ export const DATA = {
           "trades": [
             {
               "tradeItemGiven": "Tome of Understanding",
-              "tradeItemReceived": null,
-              "tradePlayerName": null,
-              "tradeCharacterName": "for Plate",
+              "tradeItemReceived": "Plate +2",
+              "tradePlayerName": "David T.",
+              "tradeCharacterName": null,
               "tradeNotes": null
             }
           ],
@@ -16790,9 +16772,9 @@ export const DATA = {
           "trades": [
             {
               "tradeItemGiven": "Ascendant Dragon-Touched Focus",
-              "tradeItemReceived": null,
-              "tradePlayerName": null,
-              "tradeCharacterName": "Valenor Vyshaan to Robe of the Archmagi",
+              "tradeItemReceived": "Robe of the Archmagi (white)",
+              "tradePlayerName": "Dario C.",
+              "tradeCharacterName": "Valenor Vyshaan",
               "tradeNotes": null
             }
           ],
@@ -16872,8 +16854,8 @@ export const DATA = {
         },
         {
           "date": "2024-04-25",
-          "adventureCode": null,
-          "adventureName": null,
+          "adventureCode": "PS-DC-STRAT-DRAGON-04",
+          "adventureName": "My Shattered Heart",
           "dm": "Alexis P.",
           "levelPlus": 0,
           "downtimePlus": 10.0,
