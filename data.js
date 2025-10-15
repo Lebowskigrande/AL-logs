@@ -8395,7 +8395,7 @@ window.DATA = {
           "title": "To Be the Very Best",
           "code": "CCC-KUMORI-02-04",
           "dm": "Jon K.",
-          "gp_plus": 800,
+          "gp_plus": 80,
           "gp_minus": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
@@ -8413,7 +8413,7 @@ window.DATA = {
           "__charKey": "Sentient Hat",
           "__lockedKind": "adventure",
           "__levelAtStart": 1,
-          "gp_net": 800,
+          "gp_net": 80,
           "dtd_net": 10,
           "__levelAfter": 3
         }
@@ -19920,7 +19920,7 @@ window.DATA = {
     },
     "Sentient Hat": {
       "sessions": 37,
-      "net_gp": 49957,
+      "net_gp": 49237,
       "net_dtd": 262,
       "level_ups": 15,
       "perm_count": 42,
@@ -20119,7 +20119,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T17:44:12.883Z",
+    "generated": "2025-10-15T17:44:43.697Z",
     "problems": []
   }
 };
