@@ -198,7 +198,7 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
-          "date": "2025-10-14",
+          "date": "2025-10-15",
           "title": "The Forbidden Vale",
           "code": "DDHC-DD-Ch6",
           "dm": "Alexis P.",
@@ -19972,7 +19972,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T04:42:17.652Z",
+    "generated": "2025-10-15T04:44:13.329Z",
     "problems": []
   }
 };
