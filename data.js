@@ -12072,7 +12072,8 @@ window.DATA = {
           "dtd_net": 18,
           "level_plus": 1,
           "perm_items": [
-            "Armor of Vulnerability (slashing)"
+            "Armor of Vulnerability (slashing)",
+            "Blackrazor"
           ],
           "consumable_items": [
             "Potion of Greater Healing",
@@ -20059,7 +20060,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:16:39.959Z",
+    "generated": "2025-10-15T05:43:10.183Z",
     "problems": []
   }
 };
