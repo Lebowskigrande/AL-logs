@@ -5218,8 +5218,12 @@ function makeCard(a,idx){
   const applyTotalsState=(el,label,value,editing=false)=>{
     if(!el) return false;
     const num=Number(value||0);
-    el.classList.remove('gain','loss');
-    if(!el.classList.contains('neutral')){
+    el.classList.remove('gain','loss','neutral');
+    if(num>0){
+      el.classList.add('gain');
+    }else if(num<0){
+      el.classList.add('loss');
+    }else{
       el.classList.add('neutral');
     }
     el.textContent=`${label} ${formatSignedValue(num)}`;
