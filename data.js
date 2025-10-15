@@ -1671,8 +1671,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "title": "Trade",
@@ -1699,8 +1699,8 @@ window.DATA = {
           "player": "",
           "character": "Raguel",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "title": "Isle of Death",
@@ -1713,7 +1713,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Amethyst Dragonwing Longbow"
           ],
@@ -1723,8 +1723,10 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 11,
+          "__levelAtStart": 10,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "Dancing in the Moonlight",
@@ -1750,8 +1752,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Head in the Clouds",
@@ -1774,8 +1776,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "The Rookery: The Crook in the Rook",
@@ -1796,8 +1798,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "DM Reward",
@@ -1820,8 +1822,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Trade",
@@ -1848,8 +1850,8 @@ window.DATA = {
           "player": "",
           "character": "Faramir Quickfoot",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "The Lost God",
@@ -1878,8 +1880,8 @@ window.DATA = {
           "notes": "Purchased Triceratops for 500 gp",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "One Last Job",
@@ -1902,8 +1904,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Spawn of the Maimed Virulence",
@@ -1929,8 +1931,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Back to the Burning",
@@ -1957,8 +1959,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Trade",
@@ -1985,8 +1987,8 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Last Hour",
@@ -2015,8 +2017,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Trade",
@@ -2043,8 +2045,8 @@ window.DATA = {
           "player": "Dave N.",
           "character": "Pruxx",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Black Blades, Black Wings",
@@ -2070,8 +2072,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "The Innocent",
@@ -2092,8 +2094,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Blue Scales",
@@ -2118,8 +2120,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 6
+          "__levelAfter": 10,
+          "__levelAtStart": 10
         },
         {
           "title": "Unsafe Harborage",
@@ -2140,8 +2142,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 6,
-          "__levelAtStart": 5
+          "__levelAfter": 10,
+          "__levelAtStart": 9
         },
         {
           "title": "Throne of the Coronal",
@@ -2167,8 +2169,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 5,
-          "__levelAtStart": 4
+          "__levelAfter": 9,
+          "__levelAtStart": 8
         },
         {
           "title": "Writhing in the Dark",
@@ -2193,8 +2195,8 @@ window.DATA = {
           "notes": "Scavenged plate and a greatsword",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 4,
-          "__levelAtStart": 3
+          "__levelAfter": 8,
+          "__levelAtStart": 7
         },
         {
           "title": "Book of Cylinders",
@@ -2220,8 +2222,8 @@ window.DATA = {
           "notes": "Learned Grippli",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 3,
-          "__levelAtStart": 2
+          "__levelAfter": 7,
+          "__levelAtStart": 6
         },
         {
           "title": "Season 11b DM Reward (R)",
@@ -2244,8 +2246,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "title": "Season 11b DM Reward (R)",
@@ -2268,8 +2270,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "title": "Season 11b DM Reward (R)",
@@ -2292,8 +2294,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "title": "Lore of Lurue",
@@ -2316,8 +2318,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 1
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "title": "Trade",
@@ -2344,8 +2346,33 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Norixius",
-          "__levelAfter": 1,
-          "__levelAtStart": 1
+          "__levelAfter": 5,
+          "__levelAtStart": 5
+        },
+        {
+          "date": "2022-04-19",
+          "title": "Start at level 5",
+          "code": "DT-START",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "level_plus": 4,
+          "perm_items": [],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Norixius",
+          "__lockedKind": "Downtime Activity",
+          "__levelAtStart": 1,
+          "gp_net": 0,
+          "dtd_net": 40,
+          "__levelAfter": 5
         }
       ]
     },
@@ -19748,8 +19775,8 @@ window.DATA = {
     "Norixius": {
       "sessions": 17,
       "net_gp": 16727,
-      "net_dtd": 155,
-      "level_ups": 5,
+      "net_dtd": 195,
+      "level_ups": 10,
       "perm_count": 32,
       "cons_count": 10,
       "gifts_count": 0
@@ -19885,7 +19912,7 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 165,
+      "perm_count": 164,
       "cons_count": 67,
       "gifts_count": 6
     },
@@ -20062,7 +20089,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:44:50.186Z",
+    "generated": "2025-10-15T16:40:10.244Z",
     "problems": []
   }
 };
