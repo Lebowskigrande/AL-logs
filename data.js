@@ -10323,7 +10323,7 @@ window.DATA = {
           "consumable_items": [],
           "story_awards": [],
           "supernatural_gifts": [],
-          "notes": "Recieved Blackrazor from completion of White Plume Mountain. Used House Moonstar",
+          "notes": "Used House Moonstar Trade story award to trade Blackrazor for a Moon Blade.",
           "kind": "Downtime Activity",
           "itemTraded": "Downtime Activity",
           "itemReceived": "a Moon Blade",
@@ -10331,7 +10331,9 @@ window.DATA = {
           "character": "trade Blackrazor",
           "__charKey": "Zandarax",
           "__levelAfter": 20,
-          "__levelAtStart": 20
+          "__levelAtStart": 20,
+          "lost_perm_item": "Blackrazor",
+          "traded_item": ""
         },
         {
           "title": "Forgotten Foes",
@@ -19883,7 +19885,7 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 164,
+      "perm_count": 165,
       "cons_count": 67,
       "gifts_count": 6
     },
@@ -20060,7 +20062,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:43:10.183Z",
+    "generated": "2025-10-15T05:44:50.186Z",
     "problems": []
   }
 };
