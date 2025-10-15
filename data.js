@@ -198,6 +198,37 @@ window.DATA = {
       "display_name": "Ecthelion",
       "adventures": [
         {
+          "date": "2025-10-14",
+          "title": "The Forbidden Vale",
+          "code": "DDHC-DD-Ch6",
+          "dm": "Alexis P.",
+          "gp_plus": 43250,
+          "gp_minus": 1340,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "level_plus": 1,
+          "perm_items": [
+            "Vicious Greatsword",
+            "Cube of Summoning",
+            "Silvered Spear",
+            "Doss Lute",
+            "Periapt of Health"
+          ],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "Found an elaborately decorated Shield covered with silver filigree, ornate Breastplate with several large gemstones embedded in the decoration, and ancient lyre whose arms are capped with dragon heads made of gold.",
+          "kind": "adventure",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Ecthelion",
+          "__lockedKind": "adventure",
+          "__levelAtStart": 7,
+          "gp_net": 41910,
+          "dtd_net": 10,
+          "__levelAfter": 8
+        },
+        {
           "title": "Of Books and Men - An Overdue Adventure",
           "date": "2025-09-24",
           "code": "FR-DC-RWIE-02",
@@ -19571,11 +19602,11 @@ window.DATA = {
       "gifts_count": 0
     },
     "Ecthelion": {
-      "sessions": 5,
-      "net_gp": 4950,
-      "net_dtd": 33,
-      "level_ups": 6,
-      "perm_count": 26,
+      "sessions": 6,
+      "net_gp": 46860,
+      "net_dtd": 43,
+      "level_ups": 7,
+      "perm_count": 31,
       "cons_count": 12,
       "gifts_count": 0
     },
@@ -19941,7 +19972,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-14T16:50:57.682Z",
+    "generated": "2025-10-15T04:41:31.626Z",
     "problems": []
   }
 };
