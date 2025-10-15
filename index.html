@@ -6842,7 +6842,12 @@ function filterAndRender(){
     const countLabel=fmtNumber(count);
     const plural=count===1?'character':'characters';
     const hasResults=count>0;
-    const meta=hasResults?`Showing entries from ${countLabel} ${plural}`:'Searching across all characters';
+    const entryCount=filtered.length;
+    const entryLabel=fmtNumber(entryCount);
+    const entryPlural=entryCount===1?'entry':'entries';
+    const meta=hasResults
+      ?`Showing entries from ${countLabel} ${plural} (${entryLabel} ${entryPlural})`
+      :'Searching across all characters';
     override={
       label:'',
       meta,
