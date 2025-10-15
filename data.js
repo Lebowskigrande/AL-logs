@@ -2272,31 +2272,6 @@ window.DATA = {
           "__levelAtStart": 6
         },
         {
-          "date": "2022-04-20",
-          "title": "Start at level 5",
-          "code": "DT-START",
-          "dm": null,
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [],
-          "lost_perm_item": "",
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "notes": "",
-          "kind": "Downtime Activity",
-          "traded_item": "",
-          "__isNew": true,
-          "__charKey": "Norixius",
-          "__lockedKind": "Downtime Activity",
-          "__levelAtStart": 2,
-          "gp_net": 0,
-          "dtd_net": 40,
-          "__levelAfter": 6
-        },
-        {
           "title": "Season 11b DM Reward (R)",
           "date": "2022-04-20",
           "code": "DM-REWARD",
@@ -2317,8 +2292,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 6,
+          "__levelAtStart": 6
         },
         {
           "title": "Lore of Lurue",
@@ -2341,8 +2316,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 2,
-          "__levelAtStart": 1
+          "__levelAfter": 6,
+          "__levelAtStart": 5
         },
         {
           "title": "Trade",
@@ -2369,8 +2344,33 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Norixius",
-          "__levelAfter": 1,
-          "__levelAtStart": 1
+          "__levelAfter": 5,
+          "__levelAtStart": 5
+        },
+        {
+          "date": "2022-04-19",
+          "title": "Start at level 5",
+          "code": "DT-START",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "level_plus": 4,
+          "perm_items": [],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Norixius",
+          "__lockedKind": "Downtime Activity",
+          "__levelAtStart": 1,
+          "gp_net": 0,
+          "dtd_net": 40,
+          "__levelAfter": 5
         }
       ]
     },
@@ -20087,7 +20087,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T16:38:18.014Z",
+    "generated": "2025-10-15T16:38:53.947Z",
     "problems": []
   }
 };
