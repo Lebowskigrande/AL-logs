@@ -1227,6 +1227,17 @@ try{
   /* no-op */
 }
 
+const MULTI_SEARCH_MIN_QUERY_LENGTH=2;
+const MULTI_SEARCH_PROMPT_TEXT=`Type at least ${MULTI_SEARCH_MIN_QUERY_LENGTH} characters to search across all characters.`;
+const SEARCH_INPUT_DEBOUNCE_MS=150;
+
+const adventureSearchCache={
+  all:null,
+  byCharacter:new Map()
+};
+
+let pendingSearchInputHandle=null;
+
 function persistActivityVisibility(){
   try{
     localStorage.setItem(STORAGE_KEYS.showActivities, showActivities?'1':'0');
@@ -1297,6 +1308,93 @@ function updateSearchScopeToggle(){
   searchScopeToggleBtn.textContent=active?'All characters':'This character';
   searchScopeToggleBtn.setAttribute('aria-label', label);
   searchScopeToggleBtn.title=label;
+}
+
+function invalidateAdventureSearchCache(key){
+  if(!key){
+    adventureSearchCache.byCharacter.clear();
+    adventureSearchCache.all=null;
+    return;
+  }
+  if(typeof key==='string'){
+    adventureSearchCache.byCharacter.delete(key);
+  }
+  adventureSearchCache.all=null;
+}
+
+function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
+  if(!adv || typeof adv!=='object') return '';
+  const baseParts=[
+    adv.title,
+    adv.code,
+    adv.notes,
+    adv.dm,
+    adv.traded_item,
+    adv.itemTraded,
+    adv.itemReceived,
+    adv.player,
+    adv.character,
+    adv.lost_perm_item
+  ]
+    .concat(adv.perm_items||[])
+    .concat(adv.consumable_items||[])
+    .map(x=>(x||'').toString().toLowerCase());
+  if(includeCharacterInfo){
+    const charObj=(DATA && DATA.characters && DATA.characters[charKey])||null;
+    if(charObj){
+      baseParts.push(String(charObj.display_name||'').toLowerCase());
+      baseParts.push(String(charObj.sheet||'').toLowerCase());
+    }
+    baseParts.push(String(charKey||'').toLowerCase());
+  }
+  return baseParts.join(' ');
+}
+
+function createAdventureEntry(adv,idx,charKey,{includeCharacterInfo=false}={}){
+  if(!adv || typeof adv!=='object') return null;
+  if(!adv.__charKey){
+    adv.__charKey=charKey;
+  }
+  return {
+    adv,
+    idx,
+    charKey,
+    searchBlob:buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo})
+  };
+}
+
+function getCharacterAdventureEntries(key){
+  if(!isValidSheetKey(key) || isDmLogKey(key)) return [];
+  if(adventureSearchCache.byCharacter.has(key)){
+    return adventureSearchCache.byCharacter.get(key);
+  }
+  if(!DATA || !DATA.characters || !DATA.characters[key]) return [];
+  sortCharacterAdventures(key);
+  const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
+  const entries=[];
+  advs.forEach((adv,idx)=>{
+    const entry=createAdventureEntry(adv,idx,key);
+    if(entry) entries.push(entry);
+  });
+  adventureSearchCache.byCharacter.set(key,entries);
+  return entries;
+}
+
+function getAllAdventureEntries(){
+  if(adventureSearchCache.all) return adventureSearchCache.all;
+  if(!DATA || !DATA.characters) return [];
+  const entries=[];
+  let globalIndex=0;
+  Object.entries(DATA.characters).forEach(([charKey,ch])=>{
+    if(!ch || !Array.isArray(ch.adventures)) return;
+    sortCharacterAdventures(charKey);
+    ch.adventures.forEach((adv)=>{
+      const entry=createAdventureEntry(adv,globalIndex++,charKey,{includeCharacterInfo:true});
+      if(entry) entries.push(entry);
+    });
+  });
+  adventureSearchCache.all=entries;
+  return entries;
 }
 
 function updateSaveButtonState(){
@@ -6393,6 +6491,7 @@ function updateDerivedDataFor(key){
 
 function refreshAllDerivedData(){
   if(!DATA || !DATA.characters) return;
+  invalidateAdventureSearchCache();
   ensureDerivedStores();
   Object.keys(DATA.characters).forEach(key=>{
     updateDerivedDataFor(key);
@@ -6402,6 +6501,7 @@ function refreshAllDerivedData(){
 }
 
 function applyDataMutation(key){
+  invalidateAdventureSearchCache(key);
   let updated=false;
   try{
     updateDerivedDataFor(key);
@@ -6607,50 +6707,42 @@ function filterAndRender(){
     syncCharacterSelectorUI();
     return;
   }
-  setEmptyStateMessage(defaultEmptyMessage);
-  const q=(qEl && typeof qEl.value==='string'?qEl.value:'').toLowerCase();
-  const decorated=[];
-  if(searchAllCharacters){
-    let globalIndex=0;
-    Object.entries(DATA.characters).forEach(([charKey,ch])=>{
-      if(!ch || !Array.isArray(ch.adventures)) return;
-      sortCharacterAdventures(charKey);
-      ch.adventures.forEach((adv)=>{
-        if(adv && typeof adv==='object' && !adv.__charKey){
-          adv.__charKey=charKey;
-        }
-        decorated.push({adv,idx:globalIndex++,charKey});
-      });
-    });
-  }else{
-    sortCharacterAdventures(key);
-    const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
-    advs.forEach((adv,idx)=>{
-      if(adv && typeof adv==='object' && !adv.__charKey){
-        adv.__charKey=key;
-      }
-      decorated.push({adv,idx,charKey:key});
-    });
+  if(pendingSearchInputHandle){
+    clearTimeout(pendingSearchInputHandle);
+    pendingSearchInputHandle=null;
   }
-  const filtered=decorated.filter(({adv:a,charKey:entryKey})=>{
-    if(!a) return false;
-    if(!showActivities && isActivityEntry(a)) return false;
-    const baseParts=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character,a.lost_perm_item]
-      .concat(a.perm_items||[])
-      .concat(a.consumable_items||[])
-      .map(x=>(x||'').toString().toLowerCase());
-    if(searchAllCharacters){
-      const charObj=(DATA && DATA.characters && DATA.characters[entryKey])||null;
-      if(charObj){
-        baseParts.push(String(charObj.display_name||'').toLowerCase());
-        baseParts.push(String(charObj.sheet||'').toLowerCase());
-      }
-      baseParts.push(String(entryKey||'').toLowerCase());
+  setEmptyStateMessage(defaultEmptyMessage);
+  const rawQuery=(qEl && typeof qEl.value==='string'?qEl.value:'');
+  const normalizedQuery=rawQuery.toLowerCase();
+  const activeQuery=normalizedQuery.trim();
+  if(searchAllCharacters && activeQuery.length<MULTI_SEARCH_MIN_QUERY_LENGTH){
+    if(grid){
+      grid.innerHTML='';
     }
-    const blob=baseParts.join(' ');
-    return !q || blob.indexOf(q)!==-1;
-  }).sort(compareChronoDesc);
-  grid.innerHTML='';
+    if(emptyEl && !isDataLoadErrorActive()){
+      setEmptyStateMessage(MULTI_SEARCH_PROMPT_TEXT);
+      emptyEl.style.display='block';
+    }
+    setHeaderOverride(null);
+    syncCharacterSelectorUI();
+    renderStats(key);
+    setHeader(key);
+    return;
+  }
+  const decorated=searchAllCharacters?getAllAdventureEntries():getCharacterAdventureEntries(key);
+  const filtered=decorated
+    .filter((entry)=>{
+      const adv=entry && entry.adv;
+      if(!adv) return false;
+      if(!showActivities && isActivityEntry(adv)) return false;
+      if(!activeQuery) return true;
+      const blob=typeof entry.searchBlob==='string'?entry.searchBlob:'';
+      return blob.indexOf(activeQuery)!==-1;
+    })
+    .sort(compareChronoDesc);
+  if(grid){
+    grid.innerHTML='';
+  }
   if(!filtered.length){
     if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='block'; }
   }else{
@@ -6680,7 +6772,13 @@ function filterAndRender(){
 if(qEl){
   const handleSearchInput=()=>{
     updateSearchClearButton();
-    filterAndRender();
+    if(pendingSearchInputHandle){
+      clearTimeout(pendingSearchInputHandle);
+    }
+    pendingSearchInputHandle=setTimeout(()=>{
+      pendingSearchInputHandle=null;
+      filterAndRender();
+    }, SEARCH_INPUT_DEBOUNCE_MS);
   };
   qEl.addEventListener('input', handleSearchInput);
   updateSearchClearButton();
@@ -6689,11 +6787,13 @@ if(qEl && searchClearBtn){
   searchClearBtn.addEventListener('click',()=>{
     if(qEl.value){
       qEl.value='';
-      updateSearchClearButton();
-      filterAndRender();
-    }else{
-      updateSearchClearButton();
     }
+    updateSearchClearButton();
+    if(pendingSearchInputHandle){
+      clearTimeout(pendingSearchInputHandle);
+      pendingSearchInputHandle=null;
+    }
+    filterAndRender();
     try{ qEl.focus({preventScroll:true}); }
     catch(err){ qEl.focus(); }
   });
