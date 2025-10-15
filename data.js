@@ -229,6 +229,33 @@ window.DATA = {
           "__levelAfter": 10
         },
         {
+          "date": "2025-10-09",
+          "title": "The Pale Steed",
+          "code": "FR-DC-REIN-VR-01",
+          "dm": "Rick A.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Cloak of Many Fashions (Guardian)"
+          ],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "adventure",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Ecthelion",
+          "__lockedKind": "adventure",
+          "__levelAtStart": 9,
+          "gp_net": 0,
+          "dtd_net": 10,
+          "__levelAfter": 9
+        },
+        {
           "title": "Of Books and Men - An Overdue Adventure",
           "date": "2025-09-24",
           "code": "FR-DC-RWIE-02",
@@ -19604,11 +19631,11 @@ window.DATA = {
       "gifts_count": 0
     },
     "Ecthelion": {
-      "sessions": 6,
+      "sessions": 7,
       "net_gp": 7935,
-      "net_dtd": 43,
+      "net_dtd": 53,
       "level_ups": 9,
-      "perm_count": 31,
+      "perm_count": 32,
       "cons_count": 12,
       "gifts_count": 0
     },
@@ -19974,7 +20001,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T04:45:29.558Z",
+    "generated": "2025-10-15T05:03:45.305Z",
     "problems": []
   }
 };
