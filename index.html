@@ -975,6 +975,25 @@ const giftsValueEl=document.getElementById('giftsValue');
 const defaultEmptyMessage=emptyEl?(emptyEl.textContent||''):'';
 const defaultSearchPlaceholder=qEl?(qEl.getAttribute('placeholder')||''):'';
 const DM_EMPTY_MESSAGE='No log entries match your filters.';
+let dataLoadErrorActive=false;
+
+function markDataLoadErrorActive(){
+  dataLoadErrorActive=true;
+  if(emptyEl){
+    emptyEl.dataset.loadErrorActive='true';
+  }
+}
+
+function clearDataLoadError(){
+  dataLoadErrorActive=false;
+  if(emptyEl){
+    delete emptyEl.dataset.loadErrorActive;
+  }
+}
+
+function isDataLoadErrorActive(){
+  return dataLoadErrorActive;
+}
 
 const DM_LOG_KEY='__dmLog';
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
@@ -1234,7 +1253,7 @@ function rememberCharacterKey(key){
 }
 
 function setEmptyStateMessage(text){
-  if(!emptyEl) return;
+  if(!emptyEl||isDataLoadErrorActive()) return;
   emptyEl.textContent=text;
 }
 
@@ -1630,6 +1649,7 @@ async function saveDataJs(options={}){
 
 function showDataLoadError(message){
   if(!emptyEl) return;
+  markDataLoadErrorActive();
   emptyEl.style.display='block';
   const diagMarkup=buildDataLoadDiagnosticsMarkup();
   const baseMessage=message||'Could not load <code>data.js</code>.';
@@ -3252,13 +3272,13 @@ function renderDmLog(){
   });
   grid.innerHTML='';
   if(!filtered.length){
-    if(emptyEl){
+    if(emptyEl&&!isDataLoadErrorActive()){
       emptyEl.textContent=DM_EMPTY_MESSAGE;
       emptyEl.style.display='block';
     }
     return;
   }
-  if(emptyEl){
+  if(emptyEl&&!isDataLoadErrorActive()){
     emptyEl.textContent=DM_EMPTY_MESSAGE;
     emptyEl.style.display='none';
   }
@@ -5472,6 +5492,8 @@ function makeCard(a,idx){
   const tradePlayer=hasTradeMeta?(playerRaw||dmDisplay):playerRaw;
   const usedDmAsPlayer=hasTradeMeta && !playerRaw && !!dmDisplay && tradePlayer===dmDisplay;
 
+  const dmField=appendField('DM', dmDisplay||'—');
+  if(!dmDisplay){ dmField.style.display='none'; }
   const kindField=appendField('Entry type', act?'Downtime Activity':'Adventure');
   kindField.classList.add('show-when-editing');
   kindField.style.display='none';
@@ -6481,7 +6503,9 @@ function filterAndRender(){
       }
       if(emptyEl){
         setEmptyStateMessage(defaultEmptyMessage);
-        emptyEl.style.display='block';
+        if(!isDataLoadErrorActive()){
+          emptyEl.style.display='block';
+        }
       }
       return;
     }
@@ -6513,8 +6537,13 @@ function filterAndRender(){
     return !q||blob.indexOf(q)!==-1;
   }).sort(compareChronoDesc);
   grid.innerHTML='';
-  if(!filtered.length){ emptyEl.style.display='block'; }
-  else { emptyEl.style.display='none'; filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i))); }
+  if(!filtered.length){
+    if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='block'; }
+  }
+  else {
+    if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='none'; }
+    filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i)));
+  }
   renderStats(key);
   setHeader(key);
 }
@@ -6674,6 +6703,7 @@ function initApp(){
     showDataLoadError('Could not load <code>data.js</code>.');
     return false;
   }
+  clearDataLoadError();
   refreshAllDerivedData();
   if(emptyEl){
     emptyEl.style.display='none';
