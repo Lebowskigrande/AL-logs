@@ -1671,8 +1671,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Norixius",
-          "__levelAfter": 10,
-          "__levelAtStart": 10
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "title": "Trade",
@@ -1699,8 +1699,8 @@ window.DATA = {
           "player": "",
           "character": "Raguel",
           "__charKey": "Norixius",
-          "__levelAfter": 10,
-          "__levelAtStart": 10
+          "__levelAfter": 11,
+          "__levelAtStart": 11
         },
         {
           "title": "Isle of Death",
@@ -1713,7 +1713,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Amethyst Dragonwing Longbow"
           ],
@@ -1723,8 +1723,10 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Norixius",
-          "__levelAfter": 10,
-          "__levelAtStart": 10
+          "__levelAfter": 11,
+          "__levelAtStart": 10,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "Dancing in the Moonlight",
@@ -19774,7 +19776,7 @@ window.DATA = {
       "sessions": 17,
       "net_gp": 16727,
       "net_dtd": 195,
-      "level_ups": 9,
+      "level_ups": 10,
       "perm_count": 32,
       "cons_count": 10,
       "gifts_count": 0
@@ -20087,7 +20089,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T16:38:53.947Z",
+    "generated": "2025-10-15T16:40:10.244Z",
     "problems": []
   }
 };
