@@ -271,10 +271,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-main{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
 .log-row-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:12px;line-height:1.4;transition:color var(--dur) var(--ease)}
 .log-row-meta-text{display:inline;white-space:normal;font:inherit;margin:0}
-.log-row-character{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.log-row-character{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .log-row-character-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.log-row-character-link{color:var(--primary);font-weight:600;text-decoration:none;transition:color var(--dur) var(--ease),text-decoration-color var(--dur) var(--ease)}
-.log-row-character-link:hover,.log-row-character-link:focus-visible{text-decoration:underline;color:#0b57d0;outline:none}
+.log-row-character-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;border:1px solid rgba(26,115,232,.25);color:var(--primary);font-weight:600;text-decoration:none;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);line-height:1}
+.log-row-character-chip:hover,.log-row-character-chip:focus-visible{background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.4);outline:none}
 .log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease)}
 .log-row-date .display{white-space:nowrap}
 .log-row-tags{display:flex;flex-wrap:wrap;gap:6px;width:100%}
@@ -5362,7 +5362,7 @@ function makeCard(a,idx){
       characterLabel.textContent='Character:';
       const characterLink=document.createElement('a');
       characterLink.href='#';
-      characterLink.className='log-row-character-link';
+      characterLink.className='log-row-character-chip';
       characterLink.textContent=charName;
       const linkLabel=`View ${charName}'s log`;
       characterLink.title=linkLabel;
