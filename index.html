@@ -1261,6 +1261,163 @@ const adventureSearchCache={
 
 let pendingSearchInputHandle=null;
 
+const CHARACTER_MENTION_LABELS=new Set(['player','character','reward allocation','notes']);
+let characterMentionEntries=[];
+
+function refreshCharacterMentionIndex(){
+  characterMentionEntries.length=0;
+  if(!DATA || !DATA.characters) return;
+  const aliasMap=new Map();
+  const addAlias=(rawAlias,key,display)=>{
+    if(!rawAlias) return;
+    const cleaned=String(rawAlias).trim();
+    if(!cleaned) return;
+    const normalized=cleaned.toLowerCase();
+    if(!normalized) return;
+    if(aliasMap.has(normalized)) return;
+    aliasMap.set(normalized,{
+      alias:cleaned,
+      aliasLower:normalized,
+      aliasLength:cleaned.length,
+      key,
+      display
+    });
+  };
+  Object.entries(DATA.characters).forEach(([key,obj])=>{
+    if(!obj || typeof obj!=='object') return;
+    const displayName=typeof obj.display_name==='string'?obj.display_name.trim():'';
+    const sheetName=typeof obj.sheet==='string'?obj.sheet.trim():'';
+    const canonical=displayName||sheetName||String(key||'').trim();
+    if(!canonical) return;
+    const addNormalizedAlias=(alias)=>{
+      addAlias(alias,key,canonical);
+      if(typeof alias==='string' && alias.includes('(')){
+        const withoutParen=alias.replace(/\s*\([^)]*\)/g,' ').replace(/\s+/g,' ').trim();
+        if(withoutParen && withoutParen.toLowerCase()!==alias.toLowerCase()){
+          addAlias(withoutParen,key,canonical);
+        }
+      }
+    };
+    [displayName,sheetName,String(key||'')].forEach(name=>{
+      if(!name) return;
+      addNormalizedAlias(name);
+    });
+  });
+  characterMentionEntries=Array.from(aliasMap.values())
+    .filter(entry=>entry && entry.aliasLength>0)
+    .sort((a,b)=>{
+      if(b.aliasLength!==a.aliasLength) return b.aliasLength-a.aliasLength;
+      return a.alias.localeCompare(b.alias);
+    });
+}
+
+function ensureCharacterMentionIndex(){
+  if(!characterMentionEntries || !characterMentionEntries.length){
+    refreshCharacterMentionIndex();
+  }
+  return characterMentionEntries;
+}
+
+const WORD_CHAR_REGEX=/[0-9A-Za-z]/;
+
+function isWordBoundaryBefore(text,index){
+  if(index<=0) return true;
+  const char=text.charAt(index-1);
+  return !WORD_CHAR_REGEX.test(char);
+}
+
+function isWordBoundaryAfter(text,index){
+  if(index>=text.length) return true;
+  const char=text.charAt(index);
+  return !WORD_CHAR_REGEX.test(char);
+}
+
+function shouldDecorateLabelForCharacter(label){
+  if(!label) return false;
+  const normalized=String(label).trim().toLowerCase();
+  return CHARACTER_MENTION_LABELS.has(normalized);
+}
+
+function createCharacterChip(charKey,text,{label}={}){
+  const link=document.createElement('a');
+  link.href='#';
+  link.className='log-row-character-chip';
+  link.textContent=text;
+  const display=getCharacterDisplayName(charKey)||text;
+  const accessibleLabel=label||`View ${display}'s log`;
+  link.title=accessibleLabel;
+  link.setAttribute('aria-label', accessibleLabel);
+  link.dataset.charKey=String(charKey);
+  link.addEventListener('click',(event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+    navigateToCharacter(charKey);
+  });
+  return link;
+}
+
+function renderCharacterMentions(value){
+  if(value==null) return null;
+  const text=String(value);
+  if(!text) return null;
+  const entries=ensureCharacterMentionIndex();
+  if(!entries.length) return null;
+  const lower=text.toLowerCase();
+  let index=0;
+  let lastIndex=0;
+  let matchedAny=false;
+  const fragment=document.createDocumentFragment();
+  while(index<text.length){
+    let match=null;
+    for(const entry of entries){
+      if(entry.aliasLength<=0) continue;
+      if(index+entry.aliasLength>text.length) continue;
+      if(lower.slice(index,index+entry.aliasLength)!==entry.aliasLower) continue;
+      if(!isWordBoundaryBefore(text,index)) continue;
+      if(!isWordBoundaryAfter(text,index+entry.aliasLength)) continue;
+      match=entry;
+      break;
+    }
+    if(match){
+      if(index>lastIndex){
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex,index)));
+      }
+      const original=text.slice(index,index+match.aliasLength);
+      const chip=createCharacterChip(match.key, original, {label:`View ${match.display}'s log`});
+      fragment.appendChild(chip);
+      index+=match.aliasLength;
+      lastIndex=index;
+      matchedAny=true;
+      continue;
+    }
+    index+=1;
+  }
+  if(!matchedAny){
+    return null;
+  }
+  if(lastIndex<text.length){
+    fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
+  return fragment;
+}
+
+function setElementTextWithCharacterChips(element,text,{label,force=false}={}){
+  if(!element) return;
+  const value=text==null?'':String(text);
+  const shouldDecorate=force || shouldDecorateLabelForCharacter(label);
+  const mentions=shouldDecorate?renderCharacterMentions(value):null;
+  if(typeof element.replaceChildren==='function'){
+    element.replaceChildren();
+  }else{
+    while(element.firstChild){ element.removeChild(element.firstChild); }
+  }
+  if(mentions){
+    element.appendChild(mentions);
+  }else{
+    element.textContent=value;
+  }
+}
+
 function persistActivityVisibility(){
   try{
     localStorage.setItem(STORAGE_KEYS.showActivities, showActivities?'1':'0');
@@ -3521,7 +3678,8 @@ function makeDmCard(entry,idx){
     dateSpan.textContent=fmtDate(entry.date);
     const nameSpan=document.createElement('span');
     nameSpan.className='activity-name';
-    nameSpan.textContent=sanitizeTitle(entry.allocation || 'Reward allocation');
+    const allocationTitle=sanitizeTitle(entry.allocation || 'Reward allocation');
+    setElementTextWithCharacterChips(nameSpan, allocationTitle, {label:'Reward allocation', force:true});
     left.append(dateSpan,nameSpan);
     main.appendChild(left);
     const chips=document.createElement('div');
@@ -3609,11 +3767,28 @@ function makeDmCard(entry,idx){
     if(node){
       display.appendChild(node);
     }else{
-      display.textContent=text;
+      setElementTextWithCharacterChips(display, text, {label});
     }
     v.appendChild(display);
     field.append(k,v);
     inner.appendChild(field);
+    field.__display=display;
+    field.__setDisplayValue=(nextValue)=>{
+      if(nextValue instanceof Node){
+        if(typeof display.replaceChildren==='function'){ display.replaceChildren(nextValue); }
+        else{
+          while(display.firstChild){ display.removeChild(display.firstChild); }
+          display.appendChild(nextValue);
+        }
+      }else{
+        const normalized=normalizeDisplayValue(nextValue);
+        if(normalized){
+          setElementTextWithCharacterChips(display, normalized, {label});
+        }else{
+          setElementTextWithCharacterChips(display, '', {label});
+        }
+      }
+    };
     return field;
   };
 
@@ -3939,6 +4114,17 @@ function navigateToCharacterReward(charKey, adv){
       focusCardElement(card,{expand:true});
     }
   });
+}
+
+function navigateToCharacter(charKey){
+  if(!charKey || !charSel){
+    return;
+  }
+  clearSearchForNavigation();
+  if(charSel.value!==charKey){
+    charSel.value=charKey;
+  }
+  filterAndRender();
 }
 
 function navigateToDmAllocation(entry){
@@ -5667,12 +5853,16 @@ function makeCard(a,idx){
     cell.className='kvsingle';
     const k=document.createElement('div'); k.className='k'; k.textContent=label;
     const v=document.createElement('div'); v.className='v';
-    const display=document.createElement('div'); display.className='display'; display.textContent=value;
+    const display=document.createElement('div'); display.className='display';
+    setElementTextWithCharacterChips(display, value, {label});
     const editor=document.createElement('div'); editor.className='editor';
     v.appendChild(display); v.appendChild(editor);
     cell.appendChild(k); cell.appendChild(v);
     cell.__display=display;
     cell.__editor=editor;
+    cell.__setDisplayValue=(nextValue)=>{
+      setElementTextWithCharacterChips(display, nextValue, {label});
+    };
     return cell;
   }
 
@@ -5683,7 +5873,7 @@ function makeCard(a,idx){
     const v=document.createElement('div'); v.className='v';
     const display=document.createElement('div'); display.className='display';
     if(content instanceof Node){ display.appendChild(content); }
-    else{ display.textContent=makeValue(content); }
+    else{ setElementTextWithCharacterChips(display, makeValue(content), {label}); }
     const editor=document.createElement('div'); editor.className='editor';
     v.appendChild(display); v.appendChild(editor);
     field.appendChild(k); field.appendChild(v);
@@ -5691,6 +5881,9 @@ function makeCard(a,idx){
     parent.appendChild(field);
     field.__display=display;
     field.__editor=editor;
+    field.__setDisplayValue=(nextValue)=>{
+      setElementTextWithCharacterChips(display, makeValue(nextValue), {label});
+    };
     return field;
   }
 
@@ -5794,7 +5987,7 @@ function makeCard(a,idx){
   const noteText=normalizeDisplayValue(a.notes);
   const notesBox=document.createElement('div');
   notesBox.className='notesbox';
-  notesBox.textContent=noteText||'—';
+  setElementTextWithCharacterChips(notesBox, noteText||'—', {label:'Notes'});
   const notesField=appendField('Notes', notesBox,null,notesContent);
   const showNotes=(!hasTradeMeta && (!act || noteText));
   if(!showNotes){ notesField.style.display='none'; }
@@ -6599,6 +6792,7 @@ function refreshAllDerivedData(){
     updateDerivedDataFor(key);
   });
   rebuildDmRewardLinks();
+  refreshCharacterMentionIndex();
   pendingDerivedUpdates.clear();
 }
 
@@ -6615,6 +6809,7 @@ function applyDataMutation(key){
     pendingDerivedUpdates.delete(key);
   }
   rebuildDmRewardLinks();
+  refreshCharacterMentionIndex();
   filterAndRender();
   scheduleAvatarPreload();
   if(pendingChanges){
