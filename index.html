@@ -771,23 +771,28 @@ const scriptEl=document.getElementById('dataScript')||document.querySelector('sc
 
 import { loadLegacyData } from './legacy-data-loader.js';
 
-try{
-  const { data, raw, versionToken } = await loadLegacyData({ version, cacheBust });
-  window.RAW_DATA = raw;
-  window.DATA = data;
-  window.AL_DATA_VERSION = versionToken || version || window.AL_DATA_VERSION || '';
-  if(scriptEl){
-    if(versionToken){ scriptEl.setAttribute('data-version', versionToken); }
-    scriptEl.setAttribute('data-cache-bust', cacheBust);
-    scriptEl.dispatchEvent(new Event('load'));
-  }
-}catch(error){
-  console.error('Failed to load data.js', error);
-  if(scriptEl){
-    const evt=new Event('error');
-    scriptEl.dispatchEvent(evt);
+async function bootstrapData(){
+  try{
+    const { data, raw, versionToken } = await loadLegacyData({ version, cacheBust });
+    window.RAW_DATA = raw;
+    window.DATA = data;
+    window.AL_DATA_VERSION = versionToken || version || window.AL_DATA_VERSION || '';
+    if(scriptEl){
+      if(versionToken){ scriptEl.setAttribute('data-version', versionToken); }
+      scriptEl.setAttribute('data-cache-bust', cacheBust);
+      scriptEl.dispatchEvent(new Event('load'));
+    }
+    tryInitApp();
+  }catch(error){
+    console.error('Failed to load data.js', error);
+    if(scriptEl){
+      const evt=new Event('error');
+      scriptEl.dispatchEvent(evt);
+    }
   }
 }
+
+bootstrapData();
 </script>
 <script src="dmData.js"></script>
 <script>
