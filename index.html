@@ -51,6 +51,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
 }
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
+.avatar.avatar-hidden{display:none}
 .avatar.has-avatar{cursor:zoom-in;}
 .avatar.avatar-fallback{background:linear-gradient(135deg,#dbeafe,#bfdbfe);}
 .avatar:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
@@ -624,6 +625,7 @@ body.avatar-overlay-open{overflow:hidden}
             </svg>
           </button>
         </div>
+        <button id="searchScopeToggle" class="btn small pill" type="button" aria-pressed="false" aria-label="Show entries from the selected character only">This character</button>
         <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
         <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
@@ -924,6 +926,7 @@ const badgesEl = document.getElementById('charBadges');
 const metaEl   = document.getElementById('charMeta');
 const addCardBtn = document.getElementById('addCard');
 const addCardMenu = document.getElementById('addCardMenu');
+const searchScopeToggleBtn = document.getElementById('searchScopeToggle');
 const activityToggleBtn = document.getElementById('activityToggle');
 const headerQuick = document.getElementById('headerQuick');
 const dmSummaryBar = document.getElementById('dmSummaryBar');
@@ -1167,7 +1170,8 @@ const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'h
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
   showActivities:'al_logs_show_activities',
-  lastCharacter:'al_logs_last_character'
+  lastCharacter:'al_logs_last_character',
+  searchAll:'al_logs_search_all_characters'
 };
 
 function hasDmLogData(){
@@ -1211,6 +1215,14 @@ let showActivities=true;
 try{
   const saved=localStorage.getItem(STORAGE_KEYS.showActivities);
   if(saved==='0'||saved==='false') showActivities=false;
+}catch(err){
+  /* no-op */
+}
+
+let searchAllCharacters=false;
+try{
+  const savedScope=localStorage.getItem(STORAGE_KEYS.searchAll);
+  if(savedScope==='1'||savedScope==='true') searchAllCharacters=true;
 }catch(err){
   /* no-op */
 }
@@ -1265,6 +1277,26 @@ function updateActivityToggle(){
   const label=hiding?'Show downtime activities':'Hide downtime activities';
   activityToggleBtn.setAttribute('aria-label', label);
   activityToggleBtn.title=label;
+}
+
+function persistSearchScope(){
+  try{
+    localStorage.setItem(STORAGE_KEYS.searchAll, searchAllCharacters?'1':'0');
+  }catch(err){
+    /* no-op */
+  }
+}
+
+function updateSearchScopeToggle(){
+  if(!searchScopeToggleBtn) return;
+  const active=!!searchAllCharacters;
+  const label=active
+    ?'Showing entries from all characters. Click to limit results to the selected character.'
+    :'Showing entries from the selected character. Click to include all characters.';
+  searchScopeToggleBtn.setAttribute('aria-pressed', active?'true':'false');
+  searchScopeToggleBtn.textContent=active?'All characters':'This character';
+  searchScopeToggleBtn.setAttribute('aria-label', label);
+  searchScopeToggleBtn.title=label;
 }
 
 function updateSaveButtonState(){
@@ -1892,13 +1924,16 @@ function focusCharMenuItem(item){
 
 function syncCharacterSelectorUI(){
   const selectedOption=(charSel && charSel.options && charSel.selectedIndex>=0)?charSel.options[charSel.selectedIndex]:null;
-  const labelText=selectedOption?selectedOption.textContent.trim():'';
+  const override=getHeaderOverride();
+  const overrideLabel=override && override.label ? override.label.trim() : '';
+  const labelText=overrideLabel || (selectedOption?selectedOption.textContent.trim():'');
   const finalLabel=labelText||DEFAULT_CHARACTER_MENU_LABEL;
   if(charSelDisplay){
     charSelDisplay.textContent=finalLabel;
   }
   if(charSelToggle){
-    charSelToggle.title=finalLabel;
+    const titleText=(override && override.title)?override.title:finalLabel;
+    charSelToggle.title=titleText;
     const hasOptions=!!(charSel && charSel.options && charSel.options.length);
     charSelToggle.disabled=!hasOptions;
     charSelToggle.setAttribute('aria-disabled',hasOptions?'false':'true');
@@ -6276,7 +6311,7 @@ function deleteCard(card){
     if(confirmed) closeCardOverlay();
     return;
   }
-  const key=charSel.value;
+  const key=(card.__dataRef && card.__dataRef.__charKey)||charSel.value;
   const ch=DATA.characters[key];
   if(!ch||!Array.isArray(ch.adventures)) return;
   const idx=ch.adventures.indexOf(card.__dataRef);
@@ -6386,6 +6421,23 @@ function applyDataMutation(key){
 }
 
 /* --- stats & header --- */
+let headerStateOverride=null;
+function setHeaderOverride(override){
+  if(override && typeof override==='object'){
+    headerStateOverride={
+      label:typeof override.label==='string'?override.label:'',
+      meta:typeof override.meta==='string'?override.meta:'',
+      title:typeof override.title==='string'?override.title:'',
+      multi:!!override.multi
+    };
+  }else{
+    headerStateOverride=null;
+  }
+}
+function getHeaderOverride(){
+  return headerStateOverride;
+}
+
 function updateCharMeta(key){
   if(!metaEl) return;
   const statsMap=(DATA && typeof DATA.stats==='object')?DATA.stats:{};
@@ -6453,8 +6505,31 @@ function renderStats(key){
   }
 }
 function setHeader(key){
+  if(avatarEl){
+    avatarEl.classList.remove('avatar-hidden');
+  }
   if(isDmLogKey(key)){
     setDmHeader();
+    return;
+  }
+  const override=getHeaderOverride();
+  if(override && override.multi){
+    if(avatarEl){
+      resetAvatar();
+      avatarEl.classList.add('avatar-hidden');
+    }
+    if(metaEl){
+      const text=override.meta||'';
+      metaEl.textContent=text;
+      const show=text.trim().length>0;
+      metaEl.style.display=show?'block':'none';
+      metaEl.setAttribute('aria-hidden',show?'false':'true');
+    }
+    if(badgesEl){
+      badgesEl.innerHTML='';
+      badgesEl.style.display='none';
+      badgesEl.setAttribute('aria-hidden','true');
+    }
     return;
   }
   const obj=DATA.characters[key];
@@ -6511,13 +6586,16 @@ function filterAndRender(){
           emptyEl.style.display='block';
         }
       }
+      setHeaderOverride(null);
+      syncCharacterSelectorUI();
       return;
     }
   }
   rememberCharacterKey(key);
-  syncCharacterSelectorUI();
   updateUiForSelection(key);
   if(isDmLogKey(key)){
+    setHeaderOverride(null);
+    syncCharacterSelectorUI();
     setEmptyStateMessage(DM_EMPTY_MESSAGE);
     renderDmLog();
     renderStats(key);
@@ -6525,29 +6603,75 @@ function filterAndRender(){
     return;
   }
   if(!DATA || !DATA.characters){
+    setHeaderOverride(null);
+    syncCharacterSelectorUI();
     return;
   }
   setEmptyStateMessage(defaultEmptyMessage);
-  sortCharacterAdventures(key);
-  const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
-  const q=(qEl.value||'').toLowerCase();
-  const decorated=advs.map((adv,idx)=>({adv,idx}));
-  const filtered=decorated.filter(({adv:a})=>{
+  const q=(qEl && typeof qEl.value==='string'?qEl.value:'').toLowerCase();
+  const decorated=[];
+  if(searchAllCharacters){
+    let globalIndex=0;
+    Object.entries(DATA.characters).forEach(([charKey,ch])=>{
+      if(!ch || !Array.isArray(ch.adventures)) return;
+      sortCharacterAdventures(charKey);
+      ch.adventures.forEach((adv)=>{
+        if(adv && typeof adv==='object' && !adv.__charKey){
+          adv.__charKey=charKey;
+        }
+        decorated.push({adv,idx:globalIndex++,charKey});
+      });
+    });
+  }else{
+    sortCharacterAdventures(key);
+    const advs=(DATA.characters[key]&&DATA.characters[key].adventures)||[];
+    advs.forEach((adv,idx)=>{
+      if(adv && typeof adv==='object' && !adv.__charKey){
+        adv.__charKey=key;
+      }
+      decorated.push({adv,idx,charKey:key});
+    });
+  }
+  const filtered=decorated.filter(({adv:a,charKey:entryKey})=>{
+    if(!a) return false;
     if(!showActivities && isActivityEntry(a)) return false;
-    const blob=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character,a.lost_perm_item]
+    const baseParts=[a.title,a.code,a.notes,a.dm,a.traded_item,a.itemTraded,a.itemReceived,a.player,a.character,a.lost_perm_item]
       .concat(a.perm_items||[])
       .concat(a.consumable_items||[])
-      .map(x=>(x||'').toString().toLowerCase()).join(' ');
-    return !q||blob.indexOf(q)!==-1;
+      .map(x=>(x||'').toString().toLowerCase());
+    if(searchAllCharacters){
+      const charObj=(DATA && DATA.characters && DATA.characters[entryKey])||null;
+      if(charObj){
+        baseParts.push(String(charObj.display_name||'').toLowerCase());
+        baseParts.push(String(charObj.sheet||'').toLowerCase());
+      }
+      baseParts.push(String(entryKey||'').toLowerCase());
+    }
+    const blob=baseParts.join(' ');
+    return !q || blob.indexOf(q)!==-1;
   }).sort(compareChronoDesc);
   grid.innerHTML='';
   if(!filtered.length){
     if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='block'; }
-  }
-  else {
+  }else{
     if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='none'; }
     filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i)));
   }
+  const visibleKeys=new Set(filtered.map(item=>item.charKey).filter(Boolean));
+  let override=null;
+  if(searchAllCharacters && visibleKeys.size>1){
+    const count=visibleKeys.size;
+    const countLabel=fmtNumber(count);
+    const meta=`Showing entries from ${countLabel} characters`;
+    override={
+      label:'Various',
+      meta,
+      title:meta,
+      multi:true
+    };
+  }
+  setHeaderOverride(override);
+  syncCharacterSelectorUI();
   renderStats(key);
   setHeader(key);
 }
@@ -6572,6 +6696,14 @@ if(qEl && searchClearBtn){
     }
     try{ qEl.focus({preventScroll:true}); }
     catch(err){ qEl.focus(); }
+  });
+}
+if(searchScopeToggleBtn){
+  searchScopeToggleBtn.addEventListener('click',()=>{
+    searchAllCharacters=!searchAllCharacters;
+    persistSearchScope();
+    updateSearchScopeToggle();
+    filterAndRender();
   });
 }
 if(charSel){
@@ -6713,6 +6845,7 @@ function initApp(){
     emptyEl.style.display='none';
   }
   updateActivityToggle();
+  updateSearchScopeToggle();
   const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
   if(initialKey && charSel){
     charSel.value=initialKey;
