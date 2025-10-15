@@ -263,7 +263,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 @media (max-width:520px){
   .card-actions{right:12px}
   .log-row{flex-direction:column;align-items:stretch;gap:12px}
-  .log-row-stats{margin-left:0;justify-content:flex-start;width:100%}
+  .log-row-stats{margin-left:0;justify-content:flex-start;width:auto}
 }
 .card-edit-btn{padding:8px 16px;font-size:13px;border-radius:12px;box-shadow:none;transform:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .card-edit-btn:hover{transform:none;box-shadow:none;background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.45)}
@@ -272,26 +272,33 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing{border-color:rgba(148,163,184,.45);box-shadow:var(--card-shadow,0 0 0 2px rgba(15,23,42,.08));background:var(--row-bg,#f8fafc)}
 .log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;width:100%;min-height:0;flex-wrap:wrap}
 .log-row-info{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;flex:1 1 320px}
-.log-row-main{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
+.log-row-main{display:flex;align-items:center;column-gap:12px;row-gap:6px;flex-wrap:wrap;width:100%;min-width:0}
+.log-row-main .log-row-title{flex:1 1 auto;min-width:0}
+.log-row-datestats{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;min-width:0;margin-left:auto}
+.log-row-datestats .log-row-date{flex:1 1 auto;min-width:0}
+.log-row-datestats .log-row-stats{margin-left:auto}
 .log-row-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:12px;line-height:1.4;transition:color var(--dur) var(--ease)}
 .log-row-meta-text{display:inline;white-space:normal;font:inherit;margin:0}
 .log-row-character{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .log-row-character-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .log-row-character-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;border:1px solid rgba(26,115,232,.25);color:var(--primary);font-weight:600;text-decoration:none;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);line-height:1}
 .log-row-character-chip:hover,.log-row-character-chip:focus-visible{background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.4);outline:none}
-.log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease)}
-.log-row-date .display{white-space:nowrap}
+.log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease);min-width:0;overflow:hidden}
+.log-row-date .display{white-space:nowrap;display:block;overflow:hidden;text-overflow:ellipsis}
 .log-row-tags{display:flex;flex-wrap:wrap;gap:6px;width:100%}
 .log-row-tags:empty{display:none}
 .log-row-stats{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;min-height:0}
 @media (max-width:520px){
   .log-row-info{flex:1 1 auto;width:100%}
+  .log-row-main{align-items:flex-start;row-gap:0}
+  .log-row-datestats{width:100%;margin-left:0}
 }
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
 .log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;transition:color var(--dur) var(--ease)}
 .log-row-title.is-adventure .display{font-weight:700}
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
 .log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
+.log-row-date.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 @media (prefers-reduced-motion:reduce){
   .log-row-title.scrollable .display{animation:none}
 }
@@ -5355,7 +5362,22 @@ function makeCard(a,idx){
 
   const headerMain=document.createElement('div'); headerMain.className='log-row-main';
   headerMain.appendChild(nameSpan);
-  headerMain.appendChild(dateSpan);
+
+  const dateStatsRow=document.createElement('div'); dateStatsRow.className='log-row-datestats';
+  dateStatsRow.appendChild(dateSpan);
+
+  const stats=document.createElement('div'); stats.className='log-row-stats';
+  const totalsPill=document.createElement('div'); totalsPill.className='totals-pill';
+  const totalsLabel=document.createElement('span'); totalsLabel.className='totals-pill-label'; totalsLabel.textContent='Totals';
+  const totalsValues=document.createElement('span'); totalsValues.className='totals-pill-values';
+  const totalsGp=document.createElement('span'); totalsGp.className='totals-pill-value neutral';
+  const totalsDt=document.createElement('span'); totalsDt.className='totals-pill-value neutral';
+  totalsValues.append(totalsGp,totalsDt);
+  totalsPill.append(totalsLabel,totalsValues);
+  stats.appendChild(totalsPill);
+  dateStatsRow.appendChild(stats);
+  headerMain.appendChild(dateStatsRow);
+
   info.appendChild(headerMain);
 
   const metaSpan=document.createElement('div');
@@ -5395,17 +5417,6 @@ function makeCard(a,idx){
   main.appendChild(info);
 
   metaDisplayEl.textContent=buildHeaderMeta(a);
-
-  const stats=document.createElement('div'); stats.className='log-row-stats';
-  const totalsPill=document.createElement('div'); totalsPill.className='totals-pill';
-  const totalsLabel=document.createElement('span'); totalsLabel.className='totals-pill-label'; totalsLabel.textContent='Totals';
-  const totalsValues=document.createElement('span'); totalsValues.className='totals-pill-values';
-  const totalsGp=document.createElement('span'); totalsGp.className='totals-pill-value neutral';
-  const totalsDt=document.createElement('span'); totalsDt.className='totals-pill-value neutral';
-  totalsValues.append(totalsGp,totalsDt);
-  totalsPill.append(totalsLabel,totalsValues);
-  stats.appendChild(totalsPill);
-  main.appendChild(stats);
 
   const ensureTag=(label,className)=>{
     const tag=document.createElement('span');
@@ -5544,7 +5555,11 @@ function makeCard(a,idx){
     }
   };
   bindScrollObserver(nameSpan);
-  requestAnimationFrame(()=>refreshScrollState(nameSpan));
+  bindScrollObserver(dateSpan);
+  requestAnimationFrame(()=>{
+    refreshScrollState(nameSpan);
+    refreshScrollState(dateSpan);
+  });
 
   hd.addEventListener('click',(ev)=>{ if(card.classList.contains('editing')) return; toggleCard(card); });
 
