@@ -16,6 +16,13 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
     importError = error;
   }
 
+  if (!raw && typeof window !== 'undefined') {
+    if (window.DATA && typeof window.DATA === 'object') {
+      raw = window.DATA;
+      importError = null;
+    }
+  }
+
   if (!raw || typeof raw !== 'object') {
     const fetched = await loadDataFromText(specifier);
     if (fetched) {
