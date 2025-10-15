@@ -314,6 +314,35 @@ window.DATA = {
           "traded_item": ""
         },
         {
+          "date": "2025-08-21",
+          "title": "Steeped Dragon Hoard Items",
+          "code": "DT-STEEP",
+          "dm": "Alexis P.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Dragon's Wrath Spear (Stirring)",
+            "Scaled Ornament (Stirring)",
+            "Dragon Vessel (Stirring)"
+          ],
+          "lost_perm_item": "Dragon's Wrath Weapon (slumbering)\nScaled Ornament\nSlumbering Dragon Vessel",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "Slew the misguided young brass dragon Ylagan and steeped three hoard items in his unstable hoard.",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Ecthelion",
+          "__lockedKind": "Downtime Activity",
+          "__levelAtStart": 7,
+          "gp_net": 0,
+          "dtd_net": 0,
+          "__levelAfter": 7
+        },
+        {
           "title": "For Whom the Void Calls",
           "date": "2025-08-19",
           "code": "DDHC-DD-Ch4",
@@ -20030,7 +20059,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:12:26.068Z",
+    "generated": "2025-10-15T05:16:39.959Z",
     "problems": []
   }
 };
