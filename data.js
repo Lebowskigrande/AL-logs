@@ -7177,8 +7177,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Breath of Fire",
@@ -7201,8 +7201,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Echoes of the Fallen",
@@ -7230,8 +7230,8 @@ window.DATA = {
           "notes": "Kendrick Camaraderie story award. Purchased Heroes' Feast component (1000gp), 3 scrolls of Teleportation Circle (3000 gp)",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Moonshot",
@@ -7252,8 +7252,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "I Xamott - Tales of the Beholder Corps",
@@ -7274,8 +7274,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "What We Reap",
@@ -7296,8 +7296,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "The City that Should Not Be",
@@ -7327,8 +7327,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Fun with Fey",
@@ -7351,8 +7351,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Fire, Ash, and Ruin",
@@ -7377,8 +7377,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Arena of Champions",
@@ -7403,8 +7403,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Lich Queen's Begotten",
@@ -7431,8 +7431,8 @@ window.DATA = {
           "notes": "Saved the Lich Queen's Begotten (Janeane) because she's great and likes crepes. Plane Shifted to the House of Knowledge to let Oghma deal with her being a vessel for the Lich Queen. Stayed and performed many new stories and songs for Oghma.",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Uprising",
@@ -7462,8 +7462,8 @@ window.DATA = {
           "notes": "Bought 5 Scrolls of Mage Armor, bought 5 Scrolls of Holy Weapon, paid for Hero's Feast",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Maze of Shadows Pt. 3",
@@ -7492,8 +7492,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Durlag's Tower",
@@ -7522,8 +7522,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Maze of Shadows Pts. 1 & 2",
@@ -7550,8 +7550,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Thimblerigging",
@@ -7579,8 +7579,8 @@ window.DATA = {
           "notes": "Bought 1 Scroll of Holy Weapon, Scroll of Revivify, Spent 1000 gp on Heroe's Feast",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Dawn of the Raven Lord",
@@ -7601,8 +7601,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Raven Lord's Aerie",
@@ -7623,8 +7623,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Weakness of Rock",
@@ -7647,8 +7647,8 @@ window.DATA = {
           "notes": "Bought 2 scrolls of Find Familiar and 2 scrolls of Mage Armor",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Forgotten Foes",
@@ -7671,8 +7671,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Book of Inner Alchemy",
@@ -7693,8 +7693,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Zhentarrim's Lament",
@@ -7720,8 +7720,8 @@ window.DATA = {
           "notes": "Bought 5 Scrolls of Mage Armor",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Contact",
@@ -7746,8 +7746,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "The Canopic Being",
@@ -7768,8 +7768,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Necromancer's Ascent",
@@ -7794,8 +7794,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Binder's Torment",
@@ -7823,8 +7823,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "The Vampire of Skullport",
@@ -7845,8 +7845,8 @@ window.DATA = {
           "notes": "Bought a pirate flag with a dragon skull and crossbones",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Trade",
@@ -7873,8 +7873,8 @@ window.DATA = {
           "player": "",
           "character": "Buckley",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Claws of Fury",
@@ -7900,8 +7900,8 @@ window.DATA = {
           "notes": "Bought 4 scrolls of Lesser Restoration",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 14
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "A Night of Sorrows",
@@ -7924,8 +7924,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 14,
-          "__levelAtStart": 13
+          "__levelAfter": 16,
+          "__levelAtStart": 15
         },
         {
           "title": "The Secrets We Keep",
@@ -7951,8 +7951,8 @@ window.DATA = {
           "notes": "Spent 1000 gp on Heroe's Feast",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 13,
-          "__levelAtStart": 13
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "title": "Death in the Ruins",
@@ -7977,8 +7977,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 13,
-          "__levelAtStart": 13
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "title": "The Handfasting",
@@ -8005,8 +8005,8 @@ window.DATA = {
           "notes": "Bought 2 forked metal rods attuned to Material Plane and Plane of Knowledge",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 13,
-          "__levelAtStart": 13
+          "__levelAfter": 15,
+          "__levelAtStart": 15
         },
         {
           "title": "It’s all in the Blood",
@@ -8029,8 +8029,8 @@ window.DATA = {
           "notes": "Traded +3 Arrow \"Ironfang\" in exchange for an enslaved Drow",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 13,
-          "__levelAtStart": 12
+          "__levelAfter": 15,
+          "__levelAtStart": 14
         },
         {
           "title": "Dead Canaries",
@@ -8057,8 +8057,8 @@ window.DATA = {
           "notes": "Cast Holy Weapon in Ring of Spell Storing",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 12,
-          "__levelAtStart": 12
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "title": "DM Reward",
@@ -8081,8 +8081,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 12,
-          "__levelAtStart": 12
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "title": "Trade",
@@ -8109,8 +8109,8 @@ window.DATA = {
           "player": "",
           "character": "Bryce",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 12,
-          "__levelAtStart": 12
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "title": "Mind Trip",
@@ -8136,8 +8136,8 @@ window.DATA = {
           "notes": "Used +3 Arrow \"Deck of Many Things\"",
           "kind": "adventure",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 12,
-          "__levelAtStart": 12
+          "__levelAfter": 14,
+          "__levelAtStart": 14
         },
         {
           "title": "DM Reward (x2)",
@@ -8158,8 +8158,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 12,
-          "__levelAtStart": 10
+          "__levelAfter": 14,
+          "__levelAtStart": 12
         },
         {
           "title": "DM Reward (x6)",
@@ -8180,8 +8180,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 10,
-          "__levelAtStart": 4
+          "__levelAfter": 12,
+          "__levelAtStart": 6
         },
         {
           "title": "DM Reward (x2)",
@@ -8202,8 +8202,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 4,
-          "__levelAtStart": 2
+          "__levelAfter": 6,
+          "__levelAtStart": 4
         },
         {
           "title": "DM Reward",
@@ -8226,8 +8226,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "DM Reward",
@@ -8250,8 +8250,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "DM Reward",
@@ -8274,8 +8274,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "DM Reward",
@@ -8298,8 +8298,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "Trade",
@@ -8326,8 +8326,8 @@ window.DATA = {
           "player": "",
           "character": "Anfer",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "Trade",
@@ -8354,8 +8354,8 @@ window.DATA = {
           "player": "",
           "character": "Noraggen",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 2
+          "__levelAfter": 4,
+          "__levelAtStart": 4
         },
         {
           "title": "Run for the Money",
@@ -8387,8 +8387,35 @@ window.DATA = {
           "player": "",
           "character": "",
           "__charKey": "Sentient Hat",
-          "__levelAfter": 2,
-          "__levelAtStart": 1
+          "__levelAfter": 4,
+          "__levelAtStart": 3
+        },
+        {
+          "date": "2020-01-01",
+          "title": "To Be the Very Best",
+          "code": "CCC-KUMORI-02-04",
+          "dm": "Jon K.",
+          "gp_plus": 800,
+          "gp_minus": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "level_plus": 2,
+          "perm_items": [
+            "Deck of Illusions"
+          ],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "adventure",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Sentient Hat",
+          "__lockedKind": "adventure",
+          "__levelAtStart": 1,
+          "gp_net": 800,
+          "dtd_net": 10,
+          "__levelAfter": 3
         }
       ]
     },
@@ -19892,11 +19919,11 @@ window.DATA = {
       "gifts_count": 2
     },
     "Sentient Hat": {
-      "sessions": 36,
-      "net_gp": 49157,
-      "net_dtd": 252,
-      "level_ups": 13,
-      "perm_count": 41,
+      "sessions": 37,
+      "net_gp": 49957,
+      "net_dtd": 262,
+      "level_ups": 15,
+      "perm_count": 42,
       "cons_count": 30,
       "gifts_count": 0
     },
@@ -19941,7 +19968,7 @@ window.DATA = {
       "net_gp": 75879,
       "net_dtd": 85,
       "level_ups": 18,
-      "perm_count": 62,
+      "perm_count": 61,
       "cons_count": 13,
       "gifts_count": 8
     },
@@ -20043,6 +20070,7 @@ window.DATA = {
       2025
     ],
     "Sentient Hat": [
+      2019,
       2021,
       2022,
       2023,
@@ -20091,7 +20119,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T17:22:42.717Z",
+    "generated": "2025-10-15T17:44:12.883Z",
     "problems": []
   }
 };
