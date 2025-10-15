@@ -277,7 +277,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-meta-text{display:inline;white-space:normal;font:inherit;margin:0}
 .log-row-character{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
 .log-row-character-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.log-row-character-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;border:1px solid rgba(26,115,232,.25);color:var(--primary);font-weight:600;text-decoration:none;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);line-height:1}
+.log-row-character-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;border:1px solid rgba(26,115,232,.25);color:var(--primary);font-size:12px;font-weight:500;text-decoration:none;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);line-height:1}
 .log-row-character-chip:hover,.log-row-character-chip:focus-visible{background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.4);outline:none}
 .log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease)}
 .log-row-date .display{white-space:nowrap}
@@ -5321,10 +5321,9 @@ function makeCard(a,idx){
   let characterChip=null;
   const syncCharacterChipPosition=()=>{
     if(!characterChip) return;
-    if(levelTag && levelTag.parentNode===tagRow){
-      tagRow.insertBefore(characterChip, levelTag.nextSibling);
-    }else if(characterChip.parentNode!==tagRow){
-      tagRow.appendChild(characterChip);
+    const firstChild=tagRow.firstChild;
+    if(firstChild!==characterChip){
+      tagRow.insertBefore(characterChip, firstChild);
     }
   };
   let downtimeTag=null;
