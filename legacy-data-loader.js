@@ -9,6 +9,9 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
   try {
     const module = await import(specifier);
     raw = module?.DATA ?? module?.default ?? null;
+    if (!raw && typeof window !== 'undefined') {
+      raw = window.DATA ?? null;
+    }
   } catch (error) {
     importError = error;
   }
