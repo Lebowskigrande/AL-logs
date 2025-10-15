@@ -1856,7 +1856,7 @@ window.DATA = {
         {
           "title": "The Lost God",
           "date": "2023-05-27",
-          "code": "SJ-DC-STRATCON-01)",
+          "code": "SJ-DC-STRATCON-01",
           "dm": "Alexis P.",
           "gp_plus": 1000,
           "gp_minus": 500,
@@ -1881,7 +1881,9 @@ window.DATA = {
           "kind": "adventure",
           "__charKey": "Norixius",
           "__levelAfter": 10,
-          "__levelAtStart": 10
+          "__levelAtStart": 10,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "One Last Job",
@@ -20119,7 +20121,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T17:44:43.697Z",
+    "generated": "2025-10-15T19:27:40.822Z",
     "problems": []
   }
 };
