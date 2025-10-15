@@ -65,6 +65,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .title-select-trigger:focus-visible{outline:3px solid rgba(26,115,232,.35);outline-offset:4px}
 .title-select-trigger[aria-expanded="true"]{background:#eef4ff;border-color:rgba(26,115,232,.35)}
 .title-select-trigger:disabled{cursor:not-allowed;opacity:.6;box-shadow:none;transform:none;background:#e2e8f0;color:#64748b}
+.sheet-card-header.multi-search-active #charAvatar{filter:grayscale(1);opacity:.45}
+.sheet-card-header.multi-search-active .title-select-trigger{color:var(--muted);background:#f1f5f9;border-color:rgba(148,163,184,.4)}
+.sheet-card-header.multi-search-active .title-select-trigger .char-toggle-icon{background:#e2e8f0;color:var(--muted)}
+.sheet-card-header.multi-search-active .char-meta{opacity:.75}
 .title-select-trigger:disabled .char-toggle-icon{background:#cbd5f5;color:#475569}
 .char-toggle-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .char-toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#eef4ff;color:var(--primary);flex:0 0 auto;transition:transform var(--dur) var(--ease),background var(--dur) var(--ease)}
@@ -922,6 +926,7 @@ bootstrapData();
 let DATA = window.DATA || null;
 
 /* --- DOM handles --- */
+const sheetHeaderEl = document.querySelector('.sheet-card-header');
 const charSel  = document.getElementById('charSel');
 const charSelToggle = document.getElementById('charSelToggle');
 const charSelMenu = document.getElementById('charSelMenu');
@@ -6616,6 +6621,11 @@ function getHeaderOverride(){
   return headerStateOverride;
 }
 
+function applyMultiSearchHeaderState(isActive){
+  if(!sheetHeaderEl) return;
+  sheetHeaderEl.classList.toggle('multi-search-active', !!isActive);
+}
+
 function updateCharMeta(key){
   if(!metaEl) return;
   const statsMap=(DATA && typeof DATA.stats==='object')?DATA.stats:{};
@@ -6686,18 +6696,23 @@ function setHeader(key){
   if(avatarEl){
     avatarEl.classList.remove('avatar-hidden');
   }
+  const override=getHeaderOverride();
+  const multiActive=!isDmLogKey(key) && override && override.multi;
+  applyMultiSearchHeaderState(multiActive);
   if(isDmLogKey(key)){
     setDmHeader();
     return;
   }
-  const override=getHeaderOverride();
-  if(override && override.multi){
-    if(avatarEl){
-      resetAvatar();
-      avatarEl.classList.add('avatar-hidden');
-    }
+  const obj=DATA.characters[key];
+  updateAvatar(key,obj);
+  if(metaEl&&!obj){
+    metaEl.textContent='';
+    metaEl.style.display='none';
+    metaEl.setAttribute('aria-hidden','true');
+  }
+  if(multiActive){
     if(metaEl){
-      const text=override.meta||'';
+      const text=override&&override.meta?override.meta:'';
       metaEl.textContent=text;
       const show=text.trim().length>0;
       metaEl.style.display=show?'block':'none';
@@ -6709,13 +6724,6 @@ function setHeader(key){
       badgesEl.setAttribute('aria-hidden','true');
     }
     return;
-  }
-  const obj=DATA.characters[key];
-  updateAvatar(key,obj);
-  if(metaEl&&!obj){
-    metaEl.textContent='';
-    metaEl.style.display='none';
-    metaEl.setAttribute('aria-hidden','true');
   }
   if(!badgesEl) return;
   badgesEl.innerHTML='';
@@ -6836,7 +6844,7 @@ function filterAndRender(){
     const hasResults=count>0;
     const meta=hasResults?`Showing entries from ${countLabel} ${plural}`:'Searching across all characters';
     override={
-      label:'various',
+      label:'',
       meta,
       title:meta,
       multi:true
