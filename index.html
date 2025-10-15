@@ -20,9 +20,6 @@
   --open-card-border:rgba(148,163,184,.22);
   --open-card-shadow:none;
   --open-card-accent:transparent;
-  --sidebar-left:232px;
-  --sidebar-right:304px;
-  --sidebar-tint:#f8faff;
   --divider:#e2e8f0;
 }
 *{box-sizing:border-box}
@@ -31,47 +28,6 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden;backgro
 .app-shell{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;background:var(--bg)}
 .app-main{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;padding:24px clamp(20px,4vw,48px)}
 .app-main>.container{flex:1 1 auto;display:flex;flex-direction:column;max-width:880px;width:100%;margin:0 auto;min-height:0}
-.app-sidebar{display:none}
-.sidebar-inner{display:flex;flex-direction:column;gap:16px;padding:28px 24px;height:100%;min-height:0;overflow:hidden}
-.app-sidebar.character-sidebar .sidebar-inner{padding-left:38px;padding-right:20px}
-.app-sidebar.inventory-sidebar .sidebar-inner{padding-right:38px;padding-left:20px}
-.sidebar-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(148,163,184,.35)}
-.sidebar-title{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.sidebar-empty{font-size:13px;color:var(--muted);padding:16px;border-radius:14px;background:linear-gradient(135deg,rgba(148,163,184,.12),rgba(148,163,184,.05));text-align:center}
-.character-sidebar-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:6px}
-.character-sidebar-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;border:1px solid transparent;background:transparent;color:var(--ink);font:inherit;font-size:13px;font-weight:600;text-align:left;cursor:pointer;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
-.character-sidebar-item:hover,.character-sidebar-item:focus-visible{background:#eef4ff;border-color:rgba(26,115,232,.35);color:var(--primary);outline:none}
-.character-sidebar-item:focus-visible{box-shadow:0 0 0 2px rgba(26,115,232,.25)}
-.character-sidebar-item.active{background:#eef4ff;border-color:rgba(26,115,232,.45);color:var(--primary)}
-.character-sidebar-avatar{width:40px;height:40px;border-radius:12px;object-fit:cover;background:linear-gradient(135deg,#dbeafe,#bfdbfe);flex-shrink:0;box-shadow:0 8px 16px rgba(15,23,42,.08)}
-.character-sidebar-name{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.inventory-sidebar-empty{font-size:13px;color:var(--muted);padding:16px 0;text-align:center;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
-.inventory-sidebar-content{display:flex;flex-direction:column;gap:32px;flex:1 1 auto;min-height:0}
-.inventory-pane{background:transparent;border:none;border-radius:0;box-shadow:none;padding:0;display:flex;flex-direction:column;gap:14px;min-height:0;overflow:hidden}
-.inventory-pane--perm{flex:1 1 55%;min-height:0;}
-.inventory-pane--consumables{flex:1 1 45%;min-height:0;}
-.inventory-pane-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--divider)}
-.inventory-sidebar-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink);margin:0}
-.inventory-sidebar-count{display:inline-flex;align-items:center;justify-content:center;padding:2px 8px;border-radius:999px;background:rgba(148,163,184,.18);color:var(--muted);font-size:12px;font-weight:600}
-.inventory-sidebar-manage{border:none;background:transparent;color:var(--primary);font-weight:600;font-size:12px;padding:4px 8px;border-radius:8px;cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
-.inventory-sidebar-manage:hover,.inventory-sidebar-manage:focus-visible{color:#0b57d0;background:#eef4ff;outline:none}
-.inventory-sidebar-manage[disabled]{opacity:.45;cursor:not-allowed;background:transparent;color:var(--muted)}
-.inventory-active{display:flex;flex-direction:column;gap:8px;padding:12px 0;border-bottom:1px solid var(--divider);margin-bottom:8px}
-.inventory-active-heading{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;color:#1d4ed8;text-transform:uppercase;letter-spacing:.08em}
-.inventory-active-summary{font-size:12px;font-weight:600;color:rgba(29,78,216,.7)}
-.inventory-active-list{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
-.inventory-active-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#e8f0fe;border:1px solid rgba(29,78,216,.18);font-size:12px;font-weight:600;color:#1e293b;box-shadow:none;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-.inventory-active-pill::before{content:'•';color:#2563eb;font-size:14px;line-height:1}
-.inventory-active-pill--common{border-color:rgba(16,185,129,.35);background:#ecfdf5;color:#047857}
-.inventory-active-pill--common::before{color:#10b981}
-.inventory-pane-body{flex:1 1 auto;min-height:0;overflow:auto;padding:8px 0 0;margin:0}
-.inventory-sidebar-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.inventory-sidebar-item{font-size:13px;line-height:1.4;color:var(--ink);padding:10px 0;border-bottom:1px solid var(--divider);transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
-.inventory-sidebar-item:last-child{border-bottom:none}
-.inventory-sidebar-item:hover,.inventory-sidebar-item:focus-within{background:rgba(15,23,42,.03)}
-.inventory-sidebar-label{font-weight:600;color:var(--ink)}
-.inventory-sidebar-qty{margin-left:6px;color:var(--muted);font-size:12px;font-weight:600}
-.inventory-sidebar-note{font-size:13px;color:var(--muted)}
 .sheet-card{position:relative;background:transparent;border:none;border-radius:0;box-shadow:none;display:flex;flex-direction:column;min-height:0;flex:1 1 auto;padding:0}
 .sheet-card-header{padding:0 0 24px;display:flex;flex-direction:column;gap:20px;background:transparent;flex:0 0 auto;border-bottom:1px solid var(--divider);margin-bottom:24px}
 .sheet-card-body{flex:1 1 auto;display:flex;flex-direction:column;gap:20px;padding:0;background:transparent;min-height:0}
@@ -95,12 +51,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden;backgro
   .log-list{padding:10px 12px}
 }
 @media (min-width:1100px){
-  .app-shell{display:grid;grid-template-columns:var(--sidebar-left) minmax(0,1fr) var(--sidebar-right);align-items:stretch;gap:0;min-height:0}
   .app-main{min-width:0;padding:36px clamp(32px,5vw,72px)}
-  .app-main>.container{margin:0;max-width:860px}
-  .app-sidebar{display:flex;flex-direction:column;min-height:0;background:linear-gradient(160deg,rgba(248,250,255,.94),#fff);border-right:1px solid var(--divider)}
-  .app-sidebar.inventory-sidebar{border-right:none;border-left:1px solid var(--divider);background:linear-gradient(340deg,rgba(248,250,255,.94),#fff)}
-  .app-sidebar .sidebar-inner{background:transparent;border:none;box-shadow:none;padding-top:40px;padding-bottom:40px}
 }
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
@@ -636,15 +587,6 @@ body.avatar-overlay-open{overflow:hidden}
 </head>
 <body>
 <div class="app-shell">
-  <aside class="app-sidebar characters-sidebar" aria-label="Character list">
-    <div class="sidebar-inner">
-      <div class="sidebar-header">
-        <h2 class="sidebar-title">Characters</h2>
-      </div>
-      <div id="characterSidebarEmpty" class="sidebar-empty" aria-live="polite">No characters loaded.</div>
-      <ul id="characterSidebarList" class="character-sidebar-list" aria-hidden="true"></ul>
-    </div>
-  </aside>
   <div class="app-main">
     <div class="container">
       <section class="sheet-card">
@@ -759,48 +701,6 @@ body.avatar-overlay-open{overflow:hidden}
       </section>
     </div>
   </div>
-  <aside class="app-sidebar inventory-sidebar" aria-label="Inventory overview">
-    <div class="sidebar-inner">
-      <div class="sidebar-header">
-        <h2 class="sidebar-title">Inventory</h2>
-      </div>
-      <div id="inventorySidebarEmpty" class="inventory-sidebar-empty" aria-live="polite">Select a character to see their inventory.</div>
-      <div id="inventorySidebarContent" class="inventory-sidebar-content" aria-hidden="true">
-        <section class="inventory-pane inventory-pane--perm" aria-labelledby="inventorySidebarPermHeading">
-          <div class="inventory-pane-header">
-            <h3 id="inventorySidebarPermHeading" class="inventory-sidebar-title">
-              <span>Permanent items</span>
-              <span id="inventorySidebarMagicCount" class="inventory-sidebar-count">0</span>
-            </h3>
-            <button id="inventorySidebarMagicManage" type="button" class="inventory-sidebar-manage">Manage</button>
-          </div>
-          <div class="inventory-active" aria-live="polite">
-            <div class="inventory-active-heading">
-              <span>Active items</span>
-              <span id="inventorySidebarActiveSummary" class="inventory-active-summary">0/0 slots</span>
-            </div>
-            <div id="inventorySidebarActiveEmpty" class="inventory-sidebar-note">No active items selected.</div>
-            <ul id="inventorySidebarActiveList" class="inventory-active-list" hidden></ul>
-          </div>
-          <div class="inventory-pane-body">
-            <ul id="inventorySidebarMagicList" class="inventory-sidebar-list"></ul>
-          </div>
-        </section>
-        <section class="inventory-pane inventory-pane--consumables" aria-labelledby="inventorySidebarConsumableHeading">
-          <div class="inventory-pane-header">
-            <h3 id="inventorySidebarConsumableHeading" class="inventory-sidebar-title">
-              <span>Consumables</span>
-              <span id="inventorySidebarConsumableCount" class="inventory-sidebar-count">0</span>
-            </h3>
-            <button id="inventorySidebarConsumableManage" type="button" class="inventory-sidebar-manage">Manage</button>
-          </div>
-          <div class="inventory-pane-body">
-            <ul id="inventorySidebarConsumableList" class="inventory-sidebar-list"></ul>
-          </div>
-        </section>
-      </div>
-    </div>
-  </aside>
 </div>
 
 <div id="addCardMenu" class="fab-menu" role="menu" hidden aria-hidden="true"></div>
