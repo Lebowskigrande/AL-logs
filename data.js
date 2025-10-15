@@ -223,10 +223,10 @@ window.DATA = {
           "__isNew": true,
           "__charKey": "Ecthelion",
           "__lockedKind": "adventure",
-          "__levelAtStart": 7,
+          "__levelAtStart": 8,
           "gp_net": 2985,
           "dtd_net": 10,
-          "__levelAfter": 8
+          "__levelAfter": 9
         },
         {
           "title": "Of Books and Men - An Overdue Adventure",
@@ -239,23 +239,25 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Bracers of Defense",
             "Chest of Preserving"
           ],
           "consumable_items": [
             "Scrolls of Dispel",
-            "See Invisibility",
-            "and Enhance Ability"
+            "Scroll of Invisibility",
+            "Scroll of Enhance Ability"
           ],
           "story_awards": [],
           "supernatural_gifts": [],
           "notes": "",
           "kind": "adventure",
           "__charKey": "Ecthelion",
-          "__levelAfter": 7,
-          "__levelAtStart": 7
+          "__levelAfter": 8,
+          "__levelAtStart": 7,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "For Whom the Void Calls",
@@ -19605,7 +19607,7 @@ window.DATA = {
       "sessions": 6,
       "net_gp": 7935,
       "net_dtd": 43,
-      "level_ups": 7,
+      "level_ups": 8,
       "perm_count": 31,
       "cons_count": 12,
       "gifts_count": 0
@@ -19972,7 +19974,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T04:44:13.329Z",
+    "generated": "2025-10-15T04:45:12.221Z",
     "problems": []
   }
 };
