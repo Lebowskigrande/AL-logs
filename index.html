@@ -5678,12 +5678,11 @@ function makeCard(a,idx){
 
   const stats=document.createElement('div'); stats.className='log-row-stats';
   const totalsPill=document.createElement('div'); totalsPill.className='totals-pill';
-  const totalsLabel=document.createElement('span'); totalsLabel.className='totals-pill-label'; totalsLabel.textContent='Totals';
   const totalsValues=document.createElement('span'); totalsValues.className='totals-pill-values';
   const totalsGp=document.createElement('span'); totalsGp.className='totals-pill-value neutral';
   const totalsDt=document.createElement('span'); totalsDt.className='totals-pill-value neutral';
   totalsValues.append(totalsGp,totalsDt);
-  totalsPill.append(totalsLabel,totalsValues);
+  totalsPill.append(totalsValues);
   stats.appendChild(totalsPill);
   dateStatsRow.appendChild(stats);
   headerMain.appendChild(dateStatsRow);
@@ -5958,6 +5957,7 @@ function makeCard(a,idx){
 
   const overviewContent=document.createElement('div');
   overviewContent.className='card-overview card-section-content card-section-content--grid';
+  overviewContent.style.display='none';
   view.appendChild(overviewContent);
   const rewardsSection=createSection('Rewards & Progress');
   const rewardsContent=rewardsSection.content;
@@ -6480,6 +6480,9 @@ function makeCard(a,idx){
   view.appendChild(actions);
 
   function populate(editing=false){
+    if(overviewContent){
+      overviewContent.style.display=editing?'grid':'none';
+    }
     const kindRaw=hasLockedKind?lockedKind:(a.kind||'').toString();
     const kindVal=kindRaw && kindRaw.toLowerCase()!=='adventure'?'Downtime Activity':'adventure';
     controls.kind.value=kindVal;
