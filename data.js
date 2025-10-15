@@ -200,7 +200,7 @@ window.DATA = {
         {
           "date": "2025-10-15",
           "title": "Lord's Alliance trade",
-          "code": "",
+          "code": "DT-BAN-SWAP",
           "dm": "Alexis P.",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -20028,7 +20028,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:08:07.560Z",
+    "generated": "2025-10-15T05:09:06.422Z",
     "problems": []
   }
 };
