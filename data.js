@@ -414,6 +414,30 @@ window.DATA = {
           "__levelAtStart": 5
         },
         {
+          "title": "Acquired Bastion",
+          "date": "2025-08-13",
+          "code": "DT-BASTION",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "story_awards": [],
+          "supernatural_gifts": [],
+          "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
+          "kind": "Downtime Activity",
+          "__charKey": "Ecthelion",
+          "__levelAfter": 5,
+          "__levelAtStart": 5,
+          "lost_perm_item": "",
+          "traded_item": ""
+        },
+        {
           "title": "The Will of Orcus",
           "date": "2025-08-12",
           "code": "DDHC-DD-Ch3",
@@ -448,28 +472,6 @@ window.DATA = {
           "lost_perm_item": "Holy Water for 12 gp\n2 Potions of Healing for 25 gp each",
           "__charKey": "Ecthelion",
           "__levelAfter": 5,
-          "__levelAtStart": 4
-        },
-        {
-          "title": "Acquired Bastion",
-          "date": "2025-08-12",
-          "code": "DT-BASTION",
-          "dm": null,
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "perm_items": [],
-          "consumable_items": [],
-          "story_awards": [],
-          "supernatural_gifts": [],
-          "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
-          "kind": "Downtime Activity",
-          "__charKey": "Ecthelion",
-          "__levelAfter": 4,
           "__levelAtStart": 4
         },
         {
@@ -20028,7 +20030,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:10:35.360Z",
+    "generated": "2025-10-15T05:12:26.068Z",
     "problems": []
   }
 };
