@@ -199,6 +199,33 @@ window.DATA = {
       "adventures": [
         {
           "date": "2025-10-15",
+          "title": "Lord's Alliance trade",
+          "code": "",
+          "dm": "Alexis P.",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "level_plus": 0,
+          "perm_items": [
+            "Belt of Fire Giant Strength"
+          ],
+          "lost_perm_item": "Bag of Devouring",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "Traded banned item at a Lord's Alliance outpost.",
+          "kind": "Downtime Activity",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Ecthelion",
+          "__lockedKind": "Downtime Activity",
+          "__levelAtStart": 10,
+          "gp_net": 0,
+          "dtd_net": 0,
+          "__levelAfter": 10
+        },
+        {
+          "date": "2025-10-15",
           "title": "The Forbidden Vale",
           "code": "DDHC-DD-Ch6",
           "dm": "Alexis P.",
@@ -20001,7 +20028,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T05:03:45.305Z",
+    "generated": "2025-10-15T05:08:07.560Z",
     "problems": []
   }
 };
