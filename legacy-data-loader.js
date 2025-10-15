@@ -7,6 +7,13 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
     raw = getWindowPayload();
   }
 
+  if (!raw && typeof window !== 'undefined') {
+    if (window.DATA && typeof window.DATA === 'object') {
+      raw = window.DATA;
+      importError = null;
+    }
+  }
+
   if (!raw || typeof raw !== 'object') {
     throw new Error('DATA missing after loading data.js');
   }
