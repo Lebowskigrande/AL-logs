@@ -782,6 +782,7 @@ async function bootstrapData(){
       scriptEl.setAttribute('data-cache-bust', cacheBust);
       scriptEl.dispatchEvent(new Event('load'));
     }
+    tryInitApp();
   }catch(error){
     console.error('Failed to load data.js', error);
     if(scriptEl){
