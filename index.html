@@ -132,6 +132,11 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover,.icon-btn.primary:focus-visible{background:#155ccb;border-color:#0b57d0;outline:none}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
+.search-scope-toggle{width:32px;height:32px;border-radius:12px}
+.search-scope-toggle-icon{display:block;width:18px;height:18px;background-color:currentColor;mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;-webkit-mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;transition:background-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.search-scope-toggle:hover .search-scope-toggle-icon,.search-scope-toggle:focus-visible .search-scope-toggle-icon{transform:scale(1.08)}
+.search-scope-toggle[aria-pressed="true"]{color:var(--primary);background:#eef4ff;border-color:rgba(26,115,232,.45)}
+.search-scope-toggle[aria-pressed="true"] .search-scope-toggle-icon{background-color:currentColor}
 .download-btn{margin-left:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;height:32px;padding:0 12px;border:none;border-radius:999px;background:transparent;box-shadow:none;color:var(--primary);font-weight:600;font-size:13px;line-height:1;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
 .download-btn .save-icon,.download-btn .save-spinner,.download-btn .save-success{display:none;align-items:center;justify-content:center;gap:6px}
 .download-btn .save-icon svg,.download-btn .save-icon img,.download-btn .save-spinner svg{width:20px;height:20px}
@@ -266,6 +271,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-main{display:flex;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
 .log-row-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:12px;line-height:1.4;transition:color var(--dur) var(--ease)}
 .log-row-meta-text{display:inline;white-space:normal;font:inherit;margin:0}
+.log-row-character{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.log-row-character-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.log-row-character-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#eef4ff;border:1px solid rgba(26,115,232,.25);color:var(--primary);font-weight:600;text-decoration:none;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);line-height:1}
+.log-row-character-chip:hover,.log-row-character-chip:focus-visible{background:#dbeafe;color:#0b57d0;border-color:rgba(26,115,232,.4);outline:none}
 .log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease)}
 .log-row-date .display{white-space:nowrap}
 .log-row-tags{display:flex;flex-wrap:wrap;gap:6px;width:100%}
@@ -625,7 +634,9 @@ body.avatar-overlay-open{overflow:hidden}
             </svg>
           </button>
         </div>
-        <button id="searchScopeToggle" class="btn small pill" type="button" aria-pressed="false" aria-label="Show entries from the selected character only">This character</button>
+        <button id="searchScopeToggle" class="icon-btn search-scope-toggle" type="button" aria-pressed="false" aria-label="Show entries from the selected character only" title="Show entries from the selected character only">
+          <span class="search-scope-toggle-icon" aria-hidden="true"></span>
+        </button>
         <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
         <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
@@ -1305,9 +1316,9 @@ function updateSearchScopeToggle(){
     ?'Showing entries from all characters. Click to limit results to the selected character.'
     :'Showing entries from the selected character. Click to include all characters.';
   searchScopeToggleBtn.setAttribute('aria-pressed', active?'true':'false');
-  searchScopeToggleBtn.textContent=active?'All characters':'This character';
   searchScopeToggleBtn.setAttribute('aria-label', label);
   searchScopeToggleBtn.title=label;
+  updateSearchPlaceholder(charSel?charSel.value:'');
 }
 
 function invalidateAdventureSearchCache(key){
@@ -2206,6 +2217,23 @@ function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={})
   rebuildCharacterMenu();
   syncCharacterSelectorUI();
   return charSel.value||nextKey||null;
+}
+
+function getCharacterDisplayName(charKey){
+  if(!charKey) return '';
+  const key=String(charKey);
+  if(DATA && DATA.characters && DATA.characters[key]){
+    const obj=DATA.characters[key];
+    const display=typeof obj.display_name==='string'?obj.display_name.trim():'';
+    if(display) return display;
+    const sheet=typeof obj.sheet==='string'?obj.sheet.trim():'';
+    if(sheet) return sheet;
+  }
+  if(charSel && charSel.options){
+    const option=Array.from(charSel.options).find(opt=>opt.value===key);
+    if(option && typeof option.textContent==='string'){ return option.textContent.trim(); }
+  }
+  return key.trim();
 }
 
 /* --- utils --- */
@@ -3331,6 +3359,31 @@ function updateSearchClearButton(){
   searchClearBtn.hidden=!hasValue;
   searchClearBtn.setAttribute('aria-hidden', hasValue?'false':'true');
 }
+
+function updateSearchPlaceholder(selectedKey){
+  if(!qEl) return;
+  const key=selectedKey!=null?selectedKey:((charSel&&charSel.value)||'');
+  let placeholder='';
+  if(isDmLogKey(key)){
+    placeholder='Search DM log entries';
+  }else if(searchAllCharacters){
+    placeholder='Search all characters';
+  }else{
+    const name=getCharacterDisplayName(key);
+    if(name){
+      placeholder=`Search ${name}`;
+    }
+  }
+  if(!placeholder){
+    placeholder=defaultSearchPlaceholder||'';
+  }
+  if(placeholder){
+    qEl.setAttribute('placeholder', placeholder);
+    qEl.setAttribute('aria-label', placeholder);
+  }else{
+    qEl.removeAttribute('aria-label');
+  }
+}
 function updateUiForSelection(key){
   closeCharMenu();
   closeAddMenu();
@@ -3360,13 +3413,7 @@ function updateUiForSelection(key){
     }
   }
   if(qEl){
-    const placeholder=isDm?'Search DM log entries':(defaultSearchPlaceholder||'');
-    if(placeholder){
-      qEl.setAttribute('placeholder', placeholder);
-      qEl.setAttribute('aria-label', placeholder);
-    }else{
-      qEl.removeAttribute('aria-label');
-    }
+    updateSearchPlaceholder(key);
     updateSearchClearButton();
   }
   updateAddButtonContext(isDm);
@@ -5304,6 +5351,37 @@ function makeCard(a,idx){
   metaSpan.appendChild(metaText);
   metaDisplayEl=metaText;
 
+  if(searchAllCharacters){
+    const charKey=typeof a.__charKey==='string'?a.__charKey:String(a.__charKey||'');
+    const charName=charKey?getCharacterDisplayName(charKey):'';
+    if(charKey && charName){
+      const characterRow=document.createElement('div');
+      characterRow.className='log-row-character';
+      const characterLabel=document.createElement('span');
+      characterLabel.className='log-row-character-label';
+      characterLabel.textContent='Character:';
+      const characterLink=document.createElement('a');
+      characterLink.href='#';
+      characterLink.className='log-row-character-chip';
+      characterLink.textContent=charName;
+      const linkLabel=`View ${charName}'s log`;
+      characterLink.title=linkLabel;
+      characterLink.setAttribute('aria-label',linkLabel);
+      characterLink.addEventListener('click',(ev)=>{
+        ev.preventDefault();
+        if(searchAllCharacters){
+          searchAllCharacters=false;
+          persistSearchScope();
+          updateSearchScopeToggle();
+        }
+        navigateToCharacterReward(charKey,a);
+      });
+      characterRow.appendChild(characterLabel);
+      characterRow.appendChild(characterLink);
+      info.appendChild(characterRow);
+    }
+  }
+
   info.appendChild(metaSpan);
   info.appendChild(tagRow);
   main.appendChild(info);
@@ -6751,12 +6829,14 @@ function filterAndRender(){
   }
   const visibleKeys=new Set(filtered.map(item=>item.charKey).filter(Boolean));
   let override=null;
-  if(searchAllCharacters && visibleKeys.size>1){
+  if(searchAllCharacters){
     const count=visibleKeys.size;
     const countLabel=fmtNumber(count);
-    const meta=`Showing entries from ${countLabel} characters`;
+    const plural=count===1?'character':'characters';
+    const hasResults=count>0;
+    const meta=hasResults?`Showing entries from ${countLabel} ${plural}`:'Searching across all characters';
     override={
-      label:'Various',
+      label:'various',
       meta,
       title:meta,
       multi:true
