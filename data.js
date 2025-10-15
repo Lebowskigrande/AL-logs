@@ -202,7 +202,7 @@ window.DATA = {
           "title": "The Forbidden Vale",
           "code": "DDHC-DD-Ch6",
           "dm": "Alexis P.",
-          "gp_plus": 43250,
+          "gp_plus": 4325,
           "gp_minus": 1340,
           "dtd_plus": 10,
           "dtd_minus": 0,
@@ -224,7 +224,7 @@ window.DATA = {
           "__charKey": "Ecthelion",
           "__lockedKind": "adventure",
           "__levelAtStart": 7,
-          "gp_net": 41910,
+          "gp_net": 2985,
           "dtd_net": 10,
           "__levelAfter": 8
         },
@@ -19603,7 +19603,7 @@ window.DATA = {
     },
     "Ecthelion": {
       "sessions": 6,
-      "net_gp": 46860,
+      "net_gp": 7935,
       "net_dtd": 43,
       "level_ups": 7,
       "perm_count": 31,
@@ -19972,7 +19972,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T04:41:31.626Z",
+    "generated": "2025-10-15T04:42:17.652Z",
     "problems": []
   }
 };
