@@ -5318,6 +5318,15 @@ function makeCard(a,idx){
   let codeFieldView=null;
   let metaDisplayEl=null;
   let levelTag=null;
+  let characterChip=null;
+  const syncCharacterChipPosition=()=>{
+    if(!characterChip) return;
+    if(levelTag && levelTag.parentNode===tagRow){
+      tagRow.insertBefore(characterChip, levelTag.nextSibling);
+    }else if(characterChip.parentNode!==tagRow){
+      tagRow.appendChild(characterChip);
+    }
+  };
   let downtimeTag=null;
 
   const dateSpan=document.createElement('span'); dateSpan.className='log-row-date editable-inline';
@@ -5360,11 +5369,6 @@ function makeCard(a,idx){
     const charKey=typeof a.__charKey==='string'?a.__charKey:String(a.__charKey||'');
     const charName=charKey?getCharacterDisplayName(charKey):'';
     if(charKey && charName){
-      const characterRow=document.createElement('div');
-      characterRow.className='log-row-character';
-      const characterLabel=document.createElement('span');
-      characterLabel.className='log-row-character-label';
-      characterLabel.textContent='Character:';
       const characterLink=document.createElement('a');
       characterLink.href='#';
       characterLink.className='log-row-character-chip';
@@ -5381,9 +5385,8 @@ function makeCard(a,idx){
         }
         navigateToCharacterReward(charKey,a);
       });
-      characterRow.appendChild(characterLabel);
-      characterRow.appendChild(characterLink);
-      info.appendChild(characterRow);
+      characterChip=characterLink;
+      syncCharacterChipPosition();
     }
   }
 
@@ -5470,6 +5473,7 @@ function makeCard(a,idx){
         levelTag.remove();
         levelTag=null;
       }
+      syncCharacterChipPosition();
       return;
     }
     if(!levelTag){
@@ -5483,6 +5487,7 @@ function makeCard(a,idx){
       const prefix=gainNum>0?'+':'−';
       levelTag.textContent=`Levels ${prefix}${fmtNumber(Math.abs(gainNum))}`;
     }
+    syncCharacterChipPosition();
   };
 
   const levelStart=entryLevelAtStart(a);
