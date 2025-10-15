@@ -1,19 +1,10 @@
 export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
-  const params = new URLSearchParams();
-  if (version) params.set('v', version);
-  if (cacheBust) params.set('cb', cacheBust);
-  const specifier = `./data.js${params.toString() ? `?${params}` : ''}`;
-  let raw = null;
-  let importError = null;
+  const specifier = buildDataScriptUrl({ version, cacheBust });
+  let raw = getWindowPayload();
 
-  try {
-    const module = await import(specifier);
-    raw = module?.DATA ?? module?.default ?? null;
-    if (!raw && typeof window !== 'undefined') {
-      raw = window.DATA ?? null;
-    }
-  } catch (error) {
-    importError = error;
+  if (!raw) {
+    await ensureDataScriptLoaded(specifier, { version, cacheBust });
+    raw = getWindowPayload();
   }
 
   if (!raw && typeof window !== 'undefined') {
@@ -24,12 +15,7 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
   }
 
   if (!raw || typeof raw !== 'object') {
-    const fetched = await loadDataFromText(specifier);
-    if (fetched) {
-      raw = fetched;
-    } else if (importError) {
-      throw importError;
-    }
+    throw new Error('DATA missing after loading data.js');
   }
 
   const transformed = transformData(raw);
@@ -42,48 +28,60 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
   };
 }
 
-async function loadDataFromText(specifier) {
-  if (typeof fetch !== 'function') return null;
-  try {
-    const response = await fetch(specifier, { cache: 'no-cache' });
-    if (!response || !response.ok) {
-      return null;
-    }
-    const text = await response.text();
-    return parseDataText(text);
-  } catch (error) {
-    return null;
-  }
+function buildDataScriptUrl({ version = '', cacheBust = '' } = {}) {
+  const params = new URLSearchParams();
+  if (version) params.set('v', version);
+  if (cacheBust) params.set('cb', cacheBust);
+  const query = params.toString();
+  return query ? `data.js?${query}` : 'data.js';
 }
 
-function parseDataText(text) {
-  if (typeof text !== 'string') {
+function getWindowPayload() {
+  if (typeof window === 'undefined') {
     return null;
   }
-  const payload = extractDataPayload(text);
-  if (!payload) {
-    return null;
-  }
-  try {
-    return JSON.parse(payload);
-  } catch (error) {
-    return null;
-  }
-}
-
-function extractDataPayload(text) {
-  const patterns = [
-    /window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
-    /export\s+const\s+DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/,
-    /export\s+default\s*(\{[\s\S]*\})\s*;?\s*$/
-  ];
-  for (const pattern of patterns) {
-    const match = typeof text === 'string' ? text.match(pattern) : null;
-    if (match && match[1]) {
-      return match[1];
+  const candidates = [window.RAW_DATA, window.DATA];
+  for (const candidate of candidates) {
+    if (candidate && typeof candidate === 'object') {
+      return candidate;
     }
   }
   return null;
+}
+
+async function ensureDataScriptLoaded(src, { version = '', cacheBust = '' } = {}) {
+  if (typeof document === 'undefined' || typeof document.createElement !== 'function') {
+    throw new Error('DOM APIs are required to load data.js');
+  }
+
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-loader="legacy-data"]');
+    if (existing) {
+      existing.remove();
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.dataset.loader = 'legacy-data';
+    if (version) {
+      script.setAttribute('data-version', version);
+    }
+    if (cacheBust) {
+      script.setAttribute('data-cache-bust', cacheBust);
+    }
+
+    script.addEventListener('load', () => resolve());
+    script.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)));
+
+    const parent = document.head || document.body || document.documentElement;
+    if (!parent) {
+      reject(new Error('Unable to append data.js script tag'));
+      return;
+    }
+
+    parent.appendChild(script);
+  });
 }
 
 function deriveVersionToken(meta = {}, fallback = '') {
