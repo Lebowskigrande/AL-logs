@@ -17512,7 +17512,9 @@ window.DATA = {
           "kind": "adventure",
           "__charKey": "Darrendrian",
           "__levelAfter": 19,
-          "__levelAtStart": 18
+          "__levelAtStart": 18,
+          "lost_perm_item": "White Dragon Scalemail",
+          "traded_item": ""
         },
         {
           "title": "Twice as Nice for Half the Price",
@@ -20089,7 +20091,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T16:40:10.244Z",
+    "generated": "2025-10-15T17:22:42.717Z",
     "problems": []
   }
 };
