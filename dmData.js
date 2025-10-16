@@ -2597,7 +2597,7 @@ window.DMDATA = {
         },
         {
           "date": "2025-05-28T00:00:00",
-          "allocation": "Player rewards: Arcane Grimoire +3 and Blessing of Protection to Arvistan",
+          "allocation": "Player rewards: Arcane Grimoire +3 and Blessing of Protection to Arvistan Brightwave",
           "cost": 8,
           "levels_plus": 0
         },
