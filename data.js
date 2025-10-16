@@ -11140,12 +11140,11 @@ window.DATA = {
             "Ring of Regenderation",
             "Rod of the Pact Keeper +3",
             "Staff of Power",
-            "Manua",
-            "l of Bodily Health",
             "Carpet (6x9)",
             "Candle of Invocation (Neutral)",
             "Ring of Fire Resistance",
-            "Flail +1"
+            "Flail +1",
+            "Manual of Bodily Health"
           ],
           "consumable_items": [
             "7 Scrolls of Shield",
@@ -11165,7 +11164,9 @@ window.DATA = {
           "kind": "adventure",
           "__charKey": "Zandarax",
           "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "A Light in the Dark",
@@ -20148,7 +20149,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-16T05:49:45.049Z",
+    "generated": "2025-10-16T06:59:32.870Z",
     "problems": []
   }
 };
