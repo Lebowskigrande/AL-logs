@@ -380,6 +380,55 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.open .log-row-title .display{color:var(--ink)}
 .log-list .card.open .log-row-meta,.log-list .card.open .log-row-date{color:rgba(15,23,42,.72)}
 
+.dm-card .card-hd{align-items:stretch;position:relative}
+.dm-card .card-hd::before{content:"";position:absolute;top:12px;bottom:12px;left:0;width:4px;border-radius:999px;background:transparent}
+.dm-card.dm-card--session .card-hd::before{background:#0ea5e9}
+.dm-card.dm-card--allocation .card-hd::before{background:#8b5cf6}
+.dm-card .dm-card-header{display:flex;flex-direction:column;gap:10px;flex:1 1 auto;min-width:0}
+.dm-card .dm-card-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dm-card .dm-card-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.dm-card .dm-card-title{font-weight:600;font-size:15px;line-height:1.35;color:var(--ink);flex:1 1 auto;min-width:0;word-break:break-word}
+.dm-card .dm-card-heading .dm-card-title>*{min-width:0}
+.dm-card .dm-card-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(148,163,184,.16);color:var(--muted)}
+.dm-card.dm-card--session .dm-card-badge{background:rgba(14,165,233,.18);color:#0369a1}
+.dm-card.dm-card--allocation .dm-card-badge{background:rgba(129,140,248,.2);color:#4c1d95}
+.dm-card .dm-card-topline-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
+.dm-card .dm-card-date{color:var(--muted);font-size:13px;line-height:1.35;white-space:nowrap}
+.dm-card .dm-card-topline-meta .chips{margin-top:0;justify-content:flex-end}
+.dm-card .dm-card-topline-meta .chips:empty{display:none}
+.dm-card .dm-card-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dm-card .dm-card-meta-item{display:inline-flex;align-items:baseline;gap:6px;padding:4px 10px;border-radius:12px;background:rgba(148,163,184,.12);font-size:12px;color:var(--muted)}
+.dm-card .dm-card-meta-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(71,85,105,.9)}
+.dm-card .dm-card-meta-value{font-weight:600;color:var(--ink)}
+.dm-card .dm-card-metrics{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin-top:4px}
+.dm-card .dm-card-metric{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:14px;background:rgba(148,163,184,.12);min-width:96px}
+.dm-card .dm-card-metric-value{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+.dm-card .dm-card-metric-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dm-card .dm-card-metric--hours{background:rgba(59,130,246,.16)}
+.dm-card .dm-card-metric--bonus{background:rgba(34,197,94,.18)}
+.dm-card .dm-card-metric--levels{background:rgba(249,115,22,.18)}
+.dm-card .dm-card-metric--tier{background:rgba(56,189,248,.2)}
+.dm-card .dm-card-metric--cost{background:rgba(192,132,252,.22)}
+.dm-card .dm-card-metric--spent{background:rgba(248,113,113,.22)}
+.dm-card .dm-card-title{overflow:hidden;text-overflow:ellipsis}
+.dm-card .dm-card-title span{white-space:normal}
+.dm-card .dm-card-meta:empty{display:none}
+
+.dm-card .bd-in.dm-details{display:flex;flex-direction:column;gap:20px}
+.dm-card .dm-details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.dm-card .dm-details-field{margin:0}
+.dm-card .dm-details-field .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.dm-card .dm-details-field .v{font-size:14px}
+
+@media (max-width:520px){
+  .dm-card .dm-card-topline{flex-direction:column;align-items:flex-start;gap:8px}
+  .dm-card .dm-card-topline-meta{width:100%;justify-content:flex-start}
+  .dm-card .dm-card-topline-meta .chips{justify-content:flex-start}
+  .dm-card .dm-card-metrics{flex-direction:column;align-items:stretch}
+  .dm-card .dm-card-metric{min-width:0}
+  .dm-card .dm-details-grid{grid-template-columns:1fr}
+}
+
 /* Collapsible */
 .card-bd{position:relative;height:0;overflow:hidden;border-top:1px solid var(--border);transition:height var(--card-dur,var(--dur)) var(--card-ease,var(--accordion-ease)),opacity calc(var(--card-dur,var(--dur))*0.85) ease;transition-behavior:smooth;padding:0 14px;opacity:0;will-change:height,opacity;contain:layout paint}
 .card.open .card-bd{overflow:visible;opacity:1}
@@ -3980,6 +4029,7 @@ function makeDmCard(entry,idx){
   const isAllocation=entry.type==='allocation';
   const card=document.createElement('article');
   card.className='card dm-card'+(isAllocation?' activity':'');
+  card.classList.add(isAllocation?'dm-card--allocation':'dm-card--session');
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
@@ -4008,74 +4058,144 @@ function makeDmCard(entry,idx){
   const header=document.createElement('div');
   header.className='card-hd';
 
+  const headerMetaKeys=new Set();
+  const headerMetricKeys=new Set();
+
+  const createMetaItem=(key,label,value)=>{
+    const normalized=normalizeDisplayValue(value);
+    if(!normalized) return null;
+    const item=document.createElement('span');
+    item.className='dm-card-meta-item';
+    const labelEl=document.createElement('span');
+    labelEl.className='dm-card-meta-label';
+    labelEl.textContent=label;
+    const valueEl=document.createElement('span');
+    valueEl.className='dm-card-meta-value';
+    valueEl.textContent=normalized;
+    item.append(labelEl,valueEl);
+    if(key){ headerMetaKeys.add(key); }
+    return item;
+  };
+
+  const metricsRow=document.createElement('div');
+  metricsRow.className='dm-card-metrics';
+  const addMetric=(key,label,value,variant)=>{
+    if(value==null) return;
+    const text=String(value).trim();
+    if(!text) return;
+    const metric=document.createElement('div');
+    metric.className='dm-card-metric';
+    if(variant){ metric.classList.add(`dm-card-metric--${variant}`); }
+    const valueEl=document.createElement('div');
+    valueEl.className='dm-card-metric-value';
+    valueEl.textContent=text;
+    const labelEl=document.createElement('div');
+    labelEl.className='dm-card-metric-label';
+    labelEl.textContent=label;
+    metric.append(valueEl,labelEl);
+    metricsRow.appendChild(metric);
+    if(key){ headerMetricKeys.add(key); }
+  };
+
+  const headerContent=document.createElement('div');
+  headerContent.className='dm-card-header';
+  const topRow=document.createElement('div');
+  topRow.className='dm-card-topline';
+  const heading=document.createElement('div');
+  heading.className='dm-card-heading';
+  const badge=document.createElement('span');
+  badge.className='dm-card-badge';
+  badge.textContent=isAllocation?'Allocation':'Session';
+  heading.appendChild(badge);
+
+  const titleEl=document.createElement('div');
+  titleEl.className='dm-card-title';
+
+  const topMeta=document.createElement('div');
+  topMeta.className='dm-card-topline-meta';
+  const dateEl=document.createElement('div');
+  dateEl.className='dm-card-date';
+  dateEl.textContent=fmtDate(entry.date);
+  topMeta.appendChild(dateEl);
+
+  const chips=createChipsContainer();
+  const linkChip=createLinkChip?createLinkChip():null;
+  if(linkChip){ chips.appendChild(linkChip); }
+
   if(isAllocation){
-    const main=document.createElement('div');
-    main.className='activity-line';
-    const left=document.createElement('div');
-    left.className='activity-left';
-    const dateSpan=document.createElement('span');
-    dateSpan.className='activity-date';
-    dateSpan.textContent=fmtDate(entry.date);
-    const nameSpan=document.createElement('span');
-    nameSpan.className='activity-name';
     const allocationTitle=sanitizeTitle(entry.allocation || 'Reward allocation');
-    setElementTextWithCharacterChips(nameSpan, allocationTitle, {label:'Reward allocation', force:true});
-    left.append(dateSpan,nameSpan);
-    main.appendChild(left);
-    const chips=createChipsContainer();
-    const linkChip=createLinkChip?createLinkChip():null;
-    if(linkChip){ chips.appendChild(linkChip); }
+    setElementTextWithCharacterChips(titleEl, allocationTitle, {label:'Reward allocation', force:true});
     const costVal=dmToNullableNumber(entry.cost);
     if(costVal!=null && costVal!==0){
-      chips.appendChild(pill(`Cost ${fmtNumber(costVal)}`));
+      addMetric('cost','Season Cost',fmtNumber(costVal),'cost');
     }
     const levelsVal=dmToNullableNumber(entry.levels_plus);
     if(levelsVal!=null && levelsVal!==0){
-      chips.appendChild(pill(`Levels ${fmtNumber(levelsVal,{signed:true})}`));
+      addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
     }
-    if(chips.children.length){
-      main.appendChild(chips);
-    }
-    header.appendChild(main);
-  }else{
-    const main=document.createElement('div');
-    main.className='titleLine';
-    const dateDiv=document.createElement('div');
-    dateDiv.className='date';
-    dateDiv.textContent=fmtDate(entry.date);
-    const titleDiv=document.createElement('div');
-    titleDiv.className='title';
-    titleDiv.textContent=sanitizeTitle(entry.name || entry.code || 'DM Session');
-    const subtitleRow=document.createElement('div');
-    subtitleRow.className='subtitle-row';
-    const subtitleDiv=document.createElement('div');
-    subtitleDiv.className='subtitle';
-    subtitleDiv.textContent=entry.code || entry.season || '';
-    subtitleRow.appendChild(subtitleDiv);
-    const chips=createChipsContainer();
-    const linkChip=createLinkChip?createLinkChip():null;
-    if(linkChip){ chips.appendChild(linkChip); }
     const hoursVal=dmToNullableNumber(entry.hours);
     if(hoursVal!=null && hoursVal!==0){
-      chips.appendChild(pill(`Hours ${fmtNumber(hoursVal)}`));
+      addMetric('hours','Hours',fmtNumber(hoursVal),'hours');
     }
-    const extraVal=dmToNullableNumber(entry.extra_hours);
-    if(extraVal!=null && extraVal!==0){
-      chips.appendChild(pill(`Bonus ${fmtNumber(extraVal)}`));
+    const bonusVal=dmToNullableNumber(entry.extra_hours);
+    if(bonusVal!=null && bonusVal!==0){
+      addMetric('extra_hours','Bonus Hours',fmtNumber(bonusVal),'bonus');
+    }
+  }else{
+    const sessionTitle=sanitizeTitle(entry.name || entry.code || 'DM Session');
+    titleEl.textContent=sessionTitle;
+    const hoursVal=dmToNullableNumber(entry.hours);
+    if(hoursVal!=null && hoursVal!==0){
+      addMetric('hours','Hours',fmtNumber(hoursVal),'hours');
+    }
+    const bonusVal=dmToNullableNumber(entry.extra_hours);
+    if(bonusVal!=null && bonusVal!==0){
+      addMetric('extra_hours','Bonus Hours',fmtNumber(bonusVal),'bonus');
     }
     if(entry.tier!=null && entry.tier!==''){
-      chips.appendChild(pill(`Tier ${fmtNumber(entry.tier)}`));
+      addMetric('tier','Tier',fmtNumber(entry.tier),'tier');
     }
     const levelsVal=dmToNullableNumber(entry.levels_plus);
     if(levelsVal!=null && levelsVal!==0){
-      chips.appendChild(pill(`Levels ${fmtNumber(levelsVal,{signed:true})}`));
+      addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
     }
-    if(chips.children.length){
-      subtitleRow.appendChild(chips);
+    const levelsSpent=dmToNullableNumber(entry.levels_minus);
+    if(levelsSpent!=null && levelsSpent!==0 && levelsSpent!==dmToNullableNumber(entry.levels_plus)){
+      addMetric('levels_minus','Levels Spent',fmtNumber(levelsSpent,{signed:true}),'spent');
     }
-    main.append(dateDiv,titleDiv,subtitleRow);
-    header.appendChild(main);
   }
+
+  if(chips.children.length){
+    topMeta.appendChild(chips);
+  }
+
+  heading.appendChild(titleEl);
+  topRow.append(heading,topMeta);
+  headerContent.appendChild(topRow);
+
+  const metaRow=document.createElement('div');
+  metaRow.className='dm-card-meta';
+  if(!isAllocation){
+    const codeMeta=createMetaItem('code','Code',entry.code);
+    if(codeMeta){ metaRow.appendChild(codeMeta); }
+  }
+  const seasonMeta=createMetaItem('season','Season',entry.season);
+  if(seasonMeta){ metaRow.appendChild(seasonMeta); }
+  const locationMeta=createMetaItem('location','Location',entry.location);
+  if(locationMeta){ metaRow.appendChild(locationMeta); }
+  if(!isAllocation){
+    const itemMeta=createMetaItem('item','Reward',entry.item);
+    if(itemMeta){ metaRow.appendChild(itemMeta); }
+  }
+  if(metaRow.children.length){
+    headerContent.appendChild(metaRow);
+  }
+
+  if(metricsRow.children.length){
+    headerContent.appendChild(metricsRow);
+  }
+
+  header.appendChild(headerContent);
 
   header.addEventListener('click',()=>toggleCard(card));
   card.appendChild(header);
@@ -4083,7 +4203,10 @@ function makeDmCard(entry,idx){
   const body=document.createElement('div');
   body.className='card-bd';
   const inner=document.createElement('div');
-  inner.className='bd-in';
+  inner.className='bd-in dm-details';
+  const detailsGrid=document.createElement('div');
+  detailsGrid.className='dm-details-grid';
+  inner.appendChild(detailsGrid);
 
   const addField=(label,value)=>{
     if(value==null) return;
@@ -4098,7 +4221,7 @@ function makeDmCard(entry,idx){
       }
     }
     const field=document.createElement('div');
-    field.className='field';
+    field.className='field dm-details-field';
     const k=document.createElement('div'); k.className='k'; k.textContent=label;
     const v=document.createElement('div'); v.className='v';
     const display=document.createElement('div'); display.className='display';
@@ -4109,7 +4232,7 @@ function makeDmCard(entry,idx){
     }
     v.appendChild(display);
     field.append(k,v);
-    inner.appendChild(field);
+    detailsGrid.appendChild(field);
     field.__display=display;
     field.__setDisplayValue=(nextValue)=>{
       if(nextValue instanceof Node){
@@ -4130,26 +4253,28 @@ function makeDmCard(entry,idx){
     return field;
   };
 
-  addField('Season', entry.season);
+  if(!headerMetaKeys.has('season')){
+    addField('Season', entry.season);
+  }
   if(isAllocation){
     addField('Reward allocation', entry.allocation);
-    if(entry.cost!=null){ addField('Season cost', fmtNumber(entry.cost)); }
-    if(entry.levels_plus!=null){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
-    if(entry.hours!=null){ addField('Hours', fmtNumber(entry.hours)); }
-    if(entry.extra_hours!=null){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
-    if(entry.location){ addField('Location', entry.location); }
+    if(entry.cost!=null && !headerMetricKeys.has('cost')){ addField('Season cost', fmtNumber(entry.cost)); }
+    if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
+    if(entry.hours!=null && !headerMetricKeys.has('hours')){ addField('Hours', fmtNumber(entry.hours)); }
+    if(entry.extra_hours!=null && !headerMetricKeys.has('extra_hours')){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
+    if(entry.location && !headerMetaKeys.has('location')){ addField('Location', entry.location); }
   }else{
-    if(entry.code){ addField('Adventure code', entry.code); }
+    if(entry.code && !headerMetaKeys.has('code')){ addField('Adventure code', entry.code); }
     if(entry.name){ addField('Adventure name', entry.name); }
-    if(entry.tier!=null){ addField('Tier', fmtNumber(entry.tier)); }
-    if(entry.hours!=null){ addField('Hours', fmtNumber(entry.hours)); }
-    if(entry.extra_hours!=null){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
+    if(entry.tier!=null && entry.tier!=='' && !headerMetricKeys.has('tier')){ addField('Tier', fmtNumber(entry.tier)); }
+    if(entry.hours!=null && !headerMetricKeys.has('hours')){ addField('Hours', fmtNumber(entry.hours)); }
+    if(entry.extra_hours!=null && !headerMetricKeys.has('extra_hours')){ addField('Bonus hours', fmtNumber(entry.extra_hours)); }
     if(entry.roles && entry.roles.length){ addField('Roles', listBox(entry.roles)); }
-    if(entry.levels_plus!=null){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
-    if(entry.levels_minus!=null && entry.levels_minus!==entry.levels_plus){ addField('Levels spent', fmtNumber(entry.levels_minus)); }
-    if(entry.item){ addField('Reward item', entry.item); }
+    if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
+    if(entry.levels_minus!=null && entry.levels_minus!==entry.levels_plus && !headerMetricKeys.has('levels_minus')){ addField('Levels spent', fmtNumber(entry.levels_minus)); }
+    if(entry.item && !headerMetaKeys.has('item')){ addField('Reward item', entry.item); }
     if(entry.allocation){ addField('Reward allocation', entry.allocation); }
-    if(entry.location){ addField('Location', entry.location); }
+    if(entry.location && !headerMetaKeys.has('location')){ addField('Location', entry.location); }
   }
 
   body.appendChild(inner);
