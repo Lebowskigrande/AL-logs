@@ -1324,6 +1324,10 @@ const DM_LOG_KEY='__dmLog';
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
 let DM_ENTRIES=[];
 let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
+const DM_HOURS_POOL_START_TS=(()=>{
+  const ts=Date.parse('2025-01-01T00:00:00Z');
+  return Number.isFinite(ts)?ts:0;
+})();
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
 const scrollableTitleRegistry=(()=>{
@@ -3504,6 +3508,27 @@ function dmTimestamp(value){
   const t=new Date(value).getTime();
   return Number.isFinite(t)?t:Number.NEGATIVE_INFINITY;
 }
+function dmDateCountsTowardHoursPool(date){
+  const ts=dmTimestamp(date);
+  return ts>=DM_HOURS_POOL_START_TS;
+}
+function parseSeasonNumber(label){
+  if(!label) return null;
+  const match=String(label).match(/season\s*(\d+)/i);
+  if(!match) return null;
+  const num=Number(match[1]);
+  return Number.isFinite(num)?num:null;
+}
+function allocationGrantsLevelToPool(seasonLabel){
+  if(!seasonLabel) return true;
+  const normalized=String(seasonLabel).toLowerCase();
+  if(normalized.includes('pre-season 11') || normalized.includes('pre season 11')){
+    return false;
+  }
+  const seasonNumber=parseSeasonNumber(seasonLabel);
+  if(seasonNumber==null) return true;
+  return seasonNumber>=11;
+}
 function buildDmEntries(){
   DM_ENTRIES=[];
   DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
@@ -3524,6 +3549,7 @@ function buildDmEntries(){
     const bonusVal=dmToNullableNumber(run.extra_hours);
     const levelsPlus=dmToNullableNumber(run.levels_plus);
     const levelsMinus=dmToNullableNumber(run.levels_minus);
+    const countsTowardHoursPool=dmDateCountsTowardHoursPool(run.date);
     pushEntry({
       type:'run',
       season,
@@ -3541,15 +3567,30 @@ function buildDmEntries(){
       allocation:run.allocation||''
     });
     DM_SUMMARY.runs+=1;
-    if(hoursVal!=null) DM_SUMMARY.earnedHours+=hoursVal;
-    if(bonusVal!=null) DM_SUMMARY.earnedBonus+=bonusVal;
+    if(countsTowardHoursPool){
+      if(hoursVal!=null) DM_SUMMARY.earnedHours+=hoursVal;
+      if(bonusVal!=null) DM_SUMMARY.earnedBonus+=bonusVal;
+    }
     if(levelsPlus!=null) DM_SUMMARY.earnedLevels+=levelsPlus;
     if(levelsMinus!=null) DM_SUMMARY.spentLevels+=levelsMinus;
   };
   const addPreEntry=(entry)=>{
     const season=normalizeSeason('Pre-Season 11');
-    const levelsPlus=dmToNullableNumber(entry.levels_plus);
-    const levelsMinus=dmToNullableNumber(entry.levels_minus);
+    const parsed=interpretAllocationDetails(entry.allocation);
+    const rawLevels=dmToNullableNumber(entry.levels_plus);
+    const levelsEarned=(rawLevels!=null && rawLevels>0)?rawLevels:1;
+    let levelsSpent=null;
+    if(parsed && parsed.levelsSpent!=null){
+      levelsSpent=parsed.levelsSpent;
+    }else if(levelsEarned>0){
+      const allocationText=String(entry.allocation||'').trim();
+      const itemText=String(entry.item||'').trim();
+      if(allocationText || itemText){
+        levelsSpent=levelsEarned;
+      }
+    }
+    const entryLevelsPlus=(Number.isFinite(levelsEarned) && levelsEarned>0)?levelsEarned:null;
+    const entryLevelsMinus=(Number.isFinite(levelsSpent) && levelsSpent>0)?levelsSpent:null;
     pushEntry({
       type:'run',
       season,
@@ -3561,13 +3602,13 @@ function buildDmEntries(){
       extra_hours:null,
       roles:[],
       location:entry.location||'',
-      levels_plus:levelsPlus,
-      levels_minus:levelsMinus,
+      levels_plus:entryLevelsPlus,
+      levels_minus:entryLevelsMinus,
       item:entry.item||'',
       allocation:entry.allocation||''
     });
-    if(levelsPlus!=null) DM_SUMMARY.earnedLevels+=levelsPlus;
-    if(levelsMinus!=null) DM_SUMMARY.spentLevels+=levelsMinus;
+    if(entryLevelsPlus!=null) DM_SUMMARY.earnedLevels+=entryLevelsPlus;
+    if(entryLevelsMinus!=null) DM_SUMMARY.spentLevels+=entryLevelsMinus;
     const hasAllocation=Boolean((entry.allocation||'').trim());
     const itemName=String(entry.item||'').trim();
     if(itemName && !hasAllocation){
@@ -3584,22 +3625,21 @@ function buildDmEntries(){
     const season=normalizeSeason(seasonLabel);
     const hoursVal=dmToNullableNumber(alloc.hours);
     const bonusVal=dmToNullableNumber(alloc.extra_hours);
-    const baseLevelsPlus=dmToNullableNumber(alloc.levels_plus);
-    const baseLevelsMinus=dmToNullableNumber(alloc.levels_minus);
     const baseCost=dmToNullableNumber(alloc.cost);
     const parsed=interpretAllocationDetails(alloc.allocation);
-    const effectiveLevelsPlus=(parsed && parsed.levelsSpent!=null)?parsed.levelsSpent:baseLevelsPlus;
-    const effectiveLevelsMinus=(parsed && parsed.levelsGained!=null)?parsed.levelsGained:baseLevelsMinus;
+    const parsedLevelsSpent=(parsed && parsed.levelsSpent!=null)?parsed.levelsSpent:null;
+    const levelsSpent=(Number.isFinite(parsedLevelsSpent) && parsedLevelsSpent>0)?parsedLevelsSpent:null;
     const effectiveCost=(parsed && parsed.downtimeSpent!=null)?parsed.downtimeSpent:baseCost;
     const effectiveGold=(parsed && parsed.goldSpent!=null)?parsed.goldSpent:null;
+    const earnsLevel=allocationGrantsLevelToPool(season);
     const entry={
       type:'allocation',
       season,
       date:alloc.date||'',
       allocation:alloc.allocation||'',
       cost:effectiveCost,
-      levels_plus:effectiveLevelsPlus,
-      levels_minus:effectiveLevelsMinus,
+      levels_plus:levelsSpent,
+      levels_minus:earnsLevel?1:null,
       hours:hoursVal,
       extra_hours:bonusVal,
       location:alloc.location||'',
@@ -3610,11 +3650,10 @@ function buildDmEntries(){
     };
     pushEntry(entry);
     DM_SUMMARY.allocations+=1;
-    if(hoursVal!=null) DM_SUMMARY.allocatedHours+=hoursVal;
-    if(bonusVal!=null) DM_SUMMARY.allocatedBonus+=bonusVal;
-    if(entry.cost!=null) DM_SUMMARY.allocatedCost+=entry.cost;
-    if(entry.levels_plus!=null) DM_SUMMARY.spentLevels+=entry.levels_plus;
-    if(entry.levels_minus!=null) DM_SUMMARY.earnedLevels+=entry.levels_minus;
+    const countsTowardHoursPool=dmDateCountsTowardHoursPool(entry.date);
+    if(countsTowardHoursPool && entry.cost!=null) DM_SUMMARY.allocatedCost+=entry.cost;
+    if(levelsSpent!=null) DM_SUMMARY.spentLevels+=levelsSpent;
+    if(earnsLevel) DM_SUMMARY.earnedLevels+=1;
   };
   if(Array.isArray(DM_DATA.preS11)){
     DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
@@ -3664,18 +3703,67 @@ function normalizeMatchToken(value){
   return String(value||'').toLowerCase().replace(/[^a-z0-9]+/g,'');
 }
 
-function parseAllocationRecipients(text){
+function extractAllocationRecipientDetails(text){
   const raw=String(text||'');
-  const idx=raw.toLowerCase().lastIndexOf(' to ');
-  if(idx===-1) return [];
-  let after=raw.slice(idx+4).trim();
-  if(!after) return [];
-  after=after.replace(/[,.;]+$/,'');
-  after=after.replace(/\band\b/gi,',');
-  after=after.replace(/&/g,',');
-  after=after.replace(/\//g,',');
-  const parts=after.split(',').map(part=>part.trim()).filter(Boolean);
-  return parts;
+  if(!raw.trim()) return [];
+  const lower=raw.toLowerCase();
+  const firstToIdx=lower.indexOf(' to ');
+  if(firstToIdx===-1) return [];
+  const leadingSegment=raw.slice(0, firstToIdx);
+  const leadingNumberMatch=leadingSegment.match(/([0-9]+)\s*(?:levels?|lvl)?/i);
+  const firstCountHint=leadingNumberMatch?Number(leadingNumberMatch[1]):null;
+  let tail=raw.slice(firstToIdx+4);
+  tail=tail.replace(/[,.;]+$/,'');
+  tail=tail.replace(/\band\b/gi,',');
+  tail=tail.replace(/&/g,',');
+  tail=tail.replace(/\//g,',');
+  const extractNumber=(segment)=>{
+    if(!segment) return null;
+    const match=String(segment).match(/([0-9]+)/);
+    if(!match) return null;
+    const num=Number(match[1]);
+    return Number.isFinite(num)?num:null;
+  };
+  const results=[];
+  tail.split(',').map(part=>part.trim()).filter(Boolean).forEach((part,index)=>{
+    if(!part) return;
+    let working=part;
+    let countHint=null;
+    const innerToIdx=working.toLowerCase().lastIndexOf(' to ');
+    if(innerToIdx!==-1){
+      const beforeInner=working.slice(0, innerToIdx);
+      const afterInner=working.slice(innerToIdx+4).trim();
+      if(afterInner) working=afterInner;
+      const innerNumber=extractNumber(beforeInner);
+      if(innerNumber!=null) countHint=innerNumber;
+    }
+    const prefixMatch=working.match(/^([0-9]+)\s*(?:levels?|lvl)?\b/i);
+    if(prefixMatch){
+      countHint=Number(prefixMatch[1]);
+      working=working.slice(prefixMatch[0].length).trim();
+    }
+    const multiplierMatch=working.match(/\(x\s*([0-9]+)\s*\)/i);
+    if(multiplierMatch){
+      countHint=Number(multiplierMatch[1]);
+      working=working.replace(multiplierMatch[0],'').trim();
+    }
+    const suffixMatch=working.match(/([0-9]+)\s*(?:levels?|lvl)\b/i);
+    if(suffixMatch){
+      countHint=Number(suffixMatch[1]);
+      working=working.replace(suffixMatch[0],'').trim();
+    }
+    working=working.replace(/^[+&]+/,'').trim();
+    if(!working) return;
+    if(countHint==null && index===0 && Number.isFinite(firstCountHint)){
+      countHint=firstCountHint;
+    }
+    if(countHint==null) countHint=1;
+    results.push({ name:working, count:countHint });
+  });
+  return results;
+}
+function parseAllocationRecipients(text){
+  return extractAllocationRecipientDetails(text).map(item=>item.name).filter(Boolean);
 }
 function extractAllocationItemTokens(text){
   if(text && typeof text==='object'){
@@ -3703,7 +3791,8 @@ function extractAllocationItemTokens(text){
 
 function interpretAllocationDetails(text){
   const raw=String(text||'');
-  const recipients=parseAllocationRecipients(raw);
+  const recipientDetails=extractAllocationRecipientDetails(raw);
+  const recipients=recipientDetails.map(item=>item.name);
   const itemTokens=extractAllocationItemTokens(raw);
   const tokens=new Set();
   itemTokens.forEach(token=>{
@@ -3749,31 +3838,32 @@ function interpretAllocationDetails(text){
     return match;
   });
   const explicitLevelTotal=explicitLevelMatches.reduce((sum,val)=>sum+val,0);
-  const hasLevelPhrase=/levels?\s+(?:to|for|of)\b/i.test(raw);
+  const hasLevelKeyword=/\b(?:levels?|lvl)\b/i.test(raw);
   const multiplierMatches=[];
   raw.replace(/\(x\s*([0-9]+)\s*\)/gi,(match,value)=>{
     const parsed=normalizeNumber(value,false);
     if(parsed!=null) multiplierMatches.push(parsed);
     return match;
   });
-
-  if(explicitLevelMatches.length>0){
-    if(explicitLevelTotal>0){
+  if(hasLevelKeyword){
+    const levelsFromRecipients=recipientDetails.reduce((sum,item)=>{
+      const value=Number(item && item.count);
+      if(!Number.isFinite(value) || value<=0) return sum;
+      return sum+value;
+    },0);
+    if(levelsFromRecipients>0){
+      detail.levelsSpent=levelsFromRecipients;
+    }else if(explicitLevelTotal>0){
       detail.levelsSpent=explicitLevelTotal;
-    }
-  }else if(hasLevelPhrase){
-    if(multiplierMatches.length>0){
+    }else if(multiplierMatches.length>0){
       const multiplierTotal=multiplierMatches.reduce((sum,val)=>sum+val,0);
       if(multiplierTotal>0){
         detail.levelsSpent=multiplierTotal;
       }
-    }
-    if(detail.levelsSpent==null){
-      if(Array.isArray(recipients) && recipients.length>0){
-        detail.levelsSpent=recipients.length;
-      }else{
-        detail.levelsSpent=1;
-      }
+    }else if(recipientDetails.length>0){
+      detail.levelsSpent=recipientDetails.length;
+    }else{
+      detail.levelsSpent=1;
     }
   }
 
@@ -4114,7 +4204,7 @@ function updateDmMeta(){
 function updateDmSummaryBar(){
   if(!dmSummaryBar) return;
   const earned=(Number(DM_SUMMARY.earnedHours)||0)+(Number(DM_SUMMARY.earnedBonus)||0);
-  const spent=(Number(DM_SUMMARY.allocatedHours)||0)+(Number(DM_SUMMARY.allocatedBonus)||0)+(Number(DM_SUMMARY.allocatedCost)||0);
+  const spent=(Number(DM_SUMMARY.allocatedCost)||0);
   const available=earned-spent;
   const levelBalance=(Number(DM_SUMMARY.earnedLevels)||0)-(Number(DM_SUMMARY.spentLevels)||0);
   if(dmHoursValueEl){
