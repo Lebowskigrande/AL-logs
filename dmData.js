@@ -2314,8 +2314,8 @@ window.DMDATA = {
     },
     "50th Anniversary Season B": {
       "totals": {
-        "hours": 39,
-        "extra_hours": 44,
+        "hours": 42,
+        "extra_hours": 35,
         "entries": 11
       },
       "runs": [
@@ -2411,8 +2411,8 @@ window.DMDATA = {
           "date": "2025-02-05T00:00:00",
           "code": "CCC-TRI-24",
           "name": "Knight Errand",
-          "hours": 3,
-          "extra_hours": 4,
+          "hours": 4,
+          "extra_hours": 1,
           "roles": [
             "DM"
           ],
@@ -2422,8 +2422,8 @@ window.DMDATA = {
           "date": "2025-02-17T00:00:00",
           "code": "FR-DC-STRAT-FIEND",
           "name": "Go There and Kill MoreThings",
-          "hours": 3,
-          "extra_hours": 4,
+          "hours": 4,
+          "extra_hours": 1,
           "roles": [
             "DM"
           ],
@@ -2433,8 +2433,8 @@ window.DMDATA = {
           "date": "2025-04-09T00:00:00",
           "code": "DDHC-KGV-13",
           "name": "Fire and Darkness",
-          "hours": 3,
-          "extra_hours": 4,
+          "hours": 4,
+          "extra_hours": 1,
           "roles": [
             "DM"
           ],
@@ -2494,8 +2494,8 @@ window.DMDATA = {
     },
     "Service Awards 2025": {
       "totals": {
-        "hours": 27,
-        "extra_hours": 30,
+        "hours": 30,
+        "extra_hours": 18,
         "entries": 8
       },
       "runs": [
@@ -2504,7 +2504,7 @@ window.DMDATA = {
           "code": "Playtest",
           "name": "",
           "hours": 4,
-          "extra_hours": 4,
+          "extra_hours": 3,
           "roles": [
             "DM/Writer"
           ],
@@ -2515,7 +2515,7 @@ window.DMDATA = {
           "code": "Playtest",
           "name": "",
           "hours": 4,
-          "extra_hours": 4,
+          "extra_hours": 2,
           "roles": [
             "DM/Writer"
           ],
@@ -2537,7 +2537,7 @@ window.DMDATA = {
           "code": "PS-DC-STRAT-TALES-07",
           "name": "Dungeon and a Dragon",
           "hours": 4,
-          "extra_hours": 4,
+          "extra_hours": 0,
           "roles": [
             "DM"
           ],
@@ -2547,7 +2547,7 @@ window.DMDATA = {
           "date": "2025-05-28T00:00:00",
           "code": "FR-DC-TB-01",
           "name": "Night and Day",
-          "hours": 3,
+          "hours": 4,
           "extra_hours": 4,
           "roles": [
             "DM"
@@ -2558,8 +2558,8 @@ window.DMDATA = {
           "date": "2025-06-15T00:00:00",
           "code": "CCC-ALMOG-03 TALES03-01",
           "name": "Claws of Fury",
-          "hours": 3,
-          "extra_hours": 4,
+          "hours": 4,
+          "extra_hours": 2,
           "roles": [
             "DM"
           ],
@@ -2569,8 +2569,8 @@ window.DMDATA = {
           "date": "2025-07-10T00:00:00",
           "code": "Dragon Delves Ch. 10",
           "name": "Dragons of the Sandstone City",
-          "hours": 2,
-          "extra_hours": 4,
+          "hours": 4,
+          "extra_hours": 2,
           "roles": [
             "DM"
           ],
@@ -2580,8 +2580,8 @@ window.DMDATA = {
           "date": "2025-08-27T00:00:00",
           "code": "DDHC-BGG",
           "name": "Giants of the Star Forge",
-          "hours": 3,
-          "extra_hours": 2,
+          "hours": 2,
+          "extra_hours": 1,
           "roles": [
             "DM"
           ],
