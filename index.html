@@ -144,11 +144,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover,.icon-btn.primary:focus-visible{background:#155ccb;border-color:#0b57d0;outline:none}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
-.search-scope-toggle{width:32px;height:32px;border-radius:12px}
-.search-scope-toggle-icon{display:block;width:18px;height:18px;background-color:currentColor;mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;-webkit-mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;transition:background-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
-.search-scope-toggle:hover .search-scope-toggle-icon,.search-scope-toggle:focus-visible .search-scope-toggle-icon{transform:scale(1.08)}
-.search-scope-toggle[aria-pressed="true"]{color:var(--primary);background:#eef4ff;border-color:rgba(26,115,232,.45)}
-.search-scope-toggle[aria-pressed="true"] .search-scope-toggle-icon{background-color:currentColor}
 .download-btn{margin-left:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;height:32px;padding:0 12px;border:none;border-radius:999px;background:transparent;box-shadow:none;color:var(--primary);font-weight:600;font-size:13px;line-height:1;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
 .download-btn .save-icon,.download-btn .save-spinner,.download-btn .save-success{display:none;align-items:center;justify-content:center;gap:6px}
 .download-btn .save-icon svg,.download-btn .save-icon img,.download-btn .save-spinner svg{width:20px;height:20px}
@@ -175,9 +170,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .header-quick{margin-top:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .dm-summary{gap:24px}
 .dm-summary[hidden]{display:none}
-.dm-metric{display:flex;flex-direction:column;gap:2px}
-.dm-metric-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.dm-metric-value{font-size:20px;font-weight:700;color:var(--ink)}
 .dm-items-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:#fff;border-radius:12px;padding:8px 12px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .dm-items-btn:hover,.dm-items-btn:focus-visible{color:var(--primary);background:#eef4ff;outline:none}
 .dm-items-btn[aria-expanded="true"]{color:var(--primary);background:#eef4ff}
@@ -737,9 +729,6 @@ body.avatar-overlay-open{overflow:hidden}
             </svg>
           </button>
         </div>
-        <button id="searchScopeToggle" class="icon-btn search-scope-toggle" type="button" aria-pressed="false" aria-label="Show entries from the selected character only" title="Show entries from the selected character only">
-          <span class="search-scope-toggle-icon" aria-hidden="true"></span>
-        </button>
         <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
         <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
@@ -777,13 +766,13 @@ body.avatar-overlay-open{overflow:hidden}
         </div>
       </div>
       <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
-        <div class="dm-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
-          <div class="dm-metric-label">Available hours</div>
-          <div class="dm-metric-value" id="dmHoursValue">0</div>
+        <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
+          <span class="amount" id="dmHoursValue">0</span>
+          <span class="text">Hours</span>
         </div>
-        <div class="dm-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
-          <div class="dm-metric-label">Available levels</div>
-          <div class="dm-metric-value" id="dmLevelsValue">0</div>
+        <div class="inventory-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
+          <span class="amount" id="dmLevelsValue">0</span>
+          <span class="text">Levels</span>
         </div>
         <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
           <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
@@ -1758,12 +1747,6 @@ try{
 }
 
 let searchAllCharacters=false;
-try{
-  const savedScope=localStorage.getItem(STORAGE_KEYS.searchAll);
-  if(savedScope==='1'||savedScope==='true') searchAllCharacters=true;
-}catch(err){
-  /* no-op */
-}
 
 const MULTI_SEARCH_MIN_QUERY_LENGTH=2;
 const MULTI_SEARCH_PROMPT_TEXT=`Start typing to search across all characters.`;
