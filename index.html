@@ -54,6 +54,9 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden;backgro
   .app-main{min-width:0;padding:36px clamp(32px,5vw,72px)}
 }
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.row.ticker-active{flex-wrap:nowrap}
+.row.ticker-active .header-main{flex:1 1 auto;min-width:0;overflow:hidden}
+.row.ticker-active #downloadData{flex:0 0 auto}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
 .avatar.avatar-hidden{display:none}
 .avatar.has-avatar{cursor:zoom-in;}
@@ -277,6 +280,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%;min-height:0;flex-wrap:wrap}
 .log-row-info{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;flex:1 1 320px}
 .log-row-main{display:flex;align-items:center;column-gap:12px;row-gap:4px;flex-wrap:wrap;width:100%;min-width:0}
+.log-row-main.ticker-active{flex-wrap:nowrap}
+.log-row-main.ticker-active .log-row-title{min-width:0}
+.log-row-main.ticker-active .log-row-datestats{flex:0 0 auto}
 .log-row-main .log-row-title{flex:1 1 auto;min-width:0}
 .log-row-datestats{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0;margin-left:auto}
 .log-row-datestats .log-row-date{flex:1 1 auto;min-width:0}
@@ -309,8 +315,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
 .log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 .log-row-date.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
+.char-toggle-text.scrollable{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 @media (prefers-reduced-motion:reduce){
   .log-row-title.scrollable .display{animation:none}
+  .log-row-date.scrollable .display{animation:none}
+  .char-toggle-text.scrollable{animation:none}
+  .dm-card .dm-card-title.scrollable{animation:none}
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
 .chip-ticker{position:relative;--chip-ticker-fade-start:rgba(248,250,252,.92)}
@@ -386,6 +396,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card.dm-card--allocation .card-hd::before{background:#8b5cf6}
 .dm-card .dm-card-header{display:flex;flex-direction:column;gap:10px;flex:1 1 auto;min-width:0}
 .dm-card .dm-card-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dm-card .dm-card-topline.ticker-active{flex-wrap:nowrap}
+.dm-card .dm-card-topline.ticker-active .dm-card-heading{flex-wrap:nowrap;min-width:0}
+.dm-card .dm-card-topline.ticker-active .dm-card-topline-meta{flex:0 0 auto}
+.dm-card .dm-card-topline.ticker-active .dm-card-title{white-space:nowrap}
 .dm-card .dm-card-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
 .dm-card .dm-card-title{font-weight:600;font-size:15px;line-height:1.35;color:var(--ink);flex:1 1 auto;min-width:0;word-break:break-word}
 .dm-card .dm-card-heading .dm-card-title>*{min-width:0}
@@ -411,6 +425,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-card-metric--cost{background:rgba(192,132,252,.22)}
 .dm-card .dm-card-metric--spent{background:rgba(248,113,113,.22)}
 .dm-card .dm-card-title{overflow:hidden;text-overflow:ellipsis}
+.dm-card .dm-card-title.scrollable{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 .dm-card .dm-card-title span{white-space:normal}
 .dm-card .dm-card-meta:empty{display:none}
 
@@ -1344,6 +1359,211 @@ const scrollableTitleRegistry=(()=>{
     schedule
   };
 })();
+
+function refreshScrollableWrapper(wrapper){
+  if(!wrapper||!wrapper.__display) return;
+  const displayEl=wrapper.__display;
+  if(!(displayEl instanceof Element)) return;
+  const distance=Math.max(0,displayEl.scrollWidth-displayEl.clientWidth);
+  if(distance>1){
+    const duration=Math.min(24,Math.max(7,distance/32+6));
+    const delay=Math.min(2.5,Math.max(0.8,duration/4));
+    displayEl.style.setProperty('--scroll-distance',distance+'px');
+    displayEl.style.setProperty('--scroll-duration',duration+'s');
+    displayEl.style.setProperty('--scroll-delay',delay+'s');
+    wrapper.classList.add('scrollable');
+  }else{
+    displayEl.style.removeProperty('--scroll-distance');
+    displayEl.style.removeProperty('--scroll-duration');
+    displayEl.style.removeProperty('--scroll-delay');
+    wrapper.classList.remove('scrollable');
+  }
+}
+
+function bindScrollableObserver(wrapper){
+  if(!wrapper) return;
+  if(wrapper.__scrollObserverBound) return;
+  wrapper.__scrollObserverBound=true;
+  const trigger=()=>refreshScrollableWrapper(wrapper);
+  wrapper.__refreshScroll=trigger;
+  scrollableTitleRegistry.register(wrapper);
+  wrapper.addEventListener('pointerenter',trigger);
+  wrapper.addEventListener('pointerdown',trigger);
+  wrapper.addEventListener('focus',trigger);
+  if(typeof ResizeObserver!=='undefined'){
+    if(wrapper.__resizeObserver){
+      try{ wrapper.__resizeObserver.disconnect(); }
+      catch(err){ /* no-op */ }
+    }
+    const observer=new ResizeObserver(()=>{
+      scrollableTitleRegistry.schedule();
+    });
+    observer.observe(wrapper);
+    if(wrapper.__display instanceof Element){
+      observer.observe(wrapper.__display);
+    }
+    wrapper.__resizeObserver=observer;
+  }
+}
+
+const tickerRowRegistry=(()=>{
+  const rows=new Set();
+  let rafId=null;
+
+  const disconnectObserver=(row)=>{
+    if(row && row._observer){
+      try{ row._observer.disconnect(); }
+      catch(err){ /* no-op */ }
+      row._observer=null;
+    }
+  };
+
+  const isElementVisible=(el)=>{
+    if(!el || !(el instanceof Element)) return false;
+    if(el.offsetParent!==null) return true;
+    if(typeof el.getClientRects==='function'){
+      const rects=el.getClientRects();
+      if(rects && rects.length){
+        const rect=rects[0];
+        if(rect.width>0 && rect.height>0){
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  const measureNeedsTicker=(row)=>{
+    const {container,left,right}=row;
+    if(!container||!left||!right) return false;
+    if(!(container instanceof Element) || !(left instanceof Element) || !(right instanceof Element)) return false;
+    const style=window.getComputedStyle(container);
+    if(style && typeof style.flexDirection==='string' && style.flexDirection.indexOf('column')!==-1){
+      return false;
+    }
+    const wasActive=row._active;
+    if(wasActive){
+      container.classList.remove(row.activeClass||'ticker-active');
+    }
+    let needsTicker=false;
+    if(isElementVisible(left) && isElementVisible(right)){
+      const leftTop=left.offsetTop;
+      const rightTop=right.offsetTop;
+      needsTicker=Math.abs(rightTop-leftTop)>1;
+    }
+    if(wasActive){
+      container.classList.add(row.activeClass||'ticker-active');
+    }
+    return needsTicker;
+  };
+
+  const evaluateRow=(row)=>{
+    const {container,activeClass='ticker-active',onToggle}=row;
+    if(!container || !(container instanceof Element)){
+      rows.delete(row);
+      disconnectObserver(row);
+      return;
+    }
+    if(!container.isConnected){
+      if(row._active){
+        container.classList.remove(activeClass);
+        row._active=false;
+        if(typeof onToggle==='function'){
+          try{ onToggle(false,row); }
+          catch(err){ /* no-op */ }
+        }
+      }
+      disconnectObserver(row);
+      rows.delete(row);
+      return;
+    }
+    const needsTicker=measureNeedsTicker(row);
+    if(needsTicker && !row._active){
+      container.classList.add(activeClass);
+      row._active=true;
+      if(typeof onToggle==='function'){
+        try{ onToggle(true,row); }
+        catch(err){ /* no-op */ }
+      }
+    }else if(!needsTicker && row._active){
+      container.classList.remove(activeClass);
+      row._active=false;
+      if(typeof onToggle==='function'){
+        try{ onToggle(false,row); }
+        catch(err){ /* no-op */ }
+      }
+    }
+  };
+
+  const schedule=()=>{
+    if(rafId!=null) return;
+    rafId=requestAnimationFrame(()=>{
+      rafId=null;
+      rows.forEach((row)=>{
+        try{ evaluateRow(row); }
+        catch(err){ /* no-op */ }
+      });
+    });
+  };
+
+  return{
+    register(row){
+      if(!row||!row.container||(row.container instanceof Element)===false) return;
+      if(row._registered) return;
+      row.activeClass=row.activeClass||'ticker-active';
+      row._registered=true;
+      row._active=false;
+      rows.add(row);
+      if(typeof ResizeObserver!=='undefined'){
+        const observer=new ResizeObserver(()=>{ schedule(); });
+        observer.observe(row.container);
+        if(row.left instanceof Element){ observer.observe(row.left); }
+        if(row.right instanceof Element){ observer.observe(row.right); }
+        row._observer=observer;
+      }
+      schedule();
+    },
+    unregister(row){
+      if(!row||!row._registered) return;
+      rows.delete(row);
+      disconnectObserver(row);
+      row._registered=false;
+      if(row.container instanceof Element){
+        row.container.classList.remove(row.activeClass||'ticker-active');
+      }
+      if(row._active && typeof row.onToggle==='function'){
+        try{ row.onToggle(false,row); }
+        catch(err){ /* no-op */ }
+      }
+      row._active=false;
+    },
+    schedule
+  };
+})();
+
+function setupTickerRow(container,left,right,options={}){
+  if(!container || !(container instanceof Element)) return null;
+  const row={container,left,right,...options};
+  tickerRowRegistry.register(row);
+  return row;
+}
+
+const headerRow=document.querySelector('.sheet-card-header > .row');
+const headerMainEl=document.querySelector('.sheet-card-header .header-main');
+if(charSelDisplay){
+  charSelDisplay.__display=charSelDisplay;
+  bindScrollableObserver(charSelDisplay);
+  requestAnimationFrame(()=>{ refreshScrollableWrapper(charSelDisplay); });
+}
+if(headerRow && headerMainEl && downloadBtn){
+  setupTickerRow(headerRow,headerMainEl,downloadBtn,{
+    onToggle:()=>{
+      if(charSelDisplay && typeof charSelDisplay.__refreshScroll==='function'){
+        charSelDisplay.__refreshScroll();
+      }
+    }
+  });
+}
 buildDmEntries();
 if(avatarEl){
   try{ avatarEl.decoding='async'; }catch(err){ /* no-op */ }
@@ -2494,6 +2714,9 @@ function syncCharacterSelectorUI(){
   const finalLabel=labelText||DEFAULT_CHARACTER_MENU_LABEL;
   if(charSelDisplay){
     charSelDisplay.textContent=finalLabel;
+    if(typeof charSelDisplay.__refreshScroll==='function'){
+      charSelDisplay.__refreshScroll();
+    }
   }
   if(charSelToggle){
     const titleText=(override && override.title)?override.title:finalLabel;
@@ -2502,6 +2725,7 @@ function syncCharacterSelectorUI(){
     charSelToggle.disabled=!hasOptions;
     charSelToggle.setAttribute('aria-disabled',hasOptions?'false':'true');
   }
+  tickerRowRegistry.schedule();
   if(!charSelMenu) return;
   const currentValue=(charSel&&charSel.value)||'';
   getCharMenuItems().forEach(item=>{
@@ -4110,6 +4334,8 @@ function makeDmCard(entry,idx){
 
   const titleEl=document.createElement('div');
   titleEl.className='dm-card-title';
+  titleEl.__display=titleEl;
+  bindScrollableObserver(titleEl);
 
   const topMeta=document.createElement('div');
   topMeta.className='dm-card-topline-meta';
@@ -4143,7 +4369,7 @@ function makeDmCard(entry,idx){
     }
   }else{
     const sessionTitle=sanitizeTitle(entry.name || entry.code || 'DM Session');
-    titleEl.textContent=sessionTitle;
+    setElementTextWithCharacterChips(titleEl, sessionTitle, {label:'DM Session', force:true});
     const hoursVal=dmToNullableNumber(entry.hours);
     if(hoursVal!=null && hoursVal!==0){
       addMetric('hours','Hours',fmtNumber(hoursVal),'hours');
@@ -4171,6 +4397,14 @@ function makeDmCard(entry,idx){
 
   heading.appendChild(titleEl);
   topRow.append(heading,topMeta);
+  setupTickerRow(topRow,heading,topMeta,{
+    onToggle:()=>{
+      if(titleEl && typeof titleEl.__refreshScroll==='function'){
+        titleEl.__refreshScroll();
+      }
+    }
+  });
+  requestAnimationFrame(()=>{ refreshScrollableWrapper(titleEl); });
   headerContent.appendChild(topRow);
 
   const metaRow=document.createElement('div');
@@ -6035,6 +6269,7 @@ function makeCard(a,idx){
     const statsInChips=(stats.parentNode===chipsRow && stats.style.display!=='none');
     chipsRow.style.display=(hasTags||statsInChips)?'flex':'none';
     chipTickerRegistry.refresh(chipsRow);
+    tickerRowRegistry.schedule();
   };
 
   const mobileChipsQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
@@ -6205,49 +6440,22 @@ function makeCard(a,idx){
   nameDisplay.removeAttribute('title');
   hd.appendChild(main);
 
-  const refreshScrollState=(wrapper)=>{
-    if(!wrapper||!wrapper.__display) return;
-    const displayEl=wrapper.__display;
-    const distance=Math.max(0,displayEl.scrollWidth-displayEl.clientWidth);
-    if(distance>1){
-      const duration=Math.min(24,Math.max(7,distance/32+6));
-      const delay=Math.min(2.5,Math.max(0.8,duration/4));
-      displayEl.style.setProperty('--scroll-distance',distance+'px');
-      displayEl.style.setProperty('--scroll-duration',duration+'s');
-      displayEl.style.setProperty('--scroll-delay',delay+'s');
-      wrapper.classList.add('scrollable');
-    }else{
-      displayEl.style.removeProperty('--scroll-distance');
-      displayEl.style.removeProperty('--scroll-duration');
-      displayEl.style.removeProperty('--scroll-delay');
-      wrapper.classList.remove('scrollable');
-    }
-  };
-  const bindScrollObserver=(wrapper)=>{
-    if(!wrapper) return;
-    const trigger=()=>refreshScrollState(wrapper);
-    wrapper.__refreshScroll=trigger;
-    scrollableTitleRegistry.register(wrapper);
-    wrapper.addEventListener('pointerenter',trigger);
-    wrapper.addEventListener('pointerdown',trigger);
-    wrapper.addEventListener('focus',trigger);
-    if(typeof ResizeObserver!=='undefined'){
-      if(wrapper.__resizeObserver){
-        try{ wrapper.__resizeObserver.disconnect(); }catch(err){ /* no-op */ }
-      }
-      const observer=new ResizeObserver(()=>{
-        scrollableTitleRegistry.schedule();
-      });
-      observer.observe(wrapper);
-      if(wrapper.__display){ observer.observe(wrapper.__display); }
-      wrapper.__resizeObserver=observer;
-    }
-  };
-  bindScrollObserver(nameSpan);
-  bindScrollObserver(dateSpan);
+  bindScrollableObserver(nameSpan);
+  bindScrollableObserver(dateSpan);
   requestAnimationFrame(()=>{
-    refreshScrollState(nameSpan);
-    refreshScrollState(dateSpan);
+    refreshScrollableWrapper(nameSpan);
+    refreshScrollableWrapper(dateSpan);
+  });
+
+  setupTickerRow(main,nameSpan,dateStatsRow,{
+    onToggle:()=>{
+      if(nameSpan && typeof nameSpan.__refreshScroll==='function'){
+        nameSpan.__refreshScroll();
+      }
+      if(dateSpan && typeof dateSpan.__refreshScroll==='function'){
+        dateSpan.__refreshScroll();
+      }
+    }
   });
 
   hd.addEventListener('click',(ev)=>{ if(card.classList.contains('editing')) return; toggleCard(card); });
@@ -6876,12 +7084,15 @@ function makeCard(a,idx){
     if(titleDisplayEl){
       const fallback=isActivityMode?'Activity':'Untitled Adventure';
       titleDisplayEl.textContent=sanitizeTitle(titleRaw||fallback);
-      refreshScrollState(nameSpan);
+      refreshScrollableWrapper(nameSpan);
     }
 
     const dateValue=a.date?String(a.date).slice(0,10):'';
     controls.date.value=dateValue;
-    if(dateDisplayEl){ dateDisplayEl.textContent=fmtDate(a.date); }
+    if(dateDisplayEl){
+      dateDisplayEl.textContent=fmtDate(a.date);
+      refreshScrollableWrapper(dateSpan);
+    }
 
     const codeRaw=a.code||'';
     controls.code.value=codeRaw;
