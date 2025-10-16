@@ -3838,20 +3838,37 @@ function extractAllocationRecipientDetails(text){
   const firstToIdx=lower.indexOf(' to ');
   if(firstToIdx===-1) return [];
   const leadingSegment=raw.slice(0, firstToIdx);
-  const leadingNumberMatch=leadingSegment.match(/([0-9]+)\s*(?:levels?|lvl)?/i);
-  const firstCountHint=leadingNumberMatch?Number(leadingNumberMatch[1]):null;
+
+  const extractLevelishNumber=(segment)=>{
+    if(!segment) return null;
+    const text=String(segment);
+    const regex=/([0-9]+)/g;
+    let match;
+    while((match=regex.exec(text))){
+      const num=Number(match[1]);
+      if(!Number.isFinite(num)) continue;
+      const after=text.slice(match.index+match[0].length);
+      const afterStripped=after.replace(/^\s+/,'');
+      if(!afterStripped) return num;
+      const nextChar=afterStripped[0];
+      if(nextChar===','||nextChar==='.'||nextChar===')'||nextChar===']') return num;
+      const lowered=afterStripped.toLowerCase();
+      for(const prefix of ['level','levels','lvl','to']){
+        if(lowered.startsWith(prefix)) return num;
+      }
+      if(nextChar && /[a-z]/i.test(nextChar)) continue;
+      return num;
+    }
+    return null;
+  };
+
+  const firstCountHint=extractLevelishNumber(leadingSegment);
   let tail=raw.slice(firstToIdx+4);
   tail=tail.replace(/[,.;]+$/,'');
   tail=tail.replace(/\band\b/gi,',');
   tail=tail.replace(/&/g,',');
   tail=tail.replace(/\//g,',');
-  const extractNumber=(segment)=>{
-    if(!segment) return null;
-    const match=String(segment).match(/([0-9]+)/);
-    if(!match) return null;
-    const num=Number(match[1]);
-    return Number.isFinite(num)?num:null;
-  };
+  const extractNumber=(segment)=>extractLevelishNumber(segment);
   const results=[];
   tail.split(',').map(part=>part.trim()).filter(Boolean).forEach((part,index)=>{
     if(!part) return;
@@ -3967,13 +3984,14 @@ function interpretAllocationDetails(text){
   });
   const explicitLevelTotal=explicitLevelMatches.reduce((sum,val)=>sum+val,0);
   const hasLevelKeyword=/\b(?:levels?|lvl)\b/i.test(raw);
+  const levelAssignmentHint=/\blevels?\s+to\b/i.test(raw)||/\blvl\s+to\b/i.test(raw);
   const multiplierMatches=[];
   raw.replace(/\(x\s*([0-9]+)\s*\)/gi,(match,value)=>{
     const parsed=normalizeNumber(value,false);
     if(parsed!=null) multiplierMatches.push(parsed);
     return match;
   });
-  if(hasLevelKeyword){
+  if(hasLevelKeyword && levelAssignmentHint){
     const levelsFromRecipients=recipientDetails.reduce((sum,item)=>{
       const value=Number(item && item.count);
       if(!Number.isFinite(value) || value<=0) return sum;
