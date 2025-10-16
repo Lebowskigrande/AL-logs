@@ -391,9 +391,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.open .log-row-meta,.log-list .card.open .log-row-date{color:rgba(15,23,42,.72)}
 
 .dm-card .card-hd{align-items:stretch;position:relative}
-.dm-card .card-hd::before{content:"";position:absolute;top:12px;bottom:12px;left:0;width:4px;border-radius:999px;background:transparent}
-.dm-card.dm-card--session .card-hd::before{background:#0ea5e9}
-.dm-card.dm-card--allocation .card-hd::before{background:#8b5cf6}
 .dm-card .dm-card-header{display:flex;flex-direction:column;gap:10px;flex:1 1 auto;min-width:0}
 .dm-card .dm-card-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .dm-card .dm-card-topline.ticker-active{flex-wrap:nowrap}
@@ -410,14 +407,17 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-card-date{color:var(--muted);font-size:13px;line-height:1.35;white-space:nowrap}
 .dm-card .dm-card-topline-meta .chips{margin-top:0;justify-content:flex-end}
 .dm-card .dm-card-topline-meta .chips:empty{display:none}
-.dm-card .dm-card-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.dm-card .dm-card-meta-item{display:inline-flex;align-items:baseline;gap:6px;padding:4px 10px;border-radius:12px;background:rgba(148,163,184,.12);font-size:12px;color:var(--muted)}
-.dm-card .dm-card-meta-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(71,85,105,.9)}
-.dm-card .dm-card-meta-value{font-weight:600;color:var(--ink)}
 .dm-card .dm-card-metrics{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin-top:4px}
 .dm-card .dm-card-metric{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:14px;background:rgba(148,163,184,.12);min-width:96px}
 .dm-card .dm-card-metric-value{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
 .dm-card .dm-card-metric-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dm-card .log-row-meta{margin-top:2px}
+.dm-card .dm-hours-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;border:1px solid rgba(148,163,184,.24);background:rgba(148,163,184,.12);color:var(--muted)}
+.dm-card .dm-hours-chip--gain{background:rgba(22,101,52,.12);border-color:rgba(34,197,94,.32);color:#166534}
+.dm-card .dm-hours-chip--loss{background:rgba(185,28,28,.12);border-color:rgba(248,113,113,.32);color:#b91c1c}
+.dm-card .dm-hours-chip--neutral{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.24);color:var(--muted)}
+.dm-card .dm-allocation-chipline{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center}
+.dm-card .dm-allocation-chipline:empty{display:none}
 .dm-card .dm-card-metric--hours{background:rgba(59,130,246,.16)}
 .dm-card .dm-card-metric--bonus{background:rgba(34,197,94,.18)}
 .dm-card .dm-card-metric--levels{background:rgba(249,115,22,.18)}
@@ -3367,6 +3367,69 @@ function listBox(items){
   return wrap;
 }
 
+function splitAllocationSegments(text){
+  if(text==null) return [];
+  const value=String(text).trim();
+  if(!value) return [];
+  const segments=[];
+  let current='';
+  let depth=0;
+  for(let i=0;i<value.length;i++){
+    const ch=value[i];
+    if(ch==='('){ depth++; }
+    else if(ch===')' && depth>0){ depth--; }
+    if((ch===','||ch===';'||ch==='•') && depth===0){
+      const trimmed=current.trim();
+      if(trimmed){ segments.push(trimmed); }
+      current='';
+      continue;
+    }
+    current+=ch;
+  }
+  const trimmed=current.trim();
+  if(trimmed){ segments.push(trimmed); }
+  return segments;
+}
+
+function createAllocationDetailsList(text){
+  const wrap=document.createElement('div');
+  wrap.className='scrollbox';
+  const segments=splitAllocationSegments(text);
+  if(!segments.length){
+    const empty=document.createElement('div');
+    empty.className='muted';
+    empty.textContent='—';
+    wrap.appendChild(empty);
+    return wrap;
+  }
+  segments.forEach(segment=>{
+    const row=document.createElement('div');
+    row.className='item';
+    setElementTextWithCharacterChips(row, segment, {label:'Rewards allocated', force:true});
+    wrap.appendChild(row);
+  });
+  return wrap;
+}
+
+function buildHoursChip(baseHours, bonusHours){
+  const hasBase=baseHours!=null;
+  const hasBonus=bonusHours!=null;
+  if(!hasBase && !hasBonus) return null;
+  const total=(hasBase?baseHours:0)+(hasBonus?bonusHours:0);
+  const chip=document.createElement('span');
+  chip.className='dm-hours-chip';
+  let tone='neutral';
+  if(total>0){ tone='gain'; }
+  else if(total<0){ tone='loss'; }
+  chip.classList.add(`dm-hours-chip--${tone}`);
+  const formatted=fmtNumber(total,{signed:true});
+  chip.textContent=`Hours ${formatted}`;
+  const ariaLabel=`Total hours ${formatted} (including bonus hours)`;
+  chip.setAttribute('aria-label', ariaLabel);
+  chip.title='Total hours gained or spent, including bonus hours';
+  return chip;
+}
+
 /* --- DM log helpers --- */
 function dmNormalizeSeasonLabel(label){
   const text=(label==null?'':String(label)).trim();
@@ -4284,21 +4347,16 @@ function makeDmCard(entry,idx){
 
   const headerMetaKeys=new Set();
   const headerMetricKeys=new Set();
-
-  const createMetaItem=(key,label,value)=>{
+  const metaParts=[];
+  const addMetaPart=(key,label,value)=>{
     const normalized=normalizeDisplayValue(value);
-    if(!normalized) return null;
-    const item=document.createElement('span');
-    item.className='dm-card-meta-item';
-    const labelEl=document.createElement('span');
-    labelEl.className='dm-card-meta-label';
-    labelEl.textContent=label;
-    const valueEl=document.createElement('span');
-    valueEl.className='dm-card-meta-value';
-    valueEl.textContent=normalized;
-    item.append(labelEl,valueEl);
+    if(!normalized) return;
     if(key){ headerMetaKeys.add(key); }
-    return item;
+    if(label){
+      metaParts.push(`${label}: ${normalized}`);
+    }else{
+      metaParts.push(normalized);
+    }
   };
 
   const metricsRow=document.createElement('div');
@@ -4348,9 +4406,27 @@ function makeDmCard(entry,idx){
   const linkChip=createLinkChip?createLinkChip():null;
   if(linkChip){ chips.appendChild(linkChip); }
 
+  let hoursVal=null;
+  let bonusVal=null;
+
   if(isAllocation){
-    const allocationTitle=sanitizeTitle(entry.allocation || 'Reward allocation');
-    setElementTextWithCharacterChips(titleEl, allocationTitle, {label:'Reward allocation', force:true});
+    titleEl.textContent='Rewards allocated';
+    hoursVal=dmToNullableNumber(entry.hours);
+    bonusVal=dmToNullableNumber(entry.extra_hours);
+    const mentions=renderCharacterMentions(entry.allocation||'');
+    if(mentions){
+      const chipLine=document.createElement('span');
+      chipLine.className='dm-allocation-chipline';
+      Array.from(mentions.childNodes).forEach(node=>{
+        if(node.nodeType===Node.ELEMENT_NODE){
+          chipLine.appendChild(node);
+        }
+      });
+      if(chipLine.childNodes.length){
+        titleEl.appendChild(document.createTextNode(' → '));
+        titleEl.appendChild(chipLine);
+      }
+    }
     const costVal=dmToNullableNumber(entry.cost);
     if(costVal!=null && costVal!==0){
       addMetric('cost','Season Cost',fmtNumber(costVal),'cost');
@@ -4359,25 +4435,11 @@ function makeDmCard(entry,idx){
     if(levelsVal!=null && levelsVal!==0){
       addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
     }
-    const hoursVal=dmToNullableNumber(entry.hours);
-    if(hoursVal!=null && hoursVal!==0){
-      addMetric('hours','Hours',fmtNumber(hoursVal),'hours');
-    }
-    const bonusVal=dmToNullableNumber(entry.extra_hours);
-    if(bonusVal!=null && bonusVal!==0){
-      addMetric('extra_hours','Bonus Hours',fmtNumber(bonusVal),'bonus');
-    }
   }else{
     const sessionTitle=sanitizeTitle(entry.name || entry.code || 'DM Session');
     setElementTextWithCharacterChips(titleEl, sessionTitle, {label:'DM Session', force:true});
-    const hoursVal=dmToNullableNumber(entry.hours);
-    if(hoursVal!=null && hoursVal!==0){
-      addMetric('hours','Hours',fmtNumber(hoursVal),'hours');
-    }
-    const bonusVal=dmToNullableNumber(entry.extra_hours);
-    if(bonusVal!=null && bonusVal!==0){
-      addMetric('extra_hours','Bonus Hours',fmtNumber(bonusVal),'bonus');
-    }
+    hoursVal=dmToNullableNumber(entry.hours);
+    bonusVal=dmToNullableNumber(entry.extra_hours);
     if(entry.tier!=null && entry.tier!==''){
       addMetric('tier','Tier',fmtNumber(entry.tier),'tier');
     }
@@ -4386,13 +4448,18 @@ function makeDmCard(entry,idx){
       addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
     }
     const levelsSpent=dmToNullableNumber(entry.levels_minus);
-    if(levelsSpent!=null && levelsSpent!==0 && levelsSpent!==dmToNullableNumber(entry.levels_plus)){
+    if(levelsSpent!=null && levelsSpent!==0 && levelsSpent!==levelsVal){
       addMetric('levels_minus','Levels Spent',fmtNumber(levelsSpent,{signed:true}),'spent');
     }
   }
 
   if(chips.children.length){
     topMeta.appendChild(chips);
+  }
+
+  const hoursChip=buildHoursChip(hoursVal, bonusVal);
+  if(hoursChip){
+    topMeta.appendChild(hoursChip);
   }
 
   heading.appendChild(titleEl);
@@ -4407,21 +4474,21 @@ function makeDmCard(entry,idx){
   requestAnimationFrame(()=>{ refreshScrollableWrapper(titleEl); });
   headerContent.appendChild(topRow);
 
-  const metaRow=document.createElement('div');
-  metaRow.className='dm-card-meta';
   if(!isAllocation){
-    const codeMeta=createMetaItem('code','Code',entry.code);
-    if(codeMeta){ metaRow.appendChild(codeMeta); }
+    addMetaPart('code',null,entry.code);
   }
-  const seasonMeta=createMetaItem('season','Season',entry.season);
-  if(seasonMeta){ metaRow.appendChild(seasonMeta); }
-  const locationMeta=createMetaItem('location','Location',entry.location);
-  if(locationMeta){ metaRow.appendChild(locationMeta); }
+  addMetaPart('season','Season',entry.season);
+  addMetaPart('location','Location',entry.location);
   if(!isAllocation){
-    const itemMeta=createMetaItem('item','Reward',entry.item);
-    if(itemMeta){ metaRow.appendChild(itemMeta); }
+    addMetaPart('item','Reward',entry.item);
   }
-  if(metaRow.children.length){
+  if(metaParts.length){
+    const metaRow=document.createElement('div');
+    metaRow.className='log-row-meta';
+    const metaText=document.createElement('span');
+    metaText.className='log-row-meta-text';
+    metaText.textContent=metaParts.join('  •  ');
+    metaRow.appendChild(metaText);
     headerContent.appendChild(metaRow);
   }
 
@@ -4491,7 +4558,9 @@ function makeDmCard(entry,idx){
     addField('Season', entry.season);
   }
   if(isAllocation){
-    addField('Reward allocation', entry.allocation);
+    if(normalizeDisplayValue(entry.allocation)){
+      addField('Rewards allocated', createAllocationDetailsList(entry.allocation));
+    }
     if(entry.cost!=null && !headerMetricKeys.has('cost')){ addField('Season cost', fmtNumber(entry.cost)); }
     if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
     if(entry.hours!=null && !headerMetricKeys.has('hours')){ addField('Hours', fmtNumber(entry.hours)); }
@@ -4507,7 +4576,7 @@ function makeDmCard(entry,idx){
     if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
     if(entry.levels_minus!=null && entry.levels_minus!==entry.levels_plus && !headerMetricKeys.has('levels_minus')){ addField('Levels spent', fmtNumber(entry.levels_minus)); }
     if(entry.item && !headerMetaKeys.has('item')){ addField('Reward item', entry.item); }
-    if(entry.allocation){ addField('Reward allocation', entry.allocation); }
+    if(normalizeDisplayValue(entry.allocation)){ addField('Rewards allocated', createAllocationDetailsList(entry.allocation)); }
     if(entry.location && !headerMetaKeys.has('location')){ addField('Location', entry.location); }
   }
 
