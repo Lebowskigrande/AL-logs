@@ -12876,8 +12876,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -12900,8 +12900,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Roots, Bloody Roots",
@@ -12927,8 +12927,8 @@ window.DATA = {
           "notes": "Blessing of Magic Resistance",
           "kind": "adventure",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -12955,8 +12955,8 @@ window.DATA = {
           "player": "",
           "character": "Chef Ture",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -12983,8 +12983,8 @@ window.DATA = {
           "player": "",
           "character": "Raguel",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -13005,8 +13005,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Agatha",
-          "__levelAfter": 19,
-          "__levelAtStart": 16
+          "__levelAfter": 20,
+          "__levelAtStart": 17
         },
         {
           "title": "Frozen Whispers",
@@ -13019,7 +13019,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Ring of Regeneration",
             "Plate +2 (unique)"
@@ -13033,8 +13033,10 @@ window.DATA = {
           "notes": "Bought 10 scrolls of Hex",
           "kind": "adventure",
           "__charKey": "Agatha",
-          "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAfter": 17,
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "The Handfasting",
@@ -19838,7 +19840,7 @@ window.DATA = {
       "net_gp": 26727,
       "net_dtd": 205,
       "level_ups": 11,
-      "perm_count": 33,
+      "perm_count": 32,
       "cons_count": 10,
       "gifts_count": 0
     },
@@ -19981,7 +19983,7 @@ window.DATA = {
       "sessions": 52,
       "net_gp": 42113,
       "net_dtd": 115,
-      "level_ups": 18,
+      "level_ups": 19,
       "perm_count": 39,
       "cons_count": 19,
       "gifts_count": 2
@@ -20151,7 +20153,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-16T07:07:10.214Z",
+    "generated": "2025-10-16T19:21:45.969Z",
     "problems": []
   }
 };
