@@ -205,7 +205,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .header-quick{flex-direction:column;align-items:flex-start;gap:12px}
   .inventory-buttons{margin-left:0}
   .log-row{flex-direction:column;align-items:flex-start}
-  .log-row-chips{margin-left:0;padding-left:0;justify-items:start}
+  .log-row-chips{align-items:flex-start;gap:6px;margin-top:6px}
 }
 
 /* Grid / masonry columns */
@@ -289,13 +289,18 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-character-chip:hover,.log-row-character-chip:focus-visible{background:#bbf7d0;color:#166534;border-color:rgba(34,197,94,.5);outline:none}
 .log-row-date{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px;line-height:1.4;white-space:nowrap;transition:color var(--dur) var(--ease)}
 .log-row-date .display{white-space:nowrap}
+.log-row-chips{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;margin-top:0;min-height:0}
+.log-row-chips .log-row-tags{flex:1 1 auto}
+.log-row-chips .log-row-stats{margin-left:auto}
 .log-row-tags{display:flex;flex-wrap:wrap;gap:6px;width:100%}
 .log-row-tags:empty{display:none}
 .log-row-stats{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;min-height:0}
 @media (max-width:520px){
   .log-row-info{flex:1 1 auto;width:100%}
   .log-row-main{align-items:flex-start;row-gap:0}
-  .log-row-datestats{width:100%;margin-left:0}
+  .log-row-datestats{width:100%;margin-left:0;flex-wrap:wrap}
+  .log-row-stats{margin-left:0;justify-content:flex-start;width:auto}
+  .log-row-stats.log-row-stats--mobile{margin-left:auto}
 }
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
 .log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;transition:color var(--dur) var(--ease)}
@@ -5630,6 +5635,8 @@ function makeCard(a,idx){
   const main=document.createElement('div'); main.className='log-row';
   const info=document.createElement('div'); info.className='log-row-info';
   const tagRow=document.createElement('div'); tagRow.className='log-row-tags';
+  const chipsRow=document.createElement('div'); chipsRow.className='log-row-chips';
+  chipsRow.appendChild(tagRow);
   let titleEditorSlot=null, titleDisplayEl=null;
   let dateEditorSlot=null, dateDisplayEl=null;
   let codeEditorSlot=null, codeDisplayEl=null;
@@ -5689,6 +5696,38 @@ function makeCard(a,idx){
 
   info.appendChild(headerMain);
 
+  const refreshChipsRow=()=>{
+    const hasTags=tagRow.childElementCount>0;
+    const statsInChips=(stats.parentNode===chipsRow && stats.style.display!=='none');
+    chipsRow.style.display=(hasTags||statsInChips)?'flex':'none';
+  };
+
+  const mobileChipsQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(max-width: 520px)')
+    : null;
+  const syncStatsPlacement=()=>{
+    if(mobileChipsQuery && mobileChipsQuery.matches){
+      if(stats.parentNode!==chipsRow){
+        stats.classList.add('log-row-stats--mobile');
+        chipsRow.appendChild(stats);
+      }
+    }else{
+      if(stats.parentNode!==dateStatsRow){
+        stats.classList.remove('log-row-stats--mobile');
+        dateStatsRow.appendChild(stats);
+      }
+    }
+    refreshChipsRow();
+  };
+  syncStatsPlacement();
+  if(mobileChipsQuery){
+    if(typeof mobileChipsQuery.addEventListener==='function'){
+      mobileChipsQuery.addEventListener('change', syncStatsPlacement);
+    }else if(typeof mobileChipsQuery.addListener==='function'){
+      mobileChipsQuery.addListener(syncStatsPlacement);
+    }
+  }
+
   const metaSpan=document.createElement('div');
   metaSpan.className='log-row-meta';
   const metaText=document.createElement('span');
@@ -5718,11 +5757,12 @@ function makeCard(a,idx){
       });
       characterChip=characterLink;
       syncCharacterChipPosition();
+      refreshChipsRow();
     }
   }
 
   info.appendChild(metaSpan);
-  info.appendChild(tagRow);
+  info.appendChild(chipsRow);
   main.appendChild(info);
 
   metaDisplayEl.textContent=buildHeaderMeta(a);
@@ -5732,6 +5772,7 @@ function makeCard(a,idx){
     tag.className=`tag ${className}`.trim();
     tag.textContent=label;
     tagRow.appendChild(tag);
+    refreshChipsRow();
     return tag;
   };
 
@@ -5743,6 +5784,7 @@ function makeCard(a,idx){
     }else if(downtimeTag){
       downtimeTag.remove();
       downtimeTag=null;
+      refreshChipsRow();
     }
   };
 
@@ -5777,9 +5819,11 @@ function makeCard(a,idx){
     const showPill=showGp||showDt;
     totalsPill.style.display=showPill?'inline-flex':'none';
     stats.style.display=showPill?'flex':'none';
+    refreshChipsRow();
   };
   totalsPill.style.display='none';
   stats.style.display='none';
+  refreshChipsRow();
   totalsGp.style.display='none';
   totalsDt.style.display='none';
 
@@ -5794,6 +5838,7 @@ function makeCard(a,idx){
         levelTag=null;
       }
       syncCharacterChipPosition();
+      refreshChipsRow();
       return;
     }
     if(!levelTag){
