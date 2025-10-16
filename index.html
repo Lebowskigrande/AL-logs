@@ -412,10 +412,14 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-card-metric-value{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
 .dm-card .dm-card-metric-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .dm-card .log-row-meta{margin-top:2px}
-.dm-card .dm-hours-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;border:1px solid rgba(148,163,184,.24);background:rgba(148,163,184,.12);color:var(--muted)}
-.dm-card .dm-hours-chip--gain{background:rgba(22,101,52,.12);border-color:rgba(34,197,94,.32);color:#166534}
-.dm-card .dm-hours-chip--loss{background:rgba(185,28,28,.12);border-color:rgba(248,113,113,.32);color:#b91c1c}
-.dm-card .dm-hours-chip--neutral{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.24);color:var(--muted)}
+.dm-card .dm-hours-chip,
+.dm-card .dm-levels-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;border:1px solid rgba(148,163,184,.24);background:rgba(148,163,184,.12);color:var(--muted)}
+.dm-card .dm-hours-chip--gain,
+.dm-card .dm-levels-chip--gain{background:rgba(22,101,52,.12);border-color:rgba(34,197,94,.32);color:#166534}
+.dm-card .dm-hours-chip--loss,
+.dm-card .dm-levels-chip--loss{background:rgba(185,28,28,.12);border-color:rgba(248,113,113,.32);color:#b91c1c}
+.dm-card .dm-hours-chip--neutral,
+.dm-card .dm-levels-chip--neutral{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.24);color:var(--muted)}
 .dm-card .dm-allocation-chipline{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center}
 .dm-card .dm-allocation-chipline:empty{display:none}
 .dm-card .dm-card-metric--hours{background:rgba(59,130,246,.16)}
@@ -3412,10 +3416,14 @@ function createAllocationDetailsList(text){
 }
 
 function buildHoursChip(baseHours, bonusHours, costHours){
-  const hasBase=baseHours!=null;
-  const hasBonus=bonusHours!=null;
-  if(!hasBase && !hasBonus) return null;
-  const total=(hasBase?baseHours:0)+(hasBonus?bonusHours:0);
+  const hasBase=Number.isFinite(baseHours);
+  const hasBonus=Number.isFinite(bonusHours);
+  const hasCost=Number.isFinite(costHours);
+  if(!hasBase && !hasBonus && !hasCost) return null;
+  const baseTotal=hasBase?baseHours:0;
+  const bonusTotal=hasBonus?bonusHours:0;
+  const seasonalCost=hasCost?(costHours>0?-Math.abs(costHours):costHours):0;
+  const total=baseTotal+bonusTotal+seasonalCost;
   const chip=document.createElement('span');
   chip.className='dm-hours-chip';
   let tone='neutral';
@@ -3423,14 +3431,57 @@ function buildHoursChip(baseHours, bonusHours, costHours){
   else if(total<0){ tone='loss'; }
   chip.classList.add(`dm-hours-chip--${tone}`);
   const formatted=fmtNumber(total,{signed:true});
-  const parts=[`Hours ${formatted}`];
-  let ariaLabel=`Total hours ${formatted} (including bonus hours)`;
-  let titleText='Total hours gained or spent, including bonus hours';
-  if(costHours!=null && costHours!==0){
-    const costFormatted=fmtNumber(costHours);
-    parts.push(`Cost ${costFormatted}`);
-    ariaLabel+=`, seasonal cost ${costFormatted}`;
-    titleText+=' and seasonal cost';
+  chip.textContent=`Hours ${formatted}`;
+  let ariaLabel=`Net hours ${formatted}`;
+  const breakdown=[];
+  if(hasBase){ breakdown.push(`base ${fmtNumber(baseTotal,{signed:true})}`); }
+  if(hasBonus && bonusTotal!==0){ breakdown.push(`bonus ${fmtNumber(bonusTotal,{signed:true})}`); }
+  if(hasCost && seasonalCost!==0){ breakdown.push(`seasonal cost ${fmtNumber(seasonalCost,{signed:true})}`); }
+  if(breakdown.length){
+    ariaLabel+=` (${breakdown.join(', ')})`;
+  }
+  const titleParts=['Net hours change'];
+  if(breakdown.length){
+    titleParts.push(`components: ${breakdown.join(', ')}`);
+  }
+  chip.title=titleParts.join(' — ');
+  chip.setAttribute('aria-label', ariaLabel);
+  return chip;
+}
+
+function buildLevelsChip(gainedLevels, spentLevels){
+  const hasGained=Number.isFinite(gainedLevels) && gainedLevels!==0;
+  const hasSpent=Number.isFinite(spentLevels) && spentLevels!==0;
+  if(!hasGained && !hasSpent) return null;
+  const gained=hasGained?gainedLevels:0;
+  const spent=hasSpent?spentLevels:0;
+  const net=gained-spent;
+  const chip=document.createElement('span');
+  chip.className='dm-levels-chip';
+  let tone='neutral';
+  if(net>0){ tone='gain'; }
+  else if(net<0){ tone='loss'; }
+  chip.classList.add(`dm-levels-chip--${tone}`);
+  const netFormatted=fmtNumber(net,{signed:true});
+  const parts=[`Levels ${netFormatted}`];
+  let ariaLabel=`Net levels ${netFormatted}`;
+  let titleText='Net levels gained or spent';
+  const titleDetails=[];
+  if(hasGained){
+    const gainedFormatted=fmtNumber(gained,{signed:true});
+    parts.push(`Earned ${gainedFormatted}`);
+    ariaLabel+=`, earned ${fmtNumber(Math.abs(gained))}`;
+    titleDetails.push(`${fmtNumber(Math.abs(gained))} earned`);
+  }
+  if(hasSpent){
+    const spentDisplay=-Math.abs(spent);
+    const spentFormatted=fmtNumber(spentDisplay,{signed:true});
+    parts.push(`Spent ${spentFormatted}`);
+    ariaLabel+=`, spent ${fmtNumber(Math.abs(spent))}`;
+    titleDetails.push(`${fmtNumber(Math.abs(spent))} spent`);
+  }
+  if(titleDetails.length){
+    titleText+=` (${titleDetails.join(', ')})`;
   }
   chip.textContent=parts.join(' · ');
   chip.setAttribute('aria-label', ariaLabel);
@@ -4417,6 +4468,8 @@ function makeDmCard(entry,idx){
   let hoursVal=null;
   let bonusVal=null;
   let costVal=null;
+  let levelsEarnedVal=null;
+  let levelsSpentVal=null;
 
   if(isAllocation){
     titleEl.textContent='Rewards allocated';
@@ -4437,26 +4490,15 @@ function makeDmCard(entry,idx){
       }
     }
     costVal=dmToNullableNumber(entry.cost);
-    const levelsVal=dmToNullableNumber(entry.levels_plus);
-    if(levelsVal!=null && levelsVal!==0){
-      addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
-    }
+    levelsEarnedVal=dmToNullableNumber(entry.levels_minus);
+    levelsSpentVal=dmToNullableNumber(entry.levels_plus);
   }else{
     const sessionTitle=sanitizeTitle(entry.name || entry.code || 'DM Session');
     setElementTextWithCharacterChips(titleEl, sessionTitle, {label:'DM Session', force:true});
     hoursVal=dmToNullableNumber(entry.hours);
     bonusVal=dmToNullableNumber(entry.extra_hours);
-    if(entry.tier!=null && entry.tier!==''){
-      addMetric('tier','Tier',fmtNumber(entry.tier),'tier');
-    }
-    const levelsVal=dmToNullableNumber(entry.levels_plus);
-    if(levelsVal!=null && levelsVal!==0){
-      addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
-    }
-    const levelsSpent=dmToNullableNumber(entry.levels_minus);
-    if(levelsSpent!=null && levelsSpent!==0 && levelsSpent!==levelsVal){
-      addMetric('levels_minus','Levels Spent',fmtNumber(levelsSpent,{signed:true}),'spent');
-    }
+    levelsEarnedVal=dmToNullableNumber(entry.levels_plus);
+    levelsSpentVal=dmToNullableNumber(entry.levels_minus);
   }
 
   if(chips.children.length){
@@ -4466,6 +4508,11 @@ function makeDmCard(entry,idx){
   const hoursChip=buildHoursChip(hoursVal, bonusVal, costVal);
   if(hoursChip){
     topMeta.appendChild(hoursChip);
+  }
+
+  const levelsChip=buildLevelsChip(levelsEarnedVal, levelsSpentVal);
+  if(levelsChip){
+    topMeta.appendChild(levelsChip);
   }
 
   heading.appendChild(titleEl);
