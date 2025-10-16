@@ -1609,7 +1609,7 @@ window.DMDATA = {
           "date": "2022-04-13T00:00:00",
           "allocation": "Levels to Zandarax",
           "cost": 0,
-          "levels_plus": 0
+          "levels_plus": 3
         },
         {
           "date": "2022-09-30T00:00:00",
@@ -1657,13 +1657,13 @@ window.DMDATA = {
           "date": "2022-07-03T00:00:00",
           "allocation": "Level to Creature X-12",
           "cost": 0,
-          "levels_plus": 0
+          "levels_plus": 1
         },
         {
           "date": "2022-07-08T00:00:00",
           "allocation": "Levels to Lyrielle",
           "cost": 0,
-          "levels_plus": 0
+          "levels_plus": 6
         }
       ]
     },
@@ -2446,7 +2446,7 @@ window.DMDATA = {
           "date": "2024-11-20T00:00:00",
           "allocation": "8 levels to Raguel",
           "cost": 0,
-          "levels_plus": 0
+          "levels_plus": 8
         },
         {
           "date": "2021-09-29T00:00:00",
@@ -2464,7 +2464,7 @@ window.DMDATA = {
           "date": "2024-09-01T00:00:00",
           "allocation": "5 levels to Wobbly Bobbly",
           "cost": 0,
-          "levels_plus": 0
+          "levels_plus": 5
         },
         {
           "date": "2024-09-01T00:00:00",
@@ -2482,7 +2482,7 @@ window.DMDATA = {
           "date": "2024-09-11T00:00:00",
           "allocation": "3 levels to Agatha",
           "cost": 3,
-          "levels_plus": 0
+          "levels_plus": 3
         },
         {
           "date": "NaT",

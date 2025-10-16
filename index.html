@@ -3748,9 +3748,14 @@ function buildDmEntries(){
     const parsedLevelsSpent=(parsed && parsed.levelsSpent!=null)?parsed.levelsSpent:null;
     const rawLevelsSpent=dmToNullableNumber(alloc.levels_plus);
     const hasLevelKeyword=/\b(?:levels?|lvl)\b/i.test(String(allocationText||''));
-    const levelsSpent=(Number.isFinite(parsedLevelsSpent) && parsedLevelsSpent>0)
-      ? parsedLevelsSpent
-      : ((hasLevelKeyword && Number.isFinite(rawLevelsSpent) && rawLevelsSpent>0)?rawLevelsSpent:null);
+    const levelAssignmentHint=/\blevels?\s+to\b/i.test(String(allocationText||'')) || /\blvl\s+to\b/i.test(String(allocationText||''));
+    let levelsSpent=(Number.isFinite(parsedLevelsSpent) && parsedLevelsSpent>0)?parsedLevelsSpent:null;
+    if(
+      hasLevelKeyword && levelAssignmentHint && Number.isFinite(rawLevelsSpent) && rawLevelsSpent>0
+      && (levelsSpent==null || rawLevelsSpent>levelsSpent)
+    ){
+      levelsSpent=rawLevelsSpent;
+    }
     const effectiveCost=(parsed && parsed.downtimeSpent!=null)?parsed.downtimeSpent:baseCost;
     const effectiveGold=(parsed && parsed.goldSpent!=null)?parsed.goldSpent:null;
     const earnsLevel=allocationGrantsLevelToPool(season, allocationText, parsed);
