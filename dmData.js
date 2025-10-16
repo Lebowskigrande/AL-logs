@@ -16,7 +16,7 @@ window.DMDATA = {
       "location": "GE (IRL - private)"
     },
     {
-      "date": "2020-03-28T00:00:00",
+      "date": "2020-07-16T00:00:00",
       "code": "DDAL 09-01",
       "name": "Escape from Elturguard",
       "tier": 1,
@@ -27,7 +27,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2020-04-04T00:00:00",
+      "date": "2020-09-07T00:00:00",
       "code": "DDAL 09-02",
       "name": "Stopped at the Gate",
       "tier": 1,
@@ -38,7 +38,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-04-18T00:00:00",
+      "date": "2020-09-08T00:00:00",
       "code": "DDAL 09-09",
       "name": "Ruined Prospects",
       "tier": 2,
@@ -49,7 +49,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-04-21T00:00:00",
+      "date": "2021-11-21T00:00:00",
       "code": "DDEX 2-10",
       "name": "Cloaks and Shadows",
       "tier": 1,
@@ -60,7 +60,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2020-04-29T00:00:00",
+      "date": "2021-05-07T00:00:00",
       "code": "DDEX 2-10",
       "name": "Cloaks and Shadows",
       "tier": 1,
@@ -71,7 +71,7 @@ window.DMDATA = {
       "location": "F&D"
     },
     {
-      "date": "2020-04-30T00:00:00",
+      "date": "2020-06-20T00:00:00",
       "code": "CCC-BLD 1-1",
       "name": "Bleeding Gate: Pandemonium",
       "tier": 1,
@@ -82,7 +82,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-04-30T00:00:00",
+      "date": "2020-06-20T00:00:00",
       "code": "CCC-BLD 1-2",
       "name": "Bleeding Gate: Amalgamation",
       "tier": 1,
@@ -104,7 +104,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-05-07T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "DDAL 05-04",
       "name": "In Dire Need",
       "tier": 2,
@@ -115,7 +115,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-05-16T00:00:00",
+      "date": "2020-07-13T00:00:00",
       "code": "DDAL 09-04",
       "name": "Day of the Devil",
       "tier": 2,
@@ -126,7 +126,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-05-21T00:00:00",
+      "date": "2020-11-18T00:00:00",
       "code": "DDAL 09-04",
       "name": "Day of the Devil",
       "tier": 2,
@@ -137,7 +137,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-06-05T00:00:00",
+      "date": "2021-04-01T00:00:00",
       "code": "Playtest",
       "name": "Tier 4 w/ Jon K.",
       "tier": 1,
@@ -148,7 +148,7 @@ window.DMDATA = {
       "location": ""
     },
     {
-      "date": "2020-06-06T00:00:00",
+      "date": "2020-07-19T00:00:00",
       "code": "CCC-CIC-10",
       "name": "Terror at Soward Manor",
       "tier": 2,
@@ -159,7 +159,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-06-18T00:00:00",
+      "date": "2020-08-08T00:00:00",
       "code": "CCC-CIC-10",
       "name": "Terror at Soward Manor",
       "tier": 2,
@@ -170,7 +170,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-06-20T00:00:00",
+      "date": "2020-06-26T00:00:00",
       "code": "CCC-SALT-02-05",
       "name": "The Darkness Never Forgets",
       "tier": 2,
@@ -203,7 +203,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-07-22T00:00:00",
+      "date": "2020-09-11T00:00:00",
       "code": "CCC-SALT-02-05",
       "name": "The Darkness Never Forgets",
       "tier": 2,
@@ -214,7 +214,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-08-06T00:00:00",
+      "date": "2020-08-08T00:00:00",
       "code": "CCC-GLIP-02-01",
       "name": "Blue Scales",
       "tier": 2,
@@ -225,7 +225,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-08-12T00:00:00",
+      "date": "2020-11-18T00:00:00",
       "code": "CCC-BLD 1-1",
       "name": "Bleeding Gate: Pandemonium",
       "tier": 1,
@@ -236,7 +236,7 @@ window.DMDATA = {
       "location": "F&D"
     },
     {
-      "date": "2020-08-12T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-BLD 1-2",
       "name": "Bleeding Gate: Amalgamation",
       "tier": 1,
@@ -247,7 +247,7 @@ window.DMDATA = {
       "location": "F&D"
     },
     {
-      "date": "2020-08-15T00:00:00",
+      "date": "2020-11-18T00:00:00",
       "code": "CCC-CIC-10",
       "name": "Terror at Soward Manor",
       "tier": 2,
@@ -258,7 +258,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-08-22T00:00:00",
+      "date": "2020-09-23T00:00:00",
       "code": "DDEP00-01",
       "name": "The Red War (Tier 2)",
       "tier": 2,
@@ -280,7 +280,7 @@ window.DMDATA = {
       "location": "Gateway"
     },
     {
-      "date": "2020-09-08T00:00:00",
+      "date": "2020-10-17T00:00:00",
       "code": "DDHC-TYP",
       "name": "Chapter 3 pt. 1",
       "tier": 2,
@@ -291,7 +291,7 @@ window.DMDATA = {
       "location": "Gateway"
     },
     {
-      "date": "2020-09-08T00:00:00",
+      "date": "2023-07-06T00:00:00",
       "code": "DDHC-TYP",
       "name": "Chapter 3 pt. 2",
       "tier": 2,
@@ -313,7 +313,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2020-09-19T00:00:00",
+      "date": "2020-12-10T00:00:00",
       "code": "DDHC-TYP",
       "name": "Chapter 3 pt. 1",
       "tier": 2,
@@ -324,7 +324,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-09-19T00:00:00",
+      "date": "2021-10-03T00:00:00",
       "code": "DDHC-TYP",
       "name": "Chapter 3 pt. 2",
       "tier": 2,
@@ -335,7 +335,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-10-03T00:00:00",
+      "date": "2021-08-27T00:00:00",
       "code": "CCC-DES-01-06",
       "name": "One Last Job",
       "tier": 2,
@@ -346,7 +346,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "NaT",
+      "date": "2021-02-24T00:00:00",
       "code": "DDAL 10-00",
       "name": "Ice Road Trackers",
       "tier": 1,
@@ -357,7 +357,7 @@ window.DMDATA = {
       "location": ""
     },
     {
-      "date": "2020-10-10T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-ELF-001",
       "name": "Life's a Party",
       "tier": 1,
@@ -368,7 +368,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2020-10-18T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-GLIP-02-01",
       "name": "Blue Scales",
       "tier": 2,
@@ -379,7 +379,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2020-11-05T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-ELF-001",
       "name": "Life's a Party",
       "tier": 1,
@@ -390,7 +390,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2020-11-07T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-DES-01-01",
       "name": "Finding the Rabbit Hole",
       "tier": 2,
@@ -401,7 +401,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-11-11T00:00:00",
+      "date": "2021-03-27T00:00:00",
       "code": "CCC-GLIP-02-01",
       "name": "Blue Scales",
       "tier": 2,
@@ -456,7 +456,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2020-12-09T00:00:00",
+      "date": "2021-10-26T00:00:00",
       "code": "CCC-TRI-28",
       "name": "Siege of the Yellow Rose",
       "tier": 3,
@@ -500,7 +500,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2021-01-21T00:00:00",
+      "date": "2021-03-26T00:00:00",
       "code": "CCC-CIC-15",
       "name": "Den of the Dead Witch",
       "tier": 1,
@@ -511,7 +511,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2021-02-04T00:00:00",
+      "date": "2021-02-24T00:00:00",
       "code": "CCC-MCX-01-02",
       "name": "The Rescue",
       "tier": 1,
@@ -533,7 +533,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2021-02-12T00:00:00",
+      "date": "2022-02-28T00:00:00",
       "code": "CCC-SEA-01-03",
       "name": "Stargazing on the Albatross",
       "tier": 3,
@@ -544,7 +544,7 @@ window.DMDATA = {
       "location": "OrcCon"
     },
     {
-      "date": "2021-02-13T00:00:00",
+      "date": "2022-02-28T00:00:00",
       "code": "CCC-SEA-01-03",
       "name": "Stargazing on the Albatross",
       "tier": 3,
@@ -555,7 +555,7 @@ window.DMDATA = {
       "location": "OrcCon"
     },
     {
-      "date": "2021-02-13T00:00:00",
+      "date": "2022-02-28T00:00:00",
       "code": "CCC-SEA-01-03",
       "name": "Stargazing on the Albatross",
       "tier": 3,
@@ -599,7 +599,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-02-25T00:00:00",
+      "date": "2021-04-02T00:00:00",
       "code": "CCC-BMG-23 PHLAN2-2",
       "name": "Hatemaster",
       "tier": 3,
@@ -610,7 +610,7 @@ window.DMDATA = {
       "location": "PHG"
     },
     {
-      "date": "2021-03-04T00:00:00",
+      "date": "2021-06-11T00:00:00",
       "code": "CCC-BMG-24 PHLAN 2-3",
       "name": "The Royal We",
       "tier": 3,
@@ -632,7 +632,7 @@ window.DMDATA = {
       "location": "GE"
     },
     {
-      "date": "2021-03-27T00:00:00",
+      "date": "2021-07-16T00:00:00",
       "code": "CCC-BMG-22 PHLAN2-1",
       "name": "Demagogue",
       "tier": 3,
@@ -665,7 +665,7 @@ window.DMDATA = {
       "location": "F&D"
     },
     {
-      "date": "2021-05-09T00:00:00",
+      "date": "2021-07-15T00:00:00",
       "code": "CCC-BMG-MOON6-3",
       "name": "A Reopened Eye",
       "tier": 2,
@@ -676,7 +676,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-05-19T00:00:00",
+      "date": "2021-07-06T00:00:00",
       "code": "CCC-CIC-15",
       "name": "Den of the Dead Witch",
       "tier": 1,
@@ -698,7 +698,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-05-28T00:00:00",
+      "date": "2021-09-24T00:00:00",
       "code": "CCC-BMG-MOON-6-3",
       "name": "Planar Convergance",
       "tier": 2,
@@ -720,7 +720,7 @@ window.DMDATA = {
       "location": "GameX"
     },
     {
-      "date": "2021-05-30T00:00:00",
+      "date": "2021-08-27T00:00:00",
       "code": "CCC-BMG-MOON-6-2",
       "name": "Troubled Visions",
       "tier": 2,
@@ -775,7 +775,7 @@ window.DMDATA = {
       "location": "Odyssey"
     },
     {
-      "date": "2021-06-23T00:00:00",
+      "date": "2021-07-15T00:00:00",
       "code": "CCC-ELF-001",
       "name": "Life's a Party",
       "tier": 1,
@@ -786,7 +786,7 @@ window.DMDATA = {
       "location": "Odyssey"
     },
     {
-      "date": "2021-06-26T00:00:00",
+      "date": "2021-07-15T00:00:00",
       "code": "CCC-GLIP-02-01",
       "name": "Blue Scales",
       "tier": 2,
@@ -797,7 +797,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-06-27T00:00:00",
+      "date": "2021-08-27T00:00:00",
       "code": "CCC-BMG-MOON-6-3",
       "name": "Planar Convergance",
       "tier": 2,
@@ -808,7 +808,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-06-30T00:00:00",
+      "date": "2021-07-06T00:00:00",
       "code": "CCC-GLIP-02-01",
       "name": "Blue Scales",
       "tier": 2,
@@ -819,7 +819,7 @@ window.DMDATA = {
       "location": "Odyssey"
     },
     {
-      "date": "2021-07-12T00:00:00",
+      "date": "2021-09-04T00:00:00",
       "code": "CCC-MCX-01-02",
       "name": "The Rescue",
       "tier": 1,
@@ -841,7 +841,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-07-28T00:00:00",
+      "date": "2022-07-04T00:00:00",
       "code": "DC-PoA-DCAF01",
       "name": "Let it Goat",
       "tier": 1,
@@ -863,7 +863,7 @@ window.DMDATA = {
       "location": "F&D"
     },
     {
-      "date": "2021-09-03T00:00:00",
+      "date": "2021-09-24T00:00:00",
       "code": "DDEX02-10",
       "name": "Cloaks and Shadows",
       "tier": 1,
@@ -874,7 +874,7 @@ window.DMDATA = {
       "location": "Gateway"
     },
     {
-      "date": "2021-09-03T00:00:00",
+      "date": "2021-09-29T00:00:00",
       "code": "DRW-09",
       "name": "Vile Bounty",
       "tier": 2,
@@ -951,7 +951,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-10-01T00:00:00",
+      "date": "2022-06-08T00:00:00",
       "code": "CCC-BLD-01-03",
       "name": "Bleeding Gate: Lineage",
       "tier": 2,
@@ -962,7 +962,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-10-19T00:00:00",
+      "date": "2022-01-15T00:00:00",
       "code": "DDHC-TOA-9",
       "name": "Ruins of Matolo",
       "tier": 2,
@@ -973,7 +973,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-10-24T00:00:00",
+      "date": "2024-11-20T00:00:00",
       "code": "HULB 4-1",
       "name": "Whispers from the Deep",
       "tier": 3,
@@ -984,7 +984,7 @@ window.DMDATA = {
       "location": "private"
     },
     {
-      "date": "2021-11-01T00:00:00",
+      "date": "2024-11-20T00:00:00",
       "code": "CCC-QCC-2017",
       "name": "Delusions of Grandeur, Dreams of Revenge",
       "tier": 3,
@@ -1295,37 +1295,37 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2021-11-02T00:00:00",
+          "date": "2023-10-04T00:00:00",
           "allocation": "Nereid Shawl + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
-          "date": "2021-11-16T00:00:00",
+          "date": "2023-01-20T00:00:00",
           "allocation": "Night Queen's eyes + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
-          "date": "2021-11-23T00:00:00",
+          "date": "2023-01-20T00:00:00",
           "allocation": "Mariner's scale mail + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
-          "date": "2021-11-24T00:00:00",
+          "date": "2023-10-04T00:00:00",
           "allocation": "Quiver of the centaurs + 250 gp to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
-          "date": "2021-11-25T00:00:00",
+          "date": "2023-10-04T00:00:00",
           "allocation": "Lathai's saddle + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
         },
         {
-          "date": "2021-11-26T00:00:00",
+          "date": "2023-10-04T00:00:00",
           "allocation": "Pixie winged boots + 10 DTD to Zandarax",
           "cost": 5,
           "levels_plus": 1
@@ -1588,19 +1588,19 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2022-03-07T00:00:00",
+          "date": "2022-04-20T00:00:00",
           "allocation": "Dragon slayer greatsword + 20 DTD to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
-          "date": "2022-03-09T00:00:00",
+          "date": "2022-05-02T00:00:00",
           "allocation": "Giant slayer greatsword + 2500 gp to Norixius",
           "cost": 10,
           "levels_plus": 1
         },
         {
-          "date": "2022-04-07T00:00:00",
+          "date": "2022-05-02T00:00:00",
           "allocation": "Flametongue greatsword + 2500 gp to Norixius",
           "cost": 10,
           "levels_plus": 1
@@ -1612,7 +1612,7 @@ window.DMDATA = {
           "levels_plus": 0
         },
         {
-          "date": "2022-04-27T00:00:00",
+          "date": "2022-09-30T00:00:00",
           "allocation": "Dex Tome + 10k gp + level to Squelch",
           "cost": 20,
           "levels_plus": 1
@@ -2007,7 +2007,7 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2022-09-02T00:00:00",
+          "date": "2022-09-30T00:00:00",
           "allocation": "Wis Tome + 30 DTD + level to Squelch",
           "cost": 20,
           "levels_plus": 1
@@ -2176,7 +2176,7 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2023-03-15T00:00:00",
+          "date": "2023-10-04T00:00:00",
           "allocation": "Gloves of Thievery + 10 DTD to Rolyn",
           "cost": 5,
           "levels_plus": 1
@@ -2188,7 +2188,7 @@ window.DMDATA = {
           "levels_plus": 1
         },
         {
-          "date": "2023-04-26T00:00:00",
+          "date": "2024-03-23T00:00:00",
           "allocation": "Sixth Sword + 2500gp to Norixius",
           "cost": 10,
           "levels_plus": 1
@@ -2443,19 +2443,19 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2024-07-06T00:00:00",
+          "date": "2024-11-20T00:00:00",
           "allocation": "8 levels to Raguel",
           "cost": 0,
           "levels_plus": 0
         },
         {
-          "date": "2028-07-14T00:00:00",
+          "date": "2021-09-29T00:00:00",
           "allocation": "Rare reward (Vicious Glavie) to Gnat + 2500 gp",
           "cost": 10,
           "levels_plus": 0
         },
         {
-          "date": "2024-08-28T00:00:00",
+          "date": "2024-11-20T00:00:00",
           "allocation": "Player rewards: Vicious Maul + level to Raguel",
           "cost": 5,
           "levels_plus": 1
@@ -2590,7 +2590,7 @@ window.DMDATA = {
       ],
       "allocations": [
         {
-          "date": "2025-04-25T00:00:00",
+          "date": "2025-05-14T00:00:00",
           "allocation": "Ring of Invisibility + 40 DTD to Agatha",
           "cost": 40,
           "levels_plus": 0
