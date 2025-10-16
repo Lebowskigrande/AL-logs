@@ -1652,7 +1652,7 @@ window.DATA = {
         {
           "date": "2025-10-16",
           "title": "The Ashen Pact",
-          "code": "",
+          "code": "FR-DC-STRAT-WYRM-06",
           "dm": "Ryan L.",
           "gp_plus": 10000,
           "gp_minus": 0,
@@ -20148,7 +20148,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-16T05:48:14.605Z",
+    "generated": "2025-10-16T05:49:45.049Z",
     "problems": []
   }
 };
