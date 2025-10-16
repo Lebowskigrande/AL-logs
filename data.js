@@ -16101,8 +16101,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Rocky Road",
@@ -16128,8 +16128,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "My Shattered Heart",
@@ -16154,8 +16154,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19,
+          "__levelAfter": 20,
+          "__levelAtStart": 20,
           "lost_perm_item": "",
           "traded_item": ""
         },
@@ -16181,8 +16181,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "The Tower of Ahghairon",
@@ -16207,8 +16207,8 @@ window.DATA = {
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16235,8 +16235,8 @@ window.DATA = {
           "player": "Dario C.",
           "character": "Valenor Vyshaan",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16263,8 +16263,8 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16291,8 +16291,8 @@ window.DATA = {
           "player": "",
           "character": "Duke",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16319,8 +16319,8 @@ window.DATA = {
           "player": "",
           "character": "Duke",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16347,8 +16347,8 @@ window.DATA = {
           "player": "",
           "character": "Aiden Moonshadow",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16375,8 +16375,8 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Fall the Cold Night",
@@ -16404,8 +16404,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Beyond This Portal",
@@ -16430,8 +16430,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16458,8 +16458,8 @@ window.DATA = {
           "player": "",
           "character": "Jillian",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Pools of Cerulean",
@@ -16487,8 +16487,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16515,8 +16515,8 @@ window.DATA = {
           "player": "",
           "character": "Aramil",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16543,8 +16543,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16571,8 +16571,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16599,8 +16599,8 @@ window.DATA = {
           "player": "",
           "character": "Orakhar",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -16623,8 +16623,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16651,8 +16651,8 @@ window.DATA = {
           "player": "",
           "character": "Zandarax",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "The Harrowing of Hell",
@@ -16682,8 +16682,8 @@ window.DATA = {
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16710,8 +16710,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16738,8 +16738,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16766,8 +16766,8 @@ window.DATA = {
           "player": "",
           "character": "Buckley",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Window to the Past",
@@ -16795,8 +16795,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Streams of Crimson",
@@ -16821,8 +16821,8 @@ window.DATA = {
           "notes": "Bought 4 Scrolls of Freedom of Movement, 2 Scrolls of Holy Weapon, 1 Scroll of Revivify, 4 Scrolls of Death Ward, 2 Scrolls of Greater Restoration, 1 Scroll of Find Greater Steed, and 2 Scrolls of Enlarge/Reduce for a total of 9100 gp.",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Fang and Claw",
@@ -16850,8 +16850,8 @@ window.DATA = {
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Where Devils Fear to Tread",
@@ -16877,8 +16877,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -16905,8 +16905,8 @@ window.DATA = {
           "player": "",
           "character": "Indy",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Hecatomb",
@@ -16933,8 +16933,8 @@ window.DATA = {
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -16957,8 +16957,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Moving Day!",
@@ -16979,8 +16979,8 @@ window.DATA = {
           "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Lost Tales of Myth Drannor: Definition of Heroism",
@@ -17001,8 +17001,8 @@ window.DATA = {
           "notes": "Bought 4 potions of Greater Healing for 400.",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17029,8 +17029,8 @@ window.DATA = {
           "player": "",
           "character": "Agatha",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17057,8 +17057,8 @@ window.DATA = {
           "player": "",
           "character": "Sibila",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17085,8 +17085,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "The Mysterious Isle",
@@ -17112,8 +17112,8 @@ window.DATA = {
           "notes": "Dropped Shield +3 and Staff of the Magi",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17140,8 +17140,8 @@ window.DATA = {
           "player": "",
           "character": "Lorien",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Cauldron of Sapphire",
@@ -17167,8 +17167,8 @@ window.DATA = {
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Eye of Xxiphu",
@@ -17193,8 +17193,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17221,8 +17221,8 @@ window.DATA = {
           "player": "",
           "character": "Portia Porridgepot",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Devil's Song",
@@ -17247,8 +17247,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -17269,8 +17269,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17297,8 +17297,8 @@ window.DATA = {
           "player": "",
           "character": "Missmeseeks",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17325,8 +17325,8 @@ window.DATA = {
           "player": "",
           "character": "Winkle Paddlegear",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17353,8 +17353,8 @@ window.DATA = {
           "player": "",
           "character": "Darnys",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "DM Reward",
@@ -17375,8 +17375,8 @@ window.DATA = {
           "notes": "",
           "kind": "Downtime Activity",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Crypt of the Death Giants",
@@ -17401,8 +17401,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17429,8 +17429,8 @@ window.DATA = {
           "player": "",
           "character": "Snowball",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17457,8 +17457,8 @@ window.DATA = {
           "player": "",
           "character": "Yongbi",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17485,8 +17485,8 @@ window.DATA = {
           "player": "",
           "character": "Zelene Silrathas",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17513,8 +17513,8 @@ window.DATA = {
           "player": "",
           "character": "Arvistan Brightwave",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trade",
@@ -17541,8 +17541,8 @@ window.DATA = {
           "player": "",
           "character": "Brielle Akamiir",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 19
+          "__levelAfter": 20,
+          "__levelAtStart": 20
         },
         {
           "title": "Trust and Understanding",
@@ -17568,8 +17568,8 @@ window.DATA = {
           "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 19,
-          "__levelAtStart": 18,
+          "__levelAfter": 20,
+          "__levelAtStart": 19,
           "lost_perm_item": "White Dragon Scalemail",
           "traded_item": ""
         },
@@ -17604,8 +17604,8 @@ window.DATA = {
           "player": "Erik T.",
           "character": "Wren",
           "__charKey": "Darrendrian",
-          "__levelAfter": 18,
-          "__levelAtStart": 17
+          "__levelAfter": 19,
+          "__levelAtStart": 18
         },
         {
           "title": "Trade",
@@ -17632,8 +17632,8 @@ window.DATA = {
           "player": "",
           "character": "Arvistan Brightwave",
           "__charKey": "Darrendrian",
-          "__levelAfter": 17,
-          "__levelAtStart": 17
+          "__levelAfter": 18,
+          "__levelAtStart": 18
         },
         {
           "title": "A Change of Address",
@@ -17654,8 +17654,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 17,
-          "__levelAtStart": 16
+          "__levelAfter": 18,
+          "__levelAtStart": 17
         },
         {
           "title": "Trade",
@@ -17682,8 +17682,8 @@ window.DATA = {
           "player": "",
           "character": "Don Karnage",
           "__charKey": "Darrendrian",
-          "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "title": "Trade",
@@ -17710,8 +17710,8 @@ window.DATA = {
           "player": "",
           "character": "Agatha",
           "__charKey": "Darrendrian",
-          "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "title": "Trade",
@@ -17738,8 +17738,8 @@ window.DATA = {
           "player": "",
           "character": "Arvistan Brightwave",
           "__charKey": "Darrendrian",
-          "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAfter": 17,
+          "__levelAtStart": 17
         },
         {
           "title": "To Wake the Leviathan",
@@ -17766,8 +17766,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 16,
-          "__levelAtStart": 15
+          "__levelAfter": 17,
+          "__levelAtStart": 16
         },
         {
           "title": "Zhentarrim's Lament",
@@ -17792,8 +17792,8 @@ window.DATA = {
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 15,
-          "__levelAtStart": 15
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Darkest Vein",
@@ -17816,8 +17816,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 15,
-          "__levelAtStart": 15
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Whispers from the Deep",
@@ -17838,8 +17838,8 @@ window.DATA = {
           "notes": "",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 15,
-          "__levelAtStart": 15
+          "__levelAfter": 16,
+          "__levelAtStart": 16
         },
         {
           "title": "Contact",
@@ -17852,7 +17852,7 @@ window.DATA = {
           "dtd_plus": 0,
           "dtd_minus": 0,
           "dtd_net": 0,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -17862,8 +17862,10 @@ window.DATA = {
           "notes": "Dropped Plate +1",
           "kind": "adventure",
           "__charKey": "Darrendrian",
-          "__levelAfter": 15,
-          "__levelAtStart": 15
+          "__levelAfter": 16,
+          "__levelAtStart": 15,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "Trade",
@@ -19971,7 +19973,7 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 164,
+      "perm_count": 162,
       "cons_count": 67,
       "gifts_count": 6
     },
@@ -19997,7 +19999,7 @@ window.DATA = {
       "sessions": 46,
       "net_gp": 75879,
       "net_dtd": 85,
-      "level_ups": 18,
+      "level_ups": 19,
       "perm_count": 61,
       "cons_count": 13,
       "gifts_count": 8
@@ -20149,7 +20151,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-16T06:59:32.870Z",
+    "generated": "2025-10-16T07:07:10.214Z",
     "problems": []
   }
 };
