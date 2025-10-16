@@ -312,6 +312,17 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-title.scrollable .display{animation:none}
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
+.chip-ticker{position:relative;--chip-ticker-fade-start:rgba(248,250,252,.92)}
+.chip-ticker-active{cursor:default}
+.chip-ticker::before,.chip-ticker::after{content:none}
+@media (max-width:520px){
+  .chip-ticker{overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;-ms-overflow-style:none;scrollbar-width:none}
+  .chip-ticker::-webkit-scrollbar{display:none}
+  .chip-ticker>*{flex:0 0 auto}
+  .chip-ticker-active::before,.chip-ticker-active::after{content:"";position:absolute;top:0;bottom:0;width:12px;pointer-events:none;z-index:1}
+  .chip-ticker-active::before{left:0;background:linear-gradient(to right,var(--chip-ticker-fade-start),rgba(255,255,255,0))}
+  .chip-ticker-active::after{right:0;background:linear-gradient(to left,var(--chip-ticker-fade-start),rgba(255,255,255,0))}
+}
 .log-row-stats .totals-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
 .totals-pill-label{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--ink)}
 .totals-pill-values{display:inline-flex;align-items:center;gap:8px}
@@ -1051,6 +1062,198 @@ function clearDataLoadError(){
 function isDataLoadErrorActive(){
   return dataLoadErrorActive;
 }
+
+const chipTickerRegistry=(()=>{
+  const containers=new Set();
+  const states=new Map();
+  let rafId=null;
+  const BASE_SPEED=32;
+  const EDGE_HOLD=900;
+  const mobileQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(max-width: 520px)')
+    : null;
+  const reduceMotionQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null;
+
+  const cleanup=(container)=>{
+    if(!container) return;
+    const state=states.get(container);
+    if(state && state.resizeObserver){
+      try{ state.resizeObserver.disconnect(); }catch(err){ /* no-op */ }
+    }
+    states.delete(container);
+    containers.delete(container);
+    container.classList.remove('chip-ticker','chip-ticker-active');
+    delete container.__chipTickerRegistered;
+  };
+
+  const schedule=()=>{
+    if(rafId!=null) return;
+    if(!containers.size) return;
+    rafId=requestAnimationFrame(step);
+  };
+
+  const ensureObserver=(container,state)=>{
+    if(typeof ResizeObserver==='undefined') return;
+    if(state.resizeObserver) return;
+    const observer=new ResizeObserver(()=>{
+      state.lastTime=null;
+      state.pauseUntil=0;
+      state.pending=state.pending || !container.isConnected;
+      schedule();
+    });
+    observer.observe(container);
+    state.resizeObserver=observer;
+  };
+
+  const step=(timestamp)=>{
+    rafId=null;
+    if(!containers.size) return;
+    const allowTicker=(!mobileQuery||mobileQuery.matches);
+    const reduceMotion=(reduceMotionQuery&&reduceMotionQuery.matches);
+    let keepAnimating=false;
+
+    containers.forEach((container)=>{
+      const state=states.get(container);
+      if(!container||!state){
+        cleanup(container);
+        return;
+      }
+      if(state.pending){
+        if(container.isConnected){
+          state.pending=false;
+          state.lastTime=timestamp;
+          state.pauseUntil=timestamp+EDGE_HOLD;
+          container.scrollLeft=0;
+        }else{
+          keepAnimating=true;
+          return;
+        }
+      }
+      if(!container.isConnected){
+        cleanup(container);
+        return;
+      }
+      ensureObserver(container,state);
+      if(!allowTicker||reduceMotion||container.offsetWidth===0){
+        container.classList.remove('chip-ticker-active');
+        if(container.scrollLeft!==0){
+          container.scrollLeft=0;
+        }
+        state.pos=0;
+        state.direction=1;
+        state.pauseUntil=0;
+        state.lastTime=timestamp;
+        return;
+      }
+      const maxScroll=Math.max(0,container.scrollWidth-container.clientWidth);
+      if(maxScroll<=1){
+        container.classList.remove('chip-ticker-active');
+        if(container.scrollLeft!==0){
+          container.scrollLeft=0;
+        }
+        state.pos=0;
+        state.direction=1;
+        state.pauseUntil=0;
+        state.lastTime=timestamp;
+        return;
+      }
+      keepAnimating=true;
+      container.classList.add('chip-ticker-active');
+      if(state.pauseUntil && timestamp<state.pauseUntil){
+        state.lastTime=timestamp;
+        return;
+      }
+      if(state.lastTime==null){
+        state.lastTime=timestamp;
+        return;
+      }
+      const delta=Math.min(0.05,(timestamp-state.lastTime)/1000);
+      state.lastTime=timestamp;
+      let next=state.pos+(state.direction*state.speed*delta);
+      if(next>=maxScroll){
+        next=maxScroll;
+        state.direction=-1;
+        state.pauseUntil=timestamp+EDGE_HOLD;
+      }else if(next<=0){
+        next=0;
+        state.direction=1;
+        state.pauseUntil=timestamp+EDGE_HOLD;
+      }else{
+        state.pauseUntil=0;
+      }
+      state.pos=next;
+      container.scrollLeft=next;
+    });
+
+    if(keepAnimating){
+      schedule();
+    }
+  };
+
+  const handleMediaChange=()=>{
+    states.forEach((state,container)=>{
+      state.lastTime=null;
+      state.pauseUntil=0;
+      state.pending=state.pending||!container.isConnected;
+    });
+    schedule();
+  };
+
+  if(mobileQuery){
+    if(typeof mobileQuery.addEventListener==='function'){
+      mobileQuery.addEventListener('change',handleMediaChange);
+    }else if(typeof mobileQuery.addListener==='function'){
+      mobileQuery.addListener(handleMediaChange);
+    }
+  }
+  if(reduceMotionQuery){
+    const handler=()=>{ handleMediaChange(); };
+    if(typeof reduceMotionQuery.addEventListener==='function'){
+      reduceMotionQuery.addEventListener('change',handler);
+    }else if(typeof reduceMotionQuery.addListener==='function'){
+      reduceMotionQuery.addListener(handler);
+    }
+  }
+  if(typeof window!=='undefined'){
+    window.addEventListener('resize',handleMediaChange,{passive:true});
+  }
+
+  return{
+    register(container){
+      if(!container||container.__chipTickerRegistered) return;
+      container.__chipTickerRegistered=true;
+      const speedAttr=Number(container.dataset.chipTickerSpeed||'');
+      const state={
+        pos:container.scrollLeft||0,
+        direction:1,
+        lastTime:null,
+        pauseUntil:0,
+        speed:(Number.isFinite(speedAttr)&&speedAttr>0)?speedAttr:BASE_SPEED,
+        pending:!container.isConnected,
+        resizeObserver:null
+      };
+      containers.add(container);
+      states.set(container,state);
+      container.classList.add('chip-ticker');
+      schedule();
+    },
+    unregister(container){
+      cleanup(container);
+    },
+    refresh(container){
+      if(!container) return;
+      const state=states.get(container);
+      if(!state) return;
+      state.lastTime=null;
+      state.pauseUntil=0;
+      state.pending=state.pending||!container.isConnected;
+      schedule();
+    },
+    schedule
+  };
+})();
 
 const DM_LOG_KEY='__dmLog';
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
@@ -2566,6 +2769,12 @@ function hasMeaningfulValue(val){
   return normalizeDisplayValue(val)!=='';
 }
 function pill(label){ const s=document.createElement('span'); s.className='pill'; s.textContent=label; return s; }
+function createChipsContainer(){
+  const el=document.createElement('div');
+  el.className='chips';
+  chipTickerRegistry.register(el);
+  return el;
+}
 function formatRace(value){
   if(!value) return '';
   if(Array.isArray(value)){
@@ -3812,8 +4021,7 @@ function makeDmCard(entry,idx){
     setElementTextWithCharacterChips(nameSpan, allocationTitle, {label:'Reward allocation', force:true});
     left.append(dateSpan,nameSpan);
     main.appendChild(left);
-    const chips=document.createElement('div');
-    chips.className='chips';
+    const chips=createChipsContainer();
     const linkChip=createLinkChip?createLinkChip():null;
     if(linkChip){ chips.appendChild(linkChip); }
     const costVal=dmToNullableNumber(entry.cost);
@@ -3843,8 +4051,7 @@ function makeDmCard(entry,idx){
     subtitleDiv.className='subtitle';
     subtitleDiv.textContent=entry.code || entry.season || '';
     subtitleRow.appendChild(subtitleDiv);
-    const chips=document.createElement('div');
-    chips.className='chips';
+    const chips=createChipsContainer();
     const linkChip=createLinkChip?createLinkChip():null;
     if(linkChip){ chips.appendChild(linkChip); }
     const hoursVal=dmToNullableNumber(entry.hours);
@@ -5636,6 +5843,7 @@ function makeCard(a,idx){
   const info=document.createElement('div'); info.className='log-row-info';
   const tagRow=document.createElement('div'); tagRow.className='log-row-tags';
   const chipsRow=document.createElement('div'); chipsRow.className='log-row-chips';
+  chipTickerRegistry.register(chipsRow);
   chipsRow.appendChild(tagRow);
   let titleEditorSlot=null, titleDisplayEl=null;
   let dateEditorSlot=null, dateDisplayEl=null;
@@ -5700,6 +5908,7 @@ function makeCard(a,idx){
     const hasTags=tagRow.childElementCount>0;
     const statsInChips=(stats.parentNode===chipsRow && stats.style.display!=='none');
     chipsRow.style.display=(hasTags||statsInChips)?'flex':'none';
+    chipTickerRegistry.refresh(chipsRow);
   };
 
   const mobileChipsQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
