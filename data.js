@@ -1650,6 +1650,33 @@ window.DATA = {
       "display_name": "Norixius",
       "adventures": [
         {
+          "date": "2025-10-16",
+          "title": "The Ashen Pact",
+          "code": "",
+          "dm": "Ryan L.",
+          "gp_plus": 10000,
+          "gp_minus": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "level_plus": 1,
+          "perm_items": [
+            "Staff of Fire"
+          ],
+          "lost_perm_item": "",
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "Absorbed draconic magic from the soul of an ancient red dragon, gaining fire resistance (level 6 draconic sorcerer).",
+          "kind": "adventure",
+          "traded_item": "",
+          "__isNew": true,
+          "__charKey": "Norixius",
+          "__lockedKind": "adventure",
+          "__levelAtStart": 11,
+          "gp_net": 10000,
+          "dtd_net": 10,
+          "__levelAfter": 12
+        },
+        {
           "title": "DM Reward",
           "date": "2025-08-27",
           "code": "DM-REWARD",
@@ -19804,11 +19831,11 @@ window.DATA = {
       "gifts_count": 0
     },
     "Norixius": {
-      "sessions": 17,
-      "net_gp": 16727,
-      "net_dtd": 195,
-      "level_ups": 10,
-      "perm_count": 32,
+      "sessions": 18,
+      "net_gp": 26727,
+      "net_dtd": 205,
+      "level_ups": 11,
+      "perm_count": 33,
       "cons_count": 10,
       "gifts_count": 0
     },
@@ -20121,7 +20148,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-15T19:27:40.822Z",
+    "generated": "2025-10-16T05:48:14.605Z",
     "problems": []
   }
 };
