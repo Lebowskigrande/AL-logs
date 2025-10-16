@@ -3411,7 +3411,7 @@ function createAllocationDetailsList(text){
   return wrap;
 }
 
-function buildHoursChip(baseHours, bonusHours){
+function buildHoursChip(baseHours, bonusHours, costHours){
   const hasBase=baseHours!=null;
   const hasBonus=bonusHours!=null;
   if(!hasBase && !hasBonus) return null;
@@ -3423,10 +3423,18 @@ function buildHoursChip(baseHours, bonusHours){
   else if(total<0){ tone='loss'; }
   chip.classList.add(`dm-hours-chip--${tone}`);
   const formatted=fmtNumber(total,{signed:true});
-  chip.textContent=`Hours ${formatted}`;
-  const ariaLabel=`Total hours ${formatted} (including bonus hours)`;
+  const parts=[`Hours ${formatted}`];
+  let ariaLabel=`Total hours ${formatted} (including bonus hours)`;
+  let titleText='Total hours gained or spent, including bonus hours';
+  if(costHours!=null && costHours!==0){
+    const costFormatted=fmtNumber(costHours);
+    parts.push(`Cost ${costFormatted}`);
+    ariaLabel+=`, seasonal cost ${costFormatted}`;
+    titleText+=' and seasonal cost';
+  }
+  chip.textContent=parts.join(' · ');
   chip.setAttribute('aria-label', ariaLabel);
-  chip.title='Total hours gained or spent, including bonus hours';
+  chip.title=titleText;
   return chip;
 }
 
@@ -4408,6 +4416,7 @@ function makeDmCard(entry,idx){
 
   let hoursVal=null;
   let bonusVal=null;
+  let costVal=null;
 
   if(isAllocation){
     titleEl.textContent='Rewards allocated';
@@ -4427,10 +4436,7 @@ function makeDmCard(entry,idx){
         titleEl.appendChild(chipLine);
       }
     }
-    const costVal=dmToNullableNumber(entry.cost);
-    if(costVal!=null && costVal!==0){
-      addMetric('cost','Season Cost',fmtNumber(costVal),'cost');
-    }
+    costVal=dmToNullableNumber(entry.cost);
     const levelsVal=dmToNullableNumber(entry.levels_plus);
     if(levelsVal!=null && levelsVal!==0){
       addMetric('levels_plus','Levels Granted',fmtNumber(levelsVal,{signed:true}),'levels');
@@ -4457,7 +4463,7 @@ function makeDmCard(entry,idx){
     topMeta.appendChild(chips);
   }
 
-  const hoursChip=buildHoursChip(hoursVal, bonusVal);
+  const hoursChip=buildHoursChip(hoursVal, bonusVal, costVal);
   if(hoursChip){
     topMeta.appendChild(hoursChip);
   }
