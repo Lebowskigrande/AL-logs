@@ -6490,7 +6490,8 @@ function makeCard(a,idx){
       levelTag=ensureTag('', 'tag-level');
     }
     if(hasStart && gainNum>0){
-      levelTag.textContent=`Level ${fmtNumber(startNum)} → +${fmtNumber(gainNum)}`;
+      const finalLevel=startNum+gainNum;
+      levelTag.textContent=`Level ${fmtNumber(startNum)} → ${fmtNumber(finalLevel)}`;
     }else if(hasStart){
       levelTag.textContent=`Level ${fmtNumber(startNum)}`;
     }else if(gainNum!==0){
