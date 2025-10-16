@@ -415,6 +415,28 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-levels-chip--neutral{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.24);color:var(--muted)}
 .dm-card .dm-allocation-chipline{display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center}
 .dm-card .dm-allocation-chipline:empty{display:none}
+.dm-allocation-editor .card-hd{padding:28px 28px 12px;border-bottom:1px solid var(--border);}
+.dm-allocation-editor .dm-allocation-header{display:flex;flex-direction:column;gap:6px;align-items:flex-start;}
+.dm-allocation-editor .dm-allocation-header h2{margin:0;font-size:20px;line-height:1.2;font-weight:700;color:var(--ink);}
+.dm-allocation-editor .dm-allocation-header p{margin:0;font-size:14px;color:var(--muted);}
+.dm-allocation-editor .card-bd{padding:0 28px 28px;}
+.dm-allocation-form{display:flex;flex-direction:column;gap:20px;}
+.dm-allocation-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.dm-allocation-form .field-group{display:flex;flex-direction:column;gap:6px;}
+.dm-allocation-form label{font-weight:600;font-size:13px;color:var(--muted);}
+.dm-allocation-form input,.dm-allocation-form select,.dm-allocation-form textarea{border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;line-height:1.4;background:#fff;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);}
+.dm-allocation-form input:focus,.dm-allocation-form select:focus,.dm-allocation-form textarea:focus{outline:none;border-color:rgba(26,115,232,.45);box-shadow:0 0 0 3px rgba(26,115,232,.12);}
+.dm-allocation-form textarea{min-height:96px;resize:vertical;}
+.dm-allocation-form .field-group.full-width{grid-column:1/-1;}
+.dm-allocation-summary-actions{display:flex;justify-content:flex-end;gap:10px;}
+.dm-allocation-summary-actions .btn{align-self:flex-start;}
+.dm-allocation-inline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.dm-allocation-inline .checkbox-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);}
+.dm-allocation-inline input[type="checkbox"]{width:auto;height:auto;}
+.dm-allocation-error{color:var(--danger);font-size:13px;min-height:18px;}
+.dm-allocation-error:empty{display:none;}
+.dm-allocation-actions{display:flex;justify-content:flex-end;gap:12px;}
+.dm-allocation-hint{font-size:12px;color:var(--muted);}
 .dm-card .dm-card-metric--hours{background:rgba(59,130,246,.16)}
 .dm-card .dm-card-metric--bonus{background:rgba(34,197,94,.18)}
 .dm-card .dm-card-metric--levels{background:rgba(249,115,22,.18)}
@@ -2144,6 +2166,541 @@ function dispatchDmNewEntry(type){
   window.dispatchEvent(new CustomEvent('dm:new-entry',{detail:{type}}));
 }
 
+const DM_SEASON_DATALIST_ID='dm-allocation-season-options';
+
+function getKnownDmSeasonLabels(){
+  const seasons=new Set();
+  if(DM_DATA && DM_DATA.seasonal && typeof DM_DATA.seasonal==='object'){
+    Object.keys(DM_DATA.seasonal).forEach(label=>{
+      const normalized=dmNormalizeSeasonLabel(label);
+      if(normalized) seasons.add(normalized);
+    });
+  }
+  if(Array.isArray(DM_ENTRIES)){
+    DM_ENTRIES.forEach(entry=>{
+      if(entry && entry.season){
+        const normalized=dmNormalizeSeasonLabel(entry.season);
+        if(normalized) seasons.add(normalized);
+      }
+    });
+  }
+  if(DATA && Array.isArray(DATA.dm_allocations)){
+    DATA.dm_allocations.forEach(alloc=>{
+      if(alloc && alloc.season){
+        const normalized=dmNormalizeSeasonLabel(alloc.season);
+        if(normalized) seasons.add(normalized);
+      }
+    });
+  }
+  return Array.from(seasons).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'}));
+}
+
+function createDmAllocationId(){
+  const ts=Date.now().toString(36);
+  const rand=Math.random().toString(36).slice(2,8);
+  return `dmAlloc_${ts}_${rand}`;
+}
+
+function parseDmAllocationList(value){
+  if(value==null) return [];
+  const text=String(value).replace(/\r\n?/g,'\n').trim();
+  if(!text) return [];
+  return text.split(/[\n;,•]+/).map(item=>item.trim()).filter(Boolean);
+}
+
+function buildDmAllocationSummaryText({charName='',items=[],consumables=[],gifts=[],gp=null,dtd=null,levels=null}){
+  const parts=[];
+  [...items,...consumables,...gifts].forEach(item=>{ if(item) parts.push(item); });
+  if(Number.isFinite(gp) && gp!==0){
+    const formatted=fmtNumber(Math.abs(gp));
+    const label=gp>=0?`${formatted} gp`:`-${formatted} gp`;
+    parts.push(label);
+  }
+  if(Number.isFinite(dtd) && dtd!==0){
+    const formatted=fmtNumber(Math.abs(dtd));
+    const label=dtd>=0?`${formatted} DTD`:`-${formatted} DTD`;
+    parts.push(label);
+  }
+  if(Number.isFinite(levels) && levels>0){
+    const formatted=fmtNumber(levels);
+    parts.push(levels===1?'Level':`Levels (x${formatted})`);
+  }
+  let summary=parts.join(' + ');
+  if(charName){
+    if(summary){
+      summary+=` to ${charName}`;
+    }else{
+      summary=`Reward to ${charName}`;
+    }
+  }
+  return summary;
+}
+
+function resolveDefaultDmSeason(){
+  if(Array.isArray(DM_ENTRIES) && DM_ENTRIES.length){
+    const latest=DM_ENTRIES.find(entry=>entry && entry.season);
+    if(latest && latest.season){
+      return dmNormalizeSeasonLabel(latest.season);
+    }
+  }
+  const knownSeasons=getKnownDmSeasonLabels();
+  return knownSeasons.length?knownSeasons[0]:'';
+}
+
+function openNewDmAllocationModal(){
+  if(!DATA || !DATA.characters){
+    window.alert('Character data must be loaded before creating a DM allocation.');
+    return;
+  }
+  const characterKeys=Object.keys(DATA.characters||{});
+  if(!characterKeys.length){
+    window.alert('Add a character before creating a DM allocation.');
+    return;
+  }
+  ensureDerivedStores();
+  closeAddMenu();
+
+  const card=document.createElement('article');
+  card.className='card overlay-card dm-allocation-editor';
+  card.setAttribute('role','dialog');
+  card.setAttribute('aria-modal','true');
+  card.setAttribute('aria-label','New DM reward allocation');
+
+  const header=document.createElement('div');
+  header.className='card-hd';
+  const headerContent=document.createElement('div');
+  headerContent.className='dm-allocation-header';
+  const title=document.createElement('h2');
+  title.textContent='New DM reward allocation';
+  const subtitle=document.createElement('p');
+  subtitle.textContent='Creates a DM log entry and adds a DM reward to the selected character.';
+  headerContent.append(title,subtitle);
+  header.appendChild(headerContent);
+  card.appendChild(header);
+
+  const body=document.createElement('div');
+  body.className='card-bd';
+  const form=document.createElement('form');
+  form.className='dm-allocation-form';
+  form.noValidate=true;
+
+  const grid=document.createElement('div');
+  grid.className='dm-allocation-grid';
+  form.appendChild(grid);
+
+  const charGroup=document.createElement('div');
+  charGroup.className='field-group';
+  const charLabel=document.createElement('label'); charLabel.textContent='Character';
+  charLabel.setAttribute('for','dmAllocationCharacter');
+  const charSelect=document.createElement('select');
+  charSelect.id='dmAllocationCharacter';
+  charSelect.required=true;
+  const placeholderOption=document.createElement('option');
+  placeholderOption.value='';
+  placeholderOption.textContent='Select a character';
+  charSelect.appendChild(placeholderOption);
+  const charOptions=characterKeys.map(key=>({ key, name:getCharacterDisplayName(key)||key }))
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  charOptions.forEach(({key,name})=>{
+    const opt=document.createElement('option');
+    opt.value=key;
+    opt.textContent=name;
+    charSelect.appendChild(opt);
+  });
+  const defaultChar=(charSel && isValidSheetKey(charSel.value) && !isDmLogKey(charSel.value))?charSel.value:'';
+  if(defaultChar){
+    charSelect.value=defaultChar;
+  }
+  charGroup.append(charLabel,charSelect);
+  grid.appendChild(charGroup);
+
+  const seasonGroup=document.createElement('div');
+  seasonGroup.className='field-group';
+  const seasonLabel=document.createElement('label'); seasonLabel.textContent='Season';
+  seasonLabel.setAttribute('for','dmAllocationSeason');
+  const seasonInput=document.createElement('input');
+  seasonInput.type='text';
+  seasonInput.id='dmAllocationSeason';
+  seasonInput.placeholder='e.g. Season 13a';
+  seasonInput.setAttribute('list', DM_SEASON_DATALIST_ID);
+  const defaultSeason=resolveDefaultDmSeason();
+  if(defaultSeason){ seasonInput.value=defaultSeason; }
+  seasonGroup.append(seasonLabel, seasonInput);
+  grid.appendChild(seasonGroup);
+
+  let seasonList=document.getElementById(DM_SEASON_DATALIST_ID);
+  if(seasonList){ seasonList.remove(); }
+  seasonList=document.createElement('datalist');
+  seasonList.id=DM_SEASON_DATALIST_ID;
+  getKnownDmSeasonLabels().forEach(label=>{
+    const option=document.createElement('option');
+    option.value=label;
+    seasonList.appendChild(option);
+  });
+
+  const dateGroup=document.createElement('div');
+  dateGroup.className='field-group';
+  const dateLabel=document.createElement('label'); dateLabel.textContent='Date';
+  dateLabel.setAttribute('for','dmAllocationDate');
+  const dateInput=document.createElement('input');
+  dateInput.type='date';
+  dateInput.id='dmAllocationDate';
+  try{ dateInput.value=new Date().toISOString().slice(0,10); }
+  catch(err){ /* ignore */ }
+  dateGroup.append(dateLabel,dateInput);
+  grid.appendChild(dateGroup);
+
+  const locationGroup=document.createElement('div');
+  locationGroup.className='field-group';
+  const locationLabel=document.createElement('label'); locationLabel.textContent='Location (optional)';
+  locationLabel.setAttribute('for','dmAllocationLocation');
+  const locationInput=document.createElement('input');
+  locationInput.type='text';
+  locationInput.id='dmAllocationLocation';
+  locationInput.placeholder='Table, store, or event name';
+  locationGroup.append(locationLabel,locationInput);
+  grid.appendChild(locationGroup);
+
+  const costGroup=document.createElement('div');
+  costGroup.className='field-group';
+  const costLabel=document.createElement('label'); costLabel.textContent='Seasonal cost (hours spent)';
+  costLabel.setAttribute('for','dmAllocationCost');
+  const costInput=document.createElement('input');
+  costInput.type='number';
+  costInput.step='any';
+  costInput.min='0';
+  costInput.id='dmAllocationCost';
+  costInput.placeholder='Optional';
+  costGroup.append(costLabel,costInput);
+  grid.appendChild(costGroup);
+
+  const gpGroup=document.createElement('div');
+  gpGroup.className='field-group';
+  const gpLabel=document.createElement('label'); gpLabel.textContent='Gold (gp)';
+  gpLabel.setAttribute('for','dmAllocationGold');
+  const gpInput=document.createElement('input');
+  gpInput.type='number';
+  gpInput.step='any';
+  gpInput.id='dmAllocationGold';
+  gpInput.placeholder='Positive values award GP';
+  gpGroup.append(gpLabel,gpInput);
+  grid.appendChild(gpGroup);
+
+  const dtdGroup=document.createElement('div');
+  dtdGroup.className='field-group';
+  const dtdLabel=document.createElement('label'); dtdLabel.textContent='Downtime (DTD)';
+  dtdLabel.setAttribute('for','dmAllocationDtd');
+  const dtdInput=document.createElement('input');
+  dtdInput.type='number';
+  dtdInput.step='any';
+  dtdInput.id='dmAllocationDtd';
+  dtdInput.placeholder='Positive values award DTD';
+  dtdGroup.append(dtdLabel,dtdInput);
+  grid.appendChild(dtdGroup);
+
+  const levelsGroup=document.createElement('div');
+  levelsGroup.className='field-group';
+  const levelsLabel=document.createElement('label'); levelsLabel.textContent='Levels granted';
+  levelsLabel.setAttribute('for','dmAllocationLevels');
+  const levelsWrap=document.createElement('div');
+  levelsWrap.className='dm-allocation-inline';
+  const levelsInput=document.createElement('input');
+  levelsInput.type='number';
+  levelsInput.step='1';
+  levelsInput.min='0';
+  levelsInput.id='dmAllocationLevels';
+  levelsInput.placeholder='0';
+  const earnLevelWrap=document.createElement('label');
+  earnLevelWrap.className='checkbox-label';
+  const earnLevelInput=document.createElement('input');
+  earnLevelInput.type='checkbox';
+  earnLevelInput.id='dmAllocationEarnLevel';
+  earnLevelWrap.append(earnLevelInput,document.createTextNode('Earns DM level back'));
+  levelsWrap.append(levelsInput,earnLevelWrap);
+  levelsGroup.append(levelsLabel,levelsWrap);
+  grid.appendChild(levelsGroup);
+
+  const itemsGroup=document.createElement('div');
+  itemsGroup.className='field-group full-width';
+  const itemsLabel=document.createElement('label'); itemsLabel.textContent='Magic items (one per line)';
+  itemsLabel.setAttribute('for','dmAllocationItems');
+  const itemsArea=document.createElement('textarea');
+  itemsArea.id='dmAllocationItems';
+  itemsArea.placeholder='Example: Vorpal Sword';
+  itemsGroup.append(itemsLabel,itemsArea);
+  grid.appendChild(itemsGroup);
+
+  const consumablesGroup=document.createElement('div');
+  consumablesGroup.className='field-group full-width';
+  const consumablesLabel=document.createElement('label'); consumablesLabel.textContent='Consumables (optional)';
+  consumablesLabel.setAttribute('for','dmAllocationConsumables');
+  const consumablesArea=document.createElement('textarea');
+  consumablesArea.id='dmAllocationConsumables';
+  consumablesArea.placeholder='Example: Potion of Healing';
+  consumablesGroup.append(consumablesLabel,consumablesArea);
+  grid.appendChild(consumablesGroup);
+
+  const giftsGroup=document.createElement('div');
+  giftsGroup.className='field-group full-width';
+  const giftsLabel=document.createElement('label'); giftsLabel.textContent='Supernatural gifts (optional)';
+  giftsLabel.setAttribute('for','dmAllocationGifts');
+  const giftsArea=document.createElement('textarea');
+  giftsArea.id='dmAllocationGifts';
+  giftsArea.placeholder='Example: Blessing of Protection';
+  giftsGroup.append(giftsLabel,giftsArea);
+  grid.appendChild(giftsGroup);
+
+  const notesGroup=document.createElement('div');
+  notesGroup.className='field-group full-width';
+  const notesLabel=document.createElement('label'); notesLabel.textContent='Notes (optional)';
+  notesLabel.setAttribute('for','dmAllocationNotes');
+  const notesArea=document.createElement('textarea');
+  notesArea.id='dmAllocationNotes';
+  notesArea.rows=3;
+  notesArea.placeholder='Notes that will appear on the character\'s DM reward entry.';
+  notesGroup.append(notesLabel,notesArea);
+  grid.appendChild(notesGroup);
+
+  const summaryGroup=document.createElement('div');
+  summaryGroup.className='field-group full-width';
+  const summaryLabel=document.createElement('label'); summaryLabel.textContent='Allocation summary';
+  summaryLabel.setAttribute('for','dmAllocationSummary');
+  const summaryArea=document.createElement('textarea');
+  summaryArea.id='dmAllocationSummary';
+  summaryArea.required=true;
+  summaryArea.rows=3;
+  summaryArea.placeholder='Describe the rewards allocated';
+  const summaryActions=document.createElement('div');
+  summaryActions.className='dm-allocation-summary-actions';
+  const regenerateBtn=document.createElement('button');
+  regenerateBtn.type='button';
+  regenerateBtn.className='btn small';
+  regenerateBtn.textContent='Generate summary';
+  summaryActions.appendChild(regenerateBtn);
+  summaryGroup.append(summaryLabel,summaryArea,summaryActions);
+  form.appendChild(summaryGroup);
+
+  const errorEl=document.createElement('div');
+  errorEl.className='dm-allocation-error';
+  errorEl.setAttribute('role','alert');
+  form.appendChild(errorEl);
+
+  const actions=document.createElement('div');
+  actions.className='dm-allocation-actions';
+  const cancelBtn=document.createElement('button');
+  cancelBtn.type='button';
+  cancelBtn.className='btn small';
+  cancelBtn.textContent='Cancel';
+  cancelBtn.addEventListener('click',()=>{ closeCardOverlay(); });
+  const saveBtn=document.createElement('button');
+  saveBtn.type='submit';
+  saveBtn.className='btn small primary';
+  saveBtn.textContent='Create allocation';
+  actions.append(cancelBtn,saveBtn);
+  form.appendChild(actions);
+
+  body.appendChild(form);
+  card.appendChild(body);
+  card.appendChild(seasonList);
+
+  const parseNumericInput=(input)=>{
+    const raw=(input && typeof input.value==='string')?input.value.trim():'';
+    if(!raw) return null;
+    const num=Number(raw);
+    return Number.isFinite(num)?num:null;
+  };
+
+  const generateSummary=()=>{
+    const gp=parseNumericInput(gpInput);
+    const dtd=parseNumericInput(dtdInput);
+    const levels=parseNumericInput(levelsInput);
+    return buildDmAllocationSummaryText({
+      charName:getCharacterDisplayName(charSelect.value)||'',
+      items:parseDmAllocationList(itemsArea.value),
+      consumables:parseDmAllocationList(consumablesArea.value),
+      gifts:parseDmAllocationList(giftsArea.value),
+      gp,
+      dtd,
+      levels
+    });
+  };
+
+  regenerateBtn.addEventListener('click',(event)=>{
+    event.preventDefault();
+    const nextSummary=generateSummary();
+    if(nextSummary){
+      summaryArea.value=nextSummary;
+    }
+    summaryArea.focus();
+  });
+
+  charSelect.addEventListener('change',()=>{
+    if(!summaryArea.value.trim()){
+      const nextSummary=generateSummary();
+      if(nextSummary){ summaryArea.value=nextSummary; }
+    }
+  });
+
+  if(!summaryArea.value.trim()){
+    const initialSummary=generateSummary();
+    if(initialSummary){ summaryArea.value=initialSummary; }
+  }
+
+  form.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    errorEl.textContent='';
+    const charKey=charSelect.value;
+    if(!isValidSheetKey(charKey) || isDmLogKey(charKey)){
+      errorEl.textContent='Select a character to receive the reward allocation.';
+      try{ charSelect.focus({preventScroll:true}); }
+      catch(err){ charSelect.focus(); }
+      return;
+    }
+    const summaryValue=summaryArea.value.trim();
+    if(!summaryValue){
+      errorEl.textContent='Enter an allocation summary.';
+      summaryArea.focus();
+      return;
+    }
+    const seasonValue=dmNormalizeSeasonLabel(seasonInput.value.trim());
+    const dateValue=(dateInput && dateInput.value)?dateInput.value.trim():'';
+    let rewardDate=null;
+    if(dateValue){
+      const parsed=new Date(dateValue);
+      if(!Number.isNaN(parsed.getTime())){
+        rewardDate=dateValue;
+      }
+    }
+    if(!rewardDate){
+      try{ rewardDate=new Date().toISOString().slice(0,10); }
+      catch(err){ rewardDate=''; }
+    }
+    const dmDate=rewardDate?`${rewardDate}T00:00:00`:'';
+    const locationValue=locationInput.value.trim();
+    const costValue=parseNumericInput(costInput);
+    const gpValue=parseNumericInput(gpInput);
+    const dtdValue=parseNumericInput(dtdInput);
+    const levelsValue=parseNumericInput(levelsInput);
+    const levelsGranted=Number.isFinite(levelsValue)&&levelsValue>0?levelsValue:0;
+    const permItems=parseDmAllocationList(itemsArea.value);
+    const consumables=parseDmAllocationList(consumablesArea.value);
+    const gifts=parseDmAllocationList(giftsArea.value);
+    const notesValue=notesArea.value.trim();
+    const earnLevel=!!earnLevelInput.checked;
+
+    const gpPlus=(Number.isFinite(gpValue) && gpValue>0)?gpValue:0;
+    const gpMinus=(Number.isFinite(gpValue) && gpValue<0)?Math.abs(gpValue):0;
+    const gpNet=gpPlus-gpMinus;
+    const dtdPlus=(Number.isFinite(dtdValue) && dtdValue>0)?dtdValue:0;
+    const dtdMinus=(Number.isFinite(dtdValue) && dtdValue<0)?Math.abs(dtdValue):0;
+    const dtdNet=dtdPlus-dtdMinus;
+
+    const allocationId=createDmAllocationId();
+
+    const charObj=DATA.characters[charKey];
+    if(!charObj){
+      errorEl.textContent='Selected character could not be found.';
+      return;
+    }
+    if(!Array.isArray(charObj.adventures)){
+      charObj.adventures=[];
+    }
+
+    const rewardEntry={
+      title:levelsGranted>1?`DM Reward (x${levelsGranted})`:'DM Reward',
+      date:rewardDate||'',
+      code:'DM-REWARD',
+      dm:null,
+      gp_plus:gpPlus,
+      gp_minus:gpMinus,
+      gp_net:gpNet,
+      dtd_plus:dtdPlus,
+      dtd_minus:dtdMinus,
+      dtd_net:dtdNet,
+      level_plus:levelsGranted>0?levelsGranted:0,
+      perm_items:permItems.slice(),
+      consumable_items:consumables.slice(),
+      story_awards:[],
+      supernatural_gifts:gifts.slice(),
+      notes:notesValue||summaryValue,
+      kind:'Downtime Activity',
+      __charKey:charKey,
+      __dmAllocationId:allocationId
+    };
+
+    charObj.adventures.unshift(rewardEntry);
+
+    const allocationRecord={
+      id:allocationId,
+      season:seasonValue||'',
+      date:dmDate,
+      allocation:summaryValue,
+      cost:costValue!=null?costValue:null,
+      levels_plus:levelsGranted>0?levelsGranted:null,
+      levels_minus:(earnLevel && levelsGranted>0)?1:null,
+      hours:null,
+      extra_hours:null,
+      location:locationValue,
+      gp:(Number.isFinite(gpValue) && gpValue<0)?Math.abs(gpValue):null,
+      charKey:charKey,
+      reward:{
+        gp:gpNet,
+        dtd:dtdNet,
+        levels:levelsGranted,
+        perm_items:permItems.slice(),
+        consumable_items:consumables.slice(),
+        supernatural_gifts:gifts.slice(),
+        notes:notesValue||summaryValue,
+        summary:summaryValue
+      },
+      earns_level:earnLevel
+    };
+
+    const saveLabel=saveBtn.textContent;
+    saveBtn.disabled=true;
+    saveBtn.setAttribute('aria-busy','true');
+    saveBtn.textContent='Saving…';
+    try{
+      ensureDerivedStores();
+      if(!Array.isArray(DATA.dm_allocations)){
+        DATA.dm_allocations=[];
+      }
+      DATA.dm_allocations.unshift(allocationRecord);
+      registerDerivedUpdate(charKey);
+      markDirty();
+      buildDmEntries();
+      applyDataMutation(charKey);
+      closeCardOverlay();
+      const dmEntry=Array.isArray(DM_ENTRIES)?DM_ENTRIES.find(entry=>entry && entry.id===allocationId):null;
+      if(dmEntry){
+        navigateToDmAllocation(dmEntry);
+      }else{
+        filterAndRender();
+      }
+    }catch(err){
+      console.error('Failed to create DM allocation', err);
+      errorEl.textContent='Could not create allocation. Please try again.';
+      return;
+    }finally{
+      saveBtn.disabled=false;
+      saveBtn.removeAttribute('aria-busy');
+      saveBtn.textContent=saveLabel;
+    }
+  });
+
+  openCardOverlay(card);
+  try{ charSelect.focus({preventScroll:true}); }
+  catch(err){ charSelect.focus(); }
+}
+
+window.addEventListener('dm:new-entry',(event)=>{
+  const detail=event && event.detail;
+  if(!detail) return;
+  if(detail.type==='allocation'){
+    openNewDmAllocationModal();
+  }
+});
+
 function buildAddMenuOptions(){
   if(!charSel) return [];
   const key=charSel.value;
@@ -3642,9 +4199,18 @@ function buildDmEntries(){
   DM_ENTRIES=[];
   DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
   DM_PRE_ITEMS=[];
-  if(!DM_DATA) return;
+  const customAllocations=(DATA && Array.isArray(DATA.dm_allocations))?DATA.dm_allocations:[];
   let sortIndex=0;
   const normalizeSeason=(raw)=>dmNormalizeSeasonLabel(raw);
+  const cloneSimple=(value)=>{
+    if(value==null) return null;
+    if(typeof structuredClone==='function'){
+      try{ return structuredClone(value); }
+      catch(err){ /* fallback to JSON clone */ }
+    }
+    try{ return JSON.parse(JSON.stringify(value)); }
+    catch(err){ return null; }
+  };
   const pushEntry=(entry)=>{
     entry.__origIndex=sortIndex++;
     if(entry && typeof entry==='object'){
@@ -3738,7 +4304,7 @@ function buildDmEntries(){
     }
     DM_SUMMARY.runs+=1;
   };
-  const addAllocation=(seasonLabel, alloc)=>{
+  const addAllocation=(seasonLabel, alloc={})=>{
     const season=normalizeSeason(seasonLabel);
     const hoursVal=dmToNullableNumber(alloc.hours);
     const bonusVal=dmToNullableNumber(alloc.extra_hours);
@@ -3756,9 +4322,20 @@ function buildDmEntries(){
     ){
       levelsSpent=rawLevelsSpent;
     }
-    const effectiveCost=(parsed && parsed.downtimeSpent!=null)?parsed.downtimeSpent:baseCost;
+    let effectiveCost=baseCost;
+    if(effectiveCost==null && parsed && parsed.downtimeSpent!=null){
+      effectiveCost=parsed.downtimeSpent;
+    }
     const effectiveGold=(parsed && parsed.goldSpent!=null)?parsed.goldSpent:null;
-    const earnsLevel=allocationGrantsLevelToPool(season, allocationText, parsed);
+    let earnsLevel=allocationGrantsLevelToPool(season, allocationText, parsed);
+    if(alloc && Object.prototype.hasOwnProperty.call(alloc,'earns_level')){
+      earnsLevel=!!alloc.earns_level;
+    }
+    let levelsMinus=earnsLevel?1:null;
+    if(alloc && Object.prototype.hasOwnProperty.call(alloc,'levels_minus')){
+      const explicitMinus=dmToNullableNumber(alloc.levels_minus);
+      levelsMinus=Number.isFinite(explicitMinus)?explicitMinus:null;
+    }
     const entry={
       type:'allocation',
       season,
@@ -3766,7 +4343,7 @@ function buildDmEntries(){
       allocation:allocationText||'',
       cost:effectiveCost,
       levels_plus:levelsSpent,
-      levels_minus:earnsLevel?1:null,
+      levels_minus:levelsMinus,
       hours:hoursVal,
       extra_hours:bonusVal,
       location:alloc.location||'',
@@ -3775,23 +4352,64 @@ function buildDmEntries(){
       allocation_recipients:parsed && Array.isArray(parsed.recipients)?parsed.recipients.slice():[],
       allocation_item_tokens:parsed && Array.isArray(parsed.itemTokens)?parsed.itemTokens.slice():[]
     };
+    if(alloc && Object.prototype.hasOwnProperty.call(alloc,'id') && alloc.id!=null){
+      entry.id=alloc.id;
+    }
+    if(alloc && typeof alloc.charKey==='string' && alloc.charKey){
+      entry.charKey=alloc.charKey;
+    }
+    if(alloc && Object.prototype.hasOwnProperty.call(alloc,'reward')){
+      const clonedReward=cloneSimple(alloc.reward);
+      if(clonedReward!=null) entry.reward=clonedReward;
+    }
+    if(alloc && Object.prototype.hasOwnProperty.call(alloc,'__source')){
+      entry.__source=alloc.__source;
+    }
     pushEntry(entry);
     DM_SUMMARY.allocations+=1;
     const countsTowardHoursPool=dmDateCountsTowardHoursPool(entry.date);
     const countsTowardLevelPool=allocationSeasonEligibleForLevelAccrual(season);
     if(countsTowardHoursPool && entry.cost!=null) DM_SUMMARY.allocatedCost+=entry.cost;
     if(countsTowardLevelPool && levelsSpent!=null) DM_SUMMARY.spentLevels+=levelsSpent;
-    if(countsTowardLevelPool && earnsLevel) DM_SUMMARY.earnedLevels+=1;
+    if(countsTowardLevelPool && levelsMinus!=null){
+      DM_SUMMARY.earnedLevels+=Math.max(0, levelsMinus);
+    }else if(countsTowardLevelPool && earnsLevel){
+      DM_SUMMARY.earnedLevels+=1;
+    }
   };
-  if(Array.isArray(DM_DATA.preS11)){
-    DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
+  if(DM_DATA){
+    if(Array.isArray(DM_DATA.preS11)){
+      DM_DATA.preS11.forEach(preEntry=>addPreEntry(preEntry));
+    }
+    if(DM_DATA.seasonal && typeof DM_DATA.seasonal==='object'){
+      Object.entries(DM_DATA.seasonal).forEach(([seasonName, seasonData])=>{
+        const runs=seasonData && Array.isArray(seasonData.runs)?seasonData.runs:[];
+        runs.forEach(run=>addRun(seasonName, run));
+        const allocations=seasonData && Array.isArray(seasonData.allocations)?seasonData.allocations:[];
+        allocations.forEach(allocation=>addAllocation(seasonName, allocation));
+      });
+    }
   }
-  if(DM_DATA.seasonal && typeof DM_DATA.seasonal==='object'){
-    Object.entries(DM_DATA.seasonal).forEach(([seasonName, seasonData])=>{
-      const runs=seasonData && Array.isArray(seasonData.runs)?seasonData.runs:[];
-      runs.forEach(run=>addRun(seasonName, run));
-      const allocations=seasonData && Array.isArray(seasonData.allocations)?seasonData.allocations:[];
-      allocations.forEach(allocation=>addAllocation(seasonName, allocation));
+  if(customAllocations.length){
+    customAllocations.forEach(raw=>{
+      if(!raw || typeof raw!=='object') return;
+      const record={
+        date:raw.date||'',
+        allocation:raw.allocation||'',
+        cost:raw.cost,
+        hours:raw.hours,
+        extra_hours:raw.extra_hours,
+        levels_plus:raw.levels_plus,
+        levels_minus:raw.levels_minus,
+        location:raw.location||'',
+        gp:raw.gp,
+        id:raw.id||null,
+        charKey:raw.charKey||null,
+        reward:raw.reward||null,
+        earns_level:raw.earns_level,
+        __source:'custom'
+      };
+      addAllocation(raw.season||'', record);
     });
   }
   DM_ENTRIES.sort((a,b)=>{
@@ -4087,10 +4705,25 @@ function rebuildDmRewardLinks(){
   if(!DATA || !DATA.characters || !DM_ENTRIES || !DM_ENTRIES.length){
     return;
   }
+  DM_ENTRIES.forEach(entry=>{
+    if(entry && typeof entry==='object' && Object.prototype.hasOwnProperty.call(entry,'__directMatchAssigned')){
+      delete entry.__directMatchAssigned;
+    }
+  });
   const charEntries=Object.entries(DATA.characters);
   if(!charEntries.length) return;
 
   const itemSeasonIndex=buildAllocationItemSeasonIndex(DM_ENTRIES);
+
+  const allocationById=new Map();
+  DM_ENTRIES.forEach(entry=>{
+    if(!entry || entry.type!=='allocation') return;
+    if(entry.id!=null){
+      allocationById.set(entry.id, entry);
+    }
+  });
+
+  const assignedRewards=new Set();
 
   const fragmentOwnersLower=new Map();
   const fragmentOwnersCompact=new Map();
@@ -4163,6 +4796,17 @@ function rebuildDmRewardLinks(){
     const advs=obj && Array.isArray(obj.adventures)?obj.adventures:[];
     advs.forEach(adv=>{
       if(!isDmRewardEntry(adv)) return;
+      const allocationId=adv.__dmAllocationId || adv.dm_allocation_id || adv.dmAllocationId;
+      if(allocationId!=null && allocationById.has(allocationId)){
+        const linkedEntry=allocationById.get(allocationId);
+        if(linkedEntry){
+          DM_ALLOCATION_LINKS.set(linkedEntry,{charKey:key,adv});
+          DM_REWARD_LINKS.set(adv,{entry:linkedEntry,charKey:key});
+          assignedRewards.add(adv);
+          linkedEntry.__directMatchAssigned=true;
+        }
+        return;
+      }
       const inferredSeason=inferSeasonFromReward(adv);
       const meta={
         charKey:key,
@@ -4238,9 +4882,8 @@ function rebuildDmRewardLinks(){
     });
   });
 
-  const assignedRewards=new Set();
   DM_ENTRIES.forEach(entry=>{
-    if(!entry || entry.type!=='allocation') return;
+    if(!entry || entry.type!=='allocation' || entry.__directMatchAssigned) return;
     const allocationText=entry.allocation||'';
     if(!allocationText) return;
     const normalizedText=allocationText.toLowerCase();
@@ -7752,6 +8395,9 @@ function ensureDerivedStores(){
   if(!DATA.years || typeof DATA.years!=='object'){
     DATA.years={};
   }
+  if(!Array.isArray(DATA.dm_allocations)){
+    DATA.dm_allocations=[];
+  }
 }
 
 function updateDerivedDataFor(key){
@@ -7818,6 +8464,7 @@ function refreshAllDerivedData(){
   Object.keys(DATA.characters).forEach(key=>{
     updateDerivedDataFor(key);
   });
+  buildDmEntries();
   rebuildDmRewardLinks();
   refreshCharacterMentionIndex();
   pendingDerivedUpdates.clear();
