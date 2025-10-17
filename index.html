@@ -303,12 +303,13 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-stats.log-row-stats--mobile{margin-left:auto}
 }
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
-.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;transition:color var(--dur) var(--ease)}
+.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;--scroll-start:0px;--scroll-reset:0px;transition:color var(--dur) var(--ease)}
 .log-row-title.is-adventure .display{font-weight:700}
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
-.log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
-.log-row-date.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
-.char-toggle-text.scrollable{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
+.log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
+.log-row-date.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
+.char-toggle-text.scrollable{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
+.dm-card .dm-card-title.scrollable{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
 @media (prefers-reduced-motion:reduce){
   .log-row-title.scrollable .display{animation:none}
   .log-row-date.scrollable .display{animation:none}
@@ -368,8 +369,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-section-content .field{margin:0}
 .card-section-content .kv2{margin:0}
 @keyframes log-row-scroll{
-  0%,12%{transform:translateX(0)}
-  88%,100%{transform:translateX(calc(-1 * var(--scroll-distance)))}
+  0%{transform:translateX(var(--scroll-start,0px))}
+  8%{transform:translateX(var(--scroll-start,0px))}
+  38%{transform:translateX(0)}
+  62%{transform:translateX(calc(-1 * var(--scroll-distance)))}
+  92%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
+  100%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
 }
 .titleLine{display:flex;flex-direction:column;gap:6px}
 .date{color:var(--muted);font-size:13px;line-height:1.35}
@@ -1065,6 +1070,7 @@ const searchScopeToggleBtn = document.getElementById('searchScopeToggle');
 const activityToggleBtn = document.getElementById('activityToggle');
 const headerQuick = document.getElementById('headerQuick');
 const dmSummaryBar = document.getElementById('dmSummaryBar');
+const dmTotalsPill = document.getElementById('dmTotalsMetric');
 const dmHoursValueEl = document.getElementById('dmHoursValue');
 const dmLevelsValueEl = document.getElementById('dmLevelsValue');
 const dmItemsCountEl = document.getElementById('dmItemsCount');
@@ -1380,16 +1386,22 @@ function refreshScrollableWrapper(wrapper){
   if(!(displayEl instanceof Element)) return;
   const distance=Math.max(0,displayEl.scrollWidth-displayEl.clientWidth);
   if(distance>1){
-    const duration=Math.min(24,Math.max(7,distance/32+6));
-    const delay=Math.min(2.5,Math.max(0.8,duration/4));
+    const containerWidth=Math.max(0,wrapper.clientWidth||displayEl.clientWidth||0);
+    const gapDistance=Math.max(24,Math.min(containerWidth*0.35,96));
+    const duration=Math.min(36,Math.max(12,distance/18+12));
+    const delay=Math.min(3.2,Math.max(1.2,duration/3.8));
     displayEl.style.setProperty('--scroll-distance',distance+'px');
     displayEl.style.setProperty('--scroll-duration',duration+'s');
     displayEl.style.setProperty('--scroll-delay',delay+'s');
+    displayEl.style.setProperty('--scroll-start',containerWidth+'px');
+    displayEl.style.setProperty('--scroll-reset',gapDistance+'px');
     wrapper.classList.add('scrollable');
   }else{
     displayEl.style.removeProperty('--scroll-distance');
     displayEl.style.removeProperty('--scroll-duration');
     displayEl.style.removeProperty('--scroll-delay');
+    displayEl.style.removeProperty('--scroll-start');
+    displayEl.style.removeProperty('--scroll-reset');
     wrapper.classList.remove('scrollable');
   }
 }
@@ -1460,7 +1472,16 @@ const tickerRowRegistry=(()=>{
       container.classList.remove(row.activeClass||'ticker-active');
     }
     let needsTicker=false;
-    if(isElementVisible(left) && isElementVisible(right)){
+    const measureOverflow=(el)=>{
+      if(!el||!(el instanceof Element)) return false;
+      if(el.scrollWidth-el.clientWidth>1) return true;
+      const display=el.querySelector('.display');
+      return display instanceof Element && (display.scrollWidth-display.clientWidth>1);
+    };
+    if(measureOverflow(left)){
+      needsTicker=true;
+    }
+    if(!needsTicker && isElementVisible(left) && isElementVisible(right)){
       const leftTop=left.offsetTop;
       const rightTop=right.offsetTop;
       needsTicker=Math.abs(rightTop-leftTop)>1;
@@ -5017,13 +5038,40 @@ function updateDmSummaryBar(){
   const spent=(Number(DM_SUMMARY.allocatedCost)||0);
   const available=earned-spent;
   const levelBalance=(Number(DM_SUMMARY.earnedLevels)||0)-(Number(DM_SUMMARY.spentLevels)||0);
-  if(dmHoursValueEl){
-    dmHoursValueEl.textContent=fmtNumber(available);
-    dmHoursValueEl.setAttribute('data-value', String(available));
-  }
-  if(dmLevelsValueEl){
-    dmLevelsValueEl.textContent=fmtNumber(levelBalance);
-    dmLevelsValueEl.setAttribute('data-value', String(levelBalance));
+  const applySummaryValue=(el,label,value)=>{
+    if(!el) return '';
+    const raw=Number(value||0);
+    const num=Number.isFinite(raw)?raw:0;
+    const formatted=num>0
+      ? `+${fmtNumber(num)}`
+      : num<0
+        ? `-${fmtNumber(Math.abs(num))}`
+        : '0';
+    el.textContent=`${label} ${formatted}`;
+    el.setAttribute('data-value', String(num));
+    el.classList.remove('gain','loss','neutral');
+    if(num>0){
+      el.classList.add('gain');
+    }else if(num<0){
+      el.classList.add('loss');
+    }else{
+      el.classList.add('neutral');
+    }
+    return `${label} ${formatted}`;
+  };
+  const hoursLabel=applySummaryValue(dmHoursValueEl,'Hours',available);
+  const levelsLabel=applySummaryValue(dmLevelsValueEl,'Levels',levelBalance);
+  if(dmTotalsPill){
+    const labelParts=[hoursLabel,levelsLabel].filter(Boolean);
+    if(labelParts.length){
+      dmTotalsPill.style.display='inline-flex';
+      dmTotalsPill.setAttribute('aria-label', `Net Dungeon Master rewards — ${labelParts.join(', ')}`);
+      dmTotalsPill.setAttribute('title', labelParts.join(' · '));
+    }else{
+      dmTotalsPill.style.display='none';
+      dmTotalsPill.removeAttribute('title');
+      dmTotalsPill.removeAttribute('aria-label');
+    }
   }
   const itemCount=DM_PRE_ITEMS.length||0;
   if(dmItemsCountEl){
