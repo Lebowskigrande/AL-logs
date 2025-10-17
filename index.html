@@ -5047,7 +5047,7 @@ function updateDmSummaryBar(){
       : num<0
         ? `-${fmtNumber(Math.abs(num))}`
         : '0';
-    el.textContent=`${label} ${formatted}`;
+    el.textContent=formatted;
     el.setAttribute('data-value', String(num));
     el.classList.remove('gain','loss','neutral');
     if(num>0){
