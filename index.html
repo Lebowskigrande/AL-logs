@@ -170,11 +170,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .header-quick{margin-top:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .dm-summary{gap:24px}
 .dm-summary[hidden]{display:none}
-.dm-items-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:#fff;border-radius:12px;padding:8px 12px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.dm-items-btn{display:inline-flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease);background:transparent;border:none}
 .dm-items-btn:hover,.dm-items-btn:focus-visible{color:var(--primary);background:#eef4ff;outline:none}
 .dm-items-btn[aria-expanded="true"]{color:var(--primary);background:#eef4ff}
 .dm-items-icon img{display:block;width:24px;height:24px}
-.dm-items-count{font-weight:700;color:var(--ink)}
 .inventory-buttons{display:flex;align-items:center;gap:18px;margin-left:auto;flex-wrap:wrap}
 .inventory-link{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .inventory-link .icon svg,.inventory-link .icon img,.inventory-metric .icon svg{width:24px;height:24px;display:block}
@@ -789,6 +788,12 @@ body.avatar-overlay-open{overflow:hidden}
       </div>
       <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
         <div class="inventory-buttons">
+          <button id="dmItemsBtn" class="inventory-link dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
+            <span class="icon dm-items-icon" aria-hidden="true">
+              <img src="chest.png" alt="" width="24" height="24"/>
+            </span>
+            <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
+          </button>
           <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
             <span class="amount" id="dmHoursValue">0</span>
             <span class="text">Hours</span>
@@ -797,13 +802,6 @@ body.avatar-overlay-open{overflow:hidden}
             <span class="amount" id="dmLevelsValue">0</span>
             <span class="text">Levels</span>
           </div>
-          <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
-            <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
-            <span class="dm-items-icon" aria-hidden="true">
-              <img src="chest.png" alt="" width="24" height="24"/>
-            </span>
-            <span class="dm-items-count" id="dmItemsCount">0</span>
-          </button>
         </div>
       </div>
     </div>
@@ -1076,7 +1074,6 @@ const dmSummaryBar = document.getElementById('dmSummaryBar');
 const dmTotalsPill = document.getElementById('dmTotalsMetric');
 const dmHoursValueEl = document.getElementById('dmHoursValue');
 const dmLevelsValueEl = document.getElementById('dmLevelsValue');
-const dmItemsCountEl = document.getElementById('dmItemsCount');
 const dmItemsBtnEl = document.getElementById('dmItemsBtn');
 const dmItemsModal = document.getElementById('dmItemsModal');
 const dmItemsListEl = document.getElementById('dmItemsList');
@@ -5109,7 +5106,7 @@ function updateDmSummaryBar(){
     const raw=Number(value||0);
     const num=Number.isFinite(raw)?raw:0;
     const formatted=num>0
-      ? `+${fmtNumber(num)}`
+      ? fmtNumber(num)
       : num<0
         ? `-${fmtNumber(Math.abs(num))}`
         : '0';
@@ -5140,9 +5137,6 @@ function updateDmSummaryBar(){
     }
   }
   const itemCount=DM_PRE_ITEMS.length||0;
-  if(dmItemsCountEl){
-    dmItemsCountEl.textContent=fmtNumber(itemCount);
-  }
   if(dmItemsBtnEl){
     const label=`View unallocated pre-Season 11 magic items (${fmtNumber(itemCount)} ${itemCount===1?'item':'items'})`;
     dmItemsBtnEl.setAttribute('aria-label', label);
