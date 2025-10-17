@@ -5681,7 +5681,10 @@ function makeDmCard(entry,idx){
     metaText.className='log-row-meta-text';
     metaText.textContent=metaParts.join('  •  ');
     metaRow.appendChild(metaText);
+    metaRow.__display=metaText;
+    bindScrollableObserver(metaRow);
     headerContent.appendChild(metaRow);
+    requestAnimationFrame(()=>{ refreshScrollableWrapper(metaRow); });
   }
 
   if(metricsRow.children.length){
@@ -7564,6 +7567,8 @@ function makeCard(a,idx){
   const metaText=document.createElement('span');
   metaText.className='log-row-meta-text';
   metaSpan.appendChild(metaText);
+  metaSpan.__display=metaText;
+  bindScrollableObserver(metaSpan);
   metaDisplayEl=metaText;
 
   if(searchAllCharacters){
@@ -7597,6 +7602,7 @@ function makeCard(a,idx){
   main.appendChild(info);
 
   metaDisplayEl.textContent=buildHeaderMeta(a);
+  refreshScrollableWrapper(metaSpan);
 
   const ensureTag=(label,className)=>{
     const tag=document.createElement('span');
@@ -7707,6 +7713,7 @@ function makeCard(a,idx){
   requestAnimationFrame(()=>{
     refreshScrollableWrapper(nameSpan);
     refreshScrollableWrapper(dateSpan);
+    refreshScrollableWrapper(metaSpan);
   });
 
   setupTickerRow(headerMain,nameSpan,dateStatsRow,{
@@ -7999,6 +8006,7 @@ function makeCard(a,idx){
     metaEntry.dm=controls.dm.value;
     metaEntry.kind=(controls.kind.value||'adventure')==='adventure'?'adventure':'activity';
     metaDisplayEl.textContent=buildHeaderMeta(metaEntry);
+    refreshScrollableWrapper(metaSpan);
   };
   if(controls.code){ controls.code.addEventListener('input',updateHeaderMeta); }
   if(controls.dm){ controls.dm.addEventListener('input',updateHeaderMeta); }
