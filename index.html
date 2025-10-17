@@ -303,15 +303,12 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-stats.log-row-stats--mobile{margin-left:auto}
 }
 .log-row-title{flex:1 1 auto;min-width:0;position:relative;overflow:hidden;display:flex;align-items:center}
-.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;--scroll-distance:0px;--scroll-duration:0s;--scroll-delay:1.2s;--scroll-start:0px;--scroll-reset:0px;transition:color var(--dur) var(--ease)}
+.log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;transition:color var(--dur) var(--ease)}
 .log-row-title.is-adventure .display{font-weight:700}
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
-.log-row-title.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
-.log-row-date.scrollable .display{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
-.char-toggle-text.scrollable{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
-.dm-card .dm-card-title.scrollable{animation:log-row-scroll var(--scroll-duration,8s) linear infinite;animation-delay:var(--scroll-delay,1.2s);text-overflow:clip}
-.scrollable-marquee{display:inline-flex;align-items:center;gap:0}
-.scrollable-marquee>.scroll-inner,.scrollable-marquee>.scroll-clone{flex:0 0 auto;white-space:nowrap}
+.log-row-title.scrollable .display,.log-row-date.scrollable .display,.char-toggle-text.scrollable,.dm-card .dm-card-title.scrollable{text-overflow:clip}
+.scrollable-marquee{display:inline-flex;align-items:center;gap:0;position:relative;overflow:hidden}
+.scrollable-marquee>.scroll-inner,.scrollable-marquee>.scroll-clone{flex:0 0 auto;white-space:nowrap;will-change:transform}
 .scrollable-marquee>.scroll-clone{pointer-events:none}
 @media (prefers-reduced-motion:reduce){
   .log-row-title.scrollable .display{animation:none}
@@ -371,14 +368,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-section--collapsible.open .card-section-toggle::after{transform:rotate(225deg)}
 .card-section-content .field{margin:0}
 .card-section-content .kv2{margin:0}
-@keyframes log-row-scroll{
-  0%{transform:translateX(var(--scroll-start,0px))}
-  8%{transform:translateX(var(--scroll-start,0px))}
-  38%{transform:translateX(0)}
-  62%{transform:translateX(calc(-1 * var(--scroll-distance)))}
-  92%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
-  100%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
-}
 .titleLine{display:flex;flex-direction:column;gap:6px}
 .date{color:var(--muted);font-size:13px;line-height:1.35}
 .title{font-weight:400;font-size:12px;line-height:1.35;white-space:normal;word-break:break-word}
@@ -444,7 +433,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-card-metric--cost{background:rgba(192,132,252,.22)}
 .dm-card .dm-card-metric--spent{background:rgba(248,113,113,.22)}
 .dm-card .dm-card-title{overflow:hidden;text-overflow:ellipsis}
-.dm-card .dm-card-title.scrollable{animation:log-row-scroll var(--scroll-duration,8s) ease-in-out infinite alternate;animation-delay:var(--scroll-delay,1.2s)}
 .dm-card .dm-card-title span{white-space:normal}
 .dm-card .dm-card-meta:empty{display:none}
 
@@ -1349,6 +1337,203 @@ const DM_HOURS_POOL_START_TS=(()=>{
 })();
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
+const marqueeAnimator=(()=>{
+  const SPEED=48;
+  const INITIAL_PAUSE=1.2;
+  const LOOP_PAUSE=0.9;
+  const states=new Map();
+  const active=new Set();
+  let rafId=null;
+  const reduceMotionQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')?window.matchMedia('(prefers-reduced-motion: reduce)'):null;
+  let prefersReduced=!!(reduceMotionQuery && reduceMotionQuery.matches);
+
+  const resetTransforms=(state)=>{
+    if(!state) return;
+    if(state.inner && state.inner.style){
+      state.inner.style.transform='';
+    }
+    if(state.clone && state.clone.style){
+      state.clone.style.transform='';
+    }
+  };
+
+  const schedule=()=>{
+    if(prefersReduced || rafId!=null || active.size===0) return;
+    rafId=requestAnimationFrame(step);
+  };
+
+  const step=(timestamp)=>{
+    rafId=null;
+    if(prefersReduced){
+      active.clear();
+      return;
+    }
+    active.forEach((state)=>{
+      advance(state,timestamp);
+      if(!state.active || !state.inner || !state.clone){
+        active.delete(state);
+      }
+    });
+    if(active.size){
+      schedule();
+    }
+  };
+
+  const advance=(state,timestamp)=>{
+    if(!state.active || !state.inner || !state.clone || state.totalWidth<=0){
+      state.active=false;
+      resetTransforms(state);
+      return;
+    }
+    if(!state.el || !state.el.isConnected){
+      state.active=false;
+      resetTransforms(state);
+      state.inner=null;
+      state.clone=null;
+      state.totalWidth=0;
+      return;
+    }
+    if(state.lastTs==null){
+      state.lastTs=timestamp;
+      apply(state);
+      return;
+    }
+    let remaining=(timestamp-state.lastTs)/1000;
+    state.lastTs=timestamp;
+    while(remaining>0){
+      if(state.pauseRemaining>0){
+        if(state.pauseRemaining>remaining){
+          state.pauseRemaining-=remaining;
+          remaining=0;
+          break;
+        }
+        remaining-=state.pauseRemaining;
+        state.pauseRemaining=0;
+      }
+      if(state.speed<=0){
+        remaining=0;
+        break;
+      }
+      const distanceToBoundary=state.totalWidth+state.offset;
+      if(distanceToBoundary<=0){
+        state.offset=0;
+        state.pauseRemaining=state.loopPause;
+        continue;
+      }
+      const timeToBoundary=distanceToBoundary/state.speed;
+      if(remaining>=timeToBoundary){
+        state.offset-=state.speed*timeToBoundary;
+        state.offset+=state.totalWidth;
+        state.pauseRemaining=state.loopPause;
+        remaining-=timeToBoundary;
+      }else{
+        state.offset-=state.speed*remaining;
+        remaining=0;
+      }
+    }
+    apply(state);
+  };
+
+  const apply=(state)=>{
+    if(!state.inner || !state.clone) return;
+    const clamped=Math.max(-state.totalWidth,Math.min(0,state.offset));
+    state.offset=clamped;
+    const translate=`translateX(${clamped}px)`;
+    state.inner.style.transform=translate;
+    state.clone.style.transform=translate;
+  };
+
+  const ensureState=(el)=>{
+    let state=states.get(el);
+    if(!state){
+      state={
+        el,
+        inner:null,
+        clone:null,
+        offset:0,
+        totalWidth:0,
+        speed:SPEED,
+        startPause:INITIAL_PAUSE,
+        loopPause:LOOP_PAUSE,
+        pauseRemaining:0,
+        lastTs:null,
+        active:false
+      };
+      states.set(el,state);
+    }
+    return state;
+  };
+
+  const activate=(el,config={})=>{
+    if(!el) return;
+    const state=ensureState(el);
+    state.inner=config.inner||null;
+    state.clone=config.clone||null;
+    state.totalWidth=Math.max(0,(config.innerWidth||0)+(config.gapDistance||0));
+    state.speed=(config.speed&&config.speed>0)?config.speed:SPEED;
+    state.startPause=(typeof config.startPause==='number'&&config.startPause>=0)?config.startPause:INITIAL_PAUSE;
+    state.loopPause=(typeof config.loopPause==='number'&&config.loopPause>=0)?config.loopPause:LOOP_PAUSE;
+    state.pauseRemaining=state.startPause;
+    state.offset=0;
+    state.lastTs=null;
+    state.active=!!(state.inner && state.clone && state.totalWidth>0);
+    if(prefersReduced || !state.active){
+      resetTransforms(state);
+      return;
+    }
+    apply(state);
+    active.add(state);
+    schedule();
+  };
+
+  const deactivate=(el)=>{
+    if(!el) return;
+    const state=states.get(el);
+    if(!state) return;
+    state.active=false;
+    state.pauseRemaining=0;
+    state.lastTs=null;
+    active.delete(state);
+    resetTransforms(state);
+    state.inner=null;
+    state.clone=null;
+    state.totalWidth=0;
+  };
+
+  const handleReduceMotionChange=(event)=>{
+    prefersReduced=!!(event && event.matches);
+    if(prefersReduced){
+      active.forEach((state)=>resetTransforms(state));
+      active.clear();
+    }else{
+      states.forEach((state)=>{
+        if(state.inner && state.clone && state.totalWidth>0){
+          state.pauseRemaining=state.startPause;
+          state.offset=0;
+          state.lastTs=null;
+          if(state.active){
+            active.add(state);
+          }
+        }
+      });
+      schedule();
+    }
+  };
+
+  if(reduceMotionQuery){
+    if(typeof reduceMotionQuery.addEventListener==='function'){
+      reduceMotionQuery.addEventListener('change',handleReduceMotionChange);
+    }else if(typeof reduceMotionQuery.addListener==='function'){
+      reduceMotionQuery.addListener(handleReduceMotionChange);
+    }
+  }
+
+  return{
+    activate,
+    deactivate
+  };
+})();
+
 const scrollableTitleRegistry=(()=>{
   const wrappers=new Set();
   let rafId=null;
@@ -1389,6 +1574,7 @@ function refreshScrollableWrapper(wrapper){
   if(!(displayEl instanceof Element)) return;
 
   const cleanupMarquee=()=>{
+    marqueeAnimator.deactivate(displayEl);
     const clone=displayEl.__marqueeClone;
     if(clone&&clone.parentNode===displayEl){
       clone.remove();
@@ -1440,14 +1626,6 @@ function refreshScrollableWrapper(wrapper){
     inner=ensureInner();
     innerWidth=inner.scrollWidth;
     const gapDistance=Math.max(24,Math.min(containerWidth*0.35,96));
-    const resetDistance=gapDistance+containerWidth;
-    const duration=Math.min(36,Math.max(12,overflowDistance/18+12));
-    const delay=Math.min(3.2,Math.max(1.2,duration/3.8));
-    displayEl.style.setProperty('--scroll-distance',overflowDistance+'px');
-    displayEl.style.setProperty('--scroll-duration',duration+'s');
-    displayEl.style.setProperty('--scroll-delay',delay+'s');
-    displayEl.style.setProperty('--scroll-start',containerWidth+'px');
-    displayEl.style.setProperty('--scroll-reset',resetDistance+'px');
     const replacement=inner.cloneNode(true);
     replacement.classList.add('scroll-clone');
     replacement.setAttribute('aria-hidden','true');
@@ -1461,12 +1639,13 @@ function refreshScrollableWrapper(wrapper){
     displayEl.__marqueeClone=replacement;
     displayEl.classList.add('scrollable-marquee');
     wrapper.classList.add('scrollable');
+    marqueeAnimator.activate(displayEl,{
+      inner,
+      clone:replacement,
+      innerWidth,
+      gapDistance
+    });
   }else{
-    displayEl.style.removeProperty('--scroll-distance');
-    displayEl.style.removeProperty('--scroll-duration');
-    displayEl.style.removeProperty('--scroll-delay');
-    displayEl.style.removeProperty('--scroll-start');
-    displayEl.style.removeProperty('--scroll-reset');
     cleanupMarquee();
     wrapper.classList.remove('scrollable');
   }
@@ -5422,6 +5601,8 @@ function makeDmCard(entry,idx){
   const dateEl=document.createElement('div');
   dateEl.className='dm-card-date';
   dateEl.textContent=fmtDate(entry.date);
+  dateEl.__display=dateEl;
+  bindScrollableObserver(dateEl);
   topMeta.appendChild(dateEl);
 
   const chips=createChipsContainer();
@@ -5480,9 +5661,15 @@ function makeDmCard(entry,idx){
       if(titleEl && typeof titleEl.__refreshScroll==='function'){
         titleEl.__refreshScroll();
       }
+      if(dateEl && typeof dateEl.__refreshScroll==='function'){
+        dateEl.__refreshScroll();
+      }
     }
   });
-  requestAnimationFrame(()=>{ refreshScrollableWrapper(titleEl); });
+  requestAnimationFrame(()=>{
+    refreshScrollableWrapper(titleEl);
+    refreshScrollableWrapper(dateEl);
+  });
   headerContent.appendChild(topRow);
 
   if(!isAllocation){
