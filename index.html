@@ -785,19 +785,23 @@ body.avatar-overlay-open{overflow:hidden}
         </div>
       </div>
       <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
-        <div class="totals-pill dm-summary-totals" id="dmTotalsMetric" role="group" aria-label="Net Dungeon Master rewards">
-          <span class="totals-pill-values">
-            <span class="totals-pill-value neutral" id="dmHoursValue">Hours 0</span>
-            <span class="totals-pill-value neutral" id="dmLevelsValue">Levels 0</span>
-          </span>
+        <div class="inventory-buttons">
+          <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
+            <span class="amount" id="dmHoursValue">0</span>
+            <span class="text">Hours</span>
+          </div>
+          <div class="inventory-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
+            <span class="amount" id="dmLevelsValue">0</span>
+            <span class="text">Levels</span>
+          </div>
+          <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
+            <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
+            <span class="dm-items-icon" aria-hidden="true">
+              <img src="chest.png" alt="" width="24" height="24"/>
+            </span>
+            <span class="dm-items-count" id="dmItemsCount">0</span>
+          </button>
         </div>
-        <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
-          <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
-          <span class="dm-items-icon" aria-hidden="true">
-            <img src="chest.png" alt="" width="24" height="24"/>
-          </span>
-          <span class="dm-items-count" id="dmItemsCount">0</span>
-        </button>
       </div>
     </div>
     <div class="sheet-card-body">
