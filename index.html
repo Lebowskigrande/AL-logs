@@ -327,7 +327,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .chip-ticker-active::before{left:0;background:linear-gradient(to right,var(--chip-ticker-fade-start),rgba(255,255,255,0))}
   .chip-ticker-active::after{right:0;background:linear-gradient(to left,var(--chip-ticker-fade-start),rgba(255,255,255,0))}
 }
-.log-row-stats .totals-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
+.totals-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.24);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
 .totals-pill-label{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--ink)}
 .totals-pill-values{display:inline-flex;align-items:center;gap:8px}
 .totals-pill-value{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
@@ -788,13 +788,11 @@ body.avatar-overlay-open{overflow:hidden}
         </div>
       </div>
       <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
-        <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
-          <span class="amount" id="dmHoursValue">0</span>
-          <span class="text">Hours</span>
-        </div>
-        <div class="inventory-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
-          <span class="amount" id="dmLevelsValue">0</span>
-          <span class="text">Levels</span>
+        <div class="totals-pill dm-summary-totals" id="dmTotalsMetric" role="group" aria-label="Net Dungeon Master rewards">
+          <span class="totals-pill-values">
+            <span class="totals-pill-value neutral" id="dmHoursValue">Hours 0</span>
+            <span class="totals-pill-value neutral" id="dmLevelsValue">Levels 0</span>
+          </span>
         </div>
         <button id="dmItemsBtn" class="dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
           <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
@@ -1071,6 +1069,7 @@ const searchScopeToggleBtn = document.getElementById('searchScopeToggle');
 const activityToggleBtn = document.getElementById('activityToggle');
 const headerQuick = document.getElementById('headerQuick');
 const dmSummaryBar = document.getElementById('dmSummaryBar');
+const dmTotalsPill = document.getElementById('dmTotalsMetric');
 const dmHoursValueEl = document.getElementById('dmHoursValue');
 const dmLevelsValueEl = document.getElementById('dmLevelsValue');
 const dmItemsCountEl = document.getElementById('dmItemsCount');
@@ -4997,13 +4996,40 @@ function updateDmSummaryBar(){
   const spent=(Number(DM_SUMMARY.allocatedCost)||0);
   const available=earned-spent;
   const levelBalance=(Number(DM_SUMMARY.earnedLevels)||0)-(Number(DM_SUMMARY.spentLevels)||0);
-  if(dmHoursValueEl){
-    dmHoursValueEl.textContent=fmtNumber(available);
-    dmHoursValueEl.setAttribute('data-value', String(available));
-  }
-  if(dmLevelsValueEl){
-    dmLevelsValueEl.textContent=fmtNumber(levelBalance);
-    dmLevelsValueEl.setAttribute('data-value', String(levelBalance));
+  const applySummaryValue=(el,label,value)=>{
+    if(!el) return '';
+    const raw=Number(value||0);
+    const num=Number.isFinite(raw)?raw:0;
+    const formatted=num>0
+      ? `+${fmtNumber(num)}`
+      : num<0
+        ? `-${fmtNumber(Math.abs(num))}`
+        : '0';
+    el.textContent=`${label} ${formatted}`;
+    el.setAttribute('data-value', String(num));
+    el.classList.remove('gain','loss','neutral');
+    if(num>0){
+      el.classList.add('gain');
+    }else if(num<0){
+      el.classList.add('loss');
+    }else{
+      el.classList.add('neutral');
+    }
+    return `${label} ${formatted}`;
+  };
+  const hoursLabel=applySummaryValue(dmHoursValueEl,'Hours',available);
+  const levelsLabel=applySummaryValue(dmLevelsValueEl,'Levels',levelBalance);
+  if(dmTotalsPill){
+    const labelParts=[hoursLabel,levelsLabel].filter(Boolean);
+    if(labelParts.length){
+      dmTotalsPill.style.display='inline-flex';
+      dmTotalsPill.setAttribute('aria-label', `Net Dungeon Master rewards — ${labelParts.join(', ')}`);
+      dmTotalsPill.setAttribute('title', labelParts.join(' · '));
+    }else{
+      dmTotalsPill.style.display='none';
+      dmTotalsPill.removeAttribute('title');
+      dmTotalsPill.removeAttribute('aria-label');
+    }
   }
   const itemCount=DM_PRE_ITEMS.length||0;
   if(dmItemsCountEl){
