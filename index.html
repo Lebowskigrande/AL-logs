@@ -370,9 +370,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card-section-content .kv2{margin:0}
 @keyframes log-row-scroll{
   0%{transform:translateX(var(--scroll-start,0px))}
-  10%{transform:translateX(0)}
-  60%{transform:translateX(calc(-1 * var(--scroll-distance)))}
-  70%{transform:translateX(calc(-1 * var(--scroll-distance)))}
+  8%{transform:translateX(var(--scroll-start,0px))}
+  38%{transform:translateX(0)}
+  62%{transform:translateX(calc(-1 * var(--scroll-distance)))}
+  92%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
   100%{transform:translateX(calc(-1 * (var(--scroll-distance) + var(--scroll-reset,0px))))}
 }
 .titleLine{display:flex;flex-direction:column;gap:6px}
@@ -1381,14 +1382,15 @@ function refreshScrollableWrapper(wrapper){
   if(!(displayEl instanceof Element)) return;
   const distance=Math.max(0,displayEl.scrollWidth-displayEl.clientWidth);
   if(distance>1){
-    const duration=Math.min(24,Math.max(7,distance/32+6));
-    const delay=Math.min(2.5,Math.max(0.8,duration/4));
     const containerWidth=Math.max(0,wrapper.clientWidth||displayEl.clientWidth||0);
+    const gapDistance=Math.max(24,Math.min(containerWidth*0.35,96));
+    const duration=Math.min(36,Math.max(12,distance/18+12));
+    const delay=Math.min(3.2,Math.max(1.2,duration/3.8));
     displayEl.style.setProperty('--scroll-distance',distance+'px');
     displayEl.style.setProperty('--scroll-duration',duration+'s');
     displayEl.style.setProperty('--scroll-delay',delay+'s');
     displayEl.style.setProperty('--scroll-start',containerWidth+'px');
-    displayEl.style.setProperty('--scroll-reset',containerWidth+'px');
+    displayEl.style.setProperty('--scroll-reset',gapDistance+'px');
     wrapper.classList.add('scrollable');
   }else{
     displayEl.style.removeProperty('--scroll-distance');
@@ -1466,7 +1468,16 @@ const tickerRowRegistry=(()=>{
       container.classList.remove(row.activeClass||'ticker-active');
     }
     let needsTicker=false;
-    if(isElementVisible(left) && isElementVisible(right)){
+    const measureOverflow=(el)=>{
+      if(!el||!(el instanceof Element)) return false;
+      if(el.scrollWidth-el.clientWidth>1) return true;
+      const display=el.querySelector('.display');
+      return display instanceof Element && (display.scrollWidth-display.clientWidth>1);
+    };
+    if(measureOverflow(left)){
+      needsTicker=true;
+    }
+    if(!needsTicker && isElementVisible(left) && isElementVisible(right)){
       const leftTop=left.offsetTop;
       const rightTop=right.offsetTop;
       needsTicker=Math.abs(rightTop-leftTop)>1;
