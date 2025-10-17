@@ -10419,30 +10419,6 @@ window.DATA = {
           "traded_item": ""
         },
         {
-          "title": "Forgotten Foes",
-          "date": "2022-06-08",
-          "code": "DDAL00-02E",
-          "dm": "Dave N.",
-          "gp_plus": 4800,
-          "gp_minus": 0,
-          "gp_net": 4800,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "perm_items": [
-            "Rod of Absorption"
-          ],
-          "consumable_items": [],
-          "story_awards": [],
-          "supernatural_gifts": [],
-          "notes": "",
-          "kind": "adventure",
-          "__charKey": "Zandarax",
-          "__levelAfter": 20,
-          "__levelAtStart": 19
-        },
-        {
           "title": "DM Reward",
           "date": "2022-06-08",
           "code": "DM-REWARD",
@@ -10463,8 +10439,8 @@ window.DATA = {
           "notes": "Gained an additional 9th level spell slot",
           "kind": "Downtime Activity",
           "__charKey": "Zandarax",
-          "__levelAfter": 19,
-          "__levelAtStart": 16
+          "__levelAfter": 20,
+          "__levelAtStart": 17
         },
         {
           "title": "Trade",
@@ -10491,8 +10467,34 @@ window.DATA = {
           "player": "",
           "character": "Morty",
           "__charKey": "Zandarax",
-          "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAfter": 17,
+          "__levelAtStart": 17
+        },
+        {
+          "title": "Forgotten Foes",
+          "date": "2022-06-07",
+          "code": "DDAL00-02E",
+          "dm": "Dave N.",
+          "gp_plus": 4800,
+          "gp_minus": 0,
+          "gp_net": 4800,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "perm_items": [
+            "Rod of Absorption"
+          ],
+          "consumable_items": [],
+          "story_awards": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "adventure",
+          "__charKey": "Zandarax",
+          "__levelAfter": 17,
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "The Darkest Vein",
@@ -20153,7 +20155,8 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-16T19:21:45.969Z",
+    "generated": "2025-10-17T20:06:55.310Z",
     "problems": []
-  }
+  },
+  "dm_allocations": []
 };
