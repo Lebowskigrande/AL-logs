@@ -5944,8 +5944,8 @@ function makeDmCard(entry,idx){
   topMeta.appendChild(dateEl);
 
   const chips=createChipsContainer();
-  const linkChip=createLinkChip?createLinkChip():null;
-  if(linkChip){ chips.appendChild(linkChip); }
+  const headerLinkChip=(!isAllocation && createLinkChip)?createLinkChip():null;
+  if(headerLinkChip){ chips.appendChild(headerLinkChip); }
 
   let hoursVal=null;
   let bonusVal=null;
@@ -6099,6 +6099,9 @@ function makeDmCard(entry,idx){
   if(isAllocation){
     if(normalizeDisplayValue(entry.allocation)){
       addField('Rewards allocated', createAllocationDetailsList(entry.allocation));
+    }
+    if(createLinkChip){
+      addField('Character reward entry', createLinkChip());
     }
     if(entry.cost!=null && !headerMetricKeys.has('cost')){ addField('Season cost', fmtNumber(entry.cost)); }
     if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
