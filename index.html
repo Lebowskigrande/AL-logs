@@ -56,7 +56,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow:hidden;backgro
 .row.ticker-active{flex-wrap:nowrap}
 .row.ticker-active .header-main{flex:1 1 auto;min-width:0;overflow:hidden}
 .sheet-card-header .row.ticker-active .header-main{overflow:visible;}
-.row.ticker-active #downloadData{flex:0 0 auto}
+.row.ticker-active #saveIndicatorWrap{flex:0 0 auto}
 .avatar{display:block;width:auto;height:72px;max-width:100%;border-radius:0;box-shadow:none;object-fit:contain}
 .avatar.avatar-hidden{display:none}
 .avatar.has-avatar{cursor:zoom-in;}
@@ -143,22 +143,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
 .icon-btn.primary:hover,.icon-btn.primary:focus-visible{background:#155ccb;border-color:#0b57d0;outline:none}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
-.download-btn{margin-left:auto;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;height:32px;padding:0 12px;border:none;border-radius:999px;background:transparent;box-shadow:none;color:var(--primary);font-weight:600;font-size:13px;line-height:1;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
-.download-btn .save-icon,.download-btn .save-spinner,.download-btn .save-success{display:none;align-items:center;justify-content:center;gap:6px}
-.download-btn .save-icon svg,.download-btn .save-icon img,.download-btn .save-spinner svg{width:20px;height:20px}
-.download-btn .save-success{letter-spacing:.01em}
-.download-btn:not(.saving):not(.success) .save-icon{display:inline-flex}
-.download-btn.saving .save-spinner{display:inline-flex}
-.download-btn.success .save-success{display:inline-flex}
-.download-btn::after{content:none}
-.download-btn:hover{color:#1257b3}
-.download-btn.dirty{color:#0b3f88;background:transparent}
-.download-btn.dirty:hover{color:#0a3572}
-.download-btn:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
-.download-btn.saving{color:var(--muted);cursor:progress}
-.download-btn.success{color:#15803d}
-.download-btn.error{color:var(--danger)}
-.download-btn .save-spinner svg{animation:save-spin 900ms linear infinite}
+.save-indicator-wrap{margin-left:auto;align-self:flex-start;display:flex;align-items:center;justify-content:flex-end;min-width:28px;position:relative}
+.save-indicator{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);opacity:0;transform:scale(.9);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none}
+.save-indicator.active{opacity:1;transform:scale(1)}
+.save-indicator svg{width:20px;height:20px;animation:save-spin 900ms linear infinite}
 
 @keyframes save-spin{
   0%{transform:rotate(0)}
@@ -724,18 +712,15 @@ body.avatar-overlay-open{overflow:hidden}
           <div id="charMeta" class="char-meta muted" aria-live="polite"></div>
           <div id="charBadges" class="char-badges" aria-live="polite"></div>
         </div>
-        <button id="downloadData" class="icon-btn download-btn" type="button" title="Save data.js" aria-label="Save data.js">
-          <span class="save-icon" aria-hidden="true">
-            <img src="save-icon.png" alt="" width="20" height="20"/>
-          </span>
-          <span class="save-spinner" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div id="saveIndicatorWrap" class="save-indicator-wrap">
+          <div id="saveIndicator" class="save-indicator" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="9" stroke-opacity=".3"/>
               <path d="M21 12a9 9 0 0 0-9-9"/>
             </svg>
-          </span>
-          <span class="save-success" aria-hidden="true">Saved</span>
-        </button>
+          </div>
+          <span id="saveStatusMessage" class="sr-only" aria-live="polite"></span>
+        </div>
       </div>
       <div class="toolbar">
         <div class="search">
@@ -1128,7 +1113,9 @@ const charSelMenu = document.getElementById('charSelMenu');
 const charSelDisplay = document.getElementById('charSelDisplay');
 const DEFAULT_CHARACTER_MENU_LABEL='Select a character';
 const avatarEl = document.getElementById('charAvatar');
-const downloadBtn = document.getElementById('downloadData');
+const saveIndicator = document.getElementById('saveIndicator');
+const saveIndicatorWrap = document.getElementById('saveIndicatorWrap');
+const saveStatusMessage = document.getElementById('saveStatusMessage');
 const qEl      = document.getElementById('q');
 const searchClearBtn = document.getElementById('qClear');
 const grid     = document.getElementById('grid');
@@ -1927,8 +1914,8 @@ if(charSelDisplay){
   bindScrollableObserver(charSelDisplay);
   requestAnimationFrame(()=>{ refreshScrollableWrapper(charSelDisplay); });
 }
-if(headerRow && headerMainEl && downloadBtn){
-  setupTickerRow(headerRow,headerMainEl,downloadBtn,{
+if(headerRow && headerMainEl){
+  setupTickerRow(headerRow,headerMainEl,saveIndicatorWrap||null,{
     onToggle:()=>{
       if(charSelDisplay && typeof charSelDisplay.__refreshScroll==='function'){
         charSelDisplay.__refreshScroll();
@@ -2066,6 +2053,7 @@ let hasLocalDraft=false;
 let draftStateApplied=false;
 let draftPersistWarningShown=false;
 let draftLoadWarningShown=false;
+let saveQueueTail=Promise.resolve();
 const pendingDerivedUpdates=new Set();
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
@@ -2449,25 +2437,25 @@ function getAllAdventureEntries(){
   return entries;
 }
 
-function updateSaveButtonState(){
-  if(!downloadBtn) return;
-  const baseLabel=pendingChanges?'Save changes to data.js':'All changes saved';
-  let label=baseLabel;
-  downloadBtn.classList.toggle('dirty',pendingChanges && !savingData);
-  downloadBtn.classList.toggle('saving',savingData);
-  downloadBtn.classList.toggle('success',!pendingChanges && lastSaveResult==='success');
-  downloadBtn.classList.toggle('error',lastSaveResult==='error');
-  downloadBtn.disabled=!!savingData;
-  downloadBtn.setAttribute('aria-busy',savingData?'true':'false');
-  if(savingData){
-    label='Saving data.js...';
-  }else if(lastSaveResult==='error'){
-    label='Last save failed — try again';
-  }else if(lastSaveResult==='success' && !pendingChanges){
-    label='Changes saved to data.js';
+function updateSaveIndicatorState(){
+  if(saveIndicator){
+    const showSpinner=!!savingData;
+    saveIndicator.classList.toggle('active',showSpinner);
+    saveIndicator.setAttribute('aria-hidden',showSpinner?'false':'true');
   }
-  downloadBtn.setAttribute('aria-label',label);
-  downloadBtn.title=label;
+  if(saveStatusMessage){
+    let message='';
+    if(savingData){
+      message='Saving changes…';
+    }else if(lastSaveResult==='error'){
+      message='Failed to save changes.';
+    }else if(lastSaveResult==='success' && !pendingChanges){
+      message='Changes saved.';
+    }else if(pendingChanges){
+      message='Unsaved changes pending.';
+    }
+    saveStatusMessage.textContent=message;
+  }
 }
 
 function setSaveResult(state){
@@ -2477,11 +2465,11 @@ function setSaveResult(state){
     saveFeedbackTimeout=setTimeout(()=>{
       if(lastSaveResult==='success'){
         lastSaveResult=null;
-        updateSaveButtonState();
+        updateSaveIndicatorState();
       }
     },2500);
   }
-  updateSaveButtonState();
+  updateSaveIndicatorState();
 }
 
 function anyModalOpen(){
@@ -2899,7 +2887,7 @@ function openNewDmAllocationModal(){
     if(initialSummary){ summaryArea.value=initialSummary; }
   }
 
-  form.addEventListener('submit',(event)=>{
+  form.addEventListener('submit',async(event)=>{
     event.preventDefault();
     errorEl.textContent='';
     const charKey=charSelect.value;
@@ -3023,16 +3011,19 @@ function openNewDmAllocationModal(){
       markDirty();
       buildDmEntries();
       applyDataMutation(charKey);
-      closeCardOverlay();
       const dmEntry=Array.isArray(DM_ENTRIES)?DM_ENTRIES.find(entry=>entry && entry.id===allocationId):null;
       if(dmEntry){
         navigateToDmAllocation(dmEntry);
       }else{
         filterAndRender();
       }
+      closeCardOverlay();
+      await saveDataJs();
     }catch(err){
       console.error('Failed to create DM allocation', err);
-      errorEl.textContent='Could not create allocation. Please try again.';
+      if(cardOverlay && cardOverlay.classList.contains('open')){
+        errorEl.textContent='Could not create allocation. Please try again.';
+      }
       return;
     }finally{
       saveBtn.disabled=false;
@@ -3233,7 +3224,7 @@ function applyDraftIfAvailable({force=false}={}){
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   hasLocalDraft=true;
-  updateSaveButtonState();
+  updateSaveIndicatorState();
   return true;
 }
 
@@ -3255,14 +3246,14 @@ function markDirty(){
   pendingChanges=true;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
-  updateSaveButtonState();
+  updateSaveIndicatorState();
 }
 function clearDirty(){
   pendingChanges=false;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   clearDataDraft();
-  updateSaveButtonState();
+  updateSaveIndicatorState();
 }
 
 function touchDataMetaTimestamp(){
@@ -3277,93 +3268,95 @@ function touchDataMetaTimestamp(){
   }
 }
 
-async function saveDataJs(options={}){
-  const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
-  if(typeof customDataJs!=='string'){
-    syncPendingDerivedData();
-    touchDataMetaTimestamp();
-  }
-  const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
-  const hadPendingChanges=pendingChanges;
-  const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
-  const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
-  const headers={
-    'content-type':'application/json',
-    ...baseHeaders,
-    ...extraHeaders
-  };
-  if(!endpoint){
-    const err=new Error('Save endpoint not configured.');
-    if(!silent){
-      window.alert(err.message);
+function saveDataJs(options={}){
+  const task=async()=>{
+    const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
+    if(typeof customDataJs!=='string'){
+      syncPendingDerivedData();
+      touchDataMetaTimestamp();
     }
-    throw err;
-  }
-  if(savingData){
-    return;
-  }
-  savingData=true;
-  updateSaveButtonState();
-  try{
-    const response=await fetch(endpoint,{
-      method:'POST',
-      headers,
-      body:JSON.stringify({ dataJs:payload })
-    });
-    const contentType=response.headers.get('content-type')||'';
-    let body=null;
-    if(contentType.includes('application/json')){
-      try{ body=await response.json(); }
-      catch(err){ body=null; }
-    }else{
-      const text=await response.text();
-      body=text?{ message:text }:null;
+    const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
+    const hadPendingChanges=pendingChanges;
+    const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
+    const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
+    const headers={
+      'content-type':'application/json',
+      ...baseHeaders,
+      ...extraHeaders
+    };
+    if(!endpoint){
+      const err=new Error('Save endpoint not configured.');
+      if(!silent){
+        window.alert(err.message);
+      }
+      throw err;
     }
-    if(!response.ok){
-      const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
-      throw new Error(message);
-    }
-    const versionForSave=String(Date.now());
-    setDataVersion(versionForSave);
-    let refreshOutcome=null;
-    let refreshError=null;
+    savingData=true;
+    updateSaveIndicatorState();
     try{
-      refreshOutcome=await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
-    }catch(err){
-      refreshError=err;
-    }
-    if(!refreshError && refreshOutcome!==false){
-      clearDirty();
-      setSaveResult('success');
-    }else{
-      if(refreshError){
-        console.warn('Unable to refresh data.js cache after save', refreshError);
+      const response=await fetch(endpoint,{
+        method:'POST',
+        headers,
+        body:JSON.stringify({ dataJs:payload })
+      });
+      const contentType=response.headers.get('content-type')||'';
+      let body=null;
+      if(contentType.includes('application/json')){
+        try{ body=await response.json(); }
+        catch(err){ body=null; }
       }else{
-        console.warn('Unable to refresh data.js cache after save');
+        const text=await response.text();
+        body=text?{ message:text }:null;
       }
-      const shouldPersistDraft=(typeof customDataJs!=='string' && DATA && typeof DATA==='object' && (hadPendingChanges || hasLocalDraft));
-      if(shouldPersistDraft){
-        persistDataDraft();
+      if(!response.ok){
+        const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
+        throw new Error(message);
       }
-      if(hadPendingChanges || hasLocalDraft || shouldPersistDraft){
-        pendingChanges=true;
-        reapplyLocalDraftAndRefresh();
-        setSaveResult(null);
+      const versionForSave=String(Date.now());
+      setDataVersion(versionForSave);
+      let refreshOutcome=null;
+      let refreshError=null;
+      try{
+        refreshOutcome=await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
+      }catch(err){
+        refreshError=err;
       }
+      if(!refreshError && refreshOutcome!==false){
+        clearDirty();
+        setSaveResult('success');
+      }else{
+        if(refreshError){
+          console.warn('Unable to refresh data.js cache after save', refreshError);
+        }else{
+          console.warn('Unable to refresh data.js cache after save');
+        }
+        const shouldPersistDraft=(typeof customDataJs!=='string' && DATA && typeof DATA==='object' && (hadPendingChanges || hasLocalDraft));
+        if(shouldPersistDraft){
+          persistDataDraft();
+        }
+        if(hadPendingChanges || hasLocalDraft || shouldPersistDraft){
+          pendingChanges=true;
+          reapplyLocalDraftAndRefresh();
+          setSaveResult(null);
+        }
+      }
+      return body;
+    }catch(err){
+      console.error('Failed to save data.js', err);
+      setSaveResult('error');
+      if(!silent){
+        const message=(err && err.message)?err.message:String(err);
+        window.alert('Failed to save data.js: '+message);
+      }
+      throw err;
+    }finally{
+      savingData=false;
+      updateSaveIndicatorState();
     }
-    return body;
-  }catch(err){
-    console.error('Failed to save data.js', err);
-    setSaveResult('error');
-    if(!silent){
-      const message=(err && err.message)?err.message:String(err);
-      window.alert('Failed to save data.js: '+message);
-    }
-    throw err;
-  }finally{
-    savingData=false;
-    updateSaveButtonState();
-  }
+  };
+  const runPromise=saveQueueTail.then(task);
+  saveQueueTail=runPromise.catch(()=>{});
+  return runPromise;
 }
 
 function showDataLoadError(message){
@@ -6483,7 +6476,7 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,p
   return entry;
 }
 
-function handleTradeSubmit(){
+async function handleTradeSubmit(){
   if(!activeTradeContext) return;
   const charKey=activeTradeContext.charKey;
   if(!isValidSheetKey(charKey)){
@@ -6574,6 +6567,11 @@ function handleTradeSubmit(){
   closeTradeModal({restoreFocus:false});
   if(context){
     openInventoryModal(context.charKey,{editing:context.wasEditing});
+  }
+  try{
+    await saveDataJs();
+  }catch(err){
+    /* saveDataJs already surfaces feedback */
   }
 }
 
@@ -6928,11 +6926,11 @@ if(tradeModal){
   });
 }
 if(tradeForm){
-  tradeForm.addEventListener('submit',(event)=>{
+  tradeForm.addEventListener('submit',async(event)=>{
     event.preventDefault();
     if(tradeSubmitBtn) tradeSubmitBtn.disabled=true;
     try{
-      handleTradeSubmit();
+      await handleTradeSubmit();
     }finally{
       if(tradeSubmitBtn) tradeSubmitBtn.disabled=false;
     }
@@ -7190,10 +7188,14 @@ function openInventoryModal(charKey, opts={}){
     deleteBtn.innerHTML=ICON_TRASH;
     deleteBtn.setAttribute('aria-label',`Remove ${label}`);
     deleteBtn.title='Remove this item';
-    deleteBtn.addEventListener('click',(ev)=>{
+    deleteBtn.addEventListener('click',async(ev)=>{
       ev.stopPropagation();
       if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
       const adv=item&&item.adv;
+      const originalPermItems=(adv&&Array.isArray(adv.perm_items))?adv.perm_items.slice():null;
+      const activeBefore=loadActive(charKey);
+      const attunedBefore=loadAttuned(charKey);
+      const commonBefore=loadCommon(charKey);
       if(adv){
         const lowerName=lower;
         const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
@@ -7204,13 +7206,33 @@ function openInventoryModal(charKey, opts={}){
         });
       }
       const lc=lower;
-      saveActive(charKey, loadActive(charKey).filter(n=>n.toLowerCase()!==lc));
-      saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lc));
-      saveCommon(charKey, loadCommon(charKey).filter(n=>n.toLowerCase()!==lc));
+      const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      saveActive(charKey,nextActive);
+      saveAttuned(charKey,nextAttuned);
+      saveCommon(charKey,nextCommon);
       registerDerivedUpdate(charKey);
       markDirty();
       applyDataMutation(charKey);
       openInventoryModal(charKey,{editing:true});
+      try{
+        await saveDataJs();
+      }catch(err){
+        if(adv){
+          if(originalPermItems){
+            adv.perm_items=originalPermItems;
+          }else{
+            delete adv.perm_items;
+          }
+        }
+        saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[]);
+        saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[]);
+        saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[]);
+        pendingDerivedUpdates.delete(charKey);
+        applyDataMutation(charKey);
+        openInventoryModal(charKey,{editing:true});
+      }
     });
     rightDiv.appendChild(deleteBtn);
 
@@ -7540,9 +7562,10 @@ function openConsumableModal(charKey){
         useBtn.className='btn small danger cons-use-btn';
         useBtn.textContent='Use';
         useBtn.disabled=total<=0;
-        const handleUse=(ev)=>{
+        const handleUse=async(ev)=>{
           ev.preventDefault();
           ev.stopPropagation();
+          const usesBefore=getConsumableUseMap(charKey).get(name)||0;
           const success=incrementConsumableUse(charKey,name);
           if(!success){
             window.alert(`No ${displayLabel} remaining to use.`);
@@ -7553,8 +7576,26 @@ function openConsumableModal(charKey){
             state.carriedList.splice(idx,1);
             saveCarriedConsumables(charKey,state.carriedList);
           }
-          setSummaryNote(`Used one ${displayLabel}. Remember to save data.js.`);
+          setSummaryNote(`Used one ${displayLabel}.`);
           renderView();
+          try{
+            await saveDataJs();
+          }catch(err){
+            const ch=DATA.characters[charKey];
+            if(ch && ch.consumable_uses && Object.prototype.hasOwnProperty.call(ch.consumable_uses,name)){
+              if(usesBefore>0){
+                ch.consumable_uses[name]=usesBefore;
+              }else{
+                delete ch.consumable_uses[name];
+              }
+              if(!Object.keys(ch.consumable_uses).length){
+                delete ch.consumable_uses;
+              }
+            }
+            pendingDerivedUpdates.delete(charKey);
+            applyDataMutation(charKey);
+            renderView();
+          }
         };
         useBtn.addEventListener('click',handleUse);
         tools.appendChild(useBtn);
@@ -9106,8 +9147,13 @@ async function saveCardChanges(card){
     markDirty();
     const mutationKey=wasNew?targetKey:charSel.value;
     let saveError=null;
+    const shouldCloseOverlay=card.classList.contains('overlay-card');
     try{
       registerDerivedUpdate(mutationKey);
+      exitEditMode(card);
+      if(shouldCloseOverlay){
+        closeCardOverlay();
+      }
       await saveDataJs();
     }catch(err){
       saveError=err;
@@ -9131,10 +9177,6 @@ async function saveCardChanges(card){
     if(Object.prototype.hasOwnProperty.call(data,'__lockedKind')){
       delete data.__lockedKind;
     }
-    exitEditMode(card);
-    if(card.classList.contains('overlay-card')){
-      closeCardOverlay();
-    }
     applyDataMutation(mutationKey);
     return true;
   }finally{
@@ -9146,7 +9188,7 @@ async function saveCardChanges(card){
   }
 }
 
-function deleteCard(card){
+async function deleteCard(card){
   if(!card||!card.__dataRef) return;
   if(card.__dataRef.__isNew){
     const confirmed=window.confirm('Discard this new entry?');
@@ -9160,10 +9202,19 @@ function deleteCard(card){
   if(idx===-1) return;
   const confirmed=window.confirm('Delete this entry?');
   if(!confirmed) return;
-  ch.adventures.splice(idx,1);
+  const [removed]=ch.adventures.splice(idx,1);
   registerDerivedUpdate(key);
   markDirty();
   applyDataMutation(key);
+  try{
+    await saveDataJs();
+  }catch(err){
+    if(removed){
+      ch.adventures.splice(idx,0,removed);
+    }
+    pendingDerivedUpdates.delete(key);
+    applyDataMutation(key);
+  }
 }
 
 function ensureDerivedStores(){
@@ -9868,7 +9919,7 @@ function initApp(){
   filterAndRender();
   scheduleAvatarPreload();
   if(pendingChanges){
-    updateSaveButtonState();
+    updateSaveIndicatorState();
   }else{
     clearDirty();
   }
@@ -9922,16 +9973,6 @@ if(!tryInitApp()){
 /* prevent accidental jump-to-top for href="#" */
 document.addEventListener('click',(e)=>{ const a=e.target.closest('a[href="#"]'); if(a) e.preventDefault(); },{passive:true});
 
-/* save data.js */
-if(downloadBtn){
-  downloadBtn.addEventListener('click',async()=>{
-    try{
-      await saveDataJs();
-    }catch(err){
-      /* saveDataJs already handles user feedback */
-    }
-  });
-}
 if(addCardBtn){
   addCardBtn.addEventListener('click',()=>{
     if(isMenuOpen(addCardMenu)){
