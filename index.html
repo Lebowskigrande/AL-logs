@@ -1028,6 +1028,36 @@ pushDiagStep('bootstrap-script-start',{
   hasDocument:typeof document!=='undefined'
 });
 
+function shouldRetryAppInit(error){
+  if(!error) return false;
+  const name=error&&error.name?String(error.name):'';
+  if(name && name!=='ReferenceError') return false;
+  const message=error&&error.message?String(error.message):String(error);
+  return message.includes('__appInitialized');
+}
+
+function scheduleAppInit({attempts=10,delay=60}={}){
+  if(typeof window==='undefined') return;
+  const invoke=()=>{
+    if(typeof window.tryInitApp!=='function') return false;
+    try{
+      return window.tryInitApp();
+    }catch(err){
+      if(shouldRetryAppInit(err)) return false;
+      throw err;
+    }
+  };
+  if(invoke()) return;
+  if(attempts<=0) return;
+  setTimeout(()=>{
+    try{
+      scheduleAppInit({attempts:attempts-1,delay});
+    }catch(err){
+      console.error('Adventure Log bootstrap retry failed', err);
+    }
+  },delay);
+}
+
 import { loadLegacyData } from './legacy-data-loader.js';
 
 async function bootstrapData(){
@@ -1052,7 +1082,7 @@ async function bootstrapData(){
       scriptEl.setAttribute('data-cache-bust', cacheBust);
       scriptEl.dispatchEvent(new Event('load'));
     }
-    tryInitApp();
+    scheduleAppInit();
   }catch(error){
     console.error('Failed to load data.js', error);
     if(DATA_BOOT_DIAG){
