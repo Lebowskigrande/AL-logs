@@ -130,8 +130,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .search input:hover{border-color:#cbd5f5}
 .search input:focus-visible{border-color:#475569}
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);margin-block:auto;width:18px;height:18px;opacity:.6}
-.search-clear{position:absolute;inset-block:0;inset-inline-end:10px;margin-block:auto;display:grid;place-items:center;width:18px;height:18px;border:none;border-radius:50%;background:transparent;color:var(--border);cursor:pointer;padding:0;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
-.search-clear svg{display:block;width:9px;height:9px;pointer-events:none}
+.search-clear{position:absolute;inset-block:0;inset-inline-end:10px;margin-block:auto;display:grid;place-items:center;width:24px;height:24px;border:none;border-radius:50%;background:transparent;color:#94a3b8;cursor:pointer;padding:0;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease)}
+.search-clear svg,.search-clear img{display:block;width:12px;height:12px;pointer-events:none;opacity:.6;filter:brightness(1.35)}
 .search-clear:hover,.search-clear:focus-visible{color:var(--primary);background:#eef4ff;outline:none}
 .toolbar .spacer{flex:1 1 auto}
 
@@ -727,9 +727,7 @@ body.avatar-overlay-open{overflow:hidden}
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
           <input id="q" placeholder="Search adventures"/>
           <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m9 9 6 6m0-6-6 6" />
-            </svg>
+            <img src="close.png" alt="" width="16" height="16" decoding="async" aria-hidden="true" />
           </button>
         </div>
         <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
