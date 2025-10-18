@@ -1,4 +1,5 @@
 window.DATA = {
+  "dm_allocations": [],
   "characters": {
     "Squelch (prequel)": {
       "sheet": "Squelch (prequel)",
@@ -7270,9 +7271,9 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 0,
+          "dtd_plus": -10,
           "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_net": -10,
           "level_plus": 0,
           "perm_items": [],
           "consumable_items": [],
@@ -7282,7 +7283,9 @@ window.DATA = {
           "kind": "adventure",
           "__charKey": "Sentient Hat",
           "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "I Xamott - Tales of the Beholder Corps",
@@ -19957,7 +19960,7 @@ window.DATA = {
     "Sentient Hat": {
       "sessions": 37,
       "net_gp": 49237,
-      "net_dtd": 262,
+      "net_dtd": 252,
       "level_ups": 15,
       "perm_count": 42,
       "cons_count": 30,
@@ -20155,8 +20158,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-17T20:06:55.310Z",
+    "generated": "2025-10-18T04:45:55.470Z",
     "problems": []
-  },
-  "dm_allocations": []
+  }
 };
