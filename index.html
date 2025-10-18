@@ -2080,6 +2080,36 @@ let adventureHistoryIdCounter=1;
 let dmHistoryIdCounter=1;
 let lastHistoryState=null;
 let suppressHistoryUpdates=false;
+const lastCharacterEntryState=new Map();
+
+function rememberLastEntryState(charKey,{entryType=null,entryId=null}={}){
+  const normalized=normalizeHistoryCharKey(charKey);
+  if(!normalized){
+    return;
+  }
+  if((entryType==='adventure'||entryType==='dm') && entryId!=null){
+    lastCharacterEntryState.set(normalized,{
+      entryType,
+      entryId:String(entryId)
+    });
+    return;
+  }
+  lastCharacterEntryState.delete(normalized);
+}
+
+function getLastEntryState(charKey){
+  const normalized=normalizeHistoryCharKey(charKey);
+  if(!normalized) return null;
+  const stored=lastCharacterEntryState.get(normalized);
+  if(!stored) return null;
+  const type=stored.entryType;
+  const id=stored.entryId;
+  if((type==='adventure'||type==='dm') && id!=null){
+    return {entryType:type,entryId:String(id)};
+  }
+  lastCharacterEntryState.delete(normalized);
+  return null;
+}
 
 function normalizeHistoryCharKey(value){
   if(!value) return '';
@@ -2183,12 +2213,25 @@ function recordHistoryState({charKey=null,entryType=null,entryId=null,replace=fa
   syncHistoryState({charKey:normalizedChar,entryType:type,entryId:id},{replace});
 }
 
-function recordCharacterView({charKey=null,replace=false}={}){
-  recordHistoryState({charKey,replace});
+function recordCharacterView({charKey=null,replace=false,clearEntryState=false}={}){
+  const normalizedChar=normalizeHistoryCharKey(charKey||getActiveCharacterKey());
+  if(clearEntryState && normalizedChar){
+    rememberLastEntryState(normalizedChar,{});
+  }
+  const entryState=(!clearEntryState && normalizedChar)?getLastEntryState(normalizedChar):null;
+  const entryType=entryState?entryState.entryType:null;
+  const entryId=entryState?entryState.entryId:null;
+  recordHistoryState({charKey:normalizedChar,entryType,entryId,replace});
 }
 
 function recordEntryView({charKey=null,entryType=null,entryId=null}={}){
-  recordHistoryState({charKey,entryType,entryId});
+  const normalizedChar=normalizeHistoryCharKey(charKey||getActiveCharacterKey());
+  const type=(entryType==='adventure'||entryType==='dm')?entryType:null;
+  const id=type && entryId!=null ? String(entryId) : null;
+  if(normalizedChar){
+    rememberLastEntryState(normalizedChar,{entryType:type,entryId:id});
+  }
+  recordHistoryState({charKey:normalizedChar,entryType:type,entryId:id,replace:true});
 }
 
 function focusEntryFromState(state,{suppressHistoryPush=false}={}){
@@ -2219,9 +2262,10 @@ function focusEntryFromState(state,{suppressHistoryPush=false}={}){
     }finally{
       suppressHistoryUpdates=prevSuppress;
     }
-    if(!suppressHistoryPush){
-      const charKey=normalizeHistoryCharKey(state.charKey||getActiveCharacterKey());
-      if(charKey){
+    const charKey=normalizeHistoryCharKey(state.charKey||getActiveCharacterKey());
+    if(charKey){
+      rememberLastEntryState(charKey,{entryType,entryId});
+      if(!suppressHistoryPush){
         recordHistoryState({charKey,entryType,entryId,replace:true});
       }
     }
@@ -2263,6 +2307,8 @@ function applyHistoryState(state){
   const activeChar=normalizeHistoryCharKey(getActiveCharacterKey())||desiredChar;
   if(wantsEntry){
     focusEntryFromState({charKey:activeChar,entryType:state.entryType,entryId:state.entryId},{suppressHistoryPush:true});
+  }else if(activeChar){
+    rememberLastEntryState(activeChar,{});
   }
   const normalized=buildHistoryState({
     charKey:activeChar,
@@ -6275,6 +6321,31 @@ function notifyCardOpened(card){
     recordCharacterView({});
   }
 }
+
+function notifyCardClosed(card){
+  if(!card || suppressHistoryUpdates) return;
+  const type=card.dataset?card.dataset.historyType:'';
+  const id=card.dataset?String(card.dataset.historyId||''):'';
+  if(!(type==='adventure'||type==='dm') || !id){
+    return;
+  }
+  let charKey='';
+  if(type==='adventure'){
+    const data=card.__dataRef||null;
+    const detected=(data&&data.__charKey)?data.__charKey:getActiveCharacterKey();
+    charKey=normalizeHistoryCharKey(detected);
+  }else if(type==='dm'){
+    charKey=normalizeHistoryCharKey(DM_LOG_KEY)||DM_LOG_KEY;
+  }
+  if(!charKey) return;
+  const stored=getLastEntryState(charKey);
+  if(!stored) return;
+  if(stored.entryType!==type || stored.entryId!==id){
+    return;
+  }
+  rememberLastEntryState(charKey,{});
+  recordCharacterView({charKey,replace:true,clearEntryState:true});
+}
 function expandCard(card){
   if(!card) return;
   const bd=card.querySelector('.card-bd');
@@ -6333,6 +6404,10 @@ function collapseCard(card){
   if(!card) return;
   const bd=card.querySelector('.card-bd');
   if(!bd) return;
+  const wasOpen=card.classList.contains('open');
+  if(wasOpen){
+    notifyCardClosed(card);
+  }
   if(isAnimating(card)) cancelCardAnimation(card);
   const start=Math.max(0,bd.offsetHeight||bd.scrollHeight||0);
   const duration=setCardDuration(bd,start);
