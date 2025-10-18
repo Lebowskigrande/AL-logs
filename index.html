@@ -2070,6 +2070,226 @@ const STORAGE_KEYS={
   searchAll:'al_logs_search_all_characters'
 };
 
+const HISTORY_STATE_VERSION=1;
+const historySupported=(typeof window!=='undefined' && window.history && typeof window.history.replaceState==='function');
+const adventureHistoryIds=new WeakMap();
+const dmHistoryIds=new WeakMap();
+const adventureHistoryLookup=new Map();
+const dmHistoryLookup=new Map();
+let adventureHistoryIdCounter=1;
+let dmHistoryIdCounter=1;
+let lastHistoryState=null;
+let suppressHistoryUpdates=false;
+
+function normalizeHistoryCharKey(value){
+  if(!value) return '';
+  const text=String(value);
+  if(isValidSheetKey(text) || isDmLogKey(text)){
+    return text;
+  }
+  return '';
+}
+
+function getAdventureHistoryId(adv,charKey){
+  if(!adv||typeof adv!=='object') return null;
+  let id=adventureHistoryIds.get(adv);
+  if(!id){
+    id=`adv_${(adventureHistoryIdCounter++).toString(36)}`;
+    adventureHistoryIds.set(adv,id);
+  }
+  const storedChar=charKey!=null?String(charKey):((adventureHistoryLookup.get(id)&&adventureHistoryLookup.get(id).charKey)||'');
+  adventureHistoryLookup.set(id,{adv,charKey:storedChar});
+  return id;
+}
+
+function getDmHistoryId(entry){
+  if(!entry||typeof entry!=='object') return null;
+  let id=dmHistoryIds.get(entry);
+  if(!id){
+    id=`dm_${(dmHistoryIdCounter++).toString(36)}`;
+    dmHistoryIds.set(entry,id);
+  }
+  dmHistoryLookup.set(id,{entry});
+  return id;
+}
+
+function buildHistoryState({charKey,entryType=null,entryId=null}={}){
+  return {
+    v:HISTORY_STATE_VERSION,
+    charKey:charKey?String(charKey):'',
+    entryType:(entryType==='adventure'||entryType==='dm')?entryType:null,
+    entryId:(entryId!=null)?String(entryId):null
+  };
+}
+
+function historyStatesEqual(a,b){
+  if(a===b) return true;
+  if(!a||!b) return false;
+  return a.charKey===b.charKey && a.entryType===b.entryType && a.entryId===b.entryId;
+}
+
+function historyUrlForState(state){
+  if(typeof window==='undefined') return '';
+  const params=new URLSearchParams();
+  const normalizedChar=normalizeHistoryCharKey(state&&state.charKey);
+  if(normalizedChar){
+    params.set('char', normalizedChar);
+  }
+  const type=(state&&state.entryType)&&((state.entryType==='adventure'||state.entryType==='dm')?state.entryType:null);
+  const id=(state&&state.entryId!=null)?String(state.entryId):'';
+  if(type&&id){
+    params.set('entry', id);
+    params.set('type', type);
+  }
+  const hash=params.toString();
+  const url=new URL(window.location.href);
+  url.hash=hash?`#${hash}`:'';
+  return url.pathname+url.search+(hash?`#${hash}`:'');
+}
+
+function syncHistoryState(state,{replace=false}={}){
+  if(!historySupported) return;
+  const normalizedChar=normalizeHistoryCharKey(state&&state.charKey);
+  const type=(state&&state.entryType)&&((state.entryType==='adventure'||state.entryType==='dm')?state.entryType:null);
+  const id=type&&(state&&state.entryId!=null)?String(state.entryId):null;
+  if(!normalizedChar && !id){
+    return;
+  }
+  const nextState=buildHistoryState({charKey:normalizedChar,entryType:type,entryId:id});
+  if(!replace && historyStatesEqual(lastHistoryState,nextState)){
+    return;
+  }
+  const url=historyUrlForState(nextState);
+  if(replace || !lastHistoryState){
+    window.history.replaceState(nextState,'',url);
+  }else{
+    window.history.pushState(nextState,'',url);
+  }
+  lastHistoryState=nextState;
+}
+
+function getActiveCharacterKey(){
+  return (charSel && typeof charSel.value==='string')?charSel.value:'';
+}
+
+function recordHistoryState({charKey=null,entryType=null,entryId=null,replace=false}={}){
+  if(suppressHistoryUpdates) return;
+  const normalizedChar=normalizeHistoryCharKey(charKey||getActiveCharacterKey());
+  const type=(entryType==='adventure'||entryType==='dm')?entryType:null;
+  const id=type && entryId!=null ? String(entryId) : null;
+  if(!normalizedChar && !id){
+    return;
+  }
+  syncHistoryState({charKey:normalizedChar,entryType:type,entryId:id},{replace});
+}
+
+function recordCharacterView({charKey=null,replace=false}={}){
+  recordHistoryState({charKey,replace});
+}
+
+function recordEntryView({charKey=null,entryType=null,entryId=null}={}){
+  recordHistoryState({charKey,entryType,entryId});
+}
+
+function focusEntryFromState(state,{suppressHistoryPush=false}={}){
+  if(!state||!state.entryType||state.entryId==null) return;
+  const entryType=(state.entryType==='adventure'||state.entryType==='dm')?state.entryType:null;
+  if(!entryType) return;
+  const entryId=String(state.entryId);
+  requestAnimationFrame(()=>{
+    let card=null;
+    if(entryType==='adventure'){
+      const meta=adventureHistoryLookup.get(entryId);
+      const adv=meta?meta.adv:null;
+      if(adv){
+        card=findCharacterCardFor(adv);
+      }
+    }else if(entryType==='dm'){
+      const meta=dmHistoryLookup.get(entryId);
+      const entry=meta?meta.entry:null;
+      if(entry){
+        card=findDmCardFor(entry);
+      }
+    }
+    if(!card) return;
+    const prevSuppress=suppressHistoryUpdates;
+    suppressHistoryUpdates=true;
+    try{
+      focusCardElement(card,{expand:true});
+    }finally{
+      suppressHistoryUpdates=prevSuppress;
+    }
+    if(!suppressHistoryPush){
+      const charKey=normalizeHistoryCharKey(state.charKey||getActiveCharacterKey());
+      if(charKey){
+        recordHistoryState({charKey,entryType,entryId,replace:true});
+      }
+    }
+  });
+}
+
+function parseHistoryStateFromLocation(){
+  if(typeof window==='undefined') return null;
+  const hash=window.location.hash||'';
+  if(hash.length<=1) return null;
+  const params=new URLSearchParams(hash.slice(1));
+  const charKey=params.get('char')||'';
+  const entryId=params.get('entry');
+  const entryType=params.get('type');
+  return buildHistoryState({
+    charKey,
+    entryType:(entryType==='adventure'||entryType==='dm')?entryType:null,
+    entryId:entryId!=null?entryId:null
+  });
+}
+
+function applyHistoryState(state){
+  if(!state) return;
+  const desiredChar=normalizeHistoryCharKey(state.charKey);
+  const wantsEntry=(state.entryType==='adventure'||state.entryType==='dm') && state.entryId!=null;
+  suppressHistoryUpdates=true;
+  try{
+    clearSearchForNavigation();
+    if(wantsEntry && state.entryType==='adventure'){
+      ensureActivitiesVisible();
+    }
+    if(desiredChar && charSel && charSel.value!==desiredChar){
+      charSel.value=desiredChar;
+    }
+    filterAndRender();
+  }finally{
+    suppressHistoryUpdates=false;
+  }
+  const activeChar=normalizeHistoryCharKey(getActiveCharacterKey())||desiredChar;
+  if(wantsEntry){
+    focusEntryFromState({charKey:activeChar,entryType:state.entryType,entryId:state.entryId},{suppressHistoryPush:true});
+  }
+  const normalized=buildHistoryState({
+    charKey:activeChar,
+    entryType:wantsEntry?state.entryType:null,
+    entryId:wantsEntry?state.entryId:null
+  });
+  lastHistoryState=normalized;
+  if(historySupported){
+    const url=historyUrlForState(normalized);
+    window.history.replaceState(normalized,'',url);
+  }
+}
+
+if(historySupported){
+  window.addEventListener('popstate',(event)=>{
+    const state=(event&&event.state&&event.state.v===HISTORY_STATE_VERSION)?event.state:null;
+    if(state){
+      applyHistoryState(state);
+    }else{
+      const fallback=parseHistoryStateFromLocation();
+      if(fallback){
+        applyHistoryState(fallback);
+      }
+    }
+  });
+}
+
 function hasDmLogData(){
   return !!DM_DATA;
 }
@@ -5624,6 +5844,11 @@ function makeDmCard(entry,idx){
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
+  const dmHistoryId=getDmHistoryId(entry);
+  if(dmHistoryId){
+    card.dataset.historyId=dmHistoryId;
+    card.dataset.historyType='dm';
+  }
   const linkMeta=(DM_ALLOCATION_LINKS && DM_ALLOCATION_LINKS.get(entry))||null;
   let createLinkChip=null;
   if(linkMeta && linkMeta.adv){
@@ -6012,10 +6237,36 @@ function animateMenuClose(menu,callback){
   menu.dataset.menuState='closing';
   afterTransition(menu,'opacity',MENU_TRANSITION_MS+80,finalize);
 }
+function notifyCardOpened(card){
+  if(!card || suppressHistoryUpdates) return;
+  const type=card.dataset?card.dataset.historyType:'';
+  const id=card.dataset?card.dataset.historyId:'';
+  if(type && id){
+    if(type==='adventure'){
+      const data=card.__dataRef||null;
+      const charKey=normalizeHistoryCharKey((data&&data.__charKey)?data.__charKey:getActiveCharacterKey());
+      if(charKey){
+        recordEntryView({charKey,entryType:type,entryId:id});
+      }
+    }else if(type==='dm'){
+      const charKey=normalizeHistoryCharKey(DM_LOG_KEY)||DM_LOG_KEY;
+      recordEntryView({charKey,entryType:type,entryId:id});
+    }else{
+      recordCharacterView({});
+    }
+    return;
+  }
+  if(card.__dmEntry){
+    recordCharacterView({charKey:DM_LOG_KEY});
+  }else{
+    recordCharacterView({});
+  }
+}
 function expandCard(card){
   if(!card) return;
   const bd=card.querySelector('.card-bd');
   if(!bd) return;
+  const wasOpen=card.classList.contains('open');
   if(isAnimating(card)) cancelCardAnimation(card);
   const start=Math.max(0,bd.offsetHeight||0);
   const target=Math.max(bd.scrollHeight,start);
@@ -6023,6 +6274,9 @@ function expandCard(card){
   bd.style.height=start+'px';
   bd.style.opacity='0';
   card.classList.add('open');
+  if(!wasOpen){
+    notifyCardOpened(card);
+  }
   void bd.offsetHeight;
   const duration=setCardDuration(bd,target);
   setAnimating(card,true);
@@ -6169,15 +6423,17 @@ function findDmCardFor(entry){
 }
 
 function navigateToCharacterReward(charKey, adv){
-  if(!charKey || !adv || !charSel){
+  const targetKey=normalizeHistoryCharKey(charKey);
+  if(!targetKey || !adv || !charSel){
     return;
   }
   clearSearchForNavigation();
   ensureActivitiesVisible();
-  if(charSel.value!==charKey){
-    charSel.value=charKey;
+  if(charSel.value!==targetKey){
+    charSel.value=targetKey;
   }
   filterAndRender();
+  recordCharacterView({charKey:targetKey});
   requestAnimationFrame(()=>{
     const card=findCharacterCardFor(adv);
     if(card){
@@ -6187,14 +6443,16 @@ function navigateToCharacterReward(charKey, adv){
 }
 
 function navigateToCharacter(charKey){
-  if(!charKey || !charSel){
+  const targetKey=normalizeHistoryCharKey(charKey);
+  if(!targetKey || !charSel){
     return;
   }
   clearSearchForNavigation();
-  if(charSel.value!==charKey){
-    charSel.value=charKey;
+  if(charSel.value!==targetKey){
+    charSel.value=targetKey;
   }
   filterAndRender();
+  recordCharacterView({charKey:targetKey});
 }
 
 function navigateToDmAllocation(entry){
@@ -6206,6 +6464,7 @@ function navigateToDmAllocation(entry){
     charSel.value=DM_LOG_KEY;
   }
   filterAndRender();
+  recordCharacterView({charKey:DM_LOG_KEY});
   requestAnimationFrame(()=>{
     const card=findDmCardFor(entry);
     if(card){
@@ -7979,6 +8238,11 @@ function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
   const card=document.createElement('article'); card.className='card'+(act?' activity':''); card.dataset.idx=String(idx);
   card.__dataRef=a;
+  const historyId=getAdventureHistoryId(a,a&&a.__charKey?a.__charKey:null);
+  if(historyId){
+    card.dataset.historyId=historyId;
+    card.dataset.historyType='adventure';
+  }
   const lockedKind=(a && a.__lockedKind)?String(a.__lockedKind):'';
   const hasLockedKind=!!lockedKind;
   const dmLinkMeta=(DM_REWARD_LINKS && DM_REWARD_LINKS.get(a))||null;
@@ -9792,6 +10056,7 @@ if(charSel){
   charSel.addEventListener('change',()=>{
     syncCharacterSelectorUI();
     filterAndRender();
+    recordCharacterView({charKey:charSel.value});
   });
 }
 if(charSelToggle){
@@ -9932,12 +10197,44 @@ function initApp(){
   }
   updateActivityToggle();
   updateSearchScopeToggle();
-  const initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
+  const historyState=parseHistoryStateFromLocation();
+  let initialKey=rebuildCharacterOptions({preserveSelection:false})||getMostRecentCharacter();
+  if(historyState && historyState.charKey){
+    const desired=normalizeHistoryCharKey(historyState.charKey);
+    if(desired){
+      initialKey=desired;
+    }
+  }
   if(initialKey && charSel){
     charSel.value=initialKey;
   }
   filterAndRender();
   scheduleAvatarPreload();
+  const activeChar=normalizeHistoryCharKey(getActiveCharacterKey())||normalizeHistoryCharKey(initialKey);
+  const hasEntryState=historyState && (historyState.entryType==='adventure'||historyState.entryType==='dm') && historyState.entryId!=null;
+  if(historySupported){
+    const normalized=buildHistoryState({
+      charKey:activeChar,
+      entryType:hasEntryState?historyState.entryType:null,
+      entryId:hasEntryState?historyState.entryId:null
+    });
+    lastHistoryState=normalized;
+    const url=historyUrlForState(normalized);
+    window.history.replaceState(normalized,'',url);
+  }else{
+    lastHistoryState=buildHistoryState({
+      charKey:activeChar,
+      entryType:hasEntryState?historyState.entryType:null,
+      entryId:hasEntryState?historyState.entryId:null
+    });
+  }
+  if(hasEntryState){
+    focusEntryFromState({
+      charKey:activeChar,
+      entryType:historyState.entryType,
+      entryId:historyState.entryId
+    },{suppressHistoryPush:true});
+  }
   if(pendingChanges){
     updateSaveIndicatorState();
   }else{
