@@ -68,7 +68,7 @@ def summarise_data(data: Dict[str, Any]) -> DataSummary:
 def inspect_index_bootstrap() -> Dict[str, Any]:
     html = INDEX_PATH.read_text(encoding="utf-8")
     diagnostics = {
-        "has_data_script": "<script type=\"module\" id=\"dataScript\">" in html,
+        "has_data_script": '<script id="dataScript"' in html,
         "uses_legacy_loader": "loadLegacyData" in html,
         "shows_error_details": "buildDataLoadDiagnosticsMarkup" in html,
     }

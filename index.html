@@ -932,7 +932,8 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
-<script type="module" id="dataScript">
+<script src="legacy-data-loader.js"></script>
+<script id="dataScript" data-loader="data">
 const KEY='al_logs_data_version';
 window.AL_DATA_VERSION_KEY=KEY;
 let version='';
@@ -945,7 +946,7 @@ if(!version){
 window.AL_DATA_VERSION=version;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
-const scriptEl=document.getElementById('dataScript')||document.querySelector('script[type="module"][data-loader="data"]');
+const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
 
 const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
@@ -1057,9 +1058,19 @@ function scheduleAppInit({attempts=10,delay=60}={}){
   },delay);
 }
 
-import { loadLegacyData } from './legacy-data-loader.js';
+function resolveLegacyLoader(){
+  if(typeof window==='undefined') return null;
+  const loaderHost=window.AL_LEGACY_LOADER||{};
+  const loader=typeof loaderHost.loadLegacyData==='function'?loaderHost.loadLegacyData:null;
+  pushDiagStep('legacy-loader-resolve',{ available:!!loader });
+  return loader;
+}
 
 async function bootstrapData(){
+  const loadLegacyData=resolveLegacyLoader();
+  if(!loadLegacyData){
+    throw new Error('Legacy data loader is unavailable.');
+  }
   pushDiagStep('legacy-load-start',{ version:version||'', cacheBust });
   try{
     const { data, raw, versionToken } = await loadLegacyData({ version, cacheBust });
@@ -6602,31 +6613,6 @@ function bindInventoryTradeInteraction(row,{charKey,itemName,itemCanonicalName})
   });
 }
 
-if(tradePartnerSelect){
-  tradePartnerSelect.addEventListener('change',syncTradePartnerFields);
-}
-if(tradeCancelBtn){
-  tradeCancelBtn.addEventListener('click',()=>{ closeTradeModal(); });
-}
-if(tradeModal){
-  tradeModal.addEventListener('click',(event)=>{
-    if(event.target===tradeModal){
-      closeTradeModal();
-    }
-  });
-}
-if(tradeForm){
-  tradeForm.addEventListener('submit',(event)=>{
-    event.preventDefault();
-    if(tradeSubmitBtn) tradeSubmitBtn.disabled=true;
-    try{
-      handleTradeSubmit();
-    }finally{
-      if(tradeSubmitBtn) tradeSubmitBtn.disabled=false;
-    }
-  });
-}
-
 function giftsActiveKey(k){ return 'ACTIVE_GIFTS__'+k; }
 function loadActiveSupernatural(k){
   try{
@@ -6927,6 +6913,31 @@ const tradePartnerPlayerInput=document.getElementById('tradePartnerPlayer');
 const tradeErrorEl=document.getElementById('tradeError');
 const tradeCancelBtn=document.getElementById('tradeCancel');
 const tradeSubmitBtn=document.getElementById('tradeSubmit');
+
+if(tradePartnerSelect){
+  tradePartnerSelect.addEventListener('change',syncTradePartnerFields);
+}
+if(tradeCancelBtn){
+  tradeCancelBtn.addEventListener('click',()=>{ closeTradeModal(); });
+}
+if(tradeModal){
+  tradeModal.addEventListener('click',(event)=>{
+    if(event.target===tradeModal){
+      closeTradeModal();
+    }
+  });
+}
+if(tradeForm){
+  tradeForm.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    if(tradeSubmitBtn) tradeSubmitBtn.disabled=true;
+    try{
+      handleTradeSubmit();
+    }finally{
+      if(tradeSubmitBtn) tradeSubmitBtn.disabled=false;
+    }
+  });
+}
 document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
 function closeConsumableModal(){
   consModal.classList.remove('open','editing');
