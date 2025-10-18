@@ -618,6 +618,16 @@ body.modal-open #addCardMenu{display:none;}
 .inv-row.static{cursor:default}
 .inv-name{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
 .inv-name .inv-label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trade-card{max-width:520px}
+.trade-form{display:flex;flex-direction:column;gap:14px}
+.trade-field{display:flex;flex-direction:column;gap:6px}
+.trade-field label,.trade-field .trade-field-label{font-size:13px;font-weight:600;color:var(--muted)}
+.trade-item-label{font-size:16px;font-weight:600}
+.trade-partner-custom{display:grid;gap:12px}
+.trade-error{color:var(--danger);font-size:13px;margin:4px 0 0}
+.trade-error[hidden]{display:none}
+.trade-field input,.trade-field select{border:1px solid var(--border);border-radius:10px;padding:9px 12px;font:inherit}
+.trade-field input:focus-visible,.trade-field select:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 .inv-name.consumable-name{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
 .inv-name.consumable-name .cons-primary{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
 .inv-name.consumable-name .cons-name{display:block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 auto}
@@ -867,6 +877,51 @@ body.avatar-overlay-open{overflow:hidden}
     </div>
     <div class="modal-actions">
       <button class="btn" id="giftsClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Trade Modal -->
+<div id="tradeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="tradeTitle">
+  <div class="modal-card trade-card">
+    <div class="modal-hd">
+      <div id="tradeTitle">Trade item</div>
+    </div>
+    <div class="modal-body">
+      <div id="tradeMeta" class="inv-meta"></div>
+      <form id="tradeForm" class="trade-form" novalidate>
+        <div class="trade-field">
+          <span class="trade-field-label">Trading away</span>
+          <div id="tradeItemName" class="trade-item-label" role="text"></div>
+        </div>
+        <div class="trade-field">
+          <label for="tradeReceiveInput">Item received</label>
+          <input id="tradeReceiveInput" type="text" placeholder="Describe the item you received" autocomplete="off"/>
+        </div>
+        <div class="trade-field">
+          <label for="tradeDateInput">Trade date</label>
+          <input id="tradeDateInput" type="date" autocomplete="off"/>
+        </div>
+        <div class="trade-field">
+          <label for="tradePartnerSelect">Trade partner</label>
+          <select id="tradePartnerSelect"></select>
+        </div>
+        <div id="tradePartnerCustom" class="trade-partner-custom" hidden>
+          <div class="trade-field">
+            <label for="tradePartnerCharacter">Partner character</label>
+            <input id="tradePartnerCharacter" type="text" placeholder="Character name" autocomplete="off"/>
+          </div>
+          <div class="trade-field">
+            <label for="tradePartnerPlayer">Partner player</label>
+            <input id="tradePartnerPlayer" type="text" placeholder="Player name (optional)" autocomplete="off"/>
+          </div>
+        </div>
+        <p id="tradeError" class="trade-error" role="alert" hidden></p>
+      </form>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="tradeCancel" type="button">Cancel</button>
+      <button class="btn primary" id="tradeSubmit" type="submit" form="tradeForm">Complete trade</button>
     </div>
   </div>
 </div>
@@ -2393,6 +2448,7 @@ function anyModalOpen(){
   return (invModal && invModal.classList.contains('open'))
     || (consModal && consModal.classList.contains('open'))
     || (dmItemsModal && dmItemsModal.classList.contains('open'))
+    || (tradeModal && tradeModal.classList.contains('open'))
     || (cardOverlay && cardOverlay.classList.contains('open'));
 }
 
@@ -6130,6 +6186,17 @@ function parseLostItemList(raw){
 }
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
 function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
+function characterDisplayName(key){
+  if(!key) return '';
+  if(!DATA||!DATA.characters) return key;
+  const obj=DATA.characters[key];
+  if(!obj||typeof obj!=='object') return key;
+  const display=typeof obj.display_name==='string'?obj.display_name.trim():'';
+  if(display) return display;
+  const sheet=typeof obj.sheet==='string'?obj.sheet.trim():'';
+  if(sheet) return sheet;
+  return key;
+}
 function sortCharacterAdventures(key){
   if(!DATA || !DATA.characters) return;
   const ch=DATA.characters[key];
@@ -6200,6 +6267,335 @@ function collectPermanentInventory(charKey){
   });
   const kept=[...keptMap.values()].sort((a,b)=>a.name.localeCompare(b.name));
   return {kept,map:keptMap};
+}
+
+const TRADE_LONG_PRESS_MS=600;
+let activeTradeContext=null;
+
+function resetTradeForm(){
+  if(tradeReceiveInput) tradeReceiveInput.value='';
+  if(tradeDateInput){
+    tradeDateInput.value='';
+    tradeDateInput.removeAttribute('max');
+  }
+  if(tradePartnerSelect) tradePartnerSelect.innerHTML='';
+  if(tradePartnerCharacterInput) tradePartnerCharacterInput.value='';
+  if(tradePartnerPlayerInput) tradePartnerPlayerInput.value='';
+  if(tradePartnerCustom) tradePartnerCustom.hidden=true;
+  if(tradeItemNameEl) tradeItemNameEl.textContent='';
+  if(tradeMetaEl) tradeMetaEl.textContent='';
+  if(tradeTitleEl) tradeTitleEl.textContent='Trade item';
+  clearTradeError();
+}
+
+function clearTradeError(){
+  if(!tradeErrorEl) return;
+  tradeErrorEl.textContent='';
+  tradeErrorEl.hidden=true;
+}
+
+function setTradeError(message){
+  if(!tradeErrorEl) return;
+  tradeErrorEl.textContent=message||'';
+  tradeErrorEl.hidden=!message;
+}
+
+function populateTradePartnerOptions(sourceKey){
+  if(!tradePartnerSelect) return;
+  tradePartnerSelect.innerHTML='';
+  const placeholder=document.createElement('option');
+  placeholder.value='';
+  placeholder.textContent='Select a character';
+  placeholder.disabled=true;
+  placeholder.selected=true;
+  tradePartnerSelect.appendChild(placeholder);
+  if(DATA && DATA.characters){
+    const keys=Object.keys(DATA.characters).filter(key=>key!==sourceKey);
+    keys.sort((a,b)=>characterDisplayName(a).localeCompare(characterDisplayName(b),undefined,{sensitivity:'base'}));
+    keys.forEach(key=>{
+      const opt=document.createElement('option');
+      opt.value=`char:${key}`;
+      opt.textContent=characterDisplayName(key);
+      tradePartnerSelect.appendChild(opt);
+    });
+  }
+  const otherOpt=document.createElement('option');
+  otherOpt.value='custom';
+  otherOpt.textContent='Other character';
+  tradePartnerSelect.appendChild(otherOpt);
+}
+
+function syncTradePartnerFields(){
+  if(!tradePartnerSelect||!tradePartnerCustom) return;
+  const showCustom=tradePartnerSelect.value==='custom';
+  tradePartnerCustom.hidden=!showCustom;
+  if(!showCustom){
+    if(tradePartnerCharacterInput) tradePartnerCharacterInput.value='';
+    if(tradePartnerPlayerInput) tradePartnerPlayerInput.value='';
+  }
+}
+
+function openTradeModal(context){
+  if(!tradeModal||!context) return;
+  const {charKey,itemName,itemCanonicalName,trigger}=context;
+  if(!isValidSheetKey(charKey)) return;
+  activeTradeContext={
+    charKey,
+    itemName:itemName||itemCanonicalName||'',
+    itemCanonicalName:itemCanonicalName||itemName||'',
+    trigger:trigger||null,
+    wasEditing:invModal?invModal.classList.contains('editing'):false
+  };
+  if(tradeTitleEl) tradeTitleEl.textContent='Trade item';
+  if(tradeMetaEl) tradeMetaEl.textContent=`${characterDisplayName(charKey)} • Permanent item trade`;
+  if(tradeItemNameEl) tradeItemNameEl.textContent=activeTradeContext.itemName;
+  if(tradeReceiveInput) tradeReceiveInput.value='';
+  const today=new Date();
+  const isoToday=today.toISOString().slice(0,10);
+  if(tradeDateInput){
+    tradeDateInput.value=isoToday;
+    tradeDateInput.setAttribute('max',isoToday);
+  }
+  populateTradePartnerOptions(charKey);
+  if(tradePartnerSelect){
+    tradePartnerSelect.value='';
+  }
+  syncTradePartnerFields();
+  clearTradeError();
+  tradeModal.classList.add('open');
+  refreshModalState();
+  requestAnimationFrame(()=>{
+    if(tradeReceiveInput){
+      try{ tradeReceiveInput.focus({preventScroll:true}); }
+      catch(err){ tradeReceiveInput.focus(); }
+    }
+  });
+}
+
+function closeTradeModal({restoreFocus=true}={}){
+  if(!tradeModal) return;
+  if(!tradeModal.classList.contains('open')) return;
+  tradeModal.classList.remove('open');
+  refreshModalState();
+  const returnFocus=(restoreFocus && activeTradeContext && activeTradeContext.trigger)?activeTradeContext.trigger:null;
+  resetTradeForm();
+  const context=activeTradeContext;
+  activeTradeContext=null;
+  if(returnFocus && typeof returnFocus.focus==='function' && document.contains(returnFocus)){
+    try{ returnFocus.focus({preventScroll:true}); }
+    catch(err){ returnFocus.focus(); }
+  }
+  return context;
+}
+
+function removeInventoryLocalState(charKey,itemName){
+  const cleaned=normItemName(itemName);
+  if(!cleaned) return;
+  const targetLower=cleaned.toLowerCase();
+  const filterList=(list)=>{
+    if(!Array.isArray(list)) return [];
+    return list.map(name=>normItemName(name)).filter(name=>name && name.toLowerCase()!==targetLower);
+  };
+  const currentActive=loadActive(charKey)||[];
+  const nextActive=filterList(currentActive);
+  if(nextActive.length!==currentActive.length){
+    saveActive(charKey,nextActive);
+  }
+  const currentAttuned=loadAttuned(charKey)||[];
+  const nextAttuned=filterList(currentAttuned);
+  if(nextAttuned.length!==currentAttuned.length){
+    saveAttuned(charKey,nextAttuned);
+  }
+  const currentCommon=loadCommon(charKey)||[];
+  const nextCommon=filterList(currentCommon);
+  if(nextCommon.length!==currentCommon.length){
+    saveCommon(charKey,nextCommon);
+  }
+}
+
+function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,partnerPlayer}){
+  const traded=normItemName(itemTraded||'');
+  const received=normItemName(itemReceived||'');
+  const entry={
+    title:'Trade',
+    date:date||new Date().toISOString().slice(0,10),
+    code:'DT-TRADE',
+    dm:'',
+    gp_plus:0,
+    gp_minus:0,
+    gp_net:0,
+    dtd_plus:0,
+    dtd_minus:5,
+    dtd_net:-5,
+    level_plus:0,
+    perm_items:received?[received]:[],
+    consumable_items:[],
+    story_awards:[],
+    supernatural_gifts:[],
+    notes:'',
+    kind:'Downtime Activity',
+    itemTraded:traded||'',
+    itemReceived:received||'',
+    player:partnerPlayer?partnerPlayer.trim():'',
+    character:partnerCharacter?partnerCharacter.trim():'',
+    __charKey:charKey
+  };
+  return entry;
+}
+
+function handleTradeSubmit(){
+  if(!activeTradeContext) return;
+  const charKey=activeTradeContext.charKey;
+  if(!isValidSheetKey(charKey)){
+    setTradeError('Select a valid character.');
+    return;
+  }
+  const tradedName=activeTradeContext.itemCanonicalName||activeTradeContext.itemName||'';
+  const receivedRaw=tradeReceiveInput?tradeReceiveInput.value:'';
+  const receivedItem=normItemName(receivedRaw||'');
+  const partnerValue=tradePartnerSelect?tradePartnerSelect.value:'';
+  if(!partnerValue){
+    setTradeError('Select a trade partner.');
+    if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+    return;
+  }
+  let partnerKey=null;
+  let partnerCharacter='';
+  let partnerPlayer='';
+  if(partnerValue.startsWith('char:')){
+    partnerKey=partnerValue.slice(5);
+    if(!partnerKey || partnerKey===charKey || !isValidSheetKey(partnerKey)){
+      setTradeError('Select a different trade partner.');
+      if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+      return;
+    }
+    partnerCharacter=characterDisplayName(partnerKey);
+  }else if(partnerValue==='custom'){
+    partnerCharacter=tradePartnerCharacterInput?tradePartnerCharacterInput.value.trim():'';
+    partnerPlayer=tradePartnerPlayerInput?tradePartnerPlayerInput.value.trim():'';
+    if(!partnerCharacter){
+      setTradeError('Enter the partner character name.');
+      if(tradePartnerCharacterInput){ tradePartnerCharacterInput.focus(); }
+      return;
+    }
+  }else{
+    setTradeError('Select a trade partner.');
+    if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+    return;
+  }
+  let tradeDate=tradeDateInput?tradeDateInput.value:'';
+  if(!tradeDate){
+    tradeDate=new Date().toISOString().slice(0,10);
+  }
+  const tradeEntry=makeTradeEntry({
+    charKey,
+    date:tradeDate,
+    itemTraded:tradedName,
+    itemReceived:receivedItem,
+    partnerCharacter,
+    partnerPlayer
+  });
+  const charData=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  if(!charData){
+    setTradeError('Character could not be found.');
+    return;
+  }
+  if(!Array.isArray(charData.adventures)) charData.adventures=[];
+  charData.adventures.push(tradeEntry);
+  removeInventoryLocalState(charKey,tradedName);
+  registerDerivedUpdate(charKey);
+
+  let partnerContext=null;
+  if(partnerKey){
+    const partnerData=DATA.characters[partnerKey];
+    if(partnerData){
+      const partnerEntry=makeTradeEntry({
+        charKey:partnerKey,
+        date:tradeDate,
+        itemTraded:receivedItem,
+        itemReceived:tradedName,
+        partnerCharacter:characterDisplayName(charKey),
+        partnerPlayer:''
+      });
+      if(!Array.isArray(partnerData.adventures)) partnerData.adventures=[];
+      partnerData.adventures.push(partnerEntry);
+      removeInventoryLocalState(partnerKey,receivedItem);
+      registerDerivedUpdate(partnerKey);
+      partnerContext={partnerKey};
+    }
+  }
+
+  markDirty();
+  applyDataMutation(charKey);
+  if(partnerContext && partnerContext.partnerKey){
+    applyDataMutation(partnerContext.partnerKey);
+  }
+  const context=activeTradeContext;
+  closeTradeModal({restoreFocus:false});
+  if(context){
+    openInventoryModal(context.charKey,{editing:context.wasEditing});
+  }
+}
+
+function bindInventoryTradeInteraction(row,{charKey,itemName,itemCanonicalName}){
+  if(!row) return;
+  const openMenu=()=>{
+    if(invModal && invModal.classList.contains('editing')) return;
+    openTradeModal({
+      charKey,
+      itemName,
+      itemCanonicalName,
+      trigger:row
+    });
+  };
+  row.addEventListener('contextmenu',(event)=>{
+    event.preventDefault();
+    openMenu();
+  });
+  let pressTimer=null;
+  const clearTimer=()=>{
+    if(pressTimer){
+      clearTimeout(pressTimer);
+      pressTimer=null;
+    }
+  };
+  row.addEventListener('pointerdown',(event)=>{
+    if(event.pointerType==='mouse' && event.button!==0) return;
+    if(invModal && invModal.classList.contains('editing')) return;
+    clearTimer();
+    pressTimer=setTimeout(()=>{
+      pressTimer=null;
+      openMenu();
+    },TRADE_LONG_PRESS_MS);
+  });
+  ['pointerup','pointerleave','pointercancel'].forEach(type=>{
+    row.addEventListener(type,clearTimer);
+  });
+}
+
+if(tradePartnerSelect){
+  tradePartnerSelect.addEventListener('change',syncTradePartnerFields);
+}
+if(tradeCancelBtn){
+  tradeCancelBtn.addEventListener('click',()=>{ closeTradeModal(); });
+}
+if(tradeModal){
+  tradeModal.addEventListener('click',(event)=>{
+    if(event.target===tradeModal){
+      closeTradeModal();
+    }
+  });
+}
+if(tradeForm){
+  tradeForm.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    if(tradeSubmitBtn) tradeSubmitBtn.disabled=true;
+    try{
+      handleTradeSubmit();
+    }finally{
+      if(tradeSubmitBtn) tradeSubmitBtn.disabled=false;
+    }
+  });
 }
 
 function giftsActiveKey(k){ return 'ACTIVE_GIFTS__'+k; }
@@ -6488,6 +6884,20 @@ const giftsTitle=document.getElementById('giftsTitle');
 const giftsMeta=document.getElementById('giftsMeta');
 const giftsList=document.getElementById('giftsList');
 const giftsSummary=document.getElementById('giftsSummary');
+const tradeModal=document.getElementById('tradeModal');
+const tradeForm=document.getElementById('tradeForm');
+const tradeTitleEl=document.getElementById('tradeTitle');
+const tradeMetaEl=document.getElementById('tradeMeta');
+const tradeItemNameEl=document.getElementById('tradeItemName');
+const tradeReceiveInput=document.getElementById('tradeReceiveInput');
+const tradeDateInput=document.getElementById('tradeDateInput');
+const tradePartnerSelect=document.getElementById('tradePartnerSelect');
+const tradePartnerCustom=document.getElementById('tradePartnerCustom');
+const tradePartnerCharacterInput=document.getElementById('tradePartnerCharacter');
+const tradePartnerPlayerInput=document.getElementById('tradePartnerPlayer');
+const tradeErrorEl=document.getElementById('tradeError');
+const tradeCancelBtn=document.getElementById('tradeCancel');
+const tradeSubmitBtn=document.getElementById('tradeSubmit');
 document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
 function closeConsumableModal(){
   consModal.classList.remove('open','editing');
@@ -6501,6 +6911,9 @@ giftsModal.addEventListener('click',(e)=>{ if(e.target===giftsModal){ giftsModal
 
 function openInventoryModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
+  if(invModal){
+    invModal.dataset.charKey=charKey;
+  }
   const level=currentLevelFor(charKey);
   const cap=activeSlotsFor(level);
   const {kept:keptMeta}=collectPermanentInventory(charKey);
@@ -6639,6 +7052,7 @@ function openInventoryModal(charKey, opts={}){
   ordered.forEach(item=>{
     const label=item&&item.name?item.name:String(item||'');
     const lower=label.toLowerCase();
+    const meta=metaByName.get(lower)||null;
     const isActive=activeSet.has(lower);
     const isCommon=commonSet.has(lower);
     const row=document.createElement('div');
@@ -6783,6 +7197,12 @@ function openInventoryModal(charKey, opts={}){
       }
       saveActive(charKey,cur);
       openInventoryModal(charKey,{editing});
+    });
+
+    bindInventoryTradeInteraction(row,{
+      charKey,
+      itemName:label,
+      itemCanonicalName:meta?meta.name:label
     });
 
     invList.appendChild(row);
@@ -9368,6 +9788,10 @@ document.addEventListener('keydown',(event)=>{
     }
     if(dmItemsModal && dmItemsModal.classList.contains('open')){
       closeDmItemsModal();
+      handled=true;
+    }
+    if(tradeModal && tradeModal.classList.contains('open')){
+      closeTradeModal();
       handled=true;
     }
     if(handled){

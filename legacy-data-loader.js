@@ -10,7 +10,6 @@ export async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
   if (!raw && typeof window !== 'undefined') {
     if (window.DATA && typeof window.DATA === 'object') {
       raw = window.DATA;
-      importError = null;
     }
   }
 
