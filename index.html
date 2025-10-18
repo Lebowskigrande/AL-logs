@@ -5592,9 +5592,19 @@ function rebuildDmRewardLinks(){
 }
 function updateDmMeta(){
   if(metaEl){
-    metaEl.textContent='';
-    metaEl.style.display='none';
-    metaEl.setAttribute('aria-hidden','true');
+    const totalRuns=Number(DM_SUMMARY && DM_SUMMARY.runs);
+    const runs=Number.isFinite(totalRuns)?totalRuns:0;
+    if(runs>0){
+      const label=runs===1?'Session':'Sessions';
+      const text=`${fmtNumber(runs)} ${label}`;
+      metaEl.textContent=text;
+      metaEl.style.display='block';
+      metaEl.setAttribute('aria-hidden','false');
+    }else{
+      metaEl.textContent='';
+      metaEl.style.display='none';
+      metaEl.setAttribute('aria-hidden','true');
+    }
   }
   updateDmSummaryBar();
 }
