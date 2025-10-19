@@ -6723,7 +6723,6 @@ function makeDmCard(entry,idx){
   if(!isAllocation){
     addMetaPart('code',null,entry.code);
   }
-  addMetaPart('season','Season',entry.season);
   addMetaPart('location','Location',entry.location);
   if(!isAllocation){
     addMetaPart('item','Reward',entry.item);
@@ -6807,9 +6806,6 @@ function makeDmCard(entry,idx){
     return field;
   };
 
-  if(!headerMetaKeys.has('season')){
-    addField('Season', entry.season);
-  }
   if(isAllocation){
     if(normalizeDisplayValue(entry.allocation)){
       addField('Rewards allocated', createAllocationDetailsList(entry.allocation));
