@@ -1429,10 +1429,12 @@ window.DATA = {
           "story_awards": [],
           "supernatural_gifts": [],
           "notes": "",
-          "kind": "Downtime Activity",
+          "kind": "adventure",
           "__charKey": "Creature X-12",
           "__levelAfter": 4,
-          "__levelAtStart": 3
+          "__levelAtStart": 3,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "DM Reward (x2)",
@@ -19823,7 +19825,7 @@ window.DATA = {
       "gifts_count": 0
     },
     "Creature X-12": {
-      "sessions": 0,
+      "sessions": 1,
       "net_gp": 0,
       "net_dtd": 20,
       "level_ups": 3,
@@ -20158,7 +20160,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-18T04:45:55.470Z",
+    "generated": "2025-10-19T04:46:01.012Z",
     "problems": []
   }
 };
