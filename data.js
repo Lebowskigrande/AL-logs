@@ -1206,10 +1206,11 @@ window.DATA = {
           }
         },
         {
+          "title": "Start at level 5",
           "date": "2021-09-20",
-          "title": "New Downtime Activity",
-          "code": "",
+          "code": "DT-START",
           "dm": null,
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "dtd_plus": 40,
@@ -1219,8 +1220,8 @@ window.DATA = {
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "notes": "",
-          "kind": "Downtime Activity"
+          "story_awards": [],
+          "notes": ""
         }
       ]
     },
@@ -17369,7 +17370,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T07:23:07.210Z",
+    "generated": "2025-10-19T07:23:33.876Z",
     "problems": []
   },
   "dm_allocations": []
