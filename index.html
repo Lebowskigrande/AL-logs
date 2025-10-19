@@ -2888,13 +2888,20 @@ function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
     adv.title,
     adv.code,
     adv.notes,
-    adv.dm,
-    adv.traded_item,
-    adv.itemTraded,
-    adv.itemReceived,
-    adv.player,
-    adv.character
+    adv.dm
   ];
+  if(adv.trade && typeof adv.trade==='object'){
+    baseParts.push(adv.trade.given);
+    baseParts.push(adv.trade.received);
+    baseParts.push(adv.trade.partnerCharacter);
+    baseParts.push(adv.trade.partnerPlayer);
+  }else{
+    baseParts.push(adv.traded_item);
+    baseParts.push(adv.itemTraded);
+    baseParts.push(adv.itemReceived);
+    baseParts.push(adv.player);
+    baseParts.push(adv.character);
+  }
   if(Array.isArray(adv.lost_perm_item)){
     baseParts.push(...adv.lost_perm_item);
   }else{
@@ -3680,7 +3687,7 @@ function createCharacterNewEntry(kind){
     supernatural_gifts:[],
     notes:'',
     kind:normalized,
-    traded_item:'',
+    trade:null,
     __openEdit:true,
     __isNew:true,
     __charKey:key,
@@ -7191,11 +7198,17 @@ function collectPermanentInventory(charKey){
     ensureAdventureUid(adv);
     const items=adv.perm_items||[];
     const lostNames=parseLostItemList(adv.lost_perm_item);
-    const tradedAway=[
-      ...parseLostItemList(adv.traded_item),
-      ...parseLostItemList(adv.itemTraded)
-    ];
-    const receivedList=parseLostItemList(adv.itemReceived);
+    const tradeInfo=(adv.trade && typeof adv.trade==='object')?adv.trade:null;
+    const tradedAway=[];
+    if(tradeInfo){
+      tradedAway.push(...parseLostItemList(tradeInfo.given));
+    }else{
+      tradedAway.push(...parseLostItemList(adv.traded_item));
+      tradedAway.push(...parseLostItemList(adv.itemTraded));
+    }
+    const receivedList=tradeInfo
+      ? parseLostItemList(tradeInfo.received)
+      : parseLostItemList(adv.itemReceived);
     const handleAddition=(raw)=>{
       const {name,acquired}=parseAcquisitionName(raw);
       const cleaned=normItemName(name);
@@ -7363,6 +7376,8 @@ function removeInventoryLocalState(charKey,itemName){
 function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,partnerPlayer}){
   const traded=normItemName(itemTraded||'');
   const received=normItemName(itemReceived||'');
+  const partnerChar=(partnerCharacter||'').trim();
+  const partnerPlay=(partnerPlayer||'').trim();
   const entry={
     title:'Trade',
     date:date||new Date().toISOString().slice(0,10),
@@ -7382,12 +7397,14 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,p
     supernatural_gifts:[],
     notes:'',
     kind:'Downtime Activity',
-    itemTraded:traded||'',
-    itemReceived:received||'',
-    player:partnerPlayer?partnerPlayer.trim():'',
-    character:partnerCharacter?partnerCharacter.trim():'',
     __charKey:charKey
   };
+  const trade={};
+  if(traded){ trade.given=traded; }
+  if(received){ trade.received=received; }
+  if(partnerChar){ trade.partnerCharacter=partnerChar; }
+  if(partnerPlay){ trade.partnerPlayer=partnerPlay; }
+  if(Object.keys(trade).length){ entry.trade=trade; }
   ensureAdventureUid(entry);
   return entry;
 }
@@ -9314,10 +9331,26 @@ function makeCard(a,idx){
   if(!showLevel){ levelField.style.display='none'; }
   rewardsContent.appendChild(levelField);
 
-  const hasTradeMeta = act && (('itemTraded' in a) || ('itemReceived' in a));
+  const tradeData=act && a && a.trade && typeof a.trade==='object'?a.trade:null;
   const dmDisplay=normalizeDisplayValue(a.dm);
-  const playerRaw=normalizeDisplayValue(a.player);
-  const characterDisplay=normalizeDisplayValue(a.character);
+  const tradeGivenDisplay=tradeData
+    ? normalizeDisplayValue(tradeData.given)
+    : normalizeDisplayValue(a.traded_item||a.itemTraded);
+  const tradeReceivedDisplay=tradeData
+    ? normalizeDisplayValue(tradeData.received)
+    : normalizeDisplayValue(a.itemReceived);
+  const playerRaw=tradeData
+    ? normalizeDisplayValue(tradeData.partnerPlayer)
+    : normalizeDisplayValue(a.player);
+  const characterDisplay=tradeData
+    ? normalizeDisplayValue(tradeData.partnerCharacter)
+    : normalizeDisplayValue(a.character);
+  const hasLegacyTradeMeta=!!(
+    normalizeDisplayValue(a.itemReceived)||
+    normalizeDisplayValue(a.player)||
+    normalizeDisplayValue(a.character)
+  );
+  const hasTradeMeta=act && (tradeData ? (tradeReceivedDisplay || playerRaw || characterDisplay) : hasLegacyTradeMeta);
   const tradePlayer=hasTradeMeta?(playerRaw||dmDisplay):playerRaw;
   const usedDmAsPlayer=hasTradeMeta && !playerRaw && !!dmDisplay && tradePlayer===dmDisplay;
 
@@ -9345,10 +9378,8 @@ function makeCard(a,idx){
   if(!(a.code||'').trim()){ codeFieldView.style.display='none'; }
 
   if(hasTradeMeta){
-    const tradedAway=normalizeDisplayValue(a.itemTraded);
-    const received=normalizeDisplayValue(a.itemReceived);
-    if(tradedAway){ appendField('Item traded away', tradedAway); }
-    if(received){ appendField('Item received', received); }
+    if(tradeGivenDisplay){ appendField('Item traded away', tradeGivenDisplay); }
+    if(tradeReceivedDisplay){ appendField('Item received', tradeReceivedDisplay); }
     if(tradePlayer || characterDisplay){
       const metaRow=document.createElement('div');
       metaRow.className='kv2';
@@ -9360,7 +9391,7 @@ function makeCard(a,idx){
 
   let tradedItemField=null;
   if(!hasTradeMeta && act && !a.__isNew){
-    const tradedItem=normalizeDisplayValue(a.traded_item);
+    const tradedItem=tradeGivenDisplay;
     tradedItemField=appendField('Item traded away', tradedItem,null,overviewContent);
     if(!tradedItem){ tradedItemField.style.display='none'; }
   }
@@ -9801,7 +9832,8 @@ function makeCard(a,idx){
     }
 
     if(tradedItemField && controls.traded_item){
-      const tradeVal=a.traded_item||'';
+      const tradeObj=(a.trade && typeof a.trade==='object')?a.trade:null;
+      const tradeVal=tradeObj?(tradeObj.given||''):(a.traded_item||a.itemTraded||'');
       controls.traded_item.value=tradeVal;
       tradedItemField.__display.textContent=makeValue(tradeVal);
       tradedItemField.style.display=(editing||tradeVal.trim())?'':'none';
@@ -9958,7 +9990,12 @@ function makeCard(a,idx){
       consumable_items:controls.consumable_items.getValues(),
       supernatural_gifts:controls.supernatural_gifts.getValues(),
       notes:controls.notes.value||'',
-      traded_item:isActivity?(controls.traded_item.value||'').trim():''
+      trade:(()=>{
+        if(!isActivity) return null;
+        const given=(controls.traded_item.value||'').trim();
+        if(!given) return null;
+        return { given };
+      })()
     };
   }
 
@@ -10041,7 +10078,26 @@ async function saveCardChanges(card){
     data.supernatural_gifts=[...updates.supernatural_gifts];
     const trimmedNotes=(updates.notes||'').trim();
     data.notes=trimmedNotes||'';
-    data.traded_item=data.kind!=='adventure'?(updates.traded_item||''):'';
+    if(data.kind!=='adventure'){
+      const currentTrade=(data.trade && typeof data.trade==='object')?{...data.trade}:null;
+      const hasExtendedTrade=currentTrade && (currentTrade.received||currentTrade.partnerCharacter||currentTrade.partnerPlayer);
+      const nextTrade=updates.trade && typeof updates.trade==='object'?updates.trade:null;
+      if(nextTrade){
+        data.trade={...nextTrade};
+      }else if(hasExtendedTrade){
+        data.trade=currentTrade;
+      }else{
+        data.trade=null;
+      }
+    }else{
+      data.trade=null;
+    }
+    if('traded_item' in data){ delete data.traded_item; }
+    if('itemTraded' in data){ delete data.itemTraded; }
+    if('itemReceived' in data){ delete data.itemReceived; }
+    if('player' in data){ delete data.player; }
+    if('character' in data){ delete data.character; }
+    if(!data.trade){ delete data.trade; }
     const keyOverride=data.__charKey||null;
     const wasNew=!!data.__isNew;
     const targetKey=keyOverride||charSel.value;
