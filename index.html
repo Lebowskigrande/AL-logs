@@ -4045,6 +4045,89 @@ function makeAvatarFileCandidates(name){
   if(collapsed) variants.add(collapsed.toLowerCase());
   return Array.from(variants).map(v=>`${v}.png`);
 }
+
+
+function resetAvatarPreviewSizing(){
+  if(!avatarPreviewImage) return;
+  avatarPreviewImage.style.width='';
+  avatarPreviewImage.style.height='';
+}
+
+function getAvatarOverlayPadding(){
+  if(!avatarOverlay || typeof window==='undefined'){
+    return { horizontal: 0, vertical: 0 };
+  }
+  const style=window.getComputedStyle(avatarOverlay);
+  const parse=value=>Number.parseFloat(value)||0;
+  return {
+    horizontal: parse(style.paddingLeft)+parse(style.paddingRight),
+    vertical: parse(style.paddingTop)+parse(style.paddingBottom)
+  };
+}
+
+function resizeAvatarPreviewToViewport(){
+  if(!avatarOverlay || !avatarPreviewImage) return;
+  if(!avatarOverlay.classList.contains('open')){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const naturalWidth=avatarPreviewImage.naturalWidth;
+  const naturalHeight=avatarPreviewImage.naturalHeight;
+  if(!naturalWidth || !naturalHeight){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const viewportWidth=typeof window!=='undefined'?window.innerWidth:0;
+  const viewportHeight=typeof window!=='undefined'?window.innerHeight:0;
+  if(!viewportWidth || !viewportHeight){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const padding=getAvatarOverlayPadding();
+  const maxWidth=Math.max(viewportWidth-padding.horizontal,0);
+  const maxHeight=Math.max(viewportHeight-padding.vertical,0);
+  if(!maxWidth || !maxHeight){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const scale=Math.min(maxWidth/naturalWidth,maxHeight/naturalHeight,1);
+  const targetWidth=Math.max(Math.round(naturalWidth*scale),0);
+  const targetHeight=Math.max(Math.round(naturalHeight*scale),0);
+  avatarPreviewImage.style.width=`${targetWidth}px`;
+  avatarPreviewImage.style.height=`${targetHeight}px`;
+}
+
+function scheduleAvatarPreviewResize(){
+  if(!avatarPreviewImage) return;
+  const run=()=>resizeAvatarPreviewToViewport();
+  if(typeof avatarPreviewImage.decode==='function'){
+    avatarPreviewImage.decode().then(run).catch(run);
+    return;
+  }
+  if(avatarPreviewImage.complete){
+    run();
+    return;
+  }
+  const once=()=>{
+    avatarPreviewImage.removeEventListener('load',once);
+    run();
+  };
+  avatarPreviewImage.addEventListener('load',once);
+}
+
+function onAvatarOverlayResize(){
+  if(!avatarOverlay || !avatarOverlay.classList.contains('open')) return;
+  resizeAvatarPreviewToViewport();
+}
+
+if(typeof window!=='undefined' && typeof window.addEventListener==='function'){
+  try{
+    window.addEventListener('resize',onAvatarOverlayResize,{ passive: true });
+  }catch(err){
+    window.addEventListener('resize',onAvatarOverlayResize);
+  }
+}
+
 function closeAvatarOverlay({returnFocus=true}={}){
   if(!avatarOverlay) return;
   if(!avatarOverlay.classList.contains('open')) return;
@@ -4061,6 +4144,7 @@ function closeAvatarOverlay({returnFocus=true}={}){
   if(avatarPreviewImage){
     avatarPreviewImage.removeAttribute('src');
     avatarPreviewImage.setAttribute('alt','Character avatar');
+    resetAvatarPreviewSizing();
   }
   document.removeEventListener('keydown', onAvatarOverlayKeydown);
   if(returnFocus && avatarEl){
@@ -4092,6 +4176,7 @@ function openAvatarOverlay(){
   avatarOverlay.classList.add('open');
   avatarOverlay.setAttribute('aria-hidden','false');
   document.body.classList.add('avatar-overlay-open');
+  scheduleAvatarPreviewResize();
   avatarOverlay.focus({preventScroll:true});
   if(avatarEl){
     avatarEl.setAttribute('aria-expanded','true');
