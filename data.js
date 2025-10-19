@@ -4666,6 +4666,23 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": ""
+        },
+        {
+          "date": "2021-12-17",
+          "title": "Start at level 5",
+          "code": "DT-START",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "level_plus": 4,
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "Downtime Activity"
         }
       ]
     },
@@ -17136,8 +17153,8 @@ window.DATA = {
     "Goblert Godfrey": {
       "sessions": 10,
       "net_gp": 19740,
-      "net_dtd": 80,
-      "level_ups": 6,
+      "net_dtd": 120,
+      "level_ups": 10,
       "perm_count": 16,
       "cons_count": 10,
       "gifts_count": 0
@@ -17370,7 +17387,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T07:43:51.947Z",
+    "generated": "2025-10-19T17:31:44.239Z",
     "problems": []
   },
   "dm_allocations": []
