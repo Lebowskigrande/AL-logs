@@ -28,7 +28,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
 .app-main{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;padding:24px clamp(20px,4vw,48px);overflow-y:auto;overflow-x:hidden}
 .app-main>.container{flex:1 1 auto;display:flex;flex-direction:column;max-width:880px;width:100%;margin:0 auto;min-height:0}
 .sheet-card{position:relative;background:transparent;border:none;border-radius:0;box-shadow:none;display:flex;flex-direction:column;min-height:0;flex:1 1 auto;padding:0}
-.sheet-card-header{padding:0 0 24px;display:flex;flex-direction:column;gap:20px;background:transparent;flex:0 0 auto;margin-bottom:24px;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable}
+.sheet-card-header{padding:0 0 12px;display:flex;flex-direction:column;gap:20px;background:transparent;flex:0 0 auto;margin-bottom:12px;overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable}
 .sheet-card-body{flex:1 1 auto;display:flex;flex-direction:column;gap:20px;padding:0;background:transparent;min-height:0}
 .log-window{flex:1 1 auto;display:flex;flex-direction:column;position:relative;border-radius:0;border:none;background:transparent;box-shadow:none;overflow:hidden;min-height:0}
 .log-window::before{content:none}
@@ -45,7 +45,7 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
 @media (max-width:768px){
   .app-main{padding:20px 16px 28px}
   .app-main>.container{max-width:100%}
-  .sheet-card-header{padding-bottom:18px;margin-bottom:18px}
+  .sheet-card-header{padding-bottom:12px;margin-bottom:12px}
   .log-window{border-radius:0;border:none;box-shadow:none}
   .log-list{padding:0}
 }
