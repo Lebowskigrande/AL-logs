@@ -317,7 +317,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .log-row-title.scrollable .display{animation:none}
   .log-row-date.scrollable .display{animation:none}
   .char-toggle-text.scrollable{animation:none}
-  .dm-card .dm-card-title.scrollable{animation:none}
+  /* dm cards use shared log-row title styles */
 }
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:0;min-height:0}
 .chip-ticker{position:relative;--chip-ticker-fade-start:rgba(248,250,252,.92)}
@@ -384,22 +384,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.open .log-row-meta,.log-list .card.open .log-row-date{color:rgba(15,23,42,.72)}
 
 .dm-card .card-hd{align-items:stretch;position:relative}
-.dm-card .dm-card-header{display:flex;flex-direction:column;gap:10px;flex:1 1 auto;min-width:0}
-.dm-card .dm-card-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.dm-card .dm-card-topline.ticker-active{flex-wrap:nowrap}
-.dm-card .dm-card-topline.ticker-active .dm-card-heading{flex-wrap:nowrap;min-width:0}
-.dm-card .dm-card-topline.ticker-active .dm-card-topline-meta{flex:0 0 auto}
-.dm-card .dm-card-topline.ticker-active .dm-card-title{white-space:nowrap}
-.dm-card .dm-card-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
-.dm-card .dm-card-title{font-weight:600;font-size:15px;line-height:1.35;color:var(--ink);flex:1 1 auto;min-width:0;word-break:break-word}
-.dm-card .dm-card-heading .dm-card-title>*{min-width:0}
-.dm-card .dm-card-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(148,163,184,.16);color:var(--muted)}
-.dm-card.dm-card--session .dm-card-badge{background:rgba(14,165,233,.18);color:#0369a1}
-.dm-card.dm-card--allocation .dm-card-badge{background:rgba(129,140,248,.2);color:#4c1d95}
-.dm-card .dm-card-topline-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
-.dm-card .dm-card-date{color:var(--muted);font-size:13px;line-height:1.35;white-space:nowrap}
-.dm-card .dm-card-topline-meta .chips{margin-top:0;justify-content:flex-end}
-.dm-card .dm-card-topline-meta .chips:empty{display:none}
+.dm-card .tag-dm-session{background:rgba(14,165,233,.18);color:#0369a1}
+.dm-card .tag-dm-allocation{background:rgba(129,140,248,.2);color:#4c1d95}
 .dm-card .dm-card-metrics{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;margin-top:4px}
 .dm-card .dm-card-metric{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border-radius:14px;background:rgba(148,163,184,.12);min-width:96px}
 .dm-card .dm-card-metric-value{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
@@ -435,9 +421,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-card-metric--tier{background:rgba(56,189,248,.2)}
 .dm-card .dm-card-metric--cost{background:rgba(192,132,252,.22)}
 .dm-card .dm-card-metric--spent{background:rgba(248,113,113,.22)}
-.dm-card .dm-card-title{overflow:hidden;text-overflow:ellipsis}
-.dm-card .dm-card-title span{white-space:normal}
-.dm-card .dm-card-meta:empty{display:none}
 
 .dm-card .bd-in.dm-details{display:flex;flex-direction:column;gap:20px}
 .dm-card .dm-details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -446,9 +429,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-card .dm-details-field .v{font-size:14px}
 
 @media (max-width:520px){
-  .dm-card .dm-card-topline{flex-direction:column;align-items:flex-start;gap:8px}
-  .dm-card .dm-card-topline-meta{width:100%;justify-content:flex-start}
-  .dm-card .dm-card-topline-meta .chips{justify-content:flex-start}
   .dm-card .dm-card-metrics{flex-direction:column;align-items:stretch}
   .dm-card .dm-card-metric{min-width:0}
   .dm-card .dm-details-grid{grid-template-columns:1fr}
@@ -6597,33 +6577,87 @@ function makeDmCard(entry,idx){
     if(key){ headerMetricKeys.add(key); }
   };
 
-  const headerContent=document.createElement('div');
-  headerContent.className='dm-card-header';
-  const topRow=document.createElement('div');
-  topRow.className='dm-card-topline';
-  const heading=document.createElement('div');
-  heading.className='dm-card-heading';
-  const badge=document.createElement('span');
-  badge.className='dm-card-badge';
-  badge.textContent=isAllocation?'Allocation':'Session';
-  heading.appendChild(badge);
+  const main=document.createElement('div');
+  main.className='log-row';
+  const info=document.createElement('div');
+  info.className='log-row-info';
 
-  const titleEl=document.createElement('div');
-  titleEl.className='dm-card-title';
-  titleEl.__display=titleEl;
-  bindScrollableObserver(titleEl);
+  const headerMain=document.createElement('div');
+  headerMain.className='log-row-main';
+  info.appendChild(headerMain);
 
-  const topMeta=document.createElement('div');
-  topMeta.className='dm-card-topline-meta';
-  const dateEl=document.createElement('div');
-  dateEl.className='dm-card-date';
-  dateEl.textContent=fmtDate(entry.date);
-  dateEl.__display=dateEl;
+  const titleWrap=document.createElement('span');
+  titleWrap.className='log-row-title';
+  const titleDisplay=document.createElement('span');
+  titleDisplay.className='display';
+  titleWrap.appendChild(titleDisplay);
+  titleWrap.__display=titleDisplay;
+  bindScrollableObserver(titleWrap);
+  headerMain.appendChild(titleWrap);
+
+  const dateStatsRow=document.createElement('div');
+  dateStatsRow.className='log-row-datestats';
+  headerMain.appendChild(dateStatsRow);
+
+  const dateEl=document.createElement('span');
+  dateEl.className='log-row-date';
+  const dateDisplay=document.createElement('span');
+  dateDisplay.className='display';
+  dateDisplay.textContent=fmtDate(entry.date);
+  dateEl.appendChild(dateDisplay);
+  dateEl.__display=dateDisplay;
   bindScrollableObserver(dateEl);
-  topMeta.appendChild(dateEl);
+  dateStatsRow.appendChild(dateEl);
 
+  const stats=document.createElement('div');
+  stats.className='log-row-stats';
+  dateStatsRow.appendChild(stats);
+
+  const chipsRow=document.createElement('div');
+  chipsRow.className='log-row-chips';
+  chipTickerRegistry.register(chipsRow);
   const chips=createChipsContainer();
+  chipsRow.appendChild(chips);
+
+  const refreshChipsRow=()=>{
+    const hasChips=chips.childElementCount>0;
+    const statsVisible=(stats.parentNode===chipsRow && stats.style.display!=='none');
+    chipsRow.style.display=(hasChips||statsVisible)?'flex':'none';
+    chipTickerRegistry.refresh(chipsRow);
+    tickerRowRegistry.schedule();
+  };
+
+  const mobileChipsQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(max-width: 520px)')
+    : null;
+  const syncStatsPlacement=()=>{
+    if(mobileChipsQuery && mobileChipsQuery.matches){
+      if(stats.parentNode!==chipsRow){
+        stats.classList.add('log-row-stats--mobile');
+        chipsRow.appendChild(stats);
+      }
+    }else{
+      if(stats.parentNode!==dateStatsRow){
+        stats.classList.remove('log-row-stats--mobile');
+        dateStatsRow.appendChild(stats);
+      }
+    }
+    refreshChipsRow();
+  };
+  if(mobileChipsQuery){
+    if(typeof mobileChipsQuery.addEventListener==='function'){
+      mobileChipsQuery.addEventListener('change', syncStatsPlacement);
+    }else if(typeof mobileChipsQuery.addListener==='function'){
+      mobileChipsQuery.addListener(syncStatsPlacement);
+    }
+  }
+
   const headerLinkChip=(!isAllocation && createLinkChip)?createLinkChip():null;
+
+  const typeTag=document.createElement('span');
+  typeTag.className='tag '+(isAllocation?'tag-dm-allocation':'tag-dm-session');
+  typeTag.textContent=isAllocation?'Allocation':'Session';
+  chips.appendChild(typeTag);
   if(headerLinkChip){ chips.appendChild(headerLinkChip); }
 
   let hoursVal=null;
@@ -6633,7 +6667,7 @@ function makeDmCard(entry,idx){
   let levelsSpentVal=null;
 
   if(isAllocation){
-    titleEl.textContent='Rewards allocated';
+    titleDisplay.textContent='Rewards allocated';
     hoursVal=dmToNullableNumber(entry.hours);
     bonusVal=dmToNullableNumber(entry.extra_hours);
     const mentions=renderCharacterMentions(entry.allocation||'');
@@ -6646,8 +6680,8 @@ function makeDmCard(entry,idx){
         }
       });
       if(chipLine.childNodes.length){
-        titleEl.appendChild(document.createTextNode(' → '));
-        titleEl.appendChild(chipLine);
+        titleDisplay.appendChild(document.createTextNode(' → '));
+        titleDisplay.appendChild(chipLine);
       }
     }
     costVal=dmToNullableNumber(entry.cost);
@@ -6655,28 +6689,26 @@ function makeDmCard(entry,idx){
     levelsSpentVal=dmToNullableNumber(entry.levels_plus);
   }else{
     const sessionTitle=sanitizeTitle(entry.name || entry.code || 'DM Session');
-    setElementTextWithCharacterChips(titleEl, sessionTitle, {label:'DM Session', force:true});
+    setElementTextWithCharacterChips(titleDisplay, sessionTitle, {label:'DM Session', force:true});
     hoursVal=dmToNullableNumber(entry.hours);
     bonusVal=dmToNullableNumber(entry.extra_hours);
     levelsEarnedVal=dmToNullableNumber(entry.levels_plus);
     levelsSpentVal=dmToNullableNumber(entry.levels_minus);
   }
 
-  if(chips.children.length){
-    topMeta.appendChild(chips);
-  }
-
   const totalsChip=buildDmTotalsChip(hoursVal, bonusVal, costVal, levelsEarnedVal, levelsSpentVal);
+  stats.innerHTML='';
   if(totalsChip){
-    topMeta.appendChild(totalsChip);
+    stats.appendChild(totalsChip);
+    stats.style.display='flex';
+  }else{
+    stats.style.display='none';
   }
 
-  heading.appendChild(titleEl);
-  topRow.append(heading,topMeta);
-  setupTickerRow(topRow,heading,topMeta,{
+  setupTickerRow(headerMain,titleWrap,dateStatsRow,{
     onToggle:()=>{
-      if(titleEl && typeof titleEl.__refreshScroll==='function'){
-        titleEl.__refreshScroll();
+      if(titleWrap && typeof titleWrap.__refreshScroll==='function'){
+        titleWrap.__refreshScroll();
       }
       if(dateEl && typeof dateEl.__refreshScroll==='function'){
         dateEl.__refreshScroll();
@@ -6684,10 +6716,9 @@ function makeDmCard(entry,idx){
     }
   });
   requestAnimationFrame(()=>{
-    refreshScrollableWrapper(titleEl);
+    refreshScrollableWrapper(titleWrap);
     refreshScrollableWrapper(dateEl);
   });
-  headerContent.appendChild(topRow);
 
   if(!isAllocation){
     addMetaPart('code',null,entry.code);
@@ -6706,15 +6737,19 @@ function makeDmCard(entry,idx){
     metaRow.appendChild(metaText);
     metaRow.__display=metaText;
     bindScrollableObserver(metaRow);
-    headerContent.appendChild(metaRow);
+    info.appendChild(metaRow);
     requestAnimationFrame(()=>{ refreshScrollableWrapper(metaRow); });
   }
 
+  info.appendChild(chipsRow);
+  syncStatsPlacement();
+
   if(metricsRow.children.length){
-    headerContent.appendChild(metricsRow);
+    info.appendChild(metricsRow);
   }
 
-  header.appendChild(headerContent);
+  main.appendChild(info);
+  header.appendChild(main);
 
   header.addEventListener('click',()=>toggleCard(card));
   card.appendChild(header);
