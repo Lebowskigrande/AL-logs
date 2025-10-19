@@ -175,7 +175,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .dm-items-btn:hover,.dm-items-btn:focus-visible{color:var(--primary);background:#eef4ff;outline:none}
 .dm-items-btn[aria-expanded="true"]{color:var(--primary);background:#eef4ff}
 .dm-items-icon img{display:block;width:24px;height:24px}
-.inventory-buttons{display:flex;align-items:center;gap:18px;margin-left:auto;flex-wrap:wrap}
+.inventory-buttons{display:flex;align-items:center;gap:clamp(6px,1.8vw,18px);margin-left:auto;flex-wrap:nowrap;min-width:0}
 .inventory-link{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;padding:6px 8px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;transition:color var(--dur) var(--ease),background-color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .inventory-link .icon svg,.inventory-link .icon img,.inventory-metric .icon svg{width:24px;height:24px;display:block}
 .inventory-link .text,.inventory-metric .text{letter-spacing:.02em}
