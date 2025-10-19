@@ -65,9 +65,9 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
 h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01em}
 .header-main{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 auto}
 .title-select-group{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;max-width:100%;min-width:0}
-.title-select-wrap{display:flex;align-items:center;gap:6px;position:relative;margin:0;max-width:100%;min-width:0}
+.title-select-wrap{display:flex;align-items:center;gap:6px;position:relative;margin:0;width:100%;max-width:100%;min-width:0}
 .title-select{display:none}
-.title-select-trigger{appearance:none;border:1px solid transparent;background:#fff;border-radius:14px;padding:12px 18px;font:inherit;font-size:clamp(20px,3vw,28px);line-height:1.2;font-weight:800;letter-spacing:-0.01em;color:var(--ink);display:inline-flex;align-items:center;gap:12px;cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);min-width:0;max-width:100%;text-align:left;box-shadow:none}
+.title-select-trigger{appearance:none;border:1px solid transparent;background:#fff;border-radius:14px;padding:12px 18px;font:inherit;font-size:clamp(20px,3vw,28px);line-height:1.2;font-weight:800;letter-spacing:-0.01em;color:var(--ink);display:inline-flex;align-items:center;gap:12px;cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);min-width:0;width:100%;max-width:100%;text-align:left;box-shadow:none}
 .title-select-trigger:hover{background:#eef4ff;border-color:rgba(26,115,232,.35)}
 .title-select-trigger:focus-visible{outline:3px solid rgba(26,115,232,.35);outline-offset:4px}
 .title-select-trigger[aria-expanded="true"]{background:#eef4ff;border-color:rgba(26,115,232,.35)}
@@ -77,7 +77,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .sheet-card-header.multi-search-active .title-select-trigger .char-toggle-icon{background:#e2e8f0;color:var(--muted)}
 .sheet-card-header.multi-search-active .char-meta{opacity:.75}
 .title-select-trigger:disabled .char-toggle-icon{background:#cbd5f5;color:#475569}
-.char-toggle-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}
+.char-toggle-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2;flex:1 1 auto;min-width:0}
 .char-toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#eef4ff;color:var(--primary);flex:0 0 auto;transition:transform var(--dur) var(--ease),background var(--dur) var(--ease)}
 .title-select-trigger:hover .char-toggle-icon{background:#dbeafe}
 .title-select-trigger[aria-expanded="true"] .char-toggle-icon{transform:rotate(180deg)}
@@ -298,10 +298,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-row-title .display{display:block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;font-size:14px;transition:color var(--dur) var(--ease)}
 .log-row-title.is-adventure .display{font-weight:700}
 .log-row-title.is-activity .display{font-weight:400;color:var(--muted)}
-.log-row-title.scrollable .display,.log-row-date.scrollable .display,.char-toggle-text.scrollable,.dm-card .dm-card-title.scrollable{text-overflow:clip}
-.scrollable-marquee{display:inline-flex;align-items:center;gap:0;position:relative;overflow:hidden}
-.scrollable-marquee>.scroll-inner,.scrollable-marquee>.scroll-clone{flex:0 0 auto;white-space:nowrap;will-change:transform}
-.scrollable-marquee>.scroll-clone{pointer-events:none}
 @media (prefers-reduced-motion:reduce){
   .log-row-title.scrollable .display{animation:none}
   .log-row-date.scrollable .display{animation:none}
@@ -1423,202 +1419,7 @@ const DM_HOURS_POOL_START_TS=(()=>{
 })();
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
-const marqueeAnimator=(()=>{
-  const SPEED=48;
-  const INITIAL_PAUSE=1.2;
-  const LOOP_PAUSE=0.9;
-  const states=new Map();
-  const active=new Set();
-  let rafId=null;
-  const reduceMotionQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')?window.matchMedia('(prefers-reduced-motion: reduce)'):null;
-  let prefersReduced=!!(reduceMotionQuery && reduceMotionQuery.matches);
 
-  const resetTransforms=(state)=>{
-    if(!state) return;
-    if(state.inner && state.inner.style){
-      state.inner.style.transform='';
-    }
-    if(state.clone && state.clone.style){
-      state.clone.style.transform='';
-    }
-  };
-
-  const schedule=()=>{
-    if(prefersReduced || rafId!=null || active.size===0) return;
-    rafId=requestAnimationFrame(step);
-  };
-
-  const step=(timestamp)=>{
-    rafId=null;
-    if(prefersReduced){
-      active.clear();
-      return;
-    }
-    active.forEach((state)=>{
-      advance(state,timestamp);
-      if(!state.active || !state.inner || !state.clone){
-        active.delete(state);
-      }
-    });
-    if(active.size){
-      schedule();
-    }
-  };
-
-  const advance=(state,timestamp)=>{
-    if(!state.active || !state.inner || !state.clone || state.totalWidth<=0){
-      state.active=false;
-      resetTransforms(state);
-      return;
-    }
-    if(!state.el || !state.el.isConnected){
-      state.active=false;
-      resetTransforms(state);
-      state.inner=null;
-      state.clone=null;
-      state.totalWidth=0;
-      return;
-    }
-    if(state.lastTs==null){
-      state.lastTs=timestamp;
-      apply(state);
-      return;
-    }
-    let remaining=(timestamp-state.lastTs)/1000;
-    state.lastTs=timestamp;
-    while(remaining>0){
-      if(state.pauseRemaining>0){
-        if(state.pauseRemaining>remaining){
-          state.pauseRemaining-=remaining;
-          remaining=0;
-          break;
-        }
-        remaining-=state.pauseRemaining;
-        state.pauseRemaining=0;
-      }
-      if(state.speed<=0){
-        remaining=0;
-        break;
-      }
-      const distanceToBoundary=state.totalWidth+state.offset;
-      if(distanceToBoundary<=0){
-        state.offset=0;
-        state.pauseRemaining=state.loopPause;
-        continue;
-      }
-      const timeToBoundary=distanceToBoundary/state.speed;
-      if(remaining>=timeToBoundary){
-        state.offset-=state.speed*timeToBoundary;
-        state.offset+=state.totalWidth;
-        state.pauseRemaining=state.loopPause;
-        remaining-=timeToBoundary;
-      }else{
-        state.offset-=state.speed*remaining;
-        remaining=0;
-      }
-    }
-    apply(state);
-  };
-
-  const apply=(state)=>{
-    if(!state.inner || !state.clone) return;
-    const clamped=Math.max(-state.totalWidth,Math.min(0,state.offset));
-    state.offset=clamped;
-    const translate=`translateX(${clamped}px)`;
-    state.inner.style.transform=translate;
-    state.clone.style.transform=translate;
-  };
-
-  const ensureState=(el)=>{
-    let state=states.get(el);
-    if(!state){
-      state={
-        el,
-        inner:null,
-        clone:null,
-        offset:0,
-        totalWidth:0,
-        speed:SPEED,
-        startPause:INITIAL_PAUSE,
-        loopPause:LOOP_PAUSE,
-        pauseRemaining:0,
-        lastTs:null,
-        active:false
-      };
-      states.set(el,state);
-    }
-    return state;
-  };
-
-  const activate=(el,config={})=>{
-    if(!el) return;
-    const state=ensureState(el);
-    state.inner=config.inner||null;
-    state.clone=config.clone||null;
-    state.totalWidth=Math.max(0,(config.innerWidth||0)+(config.gapDistance||0));
-    state.speed=(config.speed&&config.speed>0)?config.speed:SPEED;
-    state.startPause=(typeof config.startPause==='number'&&config.startPause>=0)?config.startPause:INITIAL_PAUSE;
-    state.loopPause=(typeof config.loopPause==='number'&&config.loopPause>=0)?config.loopPause:LOOP_PAUSE;
-    state.pauseRemaining=state.startPause;
-    state.offset=0;
-    state.lastTs=null;
-    state.active=!!(state.inner && state.clone && state.totalWidth>0);
-    if(prefersReduced || !state.active){
-      resetTransforms(state);
-      return;
-    }
-    apply(state);
-    active.add(state);
-    schedule();
-  };
-
-  const deactivate=(el)=>{
-    if(!el) return;
-    const state=states.get(el);
-    if(!state) return;
-    state.active=false;
-    state.pauseRemaining=0;
-    state.lastTs=null;
-    active.delete(state);
-    resetTransforms(state);
-    state.inner=null;
-    state.clone=null;
-    state.totalWidth=0;
-  };
-
-  const handleReduceMotionChange=(event)=>{
-    prefersReduced=!!(event && event.matches);
-    if(prefersReduced){
-      active.forEach((state)=>resetTransforms(state));
-      active.clear();
-    }else{
-      states.forEach((state)=>{
-        if(state.inner && state.clone && state.totalWidth>0){
-          state.pauseRemaining=state.startPause;
-          state.offset=0;
-          state.lastTs=null;
-          if(state.active){
-            active.add(state);
-          }
-        }
-      });
-      schedule();
-    }
-  };
-
-  if(reduceMotionQuery){
-    if(typeof reduceMotionQuery.addEventListener==='function'){
-      reduceMotionQuery.addEventListener('change',handleReduceMotionChange);
-    }else if(typeof reduceMotionQuery.addListener==='function'){
-      reduceMotionQuery.addListener(handleReduceMotionChange);
-    }
-  }
-
-  return{
-    activate,
-    deactivate
-  };
-})();
 
 const scrollableTitleRegistry=(()=>{
   const wrappers=new Set();
@@ -1659,8 +1460,7 @@ function refreshScrollableWrapper(wrapper){
   const displayEl=wrapper.__display;
   if(!(displayEl instanceof Element)) return;
 
-  const cleanupMarquee=()=>{
-    marqueeAnimator.deactivate(displayEl);
+  const cleanupLegacyMarquee=()=>{
     const clone=displayEl.__marqueeClone;
     if(clone&&clone.parentNode===displayEl){
       clone.remove();
@@ -1677,62 +1477,13 @@ function refreshScrollableWrapper(wrapper){
     displayEl.classList.remove('scrollable-marquee');
   };
 
-  const ensureInner=()=>{
-    let inner=displayEl.__marqueeInner;
-    if(inner&&inner.parentNode!==displayEl){
-      inner=null;
-      displayEl.__marqueeInner=null;
-    }
-    if(!inner){
-      inner=document.createElement('span');
-      inner.className='scroll-inner';
-      while(displayEl.firstChild){
-        inner.appendChild(displayEl.firstChild);
-      }
-      displayEl.appendChild(inner);
-      displayEl.__marqueeInner=inner;
-    }
-    return inner;
-  };
+  cleanupLegacyMarquee();
 
   const containerWidth=Math.max(0,wrapper.clientWidth||displayEl.clientWidth||0);
-  let inner=displayEl.__marqueeInner;
-  if(inner&&inner.parentNode!==displayEl){
-    inner=null;
-    displayEl.__marqueeInner=null;
-  }
-  let innerWidth=0;
-  if(inner){
-    innerWidth=inner.scrollWidth;
-  }else{
-    innerWidth=displayEl.scrollWidth;
-  }
-  const overflowDistance=Math.max(0,innerWidth-containerWidth);
-  if(overflowDistance>1){
-    inner=ensureInner();
-    innerWidth=inner.scrollWidth;
-    const gapDistance=Math.max(24,Math.min(containerWidth*0.35,96));
-    const replacement=inner.cloneNode(true);
-    replacement.classList.add('scroll-clone');
-    replacement.setAttribute('aria-hidden','true');
-    replacement.style.marginLeft=gapDistance+'px';
-    const existingClone=displayEl.__marqueeClone;
-    if(existingClone&&existingClone.parentNode===displayEl){
-      displayEl.replaceChild(replacement,existingClone);
-    }else{
-      displayEl.appendChild(replacement);
-    }
-    displayEl.__marqueeClone=replacement;
-    displayEl.classList.add('scrollable-marquee');
+  const contentWidth=displayEl.scrollWidth;
+  if(contentWidth-containerWidth>1){
     wrapper.classList.add('scrollable');
-    marqueeAnimator.activate(displayEl,{
-      inner,
-      clone:replacement,
-      innerWidth,
-      gapDistance
-    });
   }else{
-    cleanupMarquee();
     wrapper.classList.remove('scrollable');
   }
 }
