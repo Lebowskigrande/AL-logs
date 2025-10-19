@@ -675,6 +675,29 @@ body.modal-open #addCardMenu{display:none;}
 .gifts-list-note{font-size:12px;color:var(--muted);padding:0 4px}
 .gift-note{font-size:11px;color:var(--muted)}
 
+.data-quality-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;padding:14px 18px;border-radius:16px;background:rgba(254,242,242,.75);border:1px solid rgba(220,38,38,.25);box-shadow:var(--shadow1);color:#991b1b}
+.data-quality-banner[hidden]{display:none}
+.data-quality-banner__content{display:flex;align-items:flex-start;gap:12px}
+.data-quality-banner__icon{flex:0 0 auto;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fee2e2;color:#b91c1c;font-weight:700;font-size:16px}
+.data-quality-banner__text{display:flex;flex-direction:column;gap:2px}
+.data-quality-banner__title{margin:0;font-weight:700;font-size:15px;color:#991b1b}
+.data-quality-banner__summary{margin:0;font-size:13px;color:#b91c1c}
+.data-quality-banner__actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.data-quality-banner__actions .btn{white-space:nowrap}
+.data-quality-issues{display:flex;flex-direction:column;gap:14px}
+.data-quality-issue{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.data-quality-issue[data-severity="error"]{border-color:rgba(220,38,38,.35);background:rgba(254,242,242,.6)}
+.data-quality-issue[data-severity="warning"]{border-color:rgba(234,179,8,.35);background:rgba(254,249,195,.6)}
+.data-quality-issue__header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.data-quality-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.data-quality-badge--error{background:rgba(220,38,38,.18);color:#991b1b}
+.data-quality-badge--warning{background:rgba(234,179,8,.2);color:#92400e}
+.data-quality-location{font-size:12px;color:var(--muted)}
+.data-quality-message{margin:0;font-size:14px;color:var(--ink);white-space:pre-wrap}
+.data-quality-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.data-quality-empty{margin:0;font-size:14px;color:var(--muted)}
+.data-quality-card .modal-body{max-height:420px;display:flex;flex-direction:column;gap:12px}
+
 /* Reduce scroll anchoring jumps */
 html,body,.log-list,.card-bd{overflow-anchor:none}
 
@@ -699,6 +722,18 @@ body.avatar-overlay-open{overflow:hidden}
 <div class="app-shell">
   <div class="app-main">
     <div class="container">
+      <aside id="dataQualityBanner" class="data-quality-banner" hidden aria-live="polite">
+        <div class="data-quality-banner__content">
+          <div class="data-quality-banner__icon" aria-hidden="true">!</div>
+          <div class="data-quality-banner__text">
+            <p class="data-quality-banner__title">Data issues detected</p>
+            <p id="dataQualitySummary" class="data-quality-banner__summary">Data validation found problems that need your attention.</p>
+          </div>
+        </div>
+        <div class="data-quality-banner__actions">
+          <button id="dataQualityReviewBtn" class="btn small primary" type="button">Review issues</button>
+        </div>
+      </aside>
       <section class="sheet-card">
     <div class="sheet-card-header">
       <div class="row">
@@ -922,6 +957,21 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
+<div id="dataQualityModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dataQualityTitle" tabindex="-1">
+  <div class="modal-card data-quality-card">
+    <div class="modal-hd">
+      <div id="dataQualityTitle">Data quality review</div>
+    </div>
+    <div class="modal-body">
+      <div id="dataQualityIssueContainer" class="data-quality-issues" role="list"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn small" id="dataQualityValidateBtn" type="button">Re-run validation</button>
+      <button class="btn small" id="dataQualityCloseBtn" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
 <div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-hidden="true"></div>
 <div id="avatarOverlay" class="avatar-overlay" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
   <div class="avatar-preview">
@@ -930,6 +980,7 @@ body.avatar-overlay-open{overflow:hidden}
 </div>
 
 <script src="legacy-data-loader.js"></script>
+<script src="data-pipeline.js"></script>
 <script id="dataScript" data-loader="data">
 const KEY='al_logs_data_version';
 window.AL_DATA_VERSION_KEY=KEY;
@@ -1116,6 +1167,8 @@ bootstrapData();
 <script>
 /* --- data boot --- */
 let DATA = window.DATA || null;
+let dataNormalized = false;
+let pipelineWarned = false;
 
 /* --- DOM handles --- */
 const appMainEl = document.querySelector('.app-main');
@@ -1163,6 +1216,13 @@ const dmItemsBtnEl = document.getElementById('dmItemsBtn');
 const dmItemsModal = document.getElementById('dmItemsModal');
 const dmItemsListEl = document.getElementById('dmItemsList');
 const dmItemsCloseBtn = document.getElementById('dmItemsClose');
+const dataQualityBanner = document.getElementById('dataQualityBanner');
+const dataQualitySummaryEl = document.getElementById('dataQualitySummary');
+const dataQualityReviewBtn = document.getElementById('dataQualityReviewBtn');
+const dataQualityModal = document.getElementById('dataQualityModal');
+const dataQualityIssueContainer = document.getElementById('dataQualityIssueContainer');
+const dataQualityCloseBtn = document.getElementById('dataQualityCloseBtn');
+const dataQualityValidateBtn = document.getElementById('dataQualityValidateBtn');
 const characterSidebarButtons=new Map();
 const inventorySidebarManageButtons=[
   inventorySidebarMagicManageBtn,
@@ -1233,6 +1293,318 @@ function isDataLoadErrorActive(){
   return dataLoadErrorActive;
 }
 
+const DATA_VALIDATION_DEBOUNCE_MS=800;
+let dataValidationState={ issues:[], lastRun:null };
+let pendingValidationHandle=null;
+let adventureUidSeed=0;
+
+function getDataPipeline(){
+  if(typeof window==='undefined') return null;
+  const pipeline=window.AL_DATA_PIPELINE||null;
+  if(!pipeline && !pipelineWarned){
+    pipelineWarned=true;
+    console.warn('Data pipeline unavailable; data validation disabled.');
+  }
+  return pipeline;
+}
+
+function setDataValidationState(issues){
+  dataValidationState={
+    issues:Array.isArray(issues)?issues:[],
+    lastRun:Date.now()
+  };
+  updateDataQualityBanner();
+  if(isDataQualityModalOpen()){
+    renderDataQualityIssues();
+  }
+}
+
+function adoptDataPayload(raw){
+  const pipeline=getDataPipeline();
+  if(pipeline && typeof pipeline.normalizeData==='function'){
+    try{
+      const result=pipeline.normalizeData(raw);
+      window.DATA=result.data;
+      DATA=window.DATA;
+      dataNormalized=true;
+      attachAdventureUids(window.DATA);
+      setDataValidationState(result.issues);
+      return result;
+    }catch(err){
+      console.error('Failed to normalize data.js payload', err);
+      pipelineWarned=true;
+    }
+  }
+  window.DATA=raw;
+  DATA=window.DATA;
+  dataNormalized=true;
+  attachAdventureUids(window.DATA);
+  setDataValidationState([]);
+  return { data:window.DATA, issues:[] };
+}
+
+function getSerializableData(){
+  const pipeline=getDataPipeline();
+  if(pipeline && typeof pipeline.prepareForSave==='function'){
+    try{
+      return pipeline.prepareForSave(DATA);
+    }catch(err){
+      console.warn('Unable to prepare data for save', err);
+    }
+  }
+  try{
+    return JSON.parse(JSON.stringify(DATA));
+  }catch(err){
+    console.warn('Unable to clone data for save', err);
+    return DATA;
+  }
+}
+
+function buildDataJsPayload(){
+  const serializable=getSerializableData();
+  return 'window.DATA = '+JSON.stringify(serializable,null,2)+';';
+}
+
+function ensureAdventureUid(adv){
+  if(!adv || typeof adv!=='object') return '';
+  if(typeof adv.__uid==='string' && adv.__uid){
+    return adv.__uid;
+  }
+  const id=generateAdventureUid();
+  try{
+    Object.defineProperty(adv,'__uid',{ value:id, enumerable:false, configurable:true });
+  }catch(err){
+    adv.__uid=id;
+  }
+  return id;
+}
+
+function attachAdventureUids(source){
+  if(!source || typeof source!=='object') return;
+  const chars=source.characters;
+  if(!chars || typeof chars!=='object') return;
+  Object.values(chars).forEach(ch=>{
+    if(ch && Array.isArray(ch.adventures)){
+      ch.adventures.forEach(ensureAdventureUid);
+    }
+  });
+}
+
+function generateAdventureUid(){
+  if(typeof crypto!=='undefined' && typeof crypto.randomUUID==='function'){
+    return `adv-${crypto.randomUUID()}`;
+  }
+  adventureUidSeed+=1;
+  return `adv-${Date.now().toString(36)}-${adventureUidSeed}`;
+}
+
+function updateDataQualityBanner(){
+  if(!dataQualityBanner || !dataQualitySummaryEl) return;
+  const issues=dataValidationState.issues||[];
+  if(!issues.length){
+    dataQualityBanner.hidden=true;
+    dataQualityBanner.setAttribute('aria-hidden','true');
+    return;
+  }
+  dataQualityBanner.hidden=false;
+  dataQualityBanner.setAttribute('aria-hidden','false');
+  const errorCount=issues.filter(issue=>issue && issue.severity==='error').length;
+  const warningCount=issues.filter(issue=>issue && issue.severity!=='error').length;
+  let summary='';
+  if(errorCount && warningCount){
+    summary=`${errorCount} error${errorCount===1?'':'s'} and ${warningCount} warning${warningCount===1?'':'s'} need attention.`;
+  }else if(errorCount){
+    summary=`${errorCount} issue${errorCount===1?' requires':'s require'} attention.`;
+  }else{
+    summary=`${warningCount} warning${warningCount===1?' needs':'s need'} review.`;
+  }
+  dataQualitySummaryEl.textContent=summary;
+}
+
+function resolveIssueAdventure(issue){
+  if(!issue || !issue.charKey) return null;
+  const key=issue.charKey;
+  const ch=(DATA && DATA.characters && DATA.characters[key])||null;
+  if(!ch || !Array.isArray(ch.adventures)) return null;
+  if(issue.adventureId){
+    const found=ch.adventures.find(entry=>entry && entry.__uid===issue.adventureId);
+    if(found) return found;
+  }
+  if(typeof issue.adventureIndex==='number' && issue.adventureIndex>=0 && issue.adventureIndex<ch.adventures.length){
+    return ch.adventures[issue.adventureIndex];
+  }
+  return null;
+}
+
+function renderDataQualityIssues(){
+  if(!dataQualityIssueContainer) return;
+  dataQualityIssueContainer.innerHTML='';
+  const issues=Array.isArray(dataValidationState.issues)?dataValidationState.issues.slice():[];
+  if(!issues.length){
+    const empty=document.createElement('p');
+    empty.className='data-quality-empty';
+    empty.textContent='No data quality issues detected.';
+    dataQualityIssueContainer.appendChild(empty);
+    return;
+  }
+  issues.sort((a,b)=>{
+    const aSeverity=(a && a.severity==='error')?0:1;
+    const bSeverity=(b && b.severity==='error')?0:1;
+    if(aSeverity!==bSeverity) return aSeverity-bSeverity;
+    const aKey=(a && a.charKey)||'';
+    const bKey=(b && b.charKey)||'';
+    if(aKey!==bKey) return aKey.localeCompare(bKey,undefined,{sensitivity:'base'});
+    const aIndex=Number.isFinite(a && a.adventureIndex)?a.adventureIndex:Infinity;
+    const bIndex=Number.isFinite(b && b.adventureIndex)?b.adventureIndex:Infinity;
+    if(aIndex!==bIndex) return aIndex-bIndex;
+    const aPath=(a && a.path)||'';
+    const bPath=(b && b.path)||'';
+    return aPath.localeCompare(bPath,undefined,{sensitivity:'base'});
+  });
+  issues.forEach(issue=>{
+    const item=document.createElement('div');
+    item.className='data-quality-issue';
+    item.dataset.severity=issue && issue.severity ? issue.severity : 'warning';
+    item.setAttribute('role','listitem');
+
+    const header=document.createElement('div');
+    header.className='data-quality-issue__header';
+
+    const badge=document.createElement('span');
+    const severity=(issue && issue.severity)||'warning';
+    badge.className=`data-quality-badge ${severity==='error'?'data-quality-badge--error':'data-quality-badge--warning'}`;
+    badge.textContent=severity==='error'?'Error':'Warning';
+    header.appendChild(badge);
+
+    const location=document.createElement('span');
+    location.className='data-quality-location';
+    const parts=[];
+    if(issue && issue.charKey){
+      parts.push(characterDisplayName(issue.charKey));
+    }
+    if(issue && Number.isFinite(issue.adventureIndex)){
+      parts.push(`Adventure ${issue.adventureIndex+1}`);
+    }else if(issue && issue.path){
+      parts.push(issue.path);
+    }
+    location.textContent=parts.length?parts.join(' • '):'Unmapped location';
+    header.appendChild(location);
+
+    item.appendChild(header);
+
+    const message=document.createElement('p');
+    message.className='data-quality-message';
+    message.textContent=(issue && issue.message) || (issue && issue.code) || 'Data issue detected.';
+    item.appendChild(message);
+
+    if(issue && issue.path && (!issue.charKey || !Number.isFinite(issue.adventureIndex))){
+      const pathMeta=document.createElement('span');
+      pathMeta.className='data-quality-location';
+      pathMeta.textContent=issue.path;
+      item.appendChild(pathMeta);
+    }
+
+    const actions=document.createElement('div');
+    actions.className='data-quality-actions';
+    let hasAction=false;
+    if(issue && issue.charKey!=null && (issue.adventureId || Number.isFinite(issue.adventureIndex))){
+      const editBtn=document.createElement('button');
+      editBtn.type='button';
+      editBtn.className='btn small primary';
+      editBtn.textContent='Edit entry';
+      editBtn.addEventListener('click',()=>{
+        closeDataQualityModal();
+        jumpToIssue(issue);
+      });
+      actions.appendChild(editBtn);
+      hasAction=true;
+    }
+    if(hasAction){
+      item.appendChild(actions);
+    }
+
+    dataQualityIssueContainer.appendChild(item);
+  });
+}
+
+function isDataQualityModalOpen(){
+  return dataQualityModal && dataQualityModal.classList.contains('open');
+}
+
+function openDataQualityModal(){
+  if(!dataQualityModal) return;
+  renderDataQualityIssues();
+  dataQualityModal.classList.add('open');
+  dataQualityModal.setAttribute('aria-hidden','false');
+  refreshModalState();
+  setTimeout(()=>{
+    if(dataQualityModal && typeof dataQualityModal.focus==='function'){
+      try{ dataQualityModal.focus({preventScroll:true}); }
+      catch(err){ /* no-op */ }
+    }
+  },40);
+}
+
+function closeDataQualityModal(){
+  if(!dataQualityModal) return;
+  if(!dataQualityModal.classList.contains('open')) return;
+  dataQualityModal.classList.remove('open');
+  dataQualityModal.setAttribute('aria-hidden','true');
+  refreshModalState();
+  if(dataQualityReviewBtn){
+    try{ dataQualityReviewBtn.focus({preventScroll:true}); }
+    catch(err){ /* no-op */ }
+  }
+}
+
+function scheduleDataValidation(){
+  const pipeline=getDataPipeline();
+  if(!pipeline || typeof pipeline.validateData!=='function') return;
+  if(pendingValidationHandle!=null){
+    clearTimeout(pendingValidationHandle);
+  }
+  pendingValidationHandle=setTimeout(()=>{
+    pendingValidationHandle=null;
+    runDataValidation();
+  }, DATA_VALIDATION_DEBOUNCE_MS);
+}
+
+function runDataValidation(){
+  const pipeline=getDataPipeline();
+  if(!pipeline || typeof pipeline.validateData!=='function'){
+    setDataValidationState(dataValidationState.issues||[]);
+    return;
+  }
+  try{
+    const result=pipeline.validateData(DATA);
+    setDataValidationState(result && Array.isArray(result.issues)?result.issues:[]);
+  }catch(err){
+    console.error('Data validation failed', err);
+  }
+}
+
+function jumpToIssue(issue){
+  if(!issue) return;
+  const targetKey=normalizeHistoryCharKey(issue.charKey||'');
+  if(targetKey){
+    ensureActivitiesVisible();
+    if(charSel && charSel.value!==targetKey){
+      charSel.value=targetKey;
+    }
+  }
+  filterAndRender({ immediate:true });
+  requestAnimationFrame(()=>{
+    const adv=resolveIssueAdventure(issue);
+    if(!adv) return;
+    ensureAdventureUid(adv);
+    const card=findCharacterCardFor(adv);
+    if(!card) return;
+    focusCardElement(card,{expand:true});
+    if(card.__edit){
+      enterEditMode(card);
+    }
+  });
+}
 const chipTickerRegistry=(()=>{
   const containers=new Set();
   const states=new Map();
@@ -2506,6 +2878,11 @@ function invalidateAdventureSearchCache(key){
 
 function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
   if(!adv || typeof adv!=='object') return '';
+  const pipeline=getDataPipeline();
+  if(pipeline && typeof pipeline.buildAdventureSearchText==='function'){
+    const character=(DATA && DATA.characters && DATA.characters[charKey])||null;
+    return pipeline.buildAdventureSearchText(adv,charKey,{ includeCharacterInfo, character });
+  }
   const baseParts=[
     adv.title,
     adv.code,
@@ -2515,21 +2892,31 @@ function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
     adv.itemTraded,
     adv.itemReceived,
     adv.player,
-    adv.character,
-    adv.lost_perm_item
-  ]
-    .concat(adv.perm_items||[])
-    .concat(adv.consumable_items||[])
-    .map(x=>(x||'').toString().toLowerCase());
+    adv.character
+  ];
+  if(Array.isArray(adv.lost_perm_item)){
+    baseParts.push(...adv.lost_perm_item);
+  }else{
+    baseParts.push(adv.lost_perm_item);
+  }
+  if(Array.isArray(adv.perm_items)){
+    baseParts.push(...adv.perm_items);
+  }
+  if(Array.isArray(adv.consumable_items)){
+    baseParts.push(...adv.consumable_items);
+  }
   if(includeCharacterInfo){
     const charObj=(DATA && DATA.characters && DATA.characters[charKey])||null;
     if(charObj){
-      baseParts.push(String(charObj.display_name||'').toLowerCase());
-      baseParts.push(String(charObj.sheet||'').toLowerCase());
+      baseParts.push(String(charObj.display_name||''));
+      baseParts.push(String(charObj.sheet||''));
     }
-    baseParts.push(String(charKey||'').toLowerCase());
+    baseParts.push(String(charKey||''));
   }
-  return baseParts.join(' ');
+  return baseParts
+    .filter(value=>value!=null)
+    .map(value=>String(value).toLowerCase())
+    .join(' ');
 }
 
 function createAdventureEntry(adv,idx,charKey,{includeCharacterInfo=false}={}){
@@ -2631,6 +3018,7 @@ function anyModalOpen(){
     || (consModal && consModal.classList.contains('open'))
     || (dmItemsModal && dmItemsModal.classList.contains('open'))
     || (tradeModal && tradeModal.classList.contains('open'))
+    || (dataQualityModal && dataQualityModal.classList.contains('open'))
     || (cardOverlay && cardOverlay.classList.contains('open'));
 }
 
@@ -3286,7 +3674,7 @@ function createCharacterNewEntry(kind){
     dtd_minus:0,
     level_plus:0,
     perm_items:[],
-    lost_perm_item:'',
+    lost_perm_item:[],
     consumable_items:[],
     supernatural_gifts:[],
     notes:'',
@@ -3298,6 +3686,7 @@ function createCharacterNewEntry(kind){
     __lockedKind:normalized,
     __levelAtStart:Number.isFinite(estimatedLevel)?estimatedLevel:null
   };
+  ensureAdventureUid(template);
   const card=makeCard(template,-1);
   card.classList.add('overlay-card');
   openCardOverlay(card);
@@ -3327,9 +3716,10 @@ function loadDataDraft(){
 function persistDataDraft(){
   if(!DATA||typeof DATA!=='object') return;
   try{
+    const snapshot=getSerializableData();
     const serialized=JSON.stringify({
       version:dataVersion||'',
-      data:DATA
+      data:snapshot
     });
     localStorage.setItem(DATA_DRAFT_STORAGE_KEY, serialized);
     hasLocalDraft=true;
@@ -3368,8 +3758,7 @@ function applyDraftIfAvailable({force=false}={}){
   }
   if(!draft||!draft.data||!draft.data.characters) return false;
   draftStateApplied=true;
-  window.DATA=draft.data;
-  DATA=window.DATA;
+  adoptDataPayload(draft.data);
   if(draft.version){
     dataVersion=draft.version;
     window.AL_DATA_VERSION=dataVersion;
@@ -3429,7 +3818,7 @@ function saveDataJs(options={}){
       syncPendingDerivedData();
       touchDataMetaTimestamp();
     }
-    const payload=(typeof customDataJs==='string')?customDataJs:('window.DATA = '+JSON.stringify(DATA,null,2)+';');
+    const payload=(typeof customDataJs==='string')?customDataJs:buildDataJsPayload();
     const hadPendingChanges=pendingChanges;
     const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
     const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
@@ -3661,8 +4050,8 @@ function applyDataJs(text){
   if(!parsed){
     throw new Error('Unable to parse data.js payload');
   }
-  window.DATA=parsed;
-  const next=window.DATA||null;
+  const result=adoptDataPayload(parsed);
+  const next=(result && result.data) || window.DATA || null;
   if(!next || !next.characters){
     throw new Error('DATA missing after applying data.js');
   }
@@ -6766,7 +7155,6 @@ function parseLostItemList(raw){
   return [normItemName(text)];
 }
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
-function looksLikeLossEntry(entry){ const t=((entry.title||'')+' '+(entry.notes||'')).toLowerCase(); return /trade|traded|sold|gave|gifted|lost|relinquish|transfer/.test(t); }
 function characterDisplayName(key){
   if(!key) return '';
   if(!DATA||!DATA.characters) return key;
@@ -6799,6 +7187,7 @@ function collectPermanentInventory(charKey){
     keptMap.delete(cleaned.toLowerCase());
   };
   entries.forEach(({adv,idx})=>{
+    ensureAdventureUid(adv);
     const items=adv.perm_items||[];
     const lostNames=parseLostItemList(adv.lost_perm_item);
     const tradedAway=[
@@ -6806,28 +7195,6 @@ function collectPermanentInventory(charKey){
       ...parseLostItemList(adv.itemTraded)
     ];
     const receivedList=parseLostItemList(adv.itemReceived);
-    const hasTradeMeta=tradedAway.length>0||receivedList.length>0||(lostNames.length>0&&items.length>0);
-    const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
-    if(isLoss && !hasTradeMeta){
-      if(items.length){
-        items.forEach(raw=>{
-          const {name}=parseAcquisitionName(raw);
-          removeByName(name);
-        });
-      }else if(adv.notes){
-        const note=String(adv.notes||'');
-        if(note){
-          [...keptMap.values()].forEach(meta=>{
-            const pattern=new RegExp(`\\b${escapeRegexFragment(meta.name)}\\b`,'i');
-            if(pattern.test(note)){
-              keptMap.delete(meta.name.toLowerCase());
-            }
-          });
-        }
-      }
-      lostNames.forEach(removeByName);
-      return;
-    }
     const handleAddition=(raw)=>{
       const {name,acquired}=parseAcquisitionName(raw);
       const cleaned=normItemName(name);
@@ -6840,9 +7207,7 @@ function collectPermanentInventory(charKey){
       keptMap.set(key,{name:cleaned,index:idx,adv});
     };
     items.forEach(handleAddition);
-    if(hasTradeMeta){
-      receivedList.forEach(handleAddition);
-    }
+    receivedList.forEach(handleAddition);
     lostNames.forEach(removeByName);
     tradedAway.forEach(removeByName);
   });
@@ -7010,6 +7375,7 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,p
     dtd_net:-5,
     level_plus:0,
     perm_items:received?[received]:[],
+    lost_perm_item:[],
     consumable_items:[],
     story_awards:[],
     supernatural_gifts:[],
@@ -7021,6 +7387,7 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,p
     character:partnerCharacter?partnerCharacter.trim():'',
     __charKey:charKey
   };
+  ensureAdventureUid(entry);
   return entry;
 }
 
@@ -7355,22 +7722,15 @@ function deriveConsumableInventory(charKey){
   const sub=(n,k=1)=>{ n=n.trim(); if(!n) return; const cur=(counts.get(n)||0)-k; counts.set(n,Math.max(0,cur)); if(counts.get(n)===0) counts.delete(n); };
   sorted.forEach(({adv})=>{
     const items=adv.consumable_items||[];
-    const isLoss=(adv.kind&&adv.kind!=='adventure')?looksLikeLossEntry(adv):false;
-    if(isLoss){
-      if(items.length){
-        items.forEach(raw=>sub(raw.replace(/^\(|\)$/g,'')));
-      }else if(adv.notes){
-        const note=String(adv.notes||'');
-        if(note){
-          [...counts.keys()].forEach(name=>{
-            const pattern=new RegExp(`\\b${escapeRegexFragment(name)}\\b`,'i');
-            if(pattern.test(note)) sub(name);
-          });
-        }
+    items.forEach(raw=>{
+      const {name,acquired}=parseConsumableName(raw);
+      if(!name) return;
+      if(acquired){
+        add(name);
+      }else{
+        sub(name);
       }
-      return;
-    }
-    items.forEach(raw=>{ const {name,acquired}=parseConsumableName(raw); if(acquired) add(name); });
+    });
   });
   return counts;
 }
@@ -9529,8 +9889,7 @@ function makeCard(a,idx){
     const showNotes=(editing || (!hasTradeMeta && (!isActivityMode || notesDisplay!=='—')));
     notesField.style.display=showNotes?'':'none';
 
-    const lostRaw=(a.lost_perm_item||'').trim();
-    let lostItems=parseLostItemList(lostRaw);
+    let lostItems=parseLostItemList(a.lost_perm_item);
     if(controls.lost_perm_item){
       controls.lost_perm_item.setValues(lostItems);
       if(typeof controls.lost_perm_item.refreshOptions==='function'){
@@ -9594,7 +9953,7 @@ function makeCard(a,idx){
       dtd_minus:Number(controls.dtd_minus.value||0),
       level_plus:Number(controls.level_plus.value||0),
       perm_items:controls.perm_items.getValues(),
-      lost_perm_item:controls.lost_perm_item?controls.lost_perm_item.getValues().join('\n'):'',
+      lost_perm_item:controls.lost_perm_item?controls.lost_perm_item.getValues():[],
       consumable_items:controls.consumable_items.getValues(),
       supernatural_gifts:controls.supernatural_gifts.getValues(),
       notes:controls.notes.value||'',
@@ -9676,7 +10035,7 @@ async function saveCardChanges(card){
     data.dtd_net=data.dtd_plus-data.dtd_minus;
     data.level_plus=Number.isFinite(updates.level_plus)?updates.level_plus:0;
     data.perm_items=[...updates.perm_items];
-    data.lost_perm_item=updates.lost_perm_item||'';
+    data.lost_perm_item=Array.isArray(updates.lost_perm_item)?[...updates.lost_perm_item]:[];
     data.consumable_items=[...updates.consumable_items];
     data.supernatural_gifts=[...updates.supernatural_gifts];
     const trimmedNotes=(updates.notes||'').trim();
@@ -9796,6 +10155,7 @@ function updateDerivedDataFor(key){
   advs.forEach(entry=>{
     if(entry && typeof entry==='object'){
       entry.__charKey=key;
+      ensureAdventureUid(entry);
     }
     if(entry.date){
       const year=new Date(entry.date).getFullYear();
@@ -9873,6 +10233,7 @@ function applyDataMutation(key){
   if(pendingChanges){
     persistDataDraft();
   }
+  scheduleDataValidation();
 }
 
 /* --- stats & header --- */
@@ -10333,6 +10694,33 @@ if(searchScopeToggleBtn){
     filterAndRender();
   });
 }
+if(dataQualityReviewBtn){
+  dataQualityReviewBtn.addEventListener('click',()=>{
+    openDataQualityModal();
+  });
+}
+if(dataQualityCloseBtn){
+  dataQualityCloseBtn.addEventListener('click',()=>{
+    closeDataQualityModal();
+  });
+}
+if(dataQualityValidateBtn){
+  dataQualityValidateBtn.addEventListener('click',()=>{
+    runDataValidation();
+  });
+}
+if(dataQualityModal){
+  dataQualityModal.addEventListener('click',(event)=>{
+    if(event.target===dataQualityModal){
+      closeDataQualityModal();
+    }
+  });
+  dataQualityModal.addEventListener('keydown',(event)=>{
+    if(event.key==='Escape'){
+      closeDataQualityModal();
+    }
+  });
+}
 if(charSel){
   charSel.addEventListener('change',()=>{
     syncCharacterSelectorUI();
@@ -10533,6 +10921,9 @@ function ensureAppInitialized(){
 function tryInitApp(){
   const usedDraft=applyDraftIfAvailable({force:pendingChanges || hasLocalDraft});
   if(window.DATA && window.DATA.characters){
+    if(!dataNormalized){
+      adoptDataPayload(window.DATA);
+    }
     const wasInitialized=__appInitialized;
     DATA=window.DATA;
     ensureAppInitialized();
@@ -10546,6 +10937,8 @@ function tryInitApp(){
   }
   return false;
 }
+
+updateDataQualityBanner();
 
 if(!tryInitApp()){
   if(dataScriptEl){
