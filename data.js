@@ -13099,10 +13099,12 @@ window.DATA = {
           "story_awards": [],
           "supernatural_gifts": [],
           "notes": "Used Mental Fortitude - Int save",
-          "kind": "Downtime Activity",
+          "kind": "adventure",
           "__charKey": "Agatha",
           "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "Dream Walkers",
@@ -19993,7 +19995,7 @@ window.DATA = {
       "gifts_count": 6
     },
     "Agatha": {
-      "sessions": 54,
+      "sessions": 55,
       "net_gp": 42113,
       "net_dtd": 115,
       "level_ups": 19,
@@ -20166,7 +20168,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T04:57:30.902Z",
+    "generated": "2025-10-19T04:57:55.837Z",
     "problems": []
   }
 };
