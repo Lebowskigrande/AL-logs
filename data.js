@@ -1228,7 +1228,7 @@ window.DATA = {
     "Creature X-12": {
       "display_name": "Creature X-12",
       "sheet": "Creature X-12",
-      "avatar": "",
+      "avatar": "Creature x-12.png",
       "notes": "",
       "identity": {},
       "adventures": [
