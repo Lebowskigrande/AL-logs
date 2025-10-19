@@ -197,7 +197,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .title-select-group{flex:1 1 auto;width:100%}
   .title-select-wrap{flex:1 1 auto;width:100%}
   .title-select-trigger{width:100%;font-size:clamp(20px,5vw,24px)}
-  .header-quick{flex-direction:column;align-items:flex-start;gap:8px}
+  .header-quick{flex-direction:row;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto;width:100%;scrollbar-width:none}
+  .header-quick::-webkit-scrollbar{display:none}
   .inventory-buttons{margin-left:0}
   .log-row{flex-direction:column;align-items:flex-start}
   .log-row-chips{align-items:flex-start;gap:6px;margin-top:6px}
