@@ -13173,10 +13173,12 @@ window.DATA = {
           "story_awards": [],
           "supernatural_gifts": [],
           "notes": "Bought 2 scrolls of Tongues",
-          "kind": "Downtime Activity",
+          "kind": "adventure",
           "__charKey": "Agatha",
           "__levelAfter": 16,
-          "__levelAtStart": 16
+          "__levelAtStart": 16,
+          "lost_perm_item": "",
+          "traded_item": ""
         },
         {
           "title": "Arena of Champions",
@@ -19991,7 +19993,7 @@ window.DATA = {
       "gifts_count": 6
     },
     "Agatha": {
-      "sessions": 53,
+      "sessions": 54,
       "net_gp": 42113,
       "net_dtd": 115,
       "level_ups": 19,
@@ -20164,7 +20166,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T04:56:53.927Z",
+    "generated": "2025-10-19T04:57:30.902Z",
     "problems": []
   }
 };
