@@ -6720,7 +6720,9 @@ function makeDmCard(entry,idx){
     refreshScrollableWrapper(dateEl);
   });
 
-  if(!isAllocation){
+  if(isAllocation){
+    addMetaPart('season','Season',entry.season);
+  }else{
     addMetaPart('code',null,entry.code);
   }
   addMetaPart('location','Location',entry.location);
@@ -6813,6 +6815,7 @@ function makeDmCard(entry,idx){
     if(createLinkChip){
       addField('Character reward entry', createLinkChip());
     }
+    if(entry.season && !headerMetaKeys.has('season')){ addField('Season', entry.season); }
     if(entry.cost!=null && !headerMetricKeys.has('cost')){ addField('Season cost', fmtNumber(entry.cost)); }
     if(entry.levels_plus!=null && !headerMetricKeys.has('levels_plus')){ addField('Levels granted', fmtNumber(entry.levels_plus)); }
     if(entry.hours!=null && !headerMetricKeys.has('hours')){ addField('Hours', fmtNumber(entry.hours)); }
