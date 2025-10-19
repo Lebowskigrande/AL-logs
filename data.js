@@ -1479,10 +1479,12 @@ window.DATA = {
           "story_awards": [],
           "supernatural_gifts": [],
           "notes": "",
-          "kind": "Downtime Activity",
+          "kind": "adventure",
           "__charKey": "Creature X-12",
           "__levelAfter": 2,
-          "__levelAtStart": 1
+          "__levelAtStart": 1,
+          "lost_perm_item": "",
+          "traded_item": ""
         }
       ]
     },
@@ -19825,7 +19827,7 @@ window.DATA = {
       "gifts_count": 0
     },
     "Creature X-12": {
-      "sessions": 1,
+      "sessions": 2,
       "net_gp": 0,
       "net_dtd": 20,
       "level_ups": 3,
@@ -20160,7 +20162,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T04:46:01.012Z",
+    "generated": "2025-10-19T04:46:29.393Z",
     "problems": []
   }
 };
