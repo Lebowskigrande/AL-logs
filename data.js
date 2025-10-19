@@ -1089,7 +1089,7 @@ window.DATA = {
           "gp_minus": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Valkur's Raiment (Half-plate +1 waterborne)"
           ],
@@ -1209,7 +1209,7 @@ window.DATA = {
           "title": "Start at level 5",
           "date": "2021-09-20",
           "code": "DT-START",
-          "dm": null,
+          "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -17029,7 +17029,7 @@ window.DATA = {
       "sessions": 3,
       "net_gp": 3540,
       "net_dtd": 75,
-      "level_ups": 6,
+      "level_ups": 7,
       "perm_count": 8,
       "cons_count": 0,
       "gifts_count": 0
@@ -17370,7 +17370,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T07:23:33.876Z",
+    "generated": "2025-10-19T07:24:29.876Z",
     "problems": []
   },
   "dm_allocations": []
