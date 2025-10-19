@@ -19881,7 +19881,7 @@ window.DATA = {
       "gifts_count": 0
     },
     "Creature X-12": {
-      "sessions": 0,
+      "sessions": 2,
       "net_gp": 0,
       "net_dtd": 20,
       "level_ups": 3,
@@ -20216,7 +20216,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-18T04:45:55.470Z",
+    "generated": "2025-10-19T04:46:29.393Z",
     "problems": []
   },
   "dm_allocations": []
