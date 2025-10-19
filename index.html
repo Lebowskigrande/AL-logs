@@ -49,6 +49,9 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
   .log-window{border-radius:0;border:none;box-shadow:none}
   .log-list{padding:0}
 }
+@media (max-width:840px){
+  .toolbar-layout .header-quick{flex-basis:100%;margin-left:0;justify-content:flex-start}
+}
 @media (min-width:1100px){
   .app-main{min-width:0;padding:36px clamp(32px,5vw,72px)}
 }
@@ -106,6 +109,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 
 /* Toolbar */
 .toolbar{margin-top:0;display:flex;gap:10px;flex-wrap:wrap}
+.toolbar-layout{align-items:flex-start;row-gap:8px}
+.toolbar-primary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;flex:1 1 420px;min-width:0}
+.toolbar-layout .header-quick{margin-top:0;margin-left:auto;flex:1 1 320px;justify-content:flex-end}
 .sheet-card-header > .toolbar{padding-top:12px}
 .sheet-card-header > .header-quick{padding-top:12px}
 .sheet-card-header > .header-quick.dm-summary{border-top:none;padding-top:0;margin-top:6px}
@@ -191,7 +197,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .title-select-group{flex:1 1 auto;width:100%}
   .title-select-wrap{flex:1 1 auto;width:100%}
   .title-select-trigger{width:100%;font-size:clamp(20px,5vw,24px)}
-  .header-quick{flex-direction:column;align-items:flex-start;gap:12px}
+  .header-quick{flex-direction:column;align-items:flex-start;gap:8px}
   .inventory-buttons{margin-left:0}
   .log-row{flex-direction:column;align-items:flex-start}
   .log-row-chips{align-items:flex-start;gap:6px;margin-top:6px}
@@ -724,46 +730,47 @@ body.avatar-overlay-open{overflow:hidden}
           <span id="saveStatusMessage" class="sr-only" aria-live="polite"></span>
         </div>
       </div>
-      <div class="toolbar">
-        <div class="search">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
-          <input id="q" placeholder="Search adventures"/>
-          <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
-            <img src="close.png" alt="" width="16" height="16" decoding="async" aria-hidden="true" />
+      <div class="toolbar toolbar-layout">
+        <div class="toolbar-primary">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
+            <input id="q" placeholder="Search adventures"/>
+            <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
+              <img src="close.png" alt="" width="16" height="16" decoding="async" aria-hidden="true" />
+            </button>
+          </div>
+          <button id="searchScopeToggle" class="icon-btn search-scope-toggle" type="button" aria-pressed="false" aria-label="Show entries from the selected character only" title="Show entries from the selected character only">
+            <span class="search-scope-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
+          <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
         </div>
-        <button id="searchScopeToggle" class="icon-btn search-scope-toggle" type="button" aria-pressed="false" aria-label="Show entries from the selected character only" title="Show entries from the selected character only">
-          <span class="search-scope-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <button id="activityToggle" class="btn small pill" type="button" aria-pressed="false">Hide activities</button>
-        <button id="addCard" title="Add new entry" aria-label="Add new entry" type="button" aria-haspopup="true" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-      </div>
-      <div class="header-quick" id="headerQuick">
-        <div class="inventory-buttons">
-          <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
-            <span class="icon" aria-hidden="true">
-              <img src="chest.png" alt="" width="24" height="24"/>
-            </span>
-            <span class="sr-only" id="magicItemsCount">0</span>
-          </button>
-          <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
-            <span class="icon" aria-hidden="true">
-              <img src="potion.png" alt="" width="24" height="24"/>
-            </span>
-            <span class="sr-only" id="consumablesCount">0</span>
-          </button>
-          <button id="giftsBtn" class="inventory-link" type="button" title="View supernatural gifts" aria-label="View supernatural gifts">
-            <span class="icon" aria-hidden="true">
-              <img src="gift-icon.png" alt="" width="24" height="24"/>
-            </span>
-            <span class="sr-only" id="giftsCount">0</span>
-          </button>
+        <div class="header-quick" id="headerQuick">
+          <div class="inventory-buttons">
+            <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
+              <span class="icon" aria-hidden="true">
+                <img src="chest.png" alt="" width="24" height="24"/>
+              </span>
+              <span class="sr-only" id="magicItemsCount">0</span>
+            </button>
+            <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
+              <span class="icon" aria-hidden="true">
+                <img src="potion.png" alt="" width="24" height="24"/>
+              </span>
+              <span class="sr-only" id="consumablesCount">0</span>
+            </button>
+            <button id="giftsBtn" class="inventory-link" type="button" title="View supernatural gifts" aria-label="View supernatural gifts">
+              <span class="icon" aria-hidden="true">
+                <img src="gift-icon.png" alt="" width="24" height="24"/>
+              </span>
+              <span class="sr-only" id="giftsCount">0</span>
+            </button>
+          </div>
           <div class="inventory-metric" id="goldMetric" role="group" aria-label="Gold pieces total">
             <span class="amount" id="goldValue">0</span>
             <span class="text">GP</span>
-
           </div>
           <div class="inventory-metric" id="downtimeMetric" role="group" aria-label="Downtime days total">
             <span class="amount" id="downtimeValue">0</span>
