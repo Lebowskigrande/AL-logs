@@ -92,6 +92,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .char-menu[hidden]{display:none}
 .char-menu-item{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;font:inherit;font-size:16px;color:var(--ink);background:none;border:none;cursor:pointer;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .char-menu-group{padding:12px 18px 4px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.char-menu-group--tier1{color:#16a34a}
+.char-menu-group--tier2{color:#2563eb}
+.char-menu-group--tier3{color:#7c3aed}
+.char-menu-group--tier4{color:#d97706}
 .char-menu-group:not(:first-child){margin-top:4px;border-top:1px solid var(--divider);padding-top:16px}
 .char-menu-item:hover,.char-menu-item:focus-visible{background:#eef4ff;color:var(--primary);outline:none}
 .char-menu-item.active{color:var(--primary);font-weight:600}
@@ -4218,7 +4222,7 @@ function rebuildCharacterMenu(){
     const tierLabel=opt.dataset?opt.dataset.tierLabel||'':'';
     if(tierId && tierLabel && tierId!==currentTierId){
       const header=document.createElement('div');
-      header.className='char-menu-group';
+      header.className=`char-menu-group char-menu-group--${tierId}`;
       header.textContent=tierLabel;
       header.setAttribute('role','presentation');
       header.setAttribute('aria-hidden','true');
