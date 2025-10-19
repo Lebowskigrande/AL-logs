@@ -115,7 +115,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 }
 .sheet-card-header > .toolbar{padding-top:12px}
 .sheet-card-header > .header-quick{padding-top:12px}
-.sheet-card-header > .header-quick.dm-summary{border-top:none;padding-top:0;margin-top:6px}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600}
 .btn{cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .btn:hover,.btn:focus-visible{background:#eef4ff;border-color:rgba(26,115,232,.35);color:var(--primary);outline:none}
@@ -814,22 +813,22 @@ body.avatar-overlay-open{overflow:hidden}
             <span class="text">DTD</span>
           </div>
         </div>
-      </div>
-      <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
-        <div class="inventory-buttons">
-          <button id="dmItemsBtn" class="inventory-link dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
-            <span class="icon dm-items-icon" aria-hidden="true">
-              <img src="chest.png" alt="" width="24" height="24"/>
-            </span>
-            <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
-          </button>
-          <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
-            <span class="amount" id="dmHoursValue">0</span>
-            <span class="text">Hours</span>
-          </div>
-          <div class="inventory-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
-            <span class="amount" id="dmLevelsValue">0</span>
-            <span class="text">Levels</span>
+        <div class="header-quick dm-summary" id="dmSummaryBar" hidden aria-hidden="true">
+          <div class="inventory-buttons">
+            <button id="dmItemsBtn" class="inventory-link dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
+              <span class="icon dm-items-icon" aria-hidden="true">
+                <img src="chest.png" alt="" width="24" height="24"/>
+              </span>
+              <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
+            </button>
+            <div class="inventory-metric" id="dmHoursMetric" role="group" aria-label="Available Dungeon Master hours">
+              <span class="amount" id="dmHoursValue">0</span>
+              <span class="text">Hours</span>
+            </div>
+            <div class="inventory-metric" id="dmLevelsMetric" role="group" aria-label="Available Dungeon Master levels">
+              <span class="amount" id="dmLevelsValue">0</span>
+              <span class="text">Levels</span>
+            </div>
           </div>
         </div>
       </div>
