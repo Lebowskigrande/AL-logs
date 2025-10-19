@@ -216,7 +216,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 /* Card */
 .card{display:block;position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow1);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease)}
 .card:hover{transform:none;box-shadow:var(--shadow1)}
-.log-list .card{--row-bg:transparent;--card-highlight-opacity:0;position:relative;margin:0;background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease),background var(--dur) var(--ease);flex:0 0 auto}
+.log-list .card{--row-bg:transparent;--card-highlight-opacity:0;position:relative;margin:0;background:transparent;border:1px solid transparent;border-bottom-color:var(--border);border-radius:var(--log-card-radius);box-shadow:none;overflow:visible;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease),background var(--dur) var(--ease);flex:0 0 auto}
 .log-list .card,
 .log-list .card::before,
 .log-list .card::after{border-radius:0}
@@ -240,7 +240,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.editing{--row-bg:rgba(241,245,249,.9)}
 .log-list .card.open::before{box-shadow:none;opacity:0;border-radius:0}
 .log-list .card.editing::before{box-shadow:inset 3px 0 0 #eef1f7;opacity:1}
-.log-list .card .card-hd{padding:8px 18px;display:flex;align-items:flex-start;gap:14px;min-height:0;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.log-list .card .card-hd{padding:8px 18px;display:flex;align-items:flex-start;gap:14px;min-height:0;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.28);padding:0 20px;background:rgba(248,250,252,.85);transition:background-color var(--dur) var(--ease),background var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
 .log-list .card.open .card-bd{border-radius:0;background:transparent;border-color:rgba(148,163,184,.2)}
