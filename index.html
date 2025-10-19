@@ -49,9 +49,6 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
   .log-window{border-radius:0;border:none;box-shadow:none}
   .log-list{padding:0}
 }
-@media (max-width:840px){
-  .toolbar-layout .header-quick{flex-basis:100%;margin-left:0;justify-content:flex-start}
-}
 @media (min-width:1100px){
   .app-main{min-width:0;padding:36px clamp(32px,5vw,72px)}
 }
@@ -112,6 +109,10 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .toolbar-layout{align-items:flex-start;row-gap:8px}
 .toolbar-primary{display:flex;flex-wrap:wrap;align-items:center;gap:10px;flex:1 1 420px;min-width:0}
 .toolbar-layout .header-quick{margin-top:0;margin-left:auto;flex:1 1 320px;justify-content:flex-end}
+
+@media (max-width:840px){
+  .toolbar-layout .header-quick{flex-basis:100%;margin-left:0;justify-content:flex-start}
+}
 .sheet-card-header > .toolbar{padding-top:12px}
 .sheet-card-header > .header-quick{padding-top:12px}
 .sheet-card-header > .header-quick.dm-summary{border-top:none;padding-top:0;margin-top:6px}
