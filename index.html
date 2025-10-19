@@ -2159,6 +2159,98 @@ const adventureSearchCache={
   byCharacter:new Map()
 };
 
+const adventureCardCache=new Map();
+let pendingRenderFrame=null;
+let adventureEntryUid=0;
+
+function ensureAdventureEntryKey(adv){
+  if(!adv||typeof adv!=='object') return '';
+  if(typeof adv.__entryKey==='string'&&adv.__entryKey) return adv.__entryKey;
+  const key=`adv-${++adventureEntryUid}`;
+  try{
+    Object.defineProperty(adv,'__entryKey',{
+      value:key,
+      configurable:true,
+      enumerable:false,
+      writable:false
+    });
+  }catch(err){
+    adv.__entryKey=key;
+  }
+  return key;
+}
+
+function pruneAdventureCardCache(charKey){
+  if(!charKey) return;
+  for(const [entryKey,card] of adventureCardCache){
+    const dataRef=card && card.__dataRef;
+    const owner=(card && card.__charKey)|| (dataRef && dataRef.__charKey)||'';
+    if(owner===charKey){
+      adventureCardCache.delete(entryKey);
+      if(card && grid && card.parentNode===grid){
+        grid.removeChild(card);
+      }
+    }
+  }
+}
+
+function clearAdventureCardCache(){
+  for(const card of adventureCardCache.values()){
+    if(card && grid && card.parentNode===grid){
+      grid.removeChild(card);
+    }
+  }
+  adventureCardCache.clear();
+}
+
+function getAdventureEntryKey(entry){
+  if(!entry) return '';
+  return ensureAdventureEntryKey(entry.adv);
+}
+
+function syncAdventureGrid(entries){
+  if(!grid) return;
+  const desired=[];
+  const seenKeys=new Set();
+  entries.forEach((entry,index)=>{
+    const key=getAdventureEntryKey(entry);
+    if(!key){
+      return;
+    }
+    let card=adventureCardCache.get(key);
+    const adv=entry.adv;
+    if(!card){
+      card=makeCard(adv,index);
+      card.dataset.entryKey=key;
+      adventureCardCache.set(key,card);
+    }
+    if(card.dataset.idx!==String(index)){
+      card.dataset.idx=String(index);
+    }
+    card.__dataRef=adv;
+    card.__charKey=entry.charKey || (adv && adv.__charKey) || '';
+    seenKeys.add(key);
+    desired.push(card);
+  });
+
+  const children=Array.from(grid.children);
+  children.forEach(child=>{
+    const key=child && child.dataset ? child.dataset.entryKey : null;
+    if(!key || !seenKeys.has(key)){
+      grid.removeChild(child);
+    }
+  });
+
+  let pointer=grid.firstChild;
+  desired.forEach(card=>{
+    if(card===pointer){
+      pointer=pointer?pointer.nextSibling:null;
+      return;
+    }
+    grid.insertBefore(card,pointer||null);
+  });
+}
+
 let pendingSearchInputHandle=null;
 
 const CHARACTER_MENTION_LABELS=new Set(['player','character','reward allocation','notes']);
@@ -2394,12 +2486,14 @@ function invalidateAdventureSearchCache(key){
   if(!key){
     adventureSearchCache.byCharacter.clear();
     adventureSearchCache.all=null;
+    clearAdventureCardCache();
     return;
   }
   if(typeof key==='string'){
     adventureSearchCache.byCharacter.delete(key);
   }
   adventureSearchCache.all=null;
+  pruneAdventureCardCache(key);
 }
 
 function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
@@ -2435,6 +2529,7 @@ function createAdventureEntry(adv,idx,charKey,{includeCharacterInfo=false}={}){
   if(!adv.__charKey){
     adv.__charKey=charKey;
   }
+  ensureAdventureEntryKey(adv);
   return {
     adv,
     idx,
@@ -2460,8 +2555,7 @@ function getCharacterAdventureEntries(key){
   return entries;
 }
 
-function getAllAdventureEntries(){
-  if(adventureSearchCache.all) return adventureSearchCache.all;
+function buildAllAdventureEntries(){
   if(!DATA || !DATA.characters) return [];
   const entries=[];
   let globalIndex=0;
@@ -2469,12 +2563,24 @@ function getAllAdventureEntries(){
     if(!ch || !Array.isArray(ch.adventures)) return;
     sortCharacterAdventures(charKey);
     ch.adventures.forEach((adv)=>{
-      const entry=createAdventureEntry(adv,globalIndex++,charKey,{includeCharacterInfo:true});
-      if(entry) entries.push(entry);
+      const entry=createAdventureEntry(adv,globalIndex,charKey,{includeCharacterInfo:true});
+      if(entry){
+        entry.index=globalIndex;
+        globalIndex+=1;
+        entries.push(entry);
+      }else{
+        globalIndex+=1;
+      }
     });
   });
-  adventureSearchCache.all=entries;
+  entries.sort(compareChronoDesc);
   return entries;
+}
+
+function getAllAdventureEntries(){
+  if(adventureSearchCache.all) return adventureSearchCache.all;
+  adventureSearchCache.all=buildAllAdventureEntries();
+  return adventureSearchCache.all;
 }
 
 function updateSaveIndicatorState(){
@@ -9733,6 +9839,7 @@ function refreshAllDerivedData(){
   Object.keys(DATA.characters).forEach(key=>{
     updateDerivedDataFor(key);
   });
+  adventureSearchCache.all=buildAllAdventureEntries();
   buildDmEntries();
   rebuildDmRewardLinks();
   refreshCharacterMentionIndex();
@@ -10051,7 +10158,27 @@ function setHeader(key){
 }
 
 /* --- rendering --- */
-function filterAndRender(){
+function filterAndRender(options={}){
+  const opts=(options && typeof options==='object')?options:{};
+  const immediate=!!opts.immediate;
+  if(immediate){
+    if(pendingRenderFrame!=null){
+      cancelAnimationFrame(pendingRenderFrame);
+      pendingRenderFrame=null;
+    }
+    performFilterAndRender();
+    return;
+  }
+  if(pendingRenderFrame!=null){
+    return;
+  }
+  pendingRenderFrame=requestAnimationFrame(()=>{
+    pendingRenderFrame=null;
+    performFilterAndRender();
+  });
+}
+
+function performFilterAndRender(){
   if(!charSel) return;
   let key=charSel.value;
   if(!isValidSheetKey(key)){
@@ -10071,9 +10198,7 @@ function filterAndRender(){
       key=DM_LOG_KEY;
     }else{
       rememberCharacterKey('');
-      if(grid){
-        grid.innerHTML='';
-      }
+      syncAdventureGrid([]);
       if(emptyEl){
         setEmptyStateMessage(defaultEmptyMessage);
         if(!isDataLoadErrorActive()){
@@ -10110,9 +10235,7 @@ function filterAndRender(){
   const normalizedQuery=rawQuery.toLowerCase();
   const activeQuery=normalizedQuery.trim();
   if(searchAllCharacters && activeQuery.length<MULTI_SEARCH_MIN_QUERY_LENGTH){
-    if(grid){
-      grid.innerHTML='';
-    }
+    syncAdventureGrid([]);
     if(emptyEl && !isDataLoadErrorActive()){
       setEmptyStateMessage(MULTI_SEARCH_PROMPT_TEXT);
       emptyEl.style.display='block';
@@ -10124,24 +10247,19 @@ function filterAndRender(){
     return;
   }
   const decorated=searchAllCharacters?getAllAdventureEntries():getCharacterAdventureEntries(key);
-  const filtered=decorated
-    .filter((entry)=>{
-      const adv=entry && entry.adv;
-      if(!adv) return false;
-      if(!showActivities && isActivityEntry(adv)) return false;
-      if(!activeQuery) return true;
-      const blob=typeof entry.searchBlob==='string'?entry.searchBlob:'';
-      return blob.indexOf(activeQuery)!==-1;
-    })
-    .sort(compareChronoDesc);
-  if(grid){
-    grid.innerHTML='';
-  }
+  const filtered=decorated.filter((entry)=>{
+    const adv=entry && entry.adv;
+    if(!adv) return false;
+    if(!showActivities && isActivityEntry(adv)) return false;
+    if(!activeQuery) return true;
+    const blob=typeof entry.searchBlob==='string'?entry.searchBlob:'';
+    return blob.indexOf(activeQuery)!==-1;
+  });
+  syncAdventureGrid(filtered);
   if(!filtered.length){
     if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='block'; }
   }else{
     if(!isDataLoadErrorActive()&&emptyEl){ emptyEl.style.display='none'; }
-    filtered.forEach(({adv},i)=>grid.appendChild(makeCard(adv,i)));
   }
   const visibleKeys=new Set(filtered.map(item=>item.charKey).filter(Boolean));
   let override=null;
@@ -10363,7 +10481,7 @@ function initApp(){
   if(initialKey && charSel){
     charSel.value=initialKey;
   }
-  filterAndRender();
+  filterAndRender({immediate:true});
   scheduleAvatarPreload();
   const activeChar=normalizeHistoryCharKey(getActiveCharacterKey())||normalizeHistoryCharKey(initialKey);
   const hasEntryState=historyState && (historyState.entryType==='adventure'||historyState.entryType==='dm') && historyState.entryId!=null;
