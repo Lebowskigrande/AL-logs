@@ -539,7 +539,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .card.editing input:focus,.card.editing textarea:focus,.card.editing select:focus,.card.editing .editable-inline .editor input:focus,.card.editing .editable-inline .editor select:focus{outline:none;box-shadow:0 0 0 2px rgba(15,23,42,.18)}
 
 body.modal-open{overflow:hidden;}
-body.modal-open #addCard{display:none;}
 body.modal-open #addCardMenu{display:none;}
 
 #addCard{
@@ -557,13 +556,25 @@ body.modal-open #addCardMenu{display:none;}
   align-items:center;
   justify-content:center;
   cursor:pointer;
-  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+  opacity:1;
+  visibility:visible;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),opacity var(--dur) var(--ease),visibility 0s linear;
   z-index:60;
 }
 #addCard svg{width:28px;height:28px}
 #addCard:hover{transform:translateY(-2px);box-shadow:0 24px 40px rgba(255,61,113,.45)}
 #addCard:focus-visible{outline:3px solid rgba(255,61,113,.4);outline-offset:4px}
 .toolbar #addCard{margin-left:auto}
+
+body.modal-open #addCard,
+body.card-editor-active #addCard{
+  opacity:0;
+  transform:translateY(12px) scale(.92);
+  box-shadow:none;
+  visibility:hidden;
+  pointer-events:none;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),opacity var(--dur) var(--ease),visibility 0s linear var(--dur);
+}
 
 .fab-menu{position:fixed;right:24px;bottom:100px;display:flex;flex-direction:column;gap:6px;min-width:200px;padding:8px 0;border-radius:12px;background:#fff;box-shadow:var(--shadow2);border:1px solid var(--border);z-index:65;opacity:0;transform:translateY(6px) scale(.98);pointer-events:none;visibility:hidden;transition:opacity var(--menu-dur,var(--dur)) var(--ease),transform var(--menu-dur,var(--dur)) var(--ease);will-change:opacity,transform}
 .fab-menu[data-menu-state]{visibility:visible}
@@ -1811,6 +1822,23 @@ const DM_HOURS_POOL_START_TS=(()=>{
 })();
 let DM_PRE_ITEMS=[];
 let overlayCard=null;
+let activeCardEditorCount=0;
+
+function onCardEditorOpened(){
+  activeCardEditorCount+=1;
+  if(activeCardEditorCount===1 && typeof document!=='undefined' && document.body){
+    document.body.classList.add('card-editor-active');
+  }
+}
+
+function onCardEditorClosed(){
+  if(activeCardEditorCount>0){
+    activeCardEditorCount-=1;
+    if(activeCardEditorCount===0 && typeof document!=='undefined' && document.body){
+      document.body.classList.remove('card-editor-active');
+    }
+  }
+}
 
 
 const scrollableTitleRegistry=(()=>{
@@ -3659,6 +3687,10 @@ function openCardOverlay(card){
 
 function closeCardOverlay(){
   if(!cardOverlay) return;
+  if(overlayCard && overlayCard.classList && overlayCard.classList.contains('editing')){
+    overlayCard.classList.remove('editing');
+    onCardEditorClosed();
+  }
   cardOverlay.classList.remove('open');
   cardOverlay.setAttribute('aria-hidden','true');
   overlayCard=null;
@@ -10112,8 +10144,13 @@ function makeCard(a,idx){
 
 function enterEditMode(card){
   if(!card||!card.__edit) return;
+  closeAddMenu({immediate:true});
+  const wasEditing=card.classList.contains('editing');
   card.classList.add('editing');
   card.classList.add('open');
+  if(!wasEditing){
+    onCardEditorOpened();
+  }
   card.__edit.populate(true);
   const bd=card.querySelector('.card-bd');
   if(bd){
@@ -10128,7 +10165,11 @@ function enterEditMode(card){
 
 function exitEditMode(card,reset){
   if(!card||!card.__edit) return;
+  const wasEditing=card.classList.contains('editing');
   card.classList.remove('editing');
+  if(wasEditing){
+    onCardEditorClosed();
+  }
   if(reset){ card.__edit.populate(false); }
   if(card.__edit.button){
     card.__edit.button.setAttribute('aria-pressed','false');
@@ -10253,6 +10294,9 @@ async function deleteCard(card){
     const confirmed=window.confirm('Discard this new entry?');
     if(confirmed) closeCardOverlay();
     return;
+  }
+  if(card.classList && card.classList.contains('editing')){
+    exitEditMode(card);
   }
   const key=(card.__dataRef && card.__dataRef.__charKey)||charSel.value;
   const ch=DATA.characters[key];
