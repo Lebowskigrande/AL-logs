@@ -1454,7 +1454,7 @@ window.DATA = {
           "gp_minus": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "level_plus": 0,
           "perm_items": [
             "Staff of Fire"
           ],
@@ -17056,7 +17056,7 @@ window.DATA = {
       "sessions": 18,
       "net_gp": 26727,
       "net_dtd": 205,
-      "level_ups": 11,
+      "level_ups": 10,
       "perm_count": 32,
       "cons_count": 10,
       "gifts_count": 0
@@ -17370,7 +17370,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T07:24:49.081Z",
+    "generated": "2025-10-19T07:43:51.947Z",
     "problems": []
   },
   "dm_allocations": []
