@@ -82,7 +82,9 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .title-select-trigger:hover .char-toggle-icon{background:#dbeafe}
 .title-select-trigger[aria-expanded="true"] .char-toggle-icon{transform:rotate(180deg)}
 .title-select-trigger svg{width:16px;height:16px}
-.char-menu{position:absolute;top:calc(100% + 12px);left:0;min-width:280px;max-width:min(360px,calc(100vw - 32px));max-height:360px;padding:8px 0;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow1),var(--shadow2);display:flex;flex-direction:column;gap:2px;z-index:120;overflow:auto;opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;visibility:hidden;transition:opacity var(--menu-dur,var(--dur)) var(--ease),transform var(--menu-dur,var(--dur)) var(--ease);will-change:opacity,transform}
+.char-menu{position:fixed;top:0;left:0;min-width:280px;max-width:min(360px,calc(100vw - 32px));max-height:360px;padding:8px 0;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow1),var(--shadow2);display:flex;flex-direction:column;gap:2px;z-index:120;overflow:auto;opacity:0;transform:translateY(-6px) scale(.98);transform-origin:top;pointer-events:none;visibility:hidden;transition:opacity var(--menu-dur,var(--dur)) var(--ease),transform var(--menu-dur,var(--dur)) var(--ease);will-change:opacity,transform}
+.char-menu[data-placement='above']{transform:translateY(6px) scale(.98);transform-origin:bottom}
+.char-menu[data-placement='above'][data-menu-state='opening'],.char-menu[data-placement='above'][data-menu-state='closing']{transform:translateY(4px) scale(.98)}
 .char-menu[data-menu-state]{visibility:visible}
 .char-menu[data-menu-state='opening']{opacity:0;transform:translateY(-4px) scale(.98)}
 .char-menu[data-menu-state='open']{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
@@ -189,7 +191,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
   .title-select-group{flex:1 1 auto;width:100%}
   .title-select-wrap{flex:1 1 auto;width:100%}
   .title-select-trigger{width:100%;font-size:clamp(20px,5vw,24px)}
-  .char-menu{min-width:100%;max-width:calc(100vw - 32px)}
   .header-quick{flex-direction:column;align-items:flex-start;gap:12px}
   .inventory-buttons{margin-left:0}
   .log-row{flex-direction:column;align-items:flex-start}
@@ -709,7 +710,6 @@ body.avatar-overlay-open{overflow:hidden}
               </button>
               <select id="charSel" class="title-select" aria-hidden="true" tabindex="-1"></select>
             </h1>
-            <div id="charSelMenu" class="char-menu" role="listbox" aria-labelledby="charSelToggle" aria-hidden="true" hidden></div>
           </div>
           <div id="charMeta" class="char-meta muted" aria-live="polite"></div>
           <div id="charBadges" class="char-badges" aria-live="polite"></div>
@@ -790,6 +790,7 @@ body.avatar-overlay-open{overflow:hidden}
         </div>
       </div>
     </div>
+    <div id="charSelMenu" class="char-menu" role="listbox" aria-labelledby="charSelToggle" aria-hidden="true" hidden></div>
     <div class="sheet-card-body">
       <div class="log-window">
         <div id="grid" class="log-list"></div>
@@ -1109,12 +1110,15 @@ bootstrapData();
 let DATA = window.DATA || null;
 
 /* --- DOM handles --- */
+const appMainEl = document.querySelector('.app-main');
 const sheetHeaderEl = document.querySelector('.sheet-card-header');
 const charSel  = document.getElementById('charSel');
 const charSelToggle = document.getElementById('charSelToggle');
 const charSelMenu = document.getElementById('charSelMenu');
 const charSelDisplay = document.getElementById('charSelDisplay');
 const DEFAULT_CHARACTER_MENU_LABEL='Select a character';
+const CHAR_MENU_GAP = 12;
+const CHAR_MENU_VIEWPORT_PADDING = 16;
 const avatarEl = document.getElementById('charAvatar');
 const saveIndicator = document.getElementById('saveIndicator');
 const saveIndicatorWrap = document.getElementById('saveIndicatorWrap');
@@ -1162,6 +1166,8 @@ const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview')
 const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
 const dataScriptEl=document.getElementById('dataScript');
 const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
+let charMenuRafId=null;
+let removeCharMenuAutoPosition=null;
 let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||window.AL_DATA_VERSION||'';
 window.AL_DATA_VERSION=dataVersion;
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
@@ -3695,6 +3701,9 @@ function rebuildCharacterMenu(){
     charSelMenu.appendChild(btn);
   });
   charSelMenu.scrollTop=previousScroll;
+  if(isMenuOpen(charSelMenu)){
+    scheduleCharMenuReposition();
+  }
   syncCharacterSelectorUI();
 }
 
@@ -3794,6 +3803,139 @@ function updateCharacterSidebarSelection(selectedKey){
   }
 }
 
+function resetCharMenuPosition(){
+  if(!charSelMenu) return;
+  charSelMenu.style.removeProperty('top');
+  charSelMenu.style.removeProperty('left');
+  charSelMenu.style.removeProperty('width');
+  charSelMenu.style.removeProperty('min-width');
+  charSelMenu.removeAttribute('data-placement');
+}
+
+function positionCharMenu(){
+  if(!charSelMenu || !charSelToggle) return;
+  if(typeof window==='undefined') return;
+  const toggleRect=charSelToggle.getBoundingClientRect();
+  const docEl=document.documentElement;
+  const viewportWidth=Math.max(window.innerWidth||0, docEl?docEl.clientWidth||0:0);
+  const viewportHeight=Math.max(window.innerHeight||0, docEl?docEl.clientHeight||0:0);
+  const baseMinWidth=280;
+  let width=Math.max(toggleRect.width, baseMinWidth);
+  if(viewportWidth){
+    const available=Math.max(viewportWidth-(CHAR_MENU_VIEWPORT_PADDING*2),0);
+    if(available>0){
+      width=Math.min(width, Math.min(available, 360));
+      if(width<=0){
+        width=Math.min(Math.max(available,0), baseMinWidth);
+      }
+    }else{
+      width=Math.min(width, Math.min(viewportWidth, 360));
+    }
+  }else{
+    width=Math.min(width,360);
+  }
+  if(!Number.isFinite(width)||width<=0){
+    width=baseMinWidth;
+  }
+  const minWidth=width<baseMinWidth?width:baseMinWidth;
+  charSelMenu.style.width=`${Math.round(width)}px`;
+  charSelMenu.style.minWidth=`${Math.round(minWidth)}px`;
+  let left=toggleRect.left;
+  if(viewportWidth){
+    const maxLeft=viewportWidth-CHAR_MENU_VIEWPORT_PADDING-width;
+    left=Math.min(left, maxLeft);
+    left=Math.max(left, CHAR_MENU_VIEWPORT_PADDING);
+  }
+  if(!Number.isFinite(left)){
+    left=0;
+  }
+  charSelMenu.style.left=`${Math.round(left)}px`;
+  let top=toggleRect.bottom+CHAR_MENU_GAP;
+  let placement='below';
+  const menuHeight=charSelMenu.offsetHeight||0;
+  if(viewportHeight&&menuHeight){
+    const maxTop=viewportHeight-CHAR_MENU_VIEWPORT_PADDING-menuHeight;
+    if(top>maxTop){
+      const aboveTop=toggleRect.top-CHAR_MENU_GAP-menuHeight;
+      if(aboveTop>=CHAR_MENU_VIEWPORT_PADDING){
+        top=aboveTop;
+        placement='above';
+      }else{
+        top=Math.max(maxTop, CHAR_MENU_VIEWPORT_PADDING);
+      }
+    }
+  }
+  if(!Number.isFinite(top)){
+    top=0;
+  }
+  top=Math.max(top, CHAR_MENU_VIEWPORT_PADDING);
+  charSelMenu.style.top=`${Math.round(top)}px`;
+  if(placement==='above'){
+    charSelMenu.setAttribute('data-placement','above');
+  }else{
+    charSelMenu.removeAttribute('data-placement');
+  }
+}
+
+function scheduleCharMenuReposition(){
+  if(!charSelMenu || !isMenuOpen(charSelMenu)) return;
+  if(typeof requestAnimationFrame!=='function'){
+    positionCharMenu();
+    return;
+  }
+  if(charMenuRafId!=null && typeof cancelAnimationFrame==='function'){
+    cancelAnimationFrame(charMenuRafId);
+  }
+  charMenuRafId=requestAnimationFrame(()=>{
+    charMenuRafId=null;
+    positionCharMenu();
+  });
+}
+
+function startCharMenuAutoPosition(){
+  if(removeCharMenuAutoPosition || !charSelMenu) return;
+  if(typeof window==='undefined' || typeof document==='undefined') return;
+  const handlers=[];
+  const add=(target,type,listener,options)=>{
+    if(target && typeof target.addEventListener==='function'){
+      target.addEventListener(type,listener,options);
+      handlers.push(()=>{
+        try{ target.removeEventListener(type,listener,options); }
+        catch(err){ target.removeEventListener(type,listener); }
+      });
+    }
+  };
+  const onChange=()=>scheduleCharMenuReposition();
+  add(window,'resize',onChange);
+  add(window,'scroll',onChange,{passive:true});
+  add(document,'scroll',onChange,{passive:true});
+  if(appMainEl){
+    add(appMainEl,'scroll',onChange,{passive:true});
+  }
+  if(sheetHeaderEl){
+    add(sheetHeaderEl,'scroll',onChange,{passive:true});
+  }
+  removeCharMenuAutoPosition=()=>{
+    handlers.forEach(remove=>{
+      try{ remove(); }
+      catch(err){ /* no-op */ }
+    });
+    removeCharMenuAutoPosition=null;
+  };
+}
+
+function stopCharMenuAutoPosition(){
+  if(charMenuRafId!=null){
+    if(typeof cancelAnimationFrame==='function'){
+      cancelAnimationFrame(charMenuRafId);
+    }
+    charMenuRafId=null;
+  }
+  if(typeof removeCharMenuAutoPosition==='function'){
+    removeCharMenuAutoPosition();
+  }
+}
+
 function closeCharMenu({focusToggle=false}={}){
   if(charSelToggle){
     charSelToggle.setAttribute('aria-expanded','false');
@@ -3804,11 +3946,16 @@ function closeCharMenu({focusToggle=false}={}){
       catch(err){ charSelToggle.focus(); }
     }
   };
+  stopCharMenuAutoPosition();
   if(!charSelMenu){
     focusBack();
     return;
   }
-  animateMenuClose(charSelMenu,focusBack);
+  const finalize=()=>{
+    resetCharMenuPosition();
+    focusBack();
+  };
+  animateMenuClose(charSelMenu,finalize);
 }
 
 function openCharMenu({focusLast=false}={}){
@@ -3822,6 +3969,9 @@ function openCharMenu({focusLast=false}={}){
   closeAddMenu();
   animateMenuOpen(charSelMenu);
   charSelToggle.setAttribute('aria-expanded','true');
+  positionCharMenu();
+  startCharMenuAutoPosition();
+  scheduleCharMenuReposition();
   const active=items.find(item=>item.classList.contains('active'));
   let target=active||null;
   if(focusLast){
