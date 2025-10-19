@@ -680,9 +680,9 @@ html,body,.log-list,.card-bd{overflow-anchor:none}
   .card-overlay .card{max-width:960px}
 }
 .card-overlay .card .card-tools{display:none}
-.avatar-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(15,23,42,.7);backdrop-filter:blur(2px);z-index:80;padding:24px}
+.avatar-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(15,23,42,.7);backdrop-filter:blur(2px);z-index:80;padding:24px;overflow:hidden}
 .avatar-overlay.open{display:flex}
-.avatar-overlay .avatar-preview{display:flex;align-items:center;justify-content:center;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px)}
+.avatar-overlay .avatar-preview{display:flex;align-items:center;justify-content:center;max-width:calc(100vw - 48px);max-height:calc(100vh - 48px);width:100%;height:100%}
 .avatar-overlay .avatar-preview img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;filter:drop-shadow(0 40px 90px rgba(15,23,42,.6))}
 .avatar-overlay{cursor:zoom-out}
 body.avatar-overlay-open{overflow:hidden}
@@ -1164,6 +1164,7 @@ const cardOverlay=document.getElementById('cardOverlay');
 const avatarOverlay=document.getElementById('avatarOverlay');
 const avatarPreview=avatarOverlay?avatarOverlay.querySelector('.avatar-preview'):null;
 const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-preview-image'):null;
+const avatarSizeCache=new Map();
 const dataScriptEl=document.getElementById('dataScript');
 const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
 let charMenuRafId=null;
@@ -1187,6 +1188,7 @@ if(avatarEl){
       openAvatarOverlay();
     }
   });
+  avatarEl.addEventListener('load',onAvatarElementLoad);
 }
 const goldMetricEl=document.getElementById('goldMetric');
 const goldValueEl=document.getElementById('goldValue');
@@ -4203,6 +4205,26 @@ function resetAvatarPreviewSizing(){
   avatarPreviewImage.style.height='';
 }
 
+function parsePositiveNumber(value){
+  const num=Number.parseFloat(value);
+  return Number.isFinite(num) && num>0 ? num : 0;
+}
+
+function getAvatarNaturalSize(path){
+  if(!path) return null;
+  if(avatarSizeCache.has(path)) return avatarSizeCache.get(path);
+  if(avatarEl && avatarEl.getAttribute('data-avatar-src')===path){
+    const width=parsePositiveNumber(avatarEl.dataset.avatarNaturalWidth);
+    const height=parsePositiveNumber(avatarEl.dataset.avatarNaturalHeight);
+    if(width && height){
+      const size={width,height};
+      avatarSizeCache.set(path,size);
+      return size;
+    }
+  }
+  return null;
+}
+
 function getAvatarOverlayPadding(){
   if(!avatarOverlay || typeof window==='undefined'){
     return { horizontal: 0, vertical: 0 };
@@ -4215,36 +4237,79 @@ function getAvatarOverlayPadding(){
   };
 }
 
+function computeAvatarPreviewTargetSize(naturalWidth,naturalHeight){
+  const width=parsePositiveNumber(naturalWidth);
+  const height=parsePositiveNumber(naturalHeight);
+  if(!width || !height) return null;
+  const viewportWidth=typeof window!=='undefined'?window.innerWidth:0;
+  const viewportHeight=typeof window!=='undefined'?window.innerHeight:0;
+  if(!viewportWidth || !viewportHeight) return null;
+  const padding=getAvatarOverlayPadding();
+  const maxWidth=Math.max(viewportWidth-padding.horizontal,0);
+  const maxHeight=Math.max(viewportHeight-padding.vertical,0);
+  if(!maxWidth || !maxHeight) return null;
+  const scale=Math.min(maxWidth/width,maxHeight/height,1);
+  const targetWidth=Math.max(Math.round(width*scale),0);
+  const targetHeight=Math.max(Math.round(height*scale),0);
+  if(!targetWidth || !targetHeight) return null;
+  return {width:targetWidth,height:targetHeight};
+}
+
+function prepareAvatarPreviewSizeForSrc(src){
+  if(!avatarPreviewImage || !src){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const naturalSize=getAvatarNaturalSize(src);
+  if(!naturalSize){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  const target=computeAvatarPreviewTargetSize(naturalSize.width,naturalSize.height);
+  if(!target){
+    resetAvatarPreviewSizing();
+    return;
+  }
+  avatarPreviewImage.style.width=`${target.width}px`;
+  avatarPreviewImage.style.height=`${target.height}px`;
+}
+
+function rememberAvatarNaturalSize(path,width,height,{updateElement=true,updatePreview=true}={}){
+  if(!path) return;
+  const targetWidth=parsePositiveNumber(width);
+  const targetHeight=parsePositiveNumber(height);
+  if(!targetWidth || !targetHeight) return;
+  avatarSizeCache.set(path,{width:targetWidth,height:targetHeight});
+  if(updateElement && avatarEl && avatarEl.getAttribute('data-avatar-src')===path){
+    avatarEl.dataset.avatarNaturalWidth=String(targetWidth);
+    avatarEl.dataset.avatarNaturalHeight=String(targetHeight);
+  }
+  if(updatePreview && avatarOverlay && avatarOverlay.classList.contains('open') && avatarPreview && avatarPreview.getAttribute('data-avatar-src')===path){
+    prepareAvatarPreviewSizeForSrc(path);
+    scheduleAvatarPreviewResize();
+  }
+}
+
+function onAvatarElementLoad(){
+  if(!avatarEl) return;
+  const src=avatarEl.getAttribute('data-avatar-src');
+  if(!src) return;
+  rememberAvatarNaturalSize(src,avatarEl.naturalWidth,avatarEl.naturalHeight);
+}
+
 function resizeAvatarPreviewToViewport(){
   if(!avatarOverlay || !avatarPreviewImage) return;
   if(!avatarOverlay.classList.contains('open')){
     resetAvatarPreviewSizing();
     return;
   }
-  const naturalWidth=avatarPreviewImage.naturalWidth;
-  const naturalHeight=avatarPreviewImage.naturalHeight;
-  if(!naturalWidth || !naturalHeight){
+  const target=computeAvatarPreviewTargetSize(avatarPreviewImage.naturalWidth,avatarPreviewImage.naturalHeight);
+  if(!target){
     resetAvatarPreviewSizing();
     return;
   }
-  const viewportWidth=typeof window!=='undefined'?window.innerWidth:0;
-  const viewportHeight=typeof window!=='undefined'?window.innerHeight:0;
-  if(!viewportWidth || !viewportHeight){
-    resetAvatarPreviewSizing();
-    return;
-  }
-  const padding=getAvatarOverlayPadding();
-  const maxWidth=Math.max(viewportWidth-padding.horizontal,0);
-  const maxHeight=Math.max(viewportHeight-padding.vertical,0);
-  if(!maxWidth || !maxHeight){
-    resetAvatarPreviewSizing();
-    return;
-  }
-  const scale=Math.min(maxWidth/naturalWidth,maxHeight/naturalHeight,1);
-  const targetWidth=Math.max(Math.round(naturalWidth*scale),0);
-  const targetHeight=Math.max(Math.round(naturalHeight*scale),0);
-  avatarPreviewImage.style.width=`${targetWidth}px`;
-  avatarPreviewImage.style.height=`${targetHeight}px`;
+  avatarPreviewImage.style.width=`${target.width}px`;
+  avatarPreviewImage.style.height=`${target.height}px`;
 }
 
 function scheduleAvatarPreviewResize(){
@@ -4319,6 +4384,7 @@ function openAvatarOverlay(){
   const optionLabel=selectedOption?selectedOption.textContent.trim():'';
   const label=optionLabel?`${optionLabel} avatar`:'Character avatar';
   if(avatarPreviewImage){
+    prepareAvatarPreviewSizeForSrc(src);
     avatarPreviewImage.src=src;
     avatarPreviewImage.setAttribute('alt',label);
   }
@@ -4344,6 +4410,8 @@ function resetAvatar(){
   avatarEl.classList.remove('has-avatar');
   avatarEl.classList.remove('avatar-fallback');
   avatarEl.removeAttribute('data-avatar-src');
+  delete avatarEl.dataset.avatarNaturalWidth;
+  delete avatarEl.dataset.avatarNaturalHeight;
   avatarEl.alt='Character avatar';
   avatarEl.removeAttribute('role');
   avatarEl.removeAttribute('aria-haspopup');
@@ -4361,6 +4429,14 @@ function applyAvatar(path,token,key,{persist=true,isFallback=false}={}){
     avatarEl.classList.remove('avatar-fallback');
   }
   avatarEl.setAttribute('data-avatar-src',path);
+  const cachedSize=avatarSizeCache.get(path);
+  if(cachedSize && cachedSize.width && cachedSize.height){
+    avatarEl.dataset.avatarNaturalWidth=String(cachedSize.width);
+    avatarEl.dataset.avatarNaturalHeight=String(cachedSize.height);
+  }else{
+    delete avatarEl.dataset.avatarNaturalWidth;
+    delete avatarEl.dataset.avatarNaturalHeight;
+  }
   const selectedOption=charSel && charSel.options && charSel.selectedIndex>=0 ? charSel.options[charSel.selectedIndex] : null;
   const optionLabel=selectedOption?selectedOption.textContent.trim():'';
   const defaultLabel=optionLabel?`${optionLabel} avatar`:'Character avatar';
@@ -4370,6 +4446,9 @@ function applyAvatar(path,token,key,{persist=true,isFallback=false}={}){
   avatarEl.setAttribute('aria-haspopup','dialog');
   avatarEl.setAttribute('aria-expanded','false');
   avatarEl.tabIndex=0;
+  if(avatarEl.complete){
+    rememberAvatarNaturalSize(path,avatarEl.naturalWidth,avatarEl.naturalHeight);
+  }
   if(persist) rememberAvatarPath(key,path);
 }
 function buildAvatarCandidates(key,obj){
@@ -4394,6 +4473,7 @@ function preloadAvatar(path){
     const img=new Image();
     img.onload=()=>{
       avatarCache.set(path,true);
+      rememberAvatarNaturalSize(path,img.naturalWidth,img.naturalHeight,{updateElement:false,updatePreview:false});
       resolve(true);
     };
     img.onerror=()=>{
@@ -4470,6 +4550,7 @@ function updateAvatar(key,obj){
     img.onload=()=>{
       if(token!==avatarLoadToken) return;
       avatarCache.set(path,true);
+      rememberAvatarNaturalSize(path,img.naturalWidth,img.naturalHeight,{updateElement:false,updatePreview:false});
       applyAvatar(path,token,key);
     };
     img.onerror=()=>{
