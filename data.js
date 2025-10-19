@@ -1049,7 +1049,7 @@ window.DATA = {
           "gp_minus": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [
             "Gem of Brightness"
           ],
@@ -17029,7 +17029,7 @@ window.DATA = {
       "sessions": 3,
       "net_gp": 3540,
       "net_dtd": 75,
-      "level_ups": 7,
+      "level_ups": 8,
       "perm_count": 8,
       "cons_count": 0,
       "gifts_count": 0
@@ -17370,7 +17370,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T07:24:29.876Z",
+    "generated": "2025-10-19T07:24:49.081Z",
     "problems": []
   },
   "dm_allocations": []
