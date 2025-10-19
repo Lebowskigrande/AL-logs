@@ -285,26 +285,34 @@
     if (trades.length) {
       const [firstTrade] = trades;
       if (firstTrade && typeof firstTrade === 'object') {
-        entry.itemTraded = sanitizeText(
+        const trade = {};
+        const given = sanitizeText(
           firstTrade.itemGiven ||
           firstTrade.itemTraded ||
           firstTrade.tradeItemGiven ||
           firstTrade.tradeItem
         );
-        entry.itemReceived = sanitizeText(
+        const received = sanitizeText(
           firstTrade.itemReceived ||
           firstTrade.tradeItemReceived
         );
-        entry.player = sanitizeText(
+        const partnerPlayer = sanitizeText(
           firstTrade.withPlayer ||
           firstTrade.player ||
           firstTrade.tradePlayerName
         );
-        entry.character = sanitizeText(
+        const partnerCharacter = sanitizeText(
           firstTrade.withCharacter ||
           firstTrade.character ||
           firstTrade.tradeCharacterName
         );
+        if (given) trade.given = given;
+        if (received) trade.received = received;
+        if (partnerPlayer) trade.partnerPlayer = partnerPlayer;
+        if (partnerCharacter) trade.partnerCharacter = partnerCharacter;
+        if (Object.keys(trade).length) {
+          entry.trade = trade;
+        }
         if (!entry.notes) {
           entry.notes = sanitizeText(firstTrade.notes || firstTrade.tradeNotes);
         }

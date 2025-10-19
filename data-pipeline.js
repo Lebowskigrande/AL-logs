@@ -203,6 +203,52 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     return out;
   }
 
+  function readTradeValue(sources, keys){
+    for(const source of sources){
+      if(!source || typeof source !== 'object') continue;
+      for(const key of keys){
+        if(Object.prototype.hasOwnProperty.call(source,key)){
+          const text = coerceString(source[key],{ fallback:'' });
+          if(text){
+            return text;
+          }
+        }
+      }
+    }
+    return '';
+  }
+
+  function normalizeTrade(raw,{ isDowntime=false }={}){
+    if(!raw || typeof raw !== 'object') return null;
+    const tradeSources = [];
+    if(raw.trade && typeof raw.trade === 'object'){ tradeSources.push(raw.trade); }
+    tradeSources.push(raw);
+    const given = readTradeValue(tradeSources,[
+      'given','itemGiven','itemTraded','tradeItemGiven','tradeItem','traded_item'
+    ]);
+    const received = readTradeValue(tradeSources,[
+      'received','itemReceived','tradeItemReceived'
+    ]);
+    const partnerCharacter = readTradeValue(tradeSources,[
+      'partnerCharacter','character','withCharacter','tradeCharacterName'
+    ]);
+    const partnerPlayer = readTradeValue(tradeSources,[
+      'partnerPlayer','player','withPlayer','tradePlayerName'
+    ]);
+    if(!(given || received || partnerCharacter || partnerPlayer)){
+      return null;
+    }
+    if(!isDowntime && !given && !received){
+      return null;
+    }
+    const trade = {};
+    if(given){ trade.given = given; }
+    if(received){ trade.received = received; }
+    if(partnerCharacter){ trade.partnerCharacter = partnerCharacter; }
+    if(partnerPlayer){ trade.partnerPlayer = partnerPlayer; }
+    return Object.keys(trade).length ? trade : null;
+  }
+
   function normalizeAdventure(raw,{ charKey, index, issues }){
     const pathBase = `characters.${charKey}.adventures[${index}]`;
     const adventureId = (raw && typeof raw === 'object' && typeof raw.__uid === 'string') ? raw.__uid : nextAdventureUid();
@@ -303,11 +349,12 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
 
     adv.notes = coerceMultiline(raw && raw.notes);
 
-    adv.traded_item = adv.kind !== 'adventure' ? coerceString(raw && raw.traded_item,{ fallback:'' }) : '';
-    adv.itemTraded = coerceString(raw && raw.itemTraded,{ fallback:'' });
-    adv.itemReceived = coerceString(raw && raw.itemReceived,{ fallback:'' });
-    adv.player = coerceString(raw && raw.player,{ fallback:'' });
-    adv.character = coerceString(raw && raw.character,{ fallback:'' });
+    if(adv.kind !== 'adventure'){
+      const trade = normalizeTrade(raw,{ isDowntime: true });
+      if(trade){
+        adv.trade = trade;
+      }
+    }
 
     if(raw && typeof raw === 'object'){
       const passthroughKeys = ['custom','season','tier','location','__meta'];
@@ -470,11 +517,18 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     pushTokens(adv.code);
     pushTokens(adv.notes);
     pushTokens(adv.dm);
-    pushTokens(adv.traded_item);
-    pushTokens(adv.itemTraded);
-    pushTokens(adv.itemReceived);
-    pushTokens(adv.player);
-    pushTokens(adv.character);
+    if(adv.trade && typeof adv.trade === 'object'){
+      pushTokens(adv.trade.given);
+      pushTokens(adv.trade.received);
+      pushTokens(adv.trade.partnerCharacter);
+      pushTokens(adv.trade.partnerPlayer);
+    }else{
+      pushTokens(adv.traded_item);
+      pushTokens(adv.itemTraded);
+      pushTokens(adv.itemReceived);
+      pushTokens(adv.player);
+      pushTokens(adv.character);
+    }
     pushTokens(adv.lost_perm_item);
     pushTokens(adv.perm_items);
     pushTokens(adv.consumable_items);
