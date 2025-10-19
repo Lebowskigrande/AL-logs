@@ -91,6 +91,8 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .char-menu[data-menu-state='closing']{opacity:0;transform:translateY(-4px) scale(.98);pointer-events:none}
 .char-menu[hidden]{display:none}
 .char-menu-item{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;font:inherit;font-size:16px;color:var(--ink);background:none;border:none;cursor:pointer;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.char-menu-group{padding:12px 18px 4px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.char-menu-group:not(:first-child){margin-top:4px;border-top:1px solid var(--divider);padding-top:16px}
 .char-menu-item:hover,.char-menu-item:focus-visible{background:#eef4ff;color:var(--primary);outline:none}
 .char-menu-item.active{color:var(--primary);font-weight:600}
 .char-menu-text{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -1799,6 +1801,22 @@ const chipTickerRegistry=(()=>{
 })();
 
 const DM_LOG_KEY='__dmLog';
+const CHARACTER_TIERS=[
+  {id:'tier1',label:'Tier 1 (Levels 1-4)',min:1,max:4,order:1},
+  {id:'tier2',label:'Tier 2 (Levels 5-10)',min:5,max:10,order:2},
+  {id:'tier3',label:'Tier 3 (Levels 11-16)',min:11,max:16,order:3},
+  {id:'tier4',label:'Tier 4 (Levels 17-20)',min:17,max:20,order:4}
+];
+function tierInfoForLevel(level){
+  const numeric=Number(level);
+  const safeLevel=Number.isFinite(numeric)&&numeric>0?Math.floor(numeric):1;
+  for(const tier of CHARACTER_TIERS){
+    if(safeLevel>=tier.min&&safeLevel<=tier.max){
+      return tier;
+    }
+  }
+  return CHARACTER_TIERS[CHARACTER_TIERS.length-1];
+}
 const DM_DATA=(typeof window!=='undefined' && window.DMDATA && typeof window.DMDATA==='object')?window.DMDATA:null;
 let DM_ENTRIES=[];
 let DM_SUMMARY={ runs:0, allocations:0, earnedHours:0, earnedBonus:0, allocatedHours:0, allocatedBonus:0, allocatedCost:0, earnedLevels:0, spentLevels:0, entries:0 };
@@ -4192,12 +4210,27 @@ function rebuildCharacterMenu(){
     syncCharacterSelectorUI();
     return;
   }
-  options.forEach((opt,index)=>{
+  let currentTierId=null;
+  let itemIndex=0;
+  options.forEach((opt)=>{
     if(opt.disabled) return;
+    const tierId=opt.dataset?opt.dataset.tierId||'':'';
+    const tierLabel=opt.dataset?opt.dataset.tierLabel||'':'';
+    if(tierId && tierLabel && tierId!==currentTierId){
+      const header=document.createElement('div');
+      header.className='char-menu-group';
+      header.textContent=tierLabel;
+      header.setAttribute('role','presentation');
+      header.setAttribute('aria-hidden','true');
+      charSelMenu.appendChild(header);
+      currentTierId=tierId;
+    }else if(!tierId){
+      currentTierId=null;
+    }
     const btn=document.createElement('button');
     btn.type='button';
     btn.className='char-menu-item';
-    btn.id=`char-menu-item-${index}`;
+    btn.id=`char-menu-item-${itemIndex}`;
     btn.dataset.value=opt.value;
     btn.setAttribute('role','option');
     const text=document.createElement('span');
@@ -4212,6 +4245,7 @@ function rebuildCharacterMenu(){
       selectCharacterFromMenu(opt.value);
     });
     charSelMenu.appendChild(btn);
+    itemIndex++;
   });
   charSelMenu.scrollTop=previousScroll;
   if(isMenuOpen(charSelMenu)){
@@ -4541,16 +4575,33 @@ function rebuildCharacterOptions({preserveSelection=true, preferredKey=null}={})
     const label=(displayName && displayName!==key)?(displayName+(sheetName&&sheetName!==displayName?' ('+sheetName+')':'')):baseLabel;
     const labelText=(label||'').toString().trim()||key;
     const sortValue=(displayName||sheetName||key||'').toString().trim();
-    return { key, label:labelText, sortValue };
+    const level=currentLevelFor(key);
+    const tier=tierInfoForLevel(level);
+    return {
+      key,
+      label:labelText,
+      sortValue,
+      tierId:tier.id,
+      tierLabel:tier.label,
+      tierOrder:tier.order
+    };
   }).sort((a,b)=>{
+    if(a.tierOrder!==b.tierOrder){
+      return a.tierOrder-b.tierOrder;
+    }
     const cmp=a.sortValue.localeCompare(b.sortValue,undefined,{sensitivity:'base',numeric:true});
     if(cmp!==0) return cmp;
     return a.key.localeCompare(b.key,undefined,{sensitivity:'base',numeric:true});
   });
-  entries.forEach(({key,label})=>{
+  entries.forEach(({key,label,tierId,tierLabel,tierOrder})=>{
     const opt=document.createElement('option');
     opt.value=key;
     opt.textContent=label;
+    if(tierId){
+      opt.dataset.tierId=tierId;
+      opt.dataset.tierLabel=tierLabel;
+      opt.dataset.tierOrder=String(tierOrder);
+    }
     charSel.appendChild(opt);
   });
   if(hasDmLogData()){
