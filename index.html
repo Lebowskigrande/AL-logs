@@ -4215,29 +4215,36 @@ function getAvatarOverlayPadding(){
   };
 }
 
-function resizeAvatarPreviewToViewport(){
+function resizeAvatarPreviewToViewport(options){
   if(!avatarOverlay || !avatarPreviewImage) return;
-  if(!avatarOverlay.classList.contains('open')){
+  const allowClosed=options && options.allowClosed===true;
+  if(!allowClosed && !avatarOverlay.classList.contains('open')){
     resetAvatarPreviewSizing();
     return;
   }
   const naturalWidth=avatarPreviewImage.naturalWidth;
   const naturalHeight=avatarPreviewImage.naturalHeight;
   if(!naturalWidth || !naturalHeight){
-    resetAvatarPreviewSizing();
+    if(!allowClosed){
+      resetAvatarPreviewSizing();
+    }
     return;
   }
   const viewportWidth=typeof window!=='undefined'?window.innerWidth:0;
   const viewportHeight=typeof window!=='undefined'?window.innerHeight:0;
   if(!viewportWidth || !viewportHeight){
-    resetAvatarPreviewSizing();
+    if(!allowClosed){
+      resetAvatarPreviewSizing();
+    }
     return;
   }
   const padding=getAvatarOverlayPadding();
   const maxWidth=Math.max(viewportWidth-padding.horizontal,0);
   const maxHeight=Math.max(viewportHeight-padding.vertical,0);
   if(!maxWidth || !maxHeight){
-    resetAvatarPreviewSizing();
+    if(!allowClosed){
+      resetAvatarPreviewSizing();
+    }
     return;
   }
   const scale=Math.min(maxWidth/naturalWidth,maxHeight/naturalHeight,1);
@@ -4247,9 +4254,9 @@ function resizeAvatarPreviewToViewport(){
   avatarPreviewImage.style.height=`${targetHeight}px`;
 }
 
-function scheduleAvatarPreviewResize(){
+function scheduleAvatarPreviewResize(options){
   if(!avatarPreviewImage) return;
-  const run=()=>resizeAvatarPreviewToViewport();
+  const run=()=>resizeAvatarPreviewToViewport(options);
   if(typeof avatarPreviewImage.decode==='function'){
     avatarPreviewImage.decode().then(run).catch(run);
     return;
@@ -4322,6 +4329,7 @@ function openAvatarOverlay(){
     avatarPreviewImage.src=src;
     avatarPreviewImage.setAttribute('alt',label);
   }
+  resizeAvatarPreviewToViewport({allowClosed:true});
   avatarOverlay.setAttribute('aria-label',label);
   avatarOverlay.classList.add('open');
   avatarOverlay.setAttribute('aria-hidden','false');
