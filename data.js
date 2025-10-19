@@ -4668,21 +4668,24 @@ window.DATA = {
           "notes": ""
         },
         {
-          "date": "2021-12-17",
           "title": "Start at level 5",
+          "date": "2021-12-17",
           "code": "DT-START",
           "dm": null,
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "dtd_plus": 40,
           "dtd_minus": 0,
           "level_plus": 4,
-          "perm_items": [],
+          "perm_items": [
+            "All-Purpose Tool +1"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "notes": "",
-          "kind": "Downtime Activity"
+          "story_awards": [],
+          "notes": ""
         }
       ]
     },
@@ -17155,7 +17158,7 @@ window.DATA = {
       "net_gp": 19740,
       "net_dtd": 120,
       "level_ups": 10,
-      "perm_count": 16,
+      "perm_count": 17,
       "cons_count": 10,
       "gifts_count": 0
     },
@@ -17387,7 +17390,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T17:31:44.239Z",
+    "generated": "2025-10-19T17:35:06.222Z",
     "problems": []
   },
   "dm_allocations": []
