@@ -3619,6 +3619,605 @@ function openNewDmAllocationModal(){
   catch(err){ charSelect.focus(); }
 }
 
+function openEditDmAllocationModal(entry){
+  if(!entry || entry.type!=='allocation'){
+    console.warn('Cannot edit DM entry without an allocation');
+    return;
+  }
+  if(!DATA || !DATA.characters){
+    window.alert('Character data must be loaded before editing a DM allocation.');
+    return;
+  }
+  const characterKeys=Object.keys(DATA.characters||{});
+  if(!characterKeys.length){
+    window.alert('Add a character before editing a DM allocation.');
+    return;
+  }
+  const allocationId=entry.id;
+  if(!allocationId){
+    window.alert('This DM entry cannot be edited.');
+    return;
+  }
+  ensureDerivedStores();
+  closeAddMenu();
+
+  const allocationRecordIndex=Array.isArray(DATA.dm_allocations)
+    ? DATA.dm_allocations.findIndex(alloc=>alloc && alloc.id===allocationId)
+    : -1;
+  if(allocationRecordIndex===-1){
+    window.alert('Original DM allocation could not be found.');
+    return;
+  }
+  const allocationRecord=DATA.dm_allocations[allocationRecordIndex];
+  const rewardMeta=findCharacterDmRewardEntry(allocationId);
+  const rewardEntry=rewardMeta?rewardMeta.entry:null;
+  const rewardCharKey=rewardMeta?rewardMeta.charKey:'';
+  const rewardData=(allocationRecord && allocationRecord.reward && typeof allocationRecord.reward==='object')
+    ? allocationRecord.reward
+    : {};
+  const initialCharKey=(allocationRecord && allocationRecord.charKey)
+    || rewardCharKey
+    || (entry && entry.charKey)
+    || '';
+  const initialSeason=dmNormalizeSeasonLabel(entry.season || allocationRecord.season || '');
+  const initialDate=normalizeDateString((allocationRecord && allocationRecord.date) || entry.date || '');
+  const initialLocation=entry.location || allocationRecord.location || '';
+  const initialCost=(allocationRecord && allocationRecord.cost!=null)?allocationRecord.cost:null;
+  const initialGp=(rewardData.gp!=null)?rewardData.gp:(rewardEntry && Number.isFinite(rewardEntry.gp_net)?rewardEntry.gp_net:null);
+  const initialDtd=(rewardData.dtd!=null)?rewardData.dtd:(rewardEntry && Number.isFinite(rewardEntry.dtd_net)?rewardEntry.dtd_net:null);
+  let initialLevels=0;
+  if(Number.isFinite(rewardData.levels)){ initialLevels=rewardData.levels; }
+  else if(Number.isFinite(allocationRecord.levels_plus)){ initialLevels=allocationRecord.levels_plus; }
+  else if(Number.isFinite(entry.levels_plus)){ initialLevels=entry.levels_plus; }
+  else if(rewardEntry && Number.isFinite(rewardEntry.level_plus)){ initialLevels=rewardEntry.level_plus; }
+  const initialEarnLevel=!!(
+    (allocationRecord && (allocationRecord.earns_level || (Number.isFinite(allocationRecord.levels_minus) && allocationRecord.levels_minus>0)))
+    || (entry && Number.isFinite(entry.levels_minus) && entry.levels_minus>0)
+  );
+  const initialItems=Array.isArray(rewardData.perm_items)
+    ? rewardData.perm_items.slice()
+    : (rewardEntry && Array.isArray(rewardEntry.perm_items)?rewardEntry.perm_items.slice():[]);
+  const initialConsumables=Array.isArray(rewardData.consumable_items)
+    ? rewardData.consumable_items.slice()
+    : (rewardEntry && Array.isArray(rewardEntry.consumable_items)?rewardEntry.consumable_items.slice():[]);
+  const initialGifts=Array.isArray(rewardData.supernatural_gifts)
+    ? rewardData.supernatural_gifts.slice()
+    : (rewardEntry && Array.isArray(rewardEntry.supernatural_gifts)?rewardEntry.supernatural_gifts.slice():[]);
+  const initialNotes=(rewardData.notes!=null)?rewardData.notes:((rewardEntry && rewardEntry.notes)||'');
+  const initialSummary=(allocationRecord && allocationRecord.allocation) || entry.allocation || rewardData.summary || '';
+
+  const card=document.createElement('article');
+  card.className='card overlay-card dm-allocation-editor';
+  card.setAttribute('role','dialog');
+  card.setAttribute('aria-modal','true');
+  card.setAttribute('aria-label','Edit DM reward allocation');
+
+  const header=document.createElement('div');
+  header.className='card-hd';
+  const headerContent=document.createElement('div');
+  headerContent.className='dm-allocation-header';
+  const title=document.createElement('h2');
+  title.textContent='Edit DM reward allocation';
+  const subtitle=document.createElement('p');
+  subtitle.textContent='Updates the DM log entry and associated DM reward.';
+  headerContent.append(title,subtitle);
+  header.appendChild(headerContent);
+  card.appendChild(header);
+
+  const body=document.createElement('div');
+  body.className='card-bd';
+  const form=document.createElement('form');
+  form.className='dm-allocation-form';
+  form.noValidate=true;
+
+  const grid=document.createElement('div');
+  grid.className='dm-allocation-grid';
+  form.appendChild(grid);
+
+  const charGroup=document.createElement('div');
+  charGroup.className='field-group';
+  const charLabel=document.createElement('label');
+  charLabel.textContent='Character';
+  charLabel.setAttribute('for','dmAllocationCharacter');
+  const charSelect=document.createElement('select');
+  charSelect.id='dmAllocationCharacter';
+  charSelect.required=true;
+  const placeholderOption=document.createElement('option');
+  placeholderOption.value='';
+  placeholderOption.textContent='Select a character';
+  charSelect.appendChild(placeholderOption);
+  const charOptions=characterKeys.map(key=>({ key, name:getCharacterDisplayName(key)||key }))
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  charOptions.forEach(({key,name})=>{
+    const opt=document.createElement('option');
+    opt.value=key;
+    opt.textContent=name;
+    charSelect.appendChild(opt);
+  });
+  if(initialCharKey){
+    const existingOption=Array.from(charSelect.options).find(opt=>opt.value===initialCharKey);
+    if(existingOption){
+      charSelect.value=initialCharKey;
+    }else{
+      const opt=document.createElement('option');
+      opt.value=initialCharKey;
+      opt.textContent=`${initialCharKey} (missing)`;
+      charSelect.appendChild(opt);
+      charSelect.value=initialCharKey;
+    }
+  }
+  charGroup.append(charLabel,charSelect);
+  grid.appendChild(charGroup);
+
+  const seasonGroup=document.createElement('div');
+  seasonGroup.className='field-group';
+  const seasonLabel=document.createElement('label');
+  seasonLabel.textContent='Season';
+  seasonLabel.setAttribute('for','dmAllocationSeason');
+  const seasonInput=document.createElement('input');
+  seasonInput.type='text';
+  seasonInput.id='dmAllocationSeason';
+  seasonInput.placeholder='e.g. Season 13a';
+  seasonInput.setAttribute('list', DM_SEASON_DATALIST_ID);
+  seasonInput.value=initialSeason;
+  seasonGroup.append(seasonLabel, seasonInput);
+  grid.appendChild(seasonGroup);
+
+  let seasonList=document.getElementById(DM_SEASON_DATALIST_ID);
+  if(seasonList){ seasonList.remove(); }
+  seasonList=document.createElement('datalist');
+  seasonList.id=DM_SEASON_DATALIST_ID;
+  getKnownDmSeasonLabels().forEach(label=>{
+    const option=document.createElement('option');
+    option.value=label;
+    seasonList.appendChild(option);
+  });
+
+  const dateGroup=document.createElement('div');
+  dateGroup.className='field-group';
+  const dateLabel=document.createElement('label');
+  dateLabel.textContent='Date';
+  dateLabel.setAttribute('for','dmAllocationDate');
+  const dateInput=document.createElement('input');
+  dateInput.type='date';
+  dateInput.id='dmAllocationDate';
+  dateInput.value=initialDate||'';
+  dateGroup.append(dateLabel,dateInput);
+  grid.appendChild(dateGroup);
+
+  const locationGroup=document.createElement('div');
+  locationGroup.className='field-group';
+  const locationLabel=document.createElement('label');
+  locationLabel.textContent='Location (optional)';
+  locationLabel.setAttribute('for','dmAllocationLocation');
+  const locationInput=document.createElement('input');
+  locationInput.type='text';
+  locationInput.id='dmAllocationLocation';
+  locationInput.placeholder='Table, store, or event name';
+  locationInput.value=initialLocation;
+  locationGroup.append(locationLabel,locationInput);
+  grid.appendChild(locationGroup);
+
+  const costGroup=document.createElement('div');
+  costGroup.className='field-group';
+  const costLabel=document.createElement('label');
+  costLabel.textContent='Seasonal cost (hours spent)';
+  costLabel.setAttribute('for','dmAllocationCost');
+  const costInput=document.createElement('input');
+  costInput.type='number';
+  costInput.step='any';
+  costInput.min='0';
+  costInput.id='dmAllocationCost';
+  costInput.placeholder='Optional';
+  if(initialCost!=null){ costInput.value=String(initialCost); }
+  costGroup.append(costLabel,costInput);
+  grid.appendChild(costGroup);
+
+  const gpGroup=document.createElement('div');
+  gpGroup.className='field-group';
+  const gpLabel=document.createElement('label');
+  gpLabel.textContent='Gold (gp)';
+  gpLabel.setAttribute('for','dmAllocationGold');
+  const gpInput=document.createElement('input');
+  gpInput.type='number';
+  gpInput.step='any';
+  gpInput.id='dmAllocationGold';
+  gpInput.placeholder='Positive values award GP';
+  if(Number.isFinite(initialGp)){ gpInput.value=String(initialGp); }
+  gpGroup.append(gpLabel,gpInput);
+  grid.appendChild(gpGroup);
+
+  const dtdGroup=document.createElement('div');
+  dtdGroup.className='field-group';
+  const dtdLabel=document.createElement('label');
+  dtdLabel.textContent='Downtime (DTD)';
+  dtdLabel.setAttribute('for','dmAllocationDtd');
+  const dtdInput=document.createElement('input');
+  dtdInput.type='number';
+  dtdInput.step='any';
+  dtdInput.id='dmAllocationDtd';
+  dtdInput.placeholder='Positive values award DTD';
+  if(Number.isFinite(initialDtd)){ dtdInput.value=String(initialDtd); }
+  dtdGroup.append(dtdLabel,dtdInput);
+  grid.appendChild(dtdGroup);
+
+  const levelsGroup=document.createElement('div');
+  levelsGroup.className='field-group';
+  const levelsLabel=document.createElement('label');
+  levelsLabel.textContent='Levels granted';
+  levelsLabel.setAttribute('for','dmAllocationLevels');
+  const levelsWrap=document.createElement('div');
+  levelsWrap.className='dm-allocation-inline';
+  const levelsInput=document.createElement('input');
+  levelsInput.type='number';
+  levelsInput.step='1';
+  levelsInput.min='0';
+  levelsInput.id='dmAllocationLevels';
+  levelsInput.placeholder='0';
+  levelsInput.value=String(initialLevels||0);
+  const earnLevelWrap=document.createElement('label');
+  earnLevelWrap.className='checkbox-label';
+  const earnLevelInput=document.createElement('input');
+  earnLevelInput.type='checkbox';
+  earnLevelInput.id='dmAllocationEarnLevel';
+  earnLevelInput.checked=initialEarnLevel;
+  earnLevelWrap.append(earnLevelInput,document.createTextNode('Earns DM level back'));
+  levelsWrap.append(levelsInput,earnLevelWrap);
+  levelsGroup.append(levelsLabel,levelsWrap);
+  grid.appendChild(levelsGroup);
+
+  const itemsGroup=document.createElement('div');
+  itemsGroup.className='field-group full-width';
+  const itemsLabel=document.createElement('label');
+  itemsLabel.textContent='Magic items (one per line)';
+  itemsLabel.setAttribute('for','dmAllocationItems');
+  const itemsArea=document.createElement('textarea');
+  itemsArea.id='dmAllocationItems';
+  itemsArea.placeholder='Example: Vorpal Sword';
+  itemsArea.value=initialItems.join('\n');
+  itemsGroup.append(itemsLabel,itemsArea);
+  grid.appendChild(itemsGroup);
+
+  const consumablesGroup=document.createElement('div');
+  consumablesGroup.className='field-group full-width';
+  const consumablesLabel=document.createElement('label');
+  consumablesLabel.textContent='Consumables (optional)';
+  consumablesLabel.setAttribute('for','dmAllocationConsumables');
+  const consumablesArea=document.createElement('textarea');
+  consumablesArea.id='dmAllocationConsumables';
+  consumablesArea.placeholder='Example: Potion of Healing';
+  consumablesArea.value=initialConsumables.join('\n');
+  consumablesGroup.append(consumablesLabel,consumablesArea);
+  grid.appendChild(consumablesGroup);
+
+  const giftsGroup=document.createElement('div');
+  giftsGroup.className='field-group full-width';
+  const giftsLabel=document.createElement('label');
+  giftsLabel.textContent='Supernatural gifts (optional)';
+  giftsLabel.setAttribute('for','dmAllocationGifts');
+  const giftsArea=document.createElement('textarea');
+  giftsArea.id='dmAllocationGifts';
+  giftsArea.placeholder='Example: Blessing of Protection';
+  giftsArea.value=initialGifts.join('\n');
+  giftsGroup.append(giftsLabel,giftsArea);
+  grid.appendChild(giftsGroup);
+
+  const notesGroup=document.createElement('div');
+  notesGroup.className='field-group full-width';
+  const notesLabel=document.createElement('label');
+  notesLabel.textContent='Notes (optional)';
+  notesLabel.setAttribute('for','dmAllocationNotes');
+  const notesArea=document.createElement('textarea');
+  notesArea.id='dmAllocationNotes';
+  notesArea.rows=3;
+  notesArea.placeholder='Notes that will appear on the character\'s DM reward entry.';
+  notesArea.value=initialNotes;
+  notesGroup.append(notesLabel,notesArea);
+  grid.appendChild(notesGroup);
+
+  const summaryGroup=document.createElement('div');
+  summaryGroup.className='field-group full-width';
+  const summaryLabel=document.createElement('label');
+  summaryLabel.textContent='Allocation summary';
+  summaryLabel.setAttribute('for','dmAllocationSummary');
+  const summaryArea=document.createElement('textarea');
+  summaryArea.id='dmAllocationSummary';
+  summaryArea.required=true;
+  summaryArea.rows=3;
+  summaryArea.placeholder='Describe the rewards allocated';
+  summaryArea.value=initialSummary;
+  const summaryActions=document.createElement('div');
+  summaryActions.className='dm-allocation-summary-actions';
+  const regenerateBtn=document.createElement('button');
+  regenerateBtn.type='button';
+  regenerateBtn.className='btn small';
+  regenerateBtn.textContent='Generate summary';
+  summaryActions.appendChild(regenerateBtn);
+  summaryGroup.append(summaryLabel,summaryArea,summaryActions);
+  form.appendChild(summaryGroup);
+
+  const errorEl=document.createElement('div');
+  errorEl.className='dm-allocation-error';
+  errorEl.setAttribute('role','alert');
+  form.appendChild(errorEl);
+
+  const actions=document.createElement('div');
+  actions.className='dm-allocation-actions';
+  const cancelBtn=document.createElement('button');
+  cancelBtn.type='button';
+  cancelBtn.className='btn small';
+  cancelBtn.textContent='Cancel';
+  cancelBtn.addEventListener('click',()=>{ closeCardOverlay(); });
+  const saveBtn=document.createElement('button');
+  saveBtn.type='submit';
+  saveBtn.className='btn small primary';
+  saveBtn.textContent='Update allocation';
+  actions.append(cancelBtn,saveBtn);
+  form.appendChild(actions);
+
+  body.appendChild(form);
+  card.appendChild(body);
+  card.appendChild(seasonList);
+
+  const parseNumericInput=(input)=>{
+    const raw=(input && typeof input.value==='string')?input.value.trim():'';
+    if(!raw) return null;
+    const num=Number(raw);
+    return Number.isFinite(num)?num:null;
+  };
+
+  const generateSummary=()=>{
+    const gp=parseNumericInput(gpInput);
+    const dtd=parseNumericInput(dtdInput);
+    const levels=parseNumericInput(levelsInput);
+    return buildDmAllocationSummaryText({
+      charName:getCharacterDisplayName(charSelect.value)||'',
+      items:parseDmAllocationList(itemsArea.value),
+      consumables:parseDmAllocationList(consumablesArea.value),
+      gifts:parseDmAllocationList(giftsArea.value),
+      gp,
+      dtd,
+      levels
+    });
+  };
+
+  regenerateBtn.addEventListener('click',(event)=>{
+    event.preventDefault();
+    const nextSummary=generateSummary();
+    if(nextSummary){
+      summaryArea.value=nextSummary;
+    }
+    summaryArea.focus();
+  });
+
+  charSelect.addEventListener('change',()=>{
+    if(!summaryArea.value.trim()){
+      const nextSummary=generateSummary();
+      if(nextSummary){ summaryArea.value=nextSummary; }
+    }
+  });
+
+  if(!summaryArea.value.trim()){
+    const autoSummary=generateSummary();
+    if(autoSummary){ summaryArea.value=autoSummary; }
+  }
+
+  form.addEventListener('submit',async(event)=>{
+    event.preventDefault();
+    errorEl.textContent='';
+    const charKey=charSelect.value;
+    if(!isValidSheetKey(charKey) || isDmLogKey(charKey)){
+      errorEl.textContent='Select a character to receive the reward allocation.';
+      try{ charSelect.focus({preventScroll:true}); }
+      catch(err){ charSelect.focus(); }
+      return;
+    }
+    const summaryValue=summaryArea.value.trim();
+    if(!summaryValue){
+      errorEl.textContent='Enter an allocation summary.';
+      summaryArea.focus();
+      return;
+    }
+    const seasonValue=dmNormalizeSeasonLabel(seasonInput.value.trim());
+    const dateValue=(dateInput && typeof dateInput.value==='string')?dateInput.value.trim():'';
+    let rewardDate=null;
+    if(dateValue){
+      const parsed=new Date(dateValue);
+      if(!Number.isNaN(parsed.getTime())){
+        rewardDate=dateValue;
+      }
+    }
+    if(!rewardDate){
+      try{ rewardDate=new Date().toISOString().slice(0,10); }
+      catch(err){ rewardDate=''; }
+    }
+    const dmDate=rewardDate?`${rewardDate}T00:00:00`:'';
+    const locationValue=locationInput.value.trim();
+    const costValue=parseNumericInput(costInput);
+    const gpValue=parseNumericInput(gpInput);
+    const dtdValue=parseNumericInput(dtdInput);
+    const levelsValue=parseNumericInput(levelsInput);
+    const permItems=parseDmAllocationList(itemsArea.value);
+    const consumables=parseDmAllocationList(consumablesArea.value);
+    const gifts=parseDmAllocationList(giftsArea.value);
+    const notesValue=notesArea.value.trim();
+    const levelsGranted=Number.isFinite(levelsValue)&&levelsValue>0?Math.round(levelsValue):0;
+    const earnLevel=!!earnLevelInput.checked;
+    const targetChar=DATA.characters[charKey]||null;
+    if(!targetChar){
+      errorEl.textContent='Selected character could not be found.';
+      return;
+    }
+    const gpPlus=(Number.isFinite(gpValue) && gpValue>0)?gpValue:0;
+    const gpMinus=(Number.isFinite(gpValue) && gpValue<0)?Math.abs(gpValue):0;
+    const gpNet=gpPlus-gpMinus;
+    const dtdPlus=(Number.isFinite(dtdValue) && dtdValue>0)?dtdValue:0;
+    const dtdMinus=(Number.isFinite(dtdValue) && dtdValue<0)?Math.abs(dtdValue):0;
+    const dtdNet=dtdPlus-dtdMinus;
+
+    const saveLabel=saveBtn.textContent;
+    saveBtn.disabled=true;
+    saveBtn.setAttribute('aria-busy','true');
+    saveBtn.textContent='Updating…';
+
+    const prevRecord=typeof structuredClone==='function'
+      ? structuredClone(allocationRecord)
+      : JSON.parse(JSON.stringify(allocationRecord));
+    const rewardSnapshot=(rewardEntry && typeof structuredClone==='function')
+      ? structuredClone(rewardEntry)
+      : (rewardEntry?JSON.parse(JSON.stringify(rewardEntry)):null);
+    const prevRewardChar=rewardCharKey;
+    const mutationKeys=new Set();
+    if(isValidSheetKey(charKey)) mutationKeys.add(charKey);
+    if(isValidSheetKey(prevRewardChar)) mutationKeys.add(prevRewardChar);
+    let currentRewardEntry=rewardEntry;
+    let removedFromPrev=null;
+    let insertedIntoNext=null;
+
+    try{
+      allocationRecord.season=seasonValue||'';
+      allocationRecord.date=dmDate;
+      allocationRecord.allocation=summaryValue;
+      allocationRecord.cost=costValue!=null?costValue:null;
+      allocationRecord.levels_plus=levelsGranted>0?levelsGranted:null;
+      allocationRecord.levels_minus=(earnLevel && levelsGranted>0)?1:null;
+      allocationRecord.location=locationValue;
+      allocationRecord.gp=(Number.isFinite(gpValue) && gpValue<0)?Math.abs(gpValue):null;
+      allocationRecord.charKey=charKey;
+      allocationRecord.reward={
+        gp:gpNet,
+        dtd:dtdNet,
+        levels:levelsGranted,
+        perm_items:permItems.slice(),
+        consumable_items:consumables.slice(),
+        supernatural_gifts:gifts.slice(),
+        notes:notesValue||summaryValue,
+        summary:summaryValue
+      };
+      allocationRecord.earns_level=earnLevel;
+
+      if(currentRewardEntry){
+        if(prevRewardChar && prevRewardChar!==charKey){
+          const prevList=DATA.characters[prevRewardChar] && DATA.characters[prevRewardChar].adventures;
+          if(prevList){
+            const idx=prevList.indexOf(currentRewardEntry);
+            if(idx!==-1){
+              prevList.splice(idx,1);
+              removedFromPrev={list:prevList,index:idx};
+            }
+          }
+        }
+        if(targetChar){
+          targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
+          if(!targetChar.adventures.includes(currentRewardEntry)){
+            targetChar.adventures.unshift(currentRewardEntry);
+            insertedIntoNext={list:targetChar.adventures};
+          }
+        }
+      }else if(targetChar){
+        targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
+        currentRewardEntry={
+          title:levelsGranted>1?`DM Reward (x${levelsGranted})`:'DM Reward',
+          date:rewardDate||'',
+          code:'DM-REWARD',
+          dm:null,
+          gp_plus:gpPlus,
+          gp_minus:gpMinus,
+          gp_net:gpNet,
+          dtd_plus:dtdPlus,
+          dtd_minus:dtdMinus,
+          dtd_net:dtdNet,
+          level_plus:levelsGranted>0?levelsGranted:0,
+          perm_items:permItems.slice(),
+          consumable_items:consumables.slice(),
+          story_awards:[],
+          supernatural_gifts:gifts.slice(),
+          notes:notesValue||summaryValue,
+          kind:'Downtime Activity',
+          __charKey:charKey,
+          __dmAllocationId:allocationId
+        };
+        targetChar.adventures.unshift(currentRewardEntry);
+        insertedIntoNext={list:targetChar.adventures};
+      }else{
+        errorEl.textContent='Select a character to receive the reward allocation.';
+        return;
+      }
+
+      if(currentRewardEntry){
+        currentRewardEntry.title=levelsGranted>1?`DM Reward (x${levelsGranted})`:'DM Reward';
+        currentRewardEntry.date=rewardDate||'';
+        currentRewardEntry.code='DM-REWARD';
+        currentRewardEntry.dm=null;
+        currentRewardEntry.gp_plus=gpPlus;
+        currentRewardEntry.gp_minus=gpMinus;
+        currentRewardEntry.gp_net=gpNet;
+        currentRewardEntry.dtd_plus=dtdPlus;
+        currentRewardEntry.dtd_minus=dtdMinus;
+        currentRewardEntry.dtd_net=dtdNet;
+        currentRewardEntry.level_plus=levelsGranted>0?levelsGranted:0;
+        currentRewardEntry.perm_items=permItems.slice();
+        currentRewardEntry.consumable_items=consumables.slice();
+        currentRewardEntry.supernatural_gifts=gifts.slice();
+        currentRewardEntry.notes=notesValue||summaryValue;
+        currentRewardEntry.kind='Downtime Activity';
+        currentRewardEntry.__charKey=charKey;
+        currentRewardEntry.__dmAllocationId=allocationId;
+      }
+
+      markDirty();
+      mutationKeys.forEach(key=>{ if(isValidSheetKey(key)){ registerDerivedUpdate(key); } });
+      buildDmEntries();
+      mutationKeys.forEach(key=>{ if(isValidSheetKey(key)){ applyDataMutation(key); } });
+      filterAndRender();
+      const dmEntry=Array.isArray(DM_ENTRIES)?DM_ENTRIES.find(item=>item && item.id===allocationId):null;
+      await saveDataJs();
+      closeCardOverlay();
+      if(dmEntry){
+        navigateToDmAllocation(dmEntry);
+      }else{
+        filterAndRender();
+      }
+    }catch(err){
+      console.error('Failed to update DM allocation', err);
+      DATA.dm_allocations[allocationRecordIndex]=prevRecord;
+      if(insertedIntoNext && insertedIntoNext.list && currentRewardEntry){
+        const idx=insertedIntoNext.list.indexOf(currentRewardEntry);
+        if(idx!==-1){
+          insertedIntoNext.list.splice(idx,1);
+        }
+      }
+      if(removedFromPrev && removedFromPrev.list && rewardEntry){
+        const insertIndex=Math.max(0, Math.min(removedFromPrev.index, removedFromPrev.list.length));
+        removedFromPrev.list.splice(insertIndex,0,rewardEntry);
+      }
+      if(rewardEntry && rewardSnapshot){
+        for(const key of Object.keys(rewardEntry)){
+          delete rewardEntry[key];
+        }
+        Object.assign(rewardEntry, rewardSnapshot);
+        rewardEntry.__charKey=prevRewardChar;
+      }
+      mutationKeys.forEach(key=>pendingDerivedUpdates.delete(key));
+      try{ buildDmEntries(); }
+      catch(err2){ console.error('Failed to rebuild DM entries after edit error', err2); }
+      mutationKeys.forEach(key=>{ if(isValidSheetKey(key)){ try{ applyDataMutation(key); }catch(err2){ console.error('Failed to revert derived data for', key, err2); } } });
+      filterAndRender();
+      errorEl.textContent='Could not update allocation. Please try again.';
+      return;
+    }finally{
+      saveBtn.disabled=false;
+      saveBtn.removeAttribute('aria-busy');
+      saveBtn.textContent=saveLabel;
+    }
+  });
+
+  openCardOverlay(card);
+  expandCard(card);
+  try{ charSelect.focus({preventScroll:true}); }
+  catch(err){ charSelect.focus(); }
+}
+
 window.addEventListener('dm:new-entry',(event)=>{
   const detail=event && event.detail;
   if(!detail) return;
@@ -5729,6 +6328,22 @@ function buildDmEntries(){
   updateDmSummaryBar();
 }
 
+function findCharacterDmRewardEntry(allocationId){
+  if(!allocationId || !DATA || !DATA.characters){
+    return null;
+  }
+  for(const [charKey,charObj] of Object.entries(DATA.characters)){
+    if(!charObj || !Array.isArray(charObj.adventures)) continue;
+    for(let idx=0; idx<charObj.adventures.length; idx+=1){
+      const adv=charObj.adventures[idx];
+      if(adv && adv.__dmAllocationId===allocationId){
+        return { entry:adv, charKey, index:idx };
+      }
+    }
+  }
+  return null;
+}
+
 let DM_ALLOCATION_LINKS=new WeakMap();
 let DM_REWARD_LINKS=new WeakMap();
 
@@ -6790,6 +7405,25 @@ function makeDmCard(entry,idx){
 
   const body=document.createElement('div');
   body.className='card-bd';
+  const isCustomAllocation=isAllocation && entry && entry.__source==='custom' && entry.id;
+  if(isCustomAllocation){
+    const cardActions=document.createElement('div');
+    cardActions.className='card-actions';
+    const editBtn=document.createElement('button');
+    editBtn.type='button';
+    editBtn.className='btn card-edit-btn';
+    editBtn.textContent='Edit';
+    editBtn.title='Edit allocation';
+    editBtn.setAttribute('aria-label','Edit allocation');
+    editBtn.setAttribute('aria-pressed','false');
+    editBtn.addEventListener('click',(event)=>{
+      event.preventDefault();
+      event.stopPropagation();
+      openEditDmAllocationModal(entry);
+    });
+    cardActions.appendChild(editBtn);
+    body.appendChild(cardActions);
+  }
   const inner=document.createElement('div');
   inner.className='bd-in dm-details';
   const detailsGrid=document.createElement('div');
