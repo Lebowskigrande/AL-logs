@@ -620,7 +620,7 @@ body.card-editor-active #addCard{
 .trade-field{display:flex;flex-direction:column;gap:6px}
 .trade-field label,.trade-field .trade-field-label{font-size:13px;font-weight:600;color:var(--muted)}
 .trade-item-label{font-size:16px;font-weight:600}
-.trade-partner-custom{display:grid;gap:12px}
+.trade-counterparty-custom{display:grid;gap:12px}
 .trade-error{color:var(--danger);font-size:13px;margin:4px 0 0}
 .trade-error[hidden]{display:none}
 .trade-field input,.trade-field select{border:1px solid var(--border);border-radius:10px;padding:9px 12px;font:inherit}
@@ -922,30 +922,34 @@ body.avatar-overlay-open{overflow:hidden}
       <div id="tradeMeta" class="inv-meta"></div>
       <form id="tradeForm" class="trade-form" novalidate>
         <div class="trade-field">
-          <span class="trade-field-label">Trading away</span>
-          <div id="tradeItemName" class="trade-item-label" role="text"></div>
-        </div>
-        <div class="trade-field">
-          <label for="tradeReceiveInput">Item received</label>
-          <input id="tradeReceiveInput" type="text" placeholder="Describe the item you received" autocomplete="off"/>
-        </div>
-        <div class="trade-field">
           <label for="tradeDateInput">Trade date</label>
           <input id="tradeDateInput" type="date" autocomplete="off"/>
         </div>
         <div class="trade-field">
-          <label for="tradePartnerSelect">Trade partner</label>
-          <select id="tradePartnerSelect"></select>
+          <span class="trade-field-label">Trading away</span>
+          <div id="tradeItemName" class="trade-item-label" role="text"></div>
         </div>
-        <div id="tradePartnerCustom" class="trade-partner-custom" hidden>
+        <div class="trade-field">
+          <label for="tradeCounterpartySelect">Counterparty character</label>
+          <select id="tradeCounterpartySelect"></select>
+        </div>
+        <div id="tradeCounterpartyCustom" class="trade-counterparty-custom" hidden>
           <div class="trade-field">
-            <label for="tradePartnerCharacter">Partner character</label>
-            <input id="tradePartnerCharacter" type="text" placeholder="Character name" autocomplete="off"/>
+            <label for="tradeCounterpartyCharacter">Counterparty character</label>
+            <input id="tradeCounterpartyCharacter" type="text" placeholder="Character name" autocomplete="off"/>
           </div>
           <div class="trade-field">
-            <label for="tradePartnerPlayer">Partner player</label>
-            <input id="tradePartnerPlayer" type="text" placeholder="Player name (optional)" autocomplete="off"/>
+            <label for="tradeCounterpartyPlayer">Counterparty player</label>
+            <input id="tradeCounterpartyPlayer" type="text" placeholder="Player name (optional)" autocomplete="off"/>
           </div>
+        </div>
+        <div id="tradeReceiveSelectField" class="trade-field" hidden>
+          <label for="tradeReceiveSelect">Item received</label>
+          <select id="tradeReceiveSelect"></select>
+        </div>
+        <div id="tradeReceiveTextField" class="trade-field">
+          <label for="tradeReceiveInput">Item received</label>
+          <input id="tradeReceiveInput" type="text" placeholder="Describe the item you received" autocomplete="off"/>
         </div>
         <p id="tradeError" class="trade-error" role="alert" hidden></p>
       </form>
@@ -2925,8 +2929,8 @@ function buildAdventureSearchBlob(adv,charKey,{includeCharacterInfo=false}={}){
   if(adv.trade && typeof adv.trade==='object'){
     baseParts.push(adv.trade.given);
     baseParts.push(adv.trade.received);
-    baseParts.push(adv.trade.partnerCharacter);
-    baseParts.push(adv.trade.partnerPlayer);
+    baseParts.push(adv.trade.counterpartyCharacter);
+    baseParts.push(adv.trade.counterpartyPlayer);
   }else{
     baseParts.push(adv.traded_item);
     baseParts.push(adv.itemTraded);
@@ -7357,15 +7361,15 @@ const TRADE_LONG_PRESS_MS=600;
 let activeTradeContext=null;
 
 function resetTradeForm(){
-  if(tradeReceiveInput) tradeReceiveInput.value='';
+  resetTradeReceiveField();
   if(tradeDateInput){
     tradeDateInput.value='';
     tradeDateInput.removeAttribute('max');
   }
-  if(tradePartnerSelect) tradePartnerSelect.innerHTML='';
-  if(tradePartnerCharacterInput) tradePartnerCharacterInput.value='';
-  if(tradePartnerPlayerInput) tradePartnerPlayerInput.value='';
-  if(tradePartnerCustom) tradePartnerCustom.hidden=true;
+  if(tradeCounterpartySelect) tradeCounterpartySelect.innerHTML='';
+  if(tradeCounterpartyCharacterInput) tradeCounterpartyCharacterInput.value='';
+  if(tradeCounterpartyPlayerInput) tradeCounterpartyPlayerInput.value='';
+  if(tradeCounterpartyCustom) tradeCounterpartyCustom.hidden=true;
   if(tradeItemNameEl) tradeItemNameEl.textContent='';
   if(tradeMetaEl) tradeMetaEl.textContent='';
   if(tradeTitleEl) tradeTitleEl.textContent='Trade item';
@@ -7384,15 +7388,106 @@ function setTradeError(message){
   tradeErrorEl.hidden=!message;
 }
 
-function populateTradePartnerOptions(sourceKey){
-  if(!tradePartnerSelect) return;
-  tradePartnerSelect.innerHTML='';
+function setTradeReceiveTextLabel(text){
+  if(!tradeReceiveTextLabel) return;
+  tradeReceiveTextLabel.textContent=text||'Item received';
+}
+
+function showTradeReceiveTextField({label='Item received',placeholder='Describe the item you received',clearValue=false,focus=false}={}){
+  if(tradeReceiveTextField) tradeReceiveTextField.hidden=false;
+  setTradeReceiveTextLabel(label);
+  if(tradeReceiveInput){
+    if(typeof placeholder==='string'){ tradeReceiveInput.setAttribute('placeholder',placeholder); }
+    if(clearValue) tradeReceiveInput.value='';
+    if(focus){
+      try{ tradeReceiveInput.focus({preventScroll:true}); }
+      catch(err){ tradeReceiveInput.focus(); }
+    }
+  }
+}
+
+function hideTradeReceiveTextField({clearValue=false}={}){
+  if(tradeReceiveTextField) tradeReceiveTextField.hidden=true;
+  if(clearValue && tradeReceiveInput) tradeReceiveInput.value='';
+  setTradeReceiveTextLabel('Item received');
+}
+
+function resetTradeReceiveField(){
+  if(tradeReceiveSelect){
+    tradeReceiveSelect.innerHTML='';
+    tradeReceiveSelect.value='';
+    tradeReceiveSelect.disabled=true;
+  }
+  if(tradeReceiveSelectField) tradeReceiveSelectField.hidden=true;
+  showTradeReceiveTextField({label:'Item received',clearValue:true});
+}
+
+function populateTradeReceiveOptions(counterpartyKey){
+  if(!tradeReceiveSelect) return;
+  tradeReceiveSelect.innerHTML='';
+  tradeReceiveSelect.disabled=false;
   const placeholder=document.createElement('option');
   placeholder.value='';
-  placeholder.textContent='Select a character';
+  placeholder.textContent='Select an item';
   placeholder.disabled=true;
   placeholder.selected=true;
-  tradePartnerSelect.appendChild(placeholder);
+  tradeReceiveSelect.appendChild(placeholder);
+  let hasItems=false;
+  if(isValidSheetKey(counterpartyKey) && DATA && DATA.characters && DATA.characters[counterpartyKey]){
+    try{
+      const inventory=collectPermanentInventory(counterpartyKey);
+      const items=inventory&&Array.isArray(inventory.kept)?inventory.kept:[];
+      items.forEach(item=>{
+        const name=typeof item==='string'?item:((item&&item.name)||'');
+        const cleaned=normItemName(name);
+        if(!cleaned) return;
+        const opt=document.createElement('option');
+        opt.value=cleaned;
+        opt.textContent=cleaned;
+        tradeReceiveSelect.appendChild(opt);
+        hasItems=true;
+      });
+    }catch(err){
+      /* ignore inventory errors */
+    }
+  }
+  if(!hasItems){
+    placeholder.textContent='No permanent items available';
+  }
+  const customOpt=document.createElement('option');
+  customOpt.value='__custom__';
+  customOpt.textContent='Enter a different item…';
+  tradeReceiveSelect.appendChild(customOpt);
+  tradeReceiveSelect.value=hasItems?'':'__custom__';
+}
+
+function showTradeReceiveSelect(counterpartyKey){
+  if(tradeReceiveSelectField) tradeReceiveSelectField.hidden=false;
+  populateTradeReceiveOptions(counterpartyKey);
+  syncTradeReceiveSelection({focusOnCustom:false});
+}
+
+function syncTradeReceiveSelection({focusOnCustom=true}={}){
+  if(!tradeReceiveSelect) return;
+  const isSelectActive=!tradeReceiveSelectField || !tradeReceiveSelectField.hidden;
+  if(!isSelectActive) return;
+  const value=tradeReceiveSelect.value;
+  if(value==='__custom__'){
+    showTradeReceiveTextField({label:'Custom item received',placeholder:'Enter the item you received',clearValue=false,focus:focusOnCustom});
+  }else{
+    hideTradeReceiveTextField({clearValue:true});
+  }
+}
+
+function populateTradeCounterpartyOptions(sourceKey){
+  if(!tradeCounterpartySelect) return;
+  tradeCounterpartySelect.innerHTML='';
+  const placeholder=document.createElement('option');
+  placeholder.value='';
+  placeholder.textContent='Select a counterparty';
+  placeholder.disabled=true;
+  placeholder.selected=true;
+  tradeCounterpartySelect.appendChild(placeholder);
   if(DATA && DATA.characters){
     const keys=Object.keys(DATA.characters).filter(key=>key!==sourceKey);
     keys.sort((a,b)=>characterDisplayName(a).localeCompare(characterDisplayName(b),undefined,{sensitivity:'base'}));
@@ -7400,22 +7495,29 @@ function populateTradePartnerOptions(sourceKey){
       const opt=document.createElement('option');
       opt.value=`char:${key}`;
       opt.textContent=characterDisplayName(key);
-      tradePartnerSelect.appendChild(opt);
+      tradeCounterpartySelect.appendChild(opt);
     });
   }
   const otherOpt=document.createElement('option');
   otherOpt.value='custom';
-  otherOpt.textContent='Other character';
-  tradePartnerSelect.appendChild(otherOpt);
+  otherOpt.textContent='Different character';
+  tradeCounterpartySelect.appendChild(otherOpt);
 }
 
-function syncTradePartnerFields(){
-  if(!tradePartnerSelect||!tradePartnerCustom) return;
-  const showCustom=tradePartnerSelect.value==='custom';
-  tradePartnerCustom.hidden=!showCustom;
+function syncTradeCounterpartyFields(){
+  if(!tradeCounterpartySelect||!tradeCounterpartyCustom) return;
+  const value=tradeCounterpartySelect.value;
+  const showCustom=value==='custom';
+  tradeCounterpartyCustom.hidden=!showCustom;
   if(!showCustom){
-    if(tradePartnerCharacterInput) tradePartnerCharacterInput.value='';
-    if(tradePartnerPlayerInput) tradePartnerPlayerInput.value='';
+    if(tradeCounterpartyCharacterInput) tradeCounterpartyCharacterInput.value='';
+    if(tradeCounterpartyPlayerInput) tradeCounterpartyPlayerInput.value='';
+  }
+  if(value && value.startsWith('char:')){
+    const counterpartyKey=value.slice(5);
+    showTradeReceiveSelect(counterpartyKey);
+  }else{
+    resetTradeReceiveField();
   }
 }
 
@@ -7433,25 +7535,25 @@ function openTradeModal(context){
   if(tradeTitleEl) tradeTitleEl.textContent='Trade item';
   if(tradeMetaEl) tradeMetaEl.textContent=`${characterDisplayName(charKey)} • Permanent item trade`;
   if(tradeItemNameEl) tradeItemNameEl.textContent=activeTradeContext.itemName;
-  if(tradeReceiveInput) tradeReceiveInput.value='';
+  resetTradeReceiveField();
   const today=new Date();
   const isoToday=today.toISOString().slice(0,10);
   if(tradeDateInput){
     tradeDateInput.value=isoToday;
     tradeDateInput.setAttribute('max',isoToday);
   }
-  populateTradePartnerOptions(charKey);
-  if(tradePartnerSelect){
-    tradePartnerSelect.value='';
+  populateTradeCounterpartyOptions(charKey);
+  if(tradeCounterpartySelect){
+    tradeCounterpartySelect.value='';
   }
-  syncTradePartnerFields();
+  syncTradeCounterpartyFields();
   clearTradeError();
   tradeModal.classList.add('open');
   refreshModalState();
   requestAnimationFrame(()=>{
-    if(tradeReceiveInput){
-      try{ tradeReceiveInput.focus({preventScroll:true}); }
-      catch(err){ tradeReceiveInput.focus(); }
+    if(tradeCounterpartySelect){
+      try{ tradeCounterpartySelect.focus({preventScroll:true}); }
+      catch(err){ tradeCounterpartySelect.focus(); }
     }
   });
 }
@@ -7497,11 +7599,11 @@ function removeInventoryLocalState(charKey,itemName){
   }
 }
 
-function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,partnerPlayer}){
+function makeTradeEntry({charKey,date,itemTraded,itemReceived,counterpartyCharacter,counterpartyPlayer}){
   const traded=normItemName(itemTraded||'');
   const received=normItemName(itemReceived||'');
-  const partnerChar=(partnerCharacter||'').trim();
-  const partnerPlay=(partnerPlayer||'').trim();
+  const counterpartyChar=(counterpartyCharacter||'').trim();
+  const counterpartyPlay=(counterpartyPlayer||'').trim();
   const entry={
     title:'Trade',
     date:date||new Date().toISOString().slice(0,10),
@@ -7526,8 +7628,8 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,partnerCharacter,p
   const trade={};
   if(traded){ trade.given=traded; }
   if(received){ trade.received=received; }
-  if(partnerChar){ trade.partnerCharacter=partnerChar; }
-  if(partnerPlay){ trade.partnerPlayer=partnerPlay; }
+  if(counterpartyChar){ trade.counterpartyCharacter=counterpartyChar; }
+  if(counterpartyPlay){ trade.counterpartyPlayer=counterpartyPlay; }
   if(Object.keys(trade).length){ entry.trade=trade; }
   ensureAdventureUid(entry);
   return entry;
@@ -7541,36 +7643,58 @@ async function handleTradeSubmit(){
     return;
   }
   const tradedName=activeTradeContext.itemCanonicalName||activeTradeContext.itemName||'';
-  const receivedRaw=tradeReceiveInput?tradeReceiveInput.value:'';
-  const receivedItem=normItemName(receivedRaw||'');
-  const partnerValue=tradePartnerSelect?tradePartnerSelect.value:'';
-  if(!partnerValue){
-    setTradeError('Select a trade partner.');
-    if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+  const counterpartyValue=tradeCounterpartySelect?tradeCounterpartySelect.value:'';
+  if(!counterpartyValue){
+    setTradeError('Select a counterparty.');
+    if(tradeCounterpartySelect){ tradeCounterpartySelect.focus(); }
     return;
   }
-  let partnerKey=null;
-  let partnerCharacter='';
-  let partnerPlayer='';
-  if(partnerValue.startsWith('char:')){
-    partnerKey=partnerValue.slice(5);
-    if(!partnerKey || partnerKey===charKey || !isValidSheetKey(partnerKey)){
-      setTradeError('Select a different trade partner.');
-      if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+  let counterpartyKey=null;
+  let counterpartyCharacter='';
+  let counterpartyPlayer='';
+  let receivedItem='';
+  if(counterpartyValue.startsWith('char:')){
+    counterpartyKey=counterpartyValue.slice(5);
+    if(!counterpartyKey || counterpartyKey===charKey || !isValidSheetKey(counterpartyKey)){
+      setTradeError('Select a different counterparty.');
+      if(tradeCounterpartySelect){ tradeCounterpartySelect.focus(); }
       return;
     }
-    partnerCharacter=characterDisplayName(partnerKey);
-  }else if(partnerValue==='custom'){
-    partnerCharacter=tradePartnerCharacterInput?tradePartnerCharacterInput.value.trim():'';
-    partnerPlayer=tradePartnerPlayerInput?tradePartnerPlayerInput.value.trim():'';
-    if(!partnerCharacter){
-      setTradeError('Enter the partner character name.');
-      if(tradePartnerCharacterInput){ tradePartnerCharacterInput.focus(); }
+    counterpartyCharacter=characterDisplayName(counterpartyKey);
+    const selectValue=tradeReceiveSelect?tradeReceiveSelect.value:'';
+    if(selectValue==='__custom__'){
+      const customReceived=tradeReceiveInput?tradeReceiveInput.value:'';
+      receivedItem=normItemName(customReceived||'');
+      if(!receivedItem){
+        setTradeError('Enter the item you received.');
+        if(tradeReceiveInput){ tradeReceiveInput.focus(); }
+        return;
+      }
+    }else if(selectValue){
+      receivedItem=normItemName(selectValue);
+    }else{
+      setTradeError('Select the item you received.');
+      if(tradeReceiveSelect){ tradeReceiveSelect.focus(); }
+      return;
+    }
+  }else if(counterpartyValue==='custom'){
+    counterpartyCharacter=tradeCounterpartyCharacterInput?tradeCounterpartyCharacterInput.value.trim():'';
+    counterpartyPlayer=tradeCounterpartyPlayerInput?tradeCounterpartyPlayerInput.value.trim():'';
+    if(!counterpartyCharacter){
+      setTradeError('Enter the counterparty character name.');
+      if(tradeCounterpartyCharacterInput){ tradeCounterpartyCharacterInput.focus(); }
+      return;
+    }
+    const customReceived=tradeReceiveInput?tradeReceiveInput.value:'';
+    receivedItem=normItemName(customReceived||'');
+    if(!receivedItem){
+      setTradeError('Enter the item you received.');
+      if(tradeReceiveInput){ tradeReceiveInput.focus(); }
       return;
     }
   }else{
-    setTradeError('Select a trade partner.');
-    if(tradePartnerSelect){ tradePartnerSelect.focus(); }
+    setTradeError('Select a counterparty.');
+    if(tradeCounterpartySelect){ tradeCounterpartySelect.focus(); }
     return;
   }
   let tradeDate=tradeDateInput?tradeDateInput.value:'';
@@ -7582,8 +7706,8 @@ async function handleTradeSubmit(){
     date:tradeDate,
     itemTraded:tradedName,
     itemReceived:receivedItem,
-    partnerCharacter,
-    partnerPlayer
+    counterpartyCharacter,
+    counterpartyPlayer
   });
   const charData=(DATA && DATA.characters && DATA.characters[charKey])||null;
   if(!charData){
@@ -7595,30 +7719,30 @@ async function handleTradeSubmit(){
   removeInventoryLocalState(charKey,tradedName);
   registerDerivedUpdate(charKey);
 
-  let partnerContext=null;
-  if(partnerKey){
-    const partnerData=DATA.characters[partnerKey];
-    if(partnerData){
-      const partnerEntry=makeTradeEntry({
-        charKey:partnerKey,
+  let counterpartyContext=null;
+  if(counterpartyKey){
+    const counterpartyData=DATA.characters[counterpartyKey];
+    if(counterpartyData){
+      const counterpartyEntry=makeTradeEntry({
+        charKey:counterpartyKey,
         date:tradeDate,
         itemTraded:receivedItem,
         itemReceived:tradedName,
-        partnerCharacter:characterDisplayName(charKey),
-        partnerPlayer:''
+        counterpartyCharacter:characterDisplayName(charKey),
+        counterpartyPlayer:''
       });
-      if(!Array.isArray(partnerData.adventures)) partnerData.adventures=[];
-      partnerData.adventures.push(partnerEntry);
-      removeInventoryLocalState(partnerKey,receivedItem);
-      registerDerivedUpdate(partnerKey);
-      partnerContext={partnerKey};
+      if(!Array.isArray(counterpartyData.adventures)) counterpartyData.adventures=[];
+      counterpartyData.adventures.push(counterpartyEntry);
+      removeInventoryLocalState(counterpartyKey,receivedItem);
+      registerDerivedUpdate(counterpartyKey);
+      counterpartyContext={counterpartyKey};
     }
   }
 
   markDirty();
   applyDataMutation(charKey);
-  if(partnerContext && partnerContext.partnerKey){
-    applyDataMutation(partnerContext.partnerKey);
+  if(counterpartyContext && counterpartyContext.counterpartyKey){
+    applyDataMutation(counterpartyContext.counterpartyKey);
   }
   const context=activeTradeContext;
   closeTradeModal({restoreFocus:false});
@@ -7952,18 +8076,25 @@ const tradeForm=document.getElementById('tradeForm');
 const tradeTitleEl=document.getElementById('tradeTitle');
 const tradeMetaEl=document.getElementById('tradeMeta');
 const tradeItemNameEl=document.getElementById('tradeItemName');
+const tradeReceiveSelectField=document.getElementById('tradeReceiveSelectField');
+const tradeReceiveSelect=document.getElementById('tradeReceiveSelect');
+const tradeReceiveTextField=document.getElementById('tradeReceiveTextField');
+const tradeReceiveTextLabel=tradeReceiveTextField?tradeReceiveTextField.querySelector('label'):null;
 const tradeReceiveInput=document.getElementById('tradeReceiveInput');
 const tradeDateInput=document.getElementById('tradeDateInput');
-const tradePartnerSelect=document.getElementById('tradePartnerSelect');
-const tradePartnerCustom=document.getElementById('tradePartnerCustom');
-const tradePartnerCharacterInput=document.getElementById('tradePartnerCharacter');
-const tradePartnerPlayerInput=document.getElementById('tradePartnerPlayer');
+const tradeCounterpartySelect=document.getElementById('tradeCounterpartySelect');
+const tradeCounterpartyCustom=document.getElementById('tradeCounterpartyCustom');
+const tradeCounterpartyCharacterInput=document.getElementById('tradeCounterpartyCharacter');
+const tradeCounterpartyPlayerInput=document.getElementById('tradeCounterpartyPlayer');
 const tradeErrorEl=document.getElementById('tradeError');
 const tradeCancelBtn=document.getElementById('tradeCancel');
 const tradeSubmitBtn=document.getElementById('tradeSubmit');
 
-if(tradePartnerSelect){
-  tradePartnerSelect.addEventListener('change',syncTradePartnerFields);
+if(tradeReceiveSelect){
+  tradeReceiveSelect.addEventListener('change',()=>syncTradeReceiveSelection());
+}
+if(tradeCounterpartySelect){
+  tradeCounterpartySelect.addEventListener('change',syncTradeCounterpartyFields);
 }
 if(tradeCancelBtn){
   tradeCancelBtn.addEventListener('click',()=>{ closeTradeModal(); });
@@ -9463,20 +9594,19 @@ function makeCard(a,idx){
   const tradeReceivedDisplay=tradeData
     ? normalizeDisplayValue(tradeData.received)
     : normalizeDisplayValue(a.itemReceived);
-  const playerRaw=tradeData
-    ? normalizeDisplayValue(tradeData.partnerPlayer)
+  const counterpartyPlayerRaw=tradeData
+    ? normalizeDisplayValue(tradeData.counterpartyPlayer)
     : normalizeDisplayValue(a.player);
-  const characterDisplay=tradeData
-    ? normalizeDisplayValue(tradeData.partnerCharacter)
+  const counterpartyCharacterDisplay=tradeData
+    ? normalizeDisplayValue(tradeData.counterpartyCharacter)
     : normalizeDisplayValue(a.character);
   const hasLegacyTradeMeta=!!(
     normalizeDisplayValue(a.itemReceived)||
     normalizeDisplayValue(a.player)||
     normalizeDisplayValue(a.character)
   );
-  const hasTradeMeta=act && (tradeData ? (tradeReceivedDisplay || playerRaw || characterDisplay) : hasLegacyTradeMeta);
-  const tradePlayer=hasTradeMeta?(playerRaw||dmDisplay):playerRaw;
-  const usedDmAsPlayer=hasTradeMeta && !playerRaw && !!dmDisplay && tradePlayer===dmDisplay;
+  const hasTradeMeta=act && (tradeData ? (tradeReceivedDisplay || counterpartyPlayerRaw || counterpartyCharacterDisplay) : hasLegacyTradeMeta);
+  const tradeCounterpartyPlayer=hasTradeMeta?(counterpartyPlayerRaw||dmDisplay):counterpartyPlayerRaw;
 
   const dmField=appendField('DM', dmDisplay||'—');
   if(!dmDisplay){ dmField.style.display='none'; }
@@ -9504,11 +9634,11 @@ function makeCard(a,idx){
   if(hasTradeMeta){
     if(tradeGivenDisplay){ appendField('Item traded away', tradeGivenDisplay); }
     if(tradeReceivedDisplay){ appendField('Item received', tradeReceivedDisplay); }
-    if(tradePlayer || characterDisplay){
+    if(tradeCounterpartyPlayer || counterpartyCharacterDisplay){
       const metaRow=document.createElement('div');
       metaRow.className='kv2';
-      if(tradePlayer){ metaRow.appendChild(makeKVS('Player', tradePlayer)); }
-      if(characterDisplay){ metaRow.appendChild(makeKVS('Character', characterDisplay)); }
+      if(tradeCounterpartyPlayer){ metaRow.appendChild(makeKVS('Counterparty player', tradeCounterpartyPlayer)); }
+      if(counterpartyCharacterDisplay){ metaRow.appendChild(makeKVS('Counterparty character', counterpartyCharacterDisplay)); }
       if(metaRow.children.length){ overviewContent.appendChild(metaRow); }
     }
   }
@@ -10213,7 +10343,7 @@ async function saveCardChanges(card){
     data.notes=trimmedNotes||'';
     if(data.kind!=='adventure'){
       const currentTrade=(data.trade && typeof data.trade==='object')?{...data.trade}:null;
-      const hasExtendedTrade=currentTrade && (currentTrade.received||currentTrade.partnerCharacter||currentTrade.partnerPlayer);
+      const hasExtendedTrade=currentTrade && (currentTrade.received||currentTrade.counterpartyCharacter||currentTrade.counterpartyPlayer);
       const nextTrade=updates.trade && typeof updates.trade==='object'?updates.trade:null;
       if(nextTrade){
         data.trade={...nextTrade};

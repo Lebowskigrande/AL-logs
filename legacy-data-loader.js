@@ -296,20 +296,20 @@
           firstTrade.itemReceived ||
           firstTrade.tradeItemReceived
         );
-        const partnerPlayer = sanitizeText(
+        const counterpartyPlayer = sanitizeText(
           firstTrade.withPlayer ||
           firstTrade.player ||
           firstTrade.tradePlayerName
         );
-        const partnerCharacter = sanitizeText(
+        const counterpartyCharacter = sanitizeText(
           firstTrade.withCharacter ||
           firstTrade.character ||
           firstTrade.tradeCharacterName
         );
         if (given) trade.given = given;
         if (received) trade.received = received;
-        if (partnerPlayer) trade.partnerPlayer = partnerPlayer;
-        if (partnerCharacter) trade.partnerCharacter = partnerCharacter;
+        if (counterpartyPlayer) trade.counterpartyPlayer = counterpartyPlayer;
+        if (counterpartyCharacter) trade.counterpartyCharacter = counterpartyCharacter;
         if (Object.keys(trade).length) {
           entry.trade = trade;
         }
