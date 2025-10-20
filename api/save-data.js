@@ -66,7 +66,12 @@ export default async function handler(req) {
 
     // 2) Create commit
     const message = `feat: update ${path} from dashboard`;
-    const content = btoa(unescape(encodeURIComponent(dataJs))); // UTF-8 -> base64
+    const encoded = new TextEncoder().encode(dataJs);
+    let binary = '';
+    for (let i = 0; i < encoded.length; i += 1) {
+      binary += String.fromCharCode(encoded[i]);
+    }
+    const content = btoa(binary); // UTF-8 -> base64
 
     const putRes = await fetch(base, {
       method: 'PUT',
