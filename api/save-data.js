@@ -33,7 +33,7 @@ export default async function handler(req) {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
     }
 
-    const branch = process.env.GH_BRANCH || 'work';
+    const branch = process.env.GH_BRANCH || 'main';
     if (!branch) {
       return respond({ error: 'Invalid branch configuration' }, { status: 500 });
     }
