@@ -6420,7 +6420,7 @@ function setDmHeader(){
 
 function updateSearchClearButton(){
   if(!qEl || !searchClearBtn) return;
-  const hasValue=typeof qEl.value==='string' && qEl.value.trim()!=='';
+  const hasValue=typeof qEl.value==='string' && qEl.value!=='';
   searchClearBtn.hidden=!hasValue;
   searchClearBtn.setAttribute('aria-hidden', hasValue?'false':'true');
 }
