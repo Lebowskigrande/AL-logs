@@ -229,13 +229,13 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     const received = readTradeValue(tradeSources,[
       'received','itemReceived','tradeItemReceived'
     ]);
-    const partnerCharacter = readTradeValue(tradeSources,[
-      'partnerCharacter','character','withCharacter','tradeCharacterName'
+    const counterpartyCharacter = readTradeValue(tradeSources,[
+      'counterpartyCharacter','character','withCharacter','tradeCharacterName'
     ]);
-    const partnerPlayer = readTradeValue(tradeSources,[
-      'partnerPlayer','player','withPlayer','tradePlayerName'
+    const counterpartyPlayer = readTradeValue(tradeSources,[
+      'counterpartyPlayer','player','withPlayer','tradePlayerName'
     ]);
-    if(!(given || received || partnerCharacter || partnerPlayer)){
+    if(!(given || received || counterpartyCharacter || counterpartyPlayer)){
       return null;
     }
     if(!isDowntime && !given && !received){
@@ -244,8 +244,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     const trade = {};
     if(given){ trade.given = given; }
     if(received){ trade.received = received; }
-    if(partnerCharacter){ trade.partnerCharacter = partnerCharacter; }
-    if(partnerPlayer){ trade.partnerPlayer = partnerPlayer; }
+    if(counterpartyCharacter){ trade.counterpartyCharacter = counterpartyCharacter; }
+    if(counterpartyPlayer){ trade.counterpartyPlayer = counterpartyPlayer; }
     return Object.keys(trade).length ? trade : null;
   }
 
@@ -520,8 +520,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     if(adv.trade && typeof adv.trade === 'object'){
       pushTokens(adv.trade.given);
       pushTokens(adv.trade.received);
-      pushTokens(adv.trade.partnerCharacter);
-      pushTokens(adv.trade.partnerPlayer);
+      pushTokens(adv.trade.counterpartyCharacter);
+      pushTokens(adv.trade.counterpartyPlayer);
     }else{
       pushTokens(adv.traded_item);
       pushTokens(adv.itemTraded);

@@ -70,7 +70,7 @@ window.DATA = {
           "trade": {
             "given": "Eldritch Claw Tattoo",
             "received": "Wand of Magic Missiles",
-            "partnerCharacter": "Squelch"
+            "counterpartyCharacter": "Squelch"
           }
         },
         {
@@ -834,7 +834,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of the Python",
             "received": "Glamoured Studded Leather",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -902,7 +902,7 @@ window.DATA = {
           "trade": {
             "given": "Lash of Immolation",
             "received": "Belt of Hill Giant Strength",
-            "partnerCharacter": "Noraggen"
+            "counterpartyCharacter": "Noraggen"
           }
         }
       ]
@@ -1202,7 +1202,7 @@ window.DATA = {
           "trade": {
             "given": "Marvelous Pigments",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -1347,7 +1347,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Magic Missiles",
             "received": "Eldritch Claw tattoo (temperate)",
-            "partnerCharacter": "Squelch (prequel)"
+            "counterpartyCharacter": "Squelch (prequel)"
           }
         },
         {
@@ -1507,7 +1507,7 @@ window.DATA = {
           "trade": {
             "given": "Half-plate +1",
             "received": "Vicious Lance",
-            "partnerCharacter": "Raguel"
+            "counterpartyCharacter": "Raguel"
           }
         },
         {
@@ -1633,7 +1633,7 @@ window.DATA = {
           "trade": {
             "given": "The Sixth Sword",
             "received": "Periapt of Proof Against Poison",
-            "partnerCharacter": "Faramir Quickfoot"
+            "counterpartyCharacter": "Faramir Quickfoot"
           }
         },
         {
@@ -1751,7 +1751,7 @@ window.DATA = {
           "trade": {
             "given": "Pipe of Smoke Monsters (Guardian)",
             "received": "Moon-Touched Greatsword",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -1802,8 +1802,8 @@ window.DATA = {
           "trade": {
             "given": "Dagger of Blindsight",
             "received": "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
-            "partnerCharacter": "Pruxx",
-            "partnerPlayer": "Dave N."
+            "counterpartyCharacter": "Pruxx",
+            "counterpartyPlayer": "Dave N."
           }
         },
         {
@@ -2057,7 +2057,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Shooting Stars",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -2109,7 +2109,7 @@ window.DATA = {
           "trade": {
             "given": "Headband of Intellect",
             "received": "Winged Boots",
-            "partnerCharacter": "Madam Renata"
+            "counterpartyCharacter": "Madam Renata"
           }
         },
         {
@@ -2334,7 +2334,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Spider Staff",
-            "partnerCharacter": "Raguel"
+            "counterpartyCharacter": "Raguel"
           }
         },
         {
@@ -2589,7 +2589,7 @@ window.DATA = {
           "trade": {
             "given": "Winged Boots",
             "received": "Headband of Intellect",
-            "partnerCharacter": "Jerry Garcia"
+            "counterpartyCharacter": "Jerry Garcia"
           }
         },
         {
@@ -2643,7 +2643,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Hill Giant Strength",
             "received": "Lash of Immolation",
-            "partnerCharacter": "Chef Ture"
+            "counterpartyCharacter": "Chef Ture"
           }
         },
         {
@@ -2752,7 +2752,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Splint +1",
-            "partnerCharacter": "Sentient Hat"
+            "counterpartyCharacter": "Sentient Hat"
           }
         },
         {
@@ -2859,7 +2859,7 @@ window.DATA = {
           "trade": {
             "given": "Plague Fly",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Sookie Stackhouse"
+            "counterpartyCharacter": "Sookie Stackhouse"
           }
         },
         {
@@ -2940,7 +2940,7 @@ window.DATA = {
           "trade": {
             "given": "Tloque's Battleaxe",
             "received": "Dwarven Thrower",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -3019,7 +3019,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Plague Fly",
-            "partnerCharacter": "Noraggen"
+            "counterpartyCharacter": "Noraggen"
           }
         },
         {
@@ -3160,7 +3160,7 @@ window.DATA = {
           "trade": {
             "given": "Mithral Splintmail",
             "received": "Helm of Telepathy",
-            "partnerCharacter": "Jormund Khan"
+            "counterpartyCharacter": "Jormund Khan"
           }
         },
         {
@@ -3214,7 +3214,7 @@ window.DATA = {
           "trade": {
             "given": "1 pot of Nulzor's Marvelous Pigments",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Sentient Hat"
+            "counterpartyCharacter": "Sentient Hat"
           }
         },
         {
@@ -3239,7 +3239,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Belt of Hill GIant Strength",
-            "partnerCharacter": "Noraggen"
+            "counterpartyCharacter": "Noraggen"
           }
         },
         {
@@ -3344,7 +3344,7 @@ window.DATA = {
           "trade": {
             "given": "Eyes of the Eagle",
             "received": "Adamantine Plate Armor",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -3393,7 +3393,7 @@ window.DATA = {
           "trade": {
             "given": "Portable Hole",
             "received": "Maul +2",
-            "partnerCharacter": "Fai Chen"
+            "counterpartyCharacter": "Fai Chen"
           }
         },
         {
@@ -3561,7 +3561,7 @@ window.DATA = {
           "trade": {
             "given": "The Sixth Sword",
             "received": "Necklace of Fireballs",
-            "partnerCharacter": "Lyrielle"
+            "counterpartyCharacter": "Lyrielle"
           }
         },
         {
@@ -3652,7 +3652,7 @@ window.DATA = {
           "trade": {
             "given": "Necklace of Prayer Beads",
             "received": "the Sixth Sword",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -3737,7 +3737,7 @@ window.DATA = {
           "trade": {
             "given": "Ruby of the War Mage",
             "received": "Dread Helm",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -3762,7 +3762,7 @@ window.DATA = {
           "trade": {
             "given": "Cloak of Many Fashions",
             "received": "Ruby of the War Mage",
-            "partnerCharacter": "Zeras Brid"
+            "counterpartyCharacter": "Zeras Brid"
           }
         },
         {
@@ -3959,7 +3959,7 @@ window.DATA = {
           "trade": {
             "given": "Shield +1",
             "received": "Mithral Splintmail",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -3984,7 +3984,7 @@ window.DATA = {
           "trade": {
             "given": "Sending Stones",
             "received": "Shield +1",
-            "partnerCharacter": "Fei Chen"
+            "counterpartyCharacter": "Fei Chen"
           }
         },
         {
@@ -4009,7 +4009,7 @@ window.DATA = {
           "trade": {
             "given": "Winged Boots",
             "received": "Gloves of Thievery",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -4175,7 +4175,7 @@ window.DATA = {
           "trade": {
             "given": "Glamoured Studded Leather",
             "received": "Glamoured Studded Leather",
-            "partnerCharacter": "Sentient Hat"
+            "counterpartyCharacter": "Sentient Hat"
           }
         },
         {
@@ -4200,7 +4200,7 @@ window.DATA = {
           "trade": {
             "given": "Gem of Seeing",
             "received": "Sun Blade",
-            "partnerCharacter": "Tifa Heartlock"
+            "counterpartyCharacter": "Tifa Heartlock"
           }
         },
         {
@@ -4225,7 +4225,7 @@ window.DATA = {
           "trade": {
             "given": "Sun Blade",
             "received": "Glamoured Studded Leather",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -4250,7 +4250,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Hill Giant Strength",
             "received": "Gem of Seeing",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -4275,7 +4275,7 @@ window.DATA = {
           "trade": {
             "given": "Elven Chain",
             "received": "Belt of Hill Giant Strength",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -4568,7 +4568,7 @@ window.DATA = {
           "trade": {
             "given": "Nolzur's Pigments",
             "received": "Rod of the Pact Keeper +3",
-            "partnerCharacter": "Amaretto"
+            "counterpartyCharacter": "Amaretto"
           }
         },
         {
@@ -4593,7 +4593,7 @@ window.DATA = {
           "trade": {
             "given": "Rod of the Pact Keeper +3",
             "received": "Wand of the War Mage +3",
-            "partnerCharacter": "Barbara Jean"
+            "counterpartyCharacter": "Barbara Jean"
           }
         },
         {
@@ -4876,7 +4876,7 @@ window.DATA = {
           "trade": {
             "given": "Spider Staff",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Madam Renata"
+            "counterpartyCharacter": "Madam Renata"
           }
         },
         {
@@ -4901,7 +4901,7 @@ window.DATA = {
           "trade": {
             "given": "Vicious Lance",
             "received": "Half-plate +1",
-            "partnerCharacter": "Norixius"
+            "counterpartyCharacter": "Norixius"
           }
         },
         {
@@ -4927,7 +4927,7 @@ window.DATA = {
           "trade": {
             "given": "Anstruth Harp",
             "received": "Tome of Leadership and Influence",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -4985,7 +4985,7 @@ window.DATA = {
           "trade": {
             "given": "Broom of Flying",
             "received": "Eyes of the Eagle",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -5100,7 +5100,7 @@ window.DATA = {
           "trade": {
             "given": "Scrimitar of Speed",
             "received": "Ring of Telekenesis",
-            "partnerCharacter": "Lyrielle"
+            "counterpartyCharacter": "Lyrielle"
           }
         },
         {
@@ -5555,7 +5555,7 @@ window.DATA = {
           "trade": {
             "given": "Opal of the Ild Rune",
             "received": "Iron Bands of Bilaro",
-            "partnerCharacter": "Tengen Uzui"
+            "counterpartyCharacter": "Tengen Uzui"
           }
         },
         {
@@ -5972,7 +5972,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Telekenesis",
             "received": "Scimitar of Speed",
-            "partnerCharacter": "Orakhar"
+            "counterpartyCharacter": "Orakhar"
           }
         },
         {
@@ -5997,7 +5997,7 @@ window.DATA = {
           "trade": {
             "given": "the Sixth Sword",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Z'la'ssh"
+            "counterpartyCharacter": "Z'la'ssh"
           }
         },
         {
@@ -6176,7 +6176,7 @@ window.DATA = {
           "trade": {
             "given": "Necklace of Fireballs",
             "received": "the Sixth Sword",
-            "partnerCharacter": "Leonardo"
+            "counterpartyCharacter": "Leonardo"
           }
         },
         {
@@ -6815,7 +6815,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "1 pot of Nulzor's Marvelous Pigments",
-            "partnerCharacter": "Buckley"
+            "counterpartyCharacter": "Buckley"
           }
         },
         {
@@ -7016,7 +7016,7 @@ window.DATA = {
           "trade": {
             "given": "Broom of Flying",
             "received": "Headband of Intellect",
-            "partnerCharacter": "Bryce"
+            "counterpartyCharacter": "Bryce"
           }
         },
         {
@@ -7198,7 +7198,7 @@ window.DATA = {
           "trade": {
             "given": "FOWP - Ivory Goats",
             "received": "Glamoured Studded Leather",
-            "partnerCharacter": "Anfer"
+            "counterpartyCharacter": "Anfer"
           }
         },
         {
@@ -7223,7 +7223,7 @@ window.DATA = {
           "trade": {
             "given": "Splint +1",
             "received": "Ring of Spell Storing (Harmonius)",
-            "partnerCharacter": "Noraggen"
+            "counterpartyCharacter": "Noraggen"
           }
         },
         {
@@ -7325,7 +7325,7 @@ window.DATA = {
           "trade": {
             "given": "Arcane Grimoire +3",
             "received": "Lance +3",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -7499,7 +7499,7 @@ window.DATA = {
           "trade": {
             "given": "Flying Carpet",
             "received": "Aegis of the Raven Queen Shield",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -7524,7 +7524,7 @@ window.DATA = {
           "trade": {
             "given": "Manual of Bodily Health",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -7597,7 +7597,7 @@ window.DATA = {
           "trade": {
             "given": "Manual of Quickness and Action",
             "received": "Plate +2",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -7664,7 +7664,7 @@ window.DATA = {
           "trade": {
             "given": "Ioun Stone of Leadership",
             "received": "Tome of Leadership and Influence",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -7876,7 +7876,7 @@ window.DATA = {
           "trade": {
             "given": "+3 Lance",
             "received": "Belt of For Giant Strength",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -7979,7 +7979,7 @@ window.DATA = {
           "trade": {
             "given": "Berserker Axe",
             "received": "Lance +3",
-            "partnerCharacter": "Jareb"
+            "counterpartyCharacter": "Jareb"
           }
         },
         {
@@ -8042,7 +8042,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Webs",
             "received": "Trident of Fish Command",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -8105,7 +8105,7 @@ window.DATA = {
           "trade": {
             "given": "Trident of Fish Command",
             "received": "Wand of Webs",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -8148,7 +8148,7 @@ window.DATA = {
           "trade": {
             "given": "Bracers of Defense",
             "received": "Sun Blade",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -8235,7 +8235,7 @@ window.DATA = {
           "trade": {
             "given": "Opal of the Ild Rune",
             "received": "Belt of Hill Giant Strength",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -8280,7 +8280,7 @@ window.DATA = {
           "trade": {
             "given": "Bag of Tricks",
             "received": "Choraller's Companion",
-            "partnerCharacter": "Del"
+            "counterpartyCharacter": "Del"
           }
         },
         {
@@ -8305,7 +8305,7 @@ window.DATA = {
           "trade": {
             "given": "Choraller's Companion",
             "received": "Gem of Water Elemental",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         }
       ]
@@ -8357,7 +8357,7 @@ window.DATA = {
           "trade": {
             "given": "Lance +3",
             "received": "Arcane Grimoire +3",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -8382,7 +8382,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of the Magi",
             "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
-            "partnerCharacter": "Eriol Quickfoot"
+            "counterpartyCharacter": "Eriol Quickfoot"
           }
         },
         {
@@ -8691,7 +8691,7 @@ window.DATA = {
           "trade": {
             "given": "Moon-Touched Greatsword",
             "received": "Pipe of Smoke Monsters (guardian)",
-            "partnerCharacter": "Norixius"
+            "counterpartyCharacter": "Norixius"
           }
         },
         {
@@ -8814,7 +8814,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Regeneration",
             "received": "Absorbing Tattoo (Force)",
-            "partnerCharacter": "Trading Post"
+            "counterpartyCharacter": "Trading Post"
           }
         },
         {
@@ -8839,7 +8839,7 @@ window.DATA = {
           "trade": {
             "given": "Robe of the Archmagi (Gray)",
             "received": "Vorpal Longsword",
-            "partnerCharacter": "S'arrok"
+            "counterpartyCharacter": "S'arrok"
           }
         },
         {
@@ -8864,7 +8864,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Storm Giant Strength",
             "received": "Robe of the Archmagi (White)",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -8889,7 +8889,7 @@ window.DATA = {
           "trade": {
             "given": "Defender Longsword",
             "received": "Robe of the Archmage (gray)",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -8941,7 +8941,7 @@ window.DATA = {
           "trade": {
             "given": "Hide +3",
             "received": "Tome of the Stilled Tongue",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -8968,7 +8968,7 @@ window.DATA = {
           "trade": {
             "given": "Downtime Activity",
             "received": "a Moon Blade",
-            "partnerCharacter": "trade Blackrazor"
+            "counterpartyCharacter": "trade Blackrazor"
           }
         },
         {
@@ -9013,7 +9013,7 @@ window.DATA = {
           "trade": {
             "given": "Moon Blade",
             "received": "Staff of the Magi",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -9107,7 +9107,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Feather Falling",
             "received": "Plate Barding +1",
-            "partnerCharacter": "AL Trading Post"
+            "counterpartyCharacter": "AL Trading Post"
           }
         },
         {
@@ -9160,7 +9160,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Ring of Shooting Stars",
-            "partnerCharacter": "Sir Norixius"
+            "counterpartyCharacter": "Sir Norixius"
           }
         },
         {
@@ -9383,7 +9383,7 @@ window.DATA = {
           "trade": {
             "given": "Grig Fiddle",
             "received": "Ghost Step Tattoo",
-            "partnerCharacter": "AL Trading Post"
+            "counterpartyCharacter": "AL Trading Post"
           }
         },
         {
@@ -9444,7 +9444,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Stone Giant Strength",
             "received": "Grig Fiddle",
-            "partnerCharacter": "Sir John of Cormanthor"
+            "counterpartyCharacter": "Sir John of Cormanthor"
           }
         },
         {
@@ -9711,7 +9711,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Leadership and Influence",
             "received": "Manual of Iron Golems",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -9789,7 +9789,7 @@ window.DATA = {
           "trade": {
             "given": "Angel Sting",
             "received": "a Crystal Ball",
-            "partnerCharacter": "Jasmine"
+            "counterpartyCharacter": "Jasmine"
           }
         },
         {
@@ -9837,7 +9837,7 @@ window.DATA = {
           "trade": {
             "given": "Periapt of Proof Against Poitson",
             "received": "Wand of Lightning Bolts",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -10185,7 +10185,7 @@ window.DATA = {
           "trade": {
             "given": "Dwarven Plate",
             "received": "Flying Carpet (4x6)",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -10598,7 +10598,7 @@ window.DATA = {
           "trade": {
             "given": "Cape of the Mountebank",
             "received": "Dagger of Blindsight",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -10774,7 +10774,7 @@ window.DATA = {
           "trade": {
             "given": "Bracelet of Rock Magic",
             "received": "Robe of Stars",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -10820,7 +10820,7 @@ window.DATA = {
           "trade": {
             "given": "Dagger of Blindsight",
             "received": "Mace of Smiting",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -10971,7 +10971,7 @@ window.DATA = {
           "trade": {
             "given": "Tloque's Battleaxe",
             "received": "Staff of Power",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -11151,7 +11151,7 @@ window.DATA = {
           "trade": {
             "given": "Glamoured Studded Leather",
             "received": "Staff of the Python",
-            "partnerCharacter": "Chef Ture"
+            "counterpartyCharacter": "Chef Ture"
           }
         },
         {
@@ -11176,7 +11176,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Leadership and Influence",
             "received": "Anstruth Harp",
-            "partnerCharacter": "Raguel"
+            "counterpartyCharacter": "Raguel"
           }
         },
         {
@@ -11397,7 +11397,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Clear Thought",
             "received": "Studded Leather +2",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -11549,7 +11549,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Pyrotecnics",
             "received": "Cloak of Many Fashions",
-            "partnerCharacter": "Morty"
+            "counterpartyCharacter": "Morty"
           }
         },
         {
@@ -11805,7 +11805,7 @@ window.DATA = {
           "trade": {
             "given": "Aegis of the Raven Queen Shield",
             "received": "Tome of Understanding",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12059,7 +12059,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Staff of Thunder and Lightning",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -12104,7 +12104,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Understanding",
             "received": "Rod of the Pact Keeper +3",
-            "partnerCharacter": "Audra Illumine"
+            "counterpartyCharacter": "Audra Illumine"
           }
         },
         {
@@ -12167,7 +12167,7 @@ window.DATA = {
           "trade": {
             "given": "Studded Leather +2",
             "received": "Staff of Power",
-            "partnerCharacter": "Bilbo Baggins"
+            "counterpartyCharacter": "Bilbo Baggins"
           }
         },
         {
@@ -12192,7 +12192,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Thunder and Lightning",
             "received": "Bad of Devouring",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -12373,7 +12373,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Webs",
             "received": "Broom of Flying",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12398,7 +12398,7 @@ window.DATA = {
           "trade": {
             "given": "Rope of Entanglement",
             "received": "Wand of Fireballs",
-            "partnerCharacter": "Sister Edwina"
+            "counterpartyCharacter": "Sister Edwina"
           }
         },
         {
@@ -12463,7 +12463,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Wonder",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Abserd"
+            "counterpartyCharacter": "Abserd"
           }
         },
         {
@@ -12631,7 +12631,7 @@ window.DATA = {
           "trade": {
             "given": "Manual of Bodily Health",
             "received": "Manual of Iron Golems",
-            "partnerCharacter": "Samus"
+            "counterpartyCharacter": "Samus"
           }
         },
         {
@@ -12657,7 +12657,7 @@ window.DATA = {
           "trade": {
             "given": "Manual of Iron Golems",
             "received": "Tome of Leadership and Influence",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -12682,7 +12682,7 @@ window.DATA = {
           "trade": {
             "given": "Holy Avenger Longsword",
             "received": "Ioun Stone of Mastery",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12707,7 +12707,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Storm Giant Strength",
             "received": "Efreeti Chain",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12732,7 +12732,7 @@ window.DATA = {
           "trade": {
             "given": "Efreeti Chain",
             "received": "Belt of Storm Giant Strength",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12777,7 +12777,7 @@ window.DATA = {
           "trade": {
             "given": "Ioun Stone of Mastery",
             "received": "Holy Avenger Longsword",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -12822,7 +12822,7 @@ window.DATA = {
           "trade": {
             "given": "Flying Carpet",
             "received": "Dwarven Plate",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -12847,7 +12847,7 @@ window.DATA = {
           "trade": {
             "given": "Aegis of the Raven Queen Shield",
             "received": "Flying Carpet",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -12872,7 +12872,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Manual of Bodily Health",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -12897,7 +12897,7 @@ window.DATA = {
           "trade": {
             "given": "Plate +2",
             "received": "Manual of Quickness and Action",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -12922,7 +12922,7 @@ window.DATA = {
           "trade": {
             "given": "Mace of Smiting",
             "received": "Dagger of Blindsight",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -12947,7 +12947,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Power",
             "received": "Tloque's Battleaxe",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -13108,7 +13108,7 @@ window.DATA = {
           "trade": {
             "given": "Shield +3",
             "received": "Plate Barding +2",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -13189,7 +13189,7 @@ window.DATA = {
           "trade": {
             "given": "Longsword +3",
             "received": "Staff of Power",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -13235,7 +13235,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Thunder and Lightning",
             "received": "Shield +3",
-            "partnerCharacter": "Warden"
+            "counterpartyCharacter": "Warden"
           }
         },
         {
@@ -13326,7 +13326,7 @@ window.DATA = {
           "trade": {
             "given": "Sun Blade",
             "received": "Bracers of Defense",
-            "partnerCharacter": "Arvistan Brightwave"
+            "counterpartyCharacter": "Arvistan Brightwave"
           }
         },
         {
@@ -13351,7 +13351,7 @@ window.DATA = {
           "trade": {
             "given": "Glamoured Studded Leather",
             "received": "Sun Blade",
-            "partnerCharacter": "Anfer"
+            "counterpartyCharacter": "Anfer"
           }
         },
         {
@@ -13376,7 +13376,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Understanding",
             "received": "Plate +2",
-            "partnerPlayer": "David T."
+            "counterpartyPlayer": "David T."
           }
         },
         {
@@ -13421,7 +13421,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "+3 Longsword",
-            "partnerCharacter": "Morinth"
+            "counterpartyCharacter": "Morinth"
           }
         },
         {
@@ -13466,7 +13466,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Hill Giant Strength",
             "received": "Opal of the Ild Rune",
-            "partnerCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan"
           }
         },
         {
@@ -13491,7 +13491,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Thunder and Lightning",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -13517,7 +13517,7 @@ window.DATA = {
           "trade": {
             "given": "Bag of Devouring",
             "received": "Staff of Thunder and Lightning",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -13562,7 +13562,7 @@ window.DATA = {
           "trade": {
             "given": "+2 Longsword",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Wandering Swordsman"
+            "counterpartyCharacter": "Wandering Swordsman"
           }
         },
         {
@@ -13647,7 +13647,7 @@ window.DATA = {
           "trade": {
             "given": "Gem of Seeing",
             "received": "Belt of Hill Giant Strength",
-            "partnerCharacter": "Anfer"
+            "counterpartyCharacter": "Anfer"
           }
         },
         {
@@ -13672,7 +13672,7 @@ window.DATA = {
           "trade": {
             "given": "Elven Chain",
             "received": "+1 plate",
-            "partnerCharacter": "Fei Chen"
+            "counterpartyCharacter": "Fei Chen"
           }
         },
         {
@@ -13697,7 +13697,7 @@ window.DATA = {
           "trade": {
             "given": "+1 plate",
             "received": "+2 Longsword",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -13722,7 +13722,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Elven Chain",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -13964,8 +13964,8 @@ window.DATA = {
           "trade": {
             "given": "Ascendant Dragon-Touched Focus",
             "received": "Robe of the Archmagi (white)",
-            "partnerCharacter": "Valenor Vyshaan",
-            "partnerPlayer": "Dario C."
+            "counterpartyCharacter": "Valenor Vyshaan",
+            "counterpartyPlayer": "Dario C."
           }
         },
         {
@@ -13990,7 +13990,7 @@ window.DATA = {
           "trade": {
             "given": "Robe of the Archmage (White)",
             "received": "Belt of Storm GIant Strength",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -14015,7 +14015,7 @@ window.DATA = {
           "trade": {
             "given": "Holy Avenger Longsword",
             "received": "Hide Armor +3",
-            "partnerCharacter": "Duke"
+            "counterpartyCharacter": "Duke"
           }
         },
         {
@@ -14040,7 +14040,7 @@ window.DATA = {
           "trade": {
             "given": "Hide Armor +3",
             "received": "Holy Avenger Longsword",
-            "partnerCharacter": "Duke"
+            "counterpartyCharacter": "Duke"
           }
         },
         {
@@ -14065,7 +14065,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Storm Giant Strength",
             "received": "Robe of the Archmage (Gray)",
-            "partnerCharacter": "Aiden Moonshadow"
+            "counterpartyCharacter": "Aiden Moonshadow"
           }
         },
         {
@@ -14090,7 +14090,7 @@ window.DATA = {
           "trade": {
             "given": "Robe of the Archmage (Gray)",
             "received": "Defender Longsword",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -14162,7 +14162,7 @@ window.DATA = {
           "trade": {
             "given": "Scarab of Protection",
             "received": "Blood Fury Tattoo",
-            "partnerCharacter": "Jillian"
+            "counterpartyCharacter": "Jillian"
           }
         },
         {
@@ -14212,7 +14212,7 @@ window.DATA = {
           "trade": {
             "given": "Oathbow",
             "received": "Rod of Absorption",
-            "partnerCharacter": "Aramil"
+            "counterpartyCharacter": "Aramil"
           }
         },
         {
@@ -14237,7 +14237,7 @@ window.DATA = {
           "trade": {
             "given": "Ioun Stone of Mastery",
             "received": "Holy Avenger Longsword",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14262,7 +14262,7 @@ window.DATA = {
           "trade": {
             "given": "Efreeti Chain barding",
             "received": "Belt of Storm GIant Strength",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14287,7 +14287,7 @@ window.DATA = {
           "trade": {
             "given": "Eyes of the Eagle",
             "received": "Broom of Flying",
-            "partnerCharacter": "Orakhar"
+            "counterpartyCharacter": "Orakhar"
           }
         },
         {
@@ -14332,7 +14332,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Lightning Bolts",
             "received": "Periapt of Proof Against Poison",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -14384,7 +14384,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Storm Giant Strength",
             "received": "Efreeti Chain",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14409,7 +14409,7 @@ window.DATA = {
           "trade": {
             "given": "Holy Avenger",
             "received": "Ioun Stone of Mastery",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14434,7 +14434,7 @@ window.DATA = {
           "trade": {
             "given": "Adamantine Armor",
             "received": "Eyes of the Eagle",
-            "partnerCharacter": "Buckley"
+            "counterpartyCharacter": "Buckley"
           }
         },
         {
@@ -14554,7 +14554,7 @@ window.DATA = {
           "trade": {
             "given": "Periapt of Proof Against Poison",
             "received": "Whip +2",
-            "partnerCharacter": "Indy"
+            "counterpartyCharacter": "Indy"
           }
         },
         {
@@ -14659,7 +14659,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Understanding",
             "received": "Aegis of the Raven Queen Shield",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -14684,7 +14684,7 @@ window.DATA = {
           "trade": {
             "given": "Rod of the Pact Keeper +3",
             "received": "Tome of Understanding",
-            "partnerCharacter": "Sibila"
+            "counterpartyCharacter": "Sibila"
           }
         },
         {
@@ -14709,7 +14709,7 @@ window.DATA = {
           "trade": {
             "given": "Plate Barding +2",
             "received": "Shield +3",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14757,7 +14757,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Power",
             "received": "Longsword +3",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -14827,7 +14827,7 @@ window.DATA = {
           "trade": {
             "given": "Ollamh Harp",
             "received": "Plate +3",
-            "partnerCharacter": "Portia Porridgepot"
+            "counterpartyCharacter": "Portia Porridgepot"
           }
         },
         {
@@ -14892,7 +14892,7 @@ window.DATA = {
           "trade": {
             "given": "Oathbinder",
             "received": "Cloak of Invisibility",
-            "partnerCharacter": "Missmeseeks"
+            "counterpartyCharacter": "Missmeseeks"
           }
         },
         {
@@ -14917,7 +14917,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Power",
             "received": "Ioun Stone of Insight",
-            "partnerCharacter": "Winkle Paddlegear"
+            "counterpartyCharacter": "Winkle Paddlegear"
           }
         },
         {
@@ -14942,7 +14942,7 @@ window.DATA = {
           "trade": {
             "given": "Scarab of Protection",
             "received": "Holy Avenger Longsword",
-            "partnerCharacter": "Darnys"
+            "counterpartyCharacter": "Darnys"
           }
         },
         {
@@ -15007,7 +15007,7 @@ window.DATA = {
           "trade": {
             "given": "Ioun Stone of Greater Absorption",
             "received": "Scarab of Protection",
-            "partnerCharacter": "Snowball"
+            "counterpartyCharacter": "Snowball"
           }
         },
         {
@@ -15032,7 +15032,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Manual of Bodily Health",
-            "partnerCharacter": "Yongbi"
+            "counterpartyCharacter": "Yongbi"
           }
         },
         {
@@ -15057,7 +15057,7 @@ window.DATA = {
           "trade": {
             "given": "Ring of Spell Storing",
             "received": "Periapt of Proof Against Poison",
-            "partnerCharacter": "Zelene Silrathas"
+            "counterpartyCharacter": "Zelene Silrathas"
           }
         },
         {
@@ -15082,7 +15082,7 @@ window.DATA = {
           "trade": {
             "given": "Trident of Fish Command",
             "received": "Wand of Webs",
-            "partnerCharacter": "Arvistan Brightwave"
+            "counterpartyCharacter": "Arvistan Brightwave"
           }
         },
         {
@@ -15107,7 +15107,7 @@ window.DATA = {
           "trade": {
             "given": "Ioun Stone of Mastery",
             "received": "Belt of Storm Giant Strength",
-            "partnerCharacter": "Brielle Akamiir"
+            "counterpartyCharacter": "Brielle Akamiir"
           }
         },
         {
@@ -15183,7 +15183,7 @@ window.DATA = {
           "trade": {
             "given": "Wand of Webs",
             "received": "Trident of Fish Command",
-            "partnerCharacter": "Arvistan Brightwave"
+            "counterpartyCharacter": "Arvistan Brightwave"
           }
         },
         {
@@ -15226,7 +15226,7 @@ window.DATA = {
           "trade": {
             "given": "Sentinel Shield",
             "received": "Broom of Flying",
-            "partnerCharacter": "Don Karnage"
+            "counterpartyCharacter": "Don Karnage"
           }
         },
         {
@@ -15251,7 +15251,7 @@ window.DATA = {
           "trade": {
             "given": "Broom of Flying",
             "received": "Wand of Webs",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -15276,7 +15276,7 @@ window.DATA = {
           "trade": {
             "given": "Gem of Water Elemental",
             "received": "Choraller's Companion",
-            "partnerCharacter": "Arvistan Brightwave"
+            "counterpartyCharacter": "Arvistan Brightwave"
           }
         },
         {
@@ -15405,7 +15405,7 @@ window.DATA = {
           "trade": {
             "given": "Carpet of Flying",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Marina"
+            "counterpartyCharacter": "Marina"
           }
         },
         {
@@ -15430,7 +15430,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Hill Giant Strength",
             "received": "Elven Chain",
-            "partnerCharacter": "Anfer"
+            "counterpartyCharacter": "Anfer"
           }
         },
         {
@@ -15475,7 +15475,7 @@ window.DATA = {
           "trade": {
             "given": "DEX tome",
             "received": "CHA tome",
-            "partnerCharacter": "Agnes Illumine"
+            "counterpartyCharacter": "Agnes Illumine"
           }
         },
         {
@@ -15520,7 +15520,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of Thunder and Lightning",
             "received": "+3 Shield",
-            "partnerCharacter": "Marina"
+            "counterpartyCharacter": "Marina"
           }
         },
         {
@@ -15545,7 +15545,7 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Staff of Power",
-            "partnerCharacter": "Goombus"
+            "counterpartyCharacter": "Goombus"
           }
         },
         {
@@ -15570,7 +15570,7 @@ window.DATA = {
           "trade": {
             "given": "Skaggoxx",
             "received": "Belt of Fire Giant Strength",
-            "partnerCharacter": "Thelma Scrollroller"
+            "counterpartyCharacter": "Thelma Scrollroller"
           }
         },
         {
@@ -15653,7 +15653,7 @@ window.DATA = {
           "trade": {
             "given": "+2 Longsword",
             "received": "+1 plate",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -15678,7 +15678,7 @@ window.DATA = {
           "trade": {
             "given": "mithral splintmail",
             "received": "+1 Shield",
-            "partnerCharacter": "Rolyn"
+            "counterpartyCharacter": "Rolyn"
           }
         },
         {
@@ -15725,7 +15725,7 @@ window.DATA = {
           "trade": {
             "given": "Elven chainmail",
             "received": "Ring of Spell Storing",
-            "partnerCharacter": "Lorien"
+            "counterpartyCharacter": "Lorien"
           }
         },
         {
@@ -15790,7 +15790,7 @@ window.DATA = {
           "trade": {
             "given": "Rimesplitter",
             "received": "+2 Longsword",
-            "partnerCharacter": "Fei Chen"
+            "counterpartyCharacter": "Fei Chen"
           }
         },
         {
@@ -15978,7 +15978,7 @@ window.DATA = {
           "trade": {
             "given": "Gloves of Thievery",
             "received": "Winged Boots",
-            "partnerCharacter": "Rolyn"
+            "counterpartyCharacter": "Rolyn"
           }
         },
         {
@@ -16030,7 +16030,7 @@ window.DATA = {
           "trade": {
             "given": "Staff of the Magi",
             "received": "Moon Blade",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -16055,7 +16055,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of the Stilled Tongue",
             "received": "Hide +3",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -16078,7 +16078,7 @@ window.DATA = {
           "trade": {
             "given": "Tloque's Battleaxe",
             "received": "Shield +3",
-            "partnerCharacter": "Darrendrian"
+            "counterpartyCharacter": "Darrendrian"
           }
         },
         {
@@ -16166,7 +16166,7 @@ window.DATA = {
           "trade": {
             "given": "Glaive +3",
             "received": "Dwarven Thrower",
-            "partnerCharacter": "Kiernan"
+            "counterpartyCharacter": "Kiernan"
           }
         },
         {
@@ -16191,7 +16191,7 @@ window.DATA = {
           "trade": {
             "given": "Dwarven Thrower",
             "received": "Tloque's Battleax",
-            "partnerCharacter": "Noraggen"
+            "counterpartyCharacter": "Noraggen"
           }
         },
         {
@@ -16238,7 +16238,7 @@ window.DATA = {
           "trade": {
             "given": "Studded Leather +2",
             "received": "Tome of Clear Thought",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -16283,7 +16283,7 @@ window.DATA = {
           "trade": {
             "given": "Robe of Stars",
             "received": "Bracelet of Rock Magic",
-            "partnerCharacter": "Zandarax"
+            "counterpartyCharacter": "Zandarax"
           }
         },
         {
@@ -16352,7 +16352,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Leadership and Influence",
             "received": "Ioun Stone of Leadership",
-            "partnerCharacter": "Arvistan Brightwave"
+            "counterpartyCharacter": "Arvistan Brightwave"
           }
         },
         {
@@ -16517,7 +16517,7 @@ window.DATA = {
           "trade": {
             "given": "Tome of Clear Thought",
             "received": "Tome of Understanding",
-            "partnerCharacter": "Lim Dul"
+            "counterpartyCharacter": "Lim Dul"
           }
         },
         {
@@ -16562,7 +16562,7 @@ window.DATA = {
           "trade": {
             "given": "The Sixth Sword",
             "received": "Necklace of Prayer Beads",
-            "partnerCharacter": "Leonardo"
+            "counterpartyCharacter": "Leonardo"
           }
         },
         {
@@ -16631,7 +16631,7 @@ window.DATA = {
           "trade": {
             "given": "Cloak of Many Fashions",
             "received": "Wand of Pyrotecnics",
-            "partnerCharacter": "Agatha"
+            "counterpartyCharacter": "Agatha"
           }
         },
         {
@@ -16881,7 +16881,7 @@ window.DATA = {
           "trade": {
             "given": "Amulet of Health",
             "received": "Staff of the Woodlands",
-            "partnerCharacter": "Dino"
+            "counterpartyCharacter": "Dino"
           }
         },
         {

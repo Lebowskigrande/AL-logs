@@ -24,7 +24,7 @@ ITEM_CORRECTIONS = {
     "Pipe of Smoke Monsters (Guardian)": "Pipe of Smoke Monsters (Guardian)",
 }
 
-PARTNER_CORRECTIONS = {
+COUNTERPARTY_CORRECTIONS = {
     "Norixious": "Norixius",
     "Norragen": "Noraggen",
     "Fai Chen": "Fai Chen",
@@ -140,16 +140,16 @@ def clean_trade_entry(
                 index,
                 log.get("date"),
                 log.get("adventureName"),
-                "Trade note missing trading partner",
+                "Trade note missing trading counterparty",
                 raw_note,
             )
         )
         return
 
-    given_raw, partner_raw = left.rsplit(" to ", 1)
+    given_raw, counterparty_raw = left.rsplit(" to ", 1)
 
     given = ITEM_CORRECTIONS.get(given_raw.strip(" ."), given_raw.strip(" ."))
-    partner = PARTNER_CORRECTIONS.get(partner_raw.strip(" ."), partner_raw.strip(" ."))
+    counterparty = COUNTERPARTY_CORRECTIONS.get(counterparty_raw.strip(" ."), counterparty_raw.strip(" ."))
 
     received = ITEM_CORRECTIONS.get(received_raw.strip(" ."), received_raw.strip(" ."))
     suffix = f" to {character}"
@@ -157,14 +157,14 @@ def clean_trade_entry(
         received = received[: -len(suffix)].strip(" .")
     received = ITEM_CORRECTIONS.get(received, received)
 
-    if not partner or " for " in partner.lower():
+    if not counterparty or " for " in counterparty.lower():
         manual_issues.append(
             ManualIssue(
                 character,
                 index,
                 log.get("date"),
                 log.get("adventureName"),
-                "Trade partner unresolved",
+                "Trade counterparty unresolved",
                 raw_note,
             )
         )
@@ -194,7 +194,7 @@ def clean_trade_entry(
 
     first["tradeItemGiven"] = given or None
     first["tradeItemReceived"] = received or None
-    first["tradeCharacterName"] = partner or None
+    first["tradeCharacterName"] = counterparty or None
     first["tradePlayerName"] = first.get("tradePlayerName") or None
     first["tradeNotes"] = trade_notes
 
@@ -258,9 +258,9 @@ def clean() -> None:
                 received = trade.get("tradeItemReceived")
                 if isinstance(received, str):
                     trade["tradeItemReceived"] = ITEM_CORRECTIONS.get(received, received)
-                partner = trade.get("tradeCharacterName")
-                if isinstance(partner, str):
-                    trade["tradeCharacterName"] = PARTNER_CORRECTIONS.get(partner, partner)
+                counterparty = trade.get("tradeCharacterName")
+                if isinstance(counterparty, str):
+                    trade["tradeCharacterName"] = COUNTERPARTY_CORRECTIONS.get(counterparty, counterparty)
                 notes = trade.get("tradeNotes")
                 if isinstance(notes, str) and not notes.strip():
                     trade["tradeNotes"] = None

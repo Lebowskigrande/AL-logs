@@ -13,6 +13,6 @@ The following log entries could not be automatically normalised.
 | Agatha | 11 | 2020-01-17 | Trade | Could not parse trade structure | Traded Ring of Spell Storing to |
 | Agatha | 15 | 2020-01-20 | Trade | Could not parse trade structure | Traded Wand of Fireballs for Rod of the Pact Keeper +2 |
 | Agatha | 63 | 2021-07-03 |  | Adventure code still missing |  |
-| Lorien | 22 | 2020-02-12 | Trade | Trade note missing trading partner | Traded Tome of Understanding to for Plate +2 |
+| Lorien | 22 | 2020-02-12 | Trade | Trade note missing trading counterparty | Traded Tome of Understanding to for Plate +2 |
 | Darrendrian | 88 | 2022-06-12 | Trade | Could not parse trade structure | Traded Ascendant Dragon-Touched Focus to Valenor Vyshaan to Robe of the Archmagi (White) |
 | Darrendrian | 92 | 2024-04-25 |  | Adventure code still missing |  |
