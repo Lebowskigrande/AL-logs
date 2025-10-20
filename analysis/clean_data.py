@@ -9,7 +9,12 @@ from typing import Any, Dict, List, Optional
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data.js"
 MANUAL_PATH = ROOT / "analysis" / "manual_corrections.md"
-PREFIX = "export const DATA = "
+PREFIXES = (
+    "export const DATA = ",
+    "window.DATA = ",
+)
+DEFAULT_PREFIX = PREFIXES[0]
+_current_prefix = DEFAULT_PREFIX
 
 # Common data-entry typos we can safely normalise.
 ITEM_CORRECTIONS = {
@@ -51,11 +56,19 @@ class ManualIssue:
         return f"| {self.character} | {self.index} | {date} | {name} | {self.reason} | {notes} |"
 
 
+def _detect_prefix(raw: str) -> str:
+    for prefix in PREFIXES:
+        if raw.startswith(prefix):
+            return prefix
+    raise ValueError("Unexpected data.js prefix")
+
+
 def load_data() -> Dict[str, Any]:
     raw = DATA_PATH.read_text(encoding="utf-8")
-    if not raw.startswith(PREFIX):
-        raise ValueError("Unexpected data.js prefix")
-    json_blob = raw[len(PREFIX):].strip()
+    prefix = _detect_prefix(raw)
+    global _current_prefix
+    _current_prefix = prefix
+    json_blob = raw[len(prefix):].strip()
     if json_blob.endswith(";"):
         json_blob = json_blob[:-1]
     return json.loads(json_blob)
@@ -63,7 +76,8 @@ def load_data() -> Dict[str, Any]:
 
 def write_data(data: Dict[str, Any]) -> None:
     json_blob = json.dumps(data, indent=2, ensure_ascii=False)
-    DATA_PATH.write_text(f"{PREFIX}{json_blob};\n", encoding="utf-8")
+    prefix = _current_prefix or DEFAULT_PREFIX
+    DATA_PATH.write_text(f"{prefix}{json_blob};\n", encoding="utf-8")
 
 
 def clean_trade_entry(
