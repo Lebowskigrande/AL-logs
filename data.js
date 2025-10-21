@@ -2078,7 +2078,21 @@ window.DATA = {
           "story_awards": [],
           "notes": ""
         }
-      ]
+      ],
+      "inventory_state": {
+        "active": [
+          "Belt of Fire Giant Strength",
+          "Dragon slayer greatsword",
+          "Dragon's Wrath Greatsword",
+          "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)"
+        ],
+        "attuned": [
+          "Belt of Fire Giant Strength",
+          "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
+          "Dragon's Wrath Greatsword"
+        ],
+        "common": []
+      }
     },
     "Jerry Garcia": {
       "display_name": "Jerry Garcia",
@@ -8322,6 +8336,7 @@ window.DATA = {
           "date": "2025-10-21",
           "code": "DT-TRADE",
           "dm": "",
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "dtd_plus": 0,
@@ -8332,10 +8347,9 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [],
-          "story_awards": [],
           "supernatural_gifts": [],
+          "story_awards": [],
           "notes": "",
-          "kind": "Downtime Activity",
           "trade": {
             "given": "Ascendent Dragon's Wrath Longsword (Amethyst)",
             "received": "Staff of the Magi",
@@ -10468,9 +10482,7 @@ window.DATA = {
           "dtd_plus": 0,
           "dtd_minus": 0,
           "level_plus": 0,
-          "perm_items": [
-            "Winged Boots (didn't get them)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Clairvoyance"
@@ -11082,7 +11094,24 @@ window.DATA = {
           "story_awards": [],
           "notes": "Bought 30 gp worth of incense"
         }
-      ]
+      ],
+      "inventory_state": {
+        "active": [
+          "Arcane Grimoire +3",
+          "Efreeti Bottle",
+          "Manual of Bodily Health",
+          "Portable Hole",
+          "Robe of the Archmagi (White)",
+          "Staff of the Magi",
+          "Tome of Clear Thought"
+        ],
+        "attuned": [
+          "Staff of the Magi",
+          "Robe of the Archmagi (White)",
+          "Arcane Grimoire +3"
+        ],
+        "common": []
+      }
     },
     "Agatha": {
       "display_name": "Agatha",
@@ -13864,6 +13893,7 @@ window.DATA = {
           "date": "2025-10-21",
           "code": "DT-TRADE",
           "dm": "",
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "dtd_plus": 0,
@@ -13874,10 +13904,9 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [],
-          "story_awards": [],
           "supernatural_gifts": [],
+          "story_awards": [],
           "notes": "",
-          "kind": "Downtime Activity",
           "trade": {
             "given": "Staff of the Magi",
             "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
@@ -17262,7 +17291,7 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 40,
       "level_ups": 19,
-      "perm_count": 162,
+      "perm_count": 161,
       "cons_count": 67,
       "gifts_count": 6
     },
@@ -17440,7 +17469,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-21T05:19:11.698Z",
+    "generated": "2025-10-21T18:01:46.252Z",
     "problems": []
   },
   "dm_allocations": []
