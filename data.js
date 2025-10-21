@@ -4671,7 +4671,7 @@ window.DATA = {
           "title": "Start at level 5",
           "date": "2021-12-17",
           "code": "DT-START",
-          "dm": null,
+          "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -8317,6 +8317,31 @@ window.DATA = {
       "notes": "",
       "identity": {},
       "adventures": [
+        {
+          "title": "Trade",
+          "date": "2025-10-21",
+          "code": "DT-TRADE",
+          "dm": "",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "level_plus": 0,
+          "perm_items": [
+            "Staff of the Magi"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "story_awards": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "Downtime Activity",
+          "trade": {
+            "given": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+            "received": "Staff of the Magi",
+            "counterpartyCharacter": "Darrendrian"
+          }
+        },
         {
           "title": "Dreamwalker: 5",
           "date": "2025-06-27",
@@ -13835,6 +13860,31 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
+          "title": "Trade",
+          "date": "2025-10-21",
+          "code": "DT-TRADE",
+          "dm": "",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "level_plus": 0,
+          "perm_items": [
+            "Ascendent Dragon's Wrath Longsword (Amethyst)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "story_awards": [],
+          "supernatural_gifts": [],
+          "notes": "",
+          "kind": "Downtime Activity",
+          "trade": {
+            "given": "Staff of the Magi",
+            "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+            "counterpartyCharacter": "Zandarax"
+          }
+        },
+        {
           "title": "War of the Roses",
           "date": "2025-05-25",
           "code": "PS-DC-STRAT-TALES-05",
@@ -17210,7 +17260,7 @@ window.DATA = {
     "Zandarax": {
       "sessions": 72,
       "net_gp": 54776,
-      "net_dtd": 45,
+      "net_dtd": 40,
       "level_ups": 19,
       "perm_count": 162,
       "cons_count": 67,
@@ -17237,7 +17287,7 @@ window.DATA = {
     "Darrendrian": {
       "sessions": 46,
       "net_gp": 75879,
-      "net_dtd": 85,
+      "net_dtd": 80,
       "level_ups": 19,
       "perm_count": 62,
       "cons_count": 13,
@@ -17390,7 +17440,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-19T17:35:06.222Z",
+    "generated": "2025-10-21T05:19:11.698Z",
     "problems": []
   },
   "dm_allocations": []
