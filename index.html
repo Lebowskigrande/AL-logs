@@ -602,7 +602,7 @@ body.card-editor-active #addCard{
 .modal-hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .modal-body{padding:12px 16px;overflow:auto}
 .inv-modal-body,
-.cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:hidden;flex:1 1 auto;min-height:0}
 .inv-modal-body .inv-list,
 .cons-modal-body .inv-list{flex:1 1 auto;min-height:0}
 .inv-modal-body .inv-columns,
@@ -613,6 +613,8 @@ body.card-editor-active #addCard{
 .cons-modal-body .inv-column:first-child .inv-sublist{flex:1 1 auto;min-height:0;overflow:auto;padding-right:6px}
 .inv-modal-body .inv-column:not(:first-child) .inv-sublist,
 .cons-modal-body .inv-column:not(:first-child) .inv-sublist{overflow:visible}
+.inv-modal-body>.inv-meta,
+.cons-modal-body>.inv-meta{margin-bottom:8px}
 .modal-actions{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 .inv-meta{color:var(--muted);font-size:12px}
 .inv-list{display:flex;flex-direction:column;gap:6px}
