@@ -1,9 +1,4 @@
 {
   "version": 2,
-  "functions": {
-    "api/save-data.js": {
-      "runtime": "edge"
-    }
-  },
   "cleanUrls": true
 }
