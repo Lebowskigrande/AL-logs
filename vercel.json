@@ -15,9 +15,5 @@
     { "src": "*.ico", "use": "@vercel/static" },
     { "src": "*.webmanifest", "use": "@vercel/static" }
   ],
-  "routes": [
-    { "src": "/api/save-data", "dest": "/api/save-data.js" },
-    { "src": "/dm", "dest": "/dm.html" }
-  ],
   "cleanUrls": true
 }
