@@ -598,6 +598,10 @@ body.card-editor-active #addCard{
 .modal-actions{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 .inv-meta{color:var(--muted);font-size:12px}
 .inv-list{display:flex;flex-direction:column;gap:6px}
+.inv-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.inv-columns .inv-column{display:flex;flex-direction:column;gap:8px}
+.inv-columns .inv-sublist{display:flex;flex-direction:column;gap:6px}
+.inv-column-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .modal-add{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .modal-add input,.modal-add select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
 .modal-add button{border:1px solid var(--primary);background:rgba(26,115,232,.1);color:var(--primary);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
@@ -612,6 +616,7 @@ body.card-editor-active #addCard{
 .inv-row:nth-child(odd){background:#fafbfc}
 .inv-row:nth-child(even){background:#f2f5f8}
 .inv-row.active{font-weight:600;background:var(--gift-active-bg,#e8f0ff);color:var(--gift-active-fg,inherit)}
+.inv-row.attuned{box-shadow:0 0 0 1px rgba(26,115,232,.3)}
 .inv-row.active--blessing{--gift-active-bg:#dbeafe}
 .inv-row.active--boon{--gift-active-bg:#fef3c7}
 .inv-row.active--resistance{--gift-active-bg:#e5e7eb}
@@ -874,7 +879,16 @@ body.avatar-overlay-open{overflow:hidden}
     </div>
     <div class="modal-body">
       <div id="invSummary" class="inv-meta" style="margin-bottom:8px;"></div>
-      <div id="invList" class="inv-list"></div>
+      <div id="invList" class="inv-list inv-columns">
+        <div class="inv-column">
+          <div class="inv-column-title">Inventory</div>
+          <div class="inv-sublist" id="invInventoryList"></div>
+        </div>
+        <div class="inv-column">
+          <div class="inv-column-title">Equipped</div>
+          <div class="inv-sublist" id="invEquippedList"></div>
+        </div>
+      </div>
     </div>
     <div class="modal-actions">
       <button class="btn" id="invClose">Close</button>
@@ -891,7 +905,16 @@ body.avatar-overlay-open{overflow:hidden}
     </div>
     <div class="modal-body">
       <div id="consSummary" class="inv-meta" style="margin-bottom:8px;"></div>
-      <div id="consList" class="inv-list"></div>
+      <div id="consList" class="inv-list inv-columns">
+        <div class="inv-column">
+          <div class="inv-column-title">Inventory</div>
+          <div class="inv-sublist" id="consInventoryList"></div>
+        </div>
+        <div class="inv-column">
+          <div class="inv-column-title">Carried</div>
+          <div class="inv-sublist" id="consEquippedList"></div>
+        </div>
+      </div>
     </div>
     <div class="modal-actions">
       <button class="btn" id="consClose">Close</button>
@@ -8264,11 +8287,15 @@ const invModal=document.getElementById('invModal');
 const invTitle=document.getElementById('invTitle');
 const invMeta=document.getElementById('invMeta');
 const invList=document.getElementById('invList');
+const invInventoryList=document.getElementById('invInventoryList');
+const invEquippedList=document.getElementById('invEquippedList');
 const invSummary=document.getElementById('invSummary');
 const consModal=document.getElementById('consModal');
 const consTitle=document.getElementById('consTitle');
 const consMeta=document.getElementById('consMeta');
 const consList=document.getElementById('consList');
+const consInventoryList=document.getElementById('consInventoryList');
+const consEquippedList=document.getElementById('consEquippedList');
 const consSummary=document.getElementById('consSummary');
 const giftsModal=document.getElementById('giftsModal');
 const giftsTitle=document.getElementById('giftsTitle');
@@ -8426,23 +8453,23 @@ function openInventoryModal(charKey, opts={}){
   invTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Permanent Items';
   invMeta.textContent=`Level ${level} • Active slots: ${cap} • Attunement max: 3`;
 
-  const activeOrdered=active
-    .map(name=>metaByName.get(name.toLowerCase()))
-    .filter(Boolean)
-    .sort((a,b)=>{
-      const aCommon=commonSet.has(a.name.toLowerCase());
-      const bCommon=commonSet.has(b.name.toLowerCase());
-      if(aCommon!==bCommon){
-        return aCommon?1:-1;
-      }
-      return a.name.localeCompare(b.name,undefined,{sensitivity:'base'});
-    });
-  const rest=keptMeta
-    .filter(item=>!activeSet.has(item.name.toLowerCase()))
+  const inventoryOrdered=keptMeta
+    .slice()
     .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
-  const ordered=activeOrdered.concat(rest);
+  const equippedMeta=active
+    .map(name=>metaByName.get(name.toLowerCase()))
+    .filter(Boolean);
+  const attunedOrdered=equippedMeta
+    .filter(item=>attunedSet.has(item.name.toLowerCase()))
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  const nonAttunedOrdered=equippedMeta
+    .filter(item=>!attunedSet.has(item.name.toLowerCase()))
+    .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+  const equippedOrdered=attunedOrdered.concat(nonAttunedOrdered);
 
-  invList.innerHTML='';
+  if(invInventoryList){ invInventoryList.innerHTML=''; }
+  if(invEquippedList){ invEquippedList.innerHTML=''; }
+  if(!invInventoryList && invList){ invList.innerHTML=''; }
   const actions=invModal.querySelector('.modal-actions');
   let editToggle=actions?actions.querySelector('.edit-toggle'):null;
   if(actions && !editToggle){
@@ -8455,9 +8482,9 @@ function openInventoryModal(charKey, opts={}){
     actions.insertBefore(editToggle, actions.firstChild);
   }
   let editing=!!(opts && opts.editing);
-  if(!ordered.length){ editing=false; }
+  if(!inventoryOrdered.length){ editing=false; }
   function syncEditing(){
-    const activeEditing=editing && ordered.length>0;
+    const activeEditing=editing && inventoryOrdered.length>0;
     invModal.classList.toggle('editing', activeEditing);
     if(editToggle){
       editToggle.textContent=activeEditing?'Finish editing':'Edit items';
@@ -8466,13 +8493,13 @@ function openInventoryModal(charKey, opts={}){
   }
   if(editToggle){
     editToggle.onclick=()=>{
-      if(!ordered.length) return;
+      if(!inventoryOrdered.length) return;
       openInventoryModal(charKey,{editing:!editing});
     };
-    editToggle.style.display=ordered.length?'':'none';
+    editToggle.style.display=inventoryOrdered.length?'':'none';
   }
 
-  ordered.forEach(item=>{
+  const appendRow=(item,{includeAttune,includeDelete})=>{
     const label=item&&item.name?item.name:String(item||'');
     const lower=label.toLowerCase();
     const meta=metaByName.get(lower)||null;
@@ -8482,6 +8509,7 @@ function openInventoryModal(charKey, opts={}){
     const rowClasses=['inv-row'];
     if(isActive) rowClasses.push('active');
     if(isCommon) rowClasses.push('common');
+    if(includeAttune && attunedSet.has(lower)) rowClasses.push('attuned');
     row.className=rowClasses.join(' ');
     row.dataset.name=label;
 
@@ -8542,7 +8570,7 @@ function openInventoryModal(charKey, opts={}){
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
-    if(isActive){
+    if(includeAttune && isActive){
       const pill=document.createElement('span');
       pill.className='attune-pill'+(attunedSet.has(lower)?' on':'');
       pill.textContent=attunedSet.has(lower)?'Attuned':'Attune';
@@ -8567,59 +8595,61 @@ function openInventoryModal(charKey, opts={}){
       rightDiv.appendChild(pill);
     }
 
-    const deleteBtn=document.createElement('button');
-    deleteBtn.type='button';
-    deleteBtn.className='icon-btn danger delete-btn';
-    deleteBtn.innerHTML=ICON_TRASH;
-    deleteBtn.setAttribute('aria-label',`Remove ${label}`);
-    deleteBtn.title='Remove this item';
-    deleteBtn.addEventListener('click',async(ev)=>{
-      ev.stopPropagation();
-      if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
-      const adv=item&&item.adv;
-      const originalPermItems=(adv&&Array.isArray(adv.perm_items))?adv.perm_items.slice():null;
-      const activeBefore=loadActive(charKey);
-      const attunedBefore=loadAttuned(charKey);
-      const commonBefore=loadCommon(charKey);
-      if(adv){
-        const lowerName=lower;
-        const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
-        adv.perm_items=source.filter(raw=>{
-          const parsed=parseAcquisitionName(raw);
-          const cleaned=normItemName(parsed.name).toLowerCase();
-          return cleaned!==lowerName;
-        });
-      }
-      const lc=lower;
-      const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
-      const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
-      const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
-      saveActive(charKey,nextActive,{ applyMode:'none' });
-      saveAttuned(charKey,nextAttuned,{ applyMode:'none' });
-      saveCommon(charKey,nextCommon,{ applyMode:'none' });
-      registerDerivedUpdate(charKey);
-      markDirty();
-      applyDataMutation(charKey);
-      openInventoryModal(charKey,{editing:true});
-      try{
-        await saveDataJs();
-      }catch(err){
+    if(includeDelete){
+      const deleteBtn=document.createElement('button');
+      deleteBtn.type='button';
+      deleteBtn.className='icon-btn danger delete-btn';
+      deleteBtn.innerHTML=ICON_TRASH;
+      deleteBtn.setAttribute('aria-label',`Remove ${label}`);
+      deleteBtn.title='Remove this item';
+      deleteBtn.addEventListener('click',async(ev)=>{
+        ev.stopPropagation();
+        if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
+        const adv=item&&item.adv;
+        const originalPermItems=(adv&&Array.isArray(adv.perm_items))?adv.perm_items.slice():null;
+        const activeBefore=loadActive(charKey);
+        const attunedBefore=loadAttuned(charKey);
+        const commonBefore=loadCommon(charKey);
         if(adv){
-          if(originalPermItems){
-            adv.perm_items=originalPermItems;
-          }else{
-            delete adv.perm_items;
-          }
+          const lowerName=lower;
+          const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
+          adv.perm_items=source.filter(raw=>{
+            const parsed=parseAcquisitionName(raw);
+            const cleaned=normItemName(parsed.name).toLowerCase();
+            return cleaned!==lowerName;
+          });
         }
-        saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[],{ applyMode:'none' });
-        saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[],{ applyMode:'none' });
-        saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[],{ applyMode:'none' });
-        pendingDerivedUpdates.delete(charKey);
+        const lc=lower;
+        const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
+        const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
+        const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
+        saveActive(charKey,nextActive,{ applyMode:'none' });
+        saveAttuned(charKey,nextAttuned,{ applyMode:'none' });
+        saveCommon(charKey,nextCommon,{ applyMode:'none' });
+        registerDerivedUpdate(charKey);
+        markDirty();
         applyDataMutation(charKey);
         openInventoryModal(charKey,{editing:true});
-      }
-    });
-    rightDiv.appendChild(deleteBtn);
+        try{
+          await saveDataJs();
+        }catch(err){
+          if(adv){
+            if(originalPermItems){
+              adv.perm_items=originalPermItems;
+            }else{
+              delete adv.perm_items;
+            }
+          }
+          saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[],{ applyMode:'none' });
+          saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[],{ applyMode:'none' });
+          saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[],{ applyMode:'none' });
+          pendingDerivedUpdates.delete(charKey);
+          applyDataMutation(charKey);
+          openInventoryModal(charKey,{editing:true});
+        }
+      });
+      rightDiv.appendChild(deleteBtn);
+    }
 
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
@@ -8652,7 +8682,16 @@ function openInventoryModal(charKey, opts={}){
       itemCanonicalName:meta?meta.name:label
     });
 
-    invList.appendChild(row);
+    const target=includeAttune && invEquippedList?invEquippedList:invInventoryList||invList;
+    target.appendChild(row);
+  };
+
+  inventoryOrdered.forEach(item=>{
+    appendRow(item,{includeAttune:false,includeDelete:true});
+  });
+
+  equippedOrdered.forEach(item=>{
+    appendRow(item,{includeAttune:true,includeDelete:false});
   });
 
   syncEditing();
@@ -8798,19 +8837,6 @@ function openConsumableModal(charKey){
     return {element:nameDiv,label:labelSpan.textContent};
   };
 
-  const createSection=(title)=>{
-    const section=document.createElement('section');
-    section.className='cons-section';
-    const heading=document.createElement('div');
-    heading.className='cons-section-title';
-    heading.textContent=title;
-    const list=document.createElement('div');
-    list.className='cons-sublist';
-    section.appendChild(heading);
-    section.appendChild(list);
-    return {section,list};
-  };
-
   const addCarry=(name,{toFront=true}={})=>{
     const total=counts.get(name)||0;
     const carried=state.carriedCounts.get(name)||0;
@@ -8840,15 +8866,32 @@ function openConsumableModal(charKey){
   const renderView=()=>{
     reloadData();
     sanitizeCarried();
-    consList.innerHTML='';
+    const hasColumns=!!(consInventoryList && consEquippedList);
+    if(hasColumns){
+      consInventoryList.innerHTML='';
+      consEquippedList.innerHTML='';
+    }else{
+      consList.innerHTML='';
+    }
+
+    const inventoryTarget=consInventoryList||consList;
+    const equippedTarget=consEquippedList||consList;
+
+    const makeEmpty=(text)=>{
+      const empty=document.createElement('div');
+      empty.className='muted';
+      empty.style.padding='4px 8px';
+      empty.textContent=text;
+      return empty;
+    };
 
     if(!hasBaseInventory()){
       lastBaseSummary='No consumables tracked yet.';
       applySummary();
-      const empty=document.createElement('div');
-      empty.className='muted';
-      empty.textContent='No consumables tracked yet.';
-      consList.appendChild(empty);
+      inventoryTarget.appendChild(makeEmpty('No consumables tracked yet.'));
+      if(hasColumns){
+        equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
+      }
       return;
     }
 
@@ -8856,10 +8899,10 @@ function openConsumableModal(charKey){
     if(inventoryTotal<=0){
       lastBaseSummary='No consumables remaining.';
       applySummary();
-      const empty=document.createElement('div');
-      empty.className='muted';
-      empty.textContent='All consumables have been used.';
-      consList.appendChild(empty);
+      inventoryTarget.appendChild(makeEmpty('All consumables have been used.'));
+      if(hasColumns){
+        equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
+      }
       return;
     }
 
@@ -8873,7 +8916,6 @@ function openConsumableModal(charKey){
     lastBaseSummary=summaryParts.join(' • ');
     applySummary();
 
-    const carriedSection=createSection('Carried');
     const carriedOrdered=[];
     const seen=new Set();
     state.carriedList.forEach(name=>{ if(!seen.has(name)){ seen.add(name); carriedOrdered.push(name); } });
@@ -8986,37 +9028,36 @@ function openConsumableModal(charKey){
         tools.appendChild(useBtn);
 
         row.appendChild(tools);
-        carriedSection.list.appendChild(row);
+        equippedTarget.appendChild(row);
       });
     }else{
-      const empty=document.createElement('div');
-      empty.className='muted';
-      empty.style.padding='4px 8px';
-      empty.textContent='Not carrying any consumables.';
-      carriedSection.list.appendChild(empty);
+      equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
     }
-    consList.appendChild(carriedSection.section);
 
-    const availableSection=createSection('Stowed');
-    const availableNames=Array.from(counts.keys()).filter(name=>{
-      const total=counts.get(name)||0;
-      const carried=state.carriedCounts.get(name)||0;
-      return total-carried>0;
-    }).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
-    if(availableNames.length){
-      availableNames.forEach(name=>{
+    const nameSet=new Set(counts.keys());
+    state.carriedList.forEach(name=>{ if(name && !nameSet.has(name)){ nameSet.add(name); } });
+    const inventoryNames=Array.from(nameSet).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+    if(inventoryNames.length){
+      inventoryNames.forEach(name=>{
         const total=counts.get(name)||0;
         const carried=state.carriedCounts.get(name)||0;
         const remaining=Math.max(0,total-carried);
         const row=document.createElement('div');
         row.className='inv-row';
-        row.setAttribute('role','button');
-        row.tabIndex=0;
-        row.title='Click to carry one copy';
+        if(carried>0) row.classList.add('active');
+        if(remaining<=0){
+          row.classList.add('static');
+        }
+        row.dataset.name=name;
         const {element:nameDiv}=buildNameDiv(name);
         const secondary=document.createElement('span');
         secondary.className='cons-secondary';
-        secondary.textContent=`${remaining} available${total!==remaining?` • ${total} total`:''}`;
+        const detailParts=[`${total} total`];
+        if(carried>0) detailParts.push(`${carried} carried`);
+        if(remaining>0) detailParts.push(`${remaining} stowed`);
+        else if(total>0 && carried>0) detailParts.push('All carried');
+        else detailParts.push('None carried');
+        secondary.textContent=detailParts.join(' • ');
         nameDiv.appendChild(secondary);
         row.appendChild(nameDiv);
 
@@ -9026,29 +9067,32 @@ function openConsumableModal(charKey){
         qtyDiv.className='qty';
         const pill=document.createElement('span');
         pill.className='qty-pill';
-        pill.textContent=String(remaining);
+        pill.textContent=String(Math.max(0,remaining));
         qtyDiv.appendChild(pill);
         tools.appendChild(qtyDiv);
         row.appendChild(tools);
 
-        const activate=(ev)=>{
-          if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
-          ev.preventDefault();
-          ev.stopPropagation();
-          addCarry(name,{toFront:true});
-        };
-        row.addEventListener('click',activate);
-        row.addEventListener('keydown',activate);
-        availableSection.list.appendChild(row);
+        if(remaining>0){
+          row.setAttribute('role','button');
+          row.tabIndex=0;
+          row.title='Click to carry one copy';
+          const activate=(ev)=>{
+            if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+            ev.preventDefault();
+            ev.stopPropagation();
+            addCarry(name,{toFront:true});
+          };
+          row.addEventListener('click',activate);
+          row.addEventListener('keydown',activate);
+        }else{
+          row.title=carried>0?'All copies currently carried':'No copies available';
+        }
+
+        inventoryTarget.appendChild(row);
       });
     }else{
-      const empty=document.createElement('div');
-      empty.className='muted';
-      empty.style.padding='4px 8px';
-      empty.textContent='No consumables stowed.';
-      availableSection.list.appendChild(empty);
+      inventoryTarget.appendChild(makeEmpty('No consumables stowed.'));
     }
-    consList.appendChild(availableSection.section);
   };
 
   renderView();
