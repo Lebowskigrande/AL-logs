@@ -640,6 +640,8 @@ body.card-editor-active #addCard{
 .inv-row.active--resistance{--gift-active-bg:#e5e7eb}
 .inv-row.common .inv-label{font-weight:600}
 .inv-row.static{cursor:default}
+.inv-row.empty-slot{color:var(--muted);font-style:italic}
+.inv-row.empty-slot .inv-label{font-weight:400}
 .inv-name{display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
 .inv-name .inv-label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .trade-card{max-width:520px}
@@ -8711,6 +8713,34 @@ function openInventoryModal(charKey, opts={}){
   equippedOrdered.forEach(item=>{
     appendRow(item,{includeAttune:true,includeDelete:false});
   });
+
+  const appendEmptySlotRow=target=>{
+    const row=document.createElement('div');
+    row.className='inv-row static empty-slot';
+    const nameDiv=document.createElement('div');
+    nameDiv.className='inv-name';
+    const labelSpan=document.createElement('span');
+    labelSpan.className='inv-label';
+    labelSpan.textContent='Empty slot';
+    nameDiv.appendChild(labelSpan);
+    row.appendChild(nameDiv);
+    const tools=document.createElement('div');
+    tools.className='inv-tools';
+    row.appendChild(tools);
+    target.appendChild(row);
+  };
+
+  const equippedTarget=invEquippedList;
+  if(equippedTarget){
+    const limitedEquippedCount=equippedOrdered.reduce((count,item)=>{
+      const lower=item.name.toLowerCase();
+      return count+(commonSet.has(lower)?0:1);
+    },0);
+    const emptySlots=Math.max(0, cap-limitedEquippedCount);
+    for(let i=0;i<emptySlots;i++){
+      appendEmptySlotRow(equippedTarget);
+    }
+  }
 
   syncEditing();
 
