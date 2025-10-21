@@ -49,6 +49,12 @@ body{display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;overf
   .log-window{border-radius:0;border:none;box-shadow:none}
   .log-list{padding:0}
 }
+@media (max-width:768px){
+  .inv-modal-body,
+  .cons-modal-body{overflow:auto}
+  .inv-modal-body .inv-column:first-child .inv-sublist,
+  .cons-modal-body .inv-column:first-child .inv-sublist{overflow:visible;padding-right:0}
+}
 @media (min-width:1100px){
   .app-main{min-width:0;padding:36px clamp(32px,5vw,72px)}
 }
@@ -595,6 +601,18 @@ body.card-editor-active #addCard{
 .modal-card{width:min(92vw,800px);max-height:80vh;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
 .modal-hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .modal-body{padding:12px 16px;overflow:auto}
+.inv-modal-body,
+.cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.inv-modal-body .inv-list,
+.cons-modal-body .inv-list{flex:1 1 auto;min-height:0}
+.inv-modal-body .inv-columns,
+.cons-modal-body .inv-columns{flex:1 1 auto;min-height:0;align-items:start}
+.inv-modal-body .inv-column,
+.cons-modal-body .inv-column{min-height:0}
+.inv-modal-body .inv-column:first-child .inv-sublist,
+.cons-modal-body .inv-column:first-child .inv-sublist{flex:1 1 auto;min-height:0;overflow:auto;padding-right:6px}
+.inv-modal-body .inv-column:not(:first-child) .inv-sublist,
+.cons-modal-body .inv-column:not(:first-child) .inv-sublist{overflow:visible}
 .modal-actions{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 .inv-meta{color:var(--muted);font-size:12px}
 .inv-list{display:flex;flex-direction:column;gap:6px}
@@ -877,8 +895,8 @@ body.avatar-overlay-open{overflow:hidden}
       <div id="invTitle">Permanent Magic Items</div>
       <div class="inv-meta" id="invMeta"></div>
     </div>
-    <div class="modal-body">
-      <div id="invSummary" class="inv-meta" style="margin-bottom:8px;"></div>
+    <div class="modal-body inv-modal-body">
+      <div id="invSummary" class="inv-meta"></div>
       <div id="invList" class="inv-list inv-columns">
         <div class="inv-column">
           <div class="inv-column-title">Inventory</div>
@@ -903,8 +921,8 @@ body.avatar-overlay-open{overflow:hidden}
       <div id="consTitle">Consumables</div>
       <div class="inv-meta" id="consMeta"></div>
     </div>
-    <div class="modal-body">
-      <div id="consSummary" class="inv-meta" style="margin-bottom:8px;"></div>
+    <div class="modal-body cons-modal-body">
+      <div id="consSummary" class="inv-meta"></div>
       <div id="consList" class="inv-list inv-columns">
         <div class="inv-column">
           <div class="inv-column-title">Inventory</div>
