@@ -1,19 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/save-data.js", "use": "@vercel/edge" },
-    { "src": "index.html", "use": "@vercel/static" },
-    { "src": "dm.html", "use": "@vercel/static" },
-    { "src": "concept-mockup.html", "use": "@vercel/static" },
-    { "src": "data.js", "use": "@vercel/static" },
-    { "src": "dmData.js", "use": "@vercel/static" },
-    { "src": "data-pipeline.js", "use": "@vercel/static" },
-    { "src": "legacy-data-loader.js", "use": "@vercel/static" },
-    { "src": "*.json", "use": "@vercel/static" },
-    { "src": "*.png", "use": "@vercel/static" },
-    { "src": "*.svg", "use": "@vercel/static" },
-    { "src": "*.ico", "use": "@vercel/static" },
-    { "src": "*.webmanifest", "use": "@vercel/static" }
-  ],
+  "functions": {
+    "api/save-data.js": {
+      "runtime": "edge"
+    }
+  },
   "cleanUrls": true
 }
