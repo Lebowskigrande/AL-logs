@@ -7578,29 +7578,220 @@ function closeTradeModal({restoreFocus=true}={}){
   return context;
 }
 
+const pendingCharacterMutations=new Set();
+function scheduleCharacterMutationApply(charKey){
+  if(!charKey) return;
+  if(pendingCharacterMutations.has(charKey)) return;
+  pendingCharacterMutations.add(charKey);
+  setTimeout(()=>{
+    pendingCharacterMutations.delete(charKey);
+    try{
+      applyDataMutation(charKey);
+    }catch(err){
+      console.error('Failed to apply scheduled mutation for', charKey, err);
+    }
+  },0);
+}
+
+function sanitizeInventoryList(list){
+  const source=Array.isArray(list)?list:(list==null?[]:[list]);
+  const seen=new Set();
+  const cleaned=[];
+  source.forEach(item=>{
+    const normalized=normItemName(item);
+    if(!normalized) return;
+    const lower=normalized.toLowerCase();
+    if(seen.has(lower)) return;
+    seen.add(lower);
+    cleaned.push(normalized);
+  });
+  return cleaned;
+}
+
+function normalizeListForCompare(list){
+  if(Array.isArray(list)){
+    return list.map(normItemName).filter(Boolean);
+  }
+  if(list==null) return [];
+  if(typeof list==='string'){
+    const cleaned=normItemName(list);
+    return cleaned?[cleaned]:[];
+  }
+  return [];
+}
+
+function listsDifferent(a,b){
+  if(a.length!==b.length) return true;
+  for(let i=0;i<a.length;i+=1){
+    if(a[i]!==b[i]) return true;
+  }
+  return false;
+}
+
+function readInventoryStateFromData(charKey){
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  const raw=(ch && typeof ch.inventory_state==='object')?ch.inventory_state:null;
+  const hasKeys=!!raw && ['active','attuned','common'].some(key=>Object.prototype.hasOwnProperty.call(raw,key));
+  const rawActive=normalizeListForCompare(raw&&raw.active);
+  const rawAttuned=normalizeListForCompare(raw&&raw.attuned);
+  const rawCommon=normalizeListForCompare(raw&&raw.common);
+  const active=sanitizeInventoryList(rawActive);
+  const common=sanitizeInventoryList(rawCommon);
+  const activeLower=new Set(active.map(name=>name.toLowerCase()));
+  const attuned=sanitizeInventoryList(rawAttuned).filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
+  const changed=hasKeys && (listsDifferent(rawActive,active)||listsDifferent(rawAttuned,attuned)||listsDifferent(rawCommon,common));
+  return { state:{ active, attuned, common }, hasData:hasKeys, changed };
+}
+
+function readInventoryStateFromLocalStorage(charKey){
+  if(typeof localStorage==='undefined'){
+    return { state:{ active:[], attuned:[], common:[] }, hasData:false };
+  }
+  const parseList=(key)=>{
+    try{
+      const raw=localStorage.getItem(key);
+      if(!raw) return [];
+      const parsed=JSON.parse(raw);
+      if(Array.isArray(parsed)) return sanitizeInventoryList(parsed);
+      if(typeof parsed==='string') return sanitizeInventoryList([parsed]);
+    }catch(_){ /* ignore */ }
+    return [];
+  };
+  const active=parseList(activeKey(charKey));
+  const attuned=parseList(attuneKey(charKey));
+  const common=parseList(commonKey(charKey));
+  const hasData=active.length>0 || attuned.length>0 || common.length>0;
+  return { state:{ active, attuned, common }, hasData };
+}
+
+function clearLegacyInventoryStorage(charKey){
+  if(typeof localStorage==='undefined') return;
+  try{ localStorage.removeItem(activeKey(charKey)); }catch(_){ /* ignore */ }
+  try{ localStorage.removeItem(attuneKey(charKey)); }catch(_){ /* ignore */ }
+  try{ localStorage.removeItem(commonKey(charKey)); }catch(_){ /* ignore */ }
+}
+
+function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
+  if(!isValidSheetKey(charKey)){
+    return {changed:false,state:{ active:[], attuned:[], common:[] }};
+  }
+  const { state:current }=readInventoryStateFromData(charKey);
+  const hasActive=partial && Object.prototype.hasOwnProperty.call(partial,'active');
+  const hasAttuned=partial && Object.prototype.hasOwnProperty.call(partial,'attuned');
+  const hasCommon=partial && Object.prototype.hasOwnProperty.call(partial,'common');
+  const nextActive=sanitizeInventoryList(hasActive?partial.active:current.active);
+  const nextCommon=sanitizeInventoryList(hasCommon?partial.common:current.common);
+  let nextAttuned=sanitizeInventoryList(hasAttuned?partial.attuned:current.attuned);
+  const activeLower=new Set(nextActive.map(name=>name.toLowerCase()));
+  nextAttuned=nextAttuned.filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
+  const changed=listsDifferent(nextActive,current.active)||listsDifferent(nextAttuned,current.attuned)||listsDifferent(nextCommon,current.common);
+  if(!changed){
+    return {changed:false,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
+  }
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  if(!ch || typeof ch!=='object'){
+    return {changed:false,state:current};
+  }
+  ch.inventory_state={ active:nextActive, attuned:nextAttuned, common:nextCommon };
+  markDirty();
+  registerDerivedUpdate(charKey);
+  if(applyMode==='immediate'){
+    applyDataMutation(charKey);
+  }else if(applyMode==='schedule'){
+    scheduleCharacterMutationApply(charKey);
+  }
+  clearLegacyInventoryStorage(charKey);
+  return {changed:true,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
+}
+
+function normalizeGiftValue(value){
+  if(value==null) return '';
+  return String(value).trim();
+}
+
+function readSupernaturalStateFromData(charKey){
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  const raw=(ch && typeof ch.supernatural_active==='object')?ch.supernatural_active:null;
+  const hasKeys=!!raw && (Object.prototype.hasOwnProperty.call(raw,'blessing') || Object.prototype.hasOwnProperty.call(raw,'boon'));
+  const blessing=normalizeGiftValue(raw&&raw.blessing);
+  const boon=normalizeGiftValue(raw&&raw.boon);
+  const rawBless=raw?raw.blessing:undefined;
+  const rawBoon=raw?raw.boon:undefined;
+  const changed=hasKeys && (
+    (typeof rawBless==='string'?rawBless.trim()!==rawBless:rawBless!=null && rawBless!=='') ||
+    (typeof rawBoon==='string'?rawBoon.trim()!==rawBoon:rawBoon!=null && rawBoon!=='')
+  );
+  return { state:{ blessing, boon }, hasData:hasKeys, changed };
+}
+
+function readSupernaturalStateFromLocalStorage(charKey){
+  if(typeof localStorage==='undefined'){
+    return { state:{ blessing:'', boon:'' }, hasData:false };
+  }
+  try{
+    const raw=localStorage.getItem(giftsActiveKey(charKey));
+    if(!raw) return { state:{ blessing:'', boon:'' }, hasData:false };
+    const parsed=JSON.parse(raw);
+    if(parsed && typeof parsed==='object'){
+      const blessing=normalizeGiftValue(parsed.blessing);
+      const boon=normalizeGiftValue(parsed.boon);
+      const hasData=Boolean(blessing||boon||Object.prototype.hasOwnProperty.call(parsed,'blessing')||Object.prototype.hasOwnProperty.call(parsed,'boon'));
+      return { state:{ blessing, boon }, hasData };
+    }
+  }catch(_){ /* ignore */ }
+  return { state:{ blessing:'', boon:'' }, hasData:false };
+}
+
+function clearLegacyGiftStorage(charKey){
+  if(typeof localStorage==='undefined') return;
+  try{ localStorage.removeItem(giftsActiveKey(charKey)); }
+  catch(_){ /* ignore */ }
+}
+
+function persistSupernaturalState(charKey,partial,{ applyMode='schedule' }={}){
+  if(!isValidSheetKey(charKey)){
+    return {changed:false,state:{ blessing:'', boon:'' }};
+  }
+  const { state:current }=readSupernaturalStateFromData(charKey);
+  const nextBlessing=normalizeGiftValue(partial && Object.prototype.hasOwnProperty.call(partial,'blessing')?partial.blessing:current.blessing);
+  const nextBoon=normalizeGiftValue(partial && Object.prototype.hasOwnProperty.call(partial,'boon')?partial.boon:current.boon);
+  if(nextBlessing===current.blessing && nextBoon===current.boon){
+    return {changed:false,state:{ blessing:nextBlessing, boon:nextBoon }};
+  }
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  if(!ch || typeof ch!=='object'){
+    return {changed:false,state:current};
+  }
+  if(!ch.supernatural_active || typeof ch.supernatural_active!=='object'){
+    ch.supernatural_active={};
+  }
+  ch.supernatural_active.blessing=nextBlessing;
+  ch.supernatural_active.boon=nextBoon;
+  markDirty();
+  registerDerivedUpdate(charKey);
+  if(applyMode==='immediate'){
+    applyDataMutation(charKey);
+  }else if(applyMode==='schedule'){
+    scheduleCharacterMutationApply(charKey);
+  }
+  clearLegacyGiftStorage(charKey);
+  return {changed:true,state:{ blessing:nextBlessing, boon:nextBoon }};
+}
+
 function removeInventoryLocalState(charKey,itemName){
   const cleaned=normItemName(itemName);
   if(!cleaned) return;
-  const targetLower=cleaned.toLowerCase();
-  const filterList=(list)=>{
-    if(!Array.isArray(list)) return [];
-    return list.map(name=>normItemName(name)).filter(name=>name && name.toLowerCase()!==targetLower);
-  };
-  const currentActive=loadActive(charKey)||[];
-  const nextActive=filterList(currentActive);
-  if(nextActive.length!==currentActive.length){
-    saveActive(charKey,nextActive);
-  }
-  const currentAttuned=loadAttuned(charKey)||[];
-  const nextAttuned=filterList(currentAttuned);
-  if(nextAttuned.length!==currentAttuned.length){
-    saveAttuned(charKey,nextAttuned);
-  }
-  const currentCommon=loadCommon(charKey)||[];
-  const nextCommon=filterList(currentCommon);
-  if(nextCommon.length!==currentCommon.length){
-    saveCommon(charKey,nextCommon);
-  }
+  loadActive(charKey);
+  loadAttuned(charKey);
+  loadCommon(charKey);
+  const { state }=readInventoryStateFromData(charKey);
+  const lower=cleaned.toLowerCase();
+  const filter=list=>list.filter(name=>name.toLowerCase()!==lower);
+  persistInventoryState(charKey,{
+    active:filter(state.active),
+    attuned:filter(state.attuned),
+    common:filter(state.common)
+  },{ applyMode:'none' });
 }
 
 function makeTradeEntry({charKey,date,itemTraded,itemReceived,counterpartyCharacter,counterpartyPlayer}){
@@ -7798,28 +7989,22 @@ function bindInventoryTradeInteraction(row,{charKey,itemName,itemCanonicalName})
 
 function giftsActiveKey(k){ return 'ACTIVE_GIFTS__'+k; }
 function loadActiveSupernatural(k){
-  try{
-    const raw=JSON.parse(localStorage.getItem(giftsActiveKey(k))||'{}');
-    if(raw&&typeof raw==='object'){
-      const blessing=typeof raw.blessing==='string'?raw.blessing.trim():'';
-      const boon=typeof raw.boon==='string'?raw.boon.trim():'';
-      return {blessing,boon};
+  const fromData=readSupernaturalStateFromData(k);
+  if(fromData.hasData){
+    if(fromData.changed){
+      persistSupernaturalState(k,fromData.state,{ applyMode:'schedule' });
     }
-  }catch(_){ /* ignore */ }
-  return {blessing:'',boon:''};
+    return { ...fromData.state };
+  }
+  const legacy=readSupernaturalStateFromLocalStorage(k);
+  if(legacy.hasData){
+    persistSupernaturalState(k,legacy.state,{ applyMode:'schedule' });
+    return { ...legacy.state };
+  }
+  return { ...fromData.state };
 }
-function saveActiveSupernatural(k,state){
-  const payload={};
-  if(state&&typeof state==='object'){
-    if(typeof state.blessing==='string'&&state.blessing.trim()) payload.blessing=state.blessing.trim();
-    if(typeof state.boon==='string'&&state.boon.trim()) payload.boon=state.boon.trim();
-  }
-  const key=giftsActiveKey(k);
-  if(Object.keys(payload).length){
-    localStorage.setItem(key,JSON.stringify(payload));
-  }else{
-    localStorage.removeItem(key);
-  }
+function saveActiveSupernatural(k,state,{ applyMode='schedule' }={}){
+  persistSupernaturalState(k,state&&typeof state==='object'?state:{},{ applyMode });
 }
 function detectGiftType(name){
   const value=String(name||'');
@@ -7882,46 +8067,61 @@ function saveCarriedConsumables(k,list){
 }
 function activeKey(k){ return 'ACTIVE_INV__'+k; }
 function attuneKey(k){ return 'ATTUNED__'+k; }
-function loadActive(k){ try{return JSON.parse(localStorage.getItem(activeKey(k))||'[]')}catch(_){return[]} }
-function saveActive(k,a){ localStorage.setItem(activeKey(k),JSON.stringify(a||[])) }
-function loadAttuned(k){ try{return JSON.parse(localStorage.getItem(attuneKey(k))||'[]')}catch(_){return[]} }
-function saveAttuned(k,a){ localStorage.setItem(attuneKey(k),JSON.stringify(a||[])) }
+function loadActive(k){
+  const fromData=readInventoryStateFromData(k);
+  if(fromData.hasData){
+    if(fromData.changed){
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
+    }
+    return fromData.state.active.slice();
+  }
+  const legacy=readInventoryStateFromLocalStorage(k);
+  if(legacy.hasData){
+    persistInventoryState(k,legacy.state,{ applyMode:'schedule' });
+    return legacy.state.active.slice();
+  }
+  return fromData.state.active.slice();
+}
+function saveActive(k,a,{ applyMode='schedule' }={}){
+  persistInventoryState(k,{ active:a },{ applyMode });
+}
+function loadAttuned(k){
+  const fromData=readInventoryStateFromData(k);
+  if(fromData.hasData){
+    if(fromData.changed){
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
+    }
+    return fromData.state.attuned.slice();
+  }
+  const legacy=readInventoryStateFromLocalStorage(k);
+  if(legacy.hasData){
+    persistInventoryState(k,legacy.state,{ applyMode:'schedule' });
+    return legacy.state.attuned.slice();
+  }
+  return fromData.state.attuned.slice();
+}
+function saveAttuned(k,a,{ applyMode='schedule' }={}){
+  persistInventoryState(k,{ attuned:a },{ applyMode });
+}
 function commonKey(k){ return 'COMMON_INV__'+k; }
 function loadCommon(k){
-  try{
-    const raw=JSON.parse(localStorage.getItem(commonKey(k))||'[]');
-    if(Array.isArray(raw)){
-      const seen=new Set();
-      const cleaned=[];
-      raw.forEach(name=>{
-        const cleanedName=normItemName(name);
-        if(!cleanedName) return;
-        const lower=cleanedName.toLowerCase();
-        if(seen.has(lower)) return;
-        seen.add(lower);
-        cleaned.push(cleanedName);
-      });
-      return cleaned;
+  const fromData=readInventoryStateFromData(k);
+  if(fromData.hasData){
+    if(fromData.changed){
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
     }
-  }catch(_){ /* ignore */ }
-  return [];
-}
-function saveCommon(k,list){
-  if(!Array.isArray(list)){
-    localStorage.removeItem(commonKey(k));
-    return;
+    return fromData.state.common.slice();
   }
-  const seen=new Set();
-  const cleaned=[];
-  list.forEach(name=>{
-    const cleanedName=normItemName(name);
-    if(!cleanedName) return;
-    const lower=cleanedName.toLowerCase();
-    if(seen.has(lower)) return;
-    seen.add(lower);
-    cleaned.push(cleanedName);
-  });
-  localStorage.setItem(commonKey(k),JSON.stringify(cleaned));
+  const legacy=readInventoryStateFromLocalStorage(k);
+  if(legacy.hasData){
+    persistInventoryState(k,legacy.state,{ applyMode:'schedule' });
+    return legacy.state.common.slice();
+  }
+  return fromData.state.common.slice();
+}
+function saveCommon(k,list,{ applyMode='schedule' }={}){
+  const payload=Array.isArray(list)?list:(list==null?[]:list);
+  persistInventoryState(k,{ common:payload },{ applyMode });
 }
 
 function parseConsumableName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
@@ -8158,7 +8358,7 @@ function openInventoryModal(charKey, opts={}){
   });
   const commonChanged=normalizedCommon.length!==rawCommon.length || normalizedCommon.some((name,idx)=>name!==rawCommon[idx]);
   if(commonChanged){
-    saveCommon(charKey, normalizedCommon);
+    saveCommon(charKey, normalizedCommon,{ applyMode:'schedule' });
   }
   const commonList=normalizedCommon;
   const commonSet=new Set(commonList.map(name=>name.toLowerCase()));
@@ -8197,7 +8397,7 @@ function openInventoryModal(charKey, opts={}){
     }
   }
   if(activeChanged){
-    saveActive(charKey, active);
+    saveActive(charKey, active,{ applyMode:'schedule' });
   }
 
   const activeSet=new Set(active.map(a=>a.toLowerCase()));
@@ -8219,7 +8419,7 @@ function openInventoryModal(charKey, opts={}){
   let attuned=normalizedAttuned.slice(0,3);
   const attunedChanged=normalizedAttuned.length!==rawAttuned.length || normalizedAttuned.some((name,idx)=>name!==rawAttuned[idx]) || attuned.length!==normalizedAttuned.length;
   if(attunedChanged){
-    saveAttuned(charKey, attuned);
+    saveAttuned(charKey, attuned,{ applyMode:'schedule' });
   }
   const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
 
@@ -8394,9 +8594,9 @@ function openInventoryModal(charKey, opts={}){
       const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
       const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
       const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
-      saveActive(charKey,nextActive);
-      saveAttuned(charKey,nextAttuned);
-      saveCommon(charKey,nextCommon);
+      saveActive(charKey,nextActive,{ applyMode:'none' });
+      saveAttuned(charKey,nextAttuned,{ applyMode:'none' });
+      saveCommon(charKey,nextCommon,{ applyMode:'none' });
       registerDerivedUpdate(charKey);
       markDirty();
       applyDataMutation(charKey);
@@ -8411,9 +8611,9 @@ function openInventoryModal(charKey, opts={}){
             delete adv.perm_items;
           }
         }
-        saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[]);
-        saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[]);
-        saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[]);
+        saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[],{ applyMode:'none' });
+        saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[],{ applyMode:'none' });
+        saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[],{ applyMode:'none' });
         pendingDerivedUpdates.delete(charKey);
         applyDataMutation(charKey);
         openInventoryModal(charKey,{editing:true});

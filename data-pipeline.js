@@ -79,6 +79,46 @@ function pushIssue(issues,{ severity='error', code='unknown', message='', path='
       .filter(part => part.length>0);
   }
 
+  function sanitizeInventoryListInput(value){
+    const list = Array.isArray(value) ? value : (value == null ? [] : [value]);
+    const seen = new Set();
+    const out = [];
+    list.forEach((item)=>{
+      const text = coerceString(item,{ fallback:'' });
+      if(!text) return;
+      const lower = text.toLowerCase();
+      if(seen.has(lower)) return;
+      seen.add(lower);
+      out.push(text);
+    });
+    return out;
+  }
+
+  function normalizeInventoryState(raw){
+    if(!raw || typeof raw !== 'object') return null;
+    const hasKeys = ['active','attuned','common'].some((key)=>Object.prototype.hasOwnProperty.call(raw,key));
+    const active = sanitizeInventoryListInput(raw.active);
+    const common = sanitizeInventoryListInput(raw.common);
+    const attunedList = sanitizeInventoryListInput(raw.attuned);
+    const activeLower = new Set(active.map(name=>name.toLowerCase()));
+    const attuned = attunedList.filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
+    if(!hasKeys && !active.length && !attuned.length && !common.length){
+      return null;
+    }
+    return { active, attuned, common };
+  }
+
+  function normalizeSupernaturalActive(raw){
+    if(!raw || typeof raw !== 'object') return null;
+    const hasKeys = ['blessing','boon'].some((key)=>Object.prototype.hasOwnProperty.call(raw,key));
+    const blessing = coerceString(raw.blessing,{ fallback:'' });
+    const boon = coerceString(raw.boon,{ fallback:'' });
+    if(!hasKeys && !blessing && !boon){
+      return null;
+    }
+    return { blessing, boon };
+  }
+
 function coerceNumber(value,{ fallback=0, allowNull=false }={}, issues, context){
   const { path='', charKey=null, adventureId=null, adventureIndex=null, field=null } = context || {};
     if(value == null || value === ''){
@@ -385,6 +425,16 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       const normalized = normalizeAdventure(entry,{ charKey, index:idx, issues });
       out.adventures.push(normalized);
     });
+
+    const inventoryState = normalizeInventoryState(raw && raw.inventory_state);
+    if(inventoryState){
+      out.inventory_state = inventoryState;
+    }
+
+    const supernaturalActive = normalizeSupernaturalActive(raw && raw.supernatural_active);
+    if(supernaturalActive){
+      out.supernatural_active = supernaturalActive;
+    }
 
     if(raw && typeof raw === 'object'){
       const passthrough = ['consumables','consumable_uses','tags','portrait','pronouns'];
