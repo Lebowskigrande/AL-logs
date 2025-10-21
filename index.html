@@ -7477,7 +7477,7 @@ function syncTradeReceiveSelection({focusOnCustom=true}={}){
   if(!isSelectActive) return;
   const value=tradeReceiveSelect.value;
   if(value==='__custom__'){
-    showTradeReceiveTextField({label:'Custom item received',placeholder:'Enter the item you received',clearValue=false,focus:focusOnCustom});
+    showTradeReceiveTextField({label:'Custom item received',placeholder:'Enter the item you received',clearValue:false,focus:focusOnCustom});
   }else{
     hideTradeReceiveTextField({clearValue:true});
   }
