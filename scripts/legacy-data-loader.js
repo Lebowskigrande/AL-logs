@@ -14,6 +14,8 @@
     globalScope.AL_LEGACY_LOADER.loadLegacyData = api.loadLegacyData;
   }
 })(function(){
+  const DATA_SCRIPT_PATH='data/data.js';
+
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
     const specifier = buildDataScriptUrl({ version, cacheBust });
     let raw = getWindowPayload();
@@ -30,7 +32,7 @@
     }
 
     if (!raw || typeof raw !== 'object') {
-      throw new Error('DATA missing after loading data.js');
+      throw new Error('DATA missing after loading data/data.js');
     }
 
     const transformed = transformData(raw);
@@ -48,7 +50,7 @@
     if (version) params.set('v', version);
     if (cacheBust) params.set('cb', cacheBust);
     const query = params.toString();
-    return query ? `data.js?${query}` : 'data.js';
+    return query ? `${DATA_SCRIPT_PATH}?${query}` : DATA_SCRIPT_PATH;
   }
 
   function getWindowPayload() {
@@ -66,7 +68,7 @@
 
   async function ensureDataScriptLoaded(src, { version = '', cacheBust = '' } = {}) {
     if (typeof document === 'undefined' || typeof document.createElement !== 'function') {
-      throw new Error('DOM APIs are required to load data.js');
+      throw new Error('DOM APIs are required to load data/data.js');
     }
 
     return new Promise((resolve, reject) => {
@@ -91,7 +93,7 @@
 
       const parent = document.head || document.body || document.documentElement;
       if (!parent) {
-        reject(new Error('Unable to append data.js script tag'));
+        reject(new Error('Unable to append data/data.js script tag'));
         return;
       }
 
@@ -127,7 +129,7 @@
         meta: {
           source_file: '',
           generated: safeIsoString(),
-          problems: ['Invalid data.js payload']
+          problems: ['Invalid data/data.js payload']
         }
       };
     }

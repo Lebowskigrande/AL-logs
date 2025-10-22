@@ -527,7 +527,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       pushIssue(issues,{
         severity:'error',
         code:'missing_characters',
-        message:'No characters found in data.js payload.',
+        message:'No characters found in data/data.js payload.',
         path:'characters'
       });
     }else{

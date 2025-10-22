@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_PATH = ROOT / "data.js"
+DATA_PATH = ROOT / "data" / "data.js"
 MANUAL_PATH = ROOT / "analysis" / "manual_corrections.md"
 PREFIXES = (
     "export const DATA = ",
@@ -60,7 +60,7 @@ def _detect_prefix(raw: str) -> str:
     for prefix in PREFIXES:
         if raw.startswith(prefix):
             return prefix
-    raise ValueError("Unexpected data.js prefix")
+    raise ValueError("Unexpected data/data.js prefix")
 
 
 def load_data() -> Dict[str, Any]:

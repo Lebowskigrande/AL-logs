@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Adventure Log Dashboard</title>
-<link rel="icon" type="image/svg+xml" href="log-svgrepo-com.svg"/>
-<link rel="shortcut icon" type="image/svg+xml" href="log-svgrepo-com.svg"/>
-<link rel="apple-touch-icon" sizes="any" href="log-svgrepo-com.svg"/>
+<link rel="icon" type="image/svg+xml" href="assets/icons/log-svgrepo-com.svg"/>
+<link rel="shortcut icon" type="image/svg+xml" href="assets/icons/log-svgrepo-com.svg"/>
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png"/>
 <link rel="manifest" href="site.webmanifest"/>
 <style>
 :root{
@@ -168,7 +168,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .icon-btn.primary:hover,.icon-btn.primary:focus-visible{background:#155ccb;border-color:#0b57d0;outline:none}
 .icon-btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;background:#f1f5f9;color:#94a3b8}
 .search-scope-toggle{width:32px;height:32px;border-radius:12px}
-.search-scope-toggle-icon{display:block;width:18px;height:18px;background-color:currentColor;mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;-webkit-mask:url('multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;transition:background-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.search-scope-toggle-icon{display:block;width:18px;height:18px;background-color:currentColor;mask:url('assets/icons/multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;-webkit-mask:url('assets/icons/multiple-users-silhouette-svgrepo-com.svg') center/contain no-repeat;transition:background-color var(--dur) var(--ease),transform var(--dur) var(--ease)}
 .search-scope-toggle:hover .search-scope-toggle-icon,.search-scope-toggle:focus-visible .search-scope-toggle-icon{transform:scale(1.08)}
 .search-scope-toggle[aria-pressed="true"]{color:var(--primary);background:#eef4ff;border-color:rgba(26,115,232,.45)}
 .search-scope-toggle[aria-pressed="true"] .search-scope-toggle-icon{background-color:currentColor}
@@ -812,7 +812,7 @@ body.avatar-overlay-open{overflow:hidden}
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/></svg>
             <input id="q" placeholder="Search adventures"/>
             <button id="qClear" class="search-clear" type="button" aria-label="Clear search" hidden>
-              <img src="close.png" alt="" width="16" height="16" decoding="async" aria-hidden="true" />
+              <img src="assets/images/ui/close.png" alt="" width="16" height="16" decoding="async" aria-hidden="true" />
             </button>
           </div>
           <button id="searchScopeToggle" class="icon-btn search-scope-toggle" type="button" aria-pressed="false" aria-label="Show entries from the selected character only" title="Show entries from the selected character only">
@@ -827,19 +827,19 @@ body.avatar-overlay-open{overflow:hidden}
           <div class="inventory-buttons">
             <button id="magicItemsBtn" class="inventory-link" type="button" title="View permanent magic items" aria-label="View permanent magic items">
               <span class="icon" aria-hidden="true">
-                <img src="chest.png" alt="" width="24" height="24"/>
+                <img src="assets/images/ui/chest.png" alt="" width="24" height="24"/>
               </span>
               <span class="sr-only" id="magicItemsCount">0</span>
             </button>
             <button id="consumablesBtn" class="inventory-link" type="button" title="View consumables" aria-label="View consumables">
               <span class="icon" aria-hidden="true">
-                <img src="potion.png" alt="" width="24" height="24"/>
+                <img src="assets/images/ui/potion.png" alt="" width="24" height="24"/>
               </span>
               <span class="sr-only" id="consumablesCount">0</span>
             </button>
             <button id="giftsBtn" class="inventory-link" type="button" title="View supernatural gifts" aria-label="View supernatural gifts">
               <span class="icon" aria-hidden="true">
-                <img src="gift-icon.png" alt="" width="24" height="24"/>
+                <img src="assets/images/ui/gift-icon.png" alt="" width="24" height="24"/>
               </span>
               <span class="sr-only" id="giftsCount">0</span>
             </button>
@@ -857,7 +857,7 @@ body.avatar-overlay-open{overflow:hidden}
           <div class="inventory-buttons">
             <button id="dmItemsBtn" class="inventory-link dm-items-btn" type="button" aria-haspopup="dialog" aria-controls="dmItemsModal" aria-expanded="false" title="View unallocated pre-Season 11 magic items">
               <span class="icon dm-items-icon" aria-hidden="true">
-                <img src="chest.png" alt="" width="24" height="24"/>
+                <img src="assets/images/ui/chest.png" alt="" width="24" height="24"/>
               </span>
               <span class="sr-only" id="dmItemsLabel">View unallocated pre-Season 11 magic items</span>
             </button>
@@ -1041,8 +1041,8 @@ body.avatar-overlay-open{overflow:hidden}
   </div>
 </div>
 
-<script src="legacy-data-loader.js"></script>
-<script src="data-pipeline.js"></script>
+<script src="scripts/legacy-data-loader.js"></script>
+<script src="scripts/data-pipeline.js"></script>
 <script id="dataScript" data-loader="data">
 const KEY='al_logs_data_version';
 window.AL_DATA_VERSION_KEY=KEY;
@@ -1057,6 +1057,7 @@ window.AL_DATA_VERSION=version;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
 const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
+const DATA_FILE_PATH='data/data.js';
 
 const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
@@ -1204,7 +1205,7 @@ async function bootstrapData(){
     }
     scheduleAppInit();
   }catch(error){
-    console.error('Failed to load data.js', error);
+    console.error('Failed to load data/data.js', error);
     if(DATA_BOOT_DIAG){
       DATA_BOOT_DIAG.status='error';
       DATA_BOOT_DIAG.errorMessage=error&&error.message?error.message:String(error);
@@ -1225,7 +1226,7 @@ async function bootstrapData(){
 
 bootstrapData();
 </script>
-<script src="dmData.js"></script>
+<script src="data/dmData.js"></script>
 <script>
 /* --- data boot --- */
 let DATA = window.DATA || null;
@@ -1395,7 +1396,7 @@ function adoptDataPayload(raw){
       setDataValidationState(issues);
       return { data:window.DATA, issues };
     }catch(err){
-      console.error('Failed to validate data.js payload', err);
+      console.error('Failed to validate data/data.js payload', err);
       pipelineWarned=true;
     }
   }
@@ -2190,25 +2191,25 @@ if(avatarPreviewImage){
 const AVATAR_PATH_STORAGE_PREFIX='al_logs_avatar_paths_v1';
 const avatarPathStorageKey=`${AVATAR_PATH_STORAGE_PREFIX}_${dataVersion||'0'}`;
 const AVATAR_MANIFEST=Object.freeze({
-  'Ecthelion':'Ecthelion.png',
-  'Gnat':'gnat.png',
-  'Squelch':'squelch.png',
-  'Squelch (prequel)':'squelch (prequel).png',
-  'Norixius':'norixius.png',
-  'Madam Renata':'madam renata.png',
-  'Goblert Godfrey':'goblert godfrey.png',
-  'Lyrielle':'lyrielle.png',
-  'Sentient Hat':'sentient hat.png',
-  'Arvistan Brightwave':'arvistan.png',
-  'Agatha':'agatha.png',
-  'Darrendrian':'darrendrian.png',
-  'Copy of Darrendrian':'darrendrian.png',
-  'Morty':'morty.png',
-  'Zandarax':'zandarax.png',
-  'Zandaraxs Inventory':'zandarax.png',
-  'Zandaraxs Bastion':'zandarax.png'
+  'Ecthelion':'assets/images/characters/Ecthelion.png',
+  'Gnat':'assets/images/characters/gnat.png',
+  'Squelch':'assets/images/characters/squelch.png',
+  'Squelch (prequel)':'assets/images/characters/squelch (prequel).png',
+  'Norixius':'assets/images/characters/norixius.png',
+  'Madam Renata':'assets/images/characters/madam renata.png',
+  'Goblert Godfrey':'assets/images/characters/goblert godfrey.png',
+  'Lyrielle':'assets/images/characters/lyrielle.png',
+  'Sentient Hat':'assets/images/characters/sentient hat.png',
+  'Arvistan Brightwave':'assets/images/characters/arvistan.png',
+  'Agatha':'assets/images/characters/agatha.png',
+  'Darrendrian':'assets/images/characters/darrendrian.png',
+  'Copy of Darrendrian':'assets/images/characters/darrendrian.png',
+  'Morty':'assets/images/characters/morty.png',
+  'Zandarax':'assets/images/characters/zandarax.png',
+  'Zandaraxs Inventory':'assets/images/characters/zandarax.png',
+  'Zandaraxs Bastion':'assets/images/characters/zandarax.png'
 });
-const AVATAR_FALLBACK_PATH='d20 flat.png';
+const AVATAR_FALLBACK_PATH='assets/images/ui/d20 flat.png';
 const avatarCache=new Map();
 const avatarPreloadPromises=new Map();
 let avatarLoadToken=0;
@@ -3826,7 +3827,7 @@ function loadDataDraft(){
   }catch(err){
     if(!draftLoadWarningShown){
       draftLoadWarningShown=true;
-      console.warn('Unable to load data.js draft from storage', err);
+      console.warn('Unable to load data/data.js draft from storage', err);
     }
     try{ localStorage.removeItem(DATA_DRAFT_STORAGE_KEY); }
     catch(_){ /* no-op */ }
@@ -3846,7 +3847,7 @@ function persistDataDraft(){
   }catch(err){
     if(!draftPersistWarningShown){
       draftPersistWarningShown=true;
-      console.warn('Unable to persist data.js draft to storage', err);
+      console.warn('Unable to persist data/data.js draft to storage', err);
     }
   }
 }
@@ -3972,7 +3973,7 @@ function saveDataJs(options={}){
         body=text?{ message:text }:null;
       }
       if(!response.ok){
-        const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
+        const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data/data.js.';
         throw new Error(message);
       }
       const versionForSave=String(Date.now());
@@ -3989,9 +3990,9 @@ function saveDataJs(options={}){
         setSaveResult('success');
       }else{
         if(refreshError){
-          console.warn('Unable to refresh data.js cache after save', refreshError);
+          console.warn('Unable to refresh data/data.js cache after save', refreshError);
         }else{
-          console.warn('Unable to refresh data.js cache after save');
+          console.warn('Unable to refresh data/data.js cache after save');
         }
         const shouldPersistDraft=(typeof customDataJs!=='string' && DATA && typeof DATA==='object' && (hadPendingChanges || hasLocalDraft));
         if(shouldPersistDraft){
@@ -4005,11 +4006,11 @@ function saveDataJs(options={}){
       }
       return body;
     }catch(err){
-      console.error('Failed to save data.js', err);
+      console.error('Failed to save data/data.js', err);
       setSaveResult('error');
       if(!silent){
         const message=(err && err.message)?err.message:String(err);
-        window.alert('Failed to save data.js: '+message);
+        window.alert('Failed to save data/data.js: '+message);
       }
       throw err;
     }finally{
@@ -4027,7 +4028,7 @@ function showDataLoadError(message){
   markDataLoadErrorActive();
   emptyEl.style.display='block';
   const diagMarkup=buildDataLoadDiagnosticsMarkup();
-  const baseMessage=message||'Could not load <code>data.js</code>.';
+  const baseMessage=message||'Could not load <code>data/data.js</code>.';
   emptyEl.innerHTML=baseMessage+diagMarkup;
 }
 
@@ -4117,9 +4118,9 @@ function buildDataUrl(version,{cacheBustToken=null}={}){
     params.push('cb='+encodeURIComponent(cbToken));
   }
   if(params.length){
-    return `data.js?${params.join('&')}`;
+    return `${DATA_FILE_PATH}?${params.join('&')}`;
   }
-  return 'data.js';
+  return DATA_FILE_PATH;
 }
 
 function persistDataVersion(version){
@@ -4168,12 +4169,12 @@ function applyDataJs(text){
   if(typeof text!=='string' || !text.trim()) return;
   const parsed=parseDataPayload(text);
   if(!parsed){
-    throw new Error('Unable to parse data.js payload');
+    throw new Error('Unable to parse data/data.js payload');
   }
   const result=adoptDataPayload(parsed);
   const next=(result && result.data) || window.DATA || null;
   if(!next || !next.characters){
-    throw new Error('DATA missing after applying data.js');
+    throw new Error('DATA missing after applying data/data.js');
   }
   DATA=next;
   refreshAllDerivedData();
@@ -4239,9 +4240,9 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
       setDataVersion(versionToUse);
       return true;
     }
-    lastMismatchError=new Error('Latest data.js did not match the newly saved content.');
+    lastMismatchError=new Error('Latest data/data.js did not match the newly saved content.');
     if(attempt===retries){
-      console.warn('Latest data.js did not match newly saved content; giving up on cache refresh for now.');
+      console.warn('Latest data/data.js did not match newly saved content; giving up on cache refresh for now.');
       throw lastMismatchError;
     }
     attempt+=1;
@@ -4851,7 +4852,7 @@ function makeAvatarFileCandidates(name){
   const collapsed=trimmed.replace(/[^a-zA-Z0-9]+/g,'');
   if(collapsed) variants.add(collapsed);
   if(collapsed) variants.add(collapsed.toLowerCase());
-  return Array.from(variants).map(v=>`${v}.png`);
+  return Array.from(variants).map(v=>`assets/images/characters/${v}.png`);
 }
 
 
@@ -12054,7 +12055,7 @@ if(activityToggleBtn){
 function initApp(){
   DATA=window.DATA||null;
   if(!DATA || !DATA.characters){
-    showDataLoadError('Could not load <code>data.js</code>.');
+    showDataLoadError('Could not load <code>data/data.js</code>.');
     return false;
   }
   clearDataLoadError();
@@ -12142,12 +12143,12 @@ if(!tryInitApp()){
   if(dataScriptEl){
     const onLoad=()=>{
       if(!tryInitApp()){
-        showDataLoadError('Could not load <code>data.js</code>.');
+        showDataLoadError('Could not load <code>data/data.js</code>.');
       }
     };
     dataScriptEl.addEventListener('load', onLoad, {once:true});
     dataScriptEl.addEventListener('error',()=>{
-      showDataLoadError('Could not load <code>data.js</code>.');
+      showDataLoadError('Could not load <code>data/data.js</code>.');
     },{once:true});
     const state=dataScriptEl.readyState;
     if(state==='loaded'||state==='complete'){
@@ -12155,7 +12156,7 @@ if(!tryInitApp()){
     }
     [0,50,200].forEach(delay=>{ setTimeout(()=>{ tryInitApp(); },delay); });
   }else{
-    showDataLoadError('Could not load <code>data.js</code>.');
+    showDataLoadError('Could not load <code>data/data.js</code>.');
   }
 }
 

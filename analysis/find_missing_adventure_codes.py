@@ -5,7 +5,7 @@ from pathlib import Path
 from textwrap import dedent
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_JS_PATH = ROOT / "data.js"
+DATA_JS_PATH = ROOT / "data" / "data.js"
 OUTPUT_PATH = Path(__file__).with_name("missing_adventure_codes.md")
 
 PREFIX = "export const DATA = "
@@ -13,7 +13,7 @@ PREFIX = "export const DATA = "
 def load_data() -> dict:
     raw_text = DATA_JS_PATH.read_text(encoding="utf-8")
     if not raw_text.startswith(PREFIX):
-        raise ValueError("Unexpected data.js format: missing expected prefix")
+        raise ValueError("Unexpected data/data.js format: missing expected prefix")
     json_text = raw_text[len(PREFIX):].strip()
     if json_text.endswith(";"):
         json_text = json_text[:-1]

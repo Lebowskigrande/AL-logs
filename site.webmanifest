@@ -3,7 +3,7 @@
   "short_name": "MySite",
   "icons": [
     {
-      "src": "/log-svgrepo-com.svg",
+      "src": "/assets/icons/log-svgrepo-com.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
