@@ -633,7 +633,7 @@ body.card-editor-active #addCard{
 .modal-add button:hover{background:rgba(26,115,232,.2)}
 
 /* Inventory row styles */
-.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:var(--inv-row-padding-y) var(--inv-row-padding-x);border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:calc(var(--inv-control-height) + var(--inv-row-padding-y) * 2);--inv-control-height:19px;--inv-control-line-height:15px}
+.inv-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:var(--inv-row-padding-y) var(--inv-row-padding-x);border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:calc(var(--inv-control-height) + var(--inv-row-padding-y) * 2);--inv-control-height:19px;--inv-control-line-height:15px}
 .inv-row::after{content:"";position:absolute;inset:0;background:rgba(37,99,235,.12);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease)}
 .inv-row>*{position:relative;z-index:1}
 .modal:not(.editing) .inv-row:not(.static):hover::after{opacity:1}
@@ -699,6 +699,10 @@ body.card-editor-active #addCard{
 .inv-row .qty-icon{width:var(--inv-control-height);height:var(--inv-control-height)}
 .qty-icon svg{width:22px;height:22px;stroke-width:1.8}
 .inv-row .qty-icon svg{width:calc(var(--inv-control-height) - 6px);height:calc(var(--inv-control-height) - 6px)}
+@media (max-width:600px){
+  .inv-row{grid-template-columns:minmax(0,1fr);row-gap:8px;align-items:flex-start}
+  .inv-row .inv-tools{justify-self:flex-start;width:100%;padding-inline:var(--inv-row-padding-x);flex-wrap:wrap;row-gap:6px}
+}
 .qty-icon:hover{color:#1a73e8;transform:translateY(-1px)}
 .qty-icon:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 .qty-icon.disabled{opacity:.35;cursor:not-allowed;transform:none}
