@@ -17548,8 +17548,8 @@ window.DATA = {
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
     "generated": "2025-10-22T06:25:39.919Z",
-    "problems": [],
-    "revision": 0
+    "revision": "2025-10-22T06:25:39.919Z",
+    "problems": []
   },
   "dm_allocations": []
 };

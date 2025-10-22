@@ -18,24 +18,48 @@ const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
   return new Response(body, { status, headers: responseHeaders });
 };
 
-const extractDataPayload = (text) => {
-  if (typeof text !== 'string') return null;
-  const pattern = /window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/;
-  const match = text.match(pattern);
-  return match && match[1] ? match[1] : null;
-};
+const whitespaceRE = /\s+/g;
 
-const parseDataObject = (text) => {
-  const payload = extractDataPayload(text);
-  if (!payload) return null;
+function decodeBase64ToString(encoded) {
+  if (typeof encoded !== 'string' || !encoded) return '';
   try {
-    return JSON.parse(payload);
-  } catch (err) {
-    return null;
+    const normalized = encoded.replace(whitespaceRE, '');
+    const binary = atob(normalized);
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i += 1) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return new TextDecoder().decode(bytes);
+  } catch (error) {
+    console.warn('Failed to decode base64 content for revision check', error);
+    return '';
   }
-};
+}
 
-const formatDataObject = (obj) => `window.DATA = ${JSON.stringify(obj, null, 2)};`;
+function extractRevisionFromDataJs(dataJs) {
+  if (typeof dataJs !== 'string' || !dataJs.trim()) {
+    return '';
+  }
+  const match = dataJs.match(/window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
+  if (!match || !match[1]) {
+    return '';
+  }
+  const jsonText = match[1];
+  try {
+    const parsed = JSON.parse(jsonText);
+    if (parsed && typeof parsed === 'object' && parsed.meta && typeof parsed.meta === 'object') {
+      const { revision, generated } = parsed.meta;
+      const candidate = revision || generated;
+      if (candidate && String(candidate).trim()) {
+        return String(candidate).trim();
+      }
+    }
+  } catch (error) {
+    console.warn('Failed to parse data.js payload for revision extraction', error);
+  }
+  return '';
+}
 
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
@@ -47,14 +71,9 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, path = 'data.js' } = await req.json();
+    const { dataJs, path = 'data.js', revision: clientRevision = '' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
-    }
-
-    const incomingData = parseDataObject(dataJs);
-    if (!incomingData || typeof incomingData !== 'object') {
-      return respond({ error: 'Unable to parse dataJs payload' }, { status: 400 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
@@ -112,30 +131,18 @@ export default async function handler(req) {
 
     const base = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(path)}`;
 
-    let currentRevision = 0;
-
     // 1) Get current SHA (required to update an existing file)
     let sha = undefined;
+    let currentRevision = '';
     const curRes = await fetch(`${base}?ref=${encodeURIComponent(branch)}`, {
       headers: authHeaders
     });
     if (curRes.ok) {
       const cur = await curRes.json();
       sha = cur?.sha;
-      const encodedContent = cur?.content;
-      if (encodedContent) {
-        try {
-          const decoded = atob(encodedContent.replace(/\n/g, ''));
-          const currentData = parseDataObject(decoded);
-          if (currentData && currentData.meta && typeof currentData.meta === 'object') {
-            const revValue = Number(currentData.meta.revision);
-            if (Number.isFinite(revValue)) {
-              currentRevision = Math.max(0, Math.floor(revValue));
-            }
-          }
-        } catch (err) {
-          /* ignore parse errors */
-        }
+      if (cur?.content && cur.encoding === 'base64') {
+        const existingText = decodeBase64ToString(cur.content);
+        currentRevision = extractRevisionFromDataJs(existingText);
       }
     } else if (curRes.status === 404) {
       let curError = null;
@@ -160,58 +167,27 @@ export default async function handler(req) {
       }
     }
 
-    const revisionHeader = req.headers.get('x-data-revision');
-    let expectedRevision = null;
-    if (revisionHeader != null) {
-      const parsedHeader = Number(revisionHeader);
-      if (Number.isFinite(parsedHeader)) {
-        expectedRevision = Math.max(0, Math.floor(parsedHeader));
-      } else {
-        const fallbackHeader = Number.parseInt(revisionHeader, 10);
-        if (Number.isFinite(fallbackHeader)) {
-          expectedRevision = Math.max(0, fallbackHeader);
-        }
-      }
-    }
-
-    if (sha && expectedRevision == null) {
+    if (clientRevision && currentRevision && clientRevision !== currentRevision) {
       return respond(
         {
-          error: 'conflict',
-          message: 'Missing revision token. Refresh and try again.',
-          revision: currentRevision
+          error: 'Revision conflict: data.js has been updated by another session.',
+          expectedRevision: currentRevision,
+          providedRevision: clientRevision
         },
         { status: 409 }
       );
     }
-
-    if (expectedRevision != null && expectedRevision !== currentRevision) {
-      return respond(
-        {
-          error: 'conflict',
-          message: 'Data.js has changed since your last load.',
-          revision: currentRevision
-        },
-        { status: 409 }
-      );
-    }
-
-    const nextRevision = currentRevision + 1;
-    if (!incomingData.meta || typeof incomingData.meta !== 'object') {
-      incomingData.meta = {};
-    }
-    incomingData.meta.revision = nextRevision;
-
-    const preparedDataJs = formatDataObject(incomingData);
 
     // 2) Create commit
     const message = `feat: update ${path} from dashboard`;
-    const encoded = new TextEncoder().encode(preparedDataJs);
+    const encoded = new TextEncoder().encode(dataJs);
     let binary = '';
     for (let i = 0; i < encoded.length; i += 1) {
       binary += String.fromCharCode(encoded[i]);
     }
     const content = btoa(binary); // UTF-8 -> base64
+
+    const nextRevision = extractRevisionFromDataJs(dataJs) || currentRevision || '';
 
     const putRes = await fetch(base, {
       method: 'PUT',

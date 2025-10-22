@@ -1303,7 +1303,34 @@ let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||windo
 window.AL_DATA_VERSION=dataVersion;
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
 window.AL_DATA_CACHE_BUST=dataCacheBust;
-let dataRevision=0;
+function deriveRevisionFromMeta(meta){
+  if(!meta||typeof meta!=='object') return '';
+  const revision=typeof meta.revision==='string'?meta.revision.trim():'';
+  if(revision) return revision;
+  const generated=typeof meta.generated==='string'?meta.generated.trim():'';
+  return generated;
+}
+let dataRevisionToken=deriveRevisionFromMeta(DATA&&DATA.meta);
+window.AL_DATA_REVISION=dataRevisionToken;
+function getDataRevision(){
+  return dataRevisionToken||'';
+}
+function setDataRevisionToken(revision){
+  dataRevisionToken=revision?String(revision):'';
+  window.AL_DATA_REVISION=dataRevisionToken;
+}
+function applyRevisionToData(revision){
+  setDataRevisionToken(revision);
+  if(!DATA||typeof DATA!=='object') return;
+  if(!DATA.meta||typeof DATA.meta!=='object'){
+    DATA.meta={};
+  }
+  if(dataRevisionToken){
+    DATA.meta.revision=dataRevisionToken;
+  }else if(DATA.meta){
+    delete DATA.meta.revision;
+  }
+}
 const DATA_DRAFT_STORAGE_KEY='al_logs_data_draft_v1';
 if(avatarEl){
   avatarEl.tabIndex=-1;
@@ -1357,8 +1384,38 @@ function isDataLoadErrorActive(){
 }
 
 const DATA_VALIDATION_DEBOUNCE_MS=800;
+const AUTO_SAVE_DELAY_MS=2000;
 let dataValidationState={ issues:[], lastRun:null };
 let pendingValidationHandle=null;
+
+let autoSaveHandle=null;
+function cancelAutoSave(){
+  if(autoSaveHandle){
+    clearTimeout(autoSaveHandle);
+    autoSaveHandle=null;
+  }
+}
+function scheduleAutoSave(reason='data-change'){
+  if(typeof window==='undefined') return;
+  if(autoSaveHandle){
+    clearTimeout(autoSaveHandle);
+  }
+  autoSaveHandle=setTimeout(async()=>{
+    autoSaveHandle=null;
+    if(!pendingChanges){
+      return;
+    }
+    if(savingData){
+      scheduleAutoSave(reason);
+      return;
+    }
+    try{
+      await saveDataJs({ silent:true });
+    }catch(err){
+      console.warn('Auto-save failed', err);
+    }
+  },AUTO_SAVE_DELAY_MS);
+}
 let adventureUidSeed=0;
 
 function getDataPipeline(){
@@ -1387,13 +1444,7 @@ function adoptDataPayload(raw){
   DATA=window.DATA;
   dataNormalized=true;
   attachAdventureUids(window.DATA);
-  if(DATA && DATA.meta && typeof DATA.meta==='object'){
-    const revisionValue=DATA.meta.revision;
-    const parsedRevision=Number(revisionValue);
-    dataRevision=Number.isFinite(parsedRevision)?parsedRevision:0;
-  }else{
-    dataRevision=0;
-  }
+  setDataRevisionToken(deriveRevisionFromMeta(window.DATA&&window.DATA.meta));
 
   const pipeline=getDataPipeline();
   if(pipeline && typeof pipeline.validateData==='function'){
@@ -2312,9 +2363,6 @@ let pendingChanges=false;
 let savingData=false;
 let lastSaveResult=null;
 let saveFeedbackTimeout=null;
-const AUTO_SAVE_DEBOUNCE_MS=4000;
-let autoSaveTimeout=null;
-let pendingAutoSaveReason=null;
 let hasLocalDraft=false;
 let draftStateApplied=false;
 let draftPersistWarningShown=false;
@@ -3916,45 +3964,17 @@ function reapplyLocalDraftAndRefresh(){
   return applied;
 }
 
-function scheduleAutoSave(reason=''){
-  if(autoSaveTimeout){
-    clearTimeout(autoSaveTimeout);
-  }
-  pendingAutoSaveReason=reason||pendingAutoSaveReason||'auto-save';
-  autoSaveTimeout=setTimeout(()=>{
-    autoSaveTimeout=null;
-    if(!pendingChanges){
-      pendingAutoSaveReason=null;
-      return;
-    }
-    if(savingData){
-      scheduleAutoSave(pendingAutoSaveReason);
-      return;
-    }
-    saveDataJs({ silent:true }).catch(err=>{
-      console.warn('Auto-save failed', err);
-    }).finally(()=>{
-      pendingAutoSaveReason=null;
-    });
-  },AUTO_SAVE_DEBOUNCE_MS);
-}
-
-function markDirty(reason){
+function markDirty(){
   pendingChanges=true;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   updateSaveIndicatorState();
-  scheduleAutoSave(reason||'dirty');
 }
 function clearDirty(){
+  cancelAutoSave();
   pendingChanges=false;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
-  if(autoSaveTimeout){
-    clearTimeout(autoSaveTimeout);
-    autoSaveTimeout=null;
-  }
-  pendingAutoSaveReason=null;
   clearDataDraft();
   updateSaveIndicatorState();
 }
@@ -3964,27 +3984,25 @@ function touchDataMetaTimestamp(){
   const meta=DATA.meta;
   if(meta&&typeof meta==='object'){
     try{
-      meta.generated=new Date().toISOString();
+      const stamp=new Date().toISOString();
+      meta.generated=stamp;
+      meta.revision=stamp;
     }catch(err){
       /* no-op */
-    }
-    if(Number.isFinite(dataRevision)){
-      meta.revision=dataRevision;
     }
   }
 }
 
 function saveDataJs(options={}){
   const task=async()=>{
+    cancelAutoSave();
     const { silent=false, dataJs:customDataJs=null, headers:customHeaders=null, endpoint=SAVE_ENDPOINT }=options;
     if(typeof customDataJs!=='string'){
       syncPendingDerivedData();
       touchDataMetaTimestamp();
     }
-    if(DATA && DATA.meta && Number.isFinite(dataRevision)){
-      DATA.meta.revision=dataRevision;
-    }
     const payload=(typeof customDataJs==='string')?customDataJs:buildDataJsPayload();
+    const revision=getDataRevision();
     const hadPendingChanges=pendingChanges;
     const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
     const extraHeaders=(customHeaders && typeof customHeaders==='object')?customHeaders:{};
@@ -3993,9 +4011,6 @@ function saveDataJs(options={}){
       ...baseHeaders,
       ...extraHeaders
     };
-    if(Number.isFinite(dataRevision)){
-      headers['x-data-revision']=String(dataRevision);
-    }
     if(!endpoint){
       const err=new Error('Save endpoint not configured.');
       if(!silent){
@@ -4009,7 +4024,7 @@ function saveDataJs(options={}){
       const response=await fetch(endpoint,{
         method:'POST',
         headers,
-        body:JSON.stringify({ dataJs:payload })
+        body:JSON.stringify({ dataJs:payload, revision })
       });
       const contentType=response.headers.get('content-type')||'';
       let body=null;
@@ -4022,26 +4037,14 @@ function saveDataJs(options={}){
       }
       if(!response.ok){
         const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
-        if(response.status===409||response.status===412){
-          setSaveResult('error');
-          const conflictMessage=message||'Data.js has changed since you opened the dashboard.';
-          if(!silent){
-            window.alert(conflictMessage+' Please refresh to load the newest data before trying again.');
-          }
-          throw new Error(conflictMessage);
-        }
         throw new Error(message);
       }
       const versionForSave=String(Date.now());
       setDataVersion(versionForSave);
-      if(body && typeof body==='object' && Object.prototype.hasOwnProperty.call(body,'revision')){
-        const nextRevision=Number(body.revision);
-        if(Number.isFinite(nextRevision)){
-          dataRevision=nextRevision;
-          if(DATA && DATA.meta){
-            DATA.meta.revision=dataRevision;
-          }
-        }
+      if(body && typeof body==='object' && body.revision){
+        applyRevisionToData(String(body.revision));
+      }else if(typeof customDataJs!=='string'){
+        applyRevisionToData(deriveRevisionFromMeta(DATA&&DATA.meta));
       }
       let refreshOutcome=null;
       let refreshError=null;
@@ -7974,7 +7977,7 @@ function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
     return {changed:false,state:current};
   }
   ch.inventory_state={ active:nextActive, attuned:nextAttuned, common:nextCommon };
-  markDirty('inventory');
+  markDirty();
   registerDerivedUpdate(charKey);
   if(applyMode==='immediate'){
     applyDataMutation(charKey);
@@ -7982,6 +7985,7 @@ function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
     scheduleCharacterMutationApply(charKey);
   }
   clearLegacyInventoryStorage(charKey);
+  scheduleAutoSave('inventory-state');
   return {changed:true,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
 }
 
@@ -8048,7 +8052,7 @@ function persistSupernaturalState(charKey,partial,{ applyMode='schedule' }={}){
   }
   ch.supernatural_active.blessing=nextBlessing;
   ch.supernatural_active.boon=nextBoon;
-  markDirty('supernatural');
+  markDirty();
   registerDerivedUpdate(charKey);
   if(applyMode==='immediate'){
     applyDataMutation(charKey);
@@ -8056,6 +8060,7 @@ function persistSupernaturalState(charKey,partial,{ applyMode='schedule' }={}){
     scheduleCharacterMutationApply(charKey);
   }
   clearLegacyGiftStorage(charKey);
+  scheduleAutoSave('supernatural-active');
   return {changed:true,state:{ blessing:nextBlessing, boon:nextBoon }};
 }
 
@@ -8377,79 +8382,108 @@ function sanitizeCarriedConsumableList(list){
   const source=Array.isArray(list)?list:(list==null?[]:[list]);
   const cleaned=[];
   source.forEach(item=>{
-    const text=String(item||'').trim();
+    const text=String(item==null?'':item).trim();
     if(text) cleaned.push(text);
   });
   return cleaned;
 }
-function readCarriedConsumablesFromData(charKey){
-  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
-  const bag=(ch && typeof ch.consumables==='object')?ch.consumables:null;
-  const raw=bag?bag.carried:undefined;
-  const hasCarried=!!bag && Object.prototype.hasOwnProperty.call(bag,'carried');
-  const list=sanitizeCarriedConsumableList(raw);
-  const originalArray=Array.isArray(raw)?raw:(raw==null?[]:[raw]);
-  const normalizedOriginal=originalArray.map(item=>String(item||''));
-  const changed=hasCarried && (!Array.isArray(raw) || normalizedOriginal.some(value=>value.trim()!==value));
-  const hasData=hasCarried || list.length>0;
-  return { list, hasData, changed };
+function readCarriedConsumablesFromData(k){
+  const ch=(DATA && DATA.characters && DATA.characters[k])||null;
+  const raw=ch&&Array.isArray(ch.carried_consumables)?ch.carried_consumables:null;
+  const list=sanitizeCarriedConsumableList(raw||[]);
+  let changed=false;
+  if(Array.isArray(raw)){
+    if(raw.length!==list.length){
+      changed=true;
+    }else{
+      for(let i=0;i<raw.length;i+=1){
+        const rawVal=raw[i];
+        const canonical=list[i];
+        const rawStr=typeof rawVal==='string'?rawVal:String(rawVal==null?'':rawVal);
+        if(rawStr!==canonical){
+          changed=true;
+          break;
+        }
+      }
+    }
+  }
+  return { list, hasData:Array.isArray(raw), changed };
 }
 function readCarriedConsumablesFromLocalStorage(k){
   if(typeof localStorage==='undefined'){
-    return { list:[], hasData:false, changed:false };
+    return { list:[], hasData:false };
   }
   try{
-    const rawValue=localStorage.getItem(consumableCarryKey(k));
-    if(!rawValue){
-      return { list:[], hasData:false, changed:false };
+    const raw=JSON.parse(localStorage.getItem(consumableCarryKey(k))||'[]');
+    if(Array.isArray(raw)){
+      const list=sanitizeCarriedConsumableList(raw);
+      return { list, hasData:list.length>0 };
     }
-    const parsed=JSON.parse(rawValue);
-    const list=sanitizeCarriedConsumableList(parsed);
-    const originalArray=Array.isArray(parsed)?parsed.map(item=>String(item||'')):[];
-    const changed=!Array.isArray(parsed) || originalArray.some(value=>value.trim()!==value) || list.length!==originalArray.length;
-    return { list, hasData:list.length>0 || !!rawValue, changed };
-  }catch(_){
-    return { list:[], hasData:false, changed:false };
-  }
+  }catch(_){ /* ignore */ }
+  return { list:[], hasData:false };
 }
 function clearLegacyCarriedStorage(k){
   if(typeof localStorage==='undefined') return;
   try{ localStorage.removeItem(consumableCarryKey(k)); }
   catch(_){ /* ignore */ }
 }
-function persistCarriedConsumables(charKey,list,{ applyMode='schedule' }={}){
-  if(!isValidSheetKey(charKey)){
+function persistCarriedConsumables(k,list,{ applyMode='schedule' }={}){
+  if(!isValidSheetKey(k)){
     return { changed:false, list:[] };
   }
   const desired=sanitizeCarriedConsumableList(list);
-  const { list:current }=readCarriedConsumablesFromData(charKey);
-  if(!listsDifferent(desired,current)){
-    return { changed:false, list:current.slice() };
+  const ch=(DATA && DATA.characters && DATA.characters[k])||null;
+  if(!ch||typeof ch!=='object'){
+    return { changed:false, list:desired };
   }
-  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
-  if(!ch || typeof ch!=='object'){
-    return { changed:false, list:current.slice() };
-  }
-  if(!ch.consumables || typeof ch.consumables!=='object'){
-    ch.consumables={};
-  }
-  if(desired.length){
-    ch.consumables.carried=desired;
-  }else{
-    delete ch.consumables.carried;
-    if(!Object.keys(ch.consumables).length){
-      delete ch.consumables;
+  const rawCurrent=Array.isArray(ch.carried_consumables)?ch.carried_consumables:null;
+  const current=sanitizeCarriedConsumableList(rawCurrent||[]);
+  let same=current.length===desired.length;
+  let needsSanitize=false;
+  if(rawCurrent && Array.isArray(rawCurrent) && rawCurrent.length===desired.length){
+    for(let i=0;i<rawCurrent.length;i+=1){
+      const rawVal=rawCurrent[i];
+      const canonical=desired[i];
+      const rawStr=typeof rawVal==='string'?rawVal:String(rawVal==null?'':rawVal);
+      if(rawStr!==canonical){
+        needsSanitize=true;
+        break;
+      }
     }
   }
-  markDirty('consumables-carried');
-  registerDerivedUpdate(charKey);
-  if(applyMode==='immediate'){
-    applyDataMutation(charKey);
-  }else if(applyMode==='schedule'){
-    scheduleCharacterMutationApply(charKey);
+  if(same){
+    if(!desired.length && rawCurrent){
+      delete ch.carried_consumables;
+      markDirty();
+      registerDerivedUpdate(k);
+      if(applyMode==='immediate'){
+        applyDataMutation(k);
+      }else if(applyMode==='schedule'){
+        scheduleCharacterMutationApply(k);
+      }
+      clearLegacyCarriedStorage(k);
+      scheduleAutoSave('carried-consumables');
+      return { changed:true, list:desired };
+    }
+    if(!needsSanitize){
+      return { changed:false, list:current };
+    }
   }
-  clearLegacyCarriedStorage(charKey);
-  return { changed:true, list:desired.slice() };
+  if(desired.length){
+    ch.carried_consumables=desired.slice();
+  }else if(ch.carried_consumables){
+    delete ch.carried_consumables;
+  }
+  markDirty();
+  registerDerivedUpdate(k);
+  if(applyMode==='immediate'){
+    applyDataMutation(k);
+  }else if(applyMode==='schedule'){
+    scheduleCharacterMutationApply(k);
+  }
+  clearLegacyCarriedStorage(k);
+  scheduleAutoSave('carried-consumables');
+  return { changed:true, list:desired };
 }
 function loadCarriedConsumables(k){
   const fromData=readCarriedConsumablesFromData(k);
@@ -8457,16 +8491,14 @@ function loadCarriedConsumables(k){
     if(fromData.changed){
       persistCarriedConsumables(k,fromData.list,{ applyMode:'schedule' });
     }
-    clearLegacyCarriedStorage(k);
     return fromData.list.slice();
   }
   const legacy=readCarriedConsumablesFromLocalStorage(k);
   if(legacy.hasData){
     persistCarriedConsumables(k,legacy.list,{ applyMode:'schedule' });
-    clearLegacyCarriedStorage(k);
     return legacy.list.slice();
   }
-  return [];
+  return fromData.list.slice();
 }
 function saveCarriedConsumables(k,list,{ applyMode='schedule' }={}){
   persistCarriedConsumables(k,list,{ applyMode });
@@ -8572,14 +8604,9 @@ function buildConsumableInventory(charKey){
   const manual=(ch&&typeof ch.consumables==='object'&&ch.consumables)?ch.consumables:null;
   if(manual){
     Object.entries(manual).forEach(([name,val])=>{
-      if(name==='carried') return;
-      const num=Number(val);
-      if(!Number.isFinite(num)) return;
-      if(num>0){
-        base.set(name,num);
-      }else{
-        base.delete(name);
-      }
+      const num=Math.max(0,Number(val)||0);
+      if(num>0) base.set(name,num);
+      else base.delete(name);
     });
   }
   const uses=getConsumableUseMap(charKey);
@@ -8610,8 +8637,9 @@ function incrementConsumableUse(charKey,name){
   if(ch.consumable_uses[name]<=0) delete ch.consumable_uses[name];
   if(ch.consumable_uses && !Object.keys(ch.consumable_uses).length) delete ch.consumable_uses;
   registerDerivedUpdate(charKey);
-  markDirty('consumable-use');
+  markDirty();
   applyDataMutation(charKey);
+  scheduleAutoSave('consumable-use');
   return true;
 }
 
@@ -9913,7 +9941,7 @@ function openSupernaturalModal(charKey){
   };
   const canActivateBoon=level>=17;
   const persistState=()=>{
-    saveActiveSupernatural(charKey,state,{ applyMode:'immediate' });
+    saveActiveSupernatural(charKey,state);
   };
   const sanitizeState=()=>{
     let changed=false;

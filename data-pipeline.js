@@ -94,6 +94,19 @@ function pushIssue(issues,{ severity='error', code='unknown', message='', path='
     return out;
   }
 
+  function normalizeCarriedConsumables(raw){
+    if(raw == null) return null;
+    const list = Array.isArray(raw) ? raw : [raw];
+    const cleaned = list
+      .map(item => coerceString(item, { fallback:'' }))
+      .map(item => item.trim())
+      .filter(item => item.length>0);
+    if(!cleaned.length){
+      return null;
+    }
+    return cleaned;
+  }
+
   function normalizeInventoryState(raw){
     if(!raw || typeof raw !== 'object') return null;
     const hasKeys = ['active','attuned','common'].some((key)=>Object.prototype.hasOwnProperty.call(raw,key));
@@ -117,35 +130,6 @@ function pushIssue(issues,{ severity='error', code='unknown', message='', path='
       return null;
     }
     return { blessing, boon };
-  }
-
-  function sanitizeConsumableCarryListInput(value){
-    const list = Array.isArray(value) ? value : (value == null ? [] : [value]);
-    const out = [];
-    list.forEach((item)=>{
-      const text = coerceString(item,{ fallback:'' }).trim();
-      if(text){
-        out.push(text);
-      }
-    });
-    return out;
-  }
-
-  function normalizeConsumables(raw){
-    if(!raw || typeof raw !== 'object') return null;
-    const out = {};
-    const carried = sanitizeConsumableCarryListInput(raw.carried);
-    if(carried.length){
-      out.carried = carried;
-    }
-    Object.entries(raw).forEach(([key,value])=>{
-      if(key === 'carried') return;
-      out[key] = value;
-    });
-    if(!Object.keys(out).length){
-      return null;
-    }
-    return out;
   }
 
 function coerceNumber(value,{ fallback=0, allowNull=false }={}, issues, context){
@@ -460,18 +444,18 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       out.inventory_state = inventoryState;
     }
 
+    const carriedConsumables = normalizeCarriedConsumables(raw && raw.carried_consumables);
+    if(carriedConsumables){
+      out.carried_consumables = carriedConsumables;
+    }
+
     const supernaturalActive = normalizeSupernaturalActive(raw && raw.supernatural_active);
     if(supernaturalActive){
       out.supernatural_active = supernaturalActive;
     }
 
-    const consumables = normalizeConsumables(raw && raw.consumables);
-    if(consumables){
-      out.consumables = consumables;
-    }
-
     if(raw && typeof raw === 'object'){
-      const passthrough = ['consumable_uses','tags','portrait','pronouns'];
+      const passthrough = ['consumables','consumable_uses','tags','portrait','pronouns'];
       passthrough.forEach((key)=>{
         if(Object.prototype.hasOwnProperty.call(raw,key)){
           out[key] = raw[key];
@@ -498,27 +482,19 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       }else{
         meta.generated = new Date().toISOString();
       }
+      const revision = coerceString(raw.revision,{ fallback:'' });
+      if(revision){
+        meta.revision = revision;
+      }
       if(Array.isArray(raw.problems)){
         meta.problems = raw.problems.map(item => coerceString(item,{ fallback:'' })).filter(Boolean);
       }else{
         meta.problems = [];
       }
-      const revisionSource = raw.revision;
-      let parsedRevision = Number(revisionSource);
-      if(!Number.isFinite(parsedRevision)){
-        const fallbackRevision = Number.parseInt(coerceString(revisionSource,{ fallback:'' }),10);
-        parsedRevision = Number.isFinite(fallbackRevision) ? fallbackRevision : 0;
-      }
-      meta.revision = Math.max(0, Math.floor(parsedRevision));
-      const repoSha = coerceString(raw.repo_sha,{ fallback:'' });
-      if(repoSha){
-        meta.repo_sha = repoSha;
-      }
     }else{
       meta.source_file = '';
       meta.generated = new Date().toISOString();
       meta.problems = [];
-      meta.revision = 0;
     }
     return meta;
   }
