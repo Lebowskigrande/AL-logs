@@ -8346,6 +8346,7 @@ consModal.addEventListener('click',(e)=>{ if(e.target===consModal) closeConsumab
 document.getElementById('giftsClose').addEventListener('click',()=>{ giftsModal.classList.remove('open'); refreshModalState(); });
 giftsModal.addEventListener('click',(e)=>{ if(e.target===giftsModal){ giftsModal.classList.remove('open'); refreshModalState(); } });
 
+
 function openInventoryModal(charKey, opts={}){
   const ch=DATA.characters[charKey];
   if(invModal){
@@ -8355,7 +8356,6 @@ function openInventoryModal(charKey, opts={}){
   const cap=activeSlotsFor(level);
   const {kept:keptMeta}=collectPermanentInventory(charKey);
   const metaByName=new Map(keptMeta.map(item=>[item.name.toLowerCase(),item]));
-  const keptNames=keptMeta.map(item=>item.name);
 
   const rawCommon=loadCommon(charKey);
   const normalizedCommon=[];
@@ -8457,9 +8457,6 @@ function openInventoryModal(charKey, opts={}){
     .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
   const equippedOrdered=attunedOrdered.concat(nonAttunedOrdered);
 
-  if(invInventoryList){ invInventoryList.innerHTML=''; }
-  if(invEquippedList){ invEquippedList.innerHTML=''; }
-  if(!invInventoryList && invList){ invList.innerHTML=''; }
   const actions=invModal.querySelector('.modal-actions');
   let editToggle=actions?actions.querySelector('.edit-toggle'):null;
   if(actions && !editToggle){
@@ -8473,35 +8470,326 @@ function openInventoryModal(charKey, opts={}){
   }
   let editing=!!(opts && opts.editing);
   if(!inventoryOrdered.length){ editing=false; }
-  function syncEditing(){
-    const activeEditing=editing && inventoryOrdered.length>0;
-    invModal.classList.toggle('editing', activeEditing);
-    if(editToggle){
-      editToggle.textContent=activeEditing?'Finish editing':'Edit items';
-      editToggle.setAttribute('aria-pressed', activeEditing?'true':'false');
-    }
-  }
-  if(editToggle){
-    editToggle.onclick=()=>{
-      if(!inventoryOrdered.length) return;
-      openInventoryModal(charKey,{editing:!editing});
-    };
-    editToggle.style.display=inventoryOrdered.length?'':'none';
+
+  const hasColumns=!!(invInventoryList && invEquippedList);
+  if(hasColumns){
+    if(invInventoryList){ invInventoryList.textContent=''; }
+    if(invEquippedList){ invEquippedList.textContent=''; }
+  }else if(invList){
+    invList.textContent='';
   }
 
-  const appendRow=(item,{includeAttune,includeDelete})=>{
+  const state={
+    charKey,
+    level,
+    cap,
+    keptMeta,
+    metaByName,
+    itemNodes:new Map(),
+    inventorySection:null,
+    attunedSection:null,
+    nonAttunedSection:null,
+    emptyAnchor:null,
+    emptySlotRows:[],
+    activeSet,
+    activeNames:active.slice(),
+    commonSet,
+    commonNames:commonList.slice(),
+    attunedSet,
+    attunedNames:attuned.slice(),
+    editing,
+    hasColumns
+  };
+
+  if(hasColumns){
+    if(invInventoryList){
+      const inventoryAnchor=document.createComment('inventory-end');
+      invInventoryList.appendChild(inventoryAnchor);
+      state.inventorySection={ container:invInventoryList, anchor:inventoryAnchor, rows:[] };
+    }
+    if(invEquippedList){
+      const attunedAnchor=document.createComment('attuned-end');
+      const nonAttunedAnchor=document.createComment('non-attuned-end');
+      const emptyAnchor=document.createComment('empty-end');
+      invEquippedList.appendChild(attunedAnchor);
+      invEquippedList.appendChild(nonAttunedAnchor);
+      invEquippedList.appendChild(emptyAnchor);
+      state.attunedSection={ container:invEquippedList, anchor:attunedAnchor, rows:[] };
+      state.nonAttunedSection={ container:invEquippedList, anchor:nonAttunedAnchor, rows:[] };
+      state.emptyAnchor=emptyAnchor;
+    }
+  }else if(invList){
+    const inventoryAnchor=document.createComment('inventory-end');
+    const attunedAnchor=document.createComment('attuned-end');
+    const nonAttunedAnchor=document.createComment('non-attuned-end');
+    const emptyAnchor=document.createComment('empty-end');
+    invList.appendChild(inventoryAnchor);
+    invList.appendChild(attunedAnchor);
+    invList.appendChild(nonAttunedAnchor);
+    invList.appendChild(emptyAnchor);
+    state.inventorySection={ container:invList, anchor:inventoryAnchor, rows:[] };
+    state.attunedSection={ container:invList, anchor:attunedAnchor, rows:[] };
+    state.nonAttunedSection={ container:invList, anchor:nonAttunedAnchor, rows:[] };
+    state.emptyAnchor=emptyAnchor;
+  }
+
+  function ensureItemNode(lower){
+    let entry=state.itemNodes.get(lower);
+    if(!entry){
+      entry={ lower };
+      state.itemNodes.set(lower, entry);
+    }
+    return entry;
+  }
+
+  function placeRow(section,row){
+    if(!section) return;
+    const key=row.dataset.sortKey || row.dataset.name || '';
+    const existing=section.rows.filter(item=>item!==row);
+    let inserted=false;
+    for(let i=0;i<existing.length;i++){
+      const other=existing[i];
+      const otherKey=other.dataset.sortKey || other.dataset.name || '';
+      if(otherKey.localeCompare(key,undefined,{sensitivity:'base'})>0){
+        section.container.insertBefore(row, other);
+        existing.splice(i,0,row);
+        inserted=true;
+        break;
+      }
+    }
+    if(!inserted){
+      section.container.insertBefore(row, section.anchor);
+      existing.push(row);
+    }
+    section.rows=existing;
+  }
+
+  function unlinkRow(section,row){
+    if(!section) return;
+    const idx=section.rows.indexOf(row);
+    if(idx!==-1){
+      section.rows.splice(idx,1);
+    }
+  }
+
+  function removeRow(section,row){
+    if(!section) return;
+    unlinkRow(section,row);
+    if(row.parentNode===section.container){
+      section.container.removeChild(row);
+    }
+  }
+
+  function createEmptySlotRow(){
+    const row=document.createElement('div');
+    row.className='inv-row static empty-slot';
+    const nameDiv=document.createElement('div');
+    nameDiv.className='inv-name';
+    const labelSpan=document.createElement('span');
+    labelSpan.className='inv-label';
+    labelSpan.textContent='Empty slot';
+    nameDiv.appendChild(labelSpan);
+    row.appendChild(nameDiv);
+    const tools=document.createElement('div');
+    tools.className='inv-tools';
+    row.appendChild(tools);
+    return row;
+  }
+
+  function syncRowState(lower){
+    const entry=state.itemNodes.get(lower);
+    if(!entry) return;
+    const isActive=state.activeSet.has(lower);
+    const isCommon=state.commonSet.has(lower);
+    const isAttuned=state.attunedSet.has(lower);
+    if(entry.inventory){
+      const {row,commonChip}=entry.inventory;
+      row.classList.toggle('active', isActive);
+      row.classList.toggle('common', isCommon);
+      if(commonChip){
+        commonChip.classList.toggle('on', isCommon);
+        commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
+        commonChip.title=isCommon
+          ?'Marked as common. Common items do not count against the active limit.'
+          :'Mark this item as common so it does not count against the active limit.';
+      }
+    }
+    if(entry.equipped){
+      const {row,commonChip,attunePill}=entry.equipped;
+      row.classList.toggle('common', isCommon);
+      row.classList.toggle('attuned', isAttuned);
+      if(commonChip){
+        commonChip.classList.toggle('on', isCommon);
+        commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
+        commonChip.title=isCommon
+          ?'Marked as common. Common items do not count against the active limit.'
+          :'Mark this item as common so it does not count against the active limit.';
+      }
+      if(attunePill){
+        attunePill.classList.toggle('on', isAttuned);
+        attunePill.textContent=isAttuned?'Attuned':'Attune';
+      }
+    }
+  }
+
+  function updateEmptySlots(){
+    if(!state.emptyAnchor || !state.attunedSection) return;
+    const container=state.attunedSection.container;
+    const limitedCount=Array.from(state.activeSet).filter(lower=>!state.commonSet.has(lower)).length;
+    const needed=Math.max(0, cap-limitedCount);
+    while(state.emptySlotRows.length>needed){
+      const row=state.emptySlotRows.pop();
+      if(row && row.parentNode===container){
+        container.removeChild(row);
+      }
+    }
+    while(state.emptySlotRows.length<needed){
+      const row=createEmptySlotRow();
+      state.emptySlotRows.push(row);
+      container.insertBefore(row, state.emptyAnchor);
+    }
+  }
+
+  function addAttunement(lower){
+    if(state.attunedSet.has(lower)) return false;
+    if(state.attunedNames.length>=3) return false;
+    const meta=state.metaByName.get(lower);
+    if(!meta) return false;
+    state.attunedSet.add(lower);
+    if(!state.attunedNames.some(name=>name.toLowerCase()===lower)){
+      state.attunedNames=state.attunedNames.concat([meta.name]);
+    }
+    saveAttuned(charKey,state.attunedNames);
+    return true;
+  }
+
+  function removeAttunement(lower){
+    if(!state.attunedSet.has(lower)) return false;
+    state.attunedSet.delete(lower);
+    const next=state.attunedNames.filter(name=>name.toLowerCase()!==lower);
+    const changed=next.length!==state.attunedNames.length;
+    state.attunedNames=next;
+    if(changed){
+      saveAttuned(charKey,state.attunedNames);
+    }else{
+      saveAttuned(charKey,state.attunedNames);
+    }
+    return true;
+  }
+
+  function toggleAttunement(lower){
+    const entry=state.itemNodes.get(lower);
+    if(!entry || !entry.equipped) return;
+    if(state.editing) return;
+    if(!state.activeSet.has(lower)) return;
+    const willAdd=!state.attunedSet.has(lower);
+    if(willAdd){
+      if(state.attunedNames.length>=3){
+        alert('You can only be attuned to 3 items at a time.');
+        return;
+      }
+      if(!addAttunement(lower)){
+        return;
+      }
+      unlinkRow(state.nonAttunedSection, entry.equipped.row);
+      placeRow(state.attunedSection, entry.equipped.row);
+    }else{
+      if(!removeAttunement(lower)){
+        return;
+      }
+      unlinkRow(state.attunedSection, entry.equipped.row);
+      placeRow(state.nonAttunedSection, entry.equipped.row);
+    }
+    syncRowState(lower);
+    state.updateSummary();
+  }
+
+  function toggleCommon(lower){
+    const meta=state.metaByName.get(lower);
+    if(!meta) return;
+    const isCommon=state.commonSet.has(lower);
+    if(isCommon){
+      const nextSet=new Set(state.commonSet);
+      nextSet.delete(lower);
+      const nonCommonCount=Array.from(state.activeSet).filter(name=>!nextSet.has(name)).length;
+      if(state.activeSet.has(lower) && nonCommonCount>cap){
+        window.alert('Removing the Common tag would exceed your active item limit. Deactivate another item first.');
+        return;
+      }
+      state.commonSet.delete(lower);
+    }else{
+      state.commonSet.add(lower);
+    }
+    state.commonNames=Array.from(state.commonSet)
+      .map(name=>{
+        const metaItem=state.metaByName.get(name);
+        return metaItem?metaItem.name:null;
+      })
+      .filter(Boolean)
+      .sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+    saveCommon(charKey,state.commonNames);
+    syncRowState(lower);
+    updateEmptySlots();
+    state.updateSummary();
+  }
+
+  function toggleActive(lower){
+    if(state.editing) return;
+    const meta=state.metaByName.get(lower);
+    if(!meta) return;
+    const isActive=state.activeSet.has(lower);
+    if(!isActive){
+      const nonCommonCount=Array.from(state.activeSet).filter(name=>!state.commonSet.has(name)).length;
+      if(!state.commonSet.has(lower) && nonCommonCount>=cap){
+        alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
+        return;
+      }
+      state.activeSet.add(lower);
+      if(!state.activeNames.some(name=>name.toLowerCase()===lower)){
+        state.activeNames=state.activeNames.concat([meta.name]);
+      }
+      saveActive(charKey,state.activeNames);
+      const existingEntry=state.itemNodes.get(lower);
+      if(state.nonAttunedSection && (!existingEntry || !existingEntry.equipped)){
+        const row=createEquippedRow(meta);
+        const entry=state.itemNodes.get(lower);
+        const targetSection=state.attunedSet.has(lower)?state.attunedSection:state.nonAttunedSection;
+        placeRow(targetSection,row);
+        syncRowState(lower);
+      }
+    }else{
+      state.activeSet.delete(lower);
+      state.activeNames=state.activeNames.filter(name=>name.toLowerCase()!==lower);
+      saveActive(charKey,state.activeNames);
+      if(state.attunedSet.has(lower)){
+        removeAttunement(lower);
+      }
+      const entry=state.itemNodes.get(lower);
+      if(entry && entry.equipped){
+        const {row}=entry.equipped;
+        removeRow(state.attunedSection,row);
+        removeRow(state.nonAttunedSection,row);
+        if(row.parentNode){
+          row.parentNode.removeChild(row);
+        }
+        delete entry.equipped;
+      }
+    }
+    syncRowState(lower);
+    updateEmptySlots();
+    state.updateSummary();
+  }
+
+  function createInventoryRow(item){
     const label=item&&item.name?item.name:String(item||'');
     const lower=label.toLowerCase();
-    const meta=metaByName.get(lower)||null;
-    const isActive=activeSet.has(lower);
-    const isCommon=commonSet.has(lower);
+    const meta=state.metaByName.get(lower)||null;
+    const isCommon=state.commonSet.has(lower);
     const row=document.createElement('div');
-    const rowClasses=['inv-row'];
-    if(isActive) rowClasses.push('active');
-    if(isCommon) rowClasses.push('common');
-    if(includeAttune && attunedSet.has(lower)) rowClasses.push('attuned');
-    row.className=rowClasses.join(' ');
+    row.className='inv-row'+(state.activeSet.has(lower)?' active':'')+(isCommon?' common':'');
     row.dataset.name=label;
+    row.dataset.lower=lower;
+    row.dataset.sortKey=label.toLowerCase();
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
@@ -8521,149 +8809,72 @@ function openInventoryModal(charKey, opts={}){
     commonChip.addEventListener('click',(ev)=>{
       ev.preventDefault();
       ev.stopPropagation();
-      const stored=loadCommon(charKey);
-      const normalized=[];
-      const seen=new Set();
-      stored.forEach(name=>{
-        const cleaned=normItemName(name);
-        if(!cleaned) return;
-        const lc=cleaned.toLowerCase();
-        const meta=metaByName.get(lc);
-        if(!meta) return;
-        if(seen.has(lc)) return;
-        seen.add(lc);
-        normalized.push(meta.name);
-      });
-      const exists=normalized.some(name=>name.toLowerCase()===lower);
-      if(exists){
-        const next=normalized.filter(name=>name.toLowerCase()!==lower);
-        const nextSet=new Set(next.map(name=>name.toLowerCase()));
-        if(isActive){
-          const activeNames=loadActive(charKey)
-            .map(normItemName)
-            .filter(name=>name && metaByName.has(name.toLowerCase()))
-            .map(name=>metaByName.get(name.toLowerCase()).name);
-          const activeNonCommon=activeNames.filter(name=>!nextSet.has(name.toLowerCase())).length;
-          if(activeNonCommon>cap){
-            window.alert('Removing the Common tag would exceed your active item limit. Deactivate another item first.');
-            return;
-          }
-        }
-        saveCommon(charKey,next);
-      }else{
-        const next=normalized.concat([label]);
-        saveCommon(charKey,next);
-      }
-      openInventoryModal(charKey,{editing});
+      toggleCommon(lower);
     });
     nameDiv.appendChild(commonChip);
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
-    if(includeAttune && isActive){
-      const pill=document.createElement('span');
-      pill.className='attune-pill'+(attunedSet.has(lower)?' on':'');
-      pill.textContent=attunedSet.has(lower)?'Attuned':'Attune';
-      pill.title='Toggle attunement (max 3)';
-      pill.addEventListener('click',(ev)=>{
-        if(editing) return;
-        ev.stopPropagation();
-        let cur=loadAttuned(charKey)
-          .map(normItemName)
-          .filter(name=>name && metaByName.has(name.toLowerCase()))
-          .map(name=>metaByName.get(name.toLowerCase()).name);
-        const on=attunedSet.has(lower);
-        if(!on){
-          if(cur.length>=3){ alert('You can only be attuned to 3 items at a time.'); return; }
-          cur.push(label);
-        }else{
-          cur=cur.filter(n=>n.toLowerCase()!==lower);
-        }
-        saveAttuned(charKey,cur);
-        openInventoryModal(charKey,{editing});
-      });
-      rightDiv.appendChild(pill);
-    }
 
-    if(includeDelete){
-      const deleteBtn=document.createElement('button');
-      deleteBtn.type='button';
-      deleteBtn.className='icon-btn danger delete-btn';
-      deleteBtn.innerHTML=ICON_TRASH;
-      deleteBtn.setAttribute('aria-label',`Remove ${label}`);
-      deleteBtn.title='Remove this item';
-      deleteBtn.addEventListener('click',async(ev)=>{
-        ev.stopPropagation();
-        if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
-        const adv=item&&item.adv;
-        const originalPermItems=(adv&&Array.isArray(adv.perm_items))?adv.perm_items.slice():null;
-        const activeBefore=loadActive(charKey);
-        const attunedBefore=loadAttuned(charKey);
-        const commonBefore=loadCommon(charKey);
+    const deleteBtn=document.createElement('button');
+    deleteBtn.type='button';
+    deleteBtn.className='icon-btn danger delete-btn';
+    deleteBtn.innerHTML=ICON_TRASH;
+    deleteBtn.setAttribute('aria-label',`Remove ${label}`);
+    deleteBtn.title='Remove this item';
+    deleteBtn.addEventListener('click',async(ev)=>{
+      ev.stopPropagation();
+      if(!window.confirm(`Remove "${label}" from permanent items?`)) return;
+      const adv=item&&item.adv;
+      const originalPermItems=(adv&&Array.isArray(adv.perm_items))?adv.perm_items.slice():null;
+      const activeBefore=loadActive(charKey);
+      const attunedBefore=loadAttuned(charKey);
+      const commonBefore=loadCommon(charKey);
+      if(adv){
+        const lowerName=lower;
+        const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
+        adv.perm_items=source.filter(raw=>{
+          const parsed=parseAcquisitionName(raw);
+          const cleaned=normItemName(parsed.name).toLowerCase();
+          return cleaned!==lowerName;
+        });
+      }
+      const lc=lower;
+      const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
+      saveActive(charKey,nextActive,{ applyMode:'none' });
+      saveAttuned(charKey,nextAttuned,{ applyMode:'none' });
+      saveCommon(charKey,nextCommon,{ applyMode:'none' });
+      registerDerivedUpdate(charKey);
+      markDirty();
+      applyDataMutation(charKey);
+      openInventoryModal(charKey,{editing:true});
+      try{
+        await saveDataJs();
+      }catch(err){
         if(adv){
-          const lowerName=lower;
-          const source=Array.isArray(adv.perm_items)?adv.perm_items:[];
-          adv.perm_items=source.filter(raw=>{
-            const parsed=parseAcquisitionName(raw);
-            const cleaned=normItemName(parsed.name).toLowerCase();
-            return cleaned!==lowerName;
-          });
+          if(originalPermItems){
+            adv.perm_items=originalPermItems;
+          }else{
+            delete adv.perm_items;
+          }
         }
-        const lc=lower;
-        const nextActive=(Array.isArray(activeBefore)?activeBefore:[]).filter(n=>n.toLowerCase()!==lc);
-        const nextAttuned=(Array.isArray(attunedBefore)?attunedBefore:[]).filter(n=>n.toLowerCase()!==lc);
-        const nextCommon=(Array.isArray(commonBefore)?commonBefore:[]).filter(n=>n.toLowerCase()!==lc);
-        saveActive(charKey,nextActive,{ applyMode:'none' });
-        saveAttuned(charKey,nextAttuned,{ applyMode:'none' });
-        saveCommon(charKey,nextCommon,{ applyMode:'none' });
-        registerDerivedUpdate(charKey);
-        markDirty();
+        saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[],{ applyMode:'none' });
+        saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[],{ applyMode:'none' });
+        saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[],{ applyMode:'none' });
+        pendingDerivedUpdates.delete(charKey);
         applyDataMutation(charKey);
         openInventoryModal(charKey,{editing:true});
-        try{
-          await saveDataJs();
-        }catch(err){
-          if(adv){
-            if(originalPermItems){
-              adv.perm_items=originalPermItems;
-            }else{
-              delete adv.perm_items;
-            }
-          }
-          saveActive(charKey,Array.isArray(activeBefore)?activeBefore:[],{ applyMode:'none' });
-          saveAttuned(charKey,Array.isArray(attunedBefore)?attunedBefore:[],{ applyMode:'none' });
-          saveCommon(charKey,Array.isArray(commonBefore)?commonBefore:[],{ applyMode:'none' });
-          pendingDerivedUpdates.delete(charKey);
-          applyDataMutation(charKey);
-          openInventoryModal(charKey,{editing:true});
-        }
-      });
-      rightDiv.appendChild(deleteBtn);
-    }
+      }
+    });
+    rightDiv.appendChild(deleteBtn);
 
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
 
     row.addEventListener('click',()=>{
-      if(editing) return;
-      let cur=loadActive(charKey)
-        .map(normItemName)
-        .filter(name=>name && metaByName.has(name.toLowerCase()))
-        .map(name=>metaByName.get(name.toLowerCase()).name);
-      const on=cur.some(n=>n.toLowerCase()===lower);
-      if(!on){
-        const nonCommonCount=cur.filter(name=>!commonSet.has(name.toLowerCase())).length;
-        if(!commonSet.has(lower) && nonCommonCount>=cap){
-          alert(`You can only have ${cap} active item${cap>1?'s':''} at level ${level}.`);
-          return;
-        }
-        cur.push(label);
-      }else{
-        cur=cur.filter(n=>n.toLowerCase()!==lower);
-        saveAttuned(charKey, loadAttuned(charKey).filter(n=>n.toLowerCase()!==lower));
-      }
-      saveActive(charKey,cur);
-      openInventoryModal(charKey,{editing});
+      toggleActive(lower);
     });
 
     bindInventoryTradeInteraction(row,{
@@ -8672,90 +8883,131 @@ function openInventoryModal(charKey, opts={}){
       itemCanonicalName:meta?meta.name:label
     });
 
-    const target=includeAttune && invEquippedList?invEquippedList:invInventoryList||invList;
-    target.appendChild(row);
-  };
+    const entry=ensureItemNode(lower);
+    entry.inventory={ row, commonChip };
+    return row;
+  }
 
-  inventoryOrdered.forEach(item=>{
-    appendRow(item,{includeAttune:false,includeDelete:true});
-  });
-
-  equippedOrdered.forEach(item=>{
-    appendRow(item,{includeAttune:true,includeDelete:false});
-  });
-
-  const appendEmptySlotRow=target=>{
+  function createEquippedRow(item){
+    const label=item&&item.name?item.name:String(item||'');
+    const lower=label.toLowerCase();
+    const meta=state.metaByName.get(lower)||null;
+    const isCommon=state.commonSet.has(lower);
+    const isAttuned=state.attunedSet.has(lower);
     const row=document.createElement('div');
-    row.className='inv-row static empty-slot';
+    const classes=['inv-row','active'];
+    if(isCommon) classes.push('common');
+    if(isAttuned) classes.push('attuned');
+    row.className=classes.join(' ');
+    row.dataset.name=label;
+    row.dataset.lower=lower;
+    row.dataset.sortKey=label.toLowerCase();
+
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
     const labelSpan=document.createElement('span');
     labelSpan.className='inv-label';
-    labelSpan.textContent='Empty slot';
+    labelSpan.textContent=label;
     nameDiv.appendChild(labelSpan);
-    row.appendChild(nameDiv);
-    const tools=document.createElement('div');
-    tools.className='inv-tools';
-    row.appendChild(tools);
-    target.appendChild(row);
-  };
 
-  const equippedTarget=invEquippedList;
-  if(equippedTarget){
-    const limitedEquippedCount=equippedOrdered.reduce((count,item)=>{
-      const lower=item.name.toLowerCase();
-      return count+(commonSet.has(lower)?0:1);
-    },0);
-    const emptySlots=Math.max(0, cap-limitedEquippedCount);
-    for(let i=0;i<emptySlots;i++){
-      appendEmptySlotRow(equippedTarget);
-    }
+    const commonChip=document.createElement('button');
+    commonChip.type='button';
+    commonChip.className='common-chip'+(isCommon?' on':'');
+    commonChip.innerHTML='<span aria-hidden="true">C</span><span class="sr-only">Common</span>';
+    commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
+    commonChip.title=isCommon
+      ?'Marked as common. Common items do not count against the active limit.'
+      :'Mark this item as common so it does not count against the active limit.';
+    commonChip.addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      ev.stopPropagation();
+      toggleCommon(lower);
+    });
+    nameDiv.appendChild(commonChip);
+
+    const rightDiv=document.createElement('div');
+    rightDiv.className='inv-tools';
+    const pill=document.createElement('span');
+    pill.className='attune-pill'+(isAttuned?' on':'');
+    pill.textContent=isAttuned?'Attuned':'Attune';
+    pill.title='Toggle attunement (max 3)';
+    pill.addEventListener('click',(ev)=>{
+      ev.stopPropagation();
+      toggleAttunement(lower);
+    });
+    rightDiv.appendChild(pill);
+
+    row.appendChild(nameDiv);
+    row.appendChild(rightDiv);
+
+    row.addEventListener('click',()=>{
+      toggleActive(lower);
+    });
+
+    bindInventoryTradeInteraction(row,{
+      charKey,
+      itemName:label,
+      itemCanonicalName:meta?meta.name:label
+    });
+
+    const entry=ensureItemNode(lower);
+    entry.equipped={ row, commonChip, attunePill:pill };
+    return row;
   }
 
+  inventoryOrdered.forEach(item=>{
+    if(!state.inventorySection) return;
+    const row=createInventoryRow(item);
+    placeRow(state.inventorySection,row);
+  });
+
+  equippedOrdered.forEach(item=>{
+    if(!state.attunedSection && !state.nonAttunedSection) return;
+    const row=createEquippedRow(item);
+    const lower=item&&item.name?item.name.toLowerCase():'';
+    const targetSection=state.attunedSet.has(lower)?state.attunedSection:state.nonAttunedSection;
+    placeRow(targetSection,row);
+  });
+
+  updateEmptySlots();
+
+  const hasInventoryRows=()=>!!(state.inventorySection && state.inventorySection.rows && state.inventorySection.rows.length);
+  if(editToggle){
+    editToggle.onclick=()=>{
+      if(!hasInventoryRows()) return;
+      openInventoryModal(charKey,{editing:!editing});
+    };
+    editToggle.style.display=hasInventoryRows()?'':'none';
+  }
+
+  function syncEditing(){
+    const activeEditing=editing && inventoryOrdered.length>0;
+    invModal.classList.toggle('editing', activeEditing);
+    if(editToggle){
+      editToggle.textContent=activeEditing?'Finish editing':'Edit items';
+      editToggle.setAttribute('aria-pressed', activeEditing?'true':'false');
+    }
+  }
   syncEditing();
 
-  function updateSummary(){
-    const storedActive=loadActive(charKey);
-    const sanitizedActive=[];
-    const activeLower=new Set();
-    storedActive.forEach(name=>{
-      const cleaned=normItemName(name);
-      if(!cleaned) return;
-      const lower=cleaned.toLowerCase();
-      if(!metaByName.has(lower)) return;
-      if(activeLower.has(lower)) return;
-      activeLower.add(lower);
-      sanitizedActive.push(metaByName.get(lower).name);
-    });
-    const nonCommonCount=sanitizedActive.filter(name=>!commonSet.has(name.toLowerCase())).length;
-    const commonActiveCount=sanitizedActive.length-nonCommonCount;
-    const storedAttuned=loadAttuned(charKey);
-    const attunedActive=new Set();
-    const attunedList=[];
-    storedAttuned.forEach(name=>{
-      const cleaned=normItemName(name);
-      if(!cleaned) return;
-      const lower=cleaned.toLowerCase();
-      if(!metaByName.has(lower)) return;
-      if(attunedActive.has(lower)) return;
-      attunedActive.add(lower);
-      attunedList.push(metaByName.get(lower).name);
-    });
-    const activeLowerSet=new Set(sanitizedActive.map(name=>name.toLowerCase()));
-    const attunedCount=Math.min(3, attunedList.filter(name=>activeLowerSet.has(name.toLowerCase())).length);
+  state.updateSummary=()=>{
+    const nonCommonCount=Array.from(state.activeSet).filter(lower=>!state.commonSet.has(lower)).length;
+    const commonActiveCount=state.activeSet.size-nonCommonCount;
+    const attunedCount=Math.min(3, Array.from(state.attunedSet).filter(lower=>state.activeSet.has(lower)).length);
     let summary=`Kept: ${keptMeta.length} • Active: ${nonCommonCount}/${cap}`;
     if(commonActiveCount>0){
       summary+=` (Common active: ${commonActiveCount})`;
     }
     summary+=` • Attuned: ${attunedCount}/3`;
     invSummary.textContent=summary;
-  }
-  updateSummary();
+  };
+  state.updateSummary();
+
+  state.editing=editing;
+  invModal._inventoryState=state;
   invModal.classList.add('open');
   refreshModalState();
 }
-
-
 function openConsumableModal(charKey){
   const ch=DATA.characters[charKey];
   const level=currentLevelFor(charKey);
