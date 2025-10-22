@@ -1380,36 +1380,50 @@ function setDataValidationState(issues){
 }
 
 function adoptDataPayload(raw){
-  const pipeline=getDataPipeline();
-  if(pipeline && typeof pipeline.normalizeData==='function'){
-    try{
-      const result=pipeline.normalizeData(raw);
-      window.DATA=result.data;
-      DATA=window.DATA;
-      dataNormalized=true;
-      attachAdventureUids(window.DATA);
-      setDataValidationState(result.issues);
-      return result;
-    }catch(err){
-      console.error('Failed to normalize data.js payload', err);
-      pipelineWarned=true;
-    }
-  }
   window.DATA=raw;
   DATA=window.DATA;
   dataNormalized=true;
   attachAdventureUids(window.DATA);
+
+  const pipeline=getDataPipeline();
+  if(pipeline && typeof pipeline.validateData==='function'){
+    try{
+      const result=pipeline.validateData(window.DATA)||{};
+      const issues=Array.isArray(result.issues)?result.issues:[];
+      setDataValidationState(issues);
+      return { data:window.DATA, issues };
+    }catch(err){
+      console.error('Failed to validate data.js payload', err);
+      pipelineWarned=true;
+    }
+  }
+
   setDataValidationState([]);
   return { data:window.DATA, issues:[] };
 }
 
 function getSerializableData(){
   const pipeline=getDataPipeline();
-  if(pipeline && typeof pipeline.prepareForSave==='function'){
-    try{
-      return pipeline.prepareForSave(DATA);
-    }catch(err){
-      console.warn('Unable to prepare data for save', err);
+  if(pipeline){
+    const canNormalize=typeof pipeline.normalizeData==='function';
+    const canPrepare=typeof pipeline.prepareForSave==='function';
+    if(canNormalize){
+      try{
+        const snapshot=JSON.parse(JSON.stringify(DATA));
+        const result=pipeline.normalizeData(snapshot)||{};
+        if(result && result.data){
+          return canPrepare?pipeline.prepareForSave(result.data):result.data;
+        }
+      }catch(err){
+        console.warn('Unable to normalize data for save', err);
+      }
+    }
+    if(canPrepare){
+      try{
+        return pipeline.prepareForSave(DATA);
+      }catch(err){
+        console.warn('Unable to prepare data for save', err);
+      }
     }
   }
   try{

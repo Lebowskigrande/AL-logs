@@ -1,9 +1,9 @@
 # Data Quality Workflow
 
-This project now relies on the browser-side data pipeline (`data-pipeline.js`) to
-normalise and validate every `data.js` payload before it reaches the UI.
-Understanding how that flow works is helpful when you need to diagnose or fix
-bad records.
+`data.js` is now committed in its already-normalised form, so the browser can
+adopt the payload without running the heavy normalisation pass on every load.
+The pipeline still powers validation and save operations, so understanding the
+flow is helpful when you need to diagnose or fix bad records.
 
 ## Normalisation pipeline
 
@@ -18,34 +18,22 @@ bad records.
 
 ## UI behaviour
 
-`index.html` loads the pipeline, blocks on normalisation during bootstrap, and
-shows a data-quality banner/modal whenever the validator reports issues. Manual
-edits run through the same pipeline before save, so any problems must be fixed
-in the GUI before they can be persisted.【F:index.html†L1295-L1382】【F:index.html†L1553-L1580】
+`index.html` loads the pipeline, adopts the committed payload as-is, and then
+uses `validateData` to surface any issues in the data-quality banner/modal.【F:index.html†L1378-L1402】
 
-Saving an edited log uses `prepareForSave` to strip derived fields, so the
-written `data.js` file now matches the schema and is ready for version control
-without post-processing.【F:index.html†L1339-L1350】
+When you persist edits (saving or stashing a draft) the app clones the current
+payload, runs it through `normalizeData`, and only then applies
+`prepareForSave`. That means every change made in the GUI is normalised before
+it leaves the browser, matching the workflow used by the Node helper.【F:index.html†L1405-L1440】【F:index.html†L3829-L3848】
 
 ## Regenerating `data.js` outside the UI
 
 You can run the pipeline in Node to regenerate a clean `data.js` file:
 
 ```bash
-node - <<'NODE'
-const fs = require('fs');
-const vm = require('vm');
-const pipeline = require('./data-pipeline');
-const sandbox = { window:{}, globalThis:{} };
-vm.createContext(sandbox);
-const source = fs.readFileSync('./data.js','utf8');
-vm.runInContext(source, sandbox);
-const { data } = pipeline.normalizeData(sandbox.window.DATA);
-const clean = pipeline.prepareForSave(data);
-fs.writeFileSync('./data.js', 'window.DATA = ' + JSON.stringify(clean, null, 2) + ';\n');
-NODE
+node analysis/normalize-data.js
 ```
 
-The command above is what we used to regenerate the committed `data.js` so that
-all derived properties (`__levelAfter`, cached search blobs, etc.) are gone from
-source control.【F:data.js†L1-L40】
+The script above regenerates the committed `data.js` so that all derived
+properties (`__levelAfter`, cached search blobs, etc.) are gone from source
+control.【F:data.js†L1-L40】
