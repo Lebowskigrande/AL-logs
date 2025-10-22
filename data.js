@@ -11148,6 +11148,9 @@ window.DATA = {
           "Arcane Grimoire +3"
         ],
         "common": []
+      },
+      "consumable_uses": {
+        "Spell Scroll of Wish": 1
       }
     },
     "Agatha": {
@@ -17187,7 +17190,7 @@ window.DATA = {
       "net_dtd": 23,
       "level_ups": 4,
       "perm_count": 18,
-      "cons_count": 17,
+      "cons_count": 16,
       "gifts_count": 0
     },
     "Wobbly Bobbly": {
@@ -17349,7 +17352,7 @@ window.DATA = {
       "net_dtd": 252,
       "level_ups": 15,
       "perm_count": 42,
-      "cons_count": 30,
+      "cons_count": 29,
       "gifts_count": 0
     },
     "Arvistan Brightwave": {
@@ -17367,7 +17370,7 @@ window.DATA = {
       "net_dtd": 40,
       "level_ups": 19,
       "perm_count": 161,
-      "cons_count": 67,
+      "cons_count": 61,
       "gifts_count": 6
     },
     "Agatha": {
@@ -17376,7 +17379,7 @@ window.DATA = {
       "net_dtd": 115,
       "level_ups": 19,
       "perm_count": 39,
-      "cons_count": 19,
+      "cons_count": 17,
       "gifts_count": 2
     },
     "Lorien": {
@@ -17544,7 +17547,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-21T18:01:46.252Z",
+    "generated": "2025-10-22T06:25:39.919Z",
     "problems": []
   },
   "dm_allocations": []
