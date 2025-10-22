@@ -8809,7 +8809,9 @@ function openConsumableModal(charKey){
 
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
   consMeta.textContent=`Level ${level} • Carry limit: ${carryCap}`;
-  consList.innerHTML='';
+  // Preserve the modal column structure so we can populate the sublists.
+  // Clearing the root container removes the nested columns from the DOM,
+  // which prevents consumables from rendering on reopen.
 
   let lastBaseSummary='';
   let summaryNote='';
