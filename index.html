@@ -9036,15 +9036,12 @@ function openConsumableModal(charKey){
         }
         row.dataset.name=name;
         const {element:nameDiv}=buildNameDiv(name);
-        const secondary=document.createElement('span');
-        secondary.className='cons-secondary';
         const detailParts=[`${total} total`];
         if(carried>0) detailParts.push(`${carried} carried`);
         if(remaining>0) detailParts.push(`${remaining} stowed`);
         else if(total>0 && carried>0) detailParts.push('All carried');
         else detailParts.push('None carried');
-        secondary.textContent=detailParts.join(' • ');
-        nameDiv.appendChild(secondary);
+        const detailText=detailParts.join(' • ');
         row.appendChild(nameDiv);
 
         const tools=document.createElement('div');
@@ -9061,7 +9058,7 @@ function openConsumableModal(charKey){
         if(remaining>0){
           row.setAttribute('role','button');
           row.tabIndex=0;
-          row.title='Click to carry one copy';
+          row.title=detailText?`Click to carry one copy (${detailText})`:'Click to carry one copy';
           const activate=(ev)=>{
             if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
             ev.preventDefault();
@@ -9071,7 +9068,8 @@ function openConsumableModal(charKey){
           row.addEventListener('click',activate);
           row.addEventListener('keydown',activate);
         }else{
-          row.title=carried>0?'All copies currently carried':'No copies available';
+          const baseTitle=carried>0?'All copies currently carried':'No copies available';
+          row.title=detailText?`${baseTitle} (${detailText})`:baseTitle;
         }
 
         inventoryTarget.appendChild(row);
