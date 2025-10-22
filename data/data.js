@@ -1299,6 +1299,24 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": ""
+        },
+        {
+          "title": "Start at level 5",
+          "date": "2023-07-04",
+          "code": "DT-START",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "level_plus": 4,
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": ""
         }
       ]
     },
@@ -17232,8 +17250,8 @@ window.DATA = {
     "Creature X-12": {
       "sessions": 2,
       "net_gp": 0,
-      "net_dtd": 20,
-      "level_ups": 3,
+      "net_dtd": 60,
+      "level_ups": 7,
       "perm_count": 4,
       "cons_count": 0,
       "gifts_count": 0
@@ -17565,7 +17583,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-22T18:14:57.702Z",
+    "generated": "2025-10-22T18:18:45.937Z",
     "problems": []
   },
   "dm_allocations": []
