@@ -8641,6 +8641,8 @@ function openInventoryModal(charKey, opts={}){
     invMeta.style.display='none';
   }
 
+  const COMMON_SORT_PREFIX='\uFFFF';
+
   const inventoryOrdered=keptMeta
     .slice()
     .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
@@ -8809,7 +8811,7 @@ function openInventoryModal(charKey, opts={}){
       const {row,attunePill}=entry.equipped;
       row.classList.toggle('common', isCommon);
       row.classList.toggle('attuned', isAttuned);
-      row.dataset.sortKey=(isCommon?'~~':'')+(row.dataset.name||'').toLowerCase();
+      row.dataset.sortKey=(isCommon?COMMON_SORT_PREFIX:'')+(row.dataset.name||'').toLowerCase();
       if(attunePill){
         attunePill.classList.toggle('on', isAttuned);
         attunePill.textContent=isAttuned?'Attuned':'Attune';
@@ -9097,7 +9099,7 @@ function openInventoryModal(charKey, opts={}){
     row.className=classes.join(' ');
     row.dataset.name=label;
     row.dataset.lower=lower;
-    row.dataset.sortKey=(isCommon?'~~':'')+label.toLowerCase();
+    row.dataset.sortKey=(isCommon?COMMON_SORT_PREFIX:'')+label.toLowerCase();
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
