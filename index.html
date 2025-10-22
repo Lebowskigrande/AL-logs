@@ -9026,9 +9026,6 @@ function openConsumableModal(charKey){
 
   consTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Consumables';
   consMeta.textContent=`Level ${level} • Carry limit: ${carryCap}`;
-  // Preserve the modal column structure so we can populate the sublists.
-  // Clearing the root container removes the nested columns from the DOM,
-  // which prevents consumables from rendering on reopen.
 
   let lastBaseSummary='';
   let summaryNote='';
@@ -9046,14 +9043,122 @@ function openConsumableModal(charKey){
   };
   setSummaryNote('');
 
-  const state={carriedList:[],carriedCounts:new Map()};
+  const state={
+    carriedList:[],
+    carriedCounts:new Map(),
+    inventoryRows:new Map(),
+    carriedRows:new Map(),
+    inventorySection:null,
+    carriedSection:null,
+    hasColumns:false
+  };
+  state.inventoryEmptyRow=createEmptyRow();
+  state.carriedEmptyRow=createEmptyRow();
+
   const rawCarried=loadCarriedConsumables(charKey);
   rawCarried.forEach(item=>{
     const name=String(item||'').trim();
     if(name) state.carriedList.push(name);
   });
 
-  const sanitizeCarried=()=>{
+  function createEmptyRow(text=''){
+    const empty=document.createElement('div');
+    empty.className='muted';
+    empty.style.padding='4px 8px';
+    empty.textContent=text;
+    return empty;
+  }
+  function initSection(container,label){
+    while(container.firstChild){
+      container.removeChild(container.firstChild);
+    }
+    const anchor=document.createComment(label);
+    container.appendChild(anchor);
+    return { container, anchor, rows:[] };
+  }
+  function ensureSections(){
+    const hasColumns=!!(consInventoryList && consEquippedList);
+    state.hasColumns=hasColumns;
+    if(hasColumns){
+      if(!state.inventorySection || state.inventorySection.container!==consInventoryList){
+        state.inventorySection=initSection(consInventoryList,'cons-inventory-end');
+      }
+      if(!state.carriedSection || state.carriedSection.container!==consEquippedList){
+        state.carriedSection=initSection(consEquippedList,'cons-carried-end');
+      }
+    }else if(consList){
+      if(!state.inventorySection || state.inventorySection.container!==consList){
+        while(consList.firstChild){
+          consList.removeChild(consList.firstChild);
+        }
+        const inventoryAnchor=document.createComment('cons-inventory-end');
+        const carriedAnchor=document.createComment('cons-carried-end');
+        consList.appendChild(inventoryAnchor);
+        consList.appendChild(carriedAnchor);
+        state.inventorySection={ container:consList, anchor:inventoryAnchor, rows:[] };
+        state.carriedSection={ container:consList, anchor:carriedAnchor, rows:[] };
+      }
+    }else{
+      state.inventorySection=null;
+      state.carriedSection=null;
+    }
+  }
+  function placeRow(section,row){
+    if(!section || !row) return;
+    const key=row.dataset.sortKey || row.dataset.name || '';
+    const existing=section.rows.filter(item=>item!==row);
+    let inserted=false;
+    for(let i=0;i<existing.length;i++){
+      const other=existing[i];
+      const otherKey=other.dataset.sortKey || other.dataset.name || '';
+      if(otherKey.localeCompare(key,undefined,{sensitivity:'base'})>0){
+        section.container.insertBefore(row, other);
+        existing.splice(i,0,row);
+        inserted=true;
+        break;
+      }
+    }
+    if(!inserted){
+      section.container.insertBefore(row, section.anchor);
+      existing.push(row);
+    }
+    section.rows=existing;
+  }
+  function unlinkRow(section,row){
+    if(!section || !row) return;
+    const idx=section.rows.indexOf(row);
+    if(idx!==-1){
+      section.rows.splice(idx,1);
+    }
+  }
+  function removeRow(section,row){
+    if(!section || !row) return;
+    unlinkRow(section,row);
+    if(row.parentNode===section.container){
+      section.container.removeChild(row);
+    }
+  }
+  function clearSection(section){
+    if(!section) return;
+    section.rows.forEach(row=>{
+      if(row.parentNode===section.container){
+        section.container.removeChild(row);
+      }
+    });
+    section.rows=[];
+  }
+  function showEmpty(section,row,text){
+    if(!section || !row) return;
+    row.textContent=text;
+    section.container.insertBefore(row, section.anchor);
+  }
+  function hideEmpty(section,row){
+    if(!section || !row) return;
+    if(row.parentNode===section.container){
+      section.container.removeChild(row);
+    }
+  }
+  function sanitizeCarried(){
     const next=[];
     const usage=new Map();
     let changed=false;
@@ -9076,7 +9181,7 @@ function openConsumableModal(charKey){
     }
     state.carriedList=next;
     state.carriedCounts=usage;
-  };
+  }
 
   const totalCarried=()=>state.carriedList.length;
   const slotsFree=()=>Math.max(0,carryCap-totalCarried());
@@ -9097,10 +9202,10 @@ function openConsumableModal(charKey){
     labelSpan.textContent=displayLabel||name;
     primary.appendChild(labelSpan);
     nameDiv.appendChild(primary);
-    return {element:nameDiv,label:labelSpan.textContent};
+    return {element:nameDiv,label:labelSpan.textContent,labelEl:labelSpan};
   };
 
-  const addCarry=(name,{toFront=true}={})=>{
+  function addCarry(name,{toFront=true}={}){
     const total=counts.get(name)||0;
     const carried=state.carriedCounts.get(name)||0;
     if(total<=carried) return false;
@@ -9114,9 +9219,8 @@ function openConsumableModal(charKey){
     setSummaryNote('');
     renderView();
     return true;
-  };
-
-  const removeCarry=(name)=>{
+  }
+  function removeCarry(name){
     const idx=state.carriedList.indexOf(name);
     if(idx===-1) return false;
     state.carriedList.splice(idx,1);
@@ -9124,37 +9228,206 @@ function openConsumableModal(charKey){
     setSummaryNote('');
     renderView();
     return true;
-  };
-
-  const renderView=()=>{
+  }
+  function ensureInventoryEntry(name){
+    const lower=name.toLowerCase();
+    const {label:displayLabel}=formatConsumableDisplay(name);
+    const sortKey=(displayLabel||name).toLowerCase();
+    let entry=state.inventoryRows.get(lower);
+    if(!entry){
+      const row=document.createElement('div');
+      row.className='inv-row';
+      row.dataset.name=name;
+      row.dataset.lower=lower;
+      row.dataset.sortKey=sortKey;
+      const {element:nameDiv,labelEl}=buildNameDiv(name);
+      row.appendChild(nameDiv);
+      const tools=document.createElement('div');
+      tools.className='inv-tools';
+      const qtyDiv=document.createElement('div');
+      qtyDiv.className='qty';
+      const pill=document.createElement('span');
+      pill.className='qty-pill';
+      qtyDiv.appendChild(pill);
+      tools.appendChild(qtyDiv);
+      row.appendChild(tools);
+      const activate=(ev)=>{
+        if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+        ev.preventDefault();
+        ev.stopPropagation();
+        const target=row.dataset.name;
+        if(target) addCarry(target,{toFront:true});
+      };
+      row.addEventListener('click',activate);
+      row.addEventListener('keydown',activate);
+      entry={row,pill,labelEl};
+      state.inventoryRows.set(lower,entry);
+    }
+    entry.row.dataset.name=name;
+    entry.row.dataset.lower=lower;
+    entry.row.dataset.sortKey=sortKey;
+    entry.labelEl.textContent=displayLabel||name;
+    return entry;
+  }
+  function updateInventoryEntry(entry,name,total,carried,remaining){
+    const row=entry.row;
+    row.classList.toggle('active',carried>0);
+    if(remaining<=0){
+      row.classList.add('static');
+    }else{
+      row.classList.remove('static');
+    }
+    entry.pill.textContent=String(Math.max(0,remaining));
+    const detailParts=[`${total} total`];
+    if(carried>0) detailParts.push(`${carried} carried`);
+    if(remaining>0) detailParts.push(`${remaining} stowed`);
+    else if(total>0 && carried>0) detailParts.push('All carried');
+    else detailParts.push('None carried');
+    const detailText=detailParts.join(' • ');
+    if(remaining>0){
+      row.setAttribute('role','button');
+      row.tabIndex=0;
+      row.title=detailText?`Click to carry one copy (${detailText})`:'Click to carry one copy';
+    }else{
+      row.removeAttribute('role');
+      row.removeAttribute('tabindex');
+      const baseTitle=carried>0?'All copies currently carried':'No copies available';
+      row.title=detailText?`${baseTitle} (${detailText})`:baseTitle;
+    }
+  }
+  function ensureCarriedEntry(name){
+    const lower=name.toLowerCase();
+    const {label:displayLabel}=formatConsumableDisplay(name);
+    const sortKey=(displayLabel||name).toLowerCase();
+    let entry=state.carriedRows.get(lower);
+    if(!entry){
+      const row=document.createElement('div');
+      row.className='inv-row active';
+      row.dataset.name=name;
+      row.dataset.lower=lower;
+      row.dataset.sortKey=sortKey;
+      const {element:nameDiv,labelEl}=buildNameDiv(name);
+      row.appendChild(nameDiv);
+      const tools=document.createElement('div');
+      tools.className='inv-tools';
+      const qtyDiv=document.createElement('div');
+      qtyDiv.className='qty';
+      const minus=document.createElement('span');
+      minus.className='qty-icon';
+      minus.innerHTML=ICON_MINUS;
+      minus.setAttribute('role','button');
+      minus.tabIndex=0;
+      const pill=document.createElement('span');
+      pill.className='qty-pill';
+      const plus=document.createElement('span');
+      plus.className='qty-icon';
+      plus.innerHTML=ICON_PLUS;
+      plus.setAttribute('role','button');
+      plus.tabIndex=0;
+      qtyDiv.appendChild(minus);
+      qtyDiv.appendChild(pill);
+      qtyDiv.appendChild(plus);
+      tools.appendChild(qtyDiv);
+      const useBtn=document.createElement('button');
+      useBtn.type='button';
+      useBtn.className='btn small danger cons-use-btn';
+      useBtn.textContent='Use';
+      tools.appendChild(useBtn);
+      row.appendChild(tools);
+      const adjust=(delta)=>(ev)=>{
+        if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
+        ev.preventDefault();
+        ev.stopPropagation();
+        const target=row.dataset.name;
+        if(!target) return;
+        if(delta<0){
+          removeCarry(target);
+        }else{
+          addCarry(target,{toFront:false});
+        }
+      };
+      minus.addEventListener('click',adjust(-1));
+      minus.addEventListener('keydown',adjust(-1));
+      plus.addEventListener('click',adjust(1));
+      plus.addEventListener('keydown',adjust(1));
+      const handleUse=async(ev)=>{
+        ev.preventDefault();
+        ev.stopPropagation();
+        const target=row.dataset.name;
+        if(!target) return;
+        const {label:display}=formatConsumableDisplay(target);
+        const displayLabel=display||target;
+        const usesBefore=getConsumableUseMap(charKey).get(target)||0;
+        const success=incrementConsumableUse(charKey,target);
+        if(!success){
+          window.alert(`No ${displayLabel} remaining to use.`);
+          return;
+        }
+        const idx=state.carriedList.indexOf(target);
+        if(idx!==-1){
+          state.carriedList.splice(idx,1);
+          saveCarriedConsumables(charKey,state.carriedList);
+        }
+        setSummaryNote(`Used one ${displayLabel}.`);
+        renderView();
+        try{
+          await saveDataJs();
+        }catch(err){
+          const ch=DATA.characters[charKey];
+          if(ch && ch.consumable_uses && Object.prototype.hasOwnProperty.call(ch.consumable_uses,target)){
+            if(usesBefore>0){
+              ch.consumable_uses[target]=usesBefore;
+            }else{
+              delete ch.consumable_uses[target];
+            }
+            if(!Object.keys(ch.consumable_uses).length){
+              delete ch.consumable_uses;
+            }
+          }
+          pendingDerivedUpdates.delete(charKey);
+          applyDataMutation(charKey);
+          renderView();
+        }
+      };
+      useBtn.addEventListener('click',handleUse);
+      entry={row,minus,plus,pill,useBtn,labelEl};
+      state.carriedRows.set(lower,entry);
+    }
+    entry.row.dataset.name=name;
+    entry.row.dataset.lower=lower;
+    entry.row.dataset.sortKey=sortKey;
+    entry.labelEl.textContent=displayLabel||name;
+    return entry;
+  }
+  function updateCarriedEntry(entry,name,total,carried,remaining,free){
+    entry.row.classList.add('active');
+    entry.pill.textContent=String(carried);
+    const canDecrease=carried>0;
+    entry.minus.classList.toggle('disabled',!canDecrease);
+    entry.minus.setAttribute('aria-disabled',canDecrease?'false':'true');
+    const canIncrease=remaining>0 && free>0;
+    entry.plus.classList.toggle('disabled',!canIncrease);
+    entry.plus.setAttribute('aria-disabled',canIncrease?'false':'true');
+    entry.useBtn.disabled=total<=0;
+  }
+  function renderView(){
     reloadData();
     sanitizeCarried();
-    const hasColumns=!!(consInventoryList && consEquippedList);
-    if(hasColumns){
-      consInventoryList.innerHTML='';
-      consEquippedList.innerHTML='';
-    }else{
-      consList.innerHTML='';
-    }
-
-    const inventoryTarget=consInventoryList||consList;
-    const equippedTarget=consEquippedList||consList;
-
-    const makeEmpty=(text)=>{
-      const empty=document.createElement('div');
-      empty.className='muted';
-      empty.style.padding='4px 8px';
-      empty.textContent=text;
-      return empty;
-    };
+    ensureSections();
+    const inventorySection=state.inventorySection;
+    const carriedSection=state.carriedSection;
+    hideEmpty(inventorySection,state.inventoryEmptyRow);
+    hideEmpty(carriedSection,state.carriedEmptyRow);
 
     if(!hasBaseInventory()){
       lastBaseSummary='No consumables tracked yet.';
       applySummary();
-      inventoryTarget.appendChild(makeEmpty('No consumables tracked yet.'));
-      if(hasColumns){
-        equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
-      }
+      clearSection(inventorySection);
+      clearSection(carriedSection);
+      state.inventoryRows.clear();
+      state.carriedRows.clear();
+      showEmpty(inventorySection,state.inventoryEmptyRow,'No consumables tracked yet.');
+      showEmpty(carriedSection,state.carriedEmptyRow,'Not carrying any consumables.');
       return;
     }
 
@@ -9162,10 +9435,12 @@ function openConsumableModal(charKey){
     if(inventoryTotal<=0){
       lastBaseSummary='No consumables remaining.';
       applySummary();
-      inventoryTarget.appendChild(makeEmpty('All consumables have been used.'));
-      if(hasColumns){
-        equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
-      }
+      clearSection(inventorySection);
+      clearSection(carriedSection);
+      state.inventoryRows.clear();
+      state.carriedRows.clear();
+      showEmpty(inventorySection,state.inventoryEmptyRow,'All consumables have been used.');
+      showEmpty(carriedSection,state.carriedEmptyRow,'Not carrying any consumables.');
       return;
     }
 
@@ -9181,176 +9456,82 @@ function openConsumableModal(charKey){
 
     const carriedOrdered=[];
     const seen=new Set();
-    state.carriedList.forEach(name=>{ if(!seen.has(name)){ seen.add(name); carriedOrdered.push(name); } });
+    state.carriedList.forEach(name=>{
+      if(!seen.has(name)){
+        seen.add(name);
+        carriedOrdered.push(name);
+      }
+    });
     carriedOrdered.sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+    const activeCarried=new Set();
     if(carriedOrdered.length){
       carriedOrdered.forEach(name=>{
         const total=counts.get(name)||0;
         const carried=state.carriedCounts.get(name)||0;
         const remaining=Math.max(0,total-carried);
-        const row=document.createElement('div');
-        row.className='inv-row active';
-        row.style.cursor='default';
-        row.dataset.name=name;
-        const {element:nameDiv,label:displayLabel}=buildNameDiv(name);
-        row.appendChild(nameDiv);
-
-        const tools=document.createElement('div');
-        tools.className='inv-tools';
-
-        const qtyDiv=document.createElement('div');
-        qtyDiv.className='qty';
-
-        const minus=document.createElement('span');
-        minus.className='qty-icon'+(carried<=0?' disabled':'');
-        minus.innerHTML=ICON_MINUS;
-        minus.setAttribute('role','button');
-        minus.setAttribute('aria-label',`Stow one ${name}`);
-        minus.tabIndex=0;
-        minus.setAttribute('aria-disabled',carried<=0?'true':'false');
-
-        const pill=document.createElement('span');
-        pill.className='qty-pill';
-        pill.textContent=String(carried);
-
-        const plus=document.createElement('span');
-        const canIncrease=remaining>0 && free>0;
-        plus.className='qty-icon'+(canIncrease?'':' disabled');
-        plus.innerHTML=ICON_PLUS;
-        plus.setAttribute('role','button');
-        plus.setAttribute('aria-label',`Carry one more ${name}`);
-        plus.tabIndex=0;
-        plus.setAttribute('aria-disabled',canIncrease?'false':'true');
-
-        const handleAdjust=(delta)=>(ev)=>{
-          if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
-          ev.preventDefault();
-          ev.stopPropagation();
-          if(delta<0){
-            if(carried>0) removeCarry(name);
-          }else{
-            addCarry(name,{toFront:false});
-          }
-        };
-
-        minus.addEventListener('click',handleAdjust(-1));
-        minus.addEventListener('keydown',handleAdjust(-1));
-        plus.addEventListener('click',handleAdjust(1));
-        plus.addEventListener('keydown',handleAdjust(1));
-
-        qtyDiv.appendChild(minus);
-        qtyDiv.appendChild(pill);
-        qtyDiv.appendChild(plus);
-        tools.appendChild(qtyDiv);
-
-        const useBtn=document.createElement('button');
-        useBtn.type='button';
-        useBtn.className='btn small danger cons-use-btn';
-        useBtn.textContent='Use';
-        useBtn.disabled=total<=0;
-        const handleUse=async(ev)=>{
-          ev.preventDefault();
-          ev.stopPropagation();
-          const usesBefore=getConsumableUseMap(charKey).get(name)||0;
-          const success=incrementConsumableUse(charKey,name);
-          if(!success){
-            window.alert(`No ${displayLabel} remaining to use.`);
-            return;
-          }
-          const idx=state.carriedList.indexOf(name);
-          if(idx!==-1){
-            state.carriedList.splice(idx,1);
-            saveCarriedConsumables(charKey,state.carriedList);
-          }
-          setSummaryNote(`Used one ${displayLabel}.`);
-          renderView();
-          try{
-            await saveDataJs();
-          }catch(err){
-            const ch=DATA.characters[charKey];
-            if(ch && ch.consumable_uses && Object.prototype.hasOwnProperty.call(ch.consumable_uses,name)){
-              if(usesBefore>0){
-                ch.consumable_uses[name]=usesBefore;
-              }else{
-                delete ch.consumable_uses[name];
-              }
-              if(!Object.keys(ch.consumable_uses).length){
-                delete ch.consumable_uses;
-              }
-            }
-            pendingDerivedUpdates.delete(charKey);
-            applyDataMutation(charKey);
-            renderView();
-          }
-        };
-        useBtn.addEventListener('click',handleUse);
-        tools.appendChild(useBtn);
-
-        row.appendChild(tools);
-        equippedTarget.appendChild(row);
+        const entry=ensureCarriedEntry(name);
+        updateCarriedEntry(entry,name,total,carried,remaining,free);
+        placeRow(carriedSection,entry.row);
+        activeCarried.add(name.toLowerCase());
       });
     }else{
-      equippedTarget.appendChild(makeEmpty('Not carrying any consumables.'));
+      clearSection(carriedSection);
+    }
+    const removeCarried=[];
+    state.carriedRows.forEach((entry,lower)=>{
+      if(!activeCarried.has(lower)){
+        removeCarried.push(lower);
+      }
+    });
+    removeCarried.forEach(lower=>{
+      const entry=state.carriedRows.get(lower);
+      if(entry){
+        removeRow(carriedSection,entry.row);
+        state.carriedRows.delete(lower);
+      }
+    });
+    if(!carriedOrdered.length){
+      showEmpty(carriedSection,state.carriedEmptyRow,'Not carrying any consumables.');
+    }else{
+      hideEmpty(carriedSection,state.carriedEmptyRow);
     }
 
     const nameSet=new Set(counts.keys());
-    state.carriedList.forEach(name=>{ if(name && !nameSet.has(name)){ nameSet.add(name); } });
+    state.carriedList.forEach(name=>{ if(name) nameSet.add(name); });
     const inventoryNames=Array.from(nameSet).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
+    const activeInventory=new Set();
     if(inventoryNames.length){
       inventoryNames.forEach(name=>{
         const total=counts.get(name)||0;
         const carried=state.carriedCounts.get(name)||0;
         const remaining=Math.max(0,total-carried);
-        const row=document.createElement('div');
-        row.className='inv-row';
-        if(carried>0) row.classList.add('active');
-        if(remaining<=0){
-          row.classList.add('static');
-        }
-        row.dataset.name=name;
-        const {element:nameDiv}=buildNameDiv(name);
-        const detailParts=[`${total} total`];
-        if(carried>0) detailParts.push(`${carried} carried`);
-        if(remaining>0) detailParts.push(`${remaining} stowed`);
-        else if(total>0 && carried>0) detailParts.push('All carried');
-        else detailParts.push('None carried');
-        const detailText=detailParts.join(' • ');
-        row.appendChild(nameDiv);
-
-        const tools=document.createElement('div');
-        tools.className='inv-tools';
-        const qtyDiv=document.createElement('div');
-        qtyDiv.className='qty';
-        const pill=document.createElement('span');
-        pill.className='qty-pill';
-        pill.textContent=String(Math.max(0,remaining));
-        qtyDiv.appendChild(pill);
-        tools.appendChild(qtyDiv);
-        row.appendChild(tools);
-
-        if(remaining>0){
-          row.setAttribute('role','button');
-          row.tabIndex=0;
-          row.title=detailText?`Click to carry one copy (${detailText})`:'Click to carry one copy';
-          const activate=(ev)=>{
-            if(ev.type==='keydown' && ev.key!=='Enter' && ev.key!==' ' && ev.key!=='Spacebar'){ return; }
-            ev.preventDefault();
-            ev.stopPropagation();
-            addCarry(name,{toFront:true});
-          };
-          row.addEventListener('click',activate);
-          row.addEventListener('keydown',activate);
-        }else{
-          const baseTitle=carried>0?'All copies currently carried':'No copies available';
-          row.title=detailText?`${baseTitle} (${detailText})`:baseTitle;
-        }
-
-        inventoryTarget.appendChild(row);
+        const entry=ensureInventoryEntry(name);
+        updateInventoryEntry(entry,name,total,carried,remaining);
+        placeRow(inventorySection,entry.row);
+        activeInventory.add(name.toLowerCase());
       });
     }else{
-      inventoryTarget.appendChild(makeEmpty('No consumables stowed.'));
+      clearSection(inventorySection);
     }
-  };
+    const removeInventory=[];
+    state.inventoryRows.forEach((entry,lower)=>{
+      if(!activeInventory.has(lower)){
+        removeInventory.push(lower);
+      }
+    });
+    removeInventory.forEach(lower=>{
+      const entry=state.inventoryRows.get(lower);
+      if(entry){
+        removeRow(inventorySection,entry.row);
+        state.inventoryRows.delete(lower);
+      }
+    });
+    if(!inventoryNames.length){
+      showEmpty(inventorySection,state.inventoryEmptyRow,'No consumables stowed.');
+    }else{
+      hideEmpty(inventorySection,state.inventoryEmptyRow);
+    }
+  }
 
   renderView();
   consModal.classList.add('open');
