@@ -699,6 +699,11 @@ body.card-editor-active #addCard{
 .inv-row .qty-icon{width:var(--inv-control-height);height:var(--inv-control-height)}
 .qty-icon svg{width:22px;height:22px;stroke-width:1.8}
 .inv-row .qty-icon svg{width:calc(var(--inv-control-height) - 6px);height:calc(var(--inv-control-height) - 6px)}
+.inventory-context-menu{position:fixed;min-width:180px;padding:6px 0;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow1),var(--shadow2);display:flex;flex-direction:column;gap:0;z-index:140}
+.inventory-context-menu[hidden]{display:none}
+.inventory-context-item{appearance:none;border:none;background:none;padding:9px 16px;text-align:left;font:inherit;font-size:14px;color:var(--ink);cursor:pointer;transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.inventory-context-item:hover,.inventory-context-item:focus-visible{background:#eef4ff;color:var(--primary);outline:none}
+.inventory-context-item[disabled]{color:var(--muted);cursor:default;background:none}
 @media (max-width:600px){
   .inv-row{grid-template-columns:minmax(0,1fr);row-gap:8px;align-items:flex-start}
   .inv-row .inv-tools{justify-self:flex-start;width:100%;padding-inline:var(--inv-row-padding-x);flex-wrap:wrap;row-gap:6px}
@@ -7433,6 +7438,153 @@ function collectPermanentInventory(charKey){
 const TRADE_LONG_PRESS_MS=600;
 let activeTradeContext=null;
 
+const inventoryContextMenuState={
+  menu:null,
+  tradeBtn:null,
+  commonBtn:null,
+  cleanup:[],
+  activeTrigger:null
+};
+
+function ensureInventoryContextMenu(){
+  if(inventoryContextMenuState.menu) return inventoryContextMenuState;
+  const menu=document.createElement('div');
+  menu.className='inventory-context-menu';
+  menu.setAttribute('role','menu');
+  menu.hidden=true;
+  const tradeBtn=document.createElement('button');
+  tradeBtn.type='button';
+  tradeBtn.className='inventory-context-item';
+  tradeBtn.textContent='Trade';
+  tradeBtn.setAttribute('role','menuitem');
+  const commonBtn=document.createElement('button');
+  commonBtn.type='button';
+  commonBtn.className='inventory-context-item';
+  commonBtn.textContent='Designate Common';
+  commonBtn.setAttribute('role','menuitem');
+  menu.appendChild(tradeBtn);
+  menu.appendChild(commonBtn);
+  menu.addEventListener('pointerdown',(event)=>{ event.stopPropagation(); });
+  document.body.appendChild(menu);
+  inventoryContextMenuState.menu=menu;
+  inventoryContextMenuState.tradeBtn=tradeBtn;
+  inventoryContextMenuState.commonBtn=commonBtn;
+  inventoryContextMenuState.cleanup=[];
+  return inventoryContextMenuState;
+}
+
+function hideInventoryContextMenu(){
+  const state=inventoryContextMenuState;
+  if(!state.menu) return;
+  if(state.cleanup.length){
+    state.cleanup.forEach(fn=>{ try{ fn(); }catch(_){ /* ignore */ } });
+    state.cleanup=[];
+  }
+  if(state.tradeBtn) state.tradeBtn.onclick=null;
+  if(state.commonBtn) state.commonBtn.onclick=null;
+  if(state.menu){
+    state.menu.hidden=true;
+    state.menu.style.left='';
+    state.menu.style.top='';
+    state.menu.style.visibility='';
+  }
+  if(state.activeTrigger){
+    delete state.activeTrigger.dataset.contextMenuOpen;
+    state.activeTrigger=null;
+  }
+}
+
+function showInventoryContextMenu({
+  trigger,
+  x,
+  y,
+  triggerRect,
+  onTrade,
+  onDesignateCommon,
+  isCommon
+}={}){
+  const state=ensureInventoryContextMenu();
+  hideInventoryContextMenu();
+  const {menu,tradeBtn,commonBtn}=state;
+  state.activeTrigger=trigger||null;
+  if(state.activeTrigger){
+    state.activeTrigger.dataset.contextMenuOpen='true';
+  }
+  const resolveIsCommon=()=>{
+    if(typeof isCommon==='function'){
+      try{ return !!isCommon(); }
+      catch(_){ return false; }
+    }
+    return !!isCommon;
+  };
+  const itemIsCommon=resolveIsCommon();
+  if(tradeBtn){
+    tradeBtn.disabled=false;
+    tradeBtn.textContent='Trade';
+    tradeBtn.onclick=()=>{
+      hideInventoryContextMenu();
+      if(typeof onTrade==='function') onTrade();
+    };
+  }
+  if(commonBtn){
+    commonBtn.textContent='Designate Common';
+    commonBtn.disabled=itemIsCommon;
+    if(itemIsCommon){
+      commonBtn.title='Already marked as common';
+    }else{
+      commonBtn.removeAttribute('title');
+    }
+    commonBtn.onclick=()=>{
+      if(commonBtn.disabled) return;
+      hideInventoryContextMenu();
+      if(typeof onDesignateCommon==='function') onDesignateCommon();
+    };
+  }
+  if(!menu) return;
+  menu.hidden=false;
+  menu.style.visibility='hidden';
+  menu.style.left='0px';
+  menu.style.top='0px';
+  const menuRect=menu.getBoundingClientRect();
+  const fallbackRect=triggerRect || (trigger?trigger.getBoundingClientRect():null);
+  let left=(typeof x==='number' && !Number.isNaN(x))?x:null;
+  let top=(typeof y==='number' && !Number.isNaN(y))?y:null;
+  if(left==null && fallbackRect){
+    left=fallbackRect.left+(fallbackRect.width/2);
+  }
+  if(top==null && fallbackRect){
+    top=fallbackRect.top+(fallbackRect.height/2);
+  }
+  const padding=8;
+  const maxLeft=Math.max(padding, window.innerWidth - menuRect.width - padding);
+  const maxTop=Math.max(padding, window.innerHeight - menuRect.height - padding);
+  const finalLeft=Math.min(Math.max(padding, left==null?padding:left), maxLeft);
+  const finalTop=Math.min(Math.max(padding, top==null?padding:top), maxTop);
+  menu.style.left=`${finalLeft}px`;
+  menu.style.top=`${finalTop}px`;
+  menu.style.visibility='visible';
+
+  const handlePointerDown=(event)=>{
+    if(!menu.contains(event.target)){
+      hideInventoryContextMenu();
+    }
+  };
+  const handleKeyDown=(event)=>{
+    if(event.key==='Escape'){
+      hideInventoryContextMenu();
+    }
+  };
+  const handleScroll=()=>{ hideInventoryContextMenu(); };
+  document.addEventListener('pointerdown',handlePointerDown);
+  document.addEventListener('keydown',handleKeyDown);
+  document.addEventListener('scroll',handleScroll,true);
+  state.cleanup=[
+    ()=>document.removeEventListener('pointerdown',handlePointerDown),
+    ()=>document.removeEventListener('keydown',handleKeyDown),
+    ()=>document.removeEventListener('scroll',handleScroll,true)
+  ];
+}
+
 function resetTradeForm(){
   resetTradeReceiveField();
   if(tradeDateInput){
@@ -8020,10 +8172,22 @@ async function handleTradeSubmit(){
   }
 }
 
-function bindInventoryTradeInteraction(row,{charKey,itemName,itemCanonicalName}){
+function bindInventoryTradeInteraction(row,{
+  charKey,
+  itemName,
+  itemCanonicalName,
+  designateCommon,
+  isCommon
+}){
   if(!row) return;
-  const openMenu=()=>{
-    if(invModal && invModal.classList.contains('editing')) return;
+  const resolveIsCommon=()=>{
+    if(typeof isCommon==='function'){
+      try{ return !!isCommon(); }
+      catch(_){ return row.classList.contains('common'); }
+    }
+    return !!isCommon;
+  };
+  const openTrade=()=>{
     openTradeModal({
       charKey,
       itemName,
@@ -8031,28 +8195,53 @@ function bindInventoryTradeInteraction(row,{charKey,itemName,itemCanonicalName})
       trigger:row
     });
   };
+  const markCommon=()=>{
+    if(typeof designateCommon==='function'){
+      designateCommon();
+    }
+  };
+  const openMenu=(position)=>{
+    if(invModal && invModal.classList.contains('editing')) return;
+    const coords=position||{};
+    showInventoryContextMenu({
+      trigger:row,
+      x:coords.clientX,
+      y:coords.clientY,
+      triggerRect:row.getBoundingClientRect(),
+      onTrade:openTrade,
+      onDesignateCommon:markCommon,
+      isCommon:resolveIsCommon
+    });
+  };
   row.addEventListener('contextmenu',(event)=>{
     event.preventDefault();
-    openMenu();
+    openMenu({ clientX:event.clientX, clientY:event.clientY });
   });
   let pressTimer=null;
+  let pointerPosition=null;
   const clearTimer=()=>{
     if(pressTimer){
       clearTimeout(pressTimer);
       pressTimer=null;
     }
   };
+  const resetPointer=()=>{ pointerPosition=null; };
   row.addEventListener('pointerdown',(event)=>{
     if(event.pointerType==='mouse' && event.button!==0) return;
     if(invModal && invModal.classList.contains('editing')) return;
     clearTimer();
+    pointerPosition={ clientX:event.clientX, clientY:event.clientY };
     pressTimer=setTimeout(()=>{
       pressTimer=null;
-      openMenu();
+      openMenu(pointerPosition||undefined);
+      resetPointer();
     },TRADE_LONG_PRESS_MS);
   });
   ['pointerup','pointerleave','pointercancel'].forEach(type=>{
-    row.addEventListener(type,clearTimer);
+    row.addEventListener(type,()=>{
+      clearTimer();
+      resetPointer();
+    });
   });
 }
 
@@ -8339,19 +8528,30 @@ if(tradeForm){
     }
   });
 }
-document.getElementById('invClose').addEventListener('click',()=>{ invModal.classList.remove('open','editing'); refreshModalState(); });
+document.getElementById('invClose').addEventListener('click',()=>{
+  hideInventoryContextMenu();
+  invModal.classList.remove('open','editing');
+  refreshModalState();
+});
 function closeConsumableModal(){
   consModal.classList.remove('open','editing');
   refreshModalState();
 }
 document.getElementById('consClose').addEventListener('click',closeConsumableModal);
-invModal.addEventListener('click',(e)=>{ if(e.target===invModal){ invModal.classList.remove('open','editing'); refreshModalState(); } });
+invModal.addEventListener('click',(e)=>{
+  if(e.target===invModal){
+    hideInventoryContextMenu();
+    invModal.classList.remove('open','editing');
+    refreshModalState();
+  }
+});
 consModal.addEventListener('click',(e)=>{ if(e.target===consModal) closeConsumableModal(); });
 document.getElementById('giftsClose').addEventListener('click',()=>{ giftsModal.classList.remove('open'); refreshModalState(); });
 giftsModal.addEventListener('click',(e)=>{ if(e.target===giftsModal){ giftsModal.classList.remove('open'); refreshModalState(); } });
 
 
 function openInventoryModal(charKey, opts={}){
+  hideInventoryContextMenu();
   const ch=DATA.characters[charKey];
   if(invModal){
     invModal.dataset.charKey=charKey;
@@ -8877,14 +9077,25 @@ function openInventoryModal(charKey, opts={}){
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
 
-    row.addEventListener('click',()=>{
+    row.addEventListener('click',(event)=>{
+      if(row.dataset.contextMenuOpen==='true'){
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       toggleActive(lower);
     });
 
     bindInventoryTradeInteraction(row,{
       charKey,
       itemName:label,
-      itemCanonicalName:meta?meta.name:label
+      itemCanonicalName:meta?meta.name:label,
+      designateCommon:()=>{
+        if(!state.commonSet.has(lower)){
+          toggleCommon(lower);
+        }
+      },
+      isCommon:()=>state.commonSet.has(lower)
     });
 
     const entry=ensureItemNode(lower);
@@ -8944,14 +9155,25 @@ function openInventoryModal(charKey, opts={}){
     row.appendChild(nameDiv);
     row.appendChild(rightDiv);
 
-    row.addEventListener('click',()=>{
+    row.addEventListener('click',(event)=>{
+      if(row.dataset.contextMenuOpen==='true'){
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       toggleActive(lower);
     });
 
     bindInventoryTradeInteraction(row,{
       charKey,
       itemName:label,
-      itemCanonicalName:meta?meta.name:label
+      itemCanonicalName:meta?meta.name:label,
+      designateCommon:()=>{
+        if(!state.commonSet.has(lower)){
+          toggleCommon(lower);
+        }
+      },
+      isCommon:()=>state.commonSet.has(lower)
     });
 
     const entry=ensureItemNode(lower);
