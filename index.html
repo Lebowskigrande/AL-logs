@@ -7887,7 +7887,7 @@ function clearLegacyInventoryStorage(charKey){
   try{ localStorage.removeItem(commonKey(charKey)); }catch(_){ /* ignore */ }
 }
 
-function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
+function persistInventoryState(charKey,partial,{ applyMode='schedule', force=false }={}){
   if(!isValidSheetKey(charKey)){
     return {changed:false,state:{ active:[], attuned:[], common:[] }};
   }
@@ -7901,7 +7901,7 @@ function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
   const activeLower=new Set(nextActive.map(name=>name.toLowerCase()));
   nextAttuned=nextAttuned.filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
   const changed=listsDifferent(nextActive,current.active)||listsDifferent(nextAttuned,current.attuned)||listsDifferent(nextCommon,current.common);
-  if(!changed){
+  if(!changed && !force){
     return {changed:false,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
   }
   const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
@@ -7964,14 +7964,14 @@ function clearLegacyGiftStorage(charKey){
   catch(_){ /* ignore */ }
 }
 
-function persistSupernaturalState(charKey,partial,{ applyMode='schedule' }={}){
+function persistSupernaturalState(charKey,partial,{ applyMode='schedule', force=false }={}){
   if(!isValidSheetKey(charKey)){
     return {changed:false,state:{ blessing:'', boon:'' }};
   }
   const { state:current }=readSupernaturalStateFromData(charKey);
   const nextBlessing=normalizeGiftValue(partial && Object.prototype.hasOwnProperty.call(partial,'blessing')?partial.blessing:current.blessing);
   const nextBoon=normalizeGiftValue(partial && Object.prototype.hasOwnProperty.call(partial,'boon')?partial.boon:current.boon);
-  if(nextBlessing===current.blessing && nextBoon===current.boon){
+  if(nextBlessing===current.blessing && nextBoon===current.boon && !force){
     return {changed:false,state:{ blessing:nextBlessing, boon:nextBoon }};
   }
   const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
@@ -8245,7 +8245,7 @@ function loadActiveSupernatural(k){
   const fromData=readSupernaturalStateFromData(k);
   if(fromData.hasData){
     if(fromData.changed){
-      persistSupernaturalState(k,fromData.state,{ applyMode:'schedule' });
+      persistSupernaturalState(k,fromData.state,{ applyMode:'schedule', force:true });
     }
     return { ...fromData.state };
   }
@@ -8324,7 +8324,7 @@ function loadActive(k){
   const fromData=readInventoryStateFromData(k);
   if(fromData.hasData){
     if(fromData.changed){
-      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule', force:true });
     }
     return fromData.state.active.slice();
   }
@@ -8342,7 +8342,7 @@ function loadAttuned(k){
   const fromData=readInventoryStateFromData(k);
   if(fromData.hasData){
     if(fromData.changed){
-      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule', force:true });
     }
     return fromData.state.attuned.slice();
   }
@@ -8361,7 +8361,7 @@ function loadCommon(k){
   const fromData=readInventoryStateFromData(k);
   if(fromData.hasData){
     if(fromData.changed){
-      persistInventoryState(k,fromData.state,{ applyMode:'schedule' });
+      persistInventoryState(k,fromData.state,{ applyMode:'schedule', force:true });
     }
     return fromData.state.common.slice();
   }
