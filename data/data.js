@@ -1441,6 +1441,24 @@ window.DATA = {
             "Wild Hunter"
           ],
           "notes": ""
+        },
+        {
+          "title": "Start at level 5",
+          "date": "2022-09-05",
+          "code": "DT-START",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "level_plus": 4,
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": ""
         }
       ]
     },
@@ -17223,8 +17241,8 @@ window.DATA = {
     "Squelch": {
       "sessions": 3,
       "net_gp": 11773,
-      "net_dtd": 55,
-      "level_ups": 5,
+      "net_dtd": 95,
+      "level_ups": 9,
       "perm_count": 7,
       "cons_count": 1,
       "gifts_count": 0
@@ -17547,7 +17565,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-22T06:25:39.919Z",
+    "generated": "2025-10-22T18:14:57.702Z",
     "problems": []
   },
   "dm_allocations": []
