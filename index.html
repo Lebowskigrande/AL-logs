@@ -20,7 +20,7 @@
   --open-card-shadow:none;
   --open-card-accent:transparent;
   --divider:#e2e8f0;
-  --inv-row-padding-y:6px;
+  --inv-row-padding-y:4px;
   --inv-row-padding-x:10px;
 }
 *{box-sizing:border-box}
@@ -628,7 +628,7 @@ body.card-editor-active #addCard{
 .modal-add button:hover{background:rgba(26,115,232,.2)}
 
 /* Inventory row styles */
-.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:var(--inv-row-padding-y) var(--inv-row-padding-x);border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:24px;max-height:36px;--inv-control-height:19px;--inv-control-line-height:15px}
+.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:var(--inv-row-padding-y) var(--inv-row-padding-x);border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:calc(var(--inv-control-height) + var(--inv-row-padding-y) * 2);--inv-control-height:19px;--inv-control-line-height:15px}
 .inv-row::after{content:"";position:absolute;inset:0;background:rgba(37,99,235,.12);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease)}
 .inv-row>*{position:relative;z-index:1}
 .modal:not(.editing) .inv-row:not(.static):hover::after{opacity:1}
@@ -660,7 +660,7 @@ body.card-editor-active #addCard{
 .inv-name.consumable-name .cons-primary{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0}
 .inv-name.consumable-name .cons-name{display:block;font-weight:600;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 auto}
 .inv-name.consumable-name .cons-chips{display:inline-flex;flex-wrap:nowrap;gap:6px;margin-left:6px;flex:0 0 auto}
-.inv-tools{display:flex;align-items:center;gap:6px;padding:var(--inv-row-padding-y) var(--inv-row-padding-x)}
+.inv-tools{display:flex;align-items:center;gap:6px;padding:0 var(--inv-row-padding-x)}
 .inv-row .delete-btn{display:none;margin-left:8px}
 .inv-row .icon-btn{width:var(--inv-control-height);height:var(--inv-control-height);padding:0}
 .inv-row .icon-btn svg{width:calc(var(--inv-control-height) - 7px);height:calc(var(--inv-control-height) - 7px)}
