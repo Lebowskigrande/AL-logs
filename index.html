@@ -1303,6 +1303,7 @@ let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||windo
 window.AL_DATA_VERSION=dataVersion;
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
 window.AL_DATA_CACHE_BUST=dataCacheBust;
+let dataRevision=0;
 const DATA_DRAFT_STORAGE_KEY='al_logs_data_draft_v1';
 if(avatarEl){
   avatarEl.tabIndex=-1;
@@ -1386,6 +1387,13 @@ function adoptDataPayload(raw){
   DATA=window.DATA;
   dataNormalized=true;
   attachAdventureUids(window.DATA);
+  if(DATA && DATA.meta && typeof DATA.meta==='object'){
+    const revisionValue=DATA.meta.revision;
+    const parsedRevision=Number(revisionValue);
+    dataRevision=Number.isFinite(parsedRevision)?parsedRevision:0;
+  }else{
+    dataRevision=0;
+  }
 
   const pipeline=getDataPipeline();
   if(pipeline && typeof pipeline.validateData==='function'){
@@ -2304,6 +2312,9 @@ let pendingChanges=false;
 let savingData=false;
 let lastSaveResult=null;
 let saveFeedbackTimeout=null;
+const AUTO_SAVE_DEBOUNCE_MS=4000;
+let autoSaveTimeout=null;
+let pendingAutoSaveReason=null;
 let hasLocalDraft=false;
 let draftStateApplied=false;
 let draftPersistWarningShown=false;
@@ -3905,16 +3916,45 @@ function reapplyLocalDraftAndRefresh(){
   return applied;
 }
 
-function markDirty(){
+function scheduleAutoSave(reason=''){
+  if(autoSaveTimeout){
+    clearTimeout(autoSaveTimeout);
+  }
+  pendingAutoSaveReason=reason||pendingAutoSaveReason||'auto-save';
+  autoSaveTimeout=setTimeout(()=>{
+    autoSaveTimeout=null;
+    if(!pendingChanges){
+      pendingAutoSaveReason=null;
+      return;
+    }
+    if(savingData){
+      scheduleAutoSave(pendingAutoSaveReason);
+      return;
+    }
+    saveDataJs({ silent:true }).catch(err=>{
+      console.warn('Auto-save failed', err);
+    }).finally(()=>{
+      pendingAutoSaveReason=null;
+    });
+  },AUTO_SAVE_DEBOUNCE_MS);
+}
+
+function markDirty(reason){
   pendingChanges=true;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   updateSaveIndicatorState();
+  scheduleAutoSave(reason||'dirty');
 }
 function clearDirty(){
   pendingChanges=false;
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
+  if(autoSaveTimeout){
+    clearTimeout(autoSaveTimeout);
+    autoSaveTimeout=null;
+  }
+  pendingAutoSaveReason=null;
   clearDataDraft();
   updateSaveIndicatorState();
 }
@@ -3928,6 +3968,9 @@ function touchDataMetaTimestamp(){
     }catch(err){
       /* no-op */
     }
+    if(Number.isFinite(dataRevision)){
+      meta.revision=dataRevision;
+    }
   }
 }
 
@@ -3938,6 +3981,9 @@ function saveDataJs(options={}){
       syncPendingDerivedData();
       touchDataMetaTimestamp();
     }
+    if(DATA && DATA.meta && Number.isFinite(dataRevision)){
+      DATA.meta.revision=dataRevision;
+    }
     const payload=(typeof customDataJs==='string')?customDataJs:buildDataJsPayload();
     const hadPendingChanges=pendingChanges;
     const baseHeaders=(SAVE_HEADERS && typeof SAVE_HEADERS==='object')?SAVE_HEADERS:{};
@@ -3947,6 +3993,9 @@ function saveDataJs(options={}){
       ...baseHeaders,
       ...extraHeaders
     };
+    if(Number.isFinite(dataRevision)){
+      headers['x-data-revision']=String(dataRevision);
+    }
     if(!endpoint){
       const err=new Error('Save endpoint not configured.');
       if(!silent){
@@ -3973,10 +4022,27 @@ function saveDataJs(options={}){
       }
       if(!response.ok){
         const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data.js.';
+        if(response.status===409||response.status===412){
+          setSaveResult('error');
+          const conflictMessage=message||'Data.js has changed since you opened the dashboard.';
+          if(!silent){
+            window.alert(conflictMessage+' Please refresh to load the newest data before trying again.');
+          }
+          throw new Error(conflictMessage);
+        }
         throw new Error(message);
       }
       const versionForSave=String(Date.now());
       setDataVersion(versionForSave);
+      if(body && typeof body==='object' && Object.prototype.hasOwnProperty.call(body,'revision')){
+        const nextRevision=Number(body.revision);
+        if(Number.isFinite(nextRevision)){
+          dataRevision=nextRevision;
+          if(DATA && DATA.meta){
+            DATA.meta.revision=dataRevision;
+          }
+        }
+      }
       let refreshOutcome=null;
       let refreshError=null;
       try{
@@ -7908,7 +7974,7 @@ function persistInventoryState(charKey,partial,{ applyMode='schedule' }={}){
     return {changed:false,state:current};
   }
   ch.inventory_state={ active:nextActive, attuned:nextAttuned, common:nextCommon };
-  markDirty();
+  markDirty('inventory');
   registerDerivedUpdate(charKey);
   if(applyMode==='immediate'){
     applyDataMutation(charKey);
@@ -7982,7 +8048,7 @@ function persistSupernaturalState(charKey,partial,{ applyMode='schedule' }={}){
   }
   ch.supernatural_active.blessing=nextBlessing;
   ch.supernatural_active.boon=nextBoon;
-  markDirty();
+  markDirty('supernatural');
   registerDerivedUpdate(charKey);
   if(applyMode==='immediate'){
     applyDataMutation(charKey);
@@ -8307,15 +8373,103 @@ function entryLevelAtStart(entry){
 function activeSlotsFor(level){ if(level<=4)return 1; if(level<=10)return 3; if(level<=16)return 6; return 10; }
 function consumableCarrySlotsFor(level){ if(level<=4)return 5; if(level<=16)return 10; return 15; }
 function consumableCarryKey(k){ return 'CARRIED_CONS__'+k; }
-function loadCarriedConsumables(k){
+function sanitizeCarriedConsumableList(list){
+  const source=Array.isArray(list)?list:(list==null?[]:[list]);
+  const cleaned=[];
+  source.forEach(item=>{
+    const text=String(item||'').trim();
+    if(text) cleaned.push(text);
+  });
+  return cleaned;
+}
+function readCarriedConsumablesFromData(charKey){
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  const bag=(ch && typeof ch.consumables==='object')?ch.consumables:null;
+  const raw=bag?bag.carried:undefined;
+  const hasCarried=!!bag && Object.prototype.hasOwnProperty.call(bag,'carried');
+  const list=sanitizeCarriedConsumableList(raw);
+  const originalArray=Array.isArray(raw)?raw:(raw==null?[]:[raw]);
+  const normalizedOriginal=originalArray.map(item=>String(item||''));
+  const changed=hasCarried && (!Array.isArray(raw) || normalizedOriginal.some(value=>value.trim()!==value));
+  const hasData=hasCarried || list.length>0;
+  return { list, hasData, changed };
+}
+function readCarriedConsumablesFromLocalStorage(k){
+  if(typeof localStorage==='undefined'){
+    return { list:[], hasData:false, changed:false };
+  }
   try{
-    const raw=JSON.parse(localStorage.getItem(consumableCarryKey(k))||'[]');
-    if(Array.isArray(raw)) return raw.map(item=>String(item||'').trim()).filter(Boolean);
-  }catch(_){ /* ignore */ }
+    const rawValue=localStorage.getItem(consumableCarryKey(k));
+    if(!rawValue){
+      return { list:[], hasData:false, changed:false };
+    }
+    const parsed=JSON.parse(rawValue);
+    const list=sanitizeCarriedConsumableList(parsed);
+    const originalArray=Array.isArray(parsed)?parsed.map(item=>String(item||'')):[];
+    const changed=!Array.isArray(parsed) || originalArray.some(value=>value.trim()!==value) || list.length!==originalArray.length;
+    return { list, hasData:list.length>0 || !!rawValue, changed };
+  }catch(_){
+    return { list:[], hasData:false, changed:false };
+  }
+}
+function clearLegacyCarriedStorage(k){
+  if(typeof localStorage==='undefined') return;
+  try{ localStorage.removeItem(consumableCarryKey(k)); }
+  catch(_){ /* ignore */ }
+}
+function persistCarriedConsumables(charKey,list,{ applyMode='schedule' }={}){
+  if(!isValidSheetKey(charKey)){
+    return { changed:false, list:[] };
+  }
+  const desired=sanitizeCarriedConsumableList(list);
+  const { list:current }=readCarriedConsumablesFromData(charKey);
+  if(!listsDifferent(desired,current)){
+    return { changed:false, list:current.slice() };
+  }
+  const ch=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  if(!ch || typeof ch!=='object'){
+    return { changed:false, list:current.slice() };
+  }
+  if(!ch.consumables || typeof ch.consumables!=='object'){
+    ch.consumables={};
+  }
+  if(desired.length){
+    ch.consumables.carried=desired;
+  }else{
+    delete ch.consumables.carried;
+    if(!Object.keys(ch.consumables).length){
+      delete ch.consumables;
+    }
+  }
+  markDirty('consumables-carried');
+  registerDerivedUpdate(charKey);
+  if(applyMode==='immediate'){
+    applyDataMutation(charKey);
+  }else if(applyMode==='schedule'){
+    scheduleCharacterMutationApply(charKey);
+  }
+  clearLegacyCarriedStorage(charKey);
+  return { changed:true, list:desired.slice() };
+}
+function loadCarriedConsumables(k){
+  const fromData=readCarriedConsumablesFromData(k);
+  if(fromData.hasData){
+    if(fromData.changed){
+      persistCarriedConsumables(k,fromData.list,{ applyMode:'schedule' });
+    }
+    clearLegacyCarriedStorage(k);
+    return fromData.list.slice();
+  }
+  const legacy=readCarriedConsumablesFromLocalStorage(k);
+  if(legacy.hasData){
+    persistCarriedConsumables(k,legacy.list,{ applyMode:'schedule' });
+    clearLegacyCarriedStorage(k);
+    return legacy.list.slice();
+  }
   return [];
 }
-function saveCarriedConsumables(k,list){
-  localStorage.setItem(consumableCarryKey(k),JSON.stringify(Array.isArray(list)?list:[]));
+function saveCarriedConsumables(k,list,{ applyMode='schedule' }={}){
+  persistCarriedConsumables(k,list,{ applyMode });
 }
 function activeKey(k){ return 'ACTIVE_INV__'+k; }
 function attuneKey(k){ return 'ATTUNED__'+k; }
@@ -8418,9 +8572,14 @@ function buildConsumableInventory(charKey){
   const manual=(ch&&typeof ch.consumables==='object'&&ch.consumables)?ch.consumables:null;
   if(manual){
     Object.entries(manual).forEach(([name,val])=>{
-      const num=Math.max(0,Number(val)||0);
-      if(num>0) base.set(name,num);
-      else base.delete(name);
+      if(name==='carried') return;
+      const num=Number(val);
+      if(!Number.isFinite(num)) return;
+      if(num>0){
+        base.set(name,num);
+      }else{
+        base.delete(name);
+      }
     });
   }
   const uses=getConsumableUseMap(charKey);
@@ -8451,7 +8610,7 @@ function incrementConsumableUse(charKey,name){
   if(ch.consumable_uses[name]<=0) delete ch.consumable_uses[name];
   if(ch.consumable_uses && !Object.keys(ch.consumable_uses).length) delete ch.consumable_uses;
   registerDerivedUpdate(charKey);
-  markDirty();
+  markDirty('consumable-use');
   applyDataMutation(charKey);
   return true;
 }
@@ -9754,7 +9913,7 @@ function openSupernaturalModal(charKey){
   };
   const canActivateBoon=level>=17;
   const persistState=()=>{
-    saveActiveSupernatural(charKey,state);
+    saveActiveSupernatural(charKey,state,{ applyMode:'immediate' });
   };
   const sanitizeState=()=>{
     let changed=false;

@@ -18,6 +18,25 @@ const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
   return new Response(body, { status, headers: responseHeaders });
 };
 
+const extractDataPayload = (text) => {
+  if (typeof text !== 'string') return null;
+  const pattern = /window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$/;
+  const match = text.match(pattern);
+  return match && match[1] ? match[1] : null;
+};
+
+const parseDataObject = (text) => {
+  const payload = extractDataPayload(text);
+  if (!payload) return null;
+  try {
+    return JSON.parse(payload);
+  } catch (err) {
+    return null;
+  }
+};
+
+const formatDataObject = (obj) => `window.DATA = ${JSON.stringify(obj, null, 2)};`;
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
     return respond(null, { json: false });
@@ -31,6 +50,11 @@ export default async function handler(req) {
     const { dataJs, path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
+    }
+
+    const incomingData = parseDataObject(dataJs);
+    if (!incomingData || typeof incomingData !== 'object') {
+      return respond({ error: 'Unable to parse dataJs payload' }, { status: 400 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
@@ -88,6 +112,8 @@ export default async function handler(req) {
 
     const base = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(path)}`;
 
+    let currentRevision = 0;
+
     // 1) Get current SHA (required to update an existing file)
     let sha = undefined;
     const curRes = await fetch(`${base}?ref=${encodeURIComponent(branch)}`, {
@@ -96,6 +122,21 @@ export default async function handler(req) {
     if (curRes.ok) {
       const cur = await curRes.json();
       sha = cur?.sha;
+      const encodedContent = cur?.content;
+      if (encodedContent) {
+        try {
+          const decoded = atob(encodedContent.replace(/\n/g, ''));
+          const currentData = parseDataObject(decoded);
+          if (currentData && currentData.meta && typeof currentData.meta === 'object') {
+            const revValue = Number(currentData.meta.revision);
+            if (Number.isFinite(revValue)) {
+              currentRevision = Math.max(0, Math.floor(revValue));
+            }
+          }
+        } catch (err) {
+          /* ignore parse errors */
+        }
+      }
     } else if (curRes.status === 404) {
       let curError = null;
       try {
@@ -119,9 +160,53 @@ export default async function handler(req) {
       }
     }
 
+    const revisionHeader = req.headers.get('x-data-revision');
+    let expectedRevision = null;
+    if (revisionHeader != null) {
+      const parsedHeader = Number(revisionHeader);
+      if (Number.isFinite(parsedHeader)) {
+        expectedRevision = Math.max(0, Math.floor(parsedHeader));
+      } else {
+        const fallbackHeader = Number.parseInt(revisionHeader, 10);
+        if (Number.isFinite(fallbackHeader)) {
+          expectedRevision = Math.max(0, fallbackHeader);
+        }
+      }
+    }
+
+    if (sha && expectedRevision == null) {
+      return respond(
+        {
+          error: 'conflict',
+          message: 'Missing revision token. Refresh and try again.',
+          revision: currentRevision
+        },
+        { status: 409 }
+      );
+    }
+
+    if (expectedRevision != null && expectedRevision !== currentRevision) {
+      return respond(
+        {
+          error: 'conflict',
+          message: 'Data.js has changed since your last load.',
+          revision: currentRevision
+        },
+        { status: 409 }
+      );
+    }
+
+    const nextRevision = currentRevision + 1;
+    if (!incomingData.meta || typeof incomingData.meta !== 'object') {
+      incomingData.meta = {};
+    }
+    incomingData.meta.revision = nextRevision;
+
+    const preparedDataJs = formatDataObject(incomingData);
+
     // 2) Create commit
     const message = `feat: update ${path} from dashboard`;
-    const encoded = new TextEncoder().encode(dataJs);
+    const encoded = new TextEncoder().encode(preparedDataJs);
     let binary = '';
     for (let i = 0; i < encoded.length; i += 1) {
       binary += String.fromCharCode(encoded[i]);
@@ -142,7 +227,7 @@ export default async function handler(req) {
     const out = await putRes.json();
 
     // CORS for your site(s)
-    return respond({ ok: true, commit: out.commit?.sha });
+    return respond({ ok: true, commit: out.commit?.sha, revision: nextRevision });
   } catch (e) {
     return respond({ error: String(e) }, { status: 500 });
   }
