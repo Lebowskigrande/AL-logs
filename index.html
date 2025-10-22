@@ -621,6 +621,11 @@ body.card-editor-active #addCard{
 .inv-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .inv-columns .inv-column{display:flex;flex-direction:column;gap:8px}
 .inv-columns .inv-sublist{display:flex;flex-direction:column;gap:6px;min-height:0}
+@media (max-width:600px){
+  .inv-columns{display:flex;flex-direction:column}
+  .inv-column-equipped{order:0}
+  .inv-column-inventory{order:1}
+}
 .inv-column-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .modal-add{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .modal-add input,.modal-add select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
@@ -904,11 +909,11 @@ body.avatar-overlay-open{overflow:hidden}
     <div class="modal-body inv-modal-body">
       <div id="invSummary" class="inv-meta"></div>
       <div id="invList" class="inv-list inv-columns">
-        <div class="inv-column">
+        <div class="inv-column inv-column-inventory">
           <div class="inv-column-title">Inventory</div>
           <div class="inv-sublist" id="invInventoryList"></div>
         </div>
-        <div class="inv-column">
+        <div class="inv-column inv-column-equipped">
           <div class="inv-column-title">Equipped</div>
           <div class="inv-sublist" id="invEquippedList"></div>
         </div>
@@ -930,11 +935,11 @@ body.avatar-overlay-open{overflow:hidden}
     <div class="modal-body cons-modal-body">
       <div id="consSummary" class="inv-meta"></div>
       <div id="consList" class="inv-list inv-columns">
-        <div class="inv-column">
+        <div class="inv-column inv-column-inventory">
           <div class="inv-column-title">Inventory</div>
           <div class="inv-sublist" id="consInventoryList"></div>
         </div>
-        <div class="inv-column">
+        <div class="inv-column inv-column-equipped">
           <div class="inv-column-title">Carried</div>
           <div class="inv-sublist" id="consEquippedList"></div>
         </div>
