@@ -626,7 +626,7 @@ body.card-editor-active #addCard{
 .modal-add button:hover{background:rgba(26,115,232,.2)}
 
 /* Inventory row styles */
-.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:24px;max-height:36px}
+.inv-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:6px 10px;border-radius:8px;cursor:pointer;transition:background-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);column-gap:18px;position:relative;overflow:hidden;min-height:24px;max-height:36px;--inv-control-height:19px;--inv-control-line-height:15px}
 .inv-row::after{content:"";position:absolute;inset:0;background:rgba(37,99,235,.12);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease)}
 .inv-row>*{position:relative;z-index:1}
 .modal:not(.editing) .inv-row:not(.static):hover::after{opacity:1}
@@ -660,6 +660,8 @@ body.card-editor-active #addCard{
 .inv-name.consumable-name .cons-chips{display:inline-flex;flex-wrap:nowrap;gap:6px;margin-left:6px;flex:0 0 auto}
 .inv-tools{display:flex;align-items:center;gap:6px}
 .inv-row .delete-btn{display:none;margin-left:8px}
+.inv-row .icon-btn{width:var(--inv-control-height);height:var(--inv-control-height);padding:0}
+.inv-row .icon-btn svg{width:calc(var(--inv-control-height) - 7px);height:calc(var(--inv-control-height) - 7px)}
 .modal.editing .inv-row{cursor:default}
 .modal.editing .inv-row .delete-btn{display:inline-flex}
 .modal.editing .inv-row .attune-pill{pointer-events:none;opacity:.6}
@@ -669,10 +671,12 @@ body.card-editor-active #addCard{
 
 /* Attunement pill (perm modal, active rows only) */
 .attune-pill{display:inline-block;border:1px solid #cfe0ff;background:#eef4ff;color:#1a73e8;border-radius:999px;padding:2px 8px;font-size:11px;user-select:none;cursor:pointer;transition:background .2s,color .2s}
+.inv-row .attune-pill{display:inline-flex;align-items:center;justify-content:center;height:var(--inv-control-height);padding:0 8px;line-height:var(--inv-control-line-height)}
 .attune-pill.on{background:#1a73e8;color:#fff}
 
 /* Common item toggle */
 .common-chip{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid rgba(148,163,184,.45);background:#f1f5f9;color:#475569;border-radius:50%;padding:0;font-size:11px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1;cursor:pointer;user-select:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.inv-row .common-chip{width:var(--inv-control-height);height:var(--inv-control-height)}
 .common-chip>[aria-hidden]{display:inline-flex;align-items:center;justify-content:center;width:100%;height:100%}
 .common-chip:hover,.common-chip:focus-visible{background:#e2e8f0;border-color:#94a3b8;color:#334155;outline:none}
 .common-chip.on{background:#475569;color:#f8fafc;border-color:#475569}
@@ -683,9 +687,12 @@ body.card-editor-active #addCard{
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .qty-pill{display:inline-block;min-width:28px;padding:2px 8px;text-align:center;border:1px solid var(--border);border-radius:999px;background:#f9fafb;font-size:11px;color:#475569}
+.inv-row .qty-pill{display:inline-flex;align-items:center;justify-content:center;min-height:var(--inv-control-height);padding:0 8px;line-height:var(--inv-control-line-height)}
 .qty-input{width:64px;padding:4px 8px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:12px;text-align:center;background:#fff}
 .qty-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:#1e3a8a;background:transparent;cursor:pointer;transition:color var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.inv-row .qty-icon{width:var(--inv-control-height);height:var(--inv-control-height)}
 .qty-icon svg{width:22px;height:22px;stroke-width:1.8}
+.inv-row .qty-icon svg{width:calc(var(--inv-control-height) - 6px);height:calc(var(--inv-control-height) - 6px)}
 .qty-icon:hover{color:#1a73e8;transform:translateY(-1px)}
 .qty-icon:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:3px}
 .qty-icon.disabled{opacity:.35;cursor:not-allowed;transform:none}
