@@ -8439,7 +8439,10 @@ function openInventoryModal(charKey, opts={}){
   const attunedSet=new Set(attuned.map(a=>a.toLowerCase()));
 
   invTitle.textContent=(ch.display_name||ch.sheet||'Character')+' — Permanent Items';
-  invMeta.textContent=`Level ${level} • Active slots: ${cap} • Attunement max: 3`;
+  if(invMeta){
+    invMeta.textContent='';
+    invMeta.style.display='none';
+  }
 
   const inventoryOrdered=keptMeta
     .slice()
