@@ -9328,23 +9328,24 @@ function openConsumableModal(charKey){
   function placeRow(section,row){
     if(!section || !row) return;
     const key=row.dataset.sortKey || row.dataset.name || '';
-    const existing=section.rows.filter(item=>item!==row);
-    let inserted=false;
-    for(let i=0;i<existing.length;i++){
-      const other=existing[i];
+    const others=section.rows.filter(item=>item!==row);
+    let desiredBefore=section.anchor;
+    let insertIndex=others.length;
+    for(let i=0;i<others.length;i++){
+      const other=others[i];
       const otherKey=other.dataset.sortKey || other.dataset.name || '';
       if(otherKey.localeCompare(key,undefined,{sensitivity:'base'})>0){
-        section.container.insertBefore(row, other);
-        existing.splice(i,0,row);
-        inserted=true;
+        desiredBefore=other;
+        insertIndex=i;
         break;
       }
     }
-    if(!inserted){
-      section.container.insertBefore(row, section.anchor);
-      existing.push(row);
+    if(row.parentNode!==section.container || row.nextSibling!==desiredBefore){
+      section.container.insertBefore(row, desiredBefore);
     }
-    section.rows=existing;
+    const nextRows=others.slice();
+    nextRows.splice(insertIndex,0,row);
+    section.rows=nextRows;
   }
   function unlinkRow(section,row){
     if(!section || !row) return;
