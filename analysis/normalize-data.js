@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const pipeline = require('../data-pipeline');
+const pipeline = require('../scripts/data-pipeline');
 
 function loadDataModule(filePath){
   const source = fs.readFileSync(filePath, 'utf8');
@@ -43,7 +43,7 @@ function normalizeDataFile(targetPath){
 }
 
 function main(){
-  const [, , target = 'data.js'] = process.argv;
+  const [, , target = 'data/data.js'] = process.argv;
   normalizeDataFile(target);
 }
 

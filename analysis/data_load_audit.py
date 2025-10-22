@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_PATH = ROOT / "data.js"
+DATA_PATH = ROOT / "data" / "data.js"
 INDEX_PATH = ROOT / "index.html"
 
 DATA_PATTERN = re.compile(r"window\.DATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$", re.MULTILINE)
@@ -29,12 +29,12 @@ def extract_data_payload() -> Dict[str, Any]:
     raw = DATA_PATH.read_text(encoding="utf-8")
     match = DATA_PATTERN.search(raw)
     if not match:
-        raise SystemExit("Could not locate window.DATA assignment in data.js")
+        raise SystemExit("Could not locate window.DATA assignment in data/data.js")
     payload = match.group(1)
     try:
         return json.loads(payload)
     except json.JSONDecodeError as exc:
-        raise SystemExit(f"Failed to parse data.js payload: {exc}") from exc
+        raise SystemExit(f"Failed to parse data/data.js payload: {exc}") from exc
 
 
 def summarise_data(data: Dict[str, Any]) -> DataSummary:

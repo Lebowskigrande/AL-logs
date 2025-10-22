@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
-DM_DATA_PATH = ROOT / "dmData.js"
+DM_DATA_PATH = ROOT / "data" / "dmData.js"
 
 DM_DATA_PATTERN = re.compile(r"window\.DMDATA\s*=\s*(\{[\s\S]*\})\s*;?\s*$", re.MULTILINE)
 @dataclass

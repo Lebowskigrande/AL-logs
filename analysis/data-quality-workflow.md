@@ -10,9 +10,9 @@ flow is helpful when you need to diagnose or fix bad records.
 * `normalizeData(raw)` coerces every character, adventure, and metadata field
   into a predictable shape (numbers, ISO dates, trimmed strings, tokenised
   lists). The function also returns a list of `issues` that can be surfaced in
-  the UI or saved for later audit.【F:data-pipeline.js†L17-L212】【F:data-pipeline.js†L400-L456】
+  the UI or saved for later audit.【F:scripts/data-pipeline.js†L17-L212】【F:scripts/data-pipeline.js†L400-L456】
 * `prepareForSave(data)` removes computed properties before serialising back to
-  `data.js`, ensuring we only persist fields defined in the schema.【F:data-pipeline.js†L431-L448】
+  `data.js`, ensuring we only persist fields defined in the schema.【F:scripts/data-pipeline.js†L431-L448】
 * `validateData(data)` is a light-weight check that runs the normaliser on a
   cloned payload and reports any issues without mutating the original.
 
@@ -34,6 +34,6 @@ You can run the pipeline in Node to regenerate a clean `data.js` file:
 node analysis/normalize-data.js
 ```
 
-The script above regenerates the committed `data.js` so that all derived
+The script above regenerates the committed `data/data.js` so that all derived
 properties (`__levelAfter`, cached search blobs, etc.) are gone from source
-control.【F:data.js†L1-L40】
+control.【F:data/data.js†L1-L40】
