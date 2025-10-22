@@ -645,7 +645,9 @@ body.card-editor-active #addCard{
 .inv-row.active--blessing{--gift-active-bg:#dbeafe}
 .inv-row.active--boon{--gift-active-bg:#fef3c7}
 .inv-row.active--resistance{--gift-active-bg:#e5e7eb}
-.inv-row.common .inv-label{font-weight:600}
+.inv-row.common{background:linear-gradient(90deg,rgba(226,232,240,.6),rgba(226,232,240,.2));border-left:3px solid #94a3b8}
+.inv-row.common .inv-label{font-weight:600;position:relative;padding-right:12px}
+.inv-row.common .inv-label::after{content:'Common';display:inline-flex;align-items:center;justify-content:center;margin-left:10px;padding:2px 8px;border-radius:999px;background:#cbd5f5;color:#1e293b;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .inv-row.static{cursor:default}
 .inv-row.empty-slot{color:var(--muted);font-style:italic}
 .inv-row.empty-slot .inv-label{font-weight:400}
@@ -671,7 +673,7 @@ body.card-editor-active #addCard{
 .modal.editing .inv-row{cursor:default}
 .modal.editing .inv-row .delete-btn{display:inline-flex}
 .modal.editing .inv-row .attune-pill{pointer-events:none;opacity:.6}
-.modal.editing .inv-row .common-chip{pointer-events:none;opacity:.6}
+.modal.editing .inv-row.common{box-shadow:none}
 .modal.editing .inv-row .qty-icon{pointer-events:none;opacity:.6}
 .modal.editing .inv-row .qty-pill{opacity:.6}
 
@@ -680,15 +682,7 @@ body.card-editor-active #addCard{
 .inv-row .attune-pill{display:inline-flex;align-items:center;justify-content:center;height:var(--inv-control-height);padding:0 8px;line-height:var(--inv-control-line-height)}
 .attune-pill.on{background:#1a73e8;color:#fff}
 
-/* Common item toggle */
-.common-chip{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid rgba(148,163,184,.45);background:#f1f5f9;color:#475569;border-radius:50%;padding:0;font-size:11px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1;cursor:pointer;user-select:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-.inv-row .common-chip{width:var(--inv-control-height);height:var(--inv-control-height)}
-.common-chip>[aria-hidden]{display:inline-flex;align-items:center;justify-content:center;width:100%;height:100%}
-.common-chip:hover,.common-chip:focus-visible{background:#e2e8f0;border-color:#94a3b8;color:#334155;outline:none}
-.common-chip.on{background:#475569;color:#f8fafc;border-color:#475569}
-.common-chip.on:hover,.common-chip.on:focus-visible{background:#334155;border-color:#334155;color:#f8fafc}
-.common-chip:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
-.inv-name .common-chip{margin-left:auto}
+/* Common inventory style handled via .inv-row.common */
 
 /* Consumables qty controls */
 .inv-row .qty{display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -7441,7 +7435,7 @@ let activeTradeContext=null;
 const inventoryContextMenuState={
   menu:null,
   tradeBtn:null,
-  commonBtn:null,
+  equipCommonBtn:null,
   cleanup:[],
   activeTrigger:null
 };
@@ -7457,18 +7451,18 @@ function ensureInventoryContextMenu(){
   tradeBtn.className='inventory-context-item';
   tradeBtn.textContent='Trade';
   tradeBtn.setAttribute('role','menuitem');
-  const commonBtn=document.createElement('button');
-  commonBtn.type='button';
-  commonBtn.className='inventory-context-item';
-  commonBtn.textContent='Designate Common';
-  commonBtn.setAttribute('role','menuitem');
+  const equipCommonBtn=document.createElement('button');
+  equipCommonBtn.type='button';
+  equipCommonBtn.className='inventory-context-item';
+  equipCommonBtn.textContent='Equip as Common item';
+  equipCommonBtn.setAttribute('role','menuitem');
   menu.appendChild(tradeBtn);
-  menu.appendChild(commonBtn);
+  menu.appendChild(equipCommonBtn);
   menu.addEventListener('pointerdown',(event)=>{ event.stopPropagation(); });
   document.body.appendChild(menu);
   inventoryContextMenuState.menu=menu;
   inventoryContextMenuState.tradeBtn=tradeBtn;
-  inventoryContextMenuState.commonBtn=commonBtn;
+  inventoryContextMenuState.equipCommonBtn=equipCommonBtn;
   inventoryContextMenuState.cleanup=[];
   return inventoryContextMenuState;
 }
@@ -7481,7 +7475,7 @@ function hideInventoryContextMenu(){
     state.cleanup=[];
   }
   if(state.tradeBtn) state.tradeBtn.onclick=null;
-  if(state.commonBtn) state.commonBtn.onclick=null;
+  if(state.equipCommonBtn) state.equipCommonBtn.onclick=null;
   if(state.menu){
     state.menu.hidden=true;
     state.menu.style.left='';
@@ -7500,12 +7494,12 @@ function showInventoryContextMenu({
   y,
   triggerRect,
   onTrade,
-  onDesignateCommon,
+  onEquipCommon,
   isCommon
 }={}){
   const state=ensureInventoryContextMenu();
   hideInventoryContextMenu();
-  const {menu,tradeBtn,commonBtn}=state;
+  const {menu,tradeBtn,equipCommonBtn}=state;
   state.activeTrigger=trigger||null;
   if(state.activeTrigger){
     state.activeTrigger.dataset.contextMenuOpen='true';
@@ -7526,18 +7520,18 @@ function showInventoryContextMenu({
       if(typeof onTrade==='function') onTrade();
     };
   }
-  if(commonBtn){
-    commonBtn.textContent='Designate Common';
-    commonBtn.disabled=itemIsCommon;
+  if(equipCommonBtn){
+    equipCommonBtn.textContent='Equip as Common item';
+    equipCommonBtn.disabled=itemIsCommon;
     if(itemIsCommon){
-      commonBtn.title='Already marked as common';
+      equipCommonBtn.title='Already equipped as a common item';
     }else{
-      commonBtn.removeAttribute('title');
+      equipCommonBtn.removeAttribute('title');
     }
-    commonBtn.onclick=()=>{
-      if(commonBtn.disabled) return;
+    equipCommonBtn.onclick=()=>{
+      if(equipCommonBtn.disabled) return;
       hideInventoryContextMenu();
-      if(typeof onDesignateCommon==='function') onDesignateCommon();
+      if(typeof onEquipCommon==='function') onEquipCommon();
     };
   }
   if(!menu) return;
@@ -8176,7 +8170,7 @@ function bindInventoryTradeInteraction(row,{
   charKey,
   itemName,
   itemCanonicalName,
-  designateCommon,
+  equipCommon,
   isCommon
 }){
   if(!row) return;
@@ -8196,8 +8190,8 @@ function bindInventoryTradeInteraction(row,{
     });
   };
   const markCommon=()=>{
-    if(typeof designateCommon==='function'){
-      designateCommon();
+    if(typeof equipCommon==='function'){
+      equipCommon();
     }
   };
   const openMenu=(position)=>{
@@ -8209,7 +8203,7 @@ function bindInventoryTradeInteraction(row,{
       y:coords.clientY,
       triggerRect:row.getBoundingClientRect(),
       onTrade:openTrade,
-      onDesignateCommon:markCommon,
+      onEquipCommon:markCommon,
       isCommon:resolveIsCommon
     });
   };
@@ -8807,32 +8801,23 @@ function openInventoryModal(charKey, opts={}){
     const isCommon=state.commonSet.has(lower);
     const isAttuned=state.attunedSet.has(lower);
     if(entry.inventory){
-      const {row,commonChip}=entry.inventory;
+      const {row}=entry.inventory;
       row.classList.toggle('active', isActive);
       row.classList.toggle('common', isCommon);
-      if(commonChip){
-        commonChip.classList.toggle('on', isCommon);
-        commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
-        commonChip.title=isCommon
-          ?'Marked as common. Common items do not count against the active limit.'
-          :'Mark this item as common so it does not count against the active limit.';
-      }
     }
     if(entry.equipped){
-      const {row,commonChip,attunePill}=entry.equipped;
+      const {row,attunePill}=entry.equipped;
       row.classList.toggle('common', isCommon);
       row.classList.toggle('attuned', isAttuned);
-      if(commonChip){
-        commonChip.classList.toggle('on', isCommon);
-        commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
-        commonChip.title=isCommon
-          ?'Marked as common. Common items do not count against the active limit.'
-          :'Mark this item as common so it does not count against the active limit.';
-      }
+      row.dataset.sortKey=(isCommon?'~~':'')+(row.dataset.name||'').toLowerCase();
       if(attunePill){
         attunePill.classList.toggle('on', isAttuned);
         attunePill.textContent=isAttuned?'Attuned':'Attune';
       }
+      const targetSection=state.attunedSet.has(lower)?state.attunedSection:state.nonAttunedSection;
+      unlinkRow(state.attunedSection, row);
+      unlinkRow(state.nonAttunedSection, row);
+      placeRow(targetSection,row);
     }
   }
 
@@ -8908,22 +8893,7 @@ function openInventoryModal(charKey, opts={}){
     state.updateSummary();
   }
 
-  function toggleCommon(lower){
-    const meta=state.metaByName.get(lower);
-    if(!meta) return;
-    const isCommon=state.commonSet.has(lower);
-    if(isCommon){
-      const nextSet=new Set(state.commonSet);
-      nextSet.delete(lower);
-      const nonCommonCount=Array.from(state.activeSet).filter(name=>!nextSet.has(name)).length;
-      if(state.activeSet.has(lower) && nonCommonCount>cap){
-        window.alert('Removing the Common tag would exceed your active item limit. Deactivate another item first.');
-        return;
-      }
-      state.commonSet.delete(lower);
-    }else{
-      state.commonSet.add(lower);
-    }
+  function persistCommonSet(){
     state.commonNames=Array.from(state.commonSet)
       .map(name=>{
         const metaItem=state.metaByName.get(name);
@@ -8932,6 +8902,30 @@ function openInventoryModal(charKey, opts={}){
       .filter(Boolean)
       .sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:'base'}));
     saveCommon(charKey,state.commonNames);
+  }
+
+  function equipAsCommon(lower){
+    if(state.editing) return;
+    const meta=state.metaByName.get(lower);
+    if(!meta) return;
+    state.commonSet.add(lower);
+    persistCommonSet();
+
+    if(!state.activeSet.has(lower)){
+      state.activeSet.add(lower);
+      if(!state.activeNames.some(name=>name.toLowerCase()===lower)){
+        state.activeNames=state.activeNames.concat([meta.name]);
+      }
+      saveActive(charKey,state.activeNames);
+      const existingEntry=state.itemNodes.get(lower);
+      if(state.nonAttunedSection && (!existingEntry || !existingEntry.equipped)){
+        const row=createEquippedRow(meta);
+        const entry=state.itemNodes.get(lower);
+        const targetSection=state.attunedSet.has(lower)?state.attunedSection:state.nonAttunedSection;
+        placeRow(targetSection,row);
+      }
+    }
+
     syncRowState(lower);
     updateEmptySlots();
     state.updateSummary();
@@ -8965,6 +8959,10 @@ function openInventoryModal(charKey, opts={}){
       state.activeSet.delete(lower);
       state.activeNames=state.activeNames.filter(name=>name.toLowerCase()!==lower);
       saveActive(charKey,state.activeNames);
+      if(state.commonSet.has(lower)){
+        state.commonSet.delete(lower);
+        persistCommonSet();
+      }
       if(state.attunedSet.has(lower)){
         removeAttunement(lower);
       }
@@ -9001,21 +8999,6 @@ function openInventoryModal(charKey, opts={}){
     labelSpan.className='inv-label';
     labelSpan.textContent=label;
     nameDiv.appendChild(labelSpan);
-
-    const commonChip=document.createElement('button');
-    commonChip.type='button';
-    commonChip.className='common-chip'+(isCommon?' on':'');
-    commonChip.innerHTML='<span aria-hidden="true">C</span><span class="sr-only">Common</span>';
-    commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
-    commonChip.title=isCommon
-      ?'Marked as common. Common items do not count against the active limit.'
-      :'Mark this item as common so it does not count against the active limit.';
-    commonChip.addEventListener('click',(ev)=>{
-      ev.preventDefault();
-      ev.stopPropagation();
-      toggleCommon(lower);
-    });
-    nameDiv.appendChild(commonChip);
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
@@ -9090,16 +9073,14 @@ function openInventoryModal(charKey, opts={}){
       charKey,
       itemName:label,
       itemCanonicalName:meta?meta.name:label,
-      designateCommon:()=>{
-        if(!state.commonSet.has(lower)){
-          toggleCommon(lower);
-        }
+      equipCommon:()=>{
+        equipAsCommon(lower);
       },
       isCommon:()=>state.commonSet.has(lower)
     });
 
     const entry=ensureItemNode(lower);
-    entry.inventory={ row, commonChip };
+    entry.inventory={ row };
     return row;
   }
 
@@ -9116,7 +9097,7 @@ function openInventoryModal(charKey, opts={}){
     row.className=classes.join(' ');
     row.dataset.name=label;
     row.dataset.lower=lower;
-    row.dataset.sortKey=label.toLowerCase();
+    row.dataset.sortKey=(isCommon?'~~':'')+label.toLowerCase();
 
     const nameDiv=document.createElement('div');
     nameDiv.className='inv-name';
@@ -9124,21 +9105,6 @@ function openInventoryModal(charKey, opts={}){
     labelSpan.className='inv-label';
     labelSpan.textContent=label;
     nameDiv.appendChild(labelSpan);
-
-    const commonChip=document.createElement('button');
-    commonChip.type='button';
-    commonChip.className='common-chip'+(isCommon?' on':'');
-    commonChip.innerHTML='<span aria-hidden="true">C</span><span class="sr-only">Common</span>';
-    commonChip.setAttribute('aria-pressed', isCommon?'true':'false');
-    commonChip.title=isCommon
-      ?'Marked as common. Common items do not count against the active limit.'
-      :'Mark this item as common so it does not count against the active limit.';
-    commonChip.addEventListener('click',(ev)=>{
-      ev.preventDefault();
-      ev.stopPropagation();
-      toggleCommon(lower);
-    });
-    nameDiv.appendChild(commonChip);
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
@@ -9168,16 +9134,14 @@ function openInventoryModal(charKey, opts={}){
       charKey,
       itemName:label,
       itemCanonicalName:meta?meta.name:label,
-      designateCommon:()=>{
-        if(!state.commonSet.has(lower)){
-          toggleCommon(lower);
-        }
+      equipCommon:()=>{
+        equipAsCommon(lower);
       },
       isCommon:()=>state.commonSet.has(lower)
     });
 
     const entry=ensureItemNode(lower);
-    entry.equipped={ row, commonChip, attunePill:pill };
+    entry.equipped={ row, attunePill:pill };
     return row;
   }
 
