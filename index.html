@@ -642,6 +642,12 @@ body.card-editor-active #addCard{
   .inv-column-equipped{order:0}
   .inv-column-inventory{order:1}
 }
+@media (min-width:601px){
+  .inv-modal-body .inv-columns,
+  .cons-modal-body .inv-columns{align-items:flex-start}
+  .inv-modal-body .inv-column-equipped,
+  .cons-modal-body .inv-column-equipped{position:sticky;top:12px;align-self:flex-start;z-index:1;background:var(--bg)}
+}
 .inv-column-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .modal-add{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .modal-add input,.modal-add select{font:inherit;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
