@@ -14,6 +14,8 @@
   --radius:16px; --shadow1:0 3px 12px rgba(16,24,40,.08); --shadow2:0 22px 44px rgba(16,24,40,.14);
   --dur:220ms; --ease:cubic-bezier(.2,.8,.2,1); --accordion-ease:cubic-bezier(.33,1,.68,1); --gap:14px; --min-card:320px;
   --menu-dur:260ms; --danger:#dc2626;
+  --tab-anim-duration:320ms;
+  --tab-anim-ease:cubic-bezier(.33,1,.68,1);
   --open-card-header:#e6eaf2;
   --open-card-body:#f5f7fa;
   --open-card-border:rgba(148,163,184,.22);
@@ -637,8 +639,10 @@ body.card-editor-active #addCard{
   .inv-mobile-tab:focus-visible{color:var(--primary)}
   .inv-mobile-tab.active{background:#1a73e8;color:#fff;box-shadow:0 6px 16px rgba(26,115,232,.25)}
   .inv-mobile-tab.active:focus-visible{color:#fff}
-  .inv-columns{display:grid;grid-template-columns:minmax(0,1fr);position:relative;gap:0}
-  .inv-columns .inv-column{display:flex;flex-direction:column;grid-area:1/1;min-height:0;z-index:0}
+  .inv-columns{display:grid;grid-template-columns:minmax(0,1fr);position:relative;gap:0;overflow:hidden;touch-action:pan-y}
+  .inv-columns .inv-column{display:flex;flex-direction:column;grid-area:1/1;min-height:0;z-index:0;transition:opacity var(--tab-anim-duration) var(--tab-anim-ease);will-change:transform,opacity}
+  .inv-columns[data-tab-animating='true']{pointer-events:none}
+  .inv-columns[data-tab-animating='true'] .inv-column{pointer-events:none}
   .inv-columns .inv-column[data-tab-hidden='true']{visibility:hidden;opacity:0;pointer-events:none}
   .inv-columns .inv-column[data-tab-hidden='false']{visibility:visible;opacity:1;pointer-events:auto;z-index:1}
   .inv-column-equipped{order:0}
@@ -8661,6 +8665,12 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
   const mobileQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
     ? window.matchMedia('(max-width: 600px)')
     : null;
+  const reduceMotionQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null;
+  const animationDuration=320;
+  const animationEasing='cubic-bezier(.33,1,.68,1)';
+  const runningAnimations=new Set();
   let active=null;
   let swipeState=null;
   const applyPanelA11y=()=>{
@@ -8673,7 +8683,69 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
       }
     });
   };
-  const setActive=(requested,{force=false}={})=>{
+  const getTabIndex=(tabId)=>{
+    if(!tabId) return -1;
+    return tabButtons.findIndex(btn=>btn.dataset.tabTarget===tabId);
+  };
+  const cancelAnimations=()=>{
+    if(!runningAnimations.size) return;
+    runningAnimations.forEach(animation=>{
+      try{ animation.cancel(); }catch(error){ /* noop */ }
+    });
+    runningAnimations.clear();
+  };
+  const setAnimatingState=(animating,direction)=>{
+    if(animating){
+      listEl.dataset.tabAnimating='true';
+      if(direction){
+        listEl.dataset.tabDirection=direction;
+      }else{
+        delete listEl.dataset.tabDirection;
+      }
+      if(tabRoot && tabRoot!==listEl){
+        tabRoot.dataset.tabAnimating='true';
+        if(direction){
+          tabRoot.dataset.tabDirection=direction;
+        }else{
+          delete tabRoot.dataset.tabDirection;
+        }
+      }
+    }else{
+      delete listEl.dataset.tabAnimating;
+      delete listEl.dataset.tabDirection;
+      if(tabRoot && tabRoot!==listEl){
+        delete tabRoot.dataset.tabAnimating;
+        delete tabRoot.dataset.tabDirection;
+      }
+    }
+  };
+  const finalizePanels=()=>{
+    panelMap.forEach((panel,key)=>{
+      const hidden=key!==active;
+      panel.dataset.tabHidden=hidden?'true':'false';
+      panel.setAttribute('data-tab-hidden', hidden?'true':'false');
+      panel.classList.toggle('inv-column-active', !hidden);
+      if(hidden){
+        panel.style.removeProperty('z-index');
+      }else{
+        panel.style.zIndex='1';
+      }
+      panel.style.removeProperty('transform');
+      panel.style.removeProperty('opacity');
+    });
+    runningAnimations.clear();
+    setAnimatingState(false);
+    applyPanelA11y();
+  };
+  const computeDirection=(prevIndex,nextIndex)=>{
+    if(prevIndex===-1 || nextIndex===-1) return 0;
+    if(prevIndex===nextIndex) return 0;
+    const diff=nextIndex-prevIndex;
+    if(diff===tabButtons.length-1) return -1;
+    if(diff===-(tabButtons.length-1)) return 1;
+    return diff>0?1:-1;
+  };
+  const setActive=(requested,{force=false,direction:null}={})=>{
     let next=requested;
     if(!next){
       const fallbackButton=tabButtons.find(btn=>panelMap.has(btn.dataset.tabTarget));
@@ -8689,6 +8761,7 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
       }
     }
     if(!force && active===next) return;
+    const previousActive=active;
     active=next;
     listEl.dataset.activeTab=next;
     listEl.setAttribute('data-active-tab', next);
@@ -8702,18 +8775,98 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
       button.setAttribute('aria-selected', isActive?'true':'false');
       button.setAttribute('tabindex', isActive?'0':'-1');
     });
+    const prevPanel=previousActive?panelMap.get(previousActive):null;
+    const nextPanel=panelMap.get(next);
+    const prevIndex=getTabIndex(previousActive);
+    const nextIndex=getTabIndex(next);
+    let transitionDirection=0;
+    if(prevPanel && nextPanel && previousActive!==next){
+      if(typeof direction==='number' && direction!==0){
+        transitionDirection=direction>0?1:-1;
+      }else{
+        transitionDirection=computeDirection(prevIndex,nextIndex);
+      }
+    }
+    const prefersReducedMotion=!!(reduceMotionQuery && reduceMotionQuery.matches);
+    const allowAnimation=!!(mobileQuery && mobileQuery.matches && !prefersReducedMotion && prevPanel && nextPanel && prevPanel!==nextPanel);
+    const canAnimate=allowAnimation && typeof nextPanel.animate==='function' && (!prevPanel || typeof prevPanel.animate==='function');
+    const shouldAnimate=canAnimate && transitionDirection!==0;
+    cancelAnimations();
+    setAnimatingState(false);
+    if(!shouldAnimate){
+      finalizePanels();
+      return;
+    }
+    const directionLabel=transitionDirection>0?'forward':'backward';
+    setAnimatingState(true,directionLabel);
     panelMap.forEach((panel,key)=>{
-      const hidden=key!==next;
+      if(panel===prevPanel || panel===nextPanel) return;
+      const hidden=key!==active;
       panel.dataset.tabHidden=hidden?'true':'false';
       panel.setAttribute('data-tab-hidden', hidden?'true':'false');
     });
-    applyPanelA11y();
+    if(prevPanel){
+      prevPanel.dataset.tabHidden='false';
+      prevPanel.setAttribute('data-tab-hidden','false');
+      prevPanel.style.zIndex='1';
+    }
+    if(nextPanel){
+      nextPanel.dataset.tabHidden='false';
+      nextPanel.setAttribute('data-tab-hidden','false');
+      nextPanel.style.zIndex='2';
+    }
+    const width=listEl?listEl.clientWidth||listEl.offsetWidth:0;
+    const travel=Math.max(48, Math.min(140, (width||0)*0.12 || 0));
+    const enterOffset=transitionDirection*travel;
+    const exitOffset=-transitionDirection*travel;
+    const animationOptions={duration:animationDuration,easing:animationEasing,fill:'both'};
+    const exitAnimation=(prevPanel && typeof prevPanel.animate==='function')
+      ? prevPanel.animate([
+          {transform:'translateX(0px)',opacity:1},
+          {transform:`translateX(${exitOffset}px)`,opacity:0}
+        ],animationOptions)
+      : null;
+    const enterAnimation=(nextPanel && typeof nextPanel.animate==='function')
+      ? nextPanel.animate([
+          {transform:`translateX(${enterOffset}px)`,opacity:0},
+          {transform:'translateX(0px)',opacity:1}
+        ],animationOptions)
+      : null;
+    const totalAnimations=(exitAnimation?1:0)+(enterAnimation?1:0);
+    if(totalAnimations===0){
+      finalizePanels();
+      return;
+    }
+    let completed=0;
+    const handleDone=()=>{
+      completed+=1;
+      if(completed>=totalAnimations){
+        finalizePanels();
+      }
+    };
+    const trackAnimation=(animation)=>{
+      if(!animation){
+        handleDone();
+        return;
+      }
+      runningAnimations.add(animation);
+      const cleanup=()=>{
+        animation.removeEventListener('finish', cleanup);
+        animation.removeEventListener('cancel', cleanup);
+        runningAnimations.delete(animation);
+        handleDone();
+      };
+      animation.addEventListener('finish', cleanup);
+      animation.addEventListener('cancel', cleanup);
+    };
+    trackAnimation(exitAnimation);
+    trackAnimation(enterAnimation);
   };
-  const getActiveIndex=()=>tabButtons.findIndex(btn=>btn.dataset.tabTarget===active);
-  const focusTab=(button)=>{
+  const getActiveIndex=()=>getTabIndex(active);
+  const focusTab=(button,{direction:null}={})=>{
     if(!button) return;
     button.focus();
-    setActive(button.dataset.tabTarget,{force:true});
+    setActive(button.dataset.tabTarget,{force:true,direction});
   };
   tabButtons.forEach(button=>{
     button.addEventListener('click',()=>{
@@ -8727,7 +8880,7 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
         const currentIndex=tabButtons.indexOf(event.currentTarget);
         if(currentIndex===-1) return;
         const nextIndex=(currentIndex+delta+tabButtons.length)%tabButtons.length;
-        focusTab(tabButtons[nextIndex]);
+        focusTab(tabButtons[nextIndex],{direction:delta});
       }else if(key==='Home'){
         event.preventDefault();
         focusTab(tabButtons[0]);
@@ -8746,7 +8899,8 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
     swipeState={
       x:touch.clientX,
       y:touch.clientY,
-      time:Date.now()
+      time:Date.now(),
+      index:getActiveIndex()
     };
   };
   const handleTouchEnd=(event)=>{
@@ -8757,12 +8911,13 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
     const dx=touch.clientX-swipeState.x;
     const dy=touch.clientY-swipeState.y;
     const dt=Date.now()-swipeState.time;
+    const startIndex=typeof swipeState.index==='number'?swipeState.index:getActiveIndex();
     resetSwipe();
     if(Math.abs(dx)<=Math.abs(dy)) return;
     if(Math.abs(dx)<40) return;
     if(dt>600) return;
     if(tabButtons.length<2) return;
-    const currentIndex=getActiveIndex();
+    const currentIndex=startIndex;
     if(currentIndex===-1) return;
     const direction=dx<0?1:-1;
     let nextIndex=currentIndex+direction;
@@ -8770,7 +8925,7 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
     if(nextIndex>=tabButtons.length) nextIndex=0;
     const nextButton=tabButtons[nextIndex];
     if(nextButton){
-      setActive(nextButton.dataset.tabTarget,{force:true});
+      setActive(nextButton.dataset.tabTarget,{force:true,direction});
     }
   };
   const swipeTargets=new Set();
