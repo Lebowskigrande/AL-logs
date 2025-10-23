@@ -621,8 +621,21 @@ body.card-editor-active #addCard{
 .inv-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .inv-columns .inv-column{display:flex;flex-direction:column;gap:8px}
 .inv-columns .inv-sublist{display:flex;flex-direction:column;gap:6px;min-height:0}
+.inv-mobile-tabs{display:none}
+.inv-mobile-tab{appearance:none;border:none;background:none;font:inherit;color:inherit;padding:0;border-radius:8px;cursor:pointer;transition:color var(--dur) var(--ease)}
+.inv-mobile-tab:focus-visible{outline:2px solid rgba(26,115,232,.35);outline-offset:2px}
 @media (max-width:600px){
-  .inv-columns{display:flex;flex-direction:column}
+  .inv-list{gap:10px}
+  .inv-mobile-tabs{display:flex;align-items:center;gap:6px;padding:4px;border-radius:12px;background:#eef1f6}
+  .inv-mobile-tab{flex:1 1 auto;padding:8px 10px;font-weight:600;color:var(--muted);background:none;box-shadow:none}
+  .inv-mobile-tab:hover,
+  .inv-mobile-tab:focus-visible{color:var(--primary)}
+  .inv-mobile-tab.active{background:#1a73e8;color:#fff;box-shadow:0 6px 16px rgba(26,115,232,.25)}
+  .inv-mobile-tab.active:focus-visible{color:#fff}
+  .inv-columns{display:flex;flex-direction:column;gap:12px}
+  .inv-columns .inv-column{display:flex;flex-direction:column}
+  .inv-columns .inv-column[data-tab-hidden='true']{display:none}
+  .inv-columns .inv-column[data-tab-hidden='false']{display:flex}
   .inv-column-equipped{order:0}
   .inv-column-inventory{order:1}
 }
@@ -926,12 +939,16 @@ body.avatar-overlay-open{overflow:hidden}
     </div>
     <div class="modal-body inv-modal-body">
       <div id="invSummary" class="inv-meta"></div>
-      <div id="invList" class="inv-list inv-columns">
-        <div class="inv-column inv-column-inventory">
-          <div class="inv-column-title">Inventory</div>
+      <div id="invList" class="inv-list inv-columns" data-active-tab="inventory">
+        <div class="inv-mobile-tabs" role="tablist" aria-label="Permanent item lists">
+          <button id="invTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="invInventoryColumn" aria-selected="true">Stowed</button>
+          <button id="invTabEquipped" class="inv-mobile-tab" type="button" role="tab" data-tab-target="equipped" aria-controls="invEquippedColumn" aria-selected="false" tabindex="-1">Equipped</button>
+        </div>
+        <div class="inv-column inv-column-inventory" id="invInventoryColumn" data-tab-panel="inventory" data-tab-hidden="false" role="tabpanel" aria-labelledby="invTabStowed">
+          <div class="inv-column-title">Stowed</div>
           <div class="inv-sublist" id="invInventoryList"></div>
         </div>
-        <div class="inv-column inv-column-equipped">
+        <div class="inv-column inv-column-equipped" id="invEquippedColumn" data-tab-panel="equipped" data-tab-hidden="true" role="tabpanel" aria-labelledby="invTabEquipped">
           <div class="inv-column-title">Equipped</div>
           <div class="inv-sublist" id="invEquippedList"></div>
         </div>
@@ -952,12 +969,16 @@ body.avatar-overlay-open{overflow:hidden}
     </div>
     <div class="modal-body cons-modal-body">
       <div id="consSummary" class="inv-meta"></div>
-      <div id="consList" class="inv-list inv-columns">
-        <div class="inv-column inv-column-inventory">
-          <div class="inv-column-title">Inventory</div>
+      <div id="consList" class="inv-list inv-columns" data-active-tab="inventory">
+        <div class="inv-mobile-tabs" role="tablist" aria-label="Consumable lists">
+          <button id="consTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="consInventoryColumn" aria-selected="true">Stowed</button>
+          <button id="consTabCarried" class="inv-mobile-tab" type="button" role="tab" data-tab-target="carried" aria-controls="consEquippedColumn" aria-selected="false" tabindex="-1">Carried</button>
+        </div>
+        <div class="inv-column inv-column-inventory" id="consInventoryColumn" data-tab-panel="inventory" data-tab-hidden="false" role="tabpanel" aria-labelledby="consTabStowed">
+          <div class="inv-column-title">Stowed</div>
           <div class="inv-sublist" id="consInventoryList"></div>
         </div>
-        <div class="inv-column inv-column-equipped">
+        <div class="inv-column inv-column-equipped" id="consEquippedColumn" data-tab-panel="carried" data-tab-hidden="true" role="tabpanel" aria-labelledby="consTabCarried">
           <div class="inv-column-title">Carried</div>
           <div class="inv-sublist" id="consEquippedList"></div>
         </div>
@@ -8518,6 +8539,123 @@ const consList=document.getElementById('consList');
 const consInventoryList=document.getElementById('consInventoryList');
 const consEquippedList=document.getElementById('consEquippedList');
 const consSummary=document.getElementById('consSummary');
+const modalTabControllers=new Map();
+function initModalTabs(listEl,{defaultTab='inventory'}={}){
+  if(!listEl) return null;
+  if(modalTabControllers.has(listEl)) return modalTabControllers.get(listEl);
+  const tabButtons=Array.from(listEl.querySelectorAll('.inv-mobile-tab'));
+  if(!tabButtons.length) return null;
+  const panelMap=new Map();
+  tabButtons.forEach(button=>{
+    const target=button.dataset.tabTarget;
+    if(!target) return;
+    const controlsId=button.getAttribute('aria-controls');
+    let panel=null;
+    if(controlsId){
+      panel=document.getElementById(controlsId);
+    }
+    if(!panel){
+      panel=listEl.querySelector(`[data-tab-panel='${target}']`);
+    }
+    if(panel){
+      panelMap.set(target,panel);
+      if(!panel.dataset.tabPanel){
+        panel.dataset.tabPanel=target;
+      }
+    }
+  });
+  if(!panelMap.size) return null;
+  const mobileQuery=(typeof window!=='undefined' && typeof window.matchMedia==='function')
+    ? window.matchMedia('(max-width: 600px)')
+    : null;
+  let active=null;
+  const applyPanelA11y=()=>{
+    const isMobile=!!(mobileQuery && mobileQuery.matches);
+    panelMap.forEach((panel,key)=>{
+      if(isMobile){
+        panel.setAttribute('aria-hidden', active===key?'false':'true');
+      }else{
+        panel.setAttribute('aria-hidden','false');
+      }
+    });
+  };
+  const setActive=(requested,{force=false}={})=>{
+    let next=requested;
+    if(!next){
+      const fallbackButton=tabButtons.find(btn=>panelMap.has(btn.dataset.tabTarget));
+      next=fallbackButton?fallbackButton.dataset.tabTarget:null;
+    }
+    if(!next) return;
+    if(!panelMap.has(next)){
+      const fallbackButton=tabButtons.find(btn=>panelMap.has(btn.dataset.tabTarget));
+      if(fallbackButton){
+        next=fallbackButton.dataset.tabTarget;
+      }else{
+        return;
+      }
+    }
+    if(!force && active===next) return;
+    active=next;
+    listEl.dataset.activeTab=next;
+    listEl.setAttribute('data-active-tab', next);
+    tabButtons.forEach(button=>{
+      const isActive=button.dataset.tabTarget===next;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-selected', isActive?'true':'false');
+      button.setAttribute('tabindex', isActive?'0':'-1');
+    });
+    panelMap.forEach((panel,key)=>{
+      const hidden=key!==next;
+      panel.dataset.tabHidden=hidden?'true':'false';
+      panel.setAttribute('data-tab-hidden', hidden?'true':'false');
+    });
+    applyPanelA11y();
+  };
+  const focusTab=(button)=>{
+    if(!button) return;
+    button.focus();
+    setActive(button.dataset.tabTarget,{force:true});
+  };
+  tabButtons.forEach(button=>{
+    button.addEventListener('click',()=>{
+      setActive(button.dataset.tabTarget,{force:true});
+    });
+    button.addEventListener('keydown',(event)=>{
+      const {key}=event;
+      if(key==='ArrowRight' || key==='ArrowLeft'){
+        event.preventDefault();
+        const delta=key==='ArrowRight'?1:-1;
+        const currentIndex=tabButtons.indexOf(event.currentTarget);
+        if(currentIndex===-1) return;
+        const nextIndex=(currentIndex+delta+tabButtons.length)%tabButtons.length;
+        focusTab(tabButtons[nextIndex]);
+      }else if(key==='Home'){
+        event.preventDefault();
+        focusTab(tabButtons[0]);
+      }else if(key==='End'){
+        event.preventDefault();
+        focusTab(tabButtons[tabButtons.length-1]);
+      }
+    });
+  });
+  if(mobileQuery){
+    const handleChange=()=>applyPanelA11y();
+    if(typeof mobileQuery.addEventListener==='function'){
+      mobileQuery.addEventListener('change', handleChange);
+    }else if(typeof mobileQuery.addListener==='function'){
+      mobileQuery.addListener(handleChange);
+    }
+  }
+  const initial=defaultTab || listEl.dataset.activeTab || (tabButtons[0] && tabButtons[0].dataset.tabTarget);
+  setActive(initial,{force:true});
+  const controller={
+    updateActive:(tab,options)=>setActive(tab,options),
+    getActive:()=>active,
+    refreshA11y:applyPanelA11y
+  };
+  modalTabControllers.set(listEl, controller);
+  return controller;
+}
 const giftsModal=document.getElementById('giftsModal');
 const giftsTitle=document.getElementById('giftsTitle');
 const giftsMeta=document.getElementById('giftsMeta');
@@ -8747,6 +8885,10 @@ function openInventoryModal(charKey, opts={}){
     editing,
     hasColumns
   };
+  const invTabs=initModalTabs(invList,{defaultTab:'inventory'});
+  if(invTabs){
+    invTabs.updateActive('inventory',{force:true});
+  }
 
   if(hasColumns){
     if(invInventoryList){
@@ -9238,6 +9380,25 @@ function openInventoryModal(charKey, opts={}){
   updateEmptySlots();
 
   const hasInventoryRows=()=>!!(state.inventorySection && state.inventorySection.rows && state.inventorySection.rows.length);
+  const hasEquippedRows=()=>{
+    const attunedCount=state.attunedSection && state.attunedSection.rows ? state.attunedSection.rows.length : 0;
+    const nonAttunedCount=state.nonAttunedSection && state.nonAttunedSection.rows ? state.nonAttunedSection.rows.length : 0;
+    return (attunedCount+nonAttunedCount)>0;
+  };
+  const syncInventoryTabs=()=>{
+    if(!invTabs) return;
+    const inventoryAvailable=hasInventoryRows();
+    const equippedAvailable=hasEquippedRows();
+    let desired=invTabs.getActive() || 'inventory';
+    if(desired==='inventory' && !inventoryAvailable && equippedAvailable){
+      desired='equipped';
+    }else if(desired!=='inventory' && !equippedAvailable && inventoryAvailable){
+      desired='inventory';
+    }else if(!inventoryAvailable && !equippedAvailable){
+      desired='inventory';
+    }
+    invTabs.updateActive(desired,{force:true});
+  };
   if(editToggle){
     editToggle.onclick=()=>{
       if(!hasInventoryRows()) return;
@@ -9266,6 +9427,7 @@ function openInventoryModal(charKey, opts={}){
     }
     summary+=` • Attuned: ${attunedCount}/3`;
     invSummary.textContent=summary;
+    syncInventoryTabs();
   };
   state.updateSummary();
 
@@ -9313,6 +9475,22 @@ function openConsumableModal(charKey){
     inventorySection:null,
     carriedSection:null,
     hasColumns:false
+  };
+  const consTabs=initModalTabs(consList,{defaultTab:'inventory'});
+  if(consTabs){
+    consTabs.updateActive('inventory',{force:true});
+  }
+  const syncConsumableTabs=(inventoryAvailable,carriedAvailable)=>{
+    if(!consTabs) return;
+    let desired=consTabs.getActive() || 'inventory';
+    if(desired==='inventory' && !inventoryAvailable && carriedAvailable){
+      desired='carried';
+    }else if(desired!=='inventory' && !carriedAvailable && inventoryAvailable){
+      desired='inventory';
+    }else if(!inventoryAvailable && !carriedAvailable){
+      desired='inventory';
+    }
+    consTabs.updateActive(desired,{force:true});
   };
   state.inventoryEmptyRow=createEmptyRow();
   state.carriedEmptyRow=createEmptyRow();
@@ -9691,6 +9869,7 @@ function openConsumableModal(charKey){
       state.carriedRows.clear();
       showEmpty(inventorySection,state.inventoryEmptyRow,'No consumables tracked yet.');
       showEmpty(carriedSection,state.carriedEmptyRow,'Not carrying any consumables.');
+      syncConsumableTabs(false,false);
       return;
     }
 
@@ -9704,6 +9883,7 @@ function openConsumableModal(charKey){
       state.carriedRows.clear();
       showEmpty(inventorySection,state.inventoryEmptyRow,'All consumables have been used.');
       showEmpty(carriedSection,state.carriedEmptyRow,'Not carrying any consumables.');
+      syncConsumableTabs(false,false);
       return;
     }
 
@@ -9794,6 +9974,7 @@ function openConsumableModal(charKey){
     }else{
       hideEmpty(inventorySection,state.inventoryEmptyRow);
     }
+    syncConsumableTabs(!!inventoryNames.length, !!carriedOrdered.length);
   }
 
   renderView();
