@@ -600,11 +600,14 @@ body.card-editor-active #addCard{
 /* Modals (shared) */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(15,23,42,.4);z-index:50}
 .modal.open{display:grid}
-.modal-card{width:min(92vw,800px);max-height:80vh;height:min(80vh,640px);background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
+.modal-card{width:min(92vw,800px);max-height:min(92vh,720px);height:auto;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
+@supports (height:100dvh){
+  .modal-card{max-height:min(92dvh,720px);}
+}
 .modal-hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .modal-body{padding:12px 16px;overflow:auto;flex:1 1 auto;min-height:0}
 .inv-modal-body,
-.cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:hidden;flex:1 1 auto;min-height:0}
+.cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1 1 auto;min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .inv-modal-body .inv-list,
 .cons-modal-body .inv-list{flex:1 1 auto;min-height:0}
 .inv-modal-body .inv-columns,
@@ -7912,6 +7915,63 @@ function listsDifferent(a,b){
   return false;
 }
 
+function coerceInventoryList(source){
+  if(Array.isArray(source)) return source;
+  if(source==null) return [];
+  return [source];
+}
+
+function normalizeInventoryStateInput(raw){
+  const base=raw&&typeof raw==='object'?raw:{};
+  const active=sanitizeInventoryList(coerceInventoryList(base.active));
+  const common=sanitizeInventoryList(coerceInventoryList(base.common));
+  let attuned=sanitizeInventoryList(coerceInventoryList(base.attuned));
+  const activeLower=new Set(active.map(name=>name.toLowerCase()));
+  attuned=attuned.filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
+  return { active, attuned, common };
+}
+
+function readInventoryStateFromDataStore(charKey){
+  if(!DATA || !DATA.characters) return { state:{ active:[], attuned:[], common:[] }, hasData:false };
+  const ch=DATA.characters[charKey];
+  if(!ch || typeof ch!=='object') return { state:{ active:[], attuned:[], common:[] }, hasData:false };
+  const raw=ch.inventory_state;
+  if(!raw || typeof raw!=='object'){
+    return { state:{ active:[], attuned:[], common:[] }, hasData:false };
+  }
+  const normalized=normalizeInventoryStateInput(raw);
+  const hasData=normalized.active.length>0||normalized.attuned.length>0||normalized.common.length>0;
+  return { state:normalized, hasData };
+}
+
+function writeInventoryStateToDataStore(charKey,state){
+  if(!DATA || !DATA.characters) return false;
+  const ch=DATA.characters[charKey];
+  if(!ch || typeof ch!=='object') return false;
+  const previous=readInventoryStateFromDataStore(charKey);
+  const prevState=previous.state;
+  const hadPrev=previous.hasData;
+  const hasNext=state.active.length>0||state.attuned.length>0||state.common.length>0;
+  let changed=false;
+  if(hasNext){
+    if(!hadPrev||listsDifferent(state.active,prevState.active)||listsDifferent(state.attuned,prevState.attuned)||listsDifferent(state.common,prevState.common)){
+      ch.inventory_state={
+        active:state.active.slice(),
+        attuned:state.attuned.slice(),
+        common:state.common.slice()
+      };
+      changed=true;
+    }
+  }else if(hadPrev){
+    delete ch.inventory_state;
+    changed=true;
+  }
+  if(changed){
+    markDirty();
+  }
+  return changed;
+}
+
 const inventoryStateMemoryStore=new Map();
 function readInventoryStateFromLocalStorage(charKey){
   const fallback=inventoryStateMemoryStore.get(charKey);
@@ -7933,18 +7993,21 @@ function readInventoryStateFromLocalStorage(charKey){
       const raw=localStorage.getItem(key);
       if(!raw) return [];
       const parsed=JSON.parse(raw);
-      if(Array.isArray(parsed)) return sanitizeInventoryList(parsed);
-      if(typeof parsed==='string') return sanitizeInventoryList([parsed]);
+      if(Array.isArray(parsed)) return parsed;
+      if(typeof parsed==='string') return [parsed];
     }catch(_){ /* ignore */ }
     return [];
   };
-  const active=parseList(activeKey(charKey));
-  const attuned=parseList(attuneKey(charKey));
-  const common=parseList(commonKey(charKey));
+  const storedState=normalizeInventoryStateInput({
+    active:parseList(activeKey(charKey)),
+    attuned:parseList(attuneKey(charKey)),
+    common:parseList(commonKey(charKey))
+  });
+  const {active,attuned,common}=storedState;
   const hasStored=active.length>0 || attuned.length>0 || common.length>0;
   if(hasStored){
     inventoryStateMemoryStore.delete(charKey);
-    return { state:{ active, attuned, common }, hasData:true };
+    return { state:storedState, hasData:true };
   }
   if(fallback){
     return {
@@ -7952,6 +8015,17 @@ function readInventoryStateFromLocalStorage(charKey){
         active:fallback.active.slice(),
         attuned:fallback.attuned.slice(),
         common:fallback.common.slice()
+      },
+      hasData:true
+    };
+  }
+  const dataState=readInventoryStateFromDataStore(charKey);
+  if(dataState.hasData){
+    return {
+      state:{
+        active:dataState.state.active.slice(),
+        attuned:dataState.state.attuned.slice(),
+        common:dataState.state.common.slice()
       },
       hasData:true
     };
@@ -7967,30 +8041,32 @@ function persistInventoryState(charKey,partial,{ force=false }={}){
   const hasActive=partial && Object.prototype.hasOwnProperty.call(partial,'active');
   const hasAttuned=partial && Object.prototype.hasOwnProperty.call(partial,'attuned');
   const hasCommon=partial && Object.prototype.hasOwnProperty.call(partial,'common');
-  const nextActive=sanitizeInventoryList(hasActive?partial.active:current.active);
-  const nextCommon=sanitizeInventoryList(hasCommon?partial.common:current.common);
-  let nextAttuned=sanitizeInventoryList(hasAttuned?partial.attuned:current.attuned);
-  const activeLower=new Set(nextActive.map(name=>name.toLowerCase()));
-  nextAttuned=nextAttuned.filter(name=>activeLower.has(name.toLowerCase())).slice(0,3);
-  const changed=listsDifferent(nextActive,current.active)||listsDifferent(nextAttuned,current.attuned)||listsDifferent(nextCommon,current.common);
-  if(!changed && !force){
-    return {changed:false,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
+  const nextState=normalizeInventoryStateInput({
+    active:hasActive?partial.active:current.active,
+    attuned:hasAttuned?partial.attuned:current.attuned,
+    common:hasCommon?partial.common:current.common
+  });
+  const changed=listsDifferent(nextState.active,current.active)||listsDifferent(nextState.attuned,current.attuned)||listsDifferent(nextState.common,current.common);
+  const dataChanged=writeInventoryStateToDataStore(charKey,nextState);
+  const shouldStoreLocal=changed||force||dataChanged;
+  if(!shouldStoreLocal){
+    return {changed:false,state:nextState};
   }
   let storedToLocal=false;
   if(typeof localStorage!=='undefined'){
     try{
-      if(nextActive.length){
-        localStorage.setItem(activeKey(charKey),JSON.stringify(nextActive));
+      if(nextState.active.length){
+        localStorage.setItem(activeKey(charKey),JSON.stringify(nextState.active));
       }else{
         localStorage.removeItem(activeKey(charKey));
       }
-      if(nextAttuned.length){
-        localStorage.setItem(attuneKey(charKey),JSON.stringify(nextAttuned));
+      if(nextState.attuned.length){
+        localStorage.setItem(attuneKey(charKey),JSON.stringify(nextState.attuned));
       }else{
         localStorage.removeItem(attuneKey(charKey));
       }
-      if(nextCommon.length){
-        localStorage.setItem(commonKey(charKey),JSON.stringify(nextCommon));
+      if(nextState.common.length){
+        localStorage.setItem(commonKey(charKey),JSON.stringify(nextState.common));
       }else{
         localStorage.removeItem(commonKey(charKey));
       }
@@ -8000,11 +8076,11 @@ function persistInventoryState(charKey,partial,{ force=false }={}){
     }
   }
   if(!storedToLocal){
-    if(nextActive.length || nextAttuned.length || nextCommon.length){
+    if(nextState.active.length || nextState.attuned.length || nextState.common.length){
       inventoryStateMemoryStore.set(charKey,{
-        active:nextActive.slice(),
-        attuned:nextAttuned.slice(),
-        common:nextCommon.slice()
+        active:nextState.active.slice(),
+        attuned:nextState.attuned.slice(),
+        common:nextState.common.slice()
       });
     }else{
       inventoryStateMemoryStore.delete(charKey);
@@ -8012,7 +8088,7 @@ function persistInventoryState(charKey,partial,{ force=false }={}){
   }else{
     inventoryStateMemoryStore.delete(charKey);
   }
-  return {changed:true,state:{ active:nextActive, attuned:nextAttuned, common:nextCommon }};
+  return {changed:changed||dataChanged,state:nextState};
 }
 
 function normalizeGiftValue(value){
