@@ -637,10 +637,10 @@ body.card-editor-active #addCard{
   .inv-mobile-tab:focus-visible{color:var(--primary)}
   .inv-mobile-tab.active{background:#1a73e8;color:#fff;box-shadow:0 6px 16px rgba(26,115,232,.25)}
   .inv-mobile-tab.active:focus-visible{color:#fff}
-  .inv-columns{display:flex;flex-direction:column;gap:12px}
-  .inv-columns .inv-column{display:flex;flex-direction:column}
-  .inv-columns .inv-column[data-tab-hidden='true']{display:none}
-  .inv-columns .inv-column[data-tab-hidden='false']{display:flex}
+  .inv-columns{display:grid;grid-template-columns:minmax(0,1fr);position:relative;gap:0}
+  .inv-columns .inv-column{display:flex;flex-direction:column;grid-area:1/1;min-height:0;z-index:0}
+  .inv-columns .inv-column[data-tab-hidden='true']{visibility:hidden;opacity:0;pointer-events:none}
+  .inv-columns .inv-column[data-tab-hidden='false']{visibility:visible;opacity:1;pointer-events:auto;z-index:1}
   .inv-column-equipped{order:0}
   .inv-column-inventory{order:1}
 }
