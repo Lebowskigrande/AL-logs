@@ -964,12 +964,12 @@ body.avatar-overlay-open{overflow:hidden}
       <div class="inv-meta" id="invMeta"></div>
     </div>
     <div class="modal-body inv-modal-body">
+      <div id="invTabs" class="inv-mobile-tabs" role="tablist" aria-label="Permanent item lists">
+        <button id="invTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="invInventoryColumn" aria-selected="true">Stowed</button>
+        <button id="invTabEquipped" class="inv-mobile-tab" type="button" role="tab" data-tab-target="equipped" aria-controls="invEquippedColumn" aria-selected="false" tabindex="-1">Equipped</button>
+      </div>
       <div id="invSummary" class="inv-meta"></div>
       <div id="invList" class="inv-list inv-columns" data-active-tab="inventory">
-        <div class="inv-mobile-tabs" role="tablist" aria-label="Permanent item lists">
-          <button id="invTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="invInventoryColumn" aria-selected="true">Stowed</button>
-          <button id="invTabEquipped" class="inv-mobile-tab" type="button" role="tab" data-tab-target="equipped" aria-controls="invEquippedColumn" aria-selected="false" tabindex="-1">Equipped</button>
-        </div>
         <div class="inv-column inv-column-inventory" id="invInventoryColumn" data-tab-panel="inventory" data-tab-hidden="false" role="tabpanel" aria-labelledby="invTabStowed">
           <div class="inv-column-title">Stowed</div>
           <div class="inv-sublist" id="invInventoryList"></div>
@@ -994,12 +994,12 @@ body.avatar-overlay-open{overflow:hidden}
       <div class="inv-meta" id="consMeta"></div>
     </div>
     <div class="modal-body cons-modal-body">
+      <div id="consTabs" class="inv-mobile-tabs" role="tablist" aria-label="Consumable lists">
+        <button id="consTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="consInventoryColumn" aria-selected="true">Stowed</button>
+        <button id="consTabCarried" class="inv-mobile-tab" type="button" role="tab" data-tab-target="carried" aria-controls="consEquippedColumn" aria-selected="false" tabindex="-1">Carried</button>
+      </div>
       <div id="consSummary" class="inv-meta"></div>
       <div id="consList" class="inv-list inv-columns" data-active-tab="inventory">
-        <div class="inv-mobile-tabs" role="tablist" aria-label="Consumable lists">
-          <button id="consTabStowed" class="inv-mobile-tab active" type="button" role="tab" data-tab-target="inventory" aria-controls="consInventoryColumn" aria-selected="true">Stowed</button>
-          <button id="consTabCarried" class="inv-mobile-tab" type="button" role="tab" data-tab-target="carried" aria-controls="consEquippedColumn" aria-selected="false" tabindex="-1">Carried</button>
-        </div>
         <div class="inv-column inv-column-inventory" id="consInventoryColumn" data-tab-panel="inventory" data-tab-hidden="false" role="tabpanel" aria-labelledby="consTabStowed">
           <div class="inv-column-title">Stowed</div>
           <div class="inv-sublist" id="consInventoryList"></div>
@@ -8622,6 +8622,7 @@ const invList=document.getElementById('invList');
 const invInventoryList=document.getElementById('invInventoryList');
 const invEquippedList=document.getElementById('invEquippedList');
 const invSummary=document.getElementById('invSummary');
+const invTabsBar=document.getElementById('invTabs');
 const consModal=document.getElementById('consModal');
 const consTitle=document.getElementById('consTitle');
 const consMeta=document.getElementById('consMeta');
@@ -8629,11 +8630,13 @@ const consList=document.getElementById('consList');
 const consInventoryList=document.getElementById('consInventoryList');
 const consEquippedList=document.getElementById('consEquippedList');
 const consSummary=document.getElementById('consSummary');
+const consTabsBar=document.getElementById('consTabs');
 const modalTabControllers=new Map();
-function initModalTabs(listEl,{defaultTab='inventory'}={}){
+function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
   if(!listEl) return null;
   if(modalTabControllers.has(listEl)) return modalTabControllers.get(listEl);
-  const tabButtons=Array.from(listEl.querySelectorAll('.inv-mobile-tab'));
+  const tabRoot=tabsRoot || listEl;
+  const tabButtons=Array.from(tabRoot.querySelectorAll('.inv-mobile-tab'));
   if(!tabButtons.length) return null;
   const panelMap=new Map();
   tabButtons.forEach(button=>{
@@ -8659,6 +8662,7 @@ function initModalTabs(listEl,{defaultTab='inventory'}={}){
     ? window.matchMedia('(max-width: 600px)')
     : null;
   let active=null;
+  let swipeState=null;
   const applyPanelA11y=()=>{
     const isMobile=!!(mobileQuery && mobileQuery.matches);
     panelMap.forEach((panel,key)=>{
@@ -8688,6 +8692,10 @@ function initModalTabs(listEl,{defaultTab='inventory'}={}){
     active=next;
     listEl.dataset.activeTab=next;
     listEl.setAttribute('data-active-tab', next);
+    if(tabRoot && tabRoot!==listEl){
+      tabRoot.dataset.activeTab=next;
+      tabRoot.setAttribute('data-active-tab', next);
+    }
     tabButtons.forEach(button=>{
       const isActive=button.dataset.tabTarget===next;
       button.classList.toggle('active', isActive);
@@ -8701,6 +8709,7 @@ function initModalTabs(listEl,{defaultTab='inventory'}={}){
     });
     applyPanelA11y();
   };
+  const getActiveIndex=()=>tabButtons.findIndex(btn=>btn.dataset.tabTarget===active);
   const focusTab=(button)=>{
     if(!button) return;
     button.focus();
@@ -8727,6 +8736,50 @@ function initModalTabs(listEl,{defaultTab='inventory'}={}){
         focusTab(tabButtons[tabButtons.length-1]);
       }
     });
+  });
+  const resetSwipe=()=>{ swipeState=null; };
+  const handleTouchStart=(event)=>{
+    if(!tabButtons.length) return;
+    if(mobileQuery && !mobileQuery.matches){ resetSwipe(); return; }
+    if(!event.touches || event.touches.length!==1){ resetSwipe(); return; }
+    const touch=event.touches[0];
+    swipeState={
+      x:touch.clientX,
+      y:touch.clientY,
+      time:Date.now()
+    };
+  };
+  const handleTouchEnd=(event)=>{
+    if(!swipeState) return;
+    if(mobileQuery && !mobileQuery.matches){ resetSwipe(); return; }
+    const touch=(event.changedTouches && event.changedTouches[0]) || null;
+    if(!touch){ resetSwipe(); return; }
+    const dx=touch.clientX-swipeState.x;
+    const dy=touch.clientY-swipeState.y;
+    const dt=Date.now()-swipeState.time;
+    resetSwipe();
+    if(Math.abs(dx)<=Math.abs(dy)) return;
+    if(Math.abs(dx)<40) return;
+    if(dt>600) return;
+    if(tabButtons.length<2) return;
+    const currentIndex=getActiveIndex();
+    if(currentIndex===-1) return;
+    const direction=dx<0?1:-1;
+    let nextIndex=currentIndex+direction;
+    if(nextIndex<0) nextIndex=tabButtons.length-1;
+    if(nextIndex>=tabButtons.length) nextIndex=0;
+    const nextButton=tabButtons[nextIndex];
+    if(nextButton){
+      setActive(nextButton.dataset.tabTarget,{force:true});
+    }
+  };
+  const swipeTargets=new Set();
+  if(typeof listEl.addEventListener==='function') swipeTargets.add(listEl);
+  if(tabRoot && tabRoot!==listEl && typeof tabRoot.addEventListener==='function') swipeTargets.add(tabRoot);
+  swipeTargets.forEach(target=>{
+    target.addEventListener('touchstart', handleTouchStart, {passive:true});
+    target.addEventListener('touchend', handleTouchEnd);
+    target.addEventListener('touchcancel', resetSwipe);
   });
   if(mobileQuery){
     const handleChange=()=>applyPanelA11y();
@@ -8975,7 +9028,7 @@ function openInventoryModal(charKey, opts={}){
     editing,
     hasColumns
   };
-  const invTabs=initModalTabs(invList,{defaultTab:'inventory'});
+  const invTabs=initModalTabs(invList,{defaultTab:'inventory',tabsRoot:invTabsBar});
   if(invTabs){
     invTabs.updateActive('inventory',{force:true});
   }
@@ -9568,7 +9621,7 @@ function openConsumableModal(charKey){
     carriedSection:null,
     hasColumns:false
   };
-  const consTabs=initModalTabs(consList,{defaultTab:'inventory'});
+  const consTabs=initModalTabs(consList,{defaultTab:'inventory',tabsRoot:consTabsBar});
   if(consTabs){
     consTabs.updateActive('inventory',{force:true});
   }
