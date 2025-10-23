@@ -203,6 +203,33 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     return out;
   }
 
+  function sanitizeInventoryList(value){
+    if(Array.isArray(value)){
+      return value
+        .map(item => coerceString(item,{ fallback:'', allowNull:false }))
+        .map(item => item.trim())
+        .filter(item => item.length>0);
+    }
+    if(value == null){
+      return [];
+    }
+    return sanitizeInventoryList([value]);
+  }
+
+  function normalizeInventoryState(raw){
+    if(!raw || typeof raw !== 'object') return null;
+    const active = sanitizeInventoryList(raw.active);
+    const common = sanitizeInventoryList(raw.common);
+    const activeLower = new Set(active.map(item => item.toLowerCase()));
+    const attuned = sanitizeInventoryList(raw.attuned)
+      .filter(item => activeLower.has(item.toLowerCase()))
+      .slice(0,3);
+    if(!(active.length || attuned.length || common.length)){
+      return null;
+    }
+    return { active, attuned, common };
+  }
+
   function readTradeValue(sources, keys){
     for(const source of sources){
       if(!source || typeof source !== 'object') continue;
@@ -393,6 +420,11 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
           out[key] = raw[key];
         }
       });
+    }
+
+    const inventoryState = normalizeInventoryState(raw && raw.inventory_state);
+    if(inventoryState){
+      out.inventory_state = inventoryState;
     }
 
     return out;
