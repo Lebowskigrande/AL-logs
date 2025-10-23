@@ -201,7 +201,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .inventory-metric .text{white-space:nowrap}
 .inventory-metric .amount{font-weight:700;color:var(--ink);transition:color var(--dur) var(--ease)}
 .dm-items-card{max-width:420px;width:100%}
-.dm-items-card .modal-body{display:flex;flex-direction:column;gap:12px;max-height:360px}
+.dm-items-card .modal-body{display:flex;flex-direction:column;gap:12px;flex:1 1 auto;min-height:0;overflow:auto}
 .dm-items-list{display:flex;flex-direction:column;gap:10px}
 .dm-items-row{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ink);transition:color var(--dur) var(--ease)}
 .dm-items-meta{font-size:12px;color:var(--muted);transition:color var(--dur) var(--ease)}
@@ -600,9 +600,9 @@ body.card-editor-active #addCard{
 /* Modals (shared) */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(15,23,42,.4);z-index:50}
 .modal.open{display:grid}
-.modal-card{width:min(92vw,800px);max-height:80vh;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
+.modal-card{width:min(92vw,800px);max-height:80vh;height:min(80vh,640px);background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow2);display:flex;flex-direction:column;overflow:hidden}
 .modal-hd{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.modal-body{padding:12px 16px;overflow:auto}
+.modal-body{padding:12px 16px;overflow:auto;flex:1 1 auto;min-height:0}
 .inv-modal-body,
 .cons-modal-body{display:flex;flex-direction:column;gap:12px;overflow:hidden;flex:1 1 auto;min-height:0}
 .inv-modal-body .inv-list,
