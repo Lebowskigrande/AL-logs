@@ -2297,6 +2297,36 @@ function forgetAvatarPath(key){
   rememberAvatarPath(key,null);
 }
 const ICON_TRASH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
+
+function createEntryLinkButton({label='View entry',onClick}={}){
+  const btn=document.createElement('button');
+  btn.type='button';
+  btn.className='icon-btn';
+  btn.setAttribute('aria-label',label);
+  btn.title=label;
+  const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  icon.setAttribute('viewBox','0 0 24 24');
+  icon.setAttribute('width','20');
+  icon.setAttribute('height','20');
+  icon.setAttribute('fill','none');
+  icon.setAttribute('stroke','currentColor');
+  icon.setAttribute('stroke-width','2');
+  icon.setAttribute('stroke-linecap','round');
+  icon.setAttribute('stroke-linejoin','round');
+  icon.setAttribute('aria-hidden','true');
+  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d','M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z');
+  icon.appendChild(path);
+  btn.appendChild(icon);
+  if(typeof onClick==='function'){
+    btn.addEventListener('click',(event)=>{
+      event.preventDefault();
+      event.stopPropagation();
+      onClick(event);
+    });
+  }
+  return btn;
+}
 const ICON_MINUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>';
 const ICON_PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
 
@@ -9022,6 +9052,20 @@ function openInventoryModal(charKey, opts={}){
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
 
+    if(meta && meta.adv){
+      const linkBtn=createEntryLinkButton({
+        onClick:()=>{
+          hideInventoryContextMenu();
+          if(invModal){
+            invModal.classList.remove('open','editing');
+          }
+          refreshModalState();
+          navigateToCharacterReward(charKey,meta.adv);
+        }
+      });
+      rightDiv.appendChild(linkBtn);
+    }
+
     const deleteBtn=document.createElement('button');
     deleteBtn.type='button';
     deleteBtn.className='icon-btn danger delete-btn';
@@ -9127,6 +9171,19 @@ function openInventoryModal(charKey, opts={}){
 
     const rightDiv=document.createElement('div');
     rightDiv.className='inv-tools';
+    if(meta && meta.adv){
+      const linkBtn=createEntryLinkButton({
+        onClick:()=>{
+          hideInventoryContextMenu();
+          if(invModal){
+            invModal.classList.remove('open','editing');
+          }
+          refreshModalState();
+          navigateToCharacterReward(charKey,meta.adv);
+        }
+      });
+      rightDiv.appendChild(linkBtn);
+    }
     const pill=document.createElement('span');
     pill.className='attune-pill'+(isAttuned?' on':'');
     pill.textContent=isAttuned?'Attuned':'Attune';
@@ -9833,31 +9890,12 @@ function openSupernaturalModal(charKey){
       hasTools=true;
     }
     if(gift.adv){
-      const linkBtn=document.createElement('button');
-      linkBtn.type='button';
-      linkBtn.className='icon-btn';
-      linkBtn.setAttribute('aria-label','View entry');
-      linkBtn.title='View entry';
-      const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
-      icon.setAttribute('viewBox','0 0 24 24');
-      icon.setAttribute('width','20');
-      icon.setAttribute('height','20');
-      icon.setAttribute('fill','none');
-      icon.setAttribute('stroke','currentColor');
-      icon.setAttribute('stroke-width','2');
-      icon.setAttribute('stroke-linecap','round');
-      icon.setAttribute('stroke-linejoin','round');
-      icon.setAttribute('aria-hidden','true');
-      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-      path.setAttribute('d','M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z');
-      icon.appendChild(path);
-      linkBtn.appendChild(icon);
-      linkBtn.addEventListener('click',(ev)=>{
-        ev.preventDefault();
-        ev.stopPropagation();
-        giftsModal.classList.remove('open');
-        refreshModalState();
-        navigateToCharacterReward(charKey,gift.adv);
+      const linkBtn=createEntryLinkButton({
+        onClick:()=>{
+          giftsModal.classList.remove('open');
+          refreshModalState();
+          navigateToCharacterReward(charKey,gift.adv);
+        }
       });
       tools.appendChild(linkBtn);
       hasTools=true;
