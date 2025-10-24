@@ -1124,7 +1124,7 @@ window.AL_DATA_VERSION=version;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
 const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
-const DATA_FILE_PATH='data/data.js';
+const DATA_FILE_PATH='/api/data-proxy';
 
 const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
@@ -4075,12 +4075,14 @@ function saveDataJs(options={}){
         const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data/data.js.';
         throw new Error(message);
       }
-      const versionForSave=String(Date.now());
+      const commitSha=(body&&typeof body==='object'&&body.commit)?String(body.commit):null;
+      const rawDataUrl=(body&&typeof body==='object'&&body.rawUrl)?String(body.rawUrl):null;
+      const versionForSave=commitSha||String(Date.now());
       setDataVersion(versionForSave);
       let refreshOutcome=null;
       let refreshError=null;
       try{
-        refreshOutcome=await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
+        refreshOutcome=await refreshDataAfterSave({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave, rawUrl:rawDataUrl });
       }catch(err){
         refreshError=err;
       }
@@ -4206,11 +4208,15 @@ function escapeHtml(value){
     .replace(/'/g,'&#39;');
 }
 
-function buildDataUrl(version,{cacheBustToken=null}={}){
+function isLikelyGitObjectId(value){
+  return /^[0-9a-f]{7,40}$/i.test(String(value||''));
+}
+
+function buildDataUrl(version,{cacheBustToken=null,includeRef=false}={}){
   const v=(version||'').trim();
   const params=[];
-  if(v){
-    params.push('v='+encodeURIComponent(v));
+  if(includeRef&&v&&isLikelyGitObjectId(v)){
+    params.push('ref='+encodeURIComponent(v));
   }
   const cbToken=cacheBustToken==null?'' : String(cacheBustToken||'').trim();
   if(cbToken){
@@ -4323,13 +4329,50 @@ function wait(ms){
   return new Promise(resolve=>setTimeout(resolve,ms));
 }
 
+async function fetchDataJsFromUrl(url,{ expectedDataJs=null }={}){
+  if(!url){
+    throw new Error('No URL provided for data/data.js fetch.');
+  }
+  const response=await fetch(url,{
+    cache:'no-store',
+    headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
+  });
+  if(!response.ok){
+    throw new Error('HTTP '+response.status);
+  }
+  const text=await response.text();
+  if(expectedDataJs && !dataPayloadsMatch(text, expectedDataJs)){
+    throw new Error('Fetched data/data.js payload did not match expected content.');
+  }
+  return text;
+}
+
+async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, version=null, rawUrl=null }={}){
+  if(rawUrl){
+    try{
+      const text=await fetchDataJsFromUrl(rawUrl,{ expectedDataJs });
+      applyDataJs(text);
+      if(version!=null){
+        setDataVersion(version);
+      }
+      return true;
+    }catch(err){
+      console.warn('Immediate data/data.js fetch after save failed; falling back to CDN polling.',err);
+    }
+  }
+  return await refreshDataJsCache({ expectedDataJs, retries, retryDelay, version });
+}
+
 async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, version=null }={}){
   let attempt=0;
   const pinnedVersion=version?String(version):null;
   let lastMismatchError=null;
   while(attempt<=retries){
     const versionToUse=pinnedVersion||String(Date.now());
-    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now()}),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now(),includeRef:!!pinnedVersion}),{
+      cache:'no-store',
+      headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
+    });
     if(!response.ok){
       throw new Error('HTTP '+response.status);
     }
