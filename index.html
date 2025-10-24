@@ -1124,7 +1124,7 @@ window.AL_DATA_VERSION=version;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
 const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
-const DATA_FILE_PATH='data/data.js';
+const DATA_FILE_PATH='/api/data-proxy';
 
 const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
@@ -4208,11 +4208,15 @@ function escapeHtml(value){
     .replace(/'/g,'&#39;');
 }
 
-function buildDataUrl(version,{cacheBustToken=null}={}){
+function isLikelyGitObjectId(value){
+  return /^[0-9a-f]{7,40}$/i.test(String(value||''));
+}
+
+function buildDataUrl(version,{cacheBustToken=null,includeRef=false}={}){
   const v=(version||'').trim();
   const params=[];
-  if(v){
-    params.push('v='+encodeURIComponent(v));
+  if(includeRef&&v&&isLikelyGitObjectId(v)){
+    params.push('ref='+encodeURIComponent(v));
   }
   const cbToken=cacheBustToken==null?'' : String(cacheBustToken||'').trim();
   if(cbToken){
@@ -4329,7 +4333,10 @@ async function fetchDataJsFromUrl(url,{ expectedDataJs=null }={}){
   if(!url){
     throw new Error('No URL provided for data/data.js fetch.');
   }
-  const response=await fetch(url,{ cache:'no-store', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+  const response=await fetch(url,{
+    cache:'no-store',
+    headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
+  });
   if(!response.ok){
     throw new Error('HTTP '+response.status);
   }
@@ -4362,7 +4369,10 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
   let lastMismatchError=null;
   while(attempt<=retries){
     const versionToUse=pinnedVersion||String(Date.now());
-    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now()}),{ cache:'reload', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now(),includeRef:!!pinnedVersion}),{
+      cache:'no-store',
+      headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
+    });
     if(!response.ok){
       throw new Error('HTTP '+response.status);
     }

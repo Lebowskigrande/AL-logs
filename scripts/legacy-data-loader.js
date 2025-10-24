@@ -14,10 +14,10 @@
     globalScope.AL_LEGACY_LOADER.loadLegacyData = api.loadLegacyData;
   }
 })(function(){
-  const DATA_SCRIPT_PATH='data/data.js';
+  const DATA_SCRIPT_PATH='/api/data-proxy';
 
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
-    const specifier = buildDataScriptUrl({ version, cacheBust });
+    const specifier = buildDataScriptUrl({ cacheBust });
     let raw = getWindowPayload();
 
     if (!raw) {
@@ -45,9 +45,8 @@
     };
   }
 
-  function buildDataScriptUrl({ version = '', cacheBust = '' } = {}) {
+  function buildDataScriptUrl({ cacheBust = '' } = {}) {
     const params = new URLSearchParams();
-    if (version) params.set('v', version);
     if (cacheBust) params.set('cb', cacheBust);
     const query = params.toString();
     return query ? `${DATA_SCRIPT_PATH}?${query}` : DATA_SCRIPT_PATH;
