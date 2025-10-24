@@ -156,8 +156,28 @@ export default async function handler(req) {
       }
     }
 
+    let proxyUrl = null;
+    const forwardedHost = req.headers.get('x-forwarded-host') || req.headers.get('host') || '';
+    const forwardedProto = req.headers.get('x-forwarded-proto') || '';
+    const hostCandidate = forwardedHost ? forwardedHost.split(',')[0].trim() : '';
+    const protoCandidate = forwardedProto ? forwardedProto.split(',')[0].trim() : '';
+    const resolvedProto = protoCandidate || (hostCandidate && hostCandidate.startsWith('localhost') ? 'http' : 'https');
+
+    if (commitSha && hostCandidate) {
+      try {
+        const proxyParams = new URLSearchParams();
+        proxyParams.set('path', path);
+        proxyParams.set('ref', commitSha);
+        proxyParams.set('cb', String(Date.now()));
+        const normalizedHost = hostCandidate.replace(/\/+$/, '');
+        proxyUrl = `${resolvedProto || 'https'}://${normalizedHost}/api/data-proxy?${proxyParams.toString()}`;
+      } catch (err) {
+        proxyUrl = null;
+      }
+    }
+
     // CORS for your site(s)
-    return respond({ ok: true, commit: commitSha, rawUrl });
+    return respond({ ok: true, commit: commitSha, rawUrl, proxyUrl });
   } catch (e) {
     return respond({ error: String(e) }, { status: 500 });
   }

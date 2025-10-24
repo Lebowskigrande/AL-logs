@@ -1113,18 +1113,33 @@ body.avatar-overlay-open{overflow:hidden}
 <script id="dataScript" data-loader="data">
 const KEY='al_logs_data_version';
 window.AL_DATA_VERSION_KEY=KEY;
-let version='';
-try{ version=localStorage.getItem(KEY)||''; }
-catch(err){ version=''; }
-if(!version){
-  try{ version=sessionStorage.getItem(KEY)||''; }
-  catch(err){ version=''; }
+const COMMIT_KEY=`${KEY}__commit`;
+window.AL_DATA_COMMIT_KEY=COMMIT_KEY;
+const SHA_PATTERN=/^[0-9a-f]{40}$/i;
+let storedVersion='';
+try{ storedVersion=localStorage.getItem(KEY)||''; }
+catch(err){ storedVersion=''; }
+if(!storedVersion){
+  try{ storedVersion=sessionStorage.getItem(KEY)||''; }
+  catch(err){ storedVersion=''; }
 }
+let storedCommit='';
+try{ storedCommit=localStorage.getItem(COMMIT_KEY)||''; }
+catch(err){ storedCommit=''; }
+if(!storedCommit){
+  try{ storedCommit=sessionStorage.getItem(COMMIT_KEY)||''; }
+  catch(err){ storedCommit=''; }
+}
+const normalizedCommit=(storedCommit&&SHA_PATTERN.test(storedCommit.trim()))?storedCommit.trim():'';
+let version=normalizedCommit||storedVersion||'';
 window.AL_DATA_VERSION=version;
+window.AL_DATA_STORED_VERSION=storedVersion||'';
+window.AL_DATA_COMMIT=normalizedCommit;
 const cacheBust=String(Date.now());
 window.AL_DATA_CACHE_BUST=cacheBust;
 const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
 const DATA_FILE_PATH='/api/data-proxy';
+const DATA_FILE_FALLBACK_PATH='data/data.js';
 
 if(scriptEl&&version&&isLikelyGitObjectId(version)){
   scriptEl.setAttribute('data-ref',version);
@@ -1134,18 +1149,26 @@ const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
   version,
   cacheBust,
-  scriptEl
+  scriptEl,
+  storedVersion,
+  storedCommit:normalizedCommit
 });
 
-function initBootstrapDiagnostics({key,version,cacheBust,scriptEl}){
+function initBootstrapDiagnostics({key,version,cacheBust,scriptEl,storedVersion='',storedCommit=''}){
   const hasWindow=typeof window!=='undefined';
   const diag={
     startedAt:safeIsoTimestamp(),
     initialVersion:version||'',
+    initialStoredVersion:storedVersion||'',
+    initialStoredCommit:storedCommit||'',
     cacheBustToken:cacheBust||'',
     stored:{
       local:hasWindow?readStorageSafe(()=>window.localStorage&&window.localStorage.getItem(key)):null,
-      session:hasWindow?readStorageSafe(()=>window.sessionStorage&&window.sessionStorage.getItem(key)):null
+      session:hasWindow?readStorageSafe(()=>window.sessionStorage&&window.sessionStorage.getItem(key)):null,
+      commit:{
+        local:hasWindow?readStorageSafe(()=>window.localStorage&&window.localStorage.getItem(window.AL_DATA_COMMIT_KEY||`${key}__commit`)):null,
+        session:hasWindow?readStorageSafe(()=>window.sessionStorage&&window.sessionStorage.getItem(window.AL_DATA_COMMIT_KEY||`${key}__commit`)):null
+      }
     },
     script:{
       id:scriptEl?scriptEl.id||null:null,
@@ -1182,6 +1205,10 @@ function clearStoredVersion(){
   try{ localStorage.removeItem(KEY); }
   catch(err){ /* no-op */ }
   try{ sessionStorage.removeItem(KEY); }
+  catch(err){ /* no-op */ }
+  try{ localStorage.removeItem(COMMIT_KEY); }
+  catch(err){ /* no-op */ }
+  try{ sessionStorage.removeItem(COMMIT_KEY); }
   catch(err){ /* no-op */ }
 }
 
@@ -1417,10 +1444,16 @@ const avatarPreviewImage=avatarOverlay?avatarOverlay.querySelector('.avatar-prev
 const avatarSizeCache=new Map();
 const dataScriptEl=document.getElementById('dataScript');
 const DATA_VERSION_KEY=window.AL_DATA_VERSION_KEY||'al_logs_data_version';
+const DATA_COMMIT_KEY=window.AL_DATA_COMMIT_KEY||`${DATA_VERSION_KEY}__commit`;
 let charMenuRafId=null;
 let removeCharMenuAutoPosition=null;
 let dataVersion=(dataScriptEl&&dataScriptEl.getAttribute('data-version'))||window.AL_DATA_VERSION||'';
 window.AL_DATA_VERSION=dataVersion;
+let dataCommit=window.AL_DATA_COMMIT||'';
+if(!dataCommit&&isLikelyGitObjectId(dataVersion)){
+  dataCommit=dataVersion;
+}
+window.AL_DATA_COMMIT=isLikelyGitObjectId(dataCommit)?dataCommit:'';
 let dataCacheBust=(dataScriptEl&&dataScriptEl.getAttribute('data-cache-bust'))||window.AL_DATA_CACHE_BUST||'';
 window.AL_DATA_CACHE_BUST=dataCacheBust;
 const DATA_DRAFT_STORAGE_KEY='al_logs_data_draft_v1';
@@ -4129,6 +4162,7 @@ function saveDataJs(options={}){
       }
       const commitSha=(body&&typeof body==='object'&&body.commit)?String(body.commit):null;
       const rawDataUrl=(body&&typeof body==='object'&&body.rawUrl)?String(body.rawUrl):null;
+      const proxyDataUrl=(body&&typeof body==='object'&&body.proxyUrl)?String(body.proxyUrl):null;
       const versionForSave=commitSha||String(Date.now());
       let refreshOutcome=null;
       let refreshError=null;
@@ -4140,7 +4174,8 @@ function saveDataJs(options={}){
           backoffFactor:2,
           maxRetryDelay:8000,
           version:versionForSave,
-          rawUrl:rawDataUrl
+          rawUrl:rawDataUrl,
+          proxyUrl:proxyDataUrl
         });
       }catch(err){
         refreshError=err;
@@ -4291,6 +4326,14 @@ function buildDataUrl(version,{cacheBustToken=null,includeRef=false}={}){
   return DATA_FILE_PATH;
 }
 
+function buildFallbackDataUrl({cacheBustToken=null}={}){
+  const cbToken=cacheBustToken==null?'':String(cacheBustToken||'').trim();
+  if(cbToken){
+    return `${DATA_FILE_FALLBACK_PATH}?cb=${encodeURIComponent(cbToken)}`;
+  }
+  return DATA_FILE_FALLBACK_PATH;
+}
+
 function getDataMetaGeneratedTimestamp(){
   if(!DATA||typeof DATA!=='object') return '';
   const meta=DATA.meta;
@@ -4323,7 +4366,8 @@ function buildPersistedDataVersionValue(version){
   return normalized;
 }
 
-function persistDataVersion(version){
+function persistDataVersion(version,{commit=null}={}){
+  const normalizedCommit=commit&&isLikelyGitObjectId(commit)?commit:'';
   try{
     if(version){
       localStorage.setItem(DATA_VERSION_KEY, version);
@@ -4342,13 +4386,34 @@ function persistDataVersion(version){
   }catch(err){
     /* no-op */
   }
+  try{
+    if(normalizedCommit){
+      localStorage.setItem(DATA_COMMIT_KEY, normalizedCommit);
+    }else{
+      localStorage.removeItem(DATA_COMMIT_KEY);
+    }
+  }catch(err){
+    /* no-op */
+  }
+  try{
+    if(normalizedCommit){
+      sessionStorage.setItem(DATA_COMMIT_KEY, normalizedCommit);
+    }else{
+      sessionStorage.removeItem(DATA_COMMIT_KEY);
+    }
+  }catch(err){
+    /* no-op */
+  }
 }
 
 function setDataVersion(version,{persistedValue}={}){
   dataVersion=version||'';
   window.AL_DATA_VERSION=dataVersion;
+  const commitForStorage=isLikelyGitObjectId(dataVersion)?dataVersion:'';
+  window.AL_DATA_COMMIT=commitForStorage;
   const storageValue=(persistedValue!==undefined)?persistedValue:buildPersistedDataVersionValue(dataVersion);
-  persistDataVersion(storageValue);
+  window.AL_DATA_STORED_VERSION=storageValue||'';
+  persistDataVersion(storageValue,{ commit:commitForStorage });
   if(dataScriptEl){
     dataCacheBust=String(Date.now());
     window.AL_DATA_CACHE_BUST=dataCacheBust;
@@ -4448,12 +4513,24 @@ async function fetchDataJsFromUrl(url,{ expectedDataJs=null }={}){
   return text;
 }
 
-async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null, rawUrl=null }={}){
+async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null, rawUrl=null, proxyUrl=null }={}){
   const normalizedRetries=Math.max(0, Number.isFinite(Number(retries))?Number(retries):0);
   const normalizedDelay=Math.max(100, Number.isFinite(Number(retryDelay))?Number(retryDelay):500);
   const normalizedBackoff=Number(backoffFactor)&&Number(backoffFactor)>0?Number(backoffFactor):1.5;
   const normalizedMaxDelay=Math.max(normalizedDelay, Number.isFinite(Number(maxRetryDelay))?Number(maxRetryDelay):5000);
   const pinnedVersion=version&&isLikelyGitObjectId(version)?String(version):null;
+  if(proxyUrl){
+    try{
+      const text=await fetchDataJsFromUrl(proxyUrl,{ expectedDataJs });
+      applyDataJs(text);
+      if(version!=null){
+        setDataVersion(version);
+      }
+      return { status:'confirmed', source:'proxy' };
+    }catch(err){
+      console.warn('Immediate data/data.js fetch via proxy after save failed; falling back to alternate sources.',err);
+    }
+  }
   if(rawUrl){
     try{
       const text=await fetchDataJsFromUrl(rawUrl,{ expectedDataJs });
@@ -4508,7 +4585,7 @@ function computeBackoffDelay(attempt,{ initialDelay, factor, maxDelay }){
   return Math.max(100, Math.round(clamped));
 }
 
-async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null }={}){
+async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null, allowRelativeFallback=true }={}){
   let attempt=0;
   const maxAttempts=Math.max(0, Number.isFinite(Number(retries))?Number(retries):0);
   const pinnedVersion=version?String(version):null;
@@ -4516,6 +4593,7 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
   const factor=Number(backoffFactor)&&Number(backoffFactor)>0?Number(backoffFactor):1.5;
   const capDelay=Math.max(baseDelay, Number.isFinite(Number(maxRetryDelay))?Number(maxRetryDelay):5000);
   let lastError=null;
+  let attemptedRelativeFallback=false;
   while(attempt<=maxAttempts){
     const versionToUse=pinnedVersion||String(Date.now());
     try{
@@ -4537,6 +4615,20 @@ async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=5
       lastError=new Error('Latest data/data.js did not match the newly saved content.');
     }catch(err){
       lastError=err;
+      if(!pinnedVersion && allowRelativeFallback && !attemptedRelativeFallback){
+        attemptedRelativeFallback=true;
+        try{
+          const fallbackText=await fetchDataJsFromUrl(buildFallbackDataUrl({cacheBustToken:Date.now()}),{ expectedDataJs });
+          if(!expectedDataJs || dataPayloadsMatch(fallbackText, expectedDataJs)){
+            applyDataJs(fallbackText);
+            setDataVersion(versionToUse);
+            return { status:'confirmed', source:'relative', attempts:attempt+1, fallback:'static' };
+          }
+          lastError=new Error('Latest data/data.js did not match the newly saved content.');
+        }catch(fallbackError){
+          lastError=fallbackError;
+        }
+      }
     }
     if(attempt===maxAttempts){
       if(lastError){
