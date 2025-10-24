@@ -2408,6 +2408,7 @@ let draftPersistWarningShown=false;
 let draftLoadWarningShown=false;
 let saveQueueTail=Promise.resolve();
 const pendingDerivedUpdates=new Set();
+const inventoryStateAutoSaveQueue=new Set();
 const SAVE_ENDPOINT=(typeof window!=='undefined' && window.AL_SAVE_ENDPOINT)||'https://al-logs.vercel.app/api/save-data';
 const SAVE_HEADERS=(typeof window!=='undefined' && window.AL_SAVE_HEADERS)||null;
 const STORAGE_KEYS={
@@ -4014,6 +4015,7 @@ function clearDirty(){
   lastSaveResult=null;
   clearTimeout(saveFeedbackTimeout);
   clearDataDraft();
+  inventoryStateAutoSaveQueue.clear();
   updateSaveIndicatorState();
 }
 
@@ -8074,8 +8076,12 @@ function persistInventoryState(charKey,partial,{ force=false }={}){
   });
   const changed=listsDifferent(nextState.active,current.active)||listsDifferent(nextState.attuned,current.attuned)||listsDifferent(nextState.common,current.common);
   const dataChanged=writeInventoryStateToDataStore(charKey,nextState);
-  const shouldStoreLocal=changed||force||dataChanged;
+  const mutationApplied=changed||dataChanged;
+  const shouldStoreLocal=mutationApplied||force;
   if(!shouldStoreLocal){
+    if(!mutationApplied){
+      inventoryStateAutoSaveQueue.delete(charKey);
+    }
     return {changed:false,state:nextState};
   }
   let storedToLocal=false;
@@ -8114,7 +8120,32 @@ function persistInventoryState(charKey,partial,{ force=false }={}){
   }else{
     inventoryStateMemoryStore.delete(charKey);
   }
-  return {changed:changed||dataChanged,state:nextState};
+  if(mutationApplied){
+    inventoryStateAutoSaveQueue.add(charKey);
+  }
+  return {changed:mutationApplied,state:nextState};
+}
+
+function autoSaveInventoryStateOnClose(charKey,{ reason=null }={}){
+  if(!charKey) return;
+  if(!inventoryStateAutoSaveQueue.has(charKey)) return;
+  inventoryStateAutoSaveQueue.delete(charKey);
+  if(!pendingChanges){
+    return;
+  }
+  const reasonLabel=reason?` (${reason})`:'';
+  try{
+    const savePromise=saveDataJs();
+    if(savePromise && typeof savePromise.then==='function'){
+      savePromise.catch(err=>{
+        inventoryStateAutoSaveQueue.add(charKey);
+        console.error(`Failed to auto-save inventory changes${reasonLabel}`, err);
+      });
+    }
+  }catch(err){
+    inventoryStateAutoSaveQueue.add(charKey);
+    console.error(`Failed to auto-save inventory changes${reasonLabel}`, err);
+  }
 }
 
 function normalizeGiftValue(value){
@@ -9005,10 +9036,20 @@ if(tradeForm){
     }
   });
 }
-document.getElementById('invClose').addEventListener('click',()=>{
+function closeInventoryModal({ reason='dismiss' }={}){
+  if(!invModal) return;
+  if(!invModal.classList.contains('open')) return;
+  const charKey=invModal.dataset?invModal.dataset.charKey:null;
   hideInventoryContextMenu();
   invModal.classList.remove('open','editing');
   refreshModalState();
+  if(charKey){
+    autoSaveInventoryStateOnClose(charKey,{ reason });
+  }
+}
+
+document.getElementById('invClose').addEventListener('click',()=>{
+  closeInventoryModal({ reason:'close-button' });
 });
 function closeConsumableModal(){
   consModal.classList.remove('open','editing');
@@ -9017,9 +9058,7 @@ function closeConsumableModal(){
 document.getElementById('consClose').addEventListener('click',closeConsumableModal);
 invModal.addEventListener('click',(e)=>{
   if(e.target===invModal){
-    hideInventoryContextMenu();
-    invModal.classList.remove('open','editing');
-    refreshModalState();
+    closeInventoryModal({ reason:'backdrop' });
   }
 });
 consModal.addEventListener('click',(e)=>{ if(e.target===consModal) closeConsumableModal(); });
@@ -9496,11 +9535,7 @@ function openInventoryModal(charKey, opts={}){
       row.classList.add('has-entry-link');
       const linkBtn=createEntryLinkButton({
         onClick:()=>{
-          hideInventoryContextMenu();
-          if(invModal){
-            invModal.classList.remove('open','editing');
-          }
-          refreshModalState();
+          closeInventoryModal({ reason:'entry-link' });
           navigateToCharacterReward(charKey,meta.adv);
         }
       });
@@ -9616,11 +9651,7 @@ function openInventoryModal(charKey, opts={}){
       row.classList.add('has-entry-link');
       const linkBtn=createEntryLinkButton({
         onClick:()=>{
-          hideInventoryContextMenu();
-          if(invModal){
-            invModal.classList.remove('open','editing');
-          }
-          refreshModalState();
+          closeInventoryModal({ reason:'entry-link' });
           navigateToCharacterReward(charKey,meta.adv);
         }
       });
