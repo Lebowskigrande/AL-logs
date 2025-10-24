@@ -15,6 +15,7 @@
   }
 })(function(){
   const DATA_SCRIPT_PATH='/api/data-proxy';
+  const DATA_SCRIPT_FALLBACK_PATH='data/data.js';
 
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
     const specifier = buildDataScriptUrl({ cacheBust });
@@ -45,11 +46,12 @@
     };
   }
 
-  function buildDataScriptUrl({ cacheBust = '' } = {}) {
+  function buildDataScriptUrl({ cacheBust = '', basePath = DATA_SCRIPT_PATH } = {}) {
+    const normalizedPath = String(basePath || '').trim() || DATA_SCRIPT_PATH;
     const params = new URLSearchParams();
     if (cacheBust) params.set('cb', cacheBust);
     const query = params.toString();
-    return query ? `${DATA_SCRIPT_PATH}?${query}` : DATA_SCRIPT_PATH;
+    return query ? `${normalizedPath}?${query}` : normalizedPath;
   }
 
   function getWindowPayload() {
@@ -66,8 +68,41 @@
   }
 
   async function ensureDataScriptLoaded(src, { version = '', cacheBust = '' } = {}) {
+    const attempts = [];
+    try {
+      await appendDataScript(src, { version, cacheBust, isFallback: false });
+      return;
+    } catch (primaryError) {
+      attempts.push({ src, error: primaryError });
+    }
+
+    const fallbackSrc = buildDataScriptUrl({ cacheBust, basePath: DATA_SCRIPT_FALLBACK_PATH });
+    if (fallbackSrc !== src) {
+      try {
+        await appendDataScript(fallbackSrc, { version, cacheBust, isFallback: true });
+        return;
+      } catch (fallbackError) {
+        attempts.push({ src: fallbackSrc, error: fallbackError });
+      }
+    }
+
+    const message = attempts.length > 1
+      ? `Failed to load data/data.js from ${attempts.map(({ src: attemptSrc }) => attemptSrc).join(' and ')}`
+      : (attempts[0]?.error?.message || `Failed to load ${src}`);
+
+    const error = new Error(message);
+    error.attempts = attempts;
+    throw error;
+  }
+
+  function appendDataScript(src, { version = '', cacheBust = '', isFallback = false } = {}) {
     if (typeof document === 'undefined' || typeof document.createElement !== 'function') {
       throw new Error('DOM APIs are required to load data/data.js');
+    }
+
+    const parent = document.head || document.body || document.documentElement;
+    if (!parent) {
+      throw new Error('Unable to append data/data.js script tag');
     }
 
     return new Promise((resolve, reject) => {
@@ -80,6 +115,7 @@
       script.src = src;
       script.async = false;
       script.dataset.loader = 'legacy-data';
+      script.dataset.source = isFallback ? 'fallback' : 'primary';
       if (version) {
         script.setAttribute('data-version', version);
       }
@@ -87,17 +123,65 @@
         script.setAttribute('data-cache-bust', cacheBust);
       }
 
-      script.addEventListener('load', () => resolve());
-      script.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)));
+      pushBootstrapDiagStep('legacy-load-attempt', {
+        src,
+        cacheBust,
+        version,
+        fallback: isFallback
+      });
 
-      const parent = document.head || document.body || document.documentElement;
-      if (!parent) {
-        reject(new Error('Unable to append data/data.js script tag'));
-        return;
-      }
+      const cleanup = () => {
+        script.removeEventListener('load', onLoad);
+        script.removeEventListener('error', onError);
+      };
+
+      const onLoad = () => {
+        cleanup();
+        pushBootstrapDiagStep('legacy-load-success', {
+          src,
+          cacheBust,
+          version,
+          fallback: isFallback
+        });
+        resolve();
+      };
+
+      const onError = () => {
+        cleanup();
+        script.remove();
+        pushBootstrapDiagStep('legacy-load-error', {
+          src,
+          cacheBust,
+          version,
+          fallback: isFallback
+        });
+        reject(new Error(`Failed to load ${src}`));
+      };
+
+      script.addEventListener('load', onLoad);
+      script.addEventListener('error', onError);
 
       parent.appendChild(script);
     });
+  }
+
+  function pushBootstrapDiagStep(event, detail) {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const diag = window.__AL_DATA_BOOTSTRAP_DIAG__;
+    if (!diag || !Array.isArray(diag.steps)) {
+      return;
+    }
+    try {
+      diag.steps.push({
+        event: String(event || 'unknown'),
+        detail: detail ? { ...detail } : null,
+        ts: Date.now()
+      });
+    } catch (error) {
+      /* no-op */
+    }
   }
 
   function deriveVersionToken(meta = {}, fallback = '') {
