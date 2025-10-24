@@ -11187,8 +11187,7 @@ window.DATA = {
         ],
         "attuned": [
           "Staff of the Magi",
-          "Robe of the Archmagi (White)",
-          "Arcane Grimoire +3"
+          "Robe of the Archmagi (White)"
         ],
         "common": [
           "Pipe of Smoke Monsters (guardian)"
@@ -17589,7 +17588,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T15:35:15.353Z",
+    "generated": "2025-10-24T15:35:35.767Z",
     "problems": []
   },
   "dm_allocations": []
