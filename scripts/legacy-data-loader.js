@@ -22,11 +22,12 @@
   }
 
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
-    const specifier = buildDataScriptUrl({ version, cacheBust });
+    const commitMetadata = resolveCommitMetadata(version);
+    const candidates = buildDataScriptCandidates({ version, cacheBust, commitMetadata });
     let raw = getWindowPayload();
 
     if (!raw) {
-      raw = await ensureDataScriptLoaded(specifier, { version, cacheBust });
+      raw = await ensureDataScriptLoaded(candidates, { version, cacheBust });
     }
 
     if (!raw && typeof window !== 'undefined') {
@@ -67,6 +68,118 @@
     return query ? `${normalizedPath}?${query}` : normalizedPath;
   }
 
+  function applyCacheBust(url, cacheBust) {
+    const normalizedUrl = String(url || '').trim();
+    if (!normalizedUrl) return '';
+    if (!cacheBust) return normalizedUrl;
+    const cbValue = String(cacheBust);
+    try {
+      const base = normalizedUrl.startsWith('http') || normalizedUrl.startsWith('https')
+        ? undefined
+        : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
+      const parsed = new URL(normalizedUrl, base);
+      parsed.searchParams.set('cb', cbValue);
+      return parsed.toString();
+    } catch (error) {
+      const hashIndex = normalizedUrl.indexOf('#');
+      const hash = hashIndex >= 0 ? normalizedUrl.slice(hashIndex) : '';
+      const withoutHash = hashIndex >= 0 ? normalizedUrl.slice(0, hashIndex) : normalizedUrl;
+      const stripped = withoutHash.replace(/([?&])cb=[^&]*(&|$)/, (match, prefix, suffix) => {
+        if (suffix === '&') {
+          return prefix;
+        }
+        return '';
+      }).replace(/[?&]$/, '');
+      const separator = stripped.includes('?') ? '&' : '?';
+      return `${stripped}${separator}cb=${encodeURIComponent(cbValue)}${hash}`;
+    }
+  }
+
+  function resolveCommitMetadata(version = '') {
+    if (typeof window === 'undefined') return null;
+    const meta = window.AL_DATA_COMMIT_META;
+    if (!meta || typeof meta !== 'object') return null;
+    const commitCandidate = meta.commit || '';
+    if (!commitCandidate || !isLikelyGitObjectId(commitCandidate)) {
+      return null;
+    }
+    const normalizedVersion = String(version || '').trim();
+    if (normalizedVersion && isLikelyGitObjectId(normalizedVersion) && normalizedVersion !== commitCandidate) {
+      return null;
+    }
+    const normalized = {
+      commit: commitCandidate
+    };
+    if (meta.rawUrl && typeof meta.rawUrl === 'string' && meta.rawUrl.trim()) {
+      normalized.rawUrl = meta.rawUrl.trim();
+    }
+    if (meta.proxyUrl && typeof meta.proxyUrl === 'string' && meta.proxyUrl.trim()) {
+      normalized.proxyUrl = meta.proxyUrl.trim();
+    }
+    if (meta.path && typeof meta.path === 'string' && meta.path.trim()) {
+      normalized.path = meta.path.trim();
+    }
+    if (Number.isFinite(meta.savedAt)) {
+      normalized.savedAt = Number(meta.savedAt);
+    }
+    return normalized;
+  }
+
+  function buildDataScriptCandidates({ version = '', cacheBust = '', commitMetadata = null } = {}) {
+    const candidates = [];
+    const seen = new Set();
+
+    const addCandidate = (src, { label, fallback } = {}) => {
+      const normalizedSrc = String(src || '').trim();
+      if (!normalizedSrc || seen.has(normalizedSrc)) {
+        return;
+      }
+      seen.add(normalizedSrc);
+      candidates.push({
+        src: normalizedSrc,
+        label: label || (fallback ? 'fallback' : 'primary'),
+        fallback: !!fallback
+      });
+    };
+
+    const normalizedCacheBust = cacheBust ? String(cacheBust) : '';
+    const normalizedVersion = String(version || '').trim();
+    const commitMeta = commitMetadata && commitMetadata.commit && isLikelyGitObjectId(commitMetadata.commit)
+      ? commitMetadata
+      : null;
+
+    if (commitMeta) {
+      if (commitMeta.proxyUrl) {
+        addCandidate(applyCacheBust(commitMeta.proxyUrl, normalizedCacheBust), {
+          label: 'proxy',
+          fallback: false
+        });
+      }
+      if (commitMeta.rawUrl) {
+        addCandidate(applyCacheBust(commitMeta.rawUrl, normalizedCacheBust), {
+          label: 'raw',
+          fallback: false
+        });
+      }
+    }
+
+    addCandidate(buildDataScriptUrl({ version: normalizedVersion, cacheBust: normalizedCacheBust }), {
+      label: 'primary',
+      fallback: false
+    });
+
+    const fallbackSrc = buildDataScriptUrl({
+      version: normalizedVersion,
+      cacheBust: normalizedCacheBust,
+      basePath: DATA_SCRIPT_FALLBACK_PATH,
+      includeVersionParam: false,
+      includeCacheBust: false
+    });
+    addCandidate(fallbackSrc, { label: 'static', fallback: true });
+
+    return candidates;
+  }
+
   function getWindowPayload() {
     if (typeof window === 'undefined') {
       return null;
@@ -80,61 +193,46 @@
     return null;
   }
 
-  async function ensureDataScriptLoaded(src, { version = '', cacheBust = '' } = {}) {
+  async function ensureDataScriptLoaded(candidates, { version = '', cacheBust = '' } = {}) {
     const attempts = [];
+    const sources = Array.isArray(candidates)
+      ? candidates
+      : [{ src: candidates, fallback: false, label: null }];
 
-    const tryLoad = async (candidateSrc, isFallback) => {
-      await appendDataScript(candidateSrc, { version, cacheBust, isFallback });
-      const payload = getWindowPayload();
-      if (payload && typeof payload === 'object') {
-        return payload;
+    for (const candidate of sources) {
+      const { src, fallback = false, label = null } = candidate || {};
+      if (!src) {
+        continue;
       }
-      pushBootstrapDiagStep('legacy-load-missing-data', {
-        src: candidateSrc,
-        cacheBust,
-        version,
-        fallback: isFallback
-      });
-      throw new Error(`DATA payload missing after loading ${candidateSrc}`);
-    };
-
-    try {
-      const payload = await tryLoad(src, false);
-      if (payload) {
-        return payload;
-      }
-    } catch (primaryError) {
-      attempts.push({ src, error: primaryError });
-    }
-
-    const fallbackSrc = buildDataScriptUrl({
-      version,
-      cacheBust,
-      basePath: DATA_SCRIPT_FALLBACK_PATH,
-      includeVersionParam: false,
-      includeCacheBust: false
-    });
-    if (fallbackSrc !== src) {
       try {
-        const payload = await tryLoad(fallbackSrc, true);
-        if (payload) {
+        await appendDataScript(src, { version, cacheBust, isFallback: !!fallback, source: label });
+        const payload = getWindowPayload();
+        if (payload && typeof payload === 'object') {
           return payload;
         }
-      } catch (fallbackError) {
-        attempts.push({ src: fallbackSrc, error: fallbackError });
+        pushBootstrapDiagStep('legacy-load-missing-data', {
+          src,
+          cacheBust,
+          version,
+          fallback: !!fallback,
+          source: label || (fallback ? 'fallback' : 'primary')
+        });
+        throw new Error(`DATA payload missing after loading ${src}`);
+      } catch (error) {
+        attempts.push({ src, error });
       }
     }
 
     const message = attempts.length > 1
-      ? `Failed to load data/data.js from ${attempts.map(({ src: attemptSrc }) => attemptSrc).join(' and ')}`
-      : (attempts[0]?.error?.message || `Failed to load ${src}`);
+      ? `Failed to load data/data.js from ${attempts.map(({ src: attemptSrc }) => attemptSrc).join(', ')}`
+      : (attempts[0]?.error?.message || 'Failed to load data/data.js');
 
-    const error = new Error(message);
-    error.attempts = attempts;
-    throw error;
+    const aggregate = new Error(message);
+    aggregate.attempts = attempts;
+    throw aggregate;
   }
 
-  function appendDataScript(src, { version = '', cacheBust = '', isFallback = false } = {}) {
+  function appendDataScript(src, { version = '', cacheBust = '', isFallback = false, source = null } = {}) {
     if (typeof document === 'undefined' || typeof document.createElement !== 'function') {
       throw new Error('DOM APIs are required to load data/data.js');
     }
@@ -154,7 +252,8 @@
       script.src = src;
       script.async = false;
       script.dataset.loader = 'legacy-data';
-      script.dataset.source = isFallback ? 'fallback' : 'primary';
+      const sourceLabel = source || (isFallback ? 'fallback' : 'primary');
+      script.dataset.source = sourceLabel;
       if (version) {
         script.setAttribute('data-version', version);
       }
@@ -171,7 +270,8 @@
         src,
         cacheBust,
         version,
-        fallback: isFallback
+        fallback: isFallback,
+        source: sourceLabel
       });
 
       const cleanup = () => {
@@ -185,7 +285,8 @@
           src,
           cacheBust,
           version,
-          fallback: isFallback
+          fallback: isFallback,
+          source: sourceLabel
         });
         resolve();
       };
@@ -197,7 +298,8 @@
           src,
           cacheBust,
           version,
-          fallback: isFallback
+          fallback: isFallback,
+          source: sourceLabel
         });
         reject(new Error(`Failed to load ${src}`));
       };
