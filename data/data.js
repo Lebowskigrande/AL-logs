@@ -11184,11 +11184,7 @@ window.DATA = {
           "Ring of Fire Resistance",
           "Arcane Grimoire +3"
         ],
-        "attuned": [
-          "Staff of the Magi",
-          "Robe of the Archmagi (White)",
-          "Arcane Grimoire +3"
-        ],
+        "attuned": [],
         "common": [
           "Pipe of Smoke Monsters (guardian)"
         ]
@@ -17588,7 +17584,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T17:02:29.506Z",
+    "generated": "2025-10-24T17:15:07.522Z",
     "problems": []
   },
   "dm_allocations": []
