@@ -1178,6 +1178,13 @@ function readStorageSafe(fn){
   }
 }
 
+function clearStoredVersion(){
+  try{ localStorage.removeItem(KEY); }
+  catch(err){ /* no-op */ }
+  try{ sessionStorage.removeItem(KEY); }
+  catch(err){ /* no-op */ }
+}
+
 function pushDiagStep(event,detail){
   if(!DATA_BOOT_DIAG||!DATA_BOOT_DIAG.steps) return;
   try{
@@ -1254,33 +1261,40 @@ async function bootstrapData(){
     throw new Error('Legacy data loader is unavailable.');
   }
   pushDiagStep('legacy-load-start',{ version:version||'', cacheBust });
-  try{
-    const { data, raw, versionToken } = await loadLegacyData({ version, cacheBust });
-    pushDiagStep('legacy-load-success',{
-      versionToken:versionToken||null,
-      characters: data && data.characters ? Object.keys(data.characters).length : 0,
-      hasRaw: !!raw
-    });
-    window.RAW_DATA = raw;
-    window.DATA = data;
-    window.AL_DATA_VERSION = versionToken || version || window.AL_DATA_VERSION || '';
-    if(DATA_BOOT_DIAG){
-      DATA_BOOT_DIAG.status='success';
-      DATA_BOOT_DIAG.finalVersion=window.AL_DATA_VERSION||'';
-      DATA_BOOT_DIAG.legacyScript=snapshotLegacyScript();
+  let attemptVersion=version||'';
+  let loadResult=null;
+  let lastError=null;
+  for(let attempt=0; attempt<2; attempt+=1){
+    try{
+      const result=await loadLegacyData({ version:attemptVersion, cacheBust });
+      loadResult={ ...result, requestedVersion:attemptVersion };
+      break;
+    }catch(error){
+      lastError=error;
+      const shouldRetry=attemptVersion && isLikelyGitObjectId(attemptVersion);
+      if(shouldRetry){
+        pushDiagStep('legacy-load-ref-unavailable',{
+          version:attemptVersion,
+          message:error&&error.message?error.message:String(error)
+        });
+        clearStoredVersion();
+        attemptVersion='';
+        window.AL_DATA_VERSION='';
+        if(scriptEl){
+          scriptEl.removeAttribute('data-ref');
+          scriptEl.removeAttribute('data-version');
+        }
+        continue;
+      }
+      throw error;
     }
-    if(scriptEl){
-      if(versionToken){ scriptEl.setAttribute('data-version', versionToken); }
-      scriptEl.setAttribute('data-cache-bust', cacheBust);
-      scriptEl.dispatchEvent(new Event('load'));
-    }
-    scheduleAppInit();
-  }catch(error){
-    console.error('Failed to load data/data.js', error);
+  }
+  if(!loadResult){
+    console.error('Failed to load data/data.js', lastError);
     if(DATA_BOOT_DIAG){
       DATA_BOOT_DIAG.status='error';
-      DATA_BOOT_DIAG.errorMessage=error&&error.message?error.message:String(error);
-      DATA_BOOT_DIAG.errorStack=error&&error.stack?String(error.stack):null;
+      DATA_BOOT_DIAG.errorMessage=lastError&&lastError.message?lastError.message:String(lastError);
+      DATA_BOOT_DIAG.errorStack=lastError&&lastError.stack?String(lastError.stack):null;
       DATA_BOOT_DIAG.legacyScript=snapshotLegacyScript();
       pushDiagStep('legacy-load-error',{
         message:DATA_BOOT_DIAG.errorMessage,
@@ -1291,7 +1305,41 @@ async function bootstrapData(){
       const evt=new Event('error');
       scriptEl.dispatchEvent(evt);
     }
+    pushDiagStep('bootstrap-script-finished',{ status:DATA_BOOT_DIAG?DATA_BOOT_DIAG.status:null });
+    return;
   }
+  const { data, raw, versionToken, requestedVersion } = loadResult;
+  pushDiagStep('legacy-load-success',{
+    versionToken:versionToken||null,
+    requestedVersion:requestedVersion||null,
+    characters: data && data.characters ? Object.keys(data.characters).length : 0,
+    hasRaw: !!raw
+  });
+  window.RAW_DATA = raw;
+  window.DATA = data;
+  const finalVersion=versionToken || requestedVersion || '';
+  window.AL_DATA_VERSION = finalVersion || window.AL_DATA_VERSION || '';
+  if(DATA_BOOT_DIAG){
+    DATA_BOOT_DIAG.status='success';
+    DATA_BOOT_DIAG.finalVersion=window.AL_DATA_VERSION||'';
+    DATA_BOOT_DIAG.legacyScript=snapshotLegacyScript();
+  }
+  if(scriptEl){
+    if(finalVersion){
+      scriptEl.setAttribute('data-version', finalVersion);
+      if(isLikelyGitObjectId(finalVersion)){
+        scriptEl.setAttribute('data-ref', finalVersion);
+      }else{
+        scriptEl.removeAttribute('data-ref');
+      }
+    }else{
+      scriptEl.removeAttribute('data-version');
+      scriptEl.removeAttribute('data-ref');
+    }
+    scriptEl.setAttribute('data-cache-bust', cacheBust);
+    scriptEl.dispatchEvent(new Event('load'));
+  }
+  scheduleAppInit();
   pushDiagStep('bootstrap-script-finished',{ status:DATA_BOOT_DIAG?DATA_BOOT_DIAG.status:null });
 }
 
@@ -4082,18 +4130,28 @@ function saveDataJs(options={}){
       const commitSha=(body&&typeof body==='object'&&body.commit)?String(body.commit):null;
       const rawDataUrl=(body&&typeof body==='object'&&body.rawUrl)?String(body.rawUrl):null;
       const versionForSave=commitSha||String(Date.now());
-      setDataVersion(versionForSave);
       let refreshOutcome=null;
       let refreshError=null;
       try{
-        refreshOutcome=await refreshDataAfterSave({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave, rawUrl:rawDataUrl });
+        refreshOutcome=await refreshDataAfterSave({
+          expectedDataJs:payload,
+          retries:6,
+          retryDelay:1000,
+          backoffFactor:2,
+          maxRetryDelay:8000,
+          version:versionForSave,
+          rawUrl:rawDataUrl
+        });
       }catch(err){
         refreshError=err;
       }
-      if(!refreshError && refreshOutcome!==false){
+      if(!refreshError && refreshOutcome && refreshOutcome.status==='confirmed'){
         clearDirty();
         setSaveResult('success');
       }else{
+        if(refreshOutcome && refreshOutcome.status==='stale'){
+          console.warn('data/data.js commit is not yet available; using branch fallback until GitHub updates.', refreshOutcome.error||refreshError||null);
+        }
         if(refreshError){
           console.warn('Unable to refresh data/data.js cache after save', refreshError);
         }else{
@@ -4233,6 +4291,38 @@ function buildDataUrl(version,{cacheBustToken=null,includeRef=false}={}){
   return DATA_FILE_PATH;
 }
 
+function getDataMetaGeneratedTimestamp(){
+  if(!DATA||typeof DATA!=='object') return '';
+  const meta=DATA.meta;
+  if(meta&&typeof meta==='object'){
+    const candidates=[meta.generated,meta.generatedAt,meta.version];
+    for(const candidate of candidates){
+      if(typeof candidate==='string' && candidate.trim()){
+        return candidate.trim();
+      }
+    }
+  }
+  return '';
+}
+
+function buildPersistedDataVersionValue(version){
+  const normalized=String(version||'').trim();
+  if(!normalized) return '';
+  if(normalized.startsWith('ts:')) return normalized;
+  if(isLikelyGitObjectId(normalized)){
+    const metaTimestamp=getDataMetaGeneratedTimestamp();
+    if(metaTimestamp){
+      return `ts:${metaTimestamp}`;
+    }
+    try{
+      return `ts:${new Date().toISOString()}`;
+    }catch(err){
+      return `ts:${Date.now()}`;
+    }
+  }
+  return normalized;
+}
+
 function persistDataVersion(version){
   try{
     if(version){
@@ -4254,10 +4344,11 @@ function persistDataVersion(version){
   }
 }
 
-function setDataVersion(version){
+function setDataVersion(version,{persistedValue}={}){
   dataVersion=version||'';
   window.AL_DATA_VERSION=dataVersion;
-  persistDataVersion(dataVersion);
+  const storageValue=(persistedValue!==undefined)?persistedValue:buildPersistedDataVersionValue(dataVersion);
+  persistDataVersion(storageValue);
   if(dataScriptEl){
     dataCacheBust=String(Date.now());
     window.AL_DATA_CACHE_BUST=dataCacheBust;
@@ -4357,7 +4448,12 @@ async function fetchDataJsFromUrl(url,{ expectedDataJs=null }={}){
   return text;
 }
 
-async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, version=null, rawUrl=null }={}){
+async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null, rawUrl=null }={}){
+  const normalizedRetries=Math.max(0, Number.isFinite(Number(retries))?Number(retries):0);
+  const normalizedDelay=Math.max(100, Number.isFinite(Number(retryDelay))?Number(retryDelay):500);
+  const normalizedBackoff=Number(backoffFactor)&&Number(backoffFactor)>0?Number(backoffFactor):1.5;
+  const normalizedMaxDelay=Math.max(normalizedDelay, Number.isFinite(Number(maxRetryDelay))?Number(maxRetryDelay):5000);
+  const pinnedVersion=version&&isLikelyGitObjectId(version)?String(version):null;
   if(rawUrl){
     try{
       const text=await fetchDataJsFromUrl(rawUrl,{ expectedDataJs });
@@ -4365,43 +4461,92 @@ async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay
       if(version!=null){
         setDataVersion(version);
       }
-      return true;
+      return { status:'confirmed', source:'raw' };
     }catch(err){
       console.warn('Immediate data/data.js fetch after save failed; falling back to CDN polling.',err);
     }
   }
-  return await refreshDataJsCache({ expectedDataJs, retries, retryDelay, version });
+  try{
+    return await refreshDataJsCache({
+      expectedDataJs,
+      retries:normalizedRetries,
+      retryDelay:normalizedDelay,
+      backoffFactor:normalizedBackoff,
+      maxRetryDelay:normalizedMaxDelay,
+      version
+    });
+  }catch(err){
+    if(pinnedVersion){
+      console.warn('Pinned commit is not yet available; retrying against branch head.', err);
+      try{
+        await refreshDataJsCache({
+          expectedDataJs:null,
+          retries:0,
+          retryDelay:normalizedDelay,
+          backoffFactor:normalizedBackoff,
+          maxRetryDelay:normalizedMaxDelay,
+          version:null
+        });
+        return { status:'stale', fallback:'branch', error:err };
+      }catch(fallbackError){
+        const aggregate=new Error('Unable to load branch head after commit-specific refresh failure.');
+        aggregate.cause={ primary:err, fallback:fallbackError };
+        throw aggregate;
+      }
+    }
+    throw err;
+  }
 }
 
-async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, version=null }={}){
+function computeBackoffDelay(attempt,{ initialDelay, factor, maxDelay }){
+  const base=Math.max(100, Number(initialDelay)||1000);
+  const growth=Math.max(1, Number.isFinite(Number(factor))?Number(factor):1.5);
+  const cap=Math.max(base, Number(maxDelay)||base);
+  const exponent=Math.max(0, attempt-1);
+  const raw=base*Math.pow(growth, exponent);
+  const clamped=Math.min(cap, raw);
+  return Math.max(100, Math.round(clamped));
+}
+
+async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, backoffFactor=1.5, maxRetryDelay=5000, version=null }={}){
   let attempt=0;
+  const maxAttempts=Math.max(0, Number.isFinite(Number(retries))?Number(retries):0);
   const pinnedVersion=version?String(version):null;
-  let lastMismatchError=null;
-  while(attempt<=retries){
+  const baseDelay=Math.max(100, Number.isFinite(Number(retryDelay))?Number(retryDelay):500);
+  const factor=Number(backoffFactor)&&Number(backoffFactor)>0?Number(backoffFactor):1.5;
+  const capDelay=Math.max(baseDelay, Number.isFinite(Number(maxRetryDelay))?Number(maxRetryDelay):5000);
+  let lastError=null;
+  while(attempt<=maxAttempts){
     const versionToUse=pinnedVersion||String(Date.now());
-    const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now(),includeRef:!!pinnedVersion}),{
-      cache:'no-store',
-      headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
-    });
-    if(!response.ok){
-      throw new Error('HTTP '+response.status);
+    try{
+      const response=await fetch(buildDataUrl(versionToUse,{cacheBustToken:Date.now(),includeRef:!!pinnedVersion}),{
+        cache:'no-store',
+        headers:{ 'cache-control':'no-store, max-age=0', pragma:'no-cache' }
+      });
+      if(!response.ok){
+        const error=new Error('HTTP '+response.status);
+        error.status=response.status;
+        throw error;
+      }
+      const text=await response.text();
+      if(!expectedDataJs || dataPayloadsMatch(text, expectedDataJs)){
+        applyDataJs(text);
+        setDataVersion(versionToUse);
+        return { status:'confirmed', source:pinnedVersion?'ref':'branch', attempts:attempt+1 };
+      }
+      lastError=new Error('Latest data/data.js did not match the newly saved content.');
+    }catch(err){
+      lastError=err;
     }
-    const text=await response.text();
-    if(!expectedDataJs || dataPayloadsMatch(text, expectedDataJs)){
-      applyDataJs(text);
-      setDataVersion(versionToUse);
-      return true;
-    }
-    lastMismatchError=new Error('Latest data/data.js did not match the newly saved content.');
-    if(attempt===retries){
-      console.warn('Latest data/data.js did not match newly saved content; giving up on cache refresh for now.');
-      throw lastMismatchError;
+    if(attempt===maxAttempts){
+      if(lastError){
+        throw lastError;
+      }
+      throw new Error('Unable to refresh data/data.js');
     }
     attempt+=1;
-    await wait(retryDelay);
-  }
-  if(lastMismatchError){
-    throw lastMismatchError;
+    const waitMs=computeBackoffDelay(attempt,{ initialDelay:baseDelay, factor, maxDelay:capDelay });
+    await wait(waitMs);
   }
 }
 
