@@ -26,8 +26,7 @@
     let raw = getWindowPayload();
 
     if (!raw) {
-      await ensureDataScriptLoaded(specifier, { version, cacheBust });
-      raw = getWindowPayload();
+      raw = await ensureDataScriptLoaded(specifier, { version, cacheBust });
     }
 
     if (!raw && typeof window !== 'undefined') {
@@ -83,9 +82,27 @@
 
   async function ensureDataScriptLoaded(src, { version = '', cacheBust = '' } = {}) {
     const attempts = [];
+
+    const tryLoad = async (candidateSrc, isFallback) => {
+      await appendDataScript(candidateSrc, { version, cacheBust, isFallback });
+      const payload = getWindowPayload();
+      if (payload && typeof payload === 'object') {
+        return payload;
+      }
+      pushBootstrapDiagStep('legacy-load-missing-data', {
+        src: candidateSrc,
+        cacheBust,
+        version,
+        fallback: isFallback
+      });
+      throw new Error(`DATA payload missing after loading ${candidateSrc}`);
+    };
+
     try {
-      await appendDataScript(src, { version, cacheBust, isFallback: false });
-      return;
+      const payload = await tryLoad(src, false);
+      if (payload) {
+        return payload;
+      }
     } catch (primaryError) {
       attempts.push({ src, error: primaryError });
     }
@@ -99,8 +116,10 @@
     });
     if (fallbackSrc !== src) {
       try {
-        await appendDataScript(fallbackSrc, { version, cacheBust, isFallback: true });
-        return;
+        const payload = await tryLoad(fallbackSrc, true);
+        if (payload) {
+          return payload;
+        }
       } catch (fallbackError) {
         attempts.push({ src: fallbackSrc, error: fallbackError });
       }
