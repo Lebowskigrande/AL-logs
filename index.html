@@ -4075,12 +4075,14 @@ function saveDataJs(options={}){
         const message=(body&&typeof body==='object' && (body.error||body.message))||response.statusText||'Failed to save data/data.js.';
         throw new Error(message);
       }
-      const versionForSave=String(Date.now());
+      const commitSha=(body&&typeof body==='object'&&body.commit)?String(body.commit):null;
+      const rawDataUrl=(body&&typeof body==='object'&&body.rawUrl)?String(body.rawUrl):null;
+      const versionForSave=commitSha||String(Date.now());
       setDataVersion(versionForSave);
       let refreshOutcome=null;
       let refreshError=null;
       try{
-        refreshOutcome=await refreshDataJsCache({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave });
+        refreshOutcome=await refreshDataAfterSave({ expectedDataJs:payload, retries:3, retryDelay:800, version:versionForSave, rawUrl:rawDataUrl });
       }catch(err){
         refreshError=err;
       }
@@ -4321,6 +4323,37 @@ function dataPayloadsMatch(a,b){
 
 function wait(ms){
   return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+async function fetchDataJsFromUrl(url,{ expectedDataJs=null }={}){
+  if(!url){
+    throw new Error('No URL provided for data/data.js fetch.');
+  }
+  const response=await fetch(url,{ cache:'no-store', headers:{ 'cache-control':'no-cache', pragma:'no-cache' } });
+  if(!response.ok){
+    throw new Error('HTTP '+response.status);
+  }
+  const text=await response.text();
+  if(expectedDataJs && !dataPayloadsMatch(text, expectedDataJs)){
+    throw new Error('Fetched data/data.js payload did not match expected content.');
+  }
+  return text;
+}
+
+async function refreshDataAfterSave({ expectedDataJs=null, retries=0, retryDelay=500, version=null, rawUrl=null }={}){
+  if(rawUrl){
+    try{
+      const text=await fetchDataJsFromUrl(rawUrl,{ expectedDataJs });
+      applyDataJs(text);
+      if(version!=null){
+        setDataVersion(version);
+      }
+      return true;
+    }catch(err){
+      console.warn('Immediate data/data.js fetch after save failed; falling back to CDN polling.',err);
+    }
+  }
+  return await refreshDataJsCache({ expectedDataJs, retries, retryDelay, version });
 }
 
 async function refreshDataJsCache({ expectedDataJs=null, retries=0, retryDelay=500, version=null }={}){

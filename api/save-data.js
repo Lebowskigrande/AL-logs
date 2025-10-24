@@ -141,8 +141,23 @@ export default async function handler(req) {
 
     const out = await putRes.json();
 
+    const commitSha = out.commit?.sha || null;
+    let rawUrl = null;
+    if (commitSha) {
+      const normalizedPath = String(path || '').replace(/^\/+/, '');
+      if (normalizedPath) {
+        const encodedSegments = normalizedPath
+          .split('/')
+          .filter(Boolean)
+          .map((segment) => encodeURIComponent(segment));
+        if (encodedSegments.length) {
+          rawUrl = `https://raw.githubusercontent.com/${repo}/${commitSha}/${encodedSegments.join('/')}`;
+        }
+      }
+    }
+
     // CORS for your site(s)
-    return respond({ ok: true, commit: out.commit?.sha });
+    return respond({ ok: true, commit: commitSha, rawUrl });
   } catch (e) {
     return respond({ error: String(e) }, { status: 500 });
   }
