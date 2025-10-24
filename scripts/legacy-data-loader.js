@@ -50,14 +50,20 @@
     };
   }
 
-  function buildDataScriptUrl({ version = '', cacheBust = '', basePath = DATA_SCRIPT_PATH } = {}) {
+  function buildDataScriptUrl({
+    version = '',
+    cacheBust = '',
+    basePath = DATA_SCRIPT_PATH,
+    includeVersionParam = true,
+    includeCacheBust = true
+  } = {}) {
     const normalizedPath = String(basePath || '').trim() || DATA_SCRIPT_PATH;
     const params = new URLSearchParams();
     const normalizedVersion = String(version || '').trim();
-    if (normalizedVersion && isLikelyGitObjectId(normalizedVersion)) {
+    if (includeVersionParam && normalizedVersion && isLikelyGitObjectId(normalizedVersion)) {
       params.set('ref', normalizedVersion);
     }
-    if (cacheBust) params.set('cb', cacheBust);
+    if (includeCacheBust && cacheBust) params.set('cb', cacheBust);
     const query = params.toString();
     return query ? `${normalizedPath}?${query}` : normalizedPath;
   }
@@ -84,7 +90,13 @@
       attempts.push({ src, error: primaryError });
     }
 
-    const fallbackSrc = buildDataScriptUrl({ version, cacheBust, basePath: DATA_SCRIPT_FALLBACK_PATH });
+    const fallbackSrc = buildDataScriptUrl({
+      version,
+      cacheBust,
+      basePath: DATA_SCRIPT_FALLBACK_PATH,
+      includeVersionParam: false,
+      includeCacheBust: false
+    });
     if (fallbackSrc !== src) {
       try {
         await appendDataScript(fallbackSrc, { version, cacheBust, isFallback: true });
