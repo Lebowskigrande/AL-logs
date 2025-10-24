@@ -11179,12 +11179,15 @@ window.DATA = {
           "Staff of the Magi",
           "Tome of Clear Thought",
           "Flying Carpet (4x6)",
+          "Arcane Grimoire +3",
           "Pipe of Smoke Monsters (guardian)",
           "Ring of Acid Resistance",
           "Ring of Fire Resistance",
-          "Arcane Grimoire +3"
+          "Portable Hole"
         ],
         "attuned": [
+          "Robe of the Archmagi (White)",
+          "Staff of the Magi",
           "Arcane Grimoire +3"
         ],
         "common": [
@@ -17586,7 +17589,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T18:50:18.414Z",
+    "generated": "2025-10-24T18:51:26.939Z",
     "problems": []
   },
   "dm_allocations": []
