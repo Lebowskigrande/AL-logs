@@ -11175,7 +11175,6 @@ window.DATA = {
         "active": [
           "Efreeti Bottle",
           "Manual of Bodily Health",
-          "Portable Hole",
           "Robe of the Archmagi (White)",
           "Staff of the Magi",
           "Tome of Clear Thought",
@@ -17589,7 +17588,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T17:01:54.488Z",
+    "generated": "2025-10-24T17:02:29.506Z",
     "problems": []
   },
   "dm_allocations": []
