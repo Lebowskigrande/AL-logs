@@ -11175,7 +11175,6 @@ window.DATA = {
         "active": [
           "Efreeti Bottle",
           "Manual of Bodily Health",
-          "Portable Hole",
           "Robe of the Archmagi (White)",
           "Staff of the Magi",
           "Tome of Clear Thought",
@@ -11187,7 +11186,8 @@ window.DATA = {
         ],
         "attuned": [
           "Staff of the Magi",
-          "Robe of the Archmagi (White)"
+          "Robe of the Archmagi (White)",
+          "Arcane Grimoire +3"
         ],
         "common": [
           "Pipe of Smoke Monsters (guardian)"
@@ -17588,7 +17588,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T15:35:35.767Z",
+    "generated": "2025-10-24T17:02:29.506Z",
     "problems": []
   },
   "dm_allocations": []
