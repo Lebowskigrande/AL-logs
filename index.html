@@ -1263,6 +1263,18 @@ function clearStoredVersion(){
   catch(err){ /* no-op */ }
   try{ sessionStorage.removeItem(COMMIT_KEY); }
   catch(err){ /* no-op */ }
+  try{ localStorage.removeItem(COMMIT_META_KEY); }
+  catch(err){ /* no-op */ }
+  try{ sessionStorage.removeItem(COMMIT_META_KEY); }
+  catch(err){ /* no-op */ }
+  if(typeof window!=='undefined'){
+    try{ window.AL_DATA_STORED_VERSION=''; }
+    catch(err){ /* no-op */ }
+    try{ window.AL_DATA_COMMIT=''; }
+    catch(err){ /* no-op */ }
+    try{ window.AL_DATA_COMMIT_META=null; }
+    catch(err){ /* no-op */ }
+  }
 }
 
 function pushDiagStep(event,detail){
@@ -1360,6 +1372,8 @@ async function bootstrapData(){
         clearStoredVersion();
         attemptVersion='';
         window.AL_DATA_VERSION='';
+        window.AL_DATA_COMMIT='';
+        window.AL_DATA_COMMIT_META=null;
         if(scriptEl){
           scriptEl.removeAttribute('data-ref');
           scriptEl.removeAttribute('data-version');
