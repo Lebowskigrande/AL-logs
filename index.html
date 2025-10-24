@@ -8745,7 +8745,7 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
     if(diff===-(tabButtons.length-1)) return 1;
     return diff>0?1:-1;
   };
-  const setActive=(requested,{force=false,direction:null}={})=>{
+  const setActive=(requested,{force=false,direction=null}={})=>{
     let next=requested;
     if(!next){
       const fallbackButton=tabButtons.find(btn=>panelMap.has(btn.dataset.tabTarget));
@@ -8863,7 +8863,7 @@ function initModalTabs(listEl,{defaultTab='inventory',tabsRoot=null}={}){
     trackAnimation(enterAnimation);
   };
   const getActiveIndex=()=>getTabIndex(active);
-  const focusTab=(button,{direction:null}={})=>{
+  const focusTab=(button,{direction=null}={})=>{
     if(!button) return;
     button.focus();
     setActive(button.dataset.tabTarget,{force:true,direction});
