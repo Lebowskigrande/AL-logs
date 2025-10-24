@@ -11179,9 +11179,6 @@ window.DATA = {
           "Staff of the Magi",
           "Tome of Clear Thought",
           "Flying Carpet (4x6)",
-          "Pipe of Smoke Monsters (guardian)",
-          "Ring of Acid Resistance",
-          "Ring of Fire Resistance",
           "Arcane Grimoire +3"
         ],
         "attuned": [
@@ -11189,9 +11186,7 @@ window.DATA = {
           "Staff of the Magi",
           "Arcane Grimoire +3"
         ],
-        "common": [
-          "Pipe of Smoke Monsters (guardian)"
-        ]
+        "common": []
       }
     },
     "Agatha": {
@@ -17588,7 +17583,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-24T18:48:50.188Z",
+    "generated": "2025-10-24T18:49:40.896Z",
     "problems": []
   },
   "dm_allocations": []
