@@ -11168,25 +11168,31 @@ window.DATA = {
           "notes": "Bought 30 gp worth of incense"
         }
       ],
+      "consumable_uses": {
+        "Spell Scroll of Wish": 1
+      },
       "inventory_state": {
         "active": [
-          "Arcane Grimoire +3",
           "Efreeti Bottle",
           "Manual of Bodily Health",
           "Portable Hole",
           "Robe of the Archmagi (White)",
           "Staff of the Magi",
-          "Tome of Clear Thought"
+          "Tome of Clear Thought",
+          "Flying Carpet (4x6)",
+          "Pipe of Smoke Monsters (guardian)",
+          "Ring of Acid Resistance",
+          "Ring of Fire Resistance",
+          "Arcane Grimoire +3"
         ],
         "attuned": [
           "Staff of the Magi",
           "Robe of the Archmagi (White)",
           "Arcane Grimoire +3"
         ],
-        "common": []
-      },
-      "consumable_uses": {
-        "Spell Scroll of Wish": 1
+        "common": [
+          "Pipe of Smoke Monsters (guardian)"
+        ]
       }
     },
     "Agatha": {
@@ -17583,7 +17589,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-22T18:18:45.937Z",
+    "generated": "2025-10-24T15:35:15.353Z",
     "problems": []
   },
   "dm_allocations": []
