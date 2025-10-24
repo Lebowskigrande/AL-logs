@@ -100,6 +100,7 @@ export default async function handler(req) {
     const url = new URL(req.url);
     const params = url.searchParams;
     const pathParam = params.get('path') || DEFAULT_DATA_PATH;
+    const cacheBustToken = (params.get('cb') || params.get('cacheBust') || '').trim();
     const encodedPath = encodeGitHubPath(pathParam);
 
     if (!encodedPath) {
@@ -121,8 +122,15 @@ export default async function handler(req) {
       refSource = branchResult.source || 'default';
     }
 
-    const refQuery = refToUse ? `?ref=${encodeURIComponent(refToUse)}` : '';
-    const ghUrl = `https://api.github.com/repos/${repo}/contents/${encodedPath}${refQuery}`;
+    const ghParams = [];
+    if (refToUse) {
+      ghParams.push(`ref=${encodeURIComponent(refToUse)}`);
+    }
+    if (cacheBustToken) {
+      ghParams.push(`cb=${encodeURIComponent(cacheBustToken)}`);
+    }
+    const query = ghParams.length ? `?${ghParams.join('&')}` : '';
+    const ghUrl = `https://api.github.com/repos/${repo}/contents/${encodedPath}${query}`;
 
     const ghRes = await fetch(ghUrl, { headers: authHeaders });
 
