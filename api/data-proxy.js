@@ -9,6 +9,8 @@ const corsHeaders = {
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8';
 const DEFAULT_DATA_PATH = 'data/data.js';
 
+const isLikelyGitObjectId = (value) => /^[0-9a-f]{40}$/i.test(String(value || '').trim());
+
 const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
   const responseHeaders = { ...corsHeaders, ...headers };
   if (json) {
@@ -72,6 +74,56 @@ const determineBranch = async ({ repo, headers }) => {
   };
 };
 
+const resolveCommitShaForRef = async ({ repo, ref, headers }) => {
+  const normalizedRef = String(ref || '').trim();
+  if (!normalizedRef) {
+    return { error: { status: 400, message: 'Cannot resolve empty ref.' } };
+  }
+
+  if (isLikelyGitObjectId(normalizedRef)) {
+    return { sha: normalizedRef, source: 'commit' };
+  }
+
+  const encodedBranch = encodeURIComponent(normalizedRef);
+  const branchUrl = `https://api.github.com/repos/${repo}/git/refs/heads/${encodedBranch}`;
+  const branchRes = await fetch(branchUrl, { headers });
+
+  if (!branchRes.ok) {
+    const text = await branchRes.text();
+    if (branchRes.status === 404) {
+      return {
+        error: {
+          status: 404,
+          message: `Branch "${normalizedRef}" not found when resolving data ref.`,
+          details: text || null
+        }
+      };
+    }
+
+    return {
+      error: {
+        status: branchRes.status,
+        message: 'Failed to resolve branch head commit.',
+        details: text || null
+      }
+    };
+  }
+
+  const branchMeta = await branchRes.json();
+  const sha = branchMeta?.object?.sha || branchMeta?.object?.oid || null;
+
+  if (!sha || !isLikelyGitObjectId(sha)) {
+    return {
+      error: {
+        status: 500,
+        message: `Branch "${normalizedRef}" did not return a valid commit SHA.`
+      }
+    };
+  }
+
+  return { sha, source: `branch:${normalizedRef}` };
+};
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
     return respond(null, { json: false });
@@ -122,9 +174,23 @@ export default async function handler(req) {
       refSource = branchResult.source || 'default';
     }
 
-    const ghParams = [];
+    let resolvedCommitSha = null;
+    let resolvedCommitSource = refSource || null;
+
     if (refToUse) {
-      ghParams.push(`ref=${encodeURIComponent(refToUse)}`);
+      const commitResult = await resolveCommitShaForRef({ repo, ref: refToUse, headers: authHeaders });
+      if (commitResult?.error) {
+        return respond({ error: commitResult.error.message, details: commitResult.error.details || null }, {
+          status: commitResult.error.status || 500
+        });
+      }
+      resolvedCommitSha = commitResult.sha;
+      resolvedCommitSource = commitResult.source || resolvedCommitSource;
+    }
+
+    const ghParams = [];
+    if (resolvedCommitSha) {
+      ghParams.push(`ref=${encodeURIComponent(resolvedCommitSha)}`);
     }
     if (cacheBustToken) {
       ghParams.push(`cb=${encodeURIComponent(cacheBustToken)}`);
@@ -137,11 +203,12 @@ export default async function handler(req) {
     if (!ghRes.ok) {
       const text = await ghRes.text();
       if (ghRes.status === 404) {
+        const refLabel = resolvedCommitSha || refToUse || '';
         return respond({
-          error: `Could not locate ${pathParam} at ref "${refToUse}".`,
+          error: `Could not locate ${pathParam} at ref "${refLabel}".`,
           hint: refSource === 'query'
             ? 'Verify that the requested ref exists.'
-            : 'Confirm that GH_BRANCH matches an existing branch.'
+            : 'Confirm that your configured branch contains the latest commit.'
         }, { status: 404 });
       }
       return respond({ error: text || 'Failed to fetch data from GitHub.' }, { status: ghRes.status });
@@ -155,7 +222,8 @@ export default async function handler(req) {
         'content-type': 'application/javascript; charset=utf-8',
         'cache-control': 'no-store, max-age=0',
         'x-data-path': pathParam,
-        'x-data-ref': refToUse || ''
+        'x-data-ref': resolvedCommitSha || refToUse || '',
+        'x-data-ref-source': resolvedCommitSource || ''
       }
     });
   } catch (error) {

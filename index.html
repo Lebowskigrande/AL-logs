@@ -1126,6 +1126,10 @@ window.AL_DATA_CACHE_BUST=cacheBust;
 const scriptEl=document.getElementById('dataScript')||document.querySelector('script[data-loader="data"]');
 const DATA_FILE_PATH='/api/data-proxy';
 
+if(scriptEl&&version&&isLikelyGitObjectId(version)){
+  scriptEl.setAttribute('data-ref',version);
+}
+
 const DATA_BOOT_DIAG=initBootstrapDiagnostics({
   key:KEY,
   version,
@@ -4209,13 +4213,14 @@ function escapeHtml(value){
 }
 
 function isLikelyGitObjectId(value){
-  return /^[0-9a-f]{7,40}$/i.test(String(value||''));
+  return /^[0-9a-f]{40}$/i.test(String(value||'').trim());
 }
 
 function buildDataUrl(version,{cacheBustToken=null,includeRef=false}={}){
   const v=(version||'').trim();
   const params=[];
-  if(includeRef&&v&&isLikelyGitObjectId(v)){
+  const shouldIncludeRef=!!(v&&(includeRef||isLikelyGitObjectId(v)));
+  if(shouldIncludeRef){
     params.push('ref='+encodeURIComponent(v));
   }
   const cbToken=cacheBustToken==null?'' : String(cacheBustToken||'').trim();
@@ -4257,6 +4262,11 @@ function setDataVersion(version){
     dataCacheBust=String(Date.now());
     window.AL_DATA_CACHE_BUST=dataCacheBust;
     dataScriptEl.setAttribute('data-version', dataVersion);
+    if(isLikelyGitObjectId(dataVersion)){
+      dataScriptEl.setAttribute('data-ref', dataVersion);
+    }else{
+      dataScriptEl.removeAttribute('data-ref');
+    }
     dataScriptEl.setAttribute('data-cache-bust', dataCacheBust);
     const desired=buildDataUrl(dataVersion,{cacheBustToken:dataCacheBust});
     try{
