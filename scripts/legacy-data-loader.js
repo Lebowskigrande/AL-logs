@@ -17,8 +17,12 @@
   const DATA_SCRIPT_PATH='/api/data-proxy';
   const DATA_SCRIPT_FALLBACK_PATH='data/data.js';
 
+  function isLikelyGitObjectId(value){
+    return /^[0-9a-f]{40}$/i.test(String(value||'').trim());
+  }
+
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
-    const specifier = buildDataScriptUrl({ cacheBust });
+    const specifier = buildDataScriptUrl({ version, cacheBust });
     let raw = getWindowPayload();
 
     if (!raw) {
@@ -46,9 +50,13 @@
     };
   }
 
-  function buildDataScriptUrl({ cacheBust = '', basePath = DATA_SCRIPT_PATH } = {}) {
+  function buildDataScriptUrl({ version = '', cacheBust = '', basePath = DATA_SCRIPT_PATH } = {}) {
     const normalizedPath = String(basePath || '').trim() || DATA_SCRIPT_PATH;
     const params = new URLSearchParams();
+    const normalizedVersion = String(version || '').trim();
+    if (normalizedVersion && isLikelyGitObjectId(normalizedVersion)) {
+      params.set('ref', normalizedVersion);
+    }
     if (cacheBust) params.set('cb', cacheBust);
     const query = params.toString();
     return query ? `${normalizedPath}?${query}` : normalizedPath;
@@ -76,7 +84,7 @@
       attempts.push({ src, error: primaryError });
     }
 
-    const fallbackSrc = buildDataScriptUrl({ cacheBust, basePath: DATA_SCRIPT_FALLBACK_PATH });
+    const fallbackSrc = buildDataScriptUrl({ version, cacheBust, basePath: DATA_SCRIPT_FALLBACK_PATH });
     if (fallbackSrc !== src) {
       try {
         await appendDataScript(fallbackSrc, { version, cacheBust, isFallback: true });
@@ -118,6 +126,11 @@
       script.dataset.source = isFallback ? 'fallback' : 'primary';
       if (version) {
         script.setAttribute('data-version', version);
+      }
+      if (version && isLikelyGitObjectId(version)) {
+        script.setAttribute('data-ref', version);
+      } else {
+        script.removeAttribute('data-ref');
       }
       if (cacheBust) {
         script.setAttribute('data-cache-bust', cacheBust);
