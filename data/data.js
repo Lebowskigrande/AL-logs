@@ -15,9 +15,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 10,
+          "dtd_net": -10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 10,
+              "net": -10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -33,17 +50,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 250,
           "gp_minus": 0,
+          "gp_net": 250,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 250,
+              "spent": 0,
+              "net": 250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Eldritch Claw Tattoo (temperate)"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Healing",
-            "Potion of Healing",
-            "Potion of Climbing"
+            "2 potions of healing",
+            "potion of climbing"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -57,9 +90,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Magic Missiles"
           ],
@@ -82,9 +132,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -109,9 +176,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 451,
           "gp_minus": 0,
+          "gp_net": 451,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 451,
+              "spent": 0,
+              "net": 451
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nightcaller"
           ],
@@ -121,8 +205,8 @@ window.DATA = {
             "Potion of Healing",
             "Faerie Fire",
             "Expeditious Retreat",
-            "Healer's Kit",
-            "Poisoner's Kit"
+            "Healers Kit",
+            "Poisoners Kit"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -136,9 +220,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -154,9 +255,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 135,
           "gp_minus": 0,
+          "gp_net": 135,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 135,
+              "spent": 0,
+              "net": 135
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shatterspike",
             "Wand of Entangle"
@@ -188,9 +306,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 4325,
           "gp_minus": 1340,
+          "gp_net": 2985,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 4325,
+              "spent": 1340,
+              "net": 2985
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Vicious Greatsword",
             "Cube of Summoning",
@@ -212,9 +347,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cloak of Many Fashions (Guardian)"
           ],
@@ -232,9 +384,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -254,16 +423,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [
             "Bracers of Defense",
             "Chest of Preserving"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Scroll of Dispel",
+            "Scrolls of Dispel",
             "Scroll of Invisibility",
             "Scroll of Enhance Ability"
           ],
@@ -279,9 +465,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dragon's Wrath Spear (Stirring)",
             "Scaled Ornament (Stirring)",
@@ -305,9 +508,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3965,
           "gp_minus": 0,
+          "gp_net": 3965,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 3965,
+              "spent": 0,
+              "net": 3965
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Mithral breastplate",
             "Clockwork Amulet",
@@ -331,9 +551,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 50,
+          "gp_net": -50,
           "dtd_plus": 0,
           "dtd_minus": 2,
+          "dtd_net": -2,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 50,
+              "net": -50
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 2,
+              "net": -2
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Instrument of Illusions (longhorn)"
           ],
@@ -351,9 +588,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 200,
+          "gp_net": -200,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 200,
+              "net": -200
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Enspelled Breastplate (Armor of Agathys)"
           ],
@@ -371,9 +625,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 10,
+          "dtd_net": -10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 10,
+              "net": -10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -389,9 +660,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -407,9 +695,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 262,
           "gp_minus": 200,
+          "gp_net": 62,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 262,
+              "spent": 200,
+              "net": 62
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Mithril plate",
             "Adamantine breastplate",
@@ -442,9 +747,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 151,
           "gp_minus": 0,
+          "gp_net": 151,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 151,
+              "spent": 0,
+              "net": 151
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Gray Bag of Tricks",
             "Greataxe +1",
@@ -468,9 +790,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 512,
           "gp_minus": 490,
+          "gp_net": 22,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 512,
+              "spent": 490,
+              "net": 22
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [
             "Leafwarden (Dragonslayer Longsword)",
             "Scaled Ornament"
@@ -483,8 +822,7 @@ window.DATA = {
             "Keoghtom's Ointment",
             "Potion of Hill Giant Strength",
             "Spell Scroll of Web",
-            "Potion of Healing",
-            "Potion of Healing"
+            "2 Potions of Healing"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -507,9 +845,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 315,
+          "gp_net": 685,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 315,
+              "net": 685
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Charming"
           ],
@@ -517,7 +872,7 @@ window.DATA = {
           "consumable_items": [
             "Potion of Poison of Growth",
             "Potion of Poison",
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -533,15 +888,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 250,
+          "gp_net": -250,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Healing",
             "Malice",
-            "Burnt Othur Fumes"
+            "burnt othur fumes"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -555,9 +927,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 100,
+          "gp_net": 900,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 100,
+              "net": 900
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem of Seeing"
           ],
@@ -577,16 +966,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Malice",
             "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
+            "Antitoxin (2)"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -600,9 +1005,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 830,
           "gp_minus": 300,
+          "gp_net": 530,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 830,
+              "spent": 300,
+              "net": 530
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Magic Missile",
             "Silver Horn of Valhalla",
@@ -615,8 +1037,7 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Greater Healing"
+            "2 x Potion of Greater Healing"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -630,15 +1051,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 250,
+          "gp_net": -250,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Healing",
             "Malice",
-            "Burnt Othur Fumes"
+            "burnt othur fumes"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -652,17 +1090,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 655,
           "gp_minus": 250,
+          "gp_net": 405,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 655,
+              "spent": 250,
+              "net": 405
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Luminous War Pick (beacon)",
             "Hat of Wizardry"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
+            "Potion of greater healing (x2)",
             "Oil of Slipperiness"
           ],
           "supernatural_gifts": [],
@@ -677,16 +1131,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Pale Tincture",
             "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
+            "Antitoxin (2)"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -700,15 +1170,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 250,
+          "gp_net": -250,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Healing",
-            "Truth Serum",
-            "Burnt Othur Fumes"
+            "truth serum",
+            "burnt othur fumes"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -722,9 +1209,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 100,
           "gp_minus": 0,
+          "gp_net": 100,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 100,
+              "spent": 0,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Half plate +1 (guardian)",
             "Rope of mending (temperate)"
@@ -743,9 +1247,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -763,9 +1284,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 500,
+          "gp_net": -500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 500,
+              "net": -500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -781,16 +1319,32 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Malice",
             "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
+            "Antitoxin (2)"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -804,16 +1358,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Bowl of Commanding Water Elementals"
           ],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Invisibility",
-            "Flask of Styx Water"
+            "Flask of Styx water"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -827,9 +1398,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Glamoured Studded Leather"
           ],
@@ -852,9 +1440,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 0,
+          "gp_net": 1250,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 0,
+              "net": 1250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of the Python"
           ],
@@ -874,9 +1479,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 5,
+          "dtd_net": 5,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 5,
+              "net": 5
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Lash of Immolation",
             "Hat of Wizardry"
@@ -885,7 +1507,11 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Table trade for Heward's Handy Spicepouch"
+          "notes": "Table trade for Heward's Handy Spicepouch",
+          "trade": {
+            "given": "Hat of Wizardry",
+            "received": "Heward's Handy Spicepouch"
+          }
         },
         {
           "title": "Trade",
@@ -895,9 +1521,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -929,9 +1572,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mariner's Scale Mail"
           ],
@@ -949,9 +1609,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of the Ram"
           ],
@@ -969,9 +1646,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Arrow-catching Shield"
           ],
@@ -989,9 +1683,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 5,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 5
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1007,9 +1718,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1034,9 +1762,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of Health"
           ],
@@ -1054,9 +1799,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem of Brightness"
           ],
@@ -1074,9 +1836,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vicious Glaive"
           ],
@@ -1094,9 +1873,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Valkur's Raiment (Half-plate +1 waterborne)"
           ],
@@ -1114,9 +1910,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 450,
+          "gp_net": 800,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 450,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Moon-Touched Rapier",
             "Wand of Web"
@@ -1137,9 +1950,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1155,9 +1985,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Marvelous Pigments"
           ],
@@ -1175,9 +2022,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracers of Defense"
           ],
@@ -1195,9 +2059,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -1211,31 +2092,13 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Arvistan"
           }
-        },
-        {
-          "title": "Start at level 5",
-          "date": "2021-09-20",
-          "code": "DT-START",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
         }
       ]
     },
     "Creature X-12": {
       "display_name": "Creature X-12",
       "sheet": "Creature X-12",
-      "avatar": "Creature x-12.png",
+      "avatar": "",
       "notes": "",
       "identity": {},
       "adventures": [
@@ -1244,12 +2107,29 @@ window.DATA = {
           "date": "2023-07-12",
           "code": "DDHC-CM-07",
           "dm": "Alexis P.",
-          "kind": "adventure",
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Serpentine Scalemail",
             "Serpent's Fang longsword"
@@ -1268,9 +2148,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Hat of Disguise"
           ],
@@ -1285,33 +2182,32 @@ window.DATA = {
           "date": "2023-07-06",
           "code": "DDHC-KGV-07",
           "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "level_plus": 1,
-          "perm_items": [
-            "Barrier Tattoo (rare)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
-        },
-        {
-          "title": "Start at level 5",
-          "date": "2023-07-04",
-          "code": "DT-START",
-          "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
-          "dtd_plus": 40,
+          "gp_net": 0,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [],
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Barrier Tattoo (rare)"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -1335,9 +2231,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 833,
           "gp_minus": 0,
+          "gp_net": 833,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 833,
+              "spent": 0,
+              "net": 833
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Astromancy Archive (Guardian)",
             "Horn of Silent Alarm (Githyanki)"
@@ -1358,9 +2271,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Eldritch Claw Tattoo (temperate)"
           ],
@@ -1383,9 +2313,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 940,
           "gp_minus": 0,
+          "gp_net": 940,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 940,
+              "spent": 0,
+              "net": 940
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of the Bat",
             "Talking Doll"
@@ -1406,9 +2353,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 30,
           "dtd_minus": 0,
+          "dtd_net": 30,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -1426,9 +2390,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 10000,
           "gp_minus": 0,
+          "gp_net": 10000,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 0,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Manual of Quickness of Action"
           ],
@@ -1446,9 +2427,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wand of Magic Missiles"
           ],
@@ -1458,24 +2456,6 @@ window.DATA = {
           "story_awards": [
             "Wild Hunter"
           ],
-          "notes": ""
-        },
-        {
-          "title": "Start at level 5",
-          "date": "2022-09-05",
-          "code": "DT-START",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
           "notes": ""
         }
       ]
@@ -1488,26 +2468,6 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
-          "title": "The Ashen Pact",
-          "date": "2025-10-16",
-          "code": "FR-DC-STRAT-WYRM-06",
-          "dm": "Ryan L.",
-          "kind": "adventure",
-          "gp_plus": 10000,
-          "gp_minus": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "level_plus": 0,
-          "perm_items": [
-            "Staff of Fire"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Absorbed draconic magic from the soul of an ancient red dragon, gaining fire resistance (level 6 draconic sorcerer)."
-        },
-        {
           "title": "DM Reward",
           "date": "2025-08-27",
           "code": "DM-REWARD",
@@ -1515,9 +2475,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dragon's Wrath Greatsword",
             "Ring of Acid Resistance"
@@ -1536,9 +2513,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vicious Lance"
           ],
@@ -1561,9 +2555,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amethyst Dragonwing Longbow"
           ],
@@ -1581,9 +2592,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Prayer Beads (1x Bless",
             "2x Cure Wounds/Lesser Resto",
@@ -1604,9 +2632,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 0,
+          "gp_net": 1250,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 0,
+              "net": 1250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dragon's Tail (Lash of Immolation)"
           ],
@@ -1624,9 +2669,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1642,9 +2704,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "The Sixth Sword"
           ],
@@ -1662,9 +2741,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -1682,14 +2778,31 @@ window.DATA = {
         {
           "title": "The Lost God",
           "date": "2023-05-27",
-          "code": "SJ-DC-STRATCON-01",
+          "code": "SJ-DC-STRATCON-01)",
           "dm": "Alexis P.",
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 500,
+          "gp_net": 500,
           "dtd_plus": 10,
           "dtd_minus": 10,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 500,
+              "net": 500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 10,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Half-plate +1 (Topaz scales)",
             "Clothes of mending"
@@ -1713,9 +2826,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -1733,9 +2863,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 500,
           "gp_minus": 200,
+          "gp_net": 300,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 500,
+              "spent": 200,
+              "net": 300
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracers of Defense"
           ],
@@ -1756,9 +2903,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 300,
           "gp_minus": 0,
+          "gp_net": 300,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 300,
+              "spent": 0,
+              "net": 300
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Brazier of Commanding Fire Elementals"
           ],
@@ -1780,9 +2944,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Moon-Touched Greatsword"
           ],
@@ -1792,8 +2973,8 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Pipe of Smoke Monsters (Guardian)",
-            "received": "Moon-Touched Greatsword",
+            "given": "Pipe of Smoke Monsters (guardian)",
+            "received": "a Moon-Tcouhed Greatsword",
             "counterpartyCharacter": "Zandarax"
           }
         },
@@ -1805,9 +2986,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 100,
+          "gp_net": 1150,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 100,
+              "net": 1150
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Pipe of Smoke Monsters (Guardian)",
             "Bloodwell Vial +3",
@@ -1831,9 +3029,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)"
           ],
@@ -1857,17 +3072,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 480,
           "gp_minus": 0,
+          "gp_net": 480,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rope of Entanglement"
           ],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Greater Healing",
-            "Drow Poison",
-            "Drow Poison"
+            "Drow Poison x 2"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -1881,9 +3112,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1899,9 +3147,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 260,
           "gp_minus": 0,
+          "gp_net": 260,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 260,
+              "spent": 0,
+              "net": 260
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Arrow-Catching Shield"
           ],
@@ -1921,9 +3186,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -1939,16 +3221,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 0,
+          "gp_net": 1250,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 0,
+              "net": 1250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of the Manta Ray",
             "Dagger of Blindsight"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Elemental Gem (water)"
+            "Elemental Gem (Water)"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -1962,9 +3261,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 237,
           "gp_minus": 500,
+          "gp_net": -263,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 237,
+              "spent": 500,
+              "net": -263
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +2"
           ],
@@ -1984,9 +3300,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 500,
           "gp_minus": 0,
+          "gp_net": 500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 500,
+              "spent": 0,
+              "net": 500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Serpent Scale Mail",
             "Serpent Fang longsword",
@@ -2007,9 +3340,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Giant slayer greatsword"
           ],
@@ -2027,9 +3377,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Flametongue greatsword"
           ],
@@ -2047,9 +3414,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dragon slayer greatsword"
           ],
@@ -2067,9 +3451,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Shooting Stars"
           ],
@@ -2087,9 +3488,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -2103,40 +3521,8 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Zandarax"
           }
-        },
-        {
-          "title": "Start at level 5",
-          "date": "2022-04-19",
-          "code": "DT-START",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
         }
-      ],
-      "inventory_state": {
-        "active": [
-          "Belt of Fire Giant Strength",
-          "Dragon slayer greatsword",
-          "Dragon's Wrath Greatsword",
-          "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)"
-        ],
-        "attuned": [
-          "Belt of Fire Giant Strength",
-          "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
-          "Dragon's Wrath Greatsword"
-        ],
-        "common": []
-      }
+      ]
     },
     "Jerry Garcia": {
       "display_name": "Jerry Garcia",
@@ -2153,9 +3539,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -2178,9 +3581,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 45,
+          "gp_net": -45,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 45,
+              "net": -45
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Chardalyn Breastplate of Necrotic Resistance",
             "Wand of Pyrotechnics"
@@ -2199,9 +3619,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vicious Spear",
             "Necklace of Prayer Beads (Bless x3",
@@ -2223,9 +3660,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Charlatan's Die",
             "Bracers of Archery",
@@ -2247,9 +3701,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Lantern of Tracking (Aberrations)"
           ],
@@ -2267,9 +3738,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Grey Bag of Tricks",
             "Masquerade Tattoo"
@@ -2288,9 +3776,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2306,9 +3811,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Amulet of Health"
           ],
@@ -2330,9 +3852,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 4,
+          "gp_net": 36,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 4,
+              "net": 36
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Goggles of Night",
             "Illuminator's Tattoo"
@@ -2351,9 +3890,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2378,9 +3934,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Spider Staff"
           ],
@@ -2403,9 +3976,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2816,
           "gp_minus": 0,
+          "gp_net": 2816,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2816,
+              "spent": 0,
+              "net": 2816
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Helm of Brilliance",
             "Rod of the Pact Keeper +1",
@@ -2415,10 +4005,7 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing"
+            "Potion of Greater Healing (x4)"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -2432,9 +4019,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1775,
           "gp_minus": 100,
+          "gp_net": 1675,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1775,
+              "spent": 100,
+              "net": 1675
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Doss Lute",
             "Mace of Terror"
@@ -2453,9 +4057,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Warmth"
           ],
@@ -2473,9 +4094,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 40,
+          "dtd_net": -40,
           "level_plus": 4,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 40,
+              "net": -40
+            },
+            "level": {
+              "gained": 4
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2491,9 +4129,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2240,
           "gp_minus": 0,
+          "gp_net": 2240,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2240,
+              "spent": 0,
+              "net": 2240
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -2511,9 +4166,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 29,
           "gp_minus": 0,
+          "gp_net": 29,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 29,
+              "spent": 0,
+              "net": 29
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing (Harmonious)"
           ],
@@ -2531,9 +4203,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 86,
           "gp_minus": 0,
+          "gp_net": 86,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 86,
+              "spent": 0,
+              "net": 86
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wind Fan"
           ],
@@ -2554,9 +4243,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 147,
           "gp_minus": 0,
+          "gp_net": 147,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 147,
+              "spent": 0,
+              "net": 147
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Eyes of Charming"
           ],
@@ -2578,9 +4284,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 28,
           "gp_minus": 0,
+          "gp_net": 28,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 28,
+              "spent": 0,
+              "net": 28
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Hat of Disguise"
           ],
@@ -2598,9 +4321,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 30,
           "dtd_minus": 0,
+          "dtd_net": 30,
           "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 3
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2616,9 +4356,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -2636,9 +4393,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Headband of Intellect"
           ],
@@ -2661,9 +4435,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Whip of Warning"
           ],
@@ -2690,9 +4481,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Lash of Immolation"
           ],
@@ -2715,9 +4523,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Wonder"
           ],
@@ -2735,9 +4560,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Saddle of the Cavalier"
           ],
@@ -2759,9 +4601,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2777,9 +4636,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Thayvian Mantle of Spell Resistance"
           ],
@@ -2799,9 +4675,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Splint +1"
           ],
@@ -2824,9 +4717,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2842,9 +4752,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Hat of Disguise",
             "Candle of the Deep"
@@ -2863,9 +4790,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 30,
           "gp_minus": 0,
+          "gp_net": 30,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Whip of Warning"
           ],
@@ -2883,9 +4827,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 1,
+          "gp_net": 89,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 1,
+              "net": 89
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plague Fly"
           ],
@@ -2906,9 +4867,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing (harmonious)"
           ],
@@ -2931,9 +4909,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 40,
           "dtd_minus": 0,
+          "dtd_net": 40,
           "level_plus": 4,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 4
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2949,9 +4944,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2967,9 +4979,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tloque's Battleaxe"
           ],
@@ -2987,9 +5016,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Thrower"
           ],
@@ -3012,9 +5058,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -3034,9 +5097,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longbow +2 w/ Sentinel (Human)"
           ],
@@ -3063,9 +5143,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plague Fly"
           ],
@@ -3091,9 +5188,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing - harmonious"
           ],
@@ -3111,9 +5225,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3129,9 +5260,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Boots of Elvenkind - bloody gore flavor"
           ],
@@ -3149,9 +5297,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 160,
           "gp_minus": 0,
+          "gp_net": 160,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3167,9 +5332,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 4,
+          "gp_net": 56,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 4,
+              "net": 56
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3187,9 +5369,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mithral Splintmail"
           ],
@@ -3207,9 +5406,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Helm of Telepathy"
           ],
@@ -3232,9 +5448,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 20,
           "gp_minus": 0,
+          "gp_net": 20,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3261,9 +5494,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -3286,9 +5536,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -3311,9 +5578,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of Elvenkind"
           ],
@@ -3331,9 +5615,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -3351,9 +5652,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "1 pot of Nolzur's Marvelous Pigments"
           ],
@@ -3371,9 +5689,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Folding Boat"
           ],
@@ -3391,9 +5726,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Adamantine Plate Armor"
           ],
@@ -3416,9 +5768,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Magic Missile",
             "Selûne's Owl-Eye Glasses"
@@ -3440,9 +5809,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Maul +2"
           ],
@@ -3465,9 +5851,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Portable Hole"
           ],
@@ -3485,9 +5888,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 10,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 10,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Gloves of Thievery",
             "Ilmater's Respite (Wand of Smiles)"
@@ -3513,9 +5933,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 157,
           "gp_minus": 100,
+          "gp_net": 57,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 157,
+              "spent": 100,
+              "net": 57
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Alchemy Jug"
           ],
@@ -3525,7 +5962,11 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Received Ring of Protection faction item from UAW (custom faction), +1 Maul from the people I organized in Thundertree. Purchased splint for 100gp and sold Chain mail for 37gp."
+          "notes": "Received Ring of Protection faction item from UAW (custom faction), +1 Maul from the people I organized in Thundertree. Purchased splint for 100gp and sold Chain mail for 37gp.",
+          "trade": {
+            "given": "Ring of Protection faction item",
+            "counterpartyCharacter": "UAW"
+          }
         },
         {
           "title": "The Bleeding Tree",
@@ -3535,9 +5976,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Eversmoking Bottle of Hag's Breath"
           ],
@@ -3557,9 +6015,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3575,17 +6050,34 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Periapt of Health"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Growth",
-            "Potion of Healing",
-            "Soul Coin"
+            "Potion of growth",
+            "potion of healing",
+            "1 soul coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -3608,9 +6100,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Fireballs (6)"
           ],
@@ -3633,9 +6142,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Lightning Bolts"
           ],
@@ -3658,9 +6184,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3676,9 +6219,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Opal of the Ild Rune"
           ],
@@ -3699,9 +6259,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sixth Sword"
           ],
@@ -3724,9 +6301,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Necklace of Prayer Beads"
           ],
@@ -3734,7 +6328,11 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Received Ring of Protection from Force Grey"
+          "notes": "Received Ring of Protection from Force Grey",
+          "trade": {
+            "given": "Ring of Protection",
+            "counterpartyCharacter": "Force Grey"
+          }
         },
         {
           "title": "DM Reward",
@@ -3744,9 +6342,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracers of Defense"
           ],
@@ -3764,9 +6379,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -3784,9 +6416,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dread Helm"
           ],
@@ -3809,9 +6458,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ruby of the War Mage"
           ],
@@ -3834,9 +6500,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of Many Fashions"
           ],
@@ -3863,9 +6546,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3881,9 +6581,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3899,9 +6616,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -3919,9 +6653,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Boots of Evenkind"
           ],
@@ -3939,9 +6690,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3957,9 +6725,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -3986,9 +6771,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rogue's Mantle"
           ],
@@ -4006,9 +6808,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mithral splintmail"
           ],
@@ -4031,9 +6850,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +1"
           ],
@@ -4056,9 +6892,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gloves of Thievery"
           ],
@@ -4081,9 +6934,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Sending Stones"
           ],
@@ -4101,9 +6971,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4119,9 +7006,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4137,9 +7041,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -4157,9 +7078,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -4177,9 +7115,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 75,
           "gp_minus": 0,
+          "gp_net": 75,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 75,
+              "spent": 0,
+              "net": 75
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4204,9 +7159,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4222,9 +7194,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "FOWP - Ivory Goats"
           ],
@@ -4247,9 +7236,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sun Blade"
           ],
@@ -4272,9 +7278,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Glamoured Studded Leather"
           ],
@@ -4297,9 +7320,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem of Seeing"
           ],
@@ -4322,9 +7362,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -4347,9 +7404,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Elven Chainmail"
           ],
@@ -4369,9 +7443,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4387,9 +7478,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Eyes of the Eagle"
           ],
@@ -4407,9 +7515,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4434,9 +7559,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1250,
           "gp_minus": 0,
+          "gp_net": 1250,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 0,
+              "net": 1250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of the Manta Ray (Sea Hag's Cloak)",
             "Ruby of the War Mage"
@@ -4459,9 +7601,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cape of the Mountebank"
           ],
@@ -4482,9 +7641,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of the Devout +2",
             "Mantle of Spell Resistance"
@@ -4505,9 +7681,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1500,
           "gp_minus": 450,
+          "gp_net": 1050,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1500,
+              "spent": 450,
+              "net": 1050
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of Emotional Well-Being (Amulet of Health)",
             "Yarnspinner's Cloak (Cloak of Arachnida)",
@@ -4515,11 +7708,7 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Crossbow Bolt +2",
-            "Crossbow Bolt +2",
-            "Crossbow Bolt +2",
-            "Crossbow Bolt +2",
-            "Crossbow Bolt +2"
+            "Crossbow bolt +2 (5)"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -4535,9 +7724,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Telekenesis"
           ],
@@ -4555,9 +7761,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Pipes of Haunting"
           ],
@@ -4578,9 +7801,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 12500,
           "gp_minus": 0,
+          "gp_net": 12500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 12500,
+              "spent": 0,
+              "net": 12500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Flametongue Longsword",
             "Pearl of Power"
@@ -4599,9 +7839,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nolzur's Pigments"
           ],
@@ -4619,9 +7876,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 10,
+          "dtd_net": -10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 10,
+              "net": -10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +3"
           ],
@@ -4644,9 +7918,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 10,
+          "dtd_net": -10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 10,
+              "net": -10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of the War Mage +3"
           ],
@@ -4669,9 +7960,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Greatsword of Warning"
           ],
@@ -4693,9 +8001,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Doss Lute"
           ],
@@ -4720,31 +8045,28 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 100,
           "gp_minus": 0,
+          "gp_net": 100,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 100,
+              "spent": 0,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Heward's Handy Haversack"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
-        },
-        {
-          "title": "Start at level 5",
-          "date": "2021-12-17",
-          "code": "DT-START",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "level_plus": 4,
-          "perm_items": [
-            "All-Purpose Tool +1"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4769,9 +8091,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Krahharuan Fork (+3 Pike)"
           ],
@@ -4789,9 +8128,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dragonhide Belt +3 (Harmonious)"
           ],
@@ -4809,9 +8165,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 8,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 8
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4827,9 +8200,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Bodily Health"
           ],
@@ -4847,9 +8237,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Anstruth Harp"
           ],
@@ -4867,9 +8274,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Vicioius Maul"
           ],
@@ -4887,9 +8311,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Vicious Lance"
           ],
@@ -4907,9 +8348,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Spider Staff"
           ],
@@ -4927,9 +8385,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing (Harmonious)"
           ],
@@ -4952,9 +8427,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Half-plate +1 (Topaz scales)"
           ],
@@ -4977,9 +8469,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -5003,9 +8512,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 8833,
           "gp_minus": 0,
+          "gp_net": 8833,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 8833,
+              "spent": 0,
+              "net": 8833
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -5036,9 +8562,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Eyes of the Eagle"
           ],
@@ -5061,9 +8604,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 6400,
           "gp_minus": 0,
+          "gp_net": 6400,
           "dtd_plus": 80,
           "dtd_minus": 0,
+          "dtd_net": 80,
           "level_plus": 4,
+          "totals": {
+            "gp": {
+              "earned": 6400,
+              "spent": 0,
+              "net": 6400
+            },
+            "downtime": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "level": {
+              "gained": 4
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5079,9 +8639,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -5099,9 +8676,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate",
             "Wand of Polymorph",
@@ -5131,9 +8725,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scimitar of Speed"
           ],
@@ -5151,9 +8762,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Telekenesis"
           ],
@@ -5176,9 +8804,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Striking"
           ],
@@ -5196,9 +8841,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 200,
+          "gp_net": 600,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 200,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cli Lyre",
             "Dust of Disappearance"
@@ -5217,9 +8879,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 480,
           "gp_minus": 0,
+          "gp_net": 480,
           "dtd_plus": 40,
           "dtd_minus": 0,
+          "dtd_net": 40,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5235,9 +8914,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 150,
           "gp_minus": 1362,
+          "gp_net": -1212,
           "dtd_plus": 20,
           "dtd_minus": 2,
+          "dtd_net": 18,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 150,
+              "spent": 1362,
+              "net": -1212
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 2,
+              "net": 18
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Censor of Commanding Air Elementals (Djinni)"
           ],
@@ -5255,9 +8951,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Telekenesis"
           ],
@@ -5275,9 +8988,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Robe of Scintillating Colors"
           ],
@@ -5295,9 +9025,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Shooting Stars"
           ],
@@ -5317,9 +9064,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5335,9 +9099,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5353,9 +9134,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Serpent Scale Mail",
             "Serpent Fang (Longsword with +1d10 poison)"
@@ -5374,9 +9172,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Fireballs (6 Beads)"
           ],
@@ -5394,9 +9209,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 34,
+          "gp_net": 26,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 34,
+              "net": 26
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Helm of Comprehend Languages"
           ],
@@ -5414,9 +9246,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 160,
           "gp_minus": 0,
+          "gp_net": 160,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5432,9 +9281,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Flail +1",
             "Driftglobe"
@@ -5462,9 +9328,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5482,9 +9365,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5000,
           "gp_minus": 3000,
+          "gp_net": 2000,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5000,
+              "spent": 3000,
+              "net": 2000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sunblade"
           ],
@@ -5502,9 +9402,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1200,
           "gp_minus": 0,
+          "gp_net": 1200,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1200,
+              "spent": 0,
+              "net": 1200
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Helm of Brilliance"
           ],
@@ -5524,9 +9441,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Frost Brand Rapier"
           ],
@@ -5544,9 +9478,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 6,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 6
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5562,9 +9513,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 12500,
           "gp_minus": 0,
+          "gp_net": 12500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 12500,
+              "spent": 0,
+              "net": 12500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Brass Horn of Valhalla"
           ],
@@ -5586,9 +9554,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 442,
           "gp_minus": 1700,
+          "gp_net": -1258,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 442,
+              "spent": 1700,
+              "net": -1258
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +2 (tentacled)"
           ],
@@ -5606,9 +9591,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Iron Bands of Bilaro"
           ],
@@ -5631,9 +9633,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 520,
           "gp_minus": 0,
+          "gp_net": 520,
           "dtd_plus": 10,
           "dtd_minus": 25,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 520,
+              "spent": 0,
+              "net": 520
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 25,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Opal of the Ild Rune"
           ],
@@ -5653,9 +9672,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 833,
           "gp_minus": 0,
+          "gp_net": 833,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 833,
+              "spent": 0,
+              "net": 833
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5671,9 +9707,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 2000,
+          "gp_net": -1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 2000,
+              "net": -1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Iron Bands of Bilaro"
           ],
@@ -5695,9 +9748,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Adamantine chain armor"
           ],
@@ -5720,9 +9790,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2500,
           "gp_minus": 2050,
+          "gp_net": 450,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 2050,
+              "net": 450
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Python"
           ],
@@ -5740,9 +9827,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Glamoured Studded Leather (black salmon leather)"
           ],
@@ -5762,9 +9866,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Brooch of Shielding",
             "Charlatans Die"
@@ -5785,9 +9906,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5000,
           "gp_minus": 0,
+          "gp_net": 5000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5000,
+              "spent": 0,
+              "net": 5000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Boots of False Tracks",
             "Sending Stones"
@@ -5809,9 +9947,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1619,
           "gp_minus": 3655,
+          "gp_net": -2036,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1619,
+              "spent": 3655,
+              "net": -2036
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Trident +2"
           ],
@@ -5835,9 +9990,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10889,
           "gp_minus": 0,
+          "gp_net": 10889,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10889,
+              "spent": 0,
+              "net": 10889
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Whelm",
             "Boots of Striding",
@@ -5852,14 +10024,14 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Mind Reading",
-            "Poition of Greater Healing",
-            "Scroll of Fear",
-            "Hold Person",
-            "Conjur Minor Elemental",
-            "Dispel Magic",
-            "Magic Mouth",
-            "Protection from Fiends"
+            "Potion of mind reading",
+            "poition of greater healing",
+            "scrolls of fear",
+            "hold person",
+            "conjur minor elemental",
+            "dispel magic",
+            "magic mouth",
+            "protection from fiends"
           ],
           "supernatural_gifts": [
             "Blessing of Protection"
@@ -5877,9 +10049,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5895,9 +10084,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5913,9 +10119,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 480,
           "gp_minus": 0,
+          "gp_net": 480,
           "dtd_plus": 40,
           "dtd_minus": 0,
+          "dtd_net": 40,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5931,9 +10154,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5949,9 +10189,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5967,9 +10224,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5985,9 +10259,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Shooting Stars"
           ],
@@ -6005,9 +10296,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6023,9 +10331,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scimitar of Speed"
           ],
@@ -6048,9 +10373,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -6073,9 +10415,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 50,
+          "gp_net": 70,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 50,
+              "net": 70
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Telekenesis"
           ],
@@ -6097,9 +10456,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Fey Cloak of Protection"
           ],
@@ -6117,9 +10493,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6135,9 +10528,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 0,
+          "gp_net": 240,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6153,9 +10563,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 5,
+          "gp_net": -5,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6171,9 +10598,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6189,9 +10633,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 240,
           "gp_minus": 200,
+          "gp_net": 40,
           "dtd_plus": 30,
           "dtd_minus": 0,
+          "dtd_net": 30,
           "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 200,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 3
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6207,9 +10668,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Fireballs"
           ],
@@ -6227,9 +10705,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sixth Sword (+2 Rapier with +2 Init)"
           ],
@@ -6252,9 +10747,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Goggles of Night",
             "Ring of Swimming"
@@ -6282,9 +10794,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Bodily Health"
           ],
@@ -6302,9 +10831,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Onyx Dog"
           ],
@@ -6322,9 +10868,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 4000,
+          "gp_net": 6000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 4000,
+              "net": 6000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Fate",
             "Ring of Truth Telling"
@@ -6347,9 +10910,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
-          "dtd_plus": -10,
+          "gp_net": 0,
+          "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6365,9 +10945,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6383,9 +10980,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5000,
           "gp_minus": 0,
+          "gp_net": 5000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5000,
+              "spent": 0,
+              "net": 5000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6401,9 +11015,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 8000,
           "gp_minus": 3070,
+          "gp_net": 4930,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 8000,
+              "spent": 3070,
+              "net": 4930
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracers of Defense",
             "Belt of Stone Giant Strength"
@@ -6428,9 +11059,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1500,
           "gp_minus": 1000,
+          "gp_net": 500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1500,
+              "spent": 1000,
+              "net": 500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cloak of Displacement"
           ],
@@ -6448,9 +11096,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2328,
           "gp_minus": 3000,
+          "gp_net": -672,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2328,
+              "spent": 3000,
+              "net": -672
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Pike +3 (Krahharuan Fork)"
           ],
@@ -6470,15 +11135,32 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 16666,
           "gp_minus": 1000,
+          "gp_net": 15666,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 16666,
+              "spent": 1000,
+              "net": 15666
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Heroism",
             "Scroll of Illusory Dragon",
-            "Potion of Fire Giant Strength"
+            "Potion of FIre giant Strength"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -6492,9 +11174,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1361,
           "gp_minus": 1000,
+          "gp_net": 361,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1361,
+              "spent": 1000,
+              "net": 361
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -6516,9 +11215,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 6375,
+          "gp_net": -3375,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 6375,
+              "net": -3375
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Evasion",
             "Woe (unique +3 longsword)"
@@ -6543,9 +11259,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 4675,
           "gp_minus": 2000,
+          "gp_net": 2675,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 4675,
+              "spent": 2000,
+              "net": 2675
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mantle of Spell Resistance",
             "Tome of Understanding"
@@ -6569,9 +11302,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1562,
           "gp_minus": 0,
+          "gp_net": 1562,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1562,
+              "spent": 0,
+              "net": 1562
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -6595,9 +11345,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3537,
           "gp_minus": 0,
+          "gp_net": 3537,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3537,
+              "spent": 0,
+              "net": 3537
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Oathbinder",
             "Ioun Stone of Sustenaince",
@@ -6619,16 +11386,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 12500,
           "gp_minus": 1750,
+          "gp_net": 10750,
           "dtd_plus": 10,
           "dtd_minus": 10,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 12500,
+              "spent": 1750,
+              "net": 10750
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 10,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Vitality"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Heroism",
-            "Superior Healing"
+            "Potions of heroism",
+            "superior healing"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -6644,9 +11428,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6662,9 +11463,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6680,9 +11498,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Quickness of Action"
           ],
@@ -6700,9 +11535,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Absorption (contains 6 levels)"
           ],
@@ -6720,9 +11572,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6738,9 +11607,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 375,
+          "gp_net": -375,
           "dtd_plus": 0,
           "dtd_minus": 51,
+          "dtd_net": -51,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 375,
+              "net": -375
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 51,
+              "net": -51
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -6761,9 +11647,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -6783,9 +11686,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 200,
+          "gp_net": -200,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 200,
+              "net": -200
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6801,9 +11721,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Spellguard Shield"
           ],
@@ -6823,9 +11760,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 200,
           "gp_minus": 0,
+          "gp_net": 200,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 200,
+              "spent": 0,
+              "net": 200
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of the War Mage +2"
           ],
@@ -6848,9 +11802,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 567,
+          "gp_net": 33,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 567,
+              "net": 33
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -6866,9 +11837,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nolzur's Marvelous Pigments (1 pot)"
           ],
@@ -6891,9 +11879,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 600,
+          "gp_net": 200,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 600,
+              "net": 200
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -6914,9 +11919,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 1,
+          "dtd_net": 19,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 1,
+              "net": 19
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Amulet of Health (Obsideon Amulet infused with the Shadowfell)"
           ],
@@ -6934,9 +11956,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 1000,
+          "gp_net": -400,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 1000,
+              "net": -400
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dancing Sword"
           ],
@@ -6957,9 +11996,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 400,
           "gp_minus": 0,
+          "gp_net": 400,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 400,
+              "spent": 0,
+              "net": 400
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tyr's Justice (+2 Longsword +2 Init)"
           ],
@@ -6979,9 +12035,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 500,
+          "gp_net": 100,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 500,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -7003,9 +12076,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 85,
+          "gp_net": -85,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 85,
+              "net": -85
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ioun Stone of Regeneration"
           ],
@@ -7023,9 +12113,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 300,
+          "gp_net": 500,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 300,
+              "net": 500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -7047,9 +12154,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -7067,9 +12191,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Headband of Intellect"
           ],
@@ -7092,9 +12233,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Regeneration"
           ],
@@ -7115,9 +12273,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 160,
           "gp_minus": 0,
+          "gp_net": 160,
           "dtd_plus": 30,
           "dtd_minus": 0,
+          "dtd_net": 30,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7133,9 +12308,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 1440,
           "gp_minus": 0,
+          "gp_net": 1440,
           "dtd_plus": 120,
           "dtd_minus": 0,
+          "dtd_net": 120,
           "level_plus": 6,
+          "totals": {
+            "gp": {
+              "earned": 1440,
+              "spent": 0,
+              "net": 1440
+            },
+            "downtime": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "level": {
+              "gained": 6
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7151,9 +12343,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 3200,
           "gp_minus": 0,
+          "gp_net": 3200,
           "dtd_plus": 40,
           "dtd_minus": 0,
+          "dtd_net": 40,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 3200,
+              "spent": 0,
+              "net": 3200
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7169,9 +12378,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cli Lyre"
           ],
@@ -7189,9 +12415,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Healing"
           ],
@@ -7209,9 +12452,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "FOWP - Ivory Goats"
           ],
@@ -7229,9 +12489,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Splint +1"
           ],
@@ -7249,9 +12526,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Glamoured Studded Leather"
           ],
@@ -7274,9 +12568,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing (Harmonius)"
           ],
@@ -7299,47 +12610,43 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 4100,
+          "gp_net": -3300,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 4100,
+              "net": -3300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Pot of Awakening",
             "Rod of Rulership"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "+3 Arrows",
-            "+3 Arrows",
-            "+3 Arrows",
-            "+3 Arrows",
-            "+3 Arrows",
-            "+3 Arrows"
+            "6 +3 Arrows"
           ],
           "supernatural_gifts": [],
           "story_awards": [
             "Banned: Maladomini"
           ],
-          "notes": "Spent 1 DTD casting Holy Weapon into the Ring of Spell Storing. Bought 5 Potions of Greater Healing (500 gp) and 3 diamonds (900 gp), spent 1000 gp on Hero's Feast. Table Trade of Rod of Rulership for Staff of Charming. Gave 200 gp to Pit Fiend in rare coins. Purchased 1500 gp worth of Ruby Dust (Forcecage component)."
-        },
-        {
-          "title": "To Be the Very Best",
-          "date": "2020-01-01",
-          "code": "CCC-KUMORI-02-04",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 80,
-          "gp_minus": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "level_plus": 2,
-          "perm_items": [
-            "Deck of Illusions"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
+          "notes": "Spent 1 DTD casting Holy Weapon into the Ring of Spell Storing. Bought 5 Potions of Greater Healing (500 gp) and 3 diamonds (900 gp), spent 1000 gp on Hero's Feast. Table Trade of Rod of Rulership for Staff of Charming. Gave 200 gp to Pit Fiend in rare coins. Purchased 1500 gp worth of Ruby Dust (Forcecage component).",
+          "trade": {
+            "given": "Rod of Rulership",
+            "received": "Staff of Charming"
+          }
         }
       ]
     },
@@ -7358,9 +12665,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Arcane Grimoire +3",
             "Blessing of Protection"
@@ -7381,9 +12705,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Lance +3"
           ],
@@ -7406,9 +12747,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7424,9 +12782,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 425,
+          "gp_net": -425,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 425,
+              "net": -425
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "The Seventh Sword (Sun Blade)"
           ],
@@ -7446,9 +12821,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -7468,9 +12860,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Fireballs",
             "Clockwork Amulet"
@@ -7491,9 +12900,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cube of Force"
           ],
@@ -7515,9 +12941,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 466,
+          "gp_net": 334,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 466,
+              "net": 334
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -7537,9 +12980,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 1600,
           "gp_minus": 0,
+          "gp_net": 1600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1600,
+              "spent": 0,
+              "net": 1600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7555,9 +13015,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Aegis of the Raven Queen Shield"
           ],
@@ -7580,9 +13057,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -7605,9 +13099,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +3",
             "Staff of Power",
@@ -7621,8 +13132,7 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Speed",
-            "Potion of Speed"
+            "2 Potions of Speed"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -7636,9 +13146,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 1600,
+          "gp_net": -1000,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 1600,
+              "net": -1000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7654,9 +13181,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +2"
           ],
@@ -7679,9 +13223,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Manual of Quickness",
             "Action"
@@ -7700,9 +13261,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Leadership"
           ],
@@ -7720,9 +13298,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -7746,9 +13341,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 4,
+          "gp_net": -4,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 4,
+              "net": -4
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Gloves of Missile Snaring"
           ],
@@ -7766,9 +13378,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7784,9 +13413,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -7804,9 +13450,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7824,9 +13487,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7844,9 +13524,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7864,9 +13561,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7882,9 +13596,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Prayer Beads (Bless x3",
             "Cure Wounds",
@@ -7893,13 +13624,8 @@ window.DATA = {
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Rare Consumable (3x Find Greater Steed",
-            "Rare Consumable (3x Find Greater Steed",
-            "Rare Consumable (3x Find Greater Steed",
-            "Rare Consumable (3x Find Greater Steed",
-            "Rare Consumable (3x Find Greater Steed",
-            "Holy Weapon)",
-            "Holy Weapon)"
+            "5x rare consumable (3x Find Greater Steed",
+            "2x Holy Weapon)"
           ],
           "supernatural_gifts": [
             "Blessing of Protection"
@@ -7918,9 +13644,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -7938,9 +13681,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -7963,9 +13723,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +2"
           ],
@@ -7983,9 +13760,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8003,9 +13797,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8021,9 +13832,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8041,9 +13869,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Lance +3"
           ],
@@ -8066,9 +13911,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Berserker Axe"
           ],
@@ -8086,9 +13948,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8104,9 +13983,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Trident of Fish Command"
           ],
@@ -8129,9 +14025,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -8149,9 +14062,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8167,9 +14097,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Webs"
           ],
@@ -8192,9 +14139,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8210,9 +14174,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sun Blade"
           ],
@@ -8235,9 +14216,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Bracers of Defense"
           ],
@@ -8257,9 +14255,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8277,9 +14292,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Opal of the Ild Rune"
           ],
@@ -8297,9 +14329,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -8322,9 +14371,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Candle of the Deep"
           ],
@@ -8342,9 +14408,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Choraller's Companion"
           ],
@@ -8367,9 +14450,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem of Water Elemental"
           ],
@@ -8394,31 +14494,6 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
-          "title": "Trade",
-          "date": "2025-10-21",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "level_plus": 0,
-          "perm_items": [
-            "Staff of the Magi"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Ascendent Dragon's Wrath Longsword (Amethyst)",
-            "received": "Staff of the Magi",
-            "counterpartyCharacter": "Darrendrian"
-          }
-        },
-        {
           "title": "Dreamwalker: 5",
           "date": "2025-06-27",
           "code": "DT-DREAMWALKER",
@@ -8426,9 +14501,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 25,
+          "dtd_net": -25,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 25,
+              "net": -25
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8444,9 +14536,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Arcane Grimoire +3"
           ],
@@ -8469,9 +14578,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ascendent Dragon's Wrath Longsword (Amethyst)"
           ],
@@ -8494,9 +14620,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Armor of Necrotic Resistance"
           ],
@@ -8514,9 +14657,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 2500,
           "gp_minus": 0,
+          "gp_net": 2500,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sixth Sword"
           ],
@@ -8534,9 +14694,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Kagonesti Forest Shroud"
           ],
@@ -8554,9 +14731,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 30,
           "dtd_minus": 0,
+          "dtd_net": 30,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Absorption"
           ],
@@ -8574,9 +14768,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 14200,
           "gp_minus": 0,
+          "gp_net": 14200,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 14200,
+              "spent": 0,
+              "net": 14200
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cubic Gate"
           ],
@@ -8599,9 +14810,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain"
           ],
@@ -8619,9 +14847,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 20000,
           "gp_minus": 1000,
+          "gp_net": 19000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 20000,
+              "spent": 1000,
+              "net": 19000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scarab of Protection (Maelstrom flavor)",
             "Oathbow (Infernal flavor)",
@@ -8645,9 +14890,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 100,
           "dtd_minus": 0,
+          "dtd_net": 100,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 100,
+              "spent": 0,
+              "net": 100
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Emerald Pen",
             "Periapt of Health",
@@ -8670,9 +14932,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 90,
           "dtd_minus": 0,
+          "dtd_net": 90,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Pistol +1",
             "Spellwrought Tattoo (3rd)",
@@ -8695,9 +14974,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 250000,
+          "gp_net": -250000,
           "dtd_plus": 0,
           "dtd_minus": 240,
+          "dtd_net": -240,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250000,
+              "net": -250000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 240,
+              "net": -240
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8713,9 +15009,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 25000,
           "gp_minus": 0,
+          "gp_net": 25000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 25000,
+              "spent": 0,
+              "net": 25000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Absorption (10 charges)",
             "Potion of Flying",
@@ -8735,9 +15048,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 50,
+          "dtd_net": -50,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 50,
+              "net": -50
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -8753,9 +15083,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 87000,
           "gp_minus": 10300,
+          "gp_net": 76700,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 87000,
+              "spent": 10300,
+              "net": 76700
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem Dragon Touched Focus",
             "Sapphire Buckler"
@@ -8778,9 +15125,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Pipe of Smoke Monsters (Guardian)"
           ],
@@ -8803,9 +15167,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 14000,
           "gp_minus": 35000,
+          "gp_net": -21000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 14000,
+              "spent": 35000,
+              "net": -21000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Blood Fury Tattoo",
             "Kyrzin's Ooze"
@@ -8829,9 +15210,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 6000,
           "gp_minus": 10000,
+          "gp_net": -4000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 10000,
+              "net": -4000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vorpal Scimitar"
           ],
@@ -8852,9 +15250,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 16000,
           "gp_minus": 10800,
+          "gp_net": 5200,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 16000,
+              "spent": 10800,
+              "net": 5200
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Magi",
             "Cap of Water Breathing"
@@ -8877,9 +15292,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 9000,
           "gp_minus": 1000,
+          "gp_net": 8000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 9000,
+              "spent": 1000,
+              "net": 8000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scarab of Protection"
           ],
@@ -8901,9 +15333,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Absorbing Tattoo (Force)"
           ],
@@ -8926,9 +15375,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vorpal Longsword"
           ],
@@ -8951,9 +15417,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of the Archmagi (White)"
           ],
@@ -8976,9 +15459,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of the Archmage (gray)"
           ],
@@ -9001,9 +15501,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3100,
           "gp_minus": 0,
+          "gp_net": 3100,
           "dtd_plus": 0,
           "dtd_minus": 200,
+          "dtd_net": -200,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3100,
+              "spent": 0,
+              "net": 3100
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 200,
+              "net": -200
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -9028,9 +15545,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of the Stilled Tongue"
           ],
@@ -9053,9 +15587,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Moon Blade"
           ],
@@ -9073,6 +15624,43 @@ window.DATA = {
           }
         },
         {
+          "title": "Forgotten Foes",
+          "date": "2022-06-08",
+          "code": "DDAL00-02E",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 4800,
+          "gp_minus": 0,
+          "gp_net": 4800,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 4800,
+              "spent": 0,
+              "net": 4800
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Rod of Absorption"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": ""
+        },
+        {
           "title": "DM Reward",
           "date": "2022-06-08",
           "code": "DM-REWARD",
@@ -9080,9 +15668,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 3
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -9100,9 +15705,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Magi"
           ],
@@ -9118,26 +15740,6 @@ window.DATA = {
           }
         },
         {
-          "title": "Forgotten Foes",
-          "date": "2022-06-07",
-          "code": "DDAL00-02E",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 4800,
-          "gp_minus": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "level_plus": 1,
-          "perm_items": [
-            "Rod of Absorption"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": ""
-        },
-        {
           "title": "The Darkest Vein",
           "date": "2022-06-07",
           "code": "CCC-HULB3-3",
@@ -9145,9 +15747,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 7500,
           "gp_minus": 0,
+          "gp_net": 7500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 7500,
+              "spent": 0,
+              "net": 7500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dreamwhirl +3 Lance"
           ],
@@ -9167,9 +15786,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3277,
           "gp_minus": 0,
+          "gp_net": 3277,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3277,
+              "spent": 0,
+              "net": 3277
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sun Blade",
             "Crystal Ball of True Seeing",
@@ -9194,9 +15830,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 6000,
+          "gp_net": -6000,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 6000,
+              "net": -6000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate Barding +1"
           ],
@@ -9219,9 +15872,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5125,
           "gp_minus": 0,
+          "gp_net": 5125,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5125,
+              "spent": 0,
+              "net": 5125
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Anstruth Harp",
             "Necklace of Fireballs (9)"
@@ -9247,9 +15917,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Shooting Stars"
           ],
@@ -9272,9 +15959,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 12500,
           "gp_minus": 2500,
+          "gp_net": 10000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 12500,
+              "spent": 2500,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Portable Hole",
             "Ioune Stone of Intellect",
@@ -9296,9 +16000,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 6625,
           "gp_minus": 3800,
+          "gp_net": 2825,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6625,
+              "spent": 3800,
+              "net": 2825
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -9321,17 +16042,34 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 140,
+          "gp_net": 9860,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 140,
+              "net": 9860
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Brass Horn of Valhalla"
           ],
           "lost_perm_item": [],
           "consumable_items": [
             "Scroll of Illusory Dragon",
-            "Potion of Fire Giant Strength",
-            "Potion of Heroism"
+            "potion of Fire Giant Strength",
+            "potion of heroism"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -9347,9 +16085,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 7500,
           "gp_minus": 0,
+          "gp_net": 7500,
           "dtd_plus": 60,
           "dtd_minus": 0,
+          "dtd_net": 60,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 7500,
+              "spent": 0,
+              "net": 7500
+            },
+            "downtime": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Darkthorn arrows (5)",
             "Faerie dragon's favor",
@@ -9372,9 +16127,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 10000,
           "gp_minus": 0,
+          "gp_net": 10000,
           "dtd_plus": 90,
           "dtd_minus": 0,
+          "dtd_net": 90,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 0,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Haregon's Freedom",
             "Wildmane's shoes",
@@ -9395,9 +16167,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 750,
           "gp_minus": 0,
+          "gp_net": 750,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 750,
+              "spent": 0,
+              "net": 750
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nereid Shawl",
             "Night Queen's Eyes",
@@ -9419,9 +16208,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "\"Woe\" +3 Longsword",
             "Ring of Evasion"
@@ -9447,9 +16253,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 0,
+          "gp_net": 10000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 0,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "\"Discord\" +2 Plate",
             "Ring of Regeneration"
@@ -9470,9 +16293,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ghost Step Tattoo"
           ],
@@ -9495,9 +16335,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 11060,
           "gp_minus": 300,
+          "gp_net": 10760,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 11060,
+              "spent": 300,
+              "net": 10760
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate",
             "Ring of Acid Resistance",
@@ -9531,9 +16388,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Grig Fiddle"
           ],
@@ -9556,9 +16430,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2090,
           "gp_minus": 60,
+          "gp_net": 2030,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2090,
+              "spent": 60,
+              "net": 2030
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bitter Wraith (Frostbrand Rapier)"
           ],
@@ -9579,9 +16470,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 25000,
           "gp_minus": 0,
+          "gp_net": 25000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 25000,
+              "spent": 0,
+              "net": 25000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Greatsword +3"
           ],
@@ -9599,9 +16507,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -9619,9 +16544,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1333,
           "gp_minus": 4675,
+          "gp_net": -3342,
           "dtd_plus": 10,
           "dtd_minus": 16,
+          "dtd_net": -6,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1333,
+              "spent": 4675,
+              "net": -3342
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 16,
+              "net": -6
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Stone Giant Strength",
             "Bracers of Defense"
@@ -9647,9 +16589,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 103000,
+          "gp_net": -103000,
           "dtd_plus": 0,
           "dtd_minus": 120,
+          "dtd_net": -120,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 103000,
+              "net": -103000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 120,
+              "net": -120
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -9665,9 +16624,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 12500,
           "gp_minus": 0,
+          "gp_net": 12500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 12500,
+              "spent": 0,
+              "net": 12500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tyr's Justice"
           ],
@@ -9687,9 +16663,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 124004,
           "gp_minus": 4000,
+          "gp_net": 120004,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 124004,
+              "spent": 4000,
+              "net": 120004
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Defender Longsword",
             "Sword of Vengeance (Rapier)",
@@ -9698,21 +16691,16 @@ window.DATA = {
             "Ring of Regenderation",
             "Rod of the Pact Keeper +3",
             "Staff of Power",
+            "Manua",
+            "l of Bodily Health",
             "Carpet (6x9)",
             "Candle of Invocation (Neutral)",
             "Ring of Fire Resistance",
-            "Flail +1",
-            "Manual of Bodily Health"
+            "Flail +1"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Scroll of Shield",
-            "Scroll of Shield",
-            "Scroll of Shield",
-            "Scroll of Shield",
-            "Scroll of Shield",
-            "Scroll of Shield",
-            "Scroll of Shield",
+            "7 Scrolls of Shield",
             "Potion of Diminution",
             "Scroll of Synaptic Static",
             "Scroll of Steel Wind Strike",
@@ -9720,8 +16708,8 @@ window.DATA = {
             "Circle of Power",
             "Scroll of Greater Restoration",
             "Potion of Speed",
-            "Potion of Vitality",
-            "Potion of Superior Healing"
+            "Potions of VItality",
+            "Potions of Superior Healing"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -9735,9 +16723,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 8550,
           "gp_minus": 700,
+          "gp_net": 7850,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 8550,
+              "spent": 700,
+              "net": 7850
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Bottle"
           ],
@@ -9762,9 +16767,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 2,
+          "gp_net": 9998,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 2,
+              "net": 9998
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -9786,9 +16808,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 1600,
           "gp_minus": 0,
+          "gp_net": 1600,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1600,
+              "spent": 0,
+              "net": 1600
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -9804,9 +16843,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Iron Golems"
           ],
@@ -9829,9 +16885,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10130,
           "gp_minus": 0,
+          "gp_net": 10130,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10130,
+              "spent": 0,
+              "net": 10130
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of Eyes",
             "Ioun Stone of Awareness"
@@ -9853,9 +16926,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 6550,
           "gp_minus": 0,
+          "gp_net": 6550,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6550,
+              "spent": 0,
+              "net": 6550
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -9863,10 +16953,10 @@ window.DATA = {
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Superior Healing",
-            "Scroll of Enhance Ability",
+            "Scrolls of Enhance Ability",
             "Force Cage",
             "Programmed Illusion",
-            "And Simulacrum"
+            "and Simulacrum"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -9882,9 +16972,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Crystal Ball"
           ],
@@ -9907,9 +17014,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 8333,
           "gp_minus": 4450,
+          "gp_net": 3883,
           "dtd_plus": 10,
           "dtd_minus": 20,
+          "dtd_net": -10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 8333,
+              "spent": 4450,
+              "net": 3883
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 20,
+              "net": -10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Angel Sting (Dancing Rapier)"
           ],
@@ -9930,9 +17054,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Lightning Bolts"
           ],
@@ -9955,9 +17096,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Quickness of Action"
           ],
@@ -9975,9 +17133,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 400,
           "gp_minus": 0,
+          "gp_net": 400,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 400,
+              "spent": 0,
+              "net": 400
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sunblade",
             "Mithril Chain Shirt"
@@ -9999,9 +17174,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of the Bat"
           ],
@@ -10019,9 +17211,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 200,
           "gp_minus": 0,
+          "gp_net": 200,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 200,
+              "spent": 0,
+              "net": 200
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rolisa's Portable Factory (Daern's Instant Fortress)"
           ],
@@ -10039,9 +17248,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nine Lives Stealer Scimitar"
           ],
@@ -10065,9 +17291,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 644,
+          "gp_net": 156,
           "dtd_plus": 0,
           "dtd_minus": 27,
+          "dtd_net": -27,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 644,
+              "net": 156
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 27,
+              "net": -27
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Boots of Levitation (Gleaming)",
             "Wand of Smiles"
@@ -10088,9 +17331,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 2,
+          "dtd_net": 18,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 2,
+              "net": 18
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -10099,7 +17359,7 @@ window.DATA = {
           "consumable_items": [
             "Potion of Superior Healing",
             "Scroll of Greater Invisibility",
-            "2nd Level Wizard Spell (not Ritual) Scroll of My Choice"
+            "2nd level wizard spell (not ritual) scroll of my choice"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -10116,9 +17376,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Bodily Health"
           ],
@@ -10139,9 +17416,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Healing"
           ],
@@ -10159,9 +17453,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -10179,9 +17490,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 25,
+          "gp_net": -25,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 25,
+              "net": -25
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wand of Paralysis"
           ],
@@ -10205,9 +17533,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Vitality",
             "Necklace of Prayer Beads (Blessing, Curing, Favor, Wind walking)"
@@ -10228,16 +17573,32 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bag of Devouring"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Mind Reading",
-            "Potion of Mind Reading"
+            "2 Potions of Mind Reading"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -10254,9 +17615,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 905,
+          "gp_net": -105,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 905,
+              "net": -105
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -10279,9 +17657,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Flying Carpet (4x6)"
           ],
@@ -10304,9 +17699,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -10328,9 +17740,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cosmic Chausible"
           ],
@@ -10348,9 +17777,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison",
             "Ring of Lightning Resistance"
@@ -10369,9 +17815,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying",
             "Dark Shard Amulet",
@@ -10391,9 +17854,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword +2"
           ],
@@ -10414,9 +17894,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Fireballs"
           ],
@@ -10437,9 +17934,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Yellow Elemental Gem"
           ],
@@ -10457,9 +17971,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Nettle",
             "Staff of Healing"
@@ -10480,9 +18011,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Python"
           ],
@@ -10500,9 +18048,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Python",
             "Alchemy Jug",
@@ -10524,9 +18089,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -10548,10 +18130,29 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 10,
+          "gp_net": 110,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
-          "perm_items": [],
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 10,
+              "net": 110
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Winged Boots (didn't get them)"
+          ],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Clairvoyance"
@@ -10571,9 +18172,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 2,
+          "dtd_net": 18,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 2,
+              "net": 18
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Armor of Vulnerability (slashing)",
             "Blackrazor"
@@ -10584,11 +18202,7 @@ window.DATA = {
           "consumable_items": [
             "Potion of Greater Healing",
             "Potion of Mind Reading",
-            "Rare Consumables of My Choice (greater Restoration X 5)",
-            "Rare Consumables of My Choice (greater Restoration X 5)",
-            "Rare Consumables of My Choice (greater Restoration X 5)",
-            "Rare Consumables of My Choice (greater Restoration X 5)",
-            "Rare Consumables of My Choice (greater Restoration X 5)"
+            "5 rare consumables of my choice (Greater Restoration x 5)"
           ],
           "supernatural_gifts": [
             "Blessing of Protection"
@@ -10604,9 +18218,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Goggles of Night",
             "Stone of Good Luck",
@@ -10626,9 +18257,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 125,
+          "gp_net": -125,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 125,
+              "net": -125
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of Health",
             "Cloak of the Bat",
@@ -10651,9 +18299,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plague Fly (FoWP - Ebony Fly)"
           ],
@@ -10674,9 +18339,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cape of the Mountebank"
           ],
@@ -10694,9 +18376,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dagger of Blindsight"
           ],
@@ -10719,9 +18418,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 25,
+          "dtd_net": -25,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 25,
+              "net": -25
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Opal of the Ild Rune"
           ],
@@ -10741,9 +18457,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword of Warning"
           ],
@@ -10761,9 +18494,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 275,
+          "gp_net": -185,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 275,
+              "net": -185
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cloak of Displacement"
           ],
@@ -10786,9 +18536,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Portable Hole"
           ],
@@ -10806,9 +18573,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Decanter of Endless Water"
           ],
@@ -10826,9 +18610,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 50,
+          "gp_net": 70,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 50,
+              "net": 70
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Smiles",
             "Tan Bag of Tricks",
@@ -10850,9 +18651,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracelet of Rock Magic"
           ],
@@ -10870,9 +18688,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of Stars"
           ],
@@ -10895,9 +18730,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 240,
           "gp_minus": 325,
+          "gp_net": -85,
           "dtd_plus": 20,
           "dtd_minus": 2,
+          "dtd_net": 18,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 325,
+              "net": -85
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 2,
+              "net": 18
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Dagger of Blindsight",
             "Cloak of the Manta Ray"
@@ -10916,9 +18768,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mace of Smiting"
           ],
@@ -10941,9 +18810,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wand of Magic Missiles"
           ],
@@ -10964,9 +18850,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 200,
+          "gp_net": -110,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 200,
+              "net": -110
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "The Choralier’s Companion - Saddle of the Cavalier"
           ],
@@ -10986,9 +18889,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11006,9 +18926,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 375,
+          "gp_net": -255,
           "dtd_plus": 20,
           "dtd_minus": 2,
+          "dtd_net": 18,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 375,
+              "net": -255
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 2,
+              "net": 18
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Deck of Illusions",
             "Mystery Key"
@@ -11027,9 +18964,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -11047,9 +19001,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tloque's Battleaxe"
           ],
@@ -11067,9 +19038,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Power"
           ],
@@ -11092,9 +19080,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Gem of Brightness",
             "Cloak of Many Fashions"
@@ -11116,9 +19121,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 40,
           "gp_minus": 0,
+          "gp_net": 40,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11137,9 +19159,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 160,
           "gp_minus": 0,
+          "gp_net": 160,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11155,9 +19194,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 30,
+          "gp_net": 50,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 30,
+              "net": 50
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Deck of Illusions"
           ],
@@ -11167,26 +19223,7 @@ window.DATA = {
           "story_awards": [],
           "notes": "Bought 30 gp worth of incense"
         }
-      ],
-      "consumable_uses": {
-        "Spell Scroll of Wish": 1
-      },
-      "inventory_state": {
-        "active": [
-          "Efreeti Bottle",
-          "Manual of Bodily Health",
-          "Robe of the Archmagi (White)",
-          "Staff of the Magi",
-          "Tome of Clear Thought",
-          "Flying Carpet (4x6)",
-          "Arcane Grimoire +3",
-          "Ring of Acid Resistance",
-          "Ring of Fire Resistance",
-          "Portable Hole"
-        ],
-        "attuned": [],
-        "common": []
-      }
+      ]
     },
     "Agatha": {
       "display_name": "Agatha",
@@ -11203,9 +19240,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of the Stilled Tongue"
           ],
@@ -11223,9 +19277,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 40,
           "dtd_minus": 0,
+          "dtd_net": 40,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Invisibility"
           ],
@@ -11243,9 +19314,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 20000,
           "gp_minus": 0,
+          "gp_net": 20000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 20000,
+              "spent": 0,
+              "net": 20000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Iron Horn of Valhalla",
             "Wand of Conducting"
@@ -11266,9 +19354,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Python"
           ],
@@ -11291,9 +19396,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Anstruth Harp"
           ],
@@ -11316,9 +19438,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 3
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11334,9 +19473,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 8333,
           "gp_minus": 750,
+          "gp_net": 7583,
           "dtd_plus": 10,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 8333,
+              "spent": 750,
+              "net": 7583
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Regeneration",
             "Plate +2 (unique)"
@@ -11355,12 +19511,29 @@ window.DATA = {
           "date": "2021-12-22",
           "code": "CCC-RCC-01-06",
           "dm": "Erik T.",
-          "kind": "adventure",
+          "kind": "Downtime Activity",
           "gp_plus": 10000,
           "gp_minus": 550,
+          "gp_net": 9450,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 550,
+              "net": 9450
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -11379,12 +19552,29 @@ window.DATA = {
           "date": "2021-10-16",
           "code": "CCC-TRI-10",
           "dm": "Corey F.",
-          "kind": "adventure",
+          "kind": "Downtime Activity",
           "gp_plus": 1500,
           "gp_minus": 0,
+          "gp_net": 1500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1500,
+              "spent": 0,
+              "net": 1500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -11405,9 +19595,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 150,
+              "net": -150
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of the War Mage +3"
           ],
@@ -11425,9 +19632,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Daern's Instant Fortress"
           ],
@@ -11444,12 +19668,29 @@ window.DATA = {
           "date": "2020-11-23",
           "code": "DDHC-MORD",
           "dm": "Tim H.",
-          "kind": "adventure",
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -11467,9 +19708,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 510,
+          "gp_net": -510,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 510,
+              "net": -510
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Brass Horn of Valhalla"
           ],
@@ -11491,9 +19749,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -11512,9 +19787,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Studded Leather +2"
           ],
@@ -11537,9 +19829,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dreamwhirl (Lance +3)"
           ],
@@ -11561,9 +19870,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -11585,9 +19911,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "FOWP - Onyx Dog",
             "Dark Shard Amulet"
@@ -11606,9 +19949,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tyr's Blessing of Luck"
           ],
@@ -11628,9 +19988,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 100,
+          "gp_net": -100,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 100,
+              "net": -100
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11646,9 +20023,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11664,9 +20058,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cloak of Many Fashions"
           ],
@@ -11689,9 +20100,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -11709,15 +20137,32 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Supreme Healing",
             "Potion of Vitality",
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -11731,9 +20176,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 600,
+          "gp_net": -600,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 600,
+              "net": -600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11756,9 +20218,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of Health"
           ],
@@ -11776,9 +20255,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11794,9 +20290,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11812,9 +20325,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11830,9 +20360,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11852,9 +20399,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11878,9 +20442,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -11900,9 +20481,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Aegis of the Raven Queen Shield +3"
           ],
@@ -11920,9 +20518,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -11945,9 +20560,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of Stars (Cosmic Chasuble)"
           ],
@@ -11965,9 +20597,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -11983,9 +20632,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12003,9 +20669,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12021,9 +20704,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 1000,
+          "gp_net": -1000,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 1000,
+              "net": -1000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -12041,9 +20741,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12059,9 +20776,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12077,9 +20811,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12095,14 +20846,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 400,
           "gp_minus": 0,
+          "gp_net": 400,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 400,
+              "spent": 0,
+              "net": 400
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coins",
-            "Soul Coins"
+            "2 Soul Coins"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12116,19 +20883,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins"
+            "7 Soul Coins"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12142,17 +20920,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins"
+            "5 Soul Coins"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12166,9 +20957,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12184,9 +20992,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -12210,9 +21035,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -12230,9 +21072,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +3"
           ],
@@ -12255,9 +21114,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 2300,
+          "gp_net": -1500,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 2300,
+              "net": -1500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12273,9 +21149,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -12293,9 +21186,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Power"
           ],
@@ -12318,9 +21228,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bag of Devouring"
           ],
@@ -12343,9 +21270,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Studded Leather +2"
           ],
@@ -12363,9 +21307,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 200,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 200,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -12388,9 +21349,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 50,
+          "dtd_net": -30,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 50,
+              "net": -30
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -12413,9 +21391,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of the Pact Keeper +2"
           ],
@@ -12437,9 +21432,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Sending Stones"
           ],
@@ -12459,13 +21471,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12479,13 +21508,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12499,9 +21545,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -12524,9 +21587,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Fireballs"
           ],
@@ -12549,13 +21629,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 25,
+          "gp_net": 95,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 25,
+              "net": 95
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -12569,9 +21666,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Rope of Entanglement"
           ],
@@ -12589,9 +21703,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -12614,9 +21745,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 100,
           "gp_minus": 0,
+          "gp_net": 100,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 100,
+              "spent": 0,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12632,9 +21780,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 45,
+          "gp_net": 75,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 45,
+              "net": 75
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wand of Wonder"
           ],
@@ -12652,9 +21817,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 50,
+          "gp_net": 30,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 50,
+              "net": 30
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12670,9 +21852,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 20,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 20,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -12688,9 +21887,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -12708,9 +21924,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Wand of Web"
           ],
@@ -12737,9 +21970,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Lance of Warning"
           ],
@@ -12757,9 +22007,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Iron Golems"
           ],
@@ -12782,9 +22049,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -12808,9 +22092,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Mastery"
           ],
@@ -12833,9 +22134,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain"
           ],
@@ -12858,9 +22176,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -12883,9 +22218,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 2000,
+          "gp_net": 1000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 2000,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of Stars"
           ],
@@ -12903,9 +22255,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Holy Avenger Longsword"
           ],
@@ -12928,9 +22297,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 4500,
           "gp_minus": 8000,
+          "gp_net": -3500,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 4500,
+              "spent": 8000,
+              "net": -3500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain"
           ],
@@ -12948,9 +22334,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -12973,9 +22376,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Flying Carpet"
           ],
@@ -12998,9 +22418,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Bodily Health"
           ],
@@ -13023,9 +22460,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Quickness of Action"
           ],
@@ -13048,9 +22502,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dagger of Blindsight"
           ],
@@ -13073,9 +22544,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tloque's Battleax"
           ],
@@ -13098,9 +22586,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 18000,
           "gp_minus": 0,
+          "gp_net": 18000,
           "dtd_plus": 60,
           "dtd_minus": 0,
+          "dtd_net": 60,
           "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 18000,
+              "spent": 0,
+              "net": 18000
+            },
+            "downtime": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "level": {
+              "gained": 3
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13116,15 +22621,32 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5000,
           "gp_minus": 0,
+          "gp_net": 5000,
           "dtd_plus": 20,
           "dtd_minus": 1,
+          "dtd_net": 19,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5000,
+              "spent": 0,
+              "net": 5000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 1,
+              "net": 19
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Mastery"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coin"
+            "1 Soul Coin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -13138,9 +22660,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Mace of Smiting +1"
           ],
@@ -13158,9 +22697,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rolisa's Portable Factory (Daern's Instant Fortress)"
           ],
@@ -13178,9 +22734,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13196,9 +22769,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13214,9 +22804,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 400,
           "gp_minus": 0,
+          "gp_net": 400,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 400,
+              "spent": 0,
+              "net": 400
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [
             "Splint Barding for 400 gp"
@@ -13234,9 +22841,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate Barding +2"
           ],
@@ -13259,9 +22883,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 1600,
+          "gp_net": -1600,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 1600,
+              "net": -1600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13277,14 +22918,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coins",
-            "Soul Coins"
+            "2 Soul Coins"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -13298,9 +22955,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13316,9 +22990,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Power"
           ],
@@ -13341,9 +23032,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 2600,
+          "gp_net": -1800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 2600,
+              "net": -1800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -13362,9 +23070,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +3"
           ],
@@ -13387,24 +23112,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Protection"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Spell Scrolls (1&2 Level Wizard): 4 Enlarge/reduce",
-            "Alter Self",
-            "Alter Self",
-            "Alter Self"
+            "7 spell scrolls (1&2 level wizard): 4 Enlarge/Reduce",
+            "3 Alter Self"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -13418,9 +23152,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 500,
+          "gp_net": 100,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 500,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -13439,9 +23190,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Frost"
           ],
@@ -13461,9 +23229,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracers of Defense"
           ],
@@ -13486,9 +23271,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sun Blade"
           ],
@@ -13511,9 +23313,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +2"
           ],
@@ -13536,9 +23355,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 500,
+          "gp_net": 300,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 500,
+              "net": 300
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -13556,9 +23392,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword +3"
           ],
@@ -13581,9 +23434,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -13601,9 +23471,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Opal of the Ild Rune"
           ],
@@ -13626,9 +23513,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -13651,9 +23555,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Thunder",
             "Lightning"
@@ -13677,9 +23598,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Bag of Devouring"
           ],
@@ -13697,9 +23635,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -13722,9 +23677,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Glamored Studded Leather"
           ],
@@ -13742,9 +23714,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 30,
           "gp_minus": 0,
+          "gp_net": 30,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Shield +2"
           ],
@@ -13762,9 +23751,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 90,
           "gp_minus": 0,
+          "gp_net": 90,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 90,
+              "spent": 0,
+              "net": 90
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Gem of Seeing"
           ],
@@ -13782,9 +23788,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Hill Giant Strength"
           ],
@@ -13807,9 +23830,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +1"
           ],
@@ -13832,9 +23872,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword +2"
           ],
@@ -13857,9 +23914,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Elven Chain"
           ],
@@ -13882,9 +23956,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -13900,9 +23991,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 119,
           "gp_minus": 200,
+          "gp_net": -81,
           "dtd_plus": 30,
           "dtd_minus": 20,
+          "dtd_net": 10,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 119,
+              "spent": 200,
+              "net": -81
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 20,
+              "net": 10
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -13922,9 +24030,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Bowl of Commanding Water Elementals"
           ],
@@ -13942,9 +24067,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 20,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 20,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -13962,9 +24104,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
           "perm_items": [
             "Amulet of Proof Against Detection"
           ],
@@ -13984,31 +24143,6 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
-          "title": "Trade",
-          "date": "2025-10-21",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "level_plus": 0,
-          "perm_items": [
-            "Ascendent Dragon's Wrath Longsword (Amethyst)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Staff of the Magi",
-            "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
-            "counterpartyCharacter": "Zandarax"
-          }
-        },
-        {
           "title": "War of the Roses",
           "date": "2025-05-25",
           "code": "PS-DC-STRAT-TALES-05",
@@ -14016,9 +24150,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Sword of Answering (unbreakable)"
           ],
@@ -14036,9 +24187,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +3",
             "Half-plate of Gleaming"
@@ -14059,9 +24227,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 7000,
           "gp_minus": 20000,
+          "gp_net": -13000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 7000,
+              "spent": 20000,
+              "net": -13000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +3 (Crystal)"
           ],
@@ -14081,9 +24266,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 14000,
           "gp_minus": 1000,
+          "gp_net": 13000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 14000,
+              "spent": 1000,
+              "net": 13000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Blood Fury Tattoo",
             "Kyrzin's Ooze"
@@ -14102,9 +24304,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 22000,
+          "gp_net": -12000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 22000,
+              "net": -12000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cubic Gate"
           ],
@@ -14124,9 +24343,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of the Archmagi (White)"
           ],
@@ -14150,9 +24386,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -14175,9 +24428,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Hide Armor +3"
           ],
@@ -14200,9 +24470,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Holy Avenger Longsword"
           ],
@@ -14225,9 +24512,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Robe of the Archmage (Gray)"
           ],
@@ -14250,9 +24554,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Defender Longsword"
           ],
@@ -14275,9 +24596,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 20500,
           "gp_minus": 0,
+          "gp_net": 20500,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 20500,
+              "spent": 0,
+              "net": 20500
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ascendent Gem Dragon-Touched Focus",
             "Sapphire Buckler"
@@ -14300,9 +24638,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 25000,
           "gp_minus": 0,
+          "gp_net": 25000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 25000,
+              "spent": 0,
+              "net": 25000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Absorption (10 charges)",
             "Potion of Flying",
@@ -14322,9 +24677,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Blood Fury Tattoo"
           ],
@@ -14347,9 +24719,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 10000,
           "gp_minus": 0,
+          "gp_net": 10000,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 0,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vorpal Scimitar"
           ],
@@ -14372,9 +24761,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Absorption"
           ],
@@ -14397,9 +24803,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Holy Avenger Longsword"
           ],
@@ -14422,9 +24845,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -14447,9 +24887,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -14472,9 +24929,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Lightning Bolts"
           ],
@@ -14492,9 +24966,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -14517,9 +25008,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 20000,
           "gp_minus": 11000,
+          "gp_net": 9000,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 20000,
+              "spent": 11000,
+              "net": 9000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scarab of Protection",
             "Oathbow",
@@ -14544,9 +25052,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain"
           ],
@@ -14569,9 +25094,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Mastery"
           ],
@@ -14594,9 +25136,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Eyes of the Eagle"
           ],
@@ -14619,9 +25178,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 6000,
           "gp_minus": 2000,
+          "gp_net": 4000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 2000,
+              "net": 4000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Rod of Security",
             "Adamantine Plate"
@@ -14644,9 +25220,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3750,
           "gp_minus": 9100,
+          "gp_net": -5350,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3750,
+              "spent": 9100,
+              "net": -5350
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain"
           ],
@@ -14666,9 +25259,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 7000,
+          "gp_net": -4000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 7000,
+              "net": -4000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +2",
             "Scarab of Protection"
@@ -14691,9 +25301,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Death Shield Defender Greatsword",
             "Rod of the Pact Keeper +2"
@@ -14714,9 +25341,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Whip +2"
           ],
@@ -14739,9 +25383,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 11000,
+          "gp_net": -8000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 11000,
+              "net": -8000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Blessing of Protection"
           ],
@@ -14763,9 +25424,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cape of the Mountbank"
           ],
@@ -14783,9 +25461,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 1300,
+          "gp_net": 1700,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 1300,
+              "net": 1700
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -14801,9 +25496,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 400,
+          "gp_net": 2600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 400,
+              "net": 2600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -14819,9 +25531,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Aegis of the Raven Queen Shield"
           ],
@@ -14844,9 +25573,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -14869,9 +25615,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +3"
           ],
@@ -14894,16 +25657,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate Barding +2",
             "Rod of the Pact Keeper +2"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Spell Scroll of 7th Level Spell of My Choice - Crown of Stars"
+            "Spell Scroll of 7th level spell of my choice - Crown of Stars"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -14917,9 +25697,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword +3"
           ],
@@ -14942,9 +25739,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 6800,
+          "gp_net": -3800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 6800,
+              "net": -3800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Magi"
           ],
@@ -14965,9 +25779,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Power",
             "Tome of Clear Thought",
@@ -14987,9 +25818,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +3"
           ],
@@ -15012,17 +25860,32 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ollamh Harp"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins"
+            "3 Soul Coins"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -15036,9 +25899,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 6000,
           "gp_minus": 0,
+          "gp_net": 6000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 0,
+              "net": 6000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15054,9 +25934,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Cloak of Invisibility"
           ],
@@ -15079,9 +25976,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Insight"
           ],
@@ -15104,9 +26018,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Holy Avenger Longsword"
           ],
@@ -15129,9 +26060,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 6000,
           "gp_minus": 0,
+          "gp_net": 6000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 0,
+              "net": 6000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15147,9 +26095,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 2900,
+          "gp_net": 100,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 2900,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -15169,9 +26134,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Scarab of Protection"
           ],
@@ -15194,9 +26176,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Manual of Bodily Health"
           ],
@@ -15219,9 +26218,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Periapt of Proof Against Poison"
           ],
@@ -15244,9 +26260,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Webs"
           ],
@@ -15269,9 +26302,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Storm Giant Strength"
           ],
@@ -15294,22 +26344,33 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 2300,
+          "gp_net": 700,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 2300,
+              "net": 700
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ioun Stone of Greater Absorbtion"
           ],
-          "lost_perm_item": [
-            "White Dragon Scalemail"
-          ],
+          "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Superior Healing"
+            "5 potions of greater healing",
+            "1 potion of superior healing"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
@@ -15323,32 +26384,46 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 1150,
+          "gp_net": 1850,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 1150,
+              "net": 1850
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Ioun Stone of Mastery",
             "Mantle of Spell Resistance"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)",
-            "Potion of Greater Healing (5 Consumed)"
+            "10 potions of greater healing (5 consumed)"
           ],
           "supernatural_gifts": [
             "Resistance to Necrotic",
             "Resistance to Fire"
           ],
           "story_awards": [],
-          "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage."
+          "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
+          "trade": {
+            "given": "Ring of Cold Resistance",
+            "received": "Mantle of Spell Resistance",
+            "counterpartyCharacter": "Wren",
+            "counterpartyPlayer": "Erik T."
+          }
         },
         {
           "title": "Trade",
@@ -15358,9 +26433,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Trident of Fish Command"
           ],
@@ -15383,9 +26475,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15401,9 +26510,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Broom of Flying"
           ],
@@ -15426,9 +26552,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Webs"
           ],
@@ -15451,9 +26594,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Choraller's Companion"
           ],
@@ -15476,9 +26636,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "White Dragon Scalemail",
             "Gem of Water Elemental",
@@ -15500,16 +26677,30 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 700,
+          "gp_net": -700,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 700,
+              "net": -700
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Healing Potions",
-            "Healing Potions",
-            "Healing Potions",
-            "Healing Potions"
+            "4 healing potions"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -15525,9 +26716,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15545,9 +26753,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15563,9 +26788,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
-          "level_plus": 1,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Plate"
           ],
@@ -15583,9 +26825,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -15608,9 +26867,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Elven chainmail"
           ],
@@ -15633,9 +26909,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Carpet of Flying (5x7)"
           ],
@@ -15653,9 +26946,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "CHA tome"
           ],
@@ -15678,9 +26988,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "DEX tome"
           ],
@@ -15698,9 +27025,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +3"
           ],
@@ -15723,9 +27067,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of Power"
           ],
@@ -15748,9 +27109,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Belt of Fire Giant Strength"
           ],
@@ -15773,9 +27151,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Skaggoxx (+3 battleaxe)"
           ],
@@ -15793,9 +27188,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "9 Lives Stealer Scimitar"
           ],
@@ -15813,15 +27225,37 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 200,
+          "gp_net": 600,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 200,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Spent 200gp on Heroe's Feast"
+          "notes": "Spent 200gp on Heroe's Feast",
+          "trade": {
+            "given": "mithral splintmail",
+            "received": "+1 Shield",
+            "counterpartyCharacter": "Rolyn"
+          }
         },
         {
           "title": "Trade",
@@ -15831,9 +27265,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Plate +1"
           ],
@@ -15856,9 +27307,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Shield +1"
           ],
@@ -15881,9 +27349,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 100,
+          "gp_net": 700,
           "dtd_plus": 20,
           "dtd_minus": 60,
+          "dtd_net": -40,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 100,
+              "net": 700
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 60,
+              "net": -40
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Thunder & Lightning"
           ],
@@ -15903,9 +27388,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ring of Spell Storing"
           ],
@@ -15928,9 +27430,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Elven Chainmail"
           ],
@@ -15950,9 +27469,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -15968,9 +27504,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Longsword +2"
           ],
@@ -15993,9 +27546,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Rimesplitter (+2 Greataxe)"
           ],
@@ -16013,9 +27583,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Necklace of Adaptation",
             "(Mantle of Spell Resistance)"
@@ -16024,7 +27611,12 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Epic reward: Fizzlebottom"
+          "notes": "Epic reward: Fizzlebottom",
+          "trade": {
+            "given": "Necklace of Adaptation",
+            "received": "casting 4th level spell, cast Find Greater Steed to aqcuire Pegasus mount named Mr",
+            "counterpartyCharacter": "Pipyap"
+          }
         },
         {
           "title": "The Red War",
@@ -16034,9 +27626,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16052,9 +27661,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 164,
           "gp_minus": 5,
+          "gp_net": 159,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 164,
+              "spent": 5,
+              "net": 159
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mithral splintmail"
           ],
@@ -16078,9 +27704,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of Displacement"
           ],
@@ -16098,9 +27741,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 60,
           "gp_minus": 0,
+          "gp_net": 60,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Eyes of the Eagle"
           ],
@@ -16118,9 +27778,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Gloves of Thievery"
           ],
@@ -16138,9 +27815,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16156,9 +27850,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Winged Boots"
           ],
@@ -16181,9 +27892,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16191,7 +27919,25 @@ window.DATA = {
           "story_awards": [],
           "notes": ""
         }
-      ]
+      ],
+      "inventory_state": {
+        "active": [
+          "+3 Shield",
+          "Ascendent Gem Dragon-Touched Focus",
+          "Broom of Flying",
+          "Adamantine Plate",
+          "Cape of the Mountbank",
+          "CHA tome",
+          "Manual of Bodily Health",
+          "Sword of Answering (unbreakable)"
+        ],
+        "attuned": [
+          "Sword of Answering (unbreakable)",
+          "Ascendent Gem Dragon-Touched Focus",
+          "Broom of Flying"
+        ],
+        "common": []
+      }
     },
     "Morty": {
       "display_name": "Morty",
@@ -16208,9 +27954,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Moon Blade"
           ],
@@ -16233,9 +27996,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Hide +3"
           ],
@@ -16258,9 +28038,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16281,9 +28078,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 5250,
           "gp_minus": 1500,
+          "gp_net": 3750,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5250,
+              "spent": 1500,
+              "net": 3750
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Efreeti Chain (Pegasus Barding)"
           ],
@@ -16303,9 +28117,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3750,
           "gp_minus": 0,
+          "gp_net": 3750,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3750,
+              "spent": 0,
+              "net": 3750
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16321,9 +28152,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 2916,
           "gp_minus": 15000,
+          "gp_net": -12084,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2916,
+              "spent": 15000,
+              "net": -12084
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Adamantine Plate",
             "Rod of Security"
@@ -16344,9 +28192,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Dwarven Thrower"
           ],
@@ -16369,9 +28234,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tloque's Battleaxe"
           ],
@@ -16394,9 +28276,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 500,
+          "gp_net": 2500,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 500,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Magi"
           ],
@@ -16416,9 +28315,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -16441,9 +28357,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 100,
+          "gp_net": 2900,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 100,
+              "net": 2900
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Vorpal Scimitar"
           ],
@@ -16461,9 +28394,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Bracelet of Rock Magic"
           ],
@@ -16486,9 +28436,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Half plate +2",
             "Studded Leather +2",
@@ -16510,9 +28477,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 4500,
+          "gp_net": -1500,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 4500,
+              "net": -1500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of the Stilled Tongue"
           ],
@@ -16530,9 +28514,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Leadership"
           ],
@@ -16555,9 +28556,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 1600,
           "gp_minus": 0,
+          "gp_net": 1600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1600,
+              "spent": 0,
+              "net": 1600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16573,9 +28591,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 6000,
           "gp_minus": 0,
+          "gp_net": 6000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 0,
+              "net": 6000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16591,9 +28626,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 3000,
           "gp_minus": 0,
+          "gp_net": 3000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16613,9 +28665,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 6000,
           "gp_minus": 0,
+          "gp_net": 6000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 0,
+              "net": 6000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16631,9 +28700,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16649,9 +28735,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
+          "gp_net": 800,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Staff of Healing"
           ],
@@ -16675,9 +28778,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
+          "gp_net": 1000,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
@@ -16695,9 +28815,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Tome of Understanding"
           ],
@@ -16720,9 +28857,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 200,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 200,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tome of Clear Thought"
           ],
@@ -16740,9 +28894,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Necklace of Prayer Beads"
           ],
@@ -16765,9 +28936,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 600,
           "gp_minus": 0,
+          "gp_net": 600,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tome of Leadership",
             "Influence"
@@ -16786,9 +28974,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 300,
+          "gp_net": -300,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 300,
+              "net": -300
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Sixth Sword (+2 Rapier +2 Init)"
           ],
@@ -16809,9 +29014,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Wand of Pyrotechnics"
           ],
@@ -16834,9 +29056,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Ioun Stone of Protection"
           ],
@@ -16856,14 +29095,31 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Soul Coin",
-            "Potion of Invisibility"
+            "1 Soul Coin",
+            "1 Potion of Invisibility"
           ],
           "supernatural_gifts": [],
           "story_awards": [
@@ -16879,9 +29135,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16899,9 +29172,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16917,9 +29207,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16935,9 +29242,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 50,
+          "gp_net": 70,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 50,
+              "net": 70
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Glamoured Studded Leather"
           ],
@@ -16963,9 +29287,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 1,
+          "dtd_net": -1,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Mantle of Spell Resistance"
           ],
@@ -16983,9 +29324,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 1,
+          "dtd_net": 19,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 1,
+              "net": 19
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17001,9 +29359,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17021,9 +29396,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17039,9 +29431,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 1,
+          "dtd_net": 19,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 1,
+              "net": 19
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Tan Bag of Tricks"
           ],
@@ -17059,9 +29468,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Staff of the Woodlands"
           ],
@@ -17084,9 +29510,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
           "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
           "perm_items": [
             "Amulet of Health"
           ],
@@ -17104,9 +29547,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17122,9 +29582,26 @@ window.DATA = {
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 20,
           "dtd_minus": 20,
+          "dtd_net": 0,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 20,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17140,9 +29617,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17158,9 +29652,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [
             "Cloak of Protection"
           ],
@@ -17178,9 +29689,26 @@ window.DATA = {
           "kind": "adventure",
           "gp_plus": 80,
           "gp_minus": 0,
+          "gp_net": 80,
           "dtd_plus": 10,
           "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17224,8 +29752,8 @@ window.DATA = {
       "net_gp": 5170,
       "net_dtd": 23,
       "level_ups": 4,
-      "perm_count": 18,
-      "cons_count": 16,
+      "perm_count": 19,
+      "cons_count": 17,
       "gifts_count": 0
     },
     "Wobbly Bobbly": {
@@ -17240,17 +29768,17 @@ window.DATA = {
     "Gnat": {
       "sessions": 3,
       "net_gp": 3540,
-      "net_dtd": 75,
-      "level_ups": 8,
+      "net_dtd": 35,
+      "level_ups": 2,
       "perm_count": 8,
       "cons_count": 0,
       "gifts_count": 0
     },
     "Creature X-12": {
-      "sessions": 2,
+      "sessions": 0,
       "net_gp": 0,
-      "net_dtd": 60,
-      "level_ups": 7,
+      "net_dtd": 20,
+      "level_ups": 3,
       "perm_count": 4,
       "cons_count": 0,
       "gifts_count": 0
@@ -17258,17 +29786,17 @@ window.DATA = {
     "Squelch": {
       "sessions": 3,
       "net_gp": 11773,
-      "net_dtd": 95,
-      "level_ups": 9,
+      "net_dtd": 55,
+      "level_ups": 5,
       "perm_count": 7,
       "cons_count": 1,
       "gifts_count": 0
     },
     "Norixius": {
-      "sessions": 18,
-      "net_gp": 26727,
-      "net_dtd": 205,
-      "level_ups": 10,
+      "sessions": 17,
+      "net_gp": 16727,
+      "net_dtd": 155,
+      "level_ups": 5,
       "perm_count": 32,
       "cons_count": 10,
       "gifts_count": 0
@@ -17348,9 +29876,9 @@ window.DATA = {
     "Goblert Godfrey": {
       "sessions": 10,
       "net_gp": 19740,
-      "net_dtd": 120,
-      "level_ups": 10,
-      "perm_count": 17,
+      "net_dtd": 80,
+      "level_ups": 6,
+      "perm_count": 16,
       "cons_count": 10,
       "gifts_count": 0
     },
@@ -17382,12 +29910,12 @@ window.DATA = {
       "gifts_count": 2
     },
     "Sentient Hat": {
-      "sessions": 37,
-      "net_gp": 49237,
+      "sessions": 36,
+      "net_gp": 49157,
       "net_dtd": 252,
-      "level_ups": 15,
-      "perm_count": 42,
-      "cons_count": 29,
+      "level_ups": 13,
+      "perm_count": 41,
+      "cons_count": 30,
       "gifts_count": 0
     },
     "Arvistan Brightwave": {
@@ -17402,19 +29930,19 @@ window.DATA = {
     "Zandarax": {
       "sessions": 72,
       "net_gp": 54776,
-      "net_dtd": 40,
+      "net_dtd": 45,
       "level_ups": 19,
-      "perm_count": 161,
-      "cons_count": 61,
+      "perm_count": 164,
+      "cons_count": 67,
       "gifts_count": 6
     },
     "Agatha": {
-      "sessions": 55,
+      "sessions": 52,
       "net_gp": 42113,
       "net_dtd": 115,
-      "level_ups": 19,
+      "level_ups": 18,
       "perm_count": 39,
-      "cons_count": 17,
+      "cons_count": 19,
       "gifts_count": 2
     },
     "Lorien": {
@@ -17429,8 +29957,8 @@ window.DATA = {
     "Darrendrian": {
       "sessions": 46,
       "net_gp": 75879,
-      "net_dtd": 80,
-      "level_ups": 19,
+      "net_dtd": 85,
+      "level_ups": 18,
       "perm_count": 62,
       "cons_count": 13,
       "gifts_count": 8
@@ -17533,7 +30061,6 @@ window.DATA = {
       2025
     ],
     "Sentient Hat": [
-      2019,
       2021,
       2022,
       2023,
@@ -17582,7 +30109,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-25T00:42:56.462Z",
+    "generated": "2025-10-25T19:04:06.189Z",
     "problems": []
   },
   "dm_allocations": []
