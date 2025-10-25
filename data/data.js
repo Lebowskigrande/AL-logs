@@ -11185,7 +11185,11 @@ window.DATA = {
           "Ring of Fire Resistance",
           "Portable Hole"
         ],
-        "attuned": [],
+        "attuned": [
+          "Arcane Grimoire +3",
+          "Robe of the Archmagi (White)",
+          "Staff of the Magi"
+        ],
         "common": [
           "Pipe of Smoke Monsters (guardian)"
         ]
@@ -17585,7 +17589,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-25T00:41:51.845Z",
+    "generated": "2025-10-25T00:42:38.052Z",
     "problems": []
   },
   "dm_allocations": []
