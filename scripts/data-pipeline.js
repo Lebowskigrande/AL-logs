@@ -87,48 +87,36 @@ function coerceNumber(value,{ fallback=0, allowNull=false }={}, issues, context)
     if(typeof value === 'number' && Number.isFinite(value)){
       return value;
     }
-    const text = String(value).trim();
-    if(!text){
-      return allowNull ? null : fallback;
-    }
-    const cleaned = text
-      .replace(/,/g,'')
-      .replace(/gp/ig,'')
-      .replace(/dtd/ig,'')
-      .replace(/[^0-9.+\-]/g,' ');
-    const match = cleaned.match(/[-+]?\d+(?:\.\d+)?/);
-    if(!match){
-      if(issues){
-        pushIssue(issues,{
-          severity:'error',
-          code:'invalid_number',
-          message:`Unable to parse numeric value for ${field || path || 'field'}.`,
-          path,
-          charKey,
-          adventureId,
-          adventureIndex,
-          field
-        });
+    if(typeof value === 'string'){
+      const trimmed = value.trim();
+      if(!trimmed){
+        return allowNull ? null : fallback;
       }
-      return allowNull ? null : fallback;
-    }
-    const num = Number(match[0]);
-    if(!Number.isFinite(num)){
-      if(issues){
-        pushIssue(issues,{
-          severity:'error',
-          code:'invalid_number',
-          message:`Numeric value for ${field || path || 'field'} is not finite.`,
-          path,
-          charKey,
-          adventureId,
-          adventureIndex,
-          field
-        });
+      const normalized = trimmed
+        .replace(/,/g,'')
+        .replace(/\s+/g,' ')
+        .toLowerCase();
+      const unitMatch = normalized.match(/^(?<numeric>[-+]?\d+(?:\.\d+)?)(?<unit>\s*(gp|dtd|dt|hrs?|hours?)?)$/);
+      if(unitMatch && unitMatch.groups && unitMatch.groups.numeric){
+        const parsed = Number(unitMatch.groups.numeric);
+        if(Number.isFinite(parsed)){
+          return parsed;
+        }
       }
-      return allowNull ? null : fallback;
     }
-    return num;
+    if(issues){
+      pushIssue(issues,{
+        severity:'error',
+        code:'invalid_number',
+        message:`Unable to parse numeric value for ${field || path || 'field'}.`,
+        path,
+        charKey,
+        adventureId,
+        adventureIndex,
+        field
+      });
+    }
+    return allowNull ? null : fallback;
   }
 
 function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null, path='date', field='date' }){
@@ -342,7 +330,12 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       adventureIndex:index,
       field:'gp_minus'
     });
-    adv.gp_net = adv.gp_plus - adv.gp_minus;
+    const gpTotals = {
+      earned: adv.gp_plus,
+      spent: adv.gp_minus,
+      net: adv.gp_plus - adv.gp_minus
+    };
+    adv.gp_net = gpTotals.net;
 
     adv.dtd_plus = coerceNumber(raw && raw.dtd_plus,{ fallback:0 }, issues,{
       path:`${pathBase}.dtd_plus`,
@@ -358,7 +351,12 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       adventureIndex:index,
       field:'dtd_minus'
     });
-    adv.dtd_net = adv.dtd_plus - adv.dtd_minus;
+    const downtimeTotals = {
+      earned: adv.dtd_plus,
+      spent: adv.dtd_minus,
+      net: adv.dtd_plus - adv.dtd_minus
+    };
+    adv.dtd_net = downtimeTotals.net;
 
     adv.level_plus = coerceNumber(raw && raw.level_plus,{ fallback:0 }, issues,{
       path:`${pathBase}.level_plus`,
@@ -368,6 +366,14 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       field:'level_plus'
     });
 
+    adv.totals = {
+      gp: gpTotals,
+      downtime: downtimeTotals,
+      level: {
+        gained: adv.level_plus
+      }
+    };
+
     adv.perm_items = splitListInput(raw && raw.perm_items);
     adv.lost_perm_item = splitListInput(raw && raw.lost_perm_item);
     adv.consumable_items = splitListInput(raw && raw.consumable_items);
@@ -376,11 +382,9 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
 
     adv.notes = coerceMultiline(raw && raw.notes);
 
-    if(adv.kind !== 'adventure'){
-      const trade = normalizeTrade(raw,{ isDowntime: true });
-      if(trade){
-        adv.trade = trade;
-      }
+    const trade = normalizeTrade(raw,{ isDowntime: adv.kind !== 'adventure' });
+    if(trade){
+      adv.trade = trade;
     }
 
     if(raw && typeof raw === 'object'){
@@ -554,12 +558,6 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       pushTokens(adv.trade.received);
       pushTokens(adv.trade.counterpartyCharacter);
       pushTokens(adv.trade.counterpartyPlayer);
-    }else{
-      pushTokens(adv.traded_item);
-      pushTokens(adv.itemTraded);
-      pushTokens(adv.itemReceived);
-      pushTokens(adv.player);
-      pushTokens(adv.character);
     }
     pushTokens(adv.lost_perm_item);
     pushTokens(adv.perm_items);
@@ -585,7 +583,6 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
         const out = {};
         Object.entries(value).forEach(([key,val])=>{
           if(key.startsWith('__')) return;
-          if(key === 'gp_net' || key === 'dtd_net'){ return; }
           const cleaned = scrub(val);
           if(cleaned !== undefined){
             out[key] = cleaned;
@@ -603,8 +600,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       return { issues:[{ severity:'error', code:'invalid_data', message:'Data is empty.' }] };
     }
     try{
-      const clone = JSON.parse(JSON.stringify(data));
-      const result = normalizeData(clone);
+      const result = normalizeData(data);
       return { issues: result.issues };
     }catch(err){
       return { issues:[{ severity:'error', code:'validation_failure', message: String(err) }] };
@@ -613,6 +609,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
 
   const api = {
     normalizeData,
+    normalizeTrade,
     buildAdventureSearchText,
     prepareForSave,
     validateData

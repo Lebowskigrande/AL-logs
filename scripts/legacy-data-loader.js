@@ -13,12 +13,31 @@
     globalScope.AL_LEGACY_LOADER = globalScope.AL_LEGACY_LOADER || {};
     globalScope.AL_LEGACY_LOADER.loadLegacyData = api.loadLegacyData;
   }
-})(function(){
+})(function(globalScope){
   const DATA_SCRIPT_PATH='/api/data-proxy';
   const DATA_SCRIPT_FALLBACK_PATH='data/data.js';
 
+  const pipelineApi = resolvePipelineApi(globalScope);
+  const pipelineNormalizeTrade = pipelineApi && typeof pipelineApi.normalizeTrade === 'function'
+    ? pipelineApi.normalizeTrade
+    : null;
+
   function isLikelyGitObjectId(value){
     return /^[0-9a-f]{40}$/i.test(String(value||'').trim());
+  }
+
+  function resolvePipelineApi(scope){
+    if(typeof require === 'function'){
+      try{
+        return require('./data-pipeline');
+      }catch(error){
+        /* no-op */
+      }
+    }
+    if(scope && typeof scope === 'object' && scope.AL_DATA_PIPELINE){
+      return scope.AL_DATA_PIPELINE;
+    }
+    return null;
   }
 
   async function loadLegacyData({ version = '', cacheBust = '' } = {}) {
@@ -515,8 +534,19 @@
 
     if (trades.length) {
       const [firstTrade] = trades;
-      if (firstTrade && typeof firstTrade === 'object') {
-        const trade = {};
+      if (pipelineNormalizeTrade) {
+        const tradePayload = firstTrade && typeof firstTrade === 'object'
+          ? { ...log, trade: firstTrade }
+          : log;
+        const normalizedTrade = pipelineNormalizeTrade(tradePayload, {
+          isDowntime: entry.kind !== 'adventure'
+        });
+        if (normalizedTrade) {
+          entry.trade = normalizedTrade;
+        }
+      }
+      if (!entry.trade && firstTrade && typeof firstTrade === 'object') {
+        const fallbackTrade = {};
         const given = sanitizeText(
           firstTrade.itemGiven ||
           firstTrade.itemTraded ||
@@ -537,16 +567,16 @@
           firstTrade.character ||
           firstTrade.tradeCharacterName
         );
-        if (given) trade.given = given;
-        if (received) trade.received = received;
-        if (counterpartyPlayer) trade.counterpartyPlayer = counterpartyPlayer;
-        if (counterpartyCharacter) trade.counterpartyCharacter = counterpartyCharacter;
-        if (Object.keys(trade).length) {
-          entry.trade = trade;
+        if (given) fallbackTrade.given = given;
+        if (received) fallbackTrade.received = received;
+        if (counterpartyPlayer) fallbackTrade.counterpartyPlayer = counterpartyPlayer;
+        if (counterpartyCharacter) fallbackTrade.counterpartyCharacter = counterpartyCharacter;
+        if (Object.keys(fallbackTrade).length) {
+          entry.trade = fallbackTrade;
         }
-        if (!entry.notes) {
-          entry.notes = sanitizeText(firstTrade.notes || firstTrade.tradeNotes);
-        }
+      }
+      if (!entry.notes && firstTrade && typeof firstTrade === 'object') {
+        entry.notes = sanitizeText(firstTrade.notes || firstTrade.tradeNotes);
       }
     }
 
