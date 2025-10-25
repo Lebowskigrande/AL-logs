@@ -1118,6 +1118,7 @@ const COMMIT_META_KEY=`${KEY}__commit_meta`;
 window.AL_DATA_COMMIT_KEY=COMMIT_KEY;
 window.AL_DATA_COMMIT_META_KEY=COMMIT_META_KEY;
 const SHA_PATTERN=/^[0-9a-f]{40}$/i;
+const matchesGitObjectId=(value)=>SHA_PATTERN.test(String(value||'').trim());
 let storedVersion='';
 try{ storedVersion=localStorage.getItem(KEY)||''; }
 catch(err){ storedVersion=''; }
@@ -1157,7 +1158,7 @@ const scriptEl=document.getElementById('dataScript')||document.querySelector('sc
 const DATA_FILE_PATH='/api/data-proxy';
 const DATA_FILE_FALLBACK_PATH='data/data.js';
 
-if(scriptEl&&version&&isLikelyGitObjectId(version)){
+if(scriptEl&&version&&matchesGitObjectId(version)){
   scriptEl.setAttribute('data-ref',version);
 }
 
@@ -1363,7 +1364,7 @@ async function bootstrapData(){
       break;
     }catch(error){
       lastError=error;
-      const shouldRetry=attemptVersion && isLikelyGitObjectId(attemptVersion);
+      const shouldRetry=attemptVersion && matchesGitObjectId(attemptVersion);
       if(shouldRetry){
         pushDiagStep('legacy-load-ref-unavailable',{
           version:attemptVersion,
@@ -1421,7 +1422,7 @@ async function bootstrapData(){
   if(scriptEl){
     if(finalVersion){
       scriptEl.setAttribute('data-version', finalVersion);
-      if(isLikelyGitObjectId(finalVersion)){
+      if(matchesGitObjectId(finalVersion)){
         scriptEl.setAttribute('data-ref', finalVersion);
       }else{
         scriptEl.removeAttribute('data-ref');
