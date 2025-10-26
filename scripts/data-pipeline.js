@@ -79,7 +79,229 @@ function pushIssue(issues,{ severity='error', code='unknown', message='', path='
       .filter(part => part.length>0);
   }
 
-function coerceNumber(value,{ fallback=0, allowNull=false }={}, issues, context){
+  function normItemName(value){
+    return coerceString(value,{ fallback:'' }).trim();
+  }
+
+  function parseAcquisitionName(value){
+    const text = coerceString(value,{ fallback:'' });
+    const match = text.match(/^\((.*)\)$/);
+    if(match){
+      return { name: match[1].trim(), acquired:false };
+    }
+    return { name: text.trim(), acquired:true };
+  }
+
+  function parseItemList(value){
+    if(Array.isArray(value)){
+      return value.map(normItemName).filter(Boolean);
+    }
+    return splitListInput(value);
+  }
+
+  function buildAdventureInventoryOperation(adv){
+    const operation = { adds:[], removes:[] };
+    if(!adv || typeof adv !== 'object'){
+      return operation;
+    }
+
+    const pushAddition = (raw)=>{
+      const parsed = parseAcquisitionName(raw);
+      const cleaned = normItemName(parsed.name);
+      if(!cleaned) return;
+      const key = cleaned.toLowerCase();
+      if(parsed.acquired){
+        operation.adds.push(key);
+      }else{
+        operation.removes.push(key);
+      }
+    };
+
+    const pushRemoval = (raw)=>{
+      const cleaned = normItemName(raw);
+      if(!cleaned) return;
+      operation.removes.push(cleaned.toLowerCase());
+    };
+
+    parseItemList(adv && adv.perm_items).forEach(pushAddition);
+    parseItemList(adv && adv.lost_perm_item).forEach(pushRemoval);
+
+    const tradeInfo = adv && typeof adv.trade === 'object' ? adv.trade : null;
+    const receivedList = parseItemList(tradeInfo && tradeInfo.received);
+    const givenList = parseItemList(tradeInfo && tradeInfo.given);
+    const legacyGiven = parseItemList(adv && adv.traded_item);
+    const legacyGivenAlt = parseItemList(adv && adv.itemTraded);
+
+    receivedList.forEach(pushAddition);
+    givenList.forEach(pushRemoval);
+    legacyGiven.forEach(pushRemoval);
+    legacyGivenAlt.forEach(pushRemoval);
+
+    return operation;
+  }
+
+  function cloneInventoryCounts(source){
+    const clone = new Map();
+    if(!source) return clone;
+    source.forEach((value,key)=>{
+      if(Number.isFinite(value) && value>0){
+        clone.set(key,value);
+      }
+    });
+    return clone;
+  }
+
+  function canApplyInventoryOperation(operation,inventory){
+    if(!operation || !Array.isArray(operation.removes) || !operation.removes.length){
+      return true;
+    }
+    const needed = new Map();
+    operation.removes.forEach((key)=>{
+      const current = needed.get(key)||0;
+      needed.set(key,current+1);
+    });
+    for(const [key,count] of needed.entries()){
+      if((inventory.get(key)||0)<count){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function applyInventoryOperation(inventory,operation){
+    if(!inventory || !operation) return;
+    if(Array.isArray(operation.removes)){
+      operation.removes.forEach((key)=>{
+        const current = inventory.get(key)||0;
+        if(current<=1){
+          inventory.delete(key);
+        }else{
+          inventory.set(key,current-1);
+        }
+      });
+    }
+    if(Array.isArray(operation.adds)){
+      operation.adds.forEach((key)=>{
+        const current = inventory.get(key)||0;
+        inventory.set(key,current+1);
+      });
+    }
+  }
+
+  function orderChronoGroup(entries,inventory){
+    if(!Array.isArray(entries) || entries.length<=1){
+      return Array.isArray(entries) ? entries.slice() : [];
+    }
+    const sorted = entries
+      .map(entry => ({
+        adv: entry.adv,
+        index: entry.index,
+        baseTime: entry.baseTime,
+        ops: entry.ops
+      }))
+      .sort((a,b)=>a.index-b.index);
+
+    const used = new Array(sorted.length).fill(false);
+    const sequence = [];
+
+    const attemptOrder = (currentInventory)=>{
+      if(sequence.length===sorted.length){
+        return true;
+      }
+      for(let i=0;i<sorted.length;i+=1){
+        if(used[i]) continue;
+        const candidate = sorted[i];
+        if(!canApplyInventoryOperation(candidate.ops,currentInventory)){
+          continue;
+        }
+        used[i]=true;
+        sequence.push(candidate);
+        const nextInventory = cloneInventoryCounts(currentInventory);
+        applyInventoryOperation(nextInventory,candidate.ops);
+        if(attemptOrder(nextInventory)){
+          return true;
+        }
+        sequence.pop();
+        used[i]=false;
+      }
+      return false;
+    };
+
+    const success = attemptOrder(cloneInventoryCounts(inventory));
+    if(success){
+      return sequence.slice();
+    }
+    return sorted;
+  }
+
+  const MIN_TIME = -8640000000000000;
+
+  function parseAdventureBaseTime(adv){
+    if(!adv || typeof adv !== 'object') return MIN_TIME;
+    const raw = adv.date;
+    if(raw instanceof Date){
+      const t = raw.getTime();
+      return Number.isFinite(t) ? t : MIN_TIME;
+    }
+    if(typeof raw === 'number' && Number.isFinite(raw)){
+      return raw;
+    }
+    if(raw!=null){
+      const parsed = new Date(raw).getTime();
+      if(Number.isFinite(parsed)){
+        return parsed;
+      }
+    }
+    return MIN_TIME;
+  }
+
+  function stampCharacterChronology(adventures){
+    if(!Array.isArray(adventures) || adventures.length<=0){
+      return;
+    }
+
+    const decorated = adventures.map((adv,idx)=>({
+      adv,
+      index: idx,
+      baseTime: parseAdventureBaseTime(adv),
+      ops: buildAdventureInventoryOperation(adv)
+    }));
+
+    const groupsByTime = new Map();
+    decorated.forEach((entry)=>{
+      const key = Number.isFinite(entry.baseTime) ? String(entry.baseTime) : '__invalid__';
+      if(!groupsByTime.has(key)){
+        groupsByTime.set(key,[]);
+      }
+      groupsByTime.get(key).push(entry);
+    });
+
+    const groups = Array.from(groupsByTime.values()).sort((a,b)=>{
+      const timeA = Math.min(...a.map(entry=>Number.isFinite(entry.baseTime)?entry.baseTime:MIN_TIME));
+      const timeB = Math.min(...b.map(entry=>Number.isFinite(entry.baseTime)?entry.baseTime:MIN_TIME));
+      if(timeA!==timeB){
+        return timeA-timeB;
+      }
+      const idxA = Math.min(...a.map(entry=>entry.index));
+      const idxB = Math.min(...b.map(entry=>entry.index));
+      return idxA-idxB;
+    });
+
+    const inventory = new Map();
+    let chronoCounter = 0;
+    groups.forEach((group)=>{
+      const ordered = orderChronoGroup(group,inventory);
+      ordered.forEach((entry,pos)=>{
+        const base = Number.isFinite(entry.baseTime) ? entry.baseTime : MIN_TIME;
+        const hint = Number.isFinite(base) ? base + pos : MIN_TIME + pos;
+        entry.adv.chrono_timestamp = hint;
+        entry.adv.chrono_index = chronoCounter++;
+        applyInventoryOperation(inventory,entry.ops);
+      });
+    });
+  }
+
+  function coerceNumber(value,{ fallback=0, allowNull=false }={}, issues, context){
   const { path='', charKey=null, adventureId=null, adventureIndex=null, field=null } = context || {};
     if(value == null || value === ''){
       return allowNull ? null : fallback;
@@ -416,6 +638,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
       const normalized = normalizeAdventure(entry,{ charKey, index:idx, issues });
       out.adventures.push(normalized);
     });
+
+    stampCharacterChronology(out.adventures);
 
     if(raw && typeof raw === 'object'){
       const passthrough = ['consumables','consumable_uses','tags','portrait','pronouns'];
