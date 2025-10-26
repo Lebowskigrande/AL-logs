@@ -7520,7 +7520,16 @@ function fmtSigned(n){ return fmtNumber(n,{signed:true}); }
 const __MIN_TIME=-8640000000000000;
 function entryTimestamp(entry){
   if(!entry) return __MIN_TIME;
-  const raw=entry.date;
+  const target=(entry && entry.adv)?entry.adv:entry;
+  if(target && typeof target==='object'){
+    if(typeof target.chrono_timestamp==='number' && Number.isFinite(target.chrono_timestamp)){
+      return target.chrono_timestamp;
+    }
+    if(typeof target.__chronoTs==='number' && Number.isFinite(target.__chronoTs)){
+      return target.__chronoTs;
+    }
+  }
+  const raw=target && target.date;
   if(raw==null) return __MIN_TIME;
   if(raw instanceof Date){
     const t=raw.getTime();
@@ -7531,6 +7540,15 @@ function entryTimestamp(entry){
   return Number.isFinite(t)?t:__MIN_TIME;
 }
 function entryIndexHint(wrapper){
+  const target=(wrapper && wrapper.adv)?wrapper.adv:wrapper;
+  if(target && typeof target==='object'){
+    if(typeof target.chrono_index==='number' && Number.isFinite(target.chrono_index)){
+      return target.chrono_index;
+    }
+    if(typeof target.__chronoIndex==='number' && Number.isFinite(target.__chronoIndex)){
+      return target.__chronoIndex;
+    }
+  }
   if(wrapper && typeof wrapper.idx==='number') return wrapper.idx;
   if(wrapper && typeof wrapper.index==='number') return wrapper.index;
   return 0;
@@ -7906,6 +7924,186 @@ function parseLostItemList(raw){
   return [normItemName(text)];
 }
 function parseAcquisitionName(s){ const t=String(s||'').trim(); const m=t.match(/^\((.*)\)$/); return m?{name:m[1].trim(),acquired:false}:{name:t,acquired:true}; }
+
+function buildAdventureInventoryOperation(adv){
+  const operation={ adds:[], removes:[] };
+  if(!adv || typeof adv!=='object') return operation;
+  const pushAddition=(raw)=>{
+    const parsed=parseAcquisitionName(raw);
+    const cleaned=normItemName(parsed.name);
+    if(!cleaned) return;
+    const key=cleaned.toLowerCase();
+    if(parsed.acquired){
+      operation.adds.push(key);
+    }else{
+      operation.removes.push(key);
+    }
+  };
+  const pushRemoval=(raw)=>{
+    const cleaned=normItemName(raw);
+    if(!cleaned) return;
+    operation.removes.push(cleaned.toLowerCase());
+  };
+  const permList=Array.isArray(adv.perm_items)?adv.perm_items:[];
+  permList.forEach(pushAddition);
+  parseLostItemList(adv.lost_perm_item).forEach(pushRemoval);
+  const tradeInfo=(adv.trade && typeof adv.trade==='object')?adv.trade:null;
+  const receivedList=tradeInfo?parseLostItemList(tradeInfo.received):parseLostItemList(adv.itemReceived);
+  const givenList=tradeInfo?parseLostItemList(tradeInfo.given):[];
+  const legacyTraded=parseLostItemList(adv.traded_item);
+  const legacyTradedAlt=parseLostItemList(adv.itemTraded);
+  receivedList.forEach(pushAddition);
+  givenList.forEach(pushRemoval);
+  legacyTraded.forEach(pushRemoval);
+  legacyTradedAlt.forEach(pushRemoval);
+  return operation;
+}
+
+function adventureBaseTime(adv){
+  if(!adv || typeof adv!=='object') return __MIN_TIME;
+  const raw=adv.date;
+  if(raw instanceof Date){
+    const t=raw.getTime();
+    return Number.isFinite(t)?t:__MIN_TIME;
+  }
+  if(typeof raw==='number' && Number.isFinite(raw)){
+    return raw;
+  }
+  if(raw!=null){
+    const parsed=new Date(raw).getTime();
+    if(Number.isFinite(parsed)) return parsed;
+  }
+  return __MIN_TIME;
+}
+
+function cloneInventoryCounts(source){
+  const clone=new Map();
+  if(!source) return clone;
+  source.forEach((value,key)=>{
+    if(Number.isFinite(value) && value>0){
+      clone.set(key,value);
+    }
+  });
+  return clone;
+}
+
+function canApplyInventoryOperation(operation,inventory){
+  if(!operation || !Array.isArray(operation.removes) || !operation.removes.length) return true;
+  const needed=new Map();
+  operation.removes.forEach((key)=>{
+    const current=needed.get(key)||0;
+    needed.set(key,current+1);
+  });
+  for(const [key,count] of needed.entries()){
+    if((inventory.get(key)||0)<count){
+      return false;
+    }
+  }
+  return true;
+}
+
+function applyInventoryOperation(inventory,operation){
+  if(!inventory || !operation) return;
+  if(Array.isArray(operation.removes)){
+    operation.removes.forEach((key)=>{
+      const current=inventory.get(key)||0;
+      if(current<=1){
+        inventory.delete(key);
+      }else{
+        inventory.set(key,current-1);
+      }
+    });
+  }
+  if(Array.isArray(operation.adds)){
+    operation.adds.forEach((key)=>{
+      const current=inventory.get(key)||0;
+      inventory.set(key,current+1);
+    });
+  }
+}
+
+function orderChronoGroup(entries,inventory){
+  if(!Array.isArray(entries) || entries.length<=1){
+    return Array.isArray(entries)?entries.slice():[];
+  }
+  const nodes=entries.map(entry=>({
+    adv:entry.adv,
+    index:entry.index,
+    baseTime:entry.baseTime,
+    ops:entry.ops
+  }));
+  const sorted=nodes.slice().sort((a,b)=>a.index-b.index);
+  const used=new Array(sorted.length).fill(false);
+  const sequence=[];
+  const attemptOrder=(currentInventory)=>{
+    if(sequence.length===sorted.length) return true;
+    for(let i=0;i<sorted.length;i+=1){
+      if(used[i]) continue;
+      const candidate=sorted[i];
+      if(!canApplyInventoryOperation(candidate.ops,currentInventory)) continue;
+      used[i]=true;
+      sequence.push(candidate);
+      const nextInventory=cloneInventoryCounts(currentInventory);
+      applyInventoryOperation(nextInventory,candidate.ops);
+      if(attemptOrder(nextInventory)) return true;
+      sequence.pop();
+      used[i]=false;
+    }
+    return false;
+  };
+  const success=attemptOrder(cloneInventoryCounts(inventory));
+  if(success){
+    return sequence.slice();
+  }
+  return sorted;
+}
+
+function ensureCharacterChronology(charKey){
+  if(!DATA || !DATA.characters) return;
+  const ch=DATA.characters[charKey];
+  if(!ch || !Array.isArray(ch.adventures) || !ch.adventures.length) return;
+  const needsChrono=ch.adventures.some((adv)=>{
+    return !adv || typeof adv!=='object' || !Number.isFinite(adv.chrono_index) || !Number.isFinite(adv.chrono_timestamp);
+  });
+  if(!needsChrono){
+    return;
+  }
+  const decorated=ch.adventures.map((adv,idx)=>({
+    adv,
+    index:idx,
+    baseTime:adventureBaseTime(adv),
+    ops:buildAdventureInventoryOperation(adv)
+  }));
+  const groupsMap=new Map();
+  decorated.forEach((entry)=>{
+    const key=Number.isFinite(entry.baseTime)?String(entry.baseTime):'__invalid__';
+    if(!groupsMap.has(key)) groupsMap.set(key,[]);
+    groupsMap.get(key).push(entry);
+  });
+  const groups=Array.from(groupsMap.values()).sort((a,b)=>{
+    const timeA=Math.min(...a.map(entry=>Number.isFinite(entry.baseTime)?entry.baseTime:__MIN_TIME));
+    const timeB=Math.min(...b.map(entry=>Number.isFinite(entry.baseTime)?entry.baseTime:__MIN_TIME));
+    if(timeA!==timeB) return timeA-timeB;
+    const idxA=Math.min(...a.map(entry=>entry.index));
+    const idxB=Math.min(...b.map(entry=>entry.index));
+    return idxA-idxB;
+  });
+  const inventory=new Map();
+  let chronoCounter=0;
+  groups.forEach((group)=>{
+    const ordered=orderChronoGroup(group,inventory);
+    ordered.forEach((entry,pos)=>{
+      const base=Number.isFinite(entry.baseTime)?entry.baseTime:__MIN_TIME;
+      const hint=Number.isFinite(base)?base+pos:__MIN_TIME+pos;
+      if(entry.adv && typeof entry.adv==='object'){
+        entry.adv.chrono_timestamp=hint;
+        entry.adv.chrono_index=chronoCounter++;
+      }
+      applyInventoryOperation(inventory,entry.ops);
+    });
+  });
+}
+
 function characterDisplayName(key){
   if(!key) return '';
   if(!DATA||!DATA.characters) return key;
@@ -7921,6 +8119,7 @@ function sortCharacterAdventures(key){
   if(!DATA || !DATA.characters) return;
   const ch=DATA.characters[key];
   if(!ch || !Array.isArray(ch.adventures)) return;
+  ensureCharacterChronology(key);
   const decorated=ch.adventures.map((adv,idx)=>({adv,idx})).sort(compareChronoDesc);
   const reordered=decorated.map(item=>item.adv);
   const changed=reordered.length!==ch.adventures.length || reordered.some((adv,idx)=>adv!==ch.adventures[idx]);
