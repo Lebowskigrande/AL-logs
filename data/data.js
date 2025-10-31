@@ -873,6 +873,19 @@ window.DATA = {
       ],
       "consumable_uses": {
         "Dust of Disappearance": 1
+      },
+      "inventory_state": {
+        "active": [
+          "Belt of Fire Giant Strength",
+          "Scaled Ornament (Stirring)",
+          "Dragon's Wrath Spear (Stirring)"
+        ],
+        "attuned": [
+          "Belt of Fire Giant Strength",
+          "Scaled Ornament (Stirring)",
+          "Dragon's Wrath Spear (Stirring)"
+        ],
+        "common": []
       }
     },
     "Chef Ture": {
@@ -32032,7 +32045,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-10-31T20:30:05.344Z",
+    "generated": "2025-10-31T20:35:08.892Z",
     "problems": []
   },
   "dm_allocations": []
