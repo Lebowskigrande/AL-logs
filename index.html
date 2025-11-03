@@ -7522,7 +7522,7 @@ function getMostRecentCharacter(){
   const keys=Object.keys(DATA.characters);
   return latestKey || (keys.length?keys[0]:'');
 }
-function isActivityEntry(a){ return a && a.kind && a.kind!=='adventure'; }
+function isActivityEntry(a){ if(!a||!a.kind)return false; const kind=String(a.kind).trim().toLowerCase(); if(!kind)return false; return kind!=='adventure'; }
 function isDmRewardEntry(entry){
   if(!entry) return false;
   const title=String(entry.title||'').toLowerCase();
