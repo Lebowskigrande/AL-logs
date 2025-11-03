@@ -11269,7 +11269,7 @@ async function fetchDmsguildMetadata(code,title){
         return null;
       }
       if(!res.ok){
-        throw new Error(`Dungeon Masters Guild lookup failed (${res.status})`);
+        throw new Error(`DriveThruRPG lookup failed (${res.status})`);
       }
       return res.json();
     })
@@ -11281,7 +11281,7 @@ async function fetchDmsguildMetadata(code,title){
       return payload;
     })
     .catch(err=>{
-      console.warn('Failed to load Dungeon Masters Guild metadata', err);
+      console.warn('Failed to load DriveThruRPG metadata', err);
       return null;
     });
   DMSGUILD_LOOKUP_CACHE.set(key,request);
@@ -11450,7 +11450,7 @@ function requestDmsguildMetadata(card,{code,title}={}){
       applyDmsguildMetadata(card,data);
     })
     .catch(err=>{
-      console.warn('Unable to apply Dungeon Masters Guild metadata', err);
+      console.warn('Unable to apply DriveThruRPG metadata', err);
       if(card.__dmsguildPendingKey===key){
         card.__dmsguildFetchedKey=key;
         card.__dmsguildData=null;
@@ -11802,7 +11802,7 @@ function makeCard(a,idx){
   dmsguildMetaLink.className='dmsguild-meta-link';
   dmsguildMetaLink.target='_blank';
   dmsguildMetaLink.rel='noopener noreferrer';
-  dmsguildMetaLink.textContent='View on Dungeon Masters Guild';
+  dmsguildMetaLink.textContent='View on DriveThruRPG';
   dmsguildMetaLink.hidden=true;
   dmsguildMeta.appendChild(dmsguildMetaLink);
   view.appendChild(dmsguildMeta);
