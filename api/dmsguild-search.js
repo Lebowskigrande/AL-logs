@@ -1,6 +1,6 @@
 export const config = { runtime: 'edge' };
 
-const BASE_URL = 'https://www.dmsguild.com/';
+const BASE_URL = 'https://www.drivethrurpg.com/';
 const SEARCH_PATH = 'browse.php';
 
 const corsHeaders = {
@@ -539,7 +539,7 @@ export default async function handler(req) {
       if (!searchResponse.ok) {
         if (searchResponse.status >= 500) {
           return respond(
-            { error: 'Dungeon Masters Guild search request failed.' },
+            { error: 'DriveThruRPG search request failed.' },
             { status: 502 }
           );
         }
@@ -556,7 +556,7 @@ export default async function handler(req) {
 
     if (!productCandidate) {
       return respond(
-        { error: 'No matching Dungeon Masters Guild product found.' },
+        { error: 'No matching DriveThruRPG product found.' },
         { status: 404, headers: CACHE_HEADERS }
       );
     }
@@ -564,7 +564,7 @@ export default async function handler(req) {
     const productResponse = await fetch(productCandidate.url, { headers: requestHeaders });
     if (!productResponse.ok) {
       return respond(
-        { error: 'Unable to load Dungeon Masters Guild product page.' },
+        { error: 'Unable to load DriveThruRPG product page.' },
         { status: 502 }
       );
     }
