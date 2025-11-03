@@ -361,15 +361,56 @@ const enhanceProductMetadata = (html, productUrl, metadata) => {
   return meta;
 };
 
+const extractAttributeValue = (html, attribute) => {
+  if (!html || !attribute) return '';
+  const regex = new RegExp(`${attribute}=["']([^"']+)["']`, 'i');
+  const match = regex.exec(html);
+  if (!match || !match[1]) return '';
+  return decodeHtmlEntities(match[1]);
+};
+
+const deriveCandidateLabelFromUrl = (href) => {
+  if (!href) return '';
+  try {
+    const { pathname } = new URL(href, BASE_URL);
+    const segments = pathname.split('/').filter(Boolean);
+    if (!segments.length) return '';
+    const last = decodeURIComponent(segments[segments.length - 1] || '');
+    return last.replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+  } catch (err) {
+    return '';
+  }
+};
+
 const extractSearchCandidates = (html) => {
   if (!html) return [];
   const candidates = [];
   const anchorRegex = /<a[^>]+href=["']([^"']*(?:product|product_info)[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
   let match;
   while ((match = anchorRegex.exec(html))) {
+    const anchorHtml = match[0] || '';
     const href = normalizeUrl(match[1], BASE_URL);
     if (!href) continue;
-    const text = stripTags(match[2]);
+    let text = stripTags(match[2]);
+    if (!text) {
+      const attributeLabels = [
+        extractAttributeValue(anchorHtml, 'title'),
+        extractAttributeValue(anchorHtml, 'aria-label'),
+        extractAttributeValue(anchorHtml, 'data-title'),
+        extractAttributeValue(anchorHtml, 'data-product-name'),
+        extractAttributeValue(anchorHtml, 'data-product-title')
+      ];
+      text = attributeLabels.find((value) => value) || '';
+    }
+    if (!text) {
+      const imageAltMatch = match[2] && match[2].match(/<img[^>]+alt=["']([^"']+)["']/i);
+      if (imageAltMatch && imageAltMatch[1]) {
+        text = decodeHtmlEntities(imageAltMatch[1]);
+      }
+    }
+    if (!text) {
+      text = deriveCandidateLabelFromUrl(href);
+    }
     if (!text) continue;
     candidates.push({ url: href, text });
   }
