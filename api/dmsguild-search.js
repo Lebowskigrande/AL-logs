@@ -277,6 +277,90 @@ const parseProductMetadata = (html, productUrl) => {
   return meta;
 };
 
+const extractImageFromTag = (tag, baseUrl) => {
+  if (!tag) return null;
+  const attrNames = ['src', 'data-src', 'data-original', 'data-lazyload'];
+  for (const attr of attrNames) {
+    const regex = new RegExp(`${attr}=["']([^"']+)["']`, 'i');
+    const match = regex.exec(tag);
+    if (match && match[1]) {
+      const resolved = normalizeUrl(match[1], baseUrl || BASE_URL);
+      if (resolved) return resolved;
+    }
+  }
+  return null;
+};
+
+const enhanceProductMetadata = (html, productUrl, metadata) => {
+  if (!metadata) return metadata;
+  const meta = { ...metadata };
+
+  if (!meta.author) {
+    const authorMatch = html.match(/class=["']product_author["'][^>]*>([\s\S]*?)<\/span>/i);
+    if (authorMatch && authorMatch[1]) {
+      const authorText = stripTags(authorMatch[1]).replace(/^by\s+/i, '').trim();
+      if (authorText) {
+        meta.author = authorText;
+      }
+    }
+  }
+
+  if (!meta.publicationDate) {
+    const releaseMatch = html.match(/Release Date[^<]*<[^>]*>([\s\S]*?)<\//i);
+    if (releaseMatch && releaseMatch[1]) {
+      const releaseText = stripTags(releaseMatch[1]).trim();
+      if (releaseText) {
+        meta.publicationDate = normalizeLookupValue(releaseText);
+      }
+    }
+    if (!meta.publicationDate) {
+      const releaseClassMatch = html.match(/class=["']product_release_date["'][^>]*>([\s\S]*?)<\/span>/i);
+      if (releaseClassMatch && releaseClassMatch[1]) {
+        const releaseText = stripTags(releaseClassMatch[1]).trim();
+        if (releaseText) {
+          meta.publicationDate = normalizeLookupValue(releaseText);
+        }
+      }
+    }
+  }
+
+  if (meta.rating == null) {
+    const ratingSpanMatch = html.match(/itemprop=["']ratingValue["'][^>]*>([^<]+)/i);
+    if (ratingSpanMatch && ratingSpanMatch[1]) {
+      const ratingValue = Number(ratingSpanMatch[1].trim());
+      if (Number.isFinite(ratingValue)) {
+        meta.rating = ratingValue;
+      }
+    }
+  }
+
+  if (meta.ratingCount == null) {
+    const ratingCountMatch = html.match(/itemprop=["'](?:ratingCount|reviewCount)["'][^>]*>([^<]+)/i);
+    if (ratingCountMatch && ratingCountMatch[1]) {
+      const ratingCount = Number(ratingCountMatch[1].trim());
+      if (Number.isFinite(ratingCount)) {
+        meta.ratingCount = ratingCount;
+      }
+    }
+  }
+
+  if (!meta.image) {
+    const imageMatch = html.match(/<img[^>]+class=["'][^"']*(?:product_image|primary_image|fullsize|product-page-image)[^"']*["'][^>]*>/i);
+    if (imageMatch && imageMatch[0]) {
+      const src = extractImageFromTag(imageMatch[0], productUrl || BASE_URL);
+      if (src) {
+        meta.image = src;
+      }
+    }
+  }
+
+  if (meta.image && !meta.thumbnail) {
+    meta.thumbnail = meta.image;
+  }
+
+  return meta;
+};
+
 const extractSearchCandidates = (html) => {
   if (!html) return [];
   const candidates = [];
@@ -298,6 +382,9 @@ const scoreCandidate = (candidate, { code, title }) => {
   const codeText = normalizeLookupValue(code).toLowerCase();
   if (codeText && text.includes(codeText)) {
     score += 6;
+  }
+  if (codeText && candidate.url && candidate.url.toLowerCase().includes(codeText.replace(/\s+/g, ''))) {
+    score += 4;
   }
   const titleText = normalizeLookupValue(title).toLowerCase();
   if (titleText) {
@@ -336,6 +423,45 @@ const resolveProductFromSearch = (html, { code, title }) => {
   return best;
 };
 
+const buildSearchQueries = ({ code, title }) => {
+  const queries = [];
+  const normalizedCode = normalizeLookupValue(code);
+  const normalizedTitle = normalizeLookupValue(title);
+  const codeCollapsed = normalizedCode.replace(/\s+/g, '');
+  const codeSpaced = normalizedCode.replace(/[-_]+/g, ' ');
+  const titleNoParens = normalizedTitle.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+
+  if (normalizedCode && normalizedTitle) {
+    queries.push(`${normalizedCode} ${normalizedTitle}`);
+  }
+  if (normalizedCode) {
+    queries.push(normalizedCode);
+    if (codeCollapsed && codeCollapsed !== normalizedCode) {
+      queries.push(codeCollapsed);
+    }
+    if (codeSpaced && codeSpaced !== normalizedCode) {
+      queries.push(codeSpaced);
+    }
+  }
+  if (normalizedTitle) {
+    queries.push(normalizedTitle);
+    if (titleNoParens && titleNoParens !== normalizedTitle) {
+      queries.push(titleNoParens);
+    }
+  }
+
+  const seen = new Set();
+  const unique = [];
+  for (const query of queries) {
+    const key = query.toLowerCase();
+    if (!key) continue;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(query);
+  }
+  return unique;
+};
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
     return respond(null, { json: false });
@@ -354,27 +480,38 @@ export default async function handler(req) {
       return respond({ error: 'Provide an adventure code or title.' }, { status: 400 });
     }
 
-    const queryParts = [];
-    if (code) queryParts.push(code);
-    if (title) queryParts.push(title);
-    const query = queryParts.join(' ').trim();
+    const queries = buildSearchQueries({ code, title });
+    if (!queries.length) {
+      return respond({ error: 'Provide an adventure code or title.' }, { status: 400 });
+    }
 
-    const searchUrl = `${BASE_URL}${SEARCH_PATH}?keywords=${encodeURIComponent(query)}`;
     const requestHeaders = {
       'user-agent': DEFAULT_USER_AGENT,
       accept: HTML_ACCEPT_HEADER
     };
 
-    const searchResponse = await fetch(searchUrl, { headers: requestHeaders });
-    if (!searchResponse.ok) {
-      return respond(
-        { error: 'Dungeon Masters Guild search request failed.' },
-        { status: 502 }
-      );
+    let productCandidate = null;
+    let searchUrl = '';
+    for (const query of queries) {
+      const candidateSearchUrl = `${BASE_URL}${SEARCH_PATH}?keywords=${encodeURIComponent(query)}`;
+      const searchResponse = await fetch(candidateSearchUrl, { headers: requestHeaders });
+      if (!searchResponse.ok) {
+        if (searchResponse.status >= 500) {
+          return respond(
+            { error: 'Dungeon Masters Guild search request failed.' },
+            { status: 502 }
+          );
+        }
+        continue;
+      }
+      const searchHtml = await searchResponse.text();
+      const candidate = resolveProductFromSearch(searchHtml, { code, title });
+      if (candidate) {
+        productCandidate = candidate;
+        searchUrl = candidateSearchUrl;
+        break;
+      }
     }
-
-    const searchHtml = await searchResponse.text();
-    const productCandidate = resolveProductFromSearch(searchHtml, { code, title });
 
     if (!productCandidate) {
       return respond(
@@ -392,7 +529,8 @@ export default async function handler(req) {
     }
 
     const productHtml = await productResponse.text();
-    const metadata = parseProductMetadata(productHtml, productCandidate.url);
+    let metadata = parseProductMetadata(productHtml, productCandidate.url);
+    metadata = enhanceProductMetadata(productHtml, productCandidate.url, metadata);
 
     if (!metadata.thumbnail && metadata.image) {
       metadata.thumbnail = metadata.image;
