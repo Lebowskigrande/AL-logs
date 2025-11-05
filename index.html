@@ -7168,7 +7168,6 @@ function makeDmCard(entry,idx){
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
-  let dmsguildLinkButton=null;
   const dmHistoryId=getDmHistoryId(entry);
   if(dmHistoryId){
     card.dataset.historyId=dmHistoryId;
@@ -7202,19 +7201,6 @@ function makeDmCard(entry,idx){
   const cardActions=document.createElement('div');
   cardActions.className='card-actions';
   header.appendChild(cardActions);
-  dmsguildLinkButton=document.createElement('a');
-  dmsguildLinkButton.className='btn card-dmsguild-link';
-  dmsguildLinkButton.target='_blank';
-  dmsguildLinkButton.rel='noopener noreferrer';
-  dmsguildLinkButton.hidden=true;
-  dmsguildLinkButton.addEventListener('click',(ev)=>{ ev.stopPropagation(); });
-  cardActions.appendChild(dmsguildLinkButton);
-
-  const refreshDmsguildLink=()=>{
-    if(!dmsguildLinkButton) return;
-    const source=(entry && entry.adv)?entry.adv:entry;
-    setDmsguildLink(dmsguildLinkButton, source, {enabled:!!source});
-  };
 
   const headerMetaKeys=new Set();
   const headerMetricKeys=new Set();
@@ -7510,7 +7496,6 @@ function makeDmCard(entry,idx){
 
   body.appendChild(inner);
   card.appendChild(body);
-  refreshDmsguildLink();
   return card;
 }
 
@@ -11242,233 +11227,6 @@ function openSupernaturalModal(charKey){
   refreshModalState();
 }
 
-const DMSGUILD_SEARCH_BASE='https://www.dmsguild.com/product/search.php';
-
-const DMSGUILD_PRODUCT_LOOKUP_CACHE=new Map();
-
-function getDmsguildLookupKey({code,title}){
-  const normalizedCode=normalizeDmsguildText(code).toLowerCase();
-  const normalizedTitle=normalizeDmsguildText(title).toLowerCase();
-  if(!normalizedCode && !normalizedTitle) return '';
-  return `${normalizedCode}||${normalizedTitle}`;
-}
-
-async function resolveDmsguildDirectProductUrl({code,title}){
-  const lookupKey=getDmsguildLookupKey({code,title});
-  if(!lookupKey) return '';
-
-  const cached=DMSGUILD_PRODUCT_LOOKUP_CACHE.get(lookupKey);
-  if(cached){
-    if(typeof cached.then==='function'){
-      try{
-        const pendingValue=await cached;
-        return pendingValue||'';
-      }catch(err){
-        return '';
-      }
-    }
-    return cached||'';
-  }
-
-  if(typeof fetch!=='function'){
-    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
-    return '';
-  }
-
-  const trimmedTitle=normalizeDmsguildText(title);
-  const trimmedCode=normalizeDmsguildText(code);
-  if(!trimmedTitle && !trimmedCode){
-    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
-    return '';
-  }
-
-  const params=new URLSearchParams();
-  if(trimmedTitle){
-    params.set('title',trimmedTitle);
-  }
-  if(trimmedCode){
-    params.set('code',trimmedCode);
-  }
-  const query=params.toString();
-  if(!query){
-    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
-    return '';
-  }
-  const requestUrl=`/api/dmsguild-search?${query}`;
-  const fetchPromise=(async()=>{
-    try{
-      const response=await fetch(requestUrl,{ headers:{ accept:'application/json' } });
-      if(!response.ok){
-        return '';
-      }
-      const data=await response.json();
-      const resolved=resolveDmsguildUrl(data&&data.url);
-      return resolved||'';
-    }catch(err){
-      console.warn('Failed to resolve DMsGuild product URL via API.',err);
-      return '';
-    }
-  })();
-  DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,fetchPromise);
-  const directUrl=await fetchPromise;
-  DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,directUrl||'');
-  return directUrl||'';
-}
-
-function normalizeDmsguildText(value){
-  if(value==null) return '';
-  return String(value).trim();
-}
-
-function resolveDmsguildUrl(candidate){
-  const text=normalizeDmsguildText(candidate);
-  if(!text) return '';
-  try{
-    const url=new URL(text,'https://www.dmsguild.com/');
-    if(url.protocol!=='http:' && url.protocol!=='https:'){
-      return '';
-    }
-    const host=url.hostname.toLowerCase();
-    if(host.includes('dmsguild') || host.includes('drivethrurpg')){
-      return url.toString();
-    }
-  }catch(err){
-    return '';
-  }
-  return '';
-}
-
-function buildDmsguildProductUrl(source){
-  const emptyResult={ url:'', kind:'none', code:'', title:'', query:null, queryParts:[] };
-  if(!source || typeof source!=='object') return emptyResult;
-
-  const codeCandidates=[
-    source.code,
-    source.adventure_code,
-    source.adventureCode
-  ];
-  let code='';
-  for(const candidate of codeCandidates){
-    const normalized=normalizeDmsguildText(candidate);
-    if(normalized){
-      code=normalized;
-      break;
-    }
-  }
-
-  const titleCandidates=[
-    source.title,
-    source.name,
-    source.adventure_name,
-    source.adventureName
-  ];
-  let title='';
-  for(const candidate of titleCandidates){
-    const normalized=normalizeDmsguildText(candidate);
-    if(normalized){
-      title=normalized;
-      break;
-    }
-  }
-
-  const directCandidates=[
-    source.dmsguild_url,
-    source.dmsguildUrl,
-    source.dmsguild,
-    source.product_url,
-    source.productUrl,
-    source.url,
-    source.link
-  ];
-  for(const candidate of directCandidates){
-    const resolved=resolveDmsguildUrl(candidate);
-    if(resolved){
-      return { url:resolved, kind:'direct', code, title, query:null, queryParts:[] };
-    }
-  }
-
-  const queryParts=[];
-  if(code){
-    queryParts.push(code);
-  }
-  if(title){
-    if(!code || title.toLowerCase()!==code.toLowerCase()){
-      queryParts.push(title);
-    }
-  }
-  if(!queryParts.length){
-    return { ...emptyResult, code, title };
-  }
-  const params=new URLSearchParams();
-  const query=queryParts.join(' ');
-  params.set('search_keyword', query);
-  return {
-    url:`${DMSGUILD_SEARCH_BASE}?${params.toString()}`,
-    kind:'search',
-    code,
-    title,
-    query,
-    queryParts:queryParts.slice()
-  };
-}
-
-function setDmsguildLink(anchor, source,{enabled=true}={}){
-  if(!anchor) return;
-  if(!enabled){
-    anchor.hidden=true;
-    anchor.removeAttribute('href');
-    anchor.removeAttribute('title');
-    anchor.removeAttribute('aria-label');
-    return;
-  }
-  const linkInfo=buildDmsguildProductUrl(source);
-  const url=(linkInfo && linkInfo.url)||'';
-  if(!url){
-    anchor.hidden=true;
-    anchor.removeAttribute('href');
-    anchor.removeAttribute('title');
-    anchor.removeAttribute('aria-label');
-    if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
-    return;
-  }
-  const isSearch=linkInfo && linkInfo.kind==='search';
-  const buttonText=isSearch?'Search on DMsGuild':'Open on DMsGuild';
-  const nameHint=normalizeDmsguildText((source && (source.title||source.name||source.adventure_name||source.adventureName))||'');
-  const accessibleLabel=nameHint?`${buttonText} for ${nameHint}`:buttonText;
-  anchor.href=url;
-  anchor.hidden=false;
-  anchor.textContent=buttonText;
-  anchor.title=accessibleLabel;
-  anchor.setAttribute('aria-label',accessibleLabel);
-  if(isSearch){
-    const lookupKey=getDmsguildLookupKey(linkInfo);
-    if(lookupKey){
-      if(anchor.dataset) anchor.dataset.dmsguildLookupKey=lookupKey;
-      resolveDmsguildDirectProductUrl(linkInfo).then((directUrl)=>{
-        if(anchor.dataset && anchor.dataset.dmsguildLookupKey!==lookupKey) return;
-        if(!directUrl){
-          if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
-          return;
-        }
-        const openText='Open on DMsGuild';
-        const openLabel=nameHint?`${openText} for ${nameHint}`:openText;
-        anchor.href=directUrl;
-        anchor.textContent=openText;
-        anchor.title=openLabel;
-        anchor.setAttribute('aria-label',openLabel);
-        if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
-      }).catch((err)=>{
-        console.warn('Failed to update DMsGuild link with direct product URL.',err);
-        if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
-      });
-    }else if(anchor.dataset){
-      delete anchor.dataset.dmsguildLookupKey;
-    }
-  }else if(anchor.dataset){
-    delete anchor.dataset.dmsguildLookupKey;
-  }
-}
-
 /* --- cards --- */
 function makeCard(a,idx){
   const act=isActivityEntry(a); const {gp,dtd}=netVals(a);
@@ -11483,7 +11241,6 @@ function makeCard(a,idx){
   const hasLockedKind=!!lockedKind;
   const dmLinkMeta=(DM_REWARD_LINKS && DM_REWARD_LINKS.get(a))||null;
   let editingMode=false;
-  let dmsguildLinkButton=null;
 
   const hd=document.createElement('div'); hd.className='card-hd';
   const main=document.createElement('div'); main.className='log-row';
@@ -11636,14 +11393,6 @@ function makeCard(a,idx){
     return tag;
   };
 
-  const refreshDmsguildLink=()=>{
-    if(!dmsguildLinkButton) return;
-    const source=card.__dataRef||a||{};
-    const isActivityMode=isActivityEntry(source) || card.classList.contains('activity');
-    const enabled=!editingMode && !isActivityMode;
-    setDmsguildLink(dmsguildLinkButton, source, {enabled});
-  };
-
   const applyActivityBadge=(isActivity)=>{
     if(isActivity){
       if(!downtimeTag){
@@ -11654,7 +11403,6 @@ function makeCard(a,idx){
       downtimeTag=null;
       refreshChipsRow();
     }
-    refreshDmsguildLink();
   };
 
   applyActivityBadge(act);
@@ -11763,13 +11511,6 @@ function makeCard(a,idx){
 
   const bd=document.createElement('div'); bd.className='card-bd';
   const cardActions=document.createElement('div'); cardActions.className='card-actions';
-  dmsguildLinkButton=document.createElement('a');
-  dmsguildLinkButton.className='btn card-dmsguild-link';
-  dmsguildLinkButton.target='_blank';
-  dmsguildLinkButton.rel='noopener noreferrer';
-  dmsguildLinkButton.hidden=true;
-  dmsguildLinkButton.addEventListener('click',(ev)=>{ ev.stopPropagation(); });
-  cardActions.appendChild(dmsguildLinkButton);
   const editBtn=document.createElement('button');
   editBtn.type='button';
   editBtn.className='btn card-edit-btn';
@@ -11786,7 +11527,6 @@ function makeCard(a,idx){
     }
   });
   cardActions.appendChild(editBtn);
-  refreshDmsguildLink();
   const view=document.createElement('div'); view.className='bd-in';
   view.innerHTML='';
 
@@ -12573,7 +12313,6 @@ function makeCard(a,idx){
     });
     overviewContent.style.display=(editing || hasOverviewContent)?'':'none';
 
-    refreshDmsguildLink();
     updateHeaderMeta();
 
     syncKindVisibility();
