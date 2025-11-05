@@ -11244,6 +11244,77 @@ function openSupernaturalModal(charKey){
 
 const DMSGUILD_SEARCH_BASE='https://www.dmsguild.com/product/search.php';
 
+const DMSGUILD_PRODUCT_LOOKUP_CACHE=new Map();
+
+function getDmsguildLookupKey({code,title}){
+  const normalizedCode=normalizeDmsguildText(code).toLowerCase();
+  const normalizedTitle=normalizeDmsguildText(title).toLowerCase();
+  if(!normalizedCode && !normalizedTitle) return '';
+  return `${normalizedCode}||${normalizedTitle}`;
+}
+
+async function resolveDmsguildDirectProductUrl({code,title}){
+  const lookupKey=getDmsguildLookupKey({code,title});
+  if(!lookupKey) return '';
+
+  const cached=DMSGUILD_PRODUCT_LOOKUP_CACHE.get(lookupKey);
+  if(cached){
+    if(typeof cached.then==='function'){
+      try{
+        const pendingValue=await cached;
+        return pendingValue||'';
+      }catch(err){
+        return '';
+      }
+    }
+    return cached||'';
+  }
+
+  if(typeof fetch!=='function'){
+    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
+    return '';
+  }
+
+  const trimmedTitle=normalizeDmsguildText(title);
+  const trimmedCode=normalizeDmsguildText(code);
+  if(!trimmedTitle && !trimmedCode){
+    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
+    return '';
+  }
+
+  const params=new URLSearchParams();
+  if(trimmedTitle){
+    params.set('title',trimmedTitle);
+  }
+  if(trimmedCode){
+    params.set('code',trimmedCode);
+  }
+  const query=params.toString();
+  if(!query){
+    DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,'');
+    return '';
+  }
+  const requestUrl=`/api/dmsguild-search?${query}`;
+  const fetchPromise=(async()=>{
+    try{
+      const response=await fetch(requestUrl,{ headers:{ accept:'application/json' } });
+      if(!response.ok){
+        return '';
+      }
+      const data=await response.json();
+      const resolved=resolveDmsguildUrl(data&&data.url);
+      return resolved||'';
+    }catch(err){
+      console.warn('Failed to resolve DMsGuild product URL via API.',err);
+      return '';
+    }
+  })();
+  DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,fetchPromise);
+  const directUrl=await fetchPromise;
+  DMSGUILD_PRODUCT_LOOKUP_CACHE.set(lookupKey,directUrl||'');
+  return directUrl||'';
+}
+
 function normalizeDmsguildText(value){
   if(value==null) return '';
   return String(value).trim();
@@ -11268,22 +11339,9 @@ function resolveDmsguildUrl(candidate){
 }
 
 function buildDmsguildProductUrl(source){
-  if(!source || typeof source!=='object') return '';
-  const directCandidates=[
-    source.dmsguild_url,
-    source.dmsguildUrl,
-    source.dmsguild,
-    source.product_url,
-    source.productUrl,
-    source.url,
-    source.link
-  ];
-  for(const candidate of directCandidates){
-    const resolved=resolveDmsguildUrl(candidate);
-    if(resolved){
-      return resolved;
-    }
-  }
+  const emptyResult={ url:'', kind:'none', code:'', title:'', query:null, queryParts:[] };
+  if(!source || typeof source!=='object') return emptyResult;
+
   const codeCandidates=[
     source.code,
     source.adventure_code,
@@ -11297,6 +11355,7 @@ function buildDmsguildProductUrl(source){
       break;
     }
   }
+
   const titleCandidates=[
     source.title,
     source.name,
@@ -11311,6 +11370,23 @@ function buildDmsguildProductUrl(source){
       break;
     }
   }
+
+  const directCandidates=[
+    source.dmsguild_url,
+    source.dmsguildUrl,
+    source.dmsguild,
+    source.product_url,
+    source.productUrl,
+    source.url,
+    source.link
+  ];
+  for(const candidate of directCandidates){
+    const resolved=resolveDmsguildUrl(candidate);
+    if(resolved){
+      return { url:resolved, kind:'direct', code, title, query:null, queryParts:[] };
+    }
+  }
+
   const queryParts=[];
   if(code){
     queryParts.push(code);
@@ -11321,11 +11397,19 @@ function buildDmsguildProductUrl(source){
     }
   }
   if(!queryParts.length){
-    return '';
+    return { ...emptyResult, code, title };
   }
   const params=new URLSearchParams();
-  params.set('search_keyword', queryParts.join(' '));
-  return `${DMSGUILD_SEARCH_BASE}?${params.toString()}`;
+  const query=queryParts.join(' ');
+  params.set('search_keyword', query);
+  return {
+    url:`${DMSGUILD_SEARCH_BASE}?${params.toString()}`,
+    kind:'search',
+    code,
+    title,
+    query,
+    queryParts:queryParts.slice()
+  };
 }
 
 function setDmsguildLink(anchor, source,{enabled=true}={}){
@@ -11337,15 +11421,17 @@ function setDmsguildLink(anchor, source,{enabled=true}={}){
     anchor.removeAttribute('aria-label');
     return;
   }
-  const url=buildDmsguildProductUrl(source);
+  const linkInfo=buildDmsguildProductUrl(source);
+  const url=(linkInfo && linkInfo.url)||'';
   if(!url){
     anchor.hidden=true;
     anchor.removeAttribute('href');
     anchor.removeAttribute('title');
     anchor.removeAttribute('aria-label');
+    if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
     return;
   }
-  const isSearch=url.includes('/product/search.php');
+  const isSearch=linkInfo && linkInfo.kind==='search';
   const buttonText=isSearch?'Search on DMsGuild':'Open on DMsGuild';
   const nameHint=normalizeDmsguildText((source && (source.title||source.name||source.adventure_name||source.adventureName))||'');
   const accessibleLabel=nameHint?`${buttonText} for ${nameHint}`:buttonText;
@@ -11354,6 +11440,33 @@ function setDmsguildLink(anchor, source,{enabled=true}={}){
   anchor.textContent=buttonText;
   anchor.title=accessibleLabel;
   anchor.setAttribute('aria-label',accessibleLabel);
+  if(isSearch){
+    const lookupKey=getDmsguildLookupKey(linkInfo);
+    if(lookupKey){
+      if(anchor.dataset) anchor.dataset.dmsguildLookupKey=lookupKey;
+      resolveDmsguildDirectProductUrl(linkInfo).then((directUrl)=>{
+        if(anchor.dataset && anchor.dataset.dmsguildLookupKey!==lookupKey) return;
+        if(!directUrl){
+          if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
+          return;
+        }
+        const openText='Open on DMsGuild';
+        const openLabel=nameHint?`${openText} for ${nameHint}`:openText;
+        anchor.href=directUrl;
+        anchor.textContent=openText;
+        anchor.title=openLabel;
+        anchor.setAttribute('aria-label',openLabel);
+        if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
+      }).catch((err)=>{
+        console.warn('Failed to update DMsGuild link with direct product URL.',err);
+        if(anchor.dataset) delete anchor.dataset.dmsguildLookupKey;
+      });
+    }else if(anchor.dataset){
+      delete anchor.dataset.dmsguildLookupKey;
+    }
+  }else if(anchor.dataset){
+    delete anchor.dataset.dmsguildLookupKey;
+  }
 }
 
 /* --- cards --- */
