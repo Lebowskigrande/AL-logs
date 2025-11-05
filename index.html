@@ -134,7 +134,7 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .sheet-card-header > .toolbar{padding-top:12px}
 .sheet-card-header > .header-quick{padding-top:12px}
 .select,.btn,.search input{border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;font-weight:600}
-.btn{cursor:pointer;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.btn{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .btn:hover,.btn:focus-visible{background:#eef4ff;border-color:rgba(26,115,232,.35);color:var(--primary);outline:none}
 .btn.primary{background:var(--primary);color:#fff;border-color:transparent}
 .btn.primary:hover,.btn.primary:focus-visible{background:#155ccb;border-color:#0b57d0;color:#fff;outline:none}
@@ -254,21 +254,6 @@ h1{margin:0;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-0.01
 .log-list .card.open::before{box-shadow:none;opacity:0;border-radius:0}
 .log-list .card.editing::before{box-shadow:inset 3px 0 0 #eef1f7;opacity:1}
 .log-list .card .card-hd{padding:8px 18px;display:flex;align-items:flex-start;gap:14px;min-height:0;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-radius var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
-.dmsguild-thumb{width:64px;height:64px;border-radius:12px;overflow:hidden;background:#e2e8f0;display:none;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(15,23,42,.06)}
-.card.has-dmsguild .dmsguild-thumb{display:flex}
-.dmsguild-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.dmsguild-art{margin:0 0 16px;border-radius:16px;overflow:hidden;background:#f1f5f9;display:none}
-.card.has-dmsguild .dmsguild-art{display:block}
-.dmsguild-art img{width:100%;height:auto;display:block}
-.dmsguild-meta{display:none;flex-wrap:wrap;gap:16px;align-items:flex-start;margin:0 0 16px}
-.card.has-dmsguild .dmsguild-meta{display:flex}
-.dmsguild-meta-list{margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;flex:1 1 220px}
-.dmsguild-meta-list dt{margin:0;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.dmsguild-meta-list dd{margin:2px 0 0;font-weight:600;font-size:14px}
-.dmsguild-meta-link{flex:0 0 auto;align-self:flex-end;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none}
-.dmsguild-meta-link:hover,.dmsguild-meta-link:focus-visible{text-decoration:underline;outline:none}
-.card.dmsguild-loading .dmsguild-thumb{background:linear-gradient(90deg,rgba(226,232,240,.6) 0%,rgba(203,213,225,.8) 50%,rgba(226,232,240,.6) 100%);background-size:200% 100%;animation:dmsguildPulse 1.2s ease-in-out infinite}
-@keyframes dmsguildPulse{0%{background-position:200% 0;}100%{background-position:0 0;}}
 .log-list .card .card-hd .card-tools{margin-left:auto;display:flex;align-items:center;gap:8px}
 .log-list .card-bd{border-top:1px solid rgba(148,163,184,.28);padding:0 20px;background:rgba(248,250,252,.85);transition:background-color var(--dur) var(--ease),background var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
 .log-list .card.open .card-bd{border-radius:0;background:transparent;border-color:rgba(148,163,184,.2)}
@@ -3540,6 +3525,7 @@ function openNewDmAllocationModal(){
 
   const header=document.createElement('div');
   header.className='card-hd';
+
   const headerContent=document.createElement('div');
   headerContent.className='dm-allocation-header';
   const title=document.createElement('h2');
@@ -7182,6 +7168,7 @@ function makeDmCard(entry,idx){
   const sortIdx=entry.sortIndex!=null?entry.sortIndex:idx;
   card.dataset.idx=String(sortIdx);
   card.__dmEntry=entry;
+  let dmsguildLinkButton=null;
   const dmHistoryId=getDmHistoryId(entry);
   if(dmHistoryId){
     card.dataset.historyId=dmHistoryId;
@@ -7211,6 +7198,23 @@ function makeDmCard(entry,idx){
 
   const header=document.createElement('div');
   header.className='card-hd';
+
+  const cardActions=document.createElement('div');
+  cardActions.className='card-actions';
+  header.appendChild(cardActions);
+  dmsguildLinkButton=document.createElement('a');
+  dmsguildLinkButton.className='btn card-dmsguild-link';
+  dmsguildLinkButton.target='_blank';
+  dmsguildLinkButton.rel='noopener noreferrer';
+  dmsguildLinkButton.hidden=true;
+  dmsguildLinkButton.addEventListener('click',(ev)=>{ ev.stopPropagation(); });
+  cardActions.appendChild(dmsguildLinkButton);
+
+  const refreshDmsguildLink=()=>{
+    if(!dmsguildLinkButton) return;
+    const source=(entry && entry.adv)?entry.adv:entry;
+    setDmsguildLink(dmsguildLinkButton, source, {enabled:!!source});
+  };
 
   const headerMetaKeys=new Set();
   const headerMetricKeys=new Set();
@@ -7506,6 +7510,7 @@ function makeDmCard(entry,idx){
 
   body.appendChild(inner);
   card.appendChild(body);
+  refreshDmsguildLink();
   return card;
 }
 
@@ -11237,232 +11242,118 @@ function openSupernaturalModal(charKey){
   refreshModalState();
 }
 
-const DMSGUILD_LOOKUP_ENDPOINT='/api/dmsguild-search';
-const DMSGUILD_LOOKUP_CACHE=new Map();
+const DMSGUILD_SEARCH_BASE='https://www.dmsguild.com/product/search.php';
 
-function normalizeDmsguildLookupValue(value){
+function normalizeDmsguildText(value){
   if(value==null) return '';
   return String(value).trim();
 }
 
-function buildDmsguildLookupKey(code,title){
-  const normalizedCode=normalizeDmsguildLookupValue(code).toLowerCase();
-  const normalizedTitle=normalizeDmsguildLookupValue(title).toLowerCase();
-  if(!normalizedCode && !normalizedTitle) return '';
-  return `${normalizedCode}__${normalizedTitle}`;
+function resolveDmsguildUrl(candidate){
+  const text=normalizeDmsguildText(candidate);
+  if(!text) return '';
+  try{
+    const url=new URL(text,'https://www.dmsguild.com/');
+    if(url.protocol!=='http:' && url.protocol!=='https:'){
+      return '';
+    }
+    const host=url.hostname.toLowerCase();
+    if(host.includes('dmsguild') || host.includes('drivethrurpg')){
+      return url.toString();
+    }
+  }catch(err){
+    return '';
+  }
+  return '';
 }
 
-async function fetchDmsguildMetadata(code,title){
-  const key=buildDmsguildLookupKey(code,title);
-  if(!key) return null;
-  if(DMSGUILD_LOOKUP_CACHE.has(key)){
-    return DMSGUILD_LOOKUP_CACHE.get(key);
+function buildDmsguildProductUrl(source){
+  if(!source || typeof source!=='object') return '';
+  const directCandidates=[
+    source.dmsguild_url,
+    source.dmsguildUrl,
+    source.dmsguild,
+    source.product_url,
+    source.productUrl,
+    source.url,
+    source.link
+  ];
+  for(const candidate of directCandidates){
+    const resolved=resolveDmsguildUrl(candidate);
+    if(resolved){
+      return resolved;
+    }
+  }
+  const codeCandidates=[
+    source.code,
+    source.adventure_code,
+    source.adventureCode
+  ];
+  let code='';
+  for(const candidate of codeCandidates){
+    const normalized=normalizeDmsguildText(candidate);
+    if(normalized){
+      code=normalized;
+      break;
+    }
+  }
+  const titleCandidates=[
+    source.title,
+    source.name,
+    source.adventure_name,
+    source.adventureName
+  ];
+  let title='';
+  for(const candidate of titleCandidates){
+    const normalized=normalizeDmsguildText(candidate);
+    if(normalized){
+      title=normalized;
+      break;
+    }
+  }
+  const queryParts=[];
+  if(code){
+    queryParts.push(code);
+  }
+  if(title){
+    if(!code || title.toLowerCase()!==code.toLowerCase()){
+      queryParts.push(title);
+    }
+  }
+  if(!queryParts.length){
+    return '';
   }
   const params=new URLSearchParams();
-  if(code) params.set('code', code);
-  if(title) params.set('title', title);
-  const request=fetch(`${DMSGUILD_LOOKUP_ENDPOINT}?${params.toString()}`,{
-    headers:{ accept:'application/json' }
-  })
-    .then(res=>{
-      if(res.status===404){
-        return null;
-      }
-      if(!res.ok){
-        throw new Error(`DriveThruRPG lookup failed (${res.status})`);
-      }
-      return res.json();
-    })
-    .then(payload=>{
-      if(!payload || typeof payload!=='object') return null;
-      if(payload.data && typeof payload.data==='object'){
-        return payload.data;
-      }
-      return payload;
-    })
-    .catch(err=>{
-      console.warn('Failed to load DriveThruRPG metadata', err);
-      return null;
-    });
-  DMSGUILD_LOOKUP_CACHE.set(key,request);
-  return request;
+  params.set('search_keyword', queryParts.join(' '));
+  return `${DMSGUILD_SEARCH_BASE}?${params.toString()}`;
 }
 
-function applyDmsguildMetadata(card,data){
-  if(!card) return;
-  const ui=card.__dmsguildUi||null;
-  if(!ui){
+function setDmsguildLink(anchor, source,{enabled=true}={}){
+  if(!anchor) return;
+  if(!enabled){
+    anchor.hidden=true;
+    anchor.removeAttribute('href');
+    anchor.removeAttribute('title');
+    anchor.removeAttribute('aria-label');
     return;
   }
-  const resetUi=()=>{
-    card.classList.remove('has-dmsguild');
-    if(ui.thumbWrap){
-      ui.thumbWrap.hidden=true;
-      if(ui.thumbImg){
-        ui.thumbImg.removeAttribute('src');
-        ui.thumbImg.alt='';
-      }
-    }
-    if(ui.artWrap){
-      ui.artWrap.hidden=true;
-      if(ui.artImg){
-        ui.artImg.removeAttribute('src');
-        ui.artImg.alt='';
-      }
-    }
-    if(ui.metaList){
-      ui.metaList.innerHTML='';
-    }
-    if(ui.metaWrap){
-      ui.metaWrap.hidden=true;
-    }
-    if(ui.metaLink){
-      ui.metaLink.hidden=true;
-      ui.metaLink.removeAttribute('href');
-    }
-  };
-
-  if(!data){
-    resetUi();
+  const url=buildDmsguildProductUrl(source);
+  if(!url){
+    anchor.hidden=true;
+    anchor.removeAttribute('href');
+    anchor.removeAttribute('title');
+    anchor.removeAttribute('aria-label');
     return;
   }
-
-  resetUi();
-
-  const titleText=normalizeDmsguildLookupValue(data.title);
-  const thumbSrc=normalizeDmsguildLookupValue(data.thumbnail);
-  const imageSrc=normalizeDmsguildLookupValue(data.image)||thumbSrc;
-  const authorText=normalizeDmsguildLookupValue(data.author);
-  const publishedRaw=normalizeDmsguildLookupValue(data.publicationDate);
-  const ratingValue=Number(data.rating);
-  const ratingCount=Number(data.ratingCount);
-  const linkUrl=normalizeDmsguildLookupValue(data.url);
-
-  const hasVisual=Boolean(thumbSrc||imageSrc);
-  const hasAuthor=Boolean(authorText);
-  const hasPublication=Boolean(publishedRaw);
-  const hasRating=(Number.isFinite(ratingValue)&&ratingValue>0)||(Number.isFinite(ratingCount)&&ratingCount>0);
-  const hasLink=Boolean(linkUrl);
-  const shouldDisplay=hasVisual||hasAuthor||hasPublication||hasRating||hasLink;
-
-  if(!shouldDisplay){
-    return;
-  }
-
-  card.classList.add('has-dmsguild');
-
-  if(ui.thumbImg){
-    if(thumbSrc||imageSrc){
-      const src=thumbSrc||imageSrc;
-      ui.thumbImg.src=src;
-      ui.thumbImg.alt=titleText?`${titleText} cover art`:'Adventure cover art';
-      if(ui.thumbWrap){ ui.thumbWrap.hidden=false; }
-    }
-  }
-
-  if(ui.artImg){
-    if(imageSrc){
-      ui.artImg.src=imageSrc;
-      ui.artImg.alt=titleText?`${titleText} cover art`:'Adventure cover art';
-      if(ui.artWrap){ ui.artWrap.hidden=false; }
-    }
-  }
-
-  let hasMeta=false;
-  if(ui.metaList){
-    const appendMeta=(label,value)=>{
-      if(!value) return;
-      const dt=document.createElement('dt');
-      dt.textContent=label;
-      const dd=document.createElement('dd');
-      dd.textContent=value;
-      ui.metaList.append(dt,dd);
-      hasMeta=true;
-    };
-
-    appendMeta('Author', authorText);
-
-    if(publishedRaw){
-      appendMeta('Published', fmtDate(publishedRaw));
-    }
-
-    if(Number.isFinite(ratingValue) && ratingValue>0){
-      const rounded=Math.round(ratingValue*10)/10;
-      const ratingFormatted=(Math.abs(Math.round(rounded)-rounded)<0.001)
-        ? fmtNumber(Math.round(rounded))
-        : rounded.toFixed(1);
-      let ratingLabel=`${ratingFormatted} / 5`;
-      if(Number.isFinite(ratingCount) && ratingCount>0){
-        const plural=ratingCount===1?'rating':'ratings';
-        ratingLabel+=` • ${fmtNumber(ratingCount)} ${plural}`;
-      }
-      appendMeta('Rating', ratingLabel);
-    }else if(Number.isFinite(ratingCount) && ratingCount>0){
-      const plural=ratingCount===1?'rating':'ratings';
-      appendMeta('Ratings', `${fmtNumber(ratingCount)} ${plural}`);
-    }
-  }
-
-  if(ui.metaLink){
-    if(linkUrl){
-      ui.metaLink.href=linkUrl;
-      ui.metaLink.hidden=false;
-    }else{
-      ui.metaLink.hidden=true;
-      ui.metaLink.removeAttribute('href');
-    }
-  }
-
-  if(ui.metaWrap){
-    const shouldShowMeta=(hasMeta || (ui.metaLink && !ui.metaLink.hidden));
-    ui.metaWrap.hidden=!shouldShowMeta;
-  }
-}
-
-function requestDmsguildMetadata(card,{code,title}={}){
-  if(!card) return;
-  const normalizedCode=normalizeDmsguildLookupValue(code);
-  const normalizedTitle=normalizeDmsguildLookupValue(title);
-  const key=buildDmsguildLookupKey(normalizedCode,normalizedTitle);
-  if(!key){
-    card.__dmsguildFetchedKey='';
-    card.__dmsguildPendingKey=null;
-    card.__dmsguildData=null;
-    applyDmsguildMetadata(card,null);
-    return;
-  }
-  if(card.__dmsguildPendingKey===key){
-    return;
-  }
-  if(card.__dmsguildFetchedKey===key){
-    applyDmsguildMetadata(card,card.__dmsguildData||null);
-    return;
-  }
-  card.__dmsguildPendingKey=key;
-  card.classList.add('dmsguild-loading');
-  fetchDmsguildMetadata(normalizedCode,normalizedTitle)
-    .then(data=>{
-      if(card.__dmsguildPendingKey!==key && card.__dmsguildFetchedKey!==key){
-        return;
-      }
-      card.__dmsguildFetchedKey=key;
-      card.__dmsguildData=data;
-      applyDmsguildMetadata(card,data);
-    })
-    .catch(err=>{
-      console.warn('Unable to apply DriveThruRPG metadata', err);
-      if(card.__dmsguildPendingKey===key){
-        card.__dmsguildFetchedKey=key;
-        card.__dmsguildData=null;
-        applyDmsguildMetadata(card,null);
-      }
-    })
-    .finally(()=>{
-      if(card.__dmsguildPendingKey===key){
-        card.__dmsguildPendingKey=null;
-        card.classList.remove('dmsguild-loading');
-      }
-    });
+  const isSearch=url.includes('/product/search.php');
+  const buttonText=isSearch?'Search on DMsGuild':'Open on DMsGuild';
+  const nameHint=normalizeDmsguildText((source && (source.title||source.name||source.adventure_name||source.adventureName))||'');
+  const accessibleLabel=nameHint?`${buttonText} for ${nameHint}`:buttonText;
+  anchor.href=url;
+  anchor.hidden=false;
+  anchor.textContent=buttonText;
+  anchor.title=accessibleLabel;
+  anchor.setAttribute('aria-label',accessibleLabel);
 }
 
 /* --- cards --- */
@@ -11478,16 +11369,10 @@ function makeCard(a,idx){
   const lockedKind=(a && a.__lockedKind)?String(a.__lockedKind):'';
   const hasLockedKind=!!lockedKind;
   const dmLinkMeta=(DM_REWARD_LINKS && DM_REWARD_LINKS.get(a))||null;
+  let editingMode=false;
+  let dmsguildLinkButton=null;
 
   const hd=document.createElement('div'); hd.className='card-hd';
-  const dmsguildThumb=document.createElement('div');
-  dmsguildThumb.className='dmsguild-thumb';
-  dmsguildThumb.hidden=true;
-  const dmsguildThumbImg=document.createElement('img');
-  dmsguildThumbImg.alt='';
-  dmsguildThumbImg.decoding='async';
-  dmsguildThumbImg.loading='lazy';
-  dmsguildThumb.appendChild(dmsguildThumbImg);
   const main=document.createElement('div'); main.className='log-row';
   const info=document.createElement('div'); info.className='log-row-info';
   const tagRow=document.createElement('div'); tagRow.className='log-row-tags';
@@ -11638,17 +11523,16 @@ function makeCard(a,idx){
     return tag;
   };
 
-  const clearDmsguildState=()=>{
-    card.__dmsguildFetchedKey='';
-    card.__dmsguildPendingKey=null;
-    card.__dmsguildData=null;
-    card.classList.remove('dmsguild-loading');
-    applyDmsguildMetadata(card,null);
+  const refreshDmsguildLink=()=>{
+    if(!dmsguildLinkButton) return;
+    const source=card.__dataRef||a||{};
+    const isActivityMode=isActivityEntry(source) || card.classList.contains('activity');
+    const enabled=!editingMode && !isActivityMode;
+    setDmsguildLink(dmsguildLinkButton, source, {enabled});
   };
 
   const applyActivityBadge=(isActivity)=>{
     if(isActivity){
-      clearDmsguildState();
       if(!downtimeTag){
         downtimeTag=ensureTag('Downtime','tag-downtime');
       }
@@ -11657,6 +11541,7 @@ function makeCard(a,idx){
       downtimeTag=null;
       refreshChipsRow();
     }
+    refreshDmsguildLink();
   };
 
   applyActivityBadge(act);
@@ -11740,7 +11625,7 @@ function makeCard(a,idx){
 
   nameDisplay.textContent=fullTitle;
   nameDisplay.removeAttribute('title');
-  hd.append(dmsguildThumb,main);
+  hd.appendChild(main);
 
   bindScrollableObserver(nameSpan);
   bindScrollableObserver(dateSpan);
@@ -11765,6 +11650,13 @@ function makeCard(a,idx){
 
   const bd=document.createElement('div'); bd.className='card-bd';
   const cardActions=document.createElement('div'); cardActions.className='card-actions';
+  dmsguildLinkButton=document.createElement('a');
+  dmsguildLinkButton.className='btn card-dmsguild-link';
+  dmsguildLinkButton.target='_blank';
+  dmsguildLinkButton.rel='noopener noreferrer';
+  dmsguildLinkButton.hidden=true;
+  dmsguildLinkButton.addEventListener('click',(ev)=>{ ev.stopPropagation(); });
+  cardActions.appendChild(dmsguildLinkButton);
   const editBtn=document.createElement('button');
   editBtn.type='button';
   editBtn.className='btn card-edit-btn';
@@ -11781,31 +11673,9 @@ function makeCard(a,idx){
     }
   });
   cardActions.appendChild(editBtn);
+  refreshDmsguildLink();
   const view=document.createElement('div'); view.className='bd-in';
   view.innerHTML='';
-  const dmsguildArt=document.createElement('figure');
-  dmsguildArt.className='dmsguild-art';
-  dmsguildArt.hidden=true;
-  const dmsguildArtImg=document.createElement('img');
-  dmsguildArtImg.alt='';
-  dmsguildArtImg.decoding='async';
-  dmsguildArtImg.loading='lazy';
-  dmsguildArt.appendChild(dmsguildArtImg);
-  view.appendChild(dmsguildArt);
-  const dmsguildMeta=document.createElement('div');
-  dmsguildMeta.className='dmsguild-meta';
-  dmsguildMeta.hidden=true;
-  const dmsguildMetaList=document.createElement('dl');
-  dmsguildMetaList.className='dmsguild-meta-list';
-  dmsguildMeta.appendChild(dmsguildMetaList);
-  const dmsguildMetaLink=document.createElement('a');
-  dmsguildMetaLink.className='dmsguild-meta-link';
-  dmsguildMetaLink.target='_blank';
-  dmsguildMetaLink.rel='noopener noreferrer';
-  dmsguildMetaLink.textContent='View on DriveThruRPG';
-  dmsguildMetaLink.hidden=true;
-  dmsguildMeta.appendChild(dmsguildMetaLink);
-  view.appendChild(dmsguildMeta);
 
   const createSection=(title,options={})=>{
     const {collapsible=false,startOpen=false}=options;
@@ -11873,26 +11743,6 @@ function makeCard(a,idx){
   overviewContent.className='card-overview card-section-content card-section-content--grid';
   overviewContent.style.display='none';
   view.appendChild(overviewContent);
-  card.__dmsguildUi={
-    thumbWrap:dmsguildThumb,
-    thumbImg:dmsguildThumbImg,
-    artWrap:dmsguildArt,
-    artImg:dmsguildArtImg,
-    metaWrap:dmsguildMeta,
-    metaList:dmsguildMetaList,
-    metaLink:dmsguildMetaLink
-  };
-  const runDmsguildLookup=()=>{
-    const source=card.__dataRef||a||{};
-    if(isActivityEntry(source) || card.classList.contains('activity')){
-      clearDmsguildState();
-      return;
-    }
-    requestDmsguildMetadata(card,{
-      code:source && source.code!=null?source.code:'',
-      title:source && source.title!=null?source.title:''
-    });
-  };
   const rewardsSection=createSection('Rewards & Progress');
   const rewardsContent=rewardsSection.content;
   const inventorySectionLabel='Magic & Consumables';
@@ -12428,6 +12278,7 @@ function makeCard(a,idx){
   view.appendChild(actions);
 
   function populate(editing=false){
+    editingMode=!!editing;
     if(overviewContent){
       overviewContent.style.display=editing?'grid':'none';
     }
@@ -12609,10 +12460,7 @@ function makeCard(a,idx){
     });
     overviewContent.style.display=(editing || hasOverviewContent)?'':'none';
 
-    if(!editing){
-      runDmsguildLookup();
-    }
-
+    refreshDmsguildLink();
     updateHeaderMeta();
 
     syncKindVisibility();
