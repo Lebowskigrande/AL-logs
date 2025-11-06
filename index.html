@@ -3822,18 +3822,17 @@ function openNewDmAllocationModal(){
     }
     const seasonValue=dmNormalizeSeasonLabel(seasonInput.value.trim());
     const dateValue=(dateInput && dateInput.value)?dateInput.value.trim():'';
-    let rewardDate=null;
+    let rewardDateOnly='';
     if(dateValue){
       const parsed=new Date(dateValue);
       if(!Number.isNaN(parsed.getTime())){
-        rewardDate=dateValue;
+        rewardDateOnly=dateValue;
       }
     }
-    if(!rewardDate){
-      try{ rewardDate=new Date().toISOString().slice(0,10); }
-      catch(err){ rewardDate=''; }
+    if(!rewardDateOnly){
+      try{ rewardDateOnly=new Date().toISOString().slice(0,10); }
+      catch(err){ rewardDateOnly=''; }
     }
-    const dmDate=rewardDate?`${rewardDate}T00:00:00`:'';
     const locationValue=locationInput.value.trim();
     const costValue=parseNumericInput(costInput);
     const gpValue=parseNumericInput(gpInput);
@@ -3853,8 +3852,6 @@ function openNewDmAllocationModal(){
     const dtdMinus=(Number.isFinite(dtdValue) && dtdValue<0)?Math.abs(dtdValue):0;
     const dtdNet=dtdPlus-dtdMinus;
 
-    const allocationId=createDmAllocationId();
-
     const charObj=DATA.characters[charKey];
     if(!charObj){
       errorEl.textContent='Selected character could not be found.';
@@ -3864,9 +3861,15 @@ function openNewDmAllocationModal(){
       charObj.adventures=[];
     }
 
+    const rewardDateIso=computeCharacterEntryDate({charKey,rawDate:rewardDateOnly,wasNew:true}) || rewardDateOnly;
+    const dmAllocationCollection=Array.isArray(DATA.dm_allocations)?DATA.dm_allocations:null;
+    const dmDateIso=computeChronologicalDate(rewardDateOnly,{collection:dmAllocationCollection,wasNew:true}) || rewardDateIso || '';
+
+    const allocationId=createDmAllocationId();
+
     const rewardEntry={
       title:levelsGranted>1?`DM Reward (x${levelsGranted})`:'DM Reward',
-      date:rewardDate||'',
+      date:rewardDateIso||'',
       code:'DM-REWARD',
       dm:null,
       gp_plus:gpPlus,
@@ -3891,7 +3894,7 @@ function openNewDmAllocationModal(){
     const allocationRecord={
       id:allocationId,
       season:seasonValue||'',
-      date:dmDate,
+      date:dmDateIso,
       allocation:summaryValue,
       cost:costValue!=null?costValue:null,
       levels_plus:levelsGranted>0?levelsGranted:null,
@@ -4040,10 +4043,13 @@ function createCharacterNewEntry(kind){
   if(!isValidSheetKey(key) || !DATA.characters[key]) return;
   const normalized=kind==='Downtime Activity'?'Downtime Activity':'adventure';
   const isActivity=normalized!=='adventure';
-  const today=new Date().toISOString().slice(0,10);
+  let today='';
+  try{ today=new Date().toISOString().slice(0,10); }
+  catch(err){ today=''; }
+  const defaultDateValue=computeCharacterEntryDate({charKey:key,rawDate:today||'',wasNew:true}) || today;
   const estimatedLevel=currentLevelFor(key);
   const template={
-    date:today,
+    date:defaultDateValue||'',
     title:isActivity?'New Downtime Activity':'New Adventure',
     code:'',
     dm:'',
@@ -5292,7 +5298,146 @@ function getCharacterDisplayName(charKey){
 }
 
 /* --- utils --- */
-function fmtDate(iso){ if(!iso)return'—'; const d=new Date(iso); if(isNaN(d))return String(iso); return d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }
+function fmtDate(value){
+  if(!value) return '—';
+  const text=String(value).trim();
+  if(!text) return '—';
+  let dateObj=null;
+  const dateOnlyMatch=text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(dateOnlyMatch){
+    const year=Number(dateOnlyMatch[1]);
+    const month=Number(dateOnlyMatch[2]);
+    const day=Number(dateOnlyMatch[3]);
+    if(Number.isFinite(year) && Number.isFinite(month) && Number.isFinite(day)){
+      dateObj=new Date(Date.UTC(year,month-1,day));
+    }
+  }
+  if(!dateObj){
+    dateObj=new Date(text);
+  }
+  if(Number.isNaN(dateObj.getTime())){
+    return String(value);
+  }
+  return dateObj.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+}
+
+const PACIFIC_TIME_ZONE='America/Los_Angeles';
+let pacificDateFormatter=null;
+function getPacificDateFormatter(){
+  if(pacificDateFormatter) return pacificDateFormatter;
+  if(typeof Intl!=='object' || typeof Intl.DateTimeFormat!=='function') return null;
+  try{
+    pacificDateFormatter=new Intl.DateTimeFormat('en-US',{
+      timeZone:PACIFIC_TIME_ZONE,
+      year:'numeric',
+      month:'2-digit',
+      day:'2-digit',
+      hour:'2-digit',
+      minute:'2-digit',
+      second:'2-digit',
+      hour12:false
+    });
+  }catch(err){
+    pacificDateFormatter=null;
+  }
+  return pacificDateFormatter;
+}
+function parseYmdString(value){
+  if(!value) return null;
+  const match=String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(!match) return null;
+  const year=Number(match[1]);
+  const month=Number(match[2]);
+  const day=Number(match[3]);
+  if(!Number.isFinite(year) || !Number.isFinite(month) || !Number.isFinite(day)) return null;
+  if(month<1||month>12) return null;
+  if(day<1||day>31) return null;
+  return {year,month,day};
+}
+function resolvePacificOffsetHours(parts){
+  const formatter=getPacificDateFormatter();
+  if(!formatter) return null;
+  const approx=new Date(Date.UTC(parts.year,parts.month-1,parts.day,12,0,0));
+  if(Number.isNaN(approx.getTime())) return null;
+  const formattedParts={};
+  formatter.formatToParts(approx).forEach((part)=>{
+    if(part && part.type && part.type!=='literal'){
+      formattedParts[part.type]=part.value;
+    }
+  });
+  const fYear=Number(formattedParts.year);
+  const fMonth=Number(formattedParts.month);
+  const fDay=Number(formattedParts.day);
+  const fHour=Number(formattedParts.hour);
+  const fMinute=Number(formattedParts.minute);
+  const fSecond=Number(formattedParts.second);
+  if([fYear,fMonth,fDay,fHour,fMinute,fSecond].some(num=>!Number.isFinite(num))){
+    return null;
+  }
+  const pacificUtc=Date.UTC(fYear,fMonth-1,fDay,fHour,fMinute,fSecond);
+  const offsetMs=pacificUtc-approx.getTime();
+  return offsetMs/3600000;
+}
+function pacificBaseTimestamp(dayKey,{baseHour=9}={}){
+  const parts=parseYmdString(dayKey);
+  if(!parts) return NaN;
+  const offsetHours=resolvePacificOffsetHours(parts);
+  const baseUtc=Date.UTC(parts.year,parts.month-1,parts.day,baseHour,0,0);
+  if(Number.isFinite(offsetHours)){
+    return baseUtc-(offsetHours*3600000);
+  }
+  return baseUtc;
+}
+function gatherSameDayTimes(collection,dayKey,exclude){
+  const times=[];
+  if(!Array.isArray(collection) || !dayKey) return times;
+  collection.forEach((item)=>{
+    if(!item || item===exclude) return;
+    const raw=item.date;
+    if(!raw) return;
+    const prefix=String(raw).slice(0,10);
+    if(prefix!==dayKey) return;
+    const ts=new Date(raw).getTime();
+    if(Number.isFinite(ts)) times.push(ts);
+  });
+  return times;
+}
+function computeChronologicalDate(rawDate,{collection=null,exclude=null,wasNew=false,currentValue=null,baseHour=9,stepHours=1}={}){
+  const normalized=String(rawDate||'').trim();
+  if(!normalized) return '';
+  if(normalized.includes('T')) return normalized;
+  const dayKey=normalized.slice(0,10);
+  const baseMs=pacificBaseTimestamp(dayKey,{baseHour});
+  if(!Number.isFinite(baseMs)) return normalized;
+  if(!wasNew){
+    const currentStr=String(currentValue||'').trim();
+    if(currentStr && currentStr.includes('T') && currentStr.slice(0,10)===dayKey){
+      const currentTs=new Date(currentStr).getTime();
+      if(Number.isFinite(currentTs)){
+        return new Date(currentTs).toISOString();
+      }
+    }
+  }
+  const existingTimes=gatherSameDayTimes(collection,dayKey,exclude);
+  if(existingTimes.length){
+    const maxExisting=Math.max(...existingTimes);
+    if(Number.isFinite(maxExisting) && maxExisting>=baseMs){
+      const stepMs=Math.max(1,Number(stepHours||1))*3600000;
+      const assigned=Math.max(baseMs,maxExisting+stepMs);
+      return new Date(assigned).toISOString();
+    }
+  }
+  return new Date(baseMs).toISOString();
+}
+function computeCharacterEntryDate({charKey,rawDate,entry=null,wasNew=false}={}){
+  const normalized=String(rawDate||'').trim();
+  if(!normalized) return '';
+  const characters=(DATA && DATA.characters)||null;
+  const charData=(characters && characters[charKey])||null;
+  const collection=(charData && Array.isArray(charData.adventures))?charData.adventures:null;
+  const currentValue=entry?entry.date:null;
+  return computeChronologicalDate(normalized,{collection,exclude:entry||null,wasNew,currentValue});
+}
 function fmtNumber(n,{signed=false}={}){
   if(n==null) return '0';
   const num=Number(n);
@@ -8886,9 +9031,15 @@ function makeTradeEntry({charKey,date,itemTraded,itemReceived,counterpartyCharac
   const received=normItemName(itemReceived||'');
   const counterpartyChar=(counterpartyCharacter||'').trim();
   const counterpartyPlay=(counterpartyPlayer||'').trim();
+  let resolvedDate=date||'';
+  if(!resolvedDate){
+    try{ resolvedDate=new Date().toISOString().slice(0,10); }
+    catch(err){ resolvedDate=''; }
+  }
+  const storedDate=computeCharacterEntryDate({charKey,rawDate:resolvedDate,wasNew:true}) || resolvedDate;
   const entry={
     title:'Trade',
-    date:date||new Date().toISOString().slice(0,10),
+    date:storedDate||'',
     code:'DT-TRADE',
     dm:'',
     gp_plus:0,
@@ -8983,6 +9134,12 @@ async function handleTradeSubmit(){
   if(!tradeDate){
     tradeDate=new Date().toISOString().slice(0,10);
   }
+  const charData=(DATA && DATA.characters && DATA.characters[charKey])||null;
+  if(!charData){
+    setTradeError('Character could not be found.');
+    return;
+  }
+  if(!Array.isArray(charData.adventures)) charData.adventures=[];
   const tradeEntry=makeTradeEntry({
     charKey,
     date:tradeDate,
@@ -8991,12 +9148,6 @@ async function handleTradeSubmit(){
     counterpartyCharacter,
     counterpartyPlayer
   });
-  const charData=(DATA && DATA.characters && DATA.characters[charKey])||null;
-  if(!charData){
-    setTradeError('Character could not be found.');
-    return;
-  }
-  if(!Array.isArray(charData.adventures)) charData.adventures=[];
   charData.adventures.push(tradeEntry);
   removeInventoryLocalState(charKey,tradedName);
   registerDerivedUpdate(charKey);
@@ -9005,6 +9156,7 @@ async function handleTradeSubmit(){
   if(counterpartyKey){
     const counterpartyData=DATA.characters[counterpartyKey];
     if(counterpartyData){
+      if(!Array.isArray(counterpartyData.adventures)) counterpartyData.adventures=[];
       const counterpartyEntry=makeTradeEntry({
         charKey:counterpartyKey,
         date:tradeDate,
@@ -9013,7 +9165,6 @@ async function handleTradeSubmit(){
         counterpartyCharacter:characterDisplayName(charKey),
         counterpartyPlayer:''
       });
-      if(!Array.isArray(counterpartyData.adventures)) counterpartyData.adventures=[];
       counterpartyData.adventures.push(counterpartyEntry);
       removeInventoryLocalState(counterpartyKey,receivedItem);
       registerDerivedUpdate(counterpartyKey);
@@ -12417,8 +12568,12 @@ async function saveCardChanges(card){
   }
   try{
     const updates=card.__edit.collect();
+    const keyOverride=data.__charKey||null;
+    const wasNew=!!data.__isNew;
+    const targetKey=keyOverride||charSel.value;
+    const computedDate=computeCharacterEntryDate({charKey:targetKey,rawDate:updates.date||'',entry:data,wasNew});
     data.title=updates.title||null;
-    data.date=updates.date||null;
+    data.date=computedDate||null;
     data.code=updates.code||'';
     data.dm=updates.dm||null;
     data.kind=updates.kind||'adventure';
@@ -12455,13 +12610,9 @@ async function saveCardChanges(card){
     if('player' in data){ delete data.player; }
     if('character' in data){ delete data.character; }
     if(!data.trade){ delete data.trade; }
-    const keyOverride=data.__charKey||null;
-    const wasNew=!!data.__isNew;
-    const targetKey=keyOverride||charSel.value;
-    let targetChar=null;
+    let targetChar=(DATA && DATA.characters && DATA.characters[targetKey])||null;
     let insertedNew=false;
     if(wasNew){
-      targetChar=DATA.characters[targetKey]||null;
       if(targetChar){
         targetChar.adventures=Array.isArray(targetChar.adventures)?targetChar.adventures:[];
         if(!targetChar.adventures.includes(data)){
