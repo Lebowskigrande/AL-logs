@@ -759,7 +759,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     const stripped = text
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g,'')
-      .replace(/[^a-zA-Z0-9]+/g,' ')
+      .replace(/[^a-zA-Z0-9+]+/g,' ')
       .toLowerCase();
     return stripped
       .split(/\s+/)
