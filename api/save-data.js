@@ -34,7 +34,7 @@ export default async function handler(req) {
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
-    if (!repo)  return respond({ error: 'GH_REPO not set' },  { status: 500 });
+    if (!repo) return respond({ error: 'GH_REPO not set' }, { status: 500 });
     const token = process.env.GH_TOKEN; // fine-grained PAT or GitHub App token
     if (!token) return respond({ error: 'GH_TOKEN not set' }, { status: 500 });
 
@@ -50,7 +50,8 @@ export default async function handler(req) {
 
     if (!branch) {
       const repoMetaRes = await fetch(`https://api.github.com/repos/${repo}`, {
-        headers: authHeaders
+        headers: authHeaders,
+        cache: 'no-store'
       });
 
       if (!repoMetaRes.ok) {
@@ -91,7 +92,8 @@ export default async function handler(req) {
     // 1) Get current SHA (required to update an existing file)
     let sha = undefined;
     const curRes = await fetch(`${base}?ref=${encodeURIComponent(branch)}`, {
-      headers: authHeaders
+      headers: authHeaders,
+      cache: 'no-store'
     });
     if (curRes.ok) {
       const cur = await curRes.json();
@@ -163,14 +165,14 @@ export default async function handler(req) {
     const protoCandidate = forwardedProto ? forwardedProto.split(',')[0].trim() : '';
     const resolvedProto = protoCandidate || (hostCandidate && hostCandidate.startsWith('localhost') ? 'http' : 'https');
 
-    if (commitSha && hostCandidate) {
+    if (commitSha) {
       try {
         const proxyParams = new URLSearchParams();
         proxyParams.set('path', path);
         proxyParams.set('ref', commitSha);
         proxyParams.set('cb', String(Date.now()));
-        const normalizedHost = hostCandidate.replace(/\/+$/, '');
-        proxyUrl = `${resolvedProto || 'https'}://${normalizedHost}/api/data-proxy?${proxyParams.toString()}`;
+        // Always return a relative URL so the client uses its own origin
+        proxyUrl = `/api/data-proxy?${proxyParams.toString()}`;
       } catch (err) {
         proxyUrl = null;
       }

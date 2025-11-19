@@ -198,7 +198,7 @@ export default async function handler(req) {
     const query = ghParams.length ? `?${ghParams.join('&')}` : '';
     const ghUrl = `https://api.github.com/repos/${repo}/contents/${encodedPath}${query}`;
 
-    const ghRes = await fetch(ghUrl, { headers: authHeaders });
+    const ghRes = await fetch(ghUrl, { headers: authHeaders, cache: 'no-store' });
 
     if (!ghRes.ok) {
       const text = await ghRes.text();
