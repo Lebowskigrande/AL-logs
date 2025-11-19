@@ -32511,7 +32511,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2025-11-19T22:21:56.511Z",
+    "generated": "2025-11-19T22:26:42.770Z",
     "problems": []
   },
   "dm_allocations": []
