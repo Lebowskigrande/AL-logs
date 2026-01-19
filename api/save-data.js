@@ -1,4 +1,4 @@
-// Vercel Edge Function – commits data/data.js to your repo via GitHub API
+// Vercel Edge Function – commits data.js to your repo via GitHub API
 export const config = { runtime: 'edge' };
 
 const corsHeaders = {
@@ -28,58 +28,15 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, path = 'data/data.js' } = await req.json();
+    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
-    if (!repo) return respond({ error: 'GH_REPO not set' }, { status: 500 });
+    if (!repo)  return respond({ error: 'GH_REPO not set' },  { status: 500 });
     const token = process.env.GH_TOKEN; // fine-grained PAT or GitHub App token
     if (!token) return respond({ error: 'GH_TOKEN not set' }, { status: 500 });
-
-    const authHeaders = {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github+json'
-    };
-
-    const envBranch = process.env.GH_BRANCH?.trim();
-    const deployBranch = process.env.VERCEL_GIT_COMMIT_REF?.trim();
-    let branch = envBranch || deployBranch;
-    let branchSource = envBranch ? 'GH_BRANCH' : (deployBranch ? 'VERCEL_GIT_COMMIT_REF' : null);
-
-    if (!branch) {
-      const repoMetaRes = await fetch(`https://api.github.com/repos/${repo}`, {
-        headers: authHeaders,
-        cache: 'no-store'
-      });
-
-      if (!repoMetaRes.ok) {
-        const text = await repoMetaRes.text();
-        return respond(
-          {
-            error: 'Unable to determine default branch from repository metadata',
-            details: text
-          },
-          { status: repoMetaRes.status }
-        );
-      }
-
-      const repoMeta = await repoMetaRes.json();
-      if (repoMeta?.default_branch) {
-        branch = repoMeta.default_branch;
-        branchSource = 'repository default_branch';
-      }
-    }
-
-    if (!branch) {
-      return respond(
-        {
-          error: 'Unable to determine which branch to commit to. Set GH_BRANCH in your Vercel environment.'
-        },
-        { status: 500 }
-      );
-    }
 
     // Optional: simple shared secret for client -> function
     const clientKey = req.headers.get('x-save-key');
@@ -92,47 +49,26 @@ export default async function handler(req) {
     // 1) Get current SHA (required to update an existing file)
     let sha = undefined;
     const curRes = await fetch(`${base}?ref=${encodeURIComponent(branch)}`, {
-      headers: authHeaders,
-      cache: 'no-store'
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json'
+      }
     });
     if (curRes.ok) {
       const cur = await curRes.json();
       sha = cur?.sha;
-    } else if (curRes.status === 404) {
-      let curError = null;
-      try {
-        curError = await curRes.json();
-      } catch (err) {
-        // ignore JSON parse issues – we'll fall back to text below
-      }
-
-      const curMessage = curError?.message || '';
-      if (/No commit found for the ref/i.test(curMessage) || /branch.*not found/i.test(curMessage)) {
-        return respond(
-          {
-            error: `Branch "${branch}" was not found in ${repo}.`,
-            hint:
-              branchSource === 'GH_BRANCH'
-                ? 'Double-check the GH_BRANCH environment variable.'
-                : 'Set GH_BRANCH in Vercel to the branch you want to update.'
-          },
-          { status: 400 }
-        );
-      }
     }
 
     // 2) Create commit
     const message = `feat: update ${path} from dashboard`;
-    const encoded = new TextEncoder().encode(dataJs);
-    let binary = '';
-    for (let i = 0; i < encoded.length; i += 1) {
-      binary += String.fromCharCode(encoded[i]);
-    }
-    const content = btoa(binary); // UTF-8 -> base64
+    const content = btoa(unescape(encodeURIComponent(dataJs))); // UTF-8 -> base64
 
     const putRes = await fetch(base, {
       method: 'PUT',
-      headers: authHeaders,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json'
+      },
       body: JSON.stringify({ message, content, branch, ...(sha ? { sha } : {}) })
     });
 
@@ -143,43 +79,8 @@ export default async function handler(req) {
 
     const out = await putRes.json();
 
-    const commitSha = out.commit?.sha || null;
-    let rawUrl = null;
-    if (commitSha) {
-      const normalizedPath = String(path || '').replace(/^\/+/, '');
-      if (normalizedPath) {
-        const encodedSegments = normalizedPath
-          .split('/')
-          .filter(Boolean)
-          .map((segment) => encodeURIComponent(segment));
-        if (encodedSegments.length) {
-          rawUrl = `https://raw.githubusercontent.com/${repo}/${commitSha}/${encodedSegments.join('/')}`;
-        }
-      }
-    }
-
-    let proxyUrl = null;
-    const forwardedHost = req.headers.get('x-forwarded-host') || req.headers.get('host') || '';
-    const forwardedProto = req.headers.get('x-forwarded-proto') || '';
-    const hostCandidate = forwardedHost ? forwardedHost.split(',')[0].trim() : '';
-    const protoCandidate = forwardedProto ? forwardedProto.split(',')[0].trim() : '';
-    const resolvedProto = protoCandidate || (hostCandidate && hostCandidate.startsWith('localhost') ? 'http' : 'https');
-
-    if (commitSha) {
-      try {
-        const proxyParams = new URLSearchParams();
-        proxyParams.set('path', path);
-        proxyParams.set('ref', commitSha);
-        proxyParams.set('cb', String(Date.now()));
-        // Always return a relative URL so the client uses its own origin
-        proxyUrl = `/api/data-proxy?${proxyParams.toString()}`;
-      } catch (err) {
-        proxyUrl = null;
-      }
-    }
-
     // CORS for your site(s)
-    return respond({ ok: true, commit: commitSha, rawUrl, proxyUrl });
+    return respond({ ok: true, commit: out.commit?.sha });
   } catch (e) {
     return respond({ error: String(e) }, { status: 500 });
   }
