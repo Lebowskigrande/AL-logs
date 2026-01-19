@@ -1,4 +1,4 @@
-// Vercel Edge Function – commits data.js to your repo via GitHub API
+// Vercel Edge Function – commits data/data.js to your repo via GitHub API
 export const config = { runtime: 'edge' };
 
 const corsHeaders = {
@@ -28,7 +28,7 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
+    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data/data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
     }
