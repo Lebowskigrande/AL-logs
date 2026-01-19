@@ -1,1 +1,1 @@
-test
+window.DATA = {};
