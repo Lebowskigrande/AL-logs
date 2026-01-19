@@ -6,9 +6,9 @@ window.DATA = {
       "adventures": [
         {
           "date": "2026-03-25",
-          "title": "Edge Function Branch Test",
+          "title": "Manual test entry",
           "code": "TEST-2026-03-25",
-          "dm": "Automation",
+          "dm": null,
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
@@ -18,7 +18,24 @@ window.DATA = {
           "level_plus": 0,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "Test entry via API to verify work branch saves.",
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
+          "date": "2026-01-19",
+          "title": "API Test Entry",
+          "code": "TEST-EDGE",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via edge function test",
           "kind": "adventure"
         },
         {
@@ -3501,6 +3518,23 @@ window.DATA = {
       "display_name": "Squelch (prequel)",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2022-10-08",
           "title": "Welcome Aboard",
           "code": "SJ-DC-WWA-01",
@@ -3585,6 +3619,23 @@ window.DATA = {
       "sheet": "Dolroruuk",
       "display_name": "Dolroruuk",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2022-01-17",
           "title": "Sunless Citadel",
@@ -3678,6 +3729,23 @@ window.DATA = {
       "sheet": "Ecthelion",
       "display_name": "Ecthelion",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-09-24",
           "title": "Of Books and Men - An Overdue Adventure",
@@ -3888,6 +3956,23 @@ window.DATA = {
       "sheet": "Chef Ture",
       "display_name": "Chef Ture",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-07-02",
           "title": "Losing Fai",
@@ -4300,6 +4385,23 @@ window.DATA = {
       "display_name": "Wobbly Bobbly",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": null,
           "title": null,
           "code": "DM Reward",
@@ -4358,6 +4460,23 @@ window.DATA = {
       "sheet": "Gnat",
       "display_name": "Gnat",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2021-11-01",
           "title": "House of Moonlight",
@@ -4556,6 +4675,23 @@ window.DATA = {
       "display_name": "Creature X-12",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2023-07-12",
           "title": "Book of Cylinders",
           "code": null,
@@ -4619,6 +4755,23 @@ window.DATA = {
       "sheet": "Squelch",
       "display_name": "Squelch",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2023-01-24",
           "title": "Mission One",
@@ -4747,6 +4900,23 @@ window.DATA = {
       "sheet": "Norixius",
       "display_name": "Norixius",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-08-27",
           "title": "DM Reward",
@@ -5284,6 +5454,23 @@ window.DATA = {
       "display_name": "Jerry Garcia",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2021-09-24",
           "title": "Trade",
           "code": null,
@@ -5488,6 +5675,23 @@ window.DATA = {
       "sheet": "Madam Renata",
       "display_name": "Madam Renata",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2024-11-20",
           "title": "Trade",
@@ -5775,6 +5979,23 @@ window.DATA = {
       "sheet": "Noraggen",
       "display_name": "Noraggen",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-03-19",
           "title": "Trade",
@@ -6118,6 +6339,23 @@ window.DATA = {
       "display_name": "Sookie Stackhouse",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2021-01-24",
           "title": "Trade",
           "code": null,
@@ -6303,6 +6541,23 @@ window.DATA = {
       "sheet": "Buckley",
       "display_name": "Buckley",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2021-05-14",
           "title": "Trade",
@@ -6629,6 +6884,23 @@ window.DATA = {
       "sheet": "Leonardo",
       "display_name": "Leonardo",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2021-07-06",
           "title": "Trade",
@@ -6992,6 +7264,23 @@ window.DATA = {
       "display_name": "Rolyn",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2023-10-04",
           "title": "DM Reward",
           "code": null,
@@ -7193,6 +7482,23 @@ window.DATA = {
       "sheet": "Anfer",
       "display_name": "Anfer",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2021-02-24",
           "title": "Trade",
@@ -7422,6 +7728,23 @@ window.DATA = {
       "sheet": "Goblert Godfrey",
       "display_name": "Goblert Godfrey",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2022-03-30",
           "title": "Broken Blade",
@@ -7726,6 +8049,23 @@ window.DATA = {
       "display_name": "Raguel",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2024-11-20",
           "title": "Trade",
           "code": null,
@@ -7935,6 +8275,23 @@ window.DATA = {
       "sheet": "Orakhar",
       "display_name": "Orakhar",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2021-10-03",
           "title": "Trade",
@@ -8329,6 +8686,23 @@ window.DATA = {
       "sheet": "Lyrielle",
       "display_name": "Lyrielle",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-06-18",
           "title": "NaT",
@@ -9089,6 +9463,23 @@ window.DATA = {
       "sheet": "Sentient Hat",
       "display_name": "Sentient Hat",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2024-11-14",
           "title": "Echoes of the Fallen",
@@ -10087,6 +10478,23 @@ window.DATA = {
       "sheet": "Arvistan Brightwave",
       "display_name": "Arvistan Brightwave",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-05-28",
           "title": "Trade",
@@ -11143,6 +11551,23 @@ window.DATA = {
       "sheet": "Zandarax",
       "display_name": "Zandarax",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-06-27",
           "title": "Dreamwalker: 5",
@@ -13655,6 +14080,23 @@ window.DATA = {
       "display_name": "Agatha",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2025-05-25",
           "title": "The Definition of Heroism (Lost Tales of Myth Drannor)",
           "code": "DDAL00-02f",
@@ -15189,6 +15631,23 @@ window.DATA = {
       "display_name": "Lorien",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2024-01-31",
           "title": null,
           "code": "DM Reward",
@@ -16355,6 +16814,23 @@ window.DATA = {
       "sheet": "Darrendrian",
       "display_name": "Darrendrian",
       "adventures": [
+        {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
         {
           "date": "2025-05-25",
           "title": "War of the Roses",
@@ -18365,6 +18841,23 @@ window.DATA = {
       "display_name": "Copy of Darrendrian",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2024-04-25",
           "title": null,
           "code": null,
@@ -20355,6 +20848,23 @@ window.DATA = {
       "display_name": "Morty",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual test entry",
+          "code": "TEST-2026-03-25",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API test on 2026-03-25",
+          "kind": "adventure"
+        },
+        {
           "date": "2022-06-08",
           "title": "Trade",
           "code": null,
@@ -21697,5 +22207,4 @@ window.DATA = {
     "generated": "2025-09-30T01:37:51.856Z",
     "problems": []
   }
-}
-
+};
