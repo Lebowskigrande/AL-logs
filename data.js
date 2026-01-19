@@ -3471,6 +3471,23 @@ window.DATA = {
           "consumable_items": [],
           "notes": null,
           "kind": "adventure"
+        },
+        {
+          "date": "2026-01-19",
+          "title": "Branch fix verification entry",
+          "code": "TEST-MAIN-BRANCH",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via save-data API test when work branch missing.",
+          "kind": "adventure"
         }
       ]
     },
