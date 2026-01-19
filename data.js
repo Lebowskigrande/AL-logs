@@ -6,8 +6,8 @@ window.DATA = {
       "adventures": [
         {
           "date": "2026-01-19",
-          "title": "API Test Entry",
-          "code": "TEST-EDGE",
+          "title": "Manual test entry",
+          "code": "TEST-ENTRY",
           "dm": null,
           "gp_plus": 0,
           "gp_minus": 0,
@@ -18,7 +18,7 @@ window.DATA = {
           "level_plus": 0,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "Added via edge function test",
+          "notes": "Added via API test",
           "kind": "adventure"
         },
         {
