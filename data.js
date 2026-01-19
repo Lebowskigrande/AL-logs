@@ -6,6 +6,23 @@ window.DATA = {
       "adventures": [
         {
           "date": "2026-01-19",
+          "title": "API Test Entry",
+          "code": "TEST-EDGE",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via edge function test",
+          "kind": "adventure"
+        },
+        {
+          "date": "2026-01-19",
           "title": "Automated test entry",
           "code": "TEST-2026-01-19",
           "dm": null,
@@ -3470,23 +3487,6 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
-          "kind": "adventure"
-        },
-        {
-          "date": "2026-01-19",
-          "title": "Test Save Entry",
-          "code": "TEST-SAVE",
-          "dm": null,
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 1,
-          "perm_items": [],
-          "consumable_items": [],
-          "notes": "Automated test entry to verify work branch saves.",
           "kind": "adventure"
         }
       ]
