@@ -8,6 +8,43 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
+          "title": "Manual test entry",
+          "date": "2026-01-19",
+          "code": "MANUAL-TEST",
+          "dm": "",
+          "kind": "Adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Added via API test 2026-01-19T18:48:15.2589138-08:00",
+          "chrono_timestamp": 1768877295256,
+          "chrono_index": 4.0
+        },
+        {
           "title": "Level up",
           "date": "2022-10-08",
           "code": "DT-LEVEL-UP",
