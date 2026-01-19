@@ -5,6 +5,23 @@ window.DATA = {
       "display_name": "DM log",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Edge Function Branch Test",
+          "code": "TEST-2026-03-25",
+          "dm": "Automation",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Test entry via API to verify work branch saves.",
+          "kind": "adventure"
+        },
+        {
           "date": "2026-01-19",
           "title": "Automated test entry",
           "code": "TEST-2026-01-19",
@@ -21680,4 +21697,5 @@ window.DATA = {
     "generated": "2025-09-30T01:37:51.856Z",
     "problems": []
   }
-};
+}
+
