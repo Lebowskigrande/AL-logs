@@ -5,9 +5,25 @@ window.DATA = {
       "display_name": "DM log",
       "adventures": [
         {
+          "date": "2026-03-25",
+          "title": "Manual save test entry",
+          "code": "MANUAL-TEST",
+          "dm": "Automation",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via api/save-data test",
+          "kind": "adventure"
+        },        {
           "date": "2026-01-19",
-          "title": "Test entry - branch default fix",
-          "code": "TEST-BRANCH",
+          "title": "Automated test entry",
+          "code": "TEST-2026-01-19",
           "dm": null,
           "gp_plus": 0,
           "gp_minus": 0,
@@ -18,7 +34,7 @@ window.DATA = {
           "level_plus": 0,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "Added via API to verify save target branch.",
+          "notes": "Added via API at 2026-01-19 19:12:18",
           "kind": "adventure"
         },
         {
@@ -6445,7 +6461,7 @@ window.DATA = {
           "level_plus": null,
           "perm_items": [
             "Wand of Magic Missile",
-            "Selûne's Owl-Eye Glasses"
+            "Sel�ne's Owl-Eye Glasses"
           ],
           "consumable_items": [],
           "notes": "Met Foxwere companion",
@@ -8233,7 +8249,7 @@ window.DATA = {
         },
         {
           "date": "2021-04-02",
-          "title": "Mazfroth’s Mighty Digressions",
+          "title": "Mazfroth�s Mighty Digressions",
           "code": "DDHC-CM Ch. 2",
           "dm": "Alexis P.",
           "gp_plus": 60,
@@ -9668,7 +9684,7 @@ window.DATA = {
         },
         {
           "date": "2021-04-03",
-          "title": "It’s all in the Blood",
+          "title": "It�s all in the Blood",
           "code": "DDEX03-04",
           "dm": "Jesse S.",
           "gp_plus": 0,
@@ -10026,7 +10042,7 @@ window.DATA = {
         },
         {
           "date": null,
-          "title": "Le Théâtre du Chapeau",
+          "title": "Le Th��tre du Chapeau",
           "code": "Created Bastion",
           "dm": null,
           "gp_plus": 0,
@@ -13444,7 +13460,7 @@ window.DATA = {
           "dtd_net": -1,
           "level_plus": null,
           "perm_items": [
-            "The Choralier’s Companion - Saddle of the Cavalier"
+            "The Choralier�s Companion - Saddle of the Cavalier"
           ],
           "consumable_items": [],
           "notes": "Spent 1 day and 200gp exchanging spells with Cassandra (Jon)",
@@ -14773,7 +14789,7 @@ window.DATA = {
         },
         {
           "date": "2020-01-22",
-          "title": "Durlag’s Tower",
+          "title": "Durlag�s Tower",
           "code": "DDAL 05-08",
           "dm": "Keith F.",
           "gp_plus": 800,
@@ -14915,7 +14931,7 @@ window.DATA = {
           "consumable_items": [
             "1 Soul Coin"
           ],
-          "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
+          "notes": "Purchased Hellhound Puppy for 25gp and fed it to �rd�g",
           "kind": "adventure"
         },
         {
