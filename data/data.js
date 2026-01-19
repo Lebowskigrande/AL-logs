@@ -3119,6 +3119,43 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
+          "title": "Automation test entry",
+          "date": "2026-01-19",
+          "code": "TEST-ENTRY",
+          "dm": "Automation",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Added via API verification (data/data.js)",
+          "chrono_timestamp": 1768809600000,
+          "chrono_index": 29.0
+        },
+        {
           "title": "The Ashen Pact",
           "date": "2025-10-16",
           "code": "FR-DC-STRAT-WYRM-06",
@@ -32246,7 +32283,7 @@ window.DATA = {
       "gifts_count": 0
     },
     "Norixius": {
-      "sessions": 18,
+      "sessions": 19,
       "net_gp": 26727,
       "net_dtd": 205,
       "level_ups": 10,
@@ -32455,6 +32492,7 @@ window.DATA = {
       2023
     ],
     "Norixius": [
+      2026,
       2022,
       2023,
       2024,
@@ -32564,7 +32602,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2026-01-19T17:25:27.4098930-08:00",
+    "generated": "2026-01-20T02:06:04.2398737Z",
     "problems": []
   },
   "dm_allocations": []
