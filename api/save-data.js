@@ -28,12 +28,9 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, branch = process.env.GH_BRANCH, path = 'data.js' } = await req.json();
+    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
-    }
-    if (!branch) {
-      return respond({ error: 'GH_BRANCH not set and no branch provided' }, { status: 500 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
