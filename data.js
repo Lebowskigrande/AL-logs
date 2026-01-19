@@ -5,9 +5,9 @@ window.DATA = {
       "display_name": "DM log",
       "adventures": [
         {
-          "date": "2026-01-19",
-          "title": "Automation test entry",
-          "code": "TEST-ENTRY",
+          "date": "2026-10-22",
+          "title": "Branch test entry",
+          "code": "TEST-WORK",
           "dm": null,
           "gp_plus": 0,
           "gp_minus": 0,
@@ -18,7 +18,7 @@ window.DATA = {
           "level_plus": 0,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "Added via API verification",
+          "notes": "Test save to work branch via edge function.",
           "kind": "adventure"
         },
         {
@@ -21677,7 +21677,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2026-01-20T01:16:55.4213720Z",
+    "generated": "2025-09-30T01:37:51.856Z",
     "problems": []
   }
 };
