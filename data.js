@@ -3454,23 +3454,6 @@ window.DATA = {
           "consumable_items": [],
           "notes": null,
           "kind": "adventure"
-        },
-        {
-          "date": "2026-01-20",
-          "title": "Codex branch test 2026-01-19T17:30:13",
-          "code": "TEST-AUTO",
-          "dm": null,
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "perm_items": [],
-          "consumable_items": [],
-          "notes": "Automated save-data branch test",
-          "kind": "adventure"
         }
       ]
     },
