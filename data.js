@@ -20,7 +20,8 @@ window.DATA = {
           "consumable_items": [],
           "notes": "Added by automation test.",
           "kind": "adventure"
-        },        {
+        },
+        {
           "date": "2026-01-19",
           "title": "Automated test entry",
           "code": "TEST-2026-01-19",
@@ -3486,6 +3487,23 @@ window.DATA = {
           "perm_items": [],
           "consumable_items": [],
           "notes": null,
+          "kind": "adventure"
+        },
+        {
+          "date": "2026-01-20",
+          "title": "Branch save test 2026-01-20T05:56:31.944Z",
+          "code": "TEST",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Automated verification entry",
           "kind": "adventure"
         }
       ]
@@ -21693,7 +21711,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T01:37:51.856Z",
+    "generated": "2026-01-20T05:56:31.944Z",
     "problems": []
   }
 };
