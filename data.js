@@ -5,6 +5,23 @@ window.DATA = {
       "display_name": "DM log",
       "adventures": [
         {
+          "date": "2026-01-19",
+          "title": "Automation test entry",
+          "code": "TEST-ENTRY",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Added via API verification",
+          "kind": "adventure"
+        },
+        {
           "date": "2025-07-14",
           "title": null,
           "code": "Playtest",
@@ -21660,7 +21677,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets (1).xlsx",
-    "generated": "2025-09-30T01:37:51.856Z",
+    "generated": "2026-01-20T01:16:55.4213720Z",
     "problems": []
   }
 };
