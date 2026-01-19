@@ -167,6 +167,23 @@ window.DATA = {
           "notes": "",
           "chrono_timestamp": 1663977600000,
           "chrono_index": 0
+        },
+        {
+          "date": "2026-01-20",
+          "title": "Codex main branch test 2026-01-19T18:18:29",
+          "code": "TEST-AUTO",
+          "dm": null,
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "perm_items": [],
+          "consumable_items": [],
+          "notes": "Automated save-data branch test",
+          "kind": "adventure"
         }
       ]
     },
@@ -3153,7 +3170,7 @@ window.DATA = {
           "story_awards": [],
           "notes": "Added via API verification (data/data.js)",
           "chrono_timestamp": 1768809600000,
-          "chrono_index": 29.0
+          "chrono_index": 29
         },
         {
           "title": "The Ashen Pact",
