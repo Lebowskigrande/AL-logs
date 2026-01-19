@@ -3474,8 +3474,8 @@ window.DATA = {
         },
         {
           "date": "2026-01-19",
-          "title": "Branch fix verification entry",
-          "code": "TEST-MAIN-BRANCH",
+          "title": "Test Save Entry",
+          "code": "TEST-SAVE",
           "dm": null,
           "gp_plus": 0,
           "gp_minus": 0,
@@ -3483,10 +3483,10 @@ window.DATA = {
           "dtd_plus": 0,
           "dtd_minus": 0,
           "dtd_net": 0,
-          "level_plus": 0,
+          "level_plus": 1,
           "perm_items": [],
           "consumable_items": [],
-          "notes": "Added via save-data API test when work branch missing.",
+          "notes": "Automated test entry to verify work branch saves.",
           "kind": "adventure"
         }
       ]
