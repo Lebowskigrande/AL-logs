@@ -82,18 +82,18 @@ window.DATA = {
           "chrono_index": 4
         },
         {
-          "title": "Trade",
+          "title": "Level up",
           "date": "2022-10-08",
-          "code": "DT-TRADE",
+          "code": "DT-LEVEL-UP",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
+          "dtd_minus": 10,
+          "dtd_net": -10,
+          "level_plus": 1,
           "totals": {
             "gp": {
               "earned": 0,
@@ -102,26 +102,19 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 5,
-              "net": -5
+              "spent": 10,
+              "net": -10
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
-          "perm_items": [
-            "Wand of Magic Missiles"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Eldritch Claw Tattoo",
-            "received": "Wand of Magic Missiles",
-            "counterpartyCharacter": "Squelch"
-          },
           "chrono_timestamp": 1665187200000,
           "chrono_index": 1
         },
@@ -169,18 +162,18 @@ window.DATA = {
           "chrono_index": 2
         },
         {
-          "title": "Level up",
+          "title": "Trade",
           "date": "2022-10-08",
-          "code": "DT-LEVEL-UP",
+          "code": "DT-TRADE",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 10,
-          "dtd_net": -10,
-          "level_plus": 1,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
@@ -189,19 +182,26 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 10,
-              "net": -10
+              "spent": 5,
+              "net": -5
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Wand of Magic Missiles"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "trade": {
+            "given": "Eldritch Claw Tattoo",
+            "received": "Wand of Magic Missiles",
+            "counterpartyCharacter": "Squelch"
+          },
           "chrono_timestamp": 1665187200002,
           "chrono_index": 3
         },
@@ -495,50 +495,6 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Silver Dragon Shield +2/+2 Init"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Bracers of Defense",
-            "received": "Silver Dragon Shield +2/+2 Init",
-            "counterpartyCharacter": "Madam Renata"
-          },
-          "chrono_timestamp": 1762387200000,
-          "chrono_index": 17
-        },
-        {
-          "title": "Trade",
-          "date": "2025-11-06",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
             "Tome of Leadership and Influence"
           ],
           "lost_perm_item": [],
@@ -552,8 +508,8 @@ window.DATA = {
             "counterpartyCharacter": "Lorian",
             "counterpartyPlayer": "Bob C."
           },
-          "chrono_timestamp": 1762387200002,
-          "chrono_index": 19
+          "chrono_timestamp": 1762387200001,
+          "chrono_index": 18
         },
         {
           "title": "Trade",
@@ -596,8 +552,52 @@ window.DATA = {
             "received": "Carpet (6x9)",
             "counterpartyCharacter": "Zandarax"
           },
-          "chrono_timestamp": 1762387200001,
-          "chrono_index": 18
+          "chrono_timestamp": 1762387200000,
+          "chrono_index": 17
+        },
+        {
+          "title": "Trade",
+          "date": "2025-11-06",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Silver Dragon Shield +2/+2 Init"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Bracers of Defense",
+            "received": "Silver Dragon Shield +2/+2 Init",
+            "counterpartyCharacter": "Madam Renata"
+          },
+          "chrono_timestamp": 1762387200002,
+          "chrono_index": 19
         },
         {
           "title": "Shivering Death",
@@ -1038,43 +1038,78 @@ window.DATA = {
           "chrono_index": 7
         },
         {
-          "title": "Downtime Activity: Craft",
+          "title": "Acquired Bastion",
           "date": "2025-08-13",
-          "code": "DT-CRAFT",
+          "code": "DT-BASTION",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 50,
-          "gp_net": -50,
+          "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 2,
-          "dtd_net": -2,
+          "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 50,
-              "net": -50
+              "spent": 0,
+              "net": 0
             },
             "downtime": {
               "earned": 0,
-              "spent": 2,
-              "net": -2
+              "spent": 0,
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Instrument of Illusions (longhorn)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Crafted a Longhorn of Illusions with help from my Arcane Workshop hireling.",
+          "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
           "chrono_timestamp": 1755043200000,
           "chrono_index": 3
+        },
+        {
+          "title": "Downtime Activity: Level up",
+          "date": "2025-08-13",
+          "code": "DT-LEVEL-UP",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 10,
+          "dtd_net": -10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 10,
+              "net": -10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1755043200001,
+          "chrono_index": 4
         },
         {
           "title": "Downtime Activity: Craft",
@@ -1112,80 +1147,45 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Crafted an Enspelled Breastplate with the spell Armor of Agathys, using my existing breastplate, with help from my Smithy hireling.",
-          "chrono_timestamp": 1755043200001,
-          "chrono_index": 4
-        },
-        {
-          "title": "Downtime Activity: Level up",
-          "date": "2025-08-13",
-          "code": "DT-LEVEL-UP",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 10,
-          "dtd_net": -10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 10,
-              "net": -10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1755043200002,
           "chrono_index": 5
         },
         {
-          "title": "Acquired Bastion",
+          "title": "Downtime Activity: Craft",
           "date": "2025-08-13",
-          "code": "DT-BASTION",
+          "code": "DT-CRAFT",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
+          "gp_minus": 50,
+          "gp_net": -50,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 2,
+          "dtd_net": -2,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 50,
+              "net": -50
             },
             "downtime": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 2,
+              "net": -2
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Instrument of Illusions (longhorn)"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
+          "notes": "Crafted a Longhorn of Illusions with help from my Arcane Workshop hireling.",
           "chrono_timestamp": 1755043200003,
           "chrono_index": 6
         },
@@ -1369,46 +1369,85 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
-          "title": "Heroes for the Meek",
-          "date": "2026-01-28",
-          "code": "FR-DC-LFGCON-02",
-          "dm": "Chris Higgins",
-          "kind": "adventure",
-          "gp_plus": 1450,
+          "title": "Bastion Turn",
+          "date": "2026-02-04",
+          "code": "",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 1450,
-          "dtd_plus": 10,
+          "gp_net": 0,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 10,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 1450,
+              "earned": 0,
               "spent": 0,
-              "net": 1450
+              "net": 0
             },
             "downtime": {
-              "earned": 10,
+              "earned": 0,
               "spent": 0,
-              "net": 10
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Luminous War Pick",
-            "Chest of Preserving w/ Pale Tincture"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Oil of Slipperiness"
+            "Pale Tincture",
+            "Essence of Ether"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "The Chest of Preserving contains a delicious freshly prepared dinner poisoned with Pale Tincture.",
-          "chrono_timestamp": 1769558400000,
+          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
+          "chrono_timestamp": 1770163200000,
           "chrono_index": 18
+        },
+        {
+          "title": "Bastion Turn",
+          "date": "2025-07-02",
+          "code": "DT-BASTION",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 250,
+          "gp_net": -250,
+          "dtd_plus": 0,
+          "dtd_minus": 7,
+          "dtd_net": -7,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Healing",
+            "Malice",
+            "Burnt Othur Fumes"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
+          "chrono_timestamp": 1751414400000,
+          "chrono_index": 16
         },
         {
           "title": "Losing Fai",
@@ -1452,90 +1491,8 @@ window.DATA = {
             "No Exceptions: booted from Mahadi's"
           ],
           "notes": "",
-          "chrono_timestamp": 1751414400000,
-          "chrono_index": 16
-        },
-        {
-          "title": "Bastion Turn",
-          "date": "2025-07-02",
-          "code": "DT-BASTION",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 250,
-          "gp_net": -250,
-          "dtd_plus": 0,
-          "dtd_minus": 7,
-          "dtd_net": -7,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 250,
-              "net": -250
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 7,
-              "net": -7
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Healing",
-            "Malice",
-            "Burnt Othur Fumes"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
           "chrono_timestamp": 1751414400001,
           "chrono_index": 17
-        },
-        {
-          "title": "Faces of Fortune",
-          "date": "2025-06-25",
-          "code": "DDAL09-05",
-          "dm": "Chris H.",
-          "kind": "adventure",
-          "gp_plus": 1000,
-          "gp_minus": 100,
-          "gp_net": 900,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 1000,
-              "spent": 100,
-              "net": 900
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Gem of Seeing"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Invulnerability"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
-          "chrono_timestamp": 1750809600000,
-          "chrono_index": 14
         },
         {
           "title": "Bastion Turn",
@@ -1576,8 +1533,90 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
+          "chrono_timestamp": 1750809600000,
+          "chrono_index": 14
+        },
+        {
+          "title": "Faces of Fortune",
+          "date": "2025-06-25",
+          "code": "DDAL09-05",
+          "dm": "Chris H.",
+          "kind": "adventure",
+          "gp_plus": 1000,
+          "gp_minus": 100,
+          "gp_net": 900,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 100,
+              "net": 900
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Gem of Seeing"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Invulnerability"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
           "chrono_timestamp": 1750809600001,
           "chrono_index": 15
+        },
+        {
+          "title": "Bastion Turn",
+          "date": "2025-06-18",
+          "code": "DT-BASTION",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 250,
+          "gp_net": -250,
+          "dtd_plus": 0,
+          "dtd_minus": 7,
+          "dtd_net": -7,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Healing",
+            "Malice",
+            "Burnt Othur Fumes"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
+          "chrono_timestamp": 1750204800000,
+          "chrono_index": 12
         },
         {
           "title": "Affair on the Concordant Express",
@@ -1625,18 +1664,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 3 vials of Oil of Slipperiness.",
-          "chrono_timestamp": 1750204800000,
-          "chrono_index": 12
+          "chrono_timestamp": 1750204800001,
+          "chrono_index": 13
         },
         {
           "title": "Bastion Turn",
-          "date": "2025-06-18",
+          "date": "2025-06-15",
           "code": "DT-BASTION",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 250,
-          "gp_net": -250,
+          "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 7,
           "dtd_net": -7,
@@ -1644,8 +1683,8 @@ window.DATA = {
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 250,
-              "net": -250
+              "spent": 150,
+              "net": -150
             },
             "downtime": {
               "earned": 0,
@@ -1659,15 +1698,16 @@ window.DATA = {
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Healing",
-            "Malice",
-            "Burnt Othur Fumes"
+            "Pale Tincture",
+            "Essence of Ether",
+            "Antitoxin",
+            "Antitoxin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
-          "chrono_timestamp": 1750204800001,
-          "chrono_index": 13
+          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
+          "chrono_timestamp": 1749945600000,
+          "chrono_index": 10
         },
         {
           "title": "Heroes for the Meek",
@@ -1710,50 +1750,48 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased book on history of Faerun (including culinary) for 200 gp. Spent 50 gp making 4 doses of Weapon Poison.",
-          "chrono_timestamp": 1749945600000,
-          "chrono_index": 10
+          "chrono_timestamp": 1749945600001,
+          "chrono_index": 11
         },
         {
-          "title": "Bastion Turn",
-          "date": "2025-06-15",
-          "code": "DT-BASTION",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 150,
-          "gp_net": -150,
-          "dtd_plus": 0,
-          "dtd_minus": 7,
-          "dtd_net": -7,
+          "title": "Vatras Besieged",
+          "date": "2025-06-11",
+          "code": "FR-DC-FET-01",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 100,
+          "gp_minus": 0,
+          "gp_net": 100,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
-              "spent": 150,
-              "net": -150
+              "earned": 100,
+              "spent": 0,
+              "net": 100
             },
             "downtime": {
-              "earned": 0,
-              "spent": 7,
-              "net": -7
+              "earned": 10,
+              "spent": 0,
+              "net": 10
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Pale Tincture",
-            "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
+          "perm_items": [
+            "Half plate +1 (guardian)",
+            "Rope of mending (temperate)"
           ],
+          "lost_perm_item": [],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
-          "chrono_timestamp": 1749945600001,
-          "chrono_index": 11
+          "notes": "",
+          "chrono_timestamp": 1749600000000,
+          "chrono_index": 8
         },
         {
           "title": "Bastion Turn",
@@ -1793,85 +1831,48 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (truth serum); Laboratory: Craft Poison (burnt othur fumes).",
-          "chrono_timestamp": 1749600000000,
-          "chrono_index": 8
+          "chrono_timestamp": 1749600000001,
+          "chrono_index": 9
         },
         {
-          "title": "Vatras Besieged",
-          "date": "2025-06-11",
-          "code": "FR-DC-FET-01",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 100,
-          "gp_minus": 0,
-          "gp_net": 100,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
+          "title": "Bastion Turn",
+          "date": "2025-04-23",
+          "code": "DT-BASTION",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 150,
+          "gp_net": -150,
+          "dtd_plus": 0,
+          "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 100,
-              "spent": 0,
-              "net": 100
+              "earned": 0,
+              "spent": 150,
+              "net": -150
             },
             "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
+              "earned": 0,
+              "spent": 7,
+              "net": -7
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Half plate +1 (guardian)",
-            "Rope of mending (temperate)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
-          "consumable_items": [],
+          "consumable_items": [
+            "Malice",
+            "Essence of Ether",
+            "Antitoxin",
+            "Antitoxin"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1749600000001,
-          "chrono_index": 9
-        },
-        {
-          "title": "Whispers Beneath the Waves",
-          "date": "2025-04-23",
-          "code": "FR-DC-WCAG02-06",
-          "dm": "Jason R.",
-          "kind": "adventure",
-          "gp_plus": 1000,
-          "gp_minus": 0,
-          "gp_net": 1000,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1000,
-              "spent": 0,
-              "net": 1000
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Periapt of Proof Against Poison"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
+          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
           "chrono_timestamp": 1745366400000,
           "chrono_index": 5
         },
@@ -1913,52 +1914,10 @@ window.DATA = {
           "chrono_index": 6
         },
         {
-          "title": "Bastion Turn",
+          "title": "Whispers Beneath the Waves",
           "date": "2025-04-23",
-          "code": "DT-BASTION",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 150,
-          "gp_net": -150,
-          "dtd_plus": 0,
-          "dtd_minus": 7,
-          "dtd_net": -7,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 150,
-              "net": -150
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 7,
-              "net": -7
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Malice",
-            "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
-          "chrono_timestamp": 1745366400002,
-          "chrono_index": 7
-        },
-        {
-          "title": "Diabolical Dive",
-          "date": "2025-04-16",
-          "code": "DDAL 09-07",
-          "dm": "Nicole F.",
+          "code": "FR-DC-WCAG02-06",
+          "dm": "Jason R.",
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
@@ -1983,18 +1942,15 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Bowl of Commanding Water Elementals"
+            "Periapt of Proof Against Poison"
           ],
           "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Invisibility",
-            "Flask of Styx Water"
-          ],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1744761600000,
-          "chrono_index": 3
+          "chrono_timestamp": 1745366400002,
+          "chrono_index": 7
         },
         {
           "title": "Trade",
@@ -2037,6 +1993,48 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Agatha"
           },
+          "chrono_timestamp": 1744761600000,
+          "chrono_index": 3
+        },
+        {
+          "title": "Diabolical Dive",
+          "date": "2025-04-16",
+          "code": "DDAL 09-07",
+          "dm": "Nicole F.",
+          "kind": "adventure",
+          "gp_plus": 1000,
+          "gp_minus": 0,
+          "gp_net": 1000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Bowl of Commanding Water Elementals"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Invisibility",
+            "Flask of Styx Water"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1744761600001,
           "chrono_index": 4
         },
@@ -2292,43 +2290,6 @@ window.DATA = {
           "chrono_index": 2
         },
         {
-          "title": "The Ones That Walk Towards Goldenleaf",
-          "date": "2025-02-16",
-          "code": "FR-DC-STRAT-FIEND-05",
-          "dm": "Chris H.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1739664000000,
-          "chrono_index": 0
-        },
-        {
           "title": "DM-REWARD",
           "date": "2025-02-16",
           "code": "DM-REWARD",
@@ -2362,23 +2323,14 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1739664000001,
-          "chrono_index": 1
-        }
-      ]
-    },
-    "Gnat": {
-      "display_name": "Gnat",
-      "sheet": "Gnat",
-      "avatar": "",
-      "notes": "",
-      "identity": {},
-      "adventures": [
+          "chrono_timestamp": 1739664000000,
+          "chrono_index": 0
+        },
         {
-          "title": "Blood on the Moors",
-          "date": "2025-03-05",
-          "code": "CCC-BMG-MOON8-1",
-          "dm": "Nick D.",
+          "title": "The Ones That Walk Towards Goldenleaf",
+          "date": "2025-02-16",
+          "code": "FR-DC-STRAT-FIEND-05",
+          "dm": "Chris H.",
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -2386,7 +2338,7 @@ window.DATA = {
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
-          "level_plus": 1,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
@@ -2399,20 +2351,27 @@ window.DATA = {
               "net": 10
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
-          "perm_items": [
-            "Gem of Brightness"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1741132800000,
-          "chrono_index": 8
-        },
+          "chrono_timestamp": 1739664000001,
+          "chrono_index": 1
+        }
+      ]
+    },
+    "Gnat": {
+      "display_name": "Gnat",
+      "sheet": "Gnat",
+      "avatar": "",
+      "notes": "",
+      "identity": {},
+      "adventures": [
         {
           "title": "DM Reward",
           "date": "2025-03-05",
@@ -2449,14 +2408,14 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1741132800001,
-          "chrono_index": 9
+          "chrono_timestamp": 1741132800000,
+          "chrono_index": 8
         },
         {
-          "title": "The Black Wyrm of Bog Hold",
-          "date": "2025-01-15",
-          "code": "FR-DC-NUKE-02",
-          "dm": "Ryan L.",
+          "title": "Blood on the Moors",
+          "date": "2025-03-05",
+          "code": "CCC-BMG-MOON8-1",
+          "dm": "Nick D.",
           "kind": "adventure",
           "gp_plus": 0,
           "gp_minus": 0,
@@ -2481,15 +2440,15 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Valkur's Raiment (Half-plate +1 waterborne)"
+            "Gem of Brightness"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1736899200000,
-          "chrono_index": 6
+          "chrono_timestamp": 1741132800001,
+          "chrono_index": 9
         },
         {
           "title": "DM Reward",
@@ -2521,6 +2480,45 @@ window.DATA = {
           },
           "perm_items": [
             "Vicious Glaive"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1736899200000,
+          "chrono_index": 6
+        },
+        {
+          "title": "The Black Wyrm of Bog Hold",
+          "date": "2025-01-15",
+          "code": "FR-DC-NUKE-02",
+          "dm": "Ryan L.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Valkur's Raiment (Half-plate +1 waterborne)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -2578,31 +2576,29 @@ window.DATA = {
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 0,
+          "gp_plus": 240,
           "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
+          "gp_net": 240,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 0,
+              "earned": 240,
               "spent": 0,
-              "net": 0
+              "net": 240
             },
             "downtime": {
-              "earned": 0,
+              "earned": 10,
               "spent": 0,
-              "net": 0
+              "net": 10
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
-          "perm_items": [
-            "Bracers of Defense"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -2700,29 +2696,31 @@ window.DATA = {
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 240,
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 10,
+          "gp_net": 0,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 240,
+              "earned": 0,
               "spent": 0,
-              "net": 240
+              "net": 0
             },
             "downtime": {
-              "earned": 10,
+              "earned": 0,
               "spent": 0,
-              "net": 10
+              "net": 0
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Bracers of Defense"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -2818,45 +2816,6 @@ window.DATA = {
           "chrono_index": 3
         },
         {
-          "title": "Axe to the Grave",
-          "date": "2023-07-06",
-          "code": "DDHC-KGV-07",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Barrier Tattoo (rare)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1688601600000,
-          "chrono_index": 1
-        },
-        {
           "title": "DM Reward (x2)",
           "date": "2023-07-06",
           "code": "DM-REWARD",
@@ -2886,6 +2845,45 @@ window.DATA = {
           },
           "perm_items": [
             "Hat of Disguise"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1688601600000,
+          "chrono_index": 1
+        },
+        {
+          "title": "Axe to the Grave",
+          "date": "2023-07-06",
+          "code": "DDHC-KGV-07",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Barrier Tattoo (rare)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3070,45 +3068,6 @@ window.DATA = {
           "chrono_index": 4
         },
         {
-          "title": "DM Reward (11b VR)",
-          "date": "2022-09-30",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 10000,
-          "gp_minus": 0,
-          "gp_net": 10000,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 10000,
-              "spent": 0,
-              "net": 10000
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Manual of Quickness of Action"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1664496000000,
-          "chrono_index": 2
-        },
-        {
           "title": "DM Reward (12a VR)",
           "date": "2022-09-30",
           "code": "DM-REWARD",
@@ -3138,6 +3097,45 @@ window.DATA = {
           },
           "perm_items": [
             "Tome of Understanding"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1664496000000,
+          "chrono_index": 2
+        },
+        {
+          "title": "DM Reward (11b VR)",
+          "date": "2022-09-30",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 10000,
+          "gp_minus": 0,
+          "gp_net": 10000,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 10000,
+              "spent": 0,
+              "net": 10000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Manual of Quickness of Action"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3434,45 +3432,6 @@ window.DATA = {
           "chrono_index": 25
         },
         {
-          "title": "Head in the Clouds",
-          "date": "2024-08-31",
-          "code": "FR-STRAT-DRAGON-02",
-          "dm": "",
-          "kind": "adventure",
-          "gp_plus": 1250,
-          "gp_minus": 0,
-          "gp_net": 1250,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 1250,
-              "spent": 0,
-              "net": 1250
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Dragon's Tail (Lash of Immolation)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1725062400000,
-          "chrono_index": 23
-        },
-        {
           "title": "Dancing in the Moonlight",
           "date": "2024-08-31",
           "code": "FR-STRAT-DRAGON-01",
@@ -3505,6 +3464,45 @@ window.DATA = {
             "2x Cure Wounds/Lesser Resto",
             "2x Greater Resto",
             "1x Wind Walk)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1725062400000,
+          "chrono_index": 23
+        },
+        {
+          "title": "Head in the Clouds",
+          "date": "2024-08-31",
+          "code": "FR-STRAT-DRAGON-02",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 1250,
+          "gp_minus": 0,
+          "gp_net": 1250,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1250,
+              "spent": 0,
+              "net": 1250
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Dragon's Tail (Lash of Immolation)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -3893,49 +3891,6 @@ window.DATA = {
           "chrono_index": 14
         },
         {
-          "title": "Black Blades, Black Wings",
-          "date": "2022-07-10",
-          "code": "CCC-ODFC01-02",
-          "dm": "Bryce C.",
-          "kind": "adventure",
-          "gp_plus": 480,
-          "gp_minus": 0,
-          "gp_net": 480,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 480,
-              "spent": 0,
-              "net": 480
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Rope of Entanglement"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Greater Healing",
-            "Drow Poison",
-            "Drow Poison"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1657411200000,
-          "chrono_index": 12
-        },
-        {
           "title": "Trade",
           "date": "2022-07-10",
           "code": "DT-TRADE",
@@ -3977,6 +3932,49 @@ window.DATA = {
             "counterpartyCharacter": "Pruxx",
             "counterpartyPlayer": "Dave N."
           },
+          "chrono_timestamp": 1657411200000,
+          "chrono_index": 12
+        },
+        {
+          "title": "Black Blades, Black Wings",
+          "date": "2022-07-10",
+          "code": "CCC-ODFC01-02",
+          "dm": "Bryce C.",
+          "kind": "adventure",
+          "gp_plus": 480,
+          "gp_minus": 0,
+          "gp_net": 480,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Rope of Entanglement"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Greater Healing",
+            "Drow Poison",
+            "Drow Poison"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1657411200001,
           "chrono_index": 13
         },
@@ -4249,7 +4247,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Flametongue greatsword"
+            "Giant slayer greatsword"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4288,7 +4286,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Giant slayer greatsword"
+            "Flametongue greatsword"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -4297,6 +4295,45 @@ window.DATA = {
           "notes": "",
           "chrono_timestamp": 1651449600001,
           "chrono_index": 5
+        },
+        {
+          "title": "Season 11b DM Reward (R)",
+          "date": "2022-04-20",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Dragon slayer greatsword"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1650412800000,
+          "chrono_index": 1
         },
         {
           "title": "Trade",
@@ -4339,8 +4376,8 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Zandarax"
           },
-          "chrono_timestamp": 1650412800001,
-          "chrono_index": 2
+          "chrono_timestamp": 1650412800002,
+          "chrono_index": 3
         },
         {
           "title": "Lore of Lurue",
@@ -4378,47 +4415,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1650412800000,
-          "chrono_index": 1
-        },
-        {
-          "title": "Season 11b DM Reward (R)",
-          "date": "2022-04-20",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Dragon slayer greatsword"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1650412800002,
-          "chrono_index": 3
+          "chrono_timestamp": 1650412800001,
+          "chrono_index": 2
         },
         {
           "title": "Start at level 5",
@@ -4651,6 +4649,45 @@ window.DATA = {
           "chrono_index": 6
         },
         {
+          "title": "Mind Your Mine",
+          "date": "2020-12-26",
+          "code": "DC-POA-WWA",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 40,
+          "gp_minus": 0,
+          "gp_net": 40,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Lantern of Tracking (Aberrations)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1608940800000,
+          "chrono_index": 4
+        },
+        {
           "title": "Plague of Frogs",
           "date": "2020-12-26",
           "code": "DC-POA-POF",
@@ -4681,45 +4718,6 @@ window.DATA = {
           "perm_items": [
             "Grey Bag of Tricks",
             "Masquerade Tattoo"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1608940800000,
-          "chrono_index": 4
-        },
-        {
-          "title": "Mind Your Mine",
-          "date": "2020-12-26",
-          "code": "DC-POA-WWA",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 40,
-          "gp_minus": 0,
-          "gp_net": 40,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Lantern of Tracking (Aberrations)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -5111,43 +5109,6 @@ window.DATA = {
           "chrono_index": 10
         },
         {
-          "title": "Level up x 4",
-          "date": "2022-01-21",
-          "code": "DT-LEVEL-UP",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 40,
-          "dtd_net": -40,
-          "level_plus": 4,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 40,
-              "net": -40
-            },
-            "level": {
-              "gained": 4
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1642723200000,
-          "chrono_index": 8
-        },
-        {
           "title": "Ch. 13 The Amber Temple",
           "date": "2022-01-21",
           "code": "DDHC-COS",
@@ -5183,6 +5144,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dark Gift: +30 max hp, twitchy, can't give a straight answer to any question, covered in dark fur",
+          "chrono_timestamp": 1642723200000,
+          "chrono_index": 8
+        },
+        {
+          "title": "Level up x 4",
+          "date": "2022-01-21",
+          "code": "DT-LEVEL-UP",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 40,
+          "dtd_net": -40,
+          "level_plus": 4,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 40,
+              "net": -40
+            },
+            "level": {
+              "gained": 4
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1642723200001,
           "chrono_index": 9
         },
@@ -5350,34 +5348,36 @@ window.DATA = {
           "chrono_index": 4
         },
         {
-          "title": "DM Reward x 3",
+          "title": "The Beast",
           "date": "2021-09-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
+          "code": "DDAL04-02",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 80,
           "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 30,
+          "gp_net": 80,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "dtd_net": 30,
-          "level_plus": 3,
+          "dtd_net": 10,
+          "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 240,
+              "earned": 80,
               "spent": 0,
-              "net": 240
+              "net": 80
             },
             "downtime": {
-              "earned": 30,
+              "earned": 10,
               "spent": 0,
-              "net": 30
+              "net": 10
             },
             "level": {
-              "gained": 3
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Whip of Warning"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -5470,36 +5470,34 @@ window.DATA = {
           "chrono_index": 1
         },
         {
-          "title": "The Beast",
+          "title": "DM Reward x 3",
           "date": "2021-09-24",
-          "code": "DDAL04-02",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 80,
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
           "gp_minus": 0,
-          "gp_net": 80,
-          "dtd_plus": 10,
+          "gp_net": 240,
+          "dtd_plus": 30,
           "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
+          "dtd_net": 30,
+          "level_plus": 3,
           "totals": {
             "gp": {
-              "earned": 80,
+              "earned": 240,
               "spent": 0,
-              "net": 80
+              "net": 240
             },
             "downtime": {
-              "earned": 10,
+              "earned": 30,
               "spent": 0,
-              "net": 10
+              "net": 30
             },
             "level": {
-              "gained": 0
+              "gained": 3
             }
           },
-          "perm_items": [
-            "Whip of Warning"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -5722,42 +5720,46 @@ window.DATA = {
           "chrono_index": 12
         },
         {
-          "title": "The Heir of Orcus Verse IV",
+          "title": "Trade",
           "date": "2021-04-01",
-          "code": "CCC-AETHER02-01",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 120,
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 120,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
-            },
-            "downtime": {
               "earned": 0,
               "spent": 0,
               "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Hat of Disguise",
-            "Candle of the Deep"
+            "Splint +1"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "trade": {
+            "given": "Ring of Spell Storing",
+            "received": "Splint +1",
+            "counterpartyCharacter": "Sentient Hat"
+          },
           "chrono_timestamp": 1617235200000,
           "chrono_index": 9
         },
@@ -5799,46 +5801,42 @@ window.DATA = {
           "chrono_index": 10
         },
         {
-          "title": "Trade",
+          "title": "The Heir of Orcus Verse IV",
           "date": "2021-04-01",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
+          "code": "CCC-AETHER02-01",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 120,
           "gp_minus": 0,
-          "gp_net": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
+          "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
+              "earned": 120,
               "spent": 0,
-              "net": 0
+              "net": 120
             },
             "downtime": {
               "earned": 0,
-              "spent": 15,
-              "net": -15
+              "spent": 0,
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Splint +1"
+            "Hat of Disguise",
+            "Candle of the Deep"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Ring of Spell Storing",
-            "received": "Splint +1",
-            "counterpartyCharacter": "Sentient Hat"
-          },
           "chrono_timestamp": 1617235200002,
           "chrono_index": 11
         },
@@ -5968,45 +5966,78 @@ window.DATA = {
           "chrono_index": 6
         },
         {
-          "title": "Champion of the People",
+          "title": "DM Reward (x4)",
           "date": "2020-11-18",
-          "code": "CCC-LINKS-01",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 120,
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 80,
           "gp_minus": 0,
-          "gp_net": 120,
-          "dtd_plus": 0,
+          "gp_net": 80,
+          "dtd_plus": 40,
           "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
+          "dtd_net": 40,
+          "level_plus": 4,
           "totals": {
             "gp": {
-              "earned": 120,
+              "earned": 80,
               "spent": 0,
-              "net": 120
+              "net": 80
             },
             "downtime": {
-              "earned": 0,
+              "earned": 40,
               "spent": 0,
-              "net": 0
+              "net": 40
             },
             "level": {
-              "gained": 0
+              "gained": 4
             }
           },
-          "perm_items": [
-            "Belt of Hill Giant Strength"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [
-            "Friend of Phlan"
-          ],
+          "story_awards": [],
           "notes": "",
           "chrono_timestamp": 1605657600000,
           "chrono_index": 1
+        },
+        {
+          "title": "DM Reward",
+          "date": "2020-11-18",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
+          "gp_minus": 0,
+          "gp_net": 240,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1605657600001,
+          "chrono_index": 2
         },
         {
           "title": "Trade",
@@ -6049,8 +6080,8 @@ window.DATA = {
             "received": "Dwarven Thrower",
             "counterpartyCharacter": "Morty"
           },
-          "chrono_timestamp": 1605657600002,
-          "chrono_index": 3
+          "chrono_timestamp": 1605657600003,
+          "chrono_index": 4
         },
         {
           "title": "DM Reward",
@@ -6088,79 +6119,46 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1605657600001,
-          "chrono_index": 2
+          "chrono_timestamp": 1605657600002,
+          "chrono_index": 3
         },
         {
-          "title": "DM Reward",
+          "title": "Champion of the People",
           "date": "2020-11-18",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
+          "code": "CCC-LINKS-01",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 120,
           "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 20,
+          "gp_net": 120,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 240,
+              "earned": 120,
               "spent": 0,
-              "net": 240
+              "net": 120
             },
             "downtime": {
-              "earned": 20,
+              "earned": 0,
               "spent": 0,
-              "net": 20
+              "net": 0
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Belt of Hill Giant Strength"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1605657600003,
-          "chrono_index": 4
-        },
-        {
-          "title": "DM Reward (x4)",
-          "date": "2020-11-18",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 80,
-          "gp_minus": 0,
-          "gp_net": 80,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "dtd_net": 40,
-          "level_plus": 4,
-          "totals": {
-            "gp": {
-              "earned": 80,
-              "spent": 0,
-              "net": 80
-            },
-            "downtime": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "level": {
-              "gained": 4
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
+          "story_awards": [
+            "Friend of Phlan"
+          ],
           "notes": "",
           "chrono_timestamp": 1605657600004,
           "chrono_index": 5
@@ -6300,6 +6298,43 @@ window.DATA = {
           "chrono_index": 7
         },
         {
+          "title": "The Seer",
+          "date": "2020-07-04",
+          "code": "DDAL 04-05",
+          "dm": "Jane A.",
+          "kind": "adventure",
+          "gp_plus": 80,
+          "gp_minus": 0,
+          "gp_net": 80,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1593820800000,
+          "chrono_index": 5
+        },
+        {
           "title": "The Ghost",
           "date": "2020-07-04",
           "code": "DDAL 04-06",
@@ -6335,27 +6370,64 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1593820800000,
-          "chrono_index": 5
+          "chrono_timestamp": 1593820800001,
+          "chrono_index": 6
         },
         {
-          "title": "The Seer",
-          "date": "2020-07-04",
-          "code": "DDAL 04-05",
+          "title": "DM Reward x2",
+          "date": "2020-06-20",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 160,
+          "gp_minus": 0,
+          "gp_net": 160,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1592611200000,
+          "chrono_index": 0
+        },
+        {
+          "title": "The Executioner",
+          "date": "2020-06-20",
+          "code": "DDAL 04-03",
           "dm": "Jane A.",
           "kind": "adventure",
-          "gp_plus": 80,
-          "gp_minus": 0,
-          "gp_net": 80,
+          "gp_plus": 60,
+          "gp_minus": 4,
+          "gp_net": 56,
           "dtd_plus": 0,
           "dtd_minus": 0,
           "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 80,
-              "spent": 0,
-              "net": 80
+              "earned": 60,
+              "spent": 4,
+              "net": 56
             },
             "downtime": {
               "earned": 0,
@@ -6370,49 +6442,12 @@ window.DATA = {
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1593820800001,
-          "chrono_index": 6
-        },
-        {
-          "title": "The Marionnette",
-          "date": "2020-06-20",
-          "code": "DDAL 04-04",
-          "dm": "Jane A.",
-          "kind": "adventure",
-          "gp_plus": 20,
-          "gp_minus": 0,
-          "gp_net": 20,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
           "story_awards": [
-            "Eye of the Bird - somewhere a bird things of me fondly for helping an agent. Aid of the Bergemaster - advantage when dealing with any Bergemaster in Barovia"
+            "Stuck in the Demiplane of Dread."
           ],
-          "notes": "",
-          "chrono_timestamp": 1592611200000,
-          "chrono_index": 0
+          "notes": "Bought cold weather gear",
+          "chrono_timestamp": 1592611200001,
+          "chrono_index": 1
         },
         {
           "title": "Trade",
@@ -6455,8 +6490,8 @@ window.DATA = {
             "received": "Helm of Telepathy",
             "counterpartyCharacter": "Jormund Khan"
           },
-          "chrono_timestamp": 1592611200002,
-          "chrono_index": 2
+          "chrono_timestamp": 1592611200003,
+          "chrono_index": 3
         },
         {
           "title": "DM Reward",
@@ -6494,35 +6529,35 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1592611200001,
-          "chrono_index": 1
+          "chrono_timestamp": 1592611200002,
+          "chrono_index": 2
         },
         {
-          "title": "The Executioner",
+          "title": "The Marionnette",
           "date": "2020-06-20",
-          "code": "DDAL 04-03",
+          "code": "DDAL 04-04",
           "dm": "Jane A.",
           "kind": "adventure",
-          "gp_plus": 60,
-          "gp_minus": 4,
-          "gp_net": 56,
-          "dtd_plus": 0,
+          "gp_plus": 20,
+          "gp_minus": 0,
+          "gp_net": 20,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 60,
-              "spent": 4,
-              "net": 56
+              "earned": 20,
+              "spent": 0,
+              "net": 20
             },
             "downtime": {
-              "earned": 0,
+              "earned": 10,
               "spent": 0,
-              "net": 0
+              "net": 10
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
           "perm_items": [],
@@ -6530,45 +6565,8 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [
-            "Stuck in the Demiplane of Dread."
+            "Eye of the Bird - somewhere a bird things of me fondly for helping an agent. Aid of the Bergemaster - advantage when dealing with any Bergemaster in Barovia"
           ],
-          "notes": "Bought cold weather gear",
-          "chrono_timestamp": 1592611200003,
-          "chrono_index": 3
-        },
-        {
-          "title": "DM Reward x2",
-          "date": "2020-06-20",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 160,
-          "gp_minus": 0,
-          "gp_net": 160,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 160,
-              "spent": 0,
-              "net": 160
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
           "notes": "",
           "chrono_timestamp": 1592611200004,
           "chrono_index": 4
@@ -6627,45 +6625,6 @@ window.DATA = {
           "chrono_index": 14
         },
         {
-          "title": "The Mirror City of Gulthias",
-          "date": "2021-02-20",
-          "code": "GARY-07",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Cloak of Elvenkind"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1613779200000,
-          "chrono_index": 12
-        },
-        {
           "title": "Trade",
           "date": "2021-02-20",
           "code": "DT-TRADE",
@@ -6706,6 +6665,45 @@ window.DATA = {
             "received": "Belt of Hill GIant Strength",
             "counterpartyCharacter": "Noraggen"
           },
+          "chrono_timestamp": 1613779200000,
+          "chrono_index": 12
+        },
+        {
+          "title": "The Mirror City of Gulthias",
+          "date": "2021-02-20",
+          "code": "GARY-07",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Cloak of Elvenkind"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1613779200001,
           "chrono_index": 13
         },
@@ -6827,49 +6825,6 @@ window.DATA = {
           "chrono_index": 9
         },
         {
-          "title": "A Question Never Asked",
-          "date": "2020-12-27",
-          "code": "CCC-DES-01-03",
-          "dm": "Nicole F.",
-          "kind": "adventure",
-          "gp_plus": 120,
-          "gp_minus": 0,
-          "gp_net": 120,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Wand of Magic Missile",
-            "Selûne's Owl-Eye Glasses"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Elemental Master",
-            "Wild Hunter"
-          ],
-          "notes": "Met Foxwere companion",
-          "chrono_timestamp": 1609027200000,
-          "chrono_index": 7
-        },
-        {
           "title": "Trade",
           "date": "2020-12-27",
           "code": "DT-TRADE",
@@ -6910,6 +6865,49 @@ window.DATA = {
             "received": "Adamantine Plate Armor",
             "counterpartyCharacter": "Darrendrian"
           },
+          "chrono_timestamp": 1609027200000,
+          "chrono_index": 7
+        },
+        {
+          "title": "A Question Never Asked",
+          "date": "2020-12-27",
+          "code": "CCC-DES-01-03",
+          "dm": "Nicole F.",
+          "kind": "adventure",
+          "gp_plus": 120,
+          "gp_minus": 0,
+          "gp_net": 120,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Wand of Magic Missile",
+            "Selûne's Owl-Eye Glasses"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Elemental Master",
+            "Wild Hunter"
+          ],
+          "notes": "Met Foxwere companion",
           "chrono_timestamp": 1609027200001,
           "chrono_index": 8
         },
@@ -7259,43 +7257,6 @@ window.DATA = {
           "chrono_index": 16
         },
         {
-          "title": "Crypt of the Dark Kiss",
-          "date": "2020-07-29",
-          "code": "DDAL 08-08",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 60,
-          "gp_minus": 0,
-          "gp_net": 60,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 60,
-              "spent": 0,
-              "net": 60
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1595980800000,
-          "chrono_index": 14
-        },
-        {
           "title": "Fangs and Frogs",
           "date": "2020-07-29",
           "code": "DDAL 08-09",
@@ -7336,6 +7297,43 @@ window.DATA = {
             "it seems\nthe physical trait you manifested still\nlingers. This story award can only be\nremoved by a remove curse."
           ],
           "notes": "Used Dreamwalker portent",
+          "chrono_timestamp": 1595980800000,
+          "chrono_index": 14
+        },
+        {
+          "title": "Crypt of the Dark Kiss",
+          "date": "2020-07-29",
+          "code": "DDAL 08-08",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 60,
+          "gp_minus": 0,
+          "gp_net": 60,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1595980800001,
           "chrono_index": 15
         },
@@ -7426,45 +7424,6 @@ window.DATA = {
           "chrono_index": 12
         },
         {
-          "title": "DM Reward",
-          "date": "2020-07-19",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Bracers of Defense"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1595116800000,
-          "chrono_index": 10
-        },
-        {
           "title": "Chapter 4",
           "date": "2020-07-19",
           "code": "DDHC-WDH",
@@ -7500,6 +7459,45 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Received Ring of Protection from Force Grey",
+          "chrono_timestamp": 1595116800000,
+          "chrono_index": 10
+        },
+        {
+          "title": "DM Reward",
+          "date": "2020-07-19",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Bracers of Defense"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1595116800001,
           "chrono_index": 11
         },
@@ -8163,6 +8161,43 @@ window.DATA = {
           "chrono_index": 4
         },
         {
+          "title": "Bleeding Gate: Pandemonium",
+          "date": "2019-09-27",
+          "code": "CCC-BLD 1-1",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 40,
+          "gp_minus": 0,
+          "gp_net": 40,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1569542400000,
+          "chrono_index": 2
+        },
+        {
           "title": "Bleeding Gate: Amalgamation",
           "date": "2019-09-27",
           "code": "CCC-BLD 1-2",
@@ -8193,43 +8228,6 @@ window.DATA = {
           "perm_items": [
             "Winged Boots"
           ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1569542400000,
-          "chrono_index": 2
-        },
-        {
-          "title": "Bleeding Gate: Pandemonium",
-          "date": "2019-09-27",
-          "code": "CCC-BLD 1-1",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 40,
-          "gp_minus": 0,
-          "gp_net": 40,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -8324,6 +8322,43 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
+          "title": "DM Reward",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
+          "gp_minus": 0,
+          "gp_net": 240,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800000,
+          "chrono_index": 8
+        },
+        {
           "title": "Trade",
           "date": "2021-02-24",
           "code": "DT-TRADE",
@@ -8364,43 +8399,6 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Sentient Hat"
           },
-          "chrono_timestamp": 1614124800000,
-          "chrono_index": 8
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
-          "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 240,
-              "spent": 0,
-              "net": 240
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1614124800001,
           "chrono_index": 9
         },
@@ -9423,61 +9421,18 @@ window.DATA = {
           "chrono_index": 10
         },
         {
-          "title": "Claws of Fury",
+          "title": "DM Reward",
           "date": "2024-11-20",
-          "code": "CCC-ALMOG-03 TALES03-01",
-          "dm": "Chris H.",
-          "kind": "adventure",
-          "gp_plus": 8833,
-          "gp_minus": 0,
-          "gp_net": 8833,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 8833,
-              "spent": 0,
-              "net": 8833
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Belt of Fire Giant Strength"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Supreme Healing",
-            "Scroll of Grasping Vine"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1732060800000,
-          "chrono_index": 0
-        },
-        {
-          "title": "Trade",
-          "date": "2024-11-20",
-          "code": "DT-TRADE",
+          "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 8,
           "totals": {
             "gp": {
               "earned": 0,
@@ -9486,28 +9441,21 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 5,
-              "net": -5
+              "spent": 0,
+              "net": 0
             },
             "level": {
-              "gained": 0
+              "gained": 8
             }
           },
-          "perm_items": [
-            "Ring of Spell Storing (Harmonious)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Spider Staff",
-            "received": "Ring of Spell Storing",
-            "counterpartyCharacter": "Madam Renata"
-          },
-          "chrono_timestamp": 1732060800002,
-          "chrono_index": 2
+          "chrono_timestamp": 1732060800000,
+          "chrono_index": 0
         },
         {
           "title": "DM Reward",
@@ -9518,10 +9466,10 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 20,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
@@ -9529,16 +9477,16 @@ window.DATA = {
               "net": 0
             },
             "downtime": {
-              "earned": 20,
+              "earned": 0,
               "spent": 0,
-              "net": 20
+              "net": 0
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
           "perm_items": [
-            "Spider Staff"
+            "Manual of Bodily Health"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -9547,128 +9495,6 @@ window.DATA = {
           "notes": "",
           "chrono_timestamp": 1732060800001,
           "chrono_index": 1
-        },
-        {
-          "title": "Trade",
-          "date": "2024-11-20",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Half-plate +1 (Topaz scales)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Vicious Lance",
-            "received": "Half-plate +1",
-            "counterpartyCharacter": "Norixius"
-          },
-          "chrono_timestamp": 1732060800004,
-          "chrono_index": 4
-        },
-        {
-          "title": "DM Reward",
-          "date": "2024-11-20",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Vicious Lance"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1732060800003,
-          "chrono_index": 3
-        },
-        {
-          "title": "DM Reward",
-          "date": "2024-11-20",
-          "code": "DDHC-KGV-11",
-          "dm": "",
-          "kind": "adventure",
-          "gp_plus": 1000,
-          "gp_minus": 0,
-          "gp_net": 1000,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1000,
-              "spent": 0,
-              "net": 1000
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Vicioius Maul"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1732060800005,
-          "chrono_index": 5
         },
         {
           "title": "Trade",
@@ -9712,8 +9538,8 @@ window.DATA = {
             "received": "Tome of Leadership and Influence",
             "counterpartyCharacter": "Agatha"
           },
-          "chrono_timestamp": 1732060800007,
-          "chrono_index": 7
+          "chrono_timestamp": 1732060800003,
+          "chrono_index": 3
         },
         {
           "title": "DM Reward",
@@ -9751,6 +9577,89 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1732060800002,
+          "chrono_index": 2
+        },
+        {
+          "title": "DM Reward",
+          "date": "2024-11-20",
+          "code": "DDHC-KGV-11",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 1000,
+          "gp_minus": 0,
+          "gp_net": 1000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Vicioius Maul"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1732060800004,
+          "chrono_index": 4
+        },
+        {
+          "title": "Trade",
+          "date": "2024-11-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Half-plate +1 (Topaz scales)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Vicious Lance",
+            "received": "Half-plate +1",
+            "counterpartyCharacter": "Norixius"
+          },
           "chrono_timestamp": 1732060800006,
           "chrono_index": 6
         },
@@ -9763,9 +9672,48 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 0,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Vicious Lance"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1732060800005,
+          "chrono_index": 5
+        },
+        {
+          "title": "Trade",
+          "date": "2024-11-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
           "totals": {
             "gp": {
@@ -9775,21 +9723,26 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 5,
+              "net": -5
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Manual of Bodily Health"
+            "Ring of Spell Storing (Harmonious)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "trade": {
+            "given": "Spider Staff",
+            "received": "Ring of Spell Storing",
+            "counterpartyCharacter": "Madam Renata"
+          },
           "chrono_timestamp": 1732060800008,
           "chrono_index": 8
         },
@@ -9802,10 +9755,10 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 0,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 8,
+          "dtd_net": 20,
+          "level_plus": 1,
           "totals": {
             "gp": {
               "earned": 0,
@@ -9813,17 +9766,62 @@ window.DATA = {
               "net": 0
             },
             "downtime": {
-              "earned": 0,
+              "earned": 20,
               "spent": 0,
-              "net": 0
+              "net": 20
             },
             "level": {
-              "gained": 8
+              "gained": 1
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Spider Staff"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1732060800007,
+          "chrono_index": 7
+        },
+        {
+          "title": "Claws of Fury",
+          "date": "2024-11-20",
+          "code": "CCC-ALMOG-03 TALES03-01",
+          "dm": "Chris H.",
+          "kind": "adventure",
+          "gp_plus": 8833,
+          "gp_minus": 0,
+          "gp_net": 8833,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 8833,
+              "spent": 0,
+              "net": 8833
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Belt of Fire Giant Strength"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Greater Healing",
+            "Potion of Supreme Healing",
+            "Scroll of Grasping Vine"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
@@ -9899,6 +9897,82 @@ window.DATA = {
           "chrono_index": 19
         },
         {
+          "title": "DM Reward x 4",
+          "date": "2021-08-27",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 6400,
+          "gp_minus": 0,
+          "gp_net": 6400,
+          "dtd_plus": 80,
+          "dtd_minus": 0,
+          "dtd_net": 80,
+          "level_plus": 4,
+          "totals": {
+            "gp": {
+              "earned": 6400,
+              "spent": 0,
+              "net": 6400
+            },
+            "downtime": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "level": {
+              "gained": 4
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1630022400000,
+          "chrono_index": 16
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-08-27",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Broom of Flying"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1630022400001,
+          "chrono_index": 17
+        },
+        {
           "title": "Alkezaar's Appendix",
           "date": "2021-08-27",
           "code": "DDHC-CM CH. 16",
@@ -9946,12 +10020,12 @@ window.DATA = {
             "this charm vanishes from you. Charm of Lightning Resistance (10 days)"
           ],
           "notes": "Wished for resistance to Necrotic, spell was cast from a scroll with the help of Divine Intervention by Deneir called upon by Myka (Nicole)",
-          "chrono_timestamp": 1630022400000,
-          "chrono_index": 16
+          "chrono_timestamp": 1630022400002,
+          "chrono_index": 18
         },
         {
           "title": "DM Reward",
-          "date": "2021-08-27",
+          "date": "2021-07-16",
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
@@ -9978,52 +10052,15 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Broom of Flying"
+            "Scimitar of Speed"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1630022400001,
-          "chrono_index": 17
-        },
-        {
-          "title": "DM Reward x 4",
-          "date": "2021-08-27",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 6400,
-          "gp_minus": 0,
-          "gp_net": 6400,
-          "dtd_plus": 80,
-          "dtd_minus": 0,
-          "dtd_net": 80,
-          "level_plus": 4,
-          "totals": {
-            "gp": {
-              "earned": 6400,
-              "spent": 0,
-              "net": 6400
-            },
-            "downtime": {
-              "earned": 80,
-              "spent": 0,
-              "net": 80
-            },
-            "level": {
-              "gained": 4
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1630022400002,
-          "chrono_index": 18
+          "chrono_timestamp": 1626393600000,
+          "chrono_index": 14
         },
         {
           "title": "Trade",
@@ -10066,45 +10103,6 @@ window.DATA = {
             "received": "Ring of Telekenesis",
             "counterpartyCharacter": "Lyrielle"
           },
-          "chrono_timestamp": 1626393600000,
-          "chrono_index": 14
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-07-16",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Scimitar of Speed"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1626393600001,
           "chrono_index": 15
         },
@@ -10188,6 +10186,43 @@ window.DATA = {
           "chrono_index": 12
         },
         {
+          "title": "DM Rewards x 2",
+          "date": "2021-06-11",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 480,
+          "gp_minus": 0,
+          "gp_net": 480,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "dtd_net": 40,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1623369600000,
+          "chrono_index": 10
+        },
+        {
           "title": "Zikran's Zephyrean Tome",
           "date": "2021-06-11",
           "code": "DDHC-CM CH. 11",
@@ -10218,43 +10253,6 @@ window.DATA = {
           "perm_items": [
             "Censor of Commanding Air Elementals (Djinni)"
           ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1623369600000,
-          "chrono_index": 10
-        },
-        {
-          "title": "DM Rewards x 2",
-          "date": "2021-06-11",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 480,
-          "gp_minus": 0,
-          "gp_net": 480,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "dtd_net": 40,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 480,
-              "spent": 0,
-              "net": 480
-            },
-            "downtime": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -10303,6 +10301,45 @@ window.DATA = {
           "chrono_index": 9
         },
         {
+          "title": "Sarah of Yellowcrest Manor",
+          "date": "2021-05-21",
+          "code": "DDHC-CM CH. 8 PART 2",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Robe of Scintillating Colors"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Scribed Counterspell from a scroll",
+          "chrono_timestamp": 1621555200000,
+          "chrono_index": 7
+        },
+        {
           "title": "Lore of Lurue",
           "date": "2021-05-21",
           "code": "DDHC-CM CH. 9",
@@ -10340,45 +10377,6 @@ window.DATA = {
             "Charm of Animal Conjuring (3 uses)"
           ],
           "notes": "",
-          "chrono_timestamp": 1621555200000,
-          "chrono_index": 7
-        },
-        {
-          "title": "Sarah of Yellowcrest Manor",
-          "date": "2021-05-21",
-          "code": "DDHC-CM CH. 8 PART 2",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Robe of Scintillating Colors"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Scribed Counterspell from a scroll",
           "chrono_timestamp": 1621555200001,
           "chrono_index": 8
         },
@@ -10420,6 +10418,43 @@ window.DATA = {
           "chrono_index": 6
         },
         {
+          "title": "DM Reward",
+          "date": "2021-05-07",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
+          "gp_minus": 0,
+          "gp_net": 240,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1620345600000,
+          "chrono_index": 4
+        },
+        {
           "title": "The Book of Cylinders",
           "date": "2021-05-07",
           "code": "DDHC-CM CH. 7",
@@ -10456,84 +10491,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1620345600000,
-          "chrono_index": 4
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-05-07",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
-          "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 240,
-              "spent": 0,
-              "net": 240
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1620345600001,
           "chrono_index": 5
-        },
-        {
-          "title": "Mazfroth’s Mighty Digressions",
-          "date": "2021-04-02",
-          "code": "DDHC-CM CH. 2",
-          "dm": "Alexis P.",
-          "kind": "adventure",
-          "gp_plus": 60,
-          "gp_minus": 34,
-          "gp_net": 26,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 60,
-              "spent": 34,
-              "net": 26
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Helm of Comprehend Languages"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1617321600000,
-          "chrono_index": 2
         },
         {
           "title": "DM Reward",
@@ -10571,8 +10530,84 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1617321600000,
+          "chrono_index": 2
+        },
+        {
+          "title": "Mazfroth’s Mighty Digressions",
+          "date": "2021-04-02",
+          "code": "DDHC-CM CH. 2",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 60,
+          "gp_minus": 34,
+          "gp_net": 26,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 34,
+              "net": 26
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Helm of Comprehend Languages"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1617321600001,
           "chrono_index": 3
+        },
+        {
+          "title": "DM Reward (x2)",
+          "date": "2021-03-26",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 160,
+          "gp_minus": 0,
+          "gp_net": 160,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1616716800000,
+          "chrono_index": 0
         },
         {
           "title": "The Joys of Extradimensional Space",
@@ -10606,43 +10641,6 @@ window.DATA = {
             "Flail +1",
             "Driftglobe"
           ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1616716800000,
-          "chrono_index": 0
-        },
-        {
-          "title": "DM Reward (x2)",
-          "date": "2021-03-26",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 160,
-          "gp_minus": 0,
-          "gp_net": 160,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 160,
-              "spent": 0,
-              "net": 160
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -10819,6 +10817,43 @@ window.DATA = {
           "chrono_index": 34
         },
         {
+          "title": "DM Reward",
+          "date": "2022-07-04",
+          "code": "DM-REWARD",
+          "dm": "James",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 6,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 6
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1656892800000,
+          "chrono_index": 32
+        },
+        {
           "title": "Champions of the Arena",
           "date": "2022-07-04",
           "code": "CCC-GAD02-03",
@@ -10855,43 +10890,6 @@ window.DATA = {
             "Potion of Fire Giant Strength",
             "Spell Scroll of Illusory Dragon"
           ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1656892800000,
-          "chrono_index": 32
-        },
-        {
-          "title": "DM Reward",
-          "date": "2022-07-04",
-          "code": "DM-REWARD",
-          "dm": "James",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 6,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 6
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
@@ -11455,43 +11453,6 @@ window.DATA = {
           "chrono_index": 19
         },
         {
-          "title": "DM Reward x 2",
-          "date": "2021-09-04",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 480,
-          "gp_minus": 0,
-          "gp_net": 480,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "dtd_net": 40,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 480,
-              "spent": 0,
-              "net": 480
-            },
-            "downtime": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1630713600000,
-          "chrono_index": 17
-        },
-        {
           "title": "Unsafe Harborage",
           "date": "2021-09-04",
           "code": "DDAL-DRW-10",
@@ -11517,6 +11478,43 @@ window.DATA = {
             },
             "level": {
               "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1630713600000,
+          "chrono_index": 17
+        },
+        {
+          "title": "DM Reward x 2",
+          "date": "2021-09-04",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 480,
+          "gp_minus": 0,
+          "gp_net": 480,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "dtd_net": 40,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 480,
+              "spent": 0,
+              "net": 480
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
             }
           },
           "perm_items": [],
@@ -11719,50 +11717,6 @@ window.DATA = {
           "title": "Trade",
           "date": "2021-07-16",
           "code": "DT-TRADE",
-          "dm": "Andrew B.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Ring of Spell Storing"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "the Sixth Sword",
-            "received": "Ring of Spell Storing",
-            "counterpartyCharacter": "Z'la'ssh"
-          },
-          "chrono_timestamp": 1626393600000,
-          "chrono_index": 10
-        },
-        {
-          "title": "Trade",
-          "date": "2021-07-16",
-          "code": "DT-TRADE",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
@@ -11800,95 +11754,21 @@ window.DATA = {
             "received": "Scimitar of Speed",
             "counterpartyCharacter": "Orakhar"
           },
-          "chrono_timestamp": 1626393600001,
-          "chrono_index": 11
+          "chrono_timestamp": 1626393600000,
+          "chrono_index": 10
         },
         {
-          "title": "DM Reward",
-          "date": "2021-07-15",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
-          "gp_minus": 0,
-          "gp_net": 240,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 240,
-              "spent": 0,
-              "net": 240
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1626307200000,
-          "chrono_index": 6
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-07-15",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 80,
-          "gp_minus": 0,
-          "gp_net": 80,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 80,
-              "spent": 0,
-              "net": 80
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1626307200001,
-          "chrono_index": 7
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-07-15",
-          "code": "DM-REWARD",
-          "dm": "",
+          "title": "Trade",
+          "date": "2021-07-16",
+          "code": "DT-TRADE",
+          "dm": "Andrew B.",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
@@ -11898,23 +11778,28 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Fey Cloak of Protection"
+            "Ring of Spell Storing"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1626307200002,
-          "chrono_index": 8
+          "trade": {
+            "given": "the Sixth Sword",
+            "received": "Ring of Spell Storing",
+            "counterpartyCharacter": "Z'la'ssh"
+          },
+          "chrono_timestamp": 1626393600001,
+          "chrono_index": 11
         },
         {
           "title": "Kandlekeep Dekonstruktion",
@@ -11956,15 +11841,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Scale Mail for 50 gp, sold Leather Armor for 5gp, Bruce was Awakened by Pwyl Pweeten (Tim H.)",
-          "chrono_timestamp": 1626307200003,
-          "chrono_index": 9
+          "chrono_timestamp": 1626307200000,
+          "chrono_index": 6
         },
         {
-          "title": "The Black Road",
-          "date": "2021-07-14",
-          "code": "DDAL05-02",
-          "dm": "Ryan B.",
-          "kind": "adventure",
+          "title": "DM Reward",
+          "date": "2021-07-15",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
@@ -11987,14 +11872,90 @@ window.DATA = {
               "gained": 0
             }
           },
+          "perm_items": [
+            "Fey Cloak of Protection"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1626307200001,
+          "chrono_index": 7
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-07-15",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 80,
+          "gp_minus": 0,
+          "gp_net": 80,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 80,
+              "spent": 0,
+              "net": 80
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1626220800000,
-          "chrono_index": 4
+          "chrono_timestamp": 1626307200002,
+          "chrono_index": 8
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-07-15",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
+          "gp_minus": 0,
+          "gp_net": 240,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 0,
+              "net": 240
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1626307200003,
+          "chrono_index": 9
         },
         {
           "title": "Mazfroth's Mighty Digressions",
@@ -12030,27 +11991,27 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Yeti horn recorder (Flute) in Baldur's Gate",
-          "chrono_timestamp": 1626220800001,
-          "chrono_index": 5
+          "chrono_timestamp": 1626220800000,
+          "chrono_index": 4
         },
         {
-          "title": "A Deep and Creeping Darkness",
-          "date": "2021-07-06",
-          "code": "DDHC-CM 04",
-          "dm": "Alexis P.",
+          "title": "The Black Road",
+          "date": "2021-07-14",
+          "code": "DDAL05-02",
+          "dm": "Ryan B.",
           "kind": "adventure",
-          "gp_plus": 80,
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 80,
+          "gp_net": 0,
           "dtd_plus": 0,
           "dtd_minus": 0,
           "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 80,
+              "earned": 0,
               "spent": 0,
-              "net": 80
+              "net": 0
             },
             "downtime": {
               "earned": 0,
@@ -12061,15 +12022,49 @@ window.DATA = {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Goggles of Night",
-            "Ring of Swimming"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1626220800001,
+          "chrono_index": 5
+        },
+        {
+          "title": "DM Reward x 3",
+          "date": "2021-07-06",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 240,
+          "gp_minus": 200,
+          "gp_net": 40,
+          "dtd_plus": 30,
+          "dtd_minus": 0,
+          "dtd_net": 30,
+          "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 240,
+              "spent": 200,
+              "net": 40
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 3
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Purchased Bruce the Elephant for 200 gp",
           "chrono_timestamp": 1625529600000,
           "chrono_index": 0
         },
@@ -12157,39 +12152,42 @@ window.DATA = {
           "chrono_index": 1
         },
         {
-          "title": "DM Reward x 3",
+          "title": "A Deep and Creeping Darkness",
           "date": "2021-07-06",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 240,
-          "gp_minus": 200,
-          "gp_net": 40,
-          "dtd_plus": 30,
+          "code": "DDHC-CM 04",
+          "dm": "Alexis P.",
+          "kind": "adventure",
+          "gp_plus": 80,
+          "gp_minus": 0,
+          "gp_net": 80,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 30,
-          "level_plus": 3,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 240,
-              "spent": 200,
-              "net": 40
+              "earned": 80,
+              "spent": 0,
+              "net": 80
             },
             "downtime": {
-              "earned": 30,
+              "earned": 0,
               "spent": 0,
-              "net": 30
+              "net": 0
             },
             "level": {
-              "gained": 3
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Goggles of Night",
+            "Ring of Swimming"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Purchased Bruce the Elephant for 200 gp",
+          "notes": "",
           "chrono_timestamp": 1625529600003,
           "chrono_index": 3
         }
@@ -13263,6 +13261,43 @@ window.DATA = {
           "chrono_index": 23
         },
         {
+          "title": "The Vampire of Skullport",
+          "date": "2021-05-14",
+          "code": "DDAL08-13",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 600,
+          "gp_minus": 567,
+          "gp_net": 33,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 567,
+              "net": 33
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought a pirate flag with a dragon skull and crossbones",
+          "chrono_timestamp": 1620950400000,
+          "chrono_index": 21
+        },
+        {
           "title": "Trade",
           "date": "2021-05-14",
           "code": "DT-TRADE",
@@ -13303,43 +13338,6 @@ window.DATA = {
             "received": "1 pot of Nulzor's Marvelous Pigments",
             "counterpartyCharacter": "Buckley"
           },
-          "chrono_timestamp": 1620950400000,
-          "chrono_index": 21
-        },
-        {
-          "title": "The Vampire of Skullport",
-          "date": "2021-05-14",
-          "code": "DDAL08-13",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 600,
-          "gp_minus": 567,
-          "gp_net": 33,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 600,
-              "spent": 567,
-              "net": 33
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought a pirate flag with a dragon skull and crossbones",
           "chrono_timestamp": 1620950400001,
           "chrono_index": 22
         },
@@ -13590,6 +13588,49 @@ window.DATA = {
           "chrono_index": 15
         },
         {
+          "title": "Dead Canaries",
+          "date": "2021-03-27",
+          "code": "CCC-BMG-38 HULB 3-2",
+          "dm": "Bryce C.",
+          "kind": "adventure",
+          "gp_plus": 800,
+          "gp_minus": 300,
+          "gp_net": 500,
+          "dtd_plus": 0,
+          "dtd_minus": 1,
+          "dtd_net": -1,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 300,
+              "net": 500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Tome of Clear Thought"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Mental Fortitude: Advantage on one save each: Intelligence",
+            "Wisdom",
+            "Charisma"
+          ],
+          "notes": "Cast Holy Weapon in Ring of Spell Storing",
+          "chrono_timestamp": 1616803200000,
+          "chrono_index": 12
+        },
+        {
           "title": "Trade",
           "date": "2021-03-27",
           "code": "DT-TRADE",
@@ -13630,8 +13671,8 @@ window.DATA = {
             "received": "Headband of Intellect",
             "counterpartyCharacter": "Bryce"
           },
-          "chrono_timestamp": 1616803200001,
-          "chrono_index": 13
+          "chrono_timestamp": 1616803200002,
+          "chrono_index": 14
         },
         {
           "title": "DM Reward",
@@ -13669,51 +13710,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1616803200000,
-          "chrono_index": 12
-        },
-        {
-          "title": "Dead Canaries",
-          "date": "2021-03-27",
-          "code": "CCC-BMG-38 HULB 3-2",
-          "dm": "Bryce C.",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 300,
-          "gp_net": 500,
-          "dtd_plus": 0,
-          "dtd_minus": 1,
-          "dtd_net": -1,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 800,
-              "spent": 300,
-              "net": 500
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 1,
-              "net": -1
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Tome of Clear Thought"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Mental Fortitude: Advantage on one save each: Intelligence",
-            "Wisdom",
-            "Charisma"
-          ],
-          "notes": "Cast Holy Weapon in Ring of Spell Storing",
-          "chrono_timestamp": 1616803200002,
-          "chrono_index": 14
+          "chrono_timestamp": 1616803200001,
+          "chrono_index": 13
         },
         {
           "title": "Mind Trip",
@@ -13756,6 +13754,361 @@ window.DATA = {
           "notes": "Used +3 Arrow \"Deck of Many Things\"",
           "chrono_timestamp": 1616544000000,
           "chrono_index": 11
+        },
+        {
+          "title": "DM Reward (x2)",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 160,
+          "gp_minus": 0,
+          "gp_net": 160,
+          "dtd_plus": 30,
+          "dtd_minus": 0,
+          "dtd_net": 30,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800000,
+          "chrono_index": 1
+        },
+        {
+          "title": "DM Reward (x6)",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 1440,
+          "gp_minus": 0,
+          "gp_net": 1440,
+          "dtd_plus": 120,
+          "dtd_minus": 0,
+          "dtd_net": 120,
+          "level_plus": 6,
+          "totals": {
+            "gp": {
+              "earned": 1440,
+              "spent": 0,
+              "net": 1440
+            },
+            "downtime": {
+              "earned": 120,
+              "spent": 0,
+              "net": 120
+            },
+            "level": {
+              "gained": 6
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800001,
+          "chrono_index": 2
+        },
+        {
+          "title": "DM Reward (x2)",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 3200,
+          "gp_minus": 0,
+          "gp_net": 3200,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "dtd_net": 40,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 3200,
+              "spent": 0,
+              "net": 3200
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800002,
+          "chrono_index": 3
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Cli Lyre"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800003,
+          "chrono_index": 4
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Staff of Healing"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800004,
+          "chrono_index": 5
+        },
+        {
+          "title": "Trade",
+          "date": "2021-02-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Glamoured Studded Leather"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "FOWP - Ivory Goats",
+            "received": "Glamoured Studded Leather",
+            "counterpartyCharacter": "Anfer"
+          },
+          "chrono_timestamp": 1614124800006,
+          "chrono_index": 7
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "FOWP - Ivory Goats"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800005,
+          "chrono_index": 6
+        },
+        {
+          "title": "Trade",
+          "date": "2021-02-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Ring of Spell Storing (Harmonius)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Splint +1",
+            "received": "Ring of Spell Storing (Harmonius)",
+            "counterpartyCharacter": "Noraggen"
+          },
+          "chrono_timestamp": 1614124800008,
+          "chrono_index": 9
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-02-24",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Splint +1"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1614124800007,
+          "chrono_index": 8
         },
         {
           "title": "Run for the Money",
@@ -13803,361 +14156,6 @@ window.DATA = {
             "Banned: Maladomini"
           ],
           "notes": "Spent 1 DTD casting Holy Weapon into the Ring of Spell Storing. Bought 5 Potions of Greater Healing (500 gp) and 3 diamonds (900 gp), spent 1000 gp on Hero's Feast. Table Trade of Rod of Rulership for Staff of Charming. Gave 200 gp to Pit Fiend in rare coins. Purchased 1500 gp worth of Ruby Dust (Forcecage component).",
-          "chrono_timestamp": 1614124800000,
-          "chrono_index": 1
-        },
-        {
-          "title": "Trade",
-          "date": "2021-02-24",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Ring of Spell Storing (Harmonius)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Splint +1",
-            "received": "Ring of Spell Storing (Harmonius)",
-            "counterpartyCharacter": "Noraggen"
-          },
-          "chrono_timestamp": 1614124800002,
-          "chrono_index": 3
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Splint +1"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800001,
-          "chrono_index": 2
-        },
-        {
-          "title": "Trade",
-          "date": "2021-02-24",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Glamoured Studded Leather"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "FOWP - Ivory Goats",
-            "received": "Glamoured Studded Leather",
-            "counterpartyCharacter": "Anfer"
-          },
-          "chrono_timestamp": 1614124800004,
-          "chrono_index": 5
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "FOWP - Ivory Goats"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800003,
-          "chrono_index": 4
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Staff of Healing"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800005,
-          "chrono_index": 6
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Cli Lyre"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800006,
-          "chrono_index": 7
-        },
-        {
-          "title": "DM Reward (x2)",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 3200,
-          "gp_minus": 0,
-          "gp_net": 3200,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "dtd_net": 40,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 3200,
-              "spent": 0,
-              "net": 3200
-            },
-            "downtime": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800007,
-          "chrono_index": 8
-        },
-        {
-          "title": "DM Reward (x6)",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 1440,
-          "gp_minus": 0,
-          "gp_net": 1440,
-          "dtd_plus": 120,
-          "dtd_minus": 0,
-          "dtd_net": 120,
-          "level_plus": 6,
-          "totals": {
-            "gp": {
-              "earned": 1440,
-              "spent": 0,
-              "net": 1440
-            },
-            "downtime": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
-            },
-            "level": {
-              "gained": 6
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1614124800008,
-          "chrono_index": 9
-        },
-        {
-          "title": "DM Reward (x2)",
-          "date": "2021-02-24",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 160,
-          "gp_minus": 0,
-          "gp_net": 160,
-          "dtd_plus": 30,
-          "dtd_minus": 0,
-          "dtd_net": 30,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 160,
-              "spent": 0,
-              "net": 160
-            },
-            "downtime": {
-              "earned": 30,
-              "spent": 0,
-              "net": 30
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1614124800009,
           "chrono_index": 10
         },
@@ -14541,46 +14539,39 @@ window.DATA = {
           "chrono_index": 39
         },
         {
-          "title": "Trade",
+          "title": "DM Reward",
           "date": "2020-11-01",
-          "code": "DT-TRADE",
+          "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 0,
+          "gp_plus": 1600,
           "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
+          "gp_net": 1600,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 0,
+              "earned": 1600,
               "spent": 0,
-              "net": 0
+              "net": 1600
             },
             "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
+              "earned": 20,
+              "spent": 0,
+              "net": 20
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
-          "perm_items": [
-            "Belt of Fire Giant Strength"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Manual of Bodily Health",
-            "received": "Belt of Fire Giant Strength",
-            "counterpartyCharacter": "Lorien"
-          },
           "chrono_timestamp": 1604188800000,
           "chrono_index": 36
         },
@@ -14629,78 +14620,48 @@ window.DATA = {
           "chrono_index": 37
         },
         {
-          "title": "DM Reward",
+          "title": "Trade",
           "date": "2020-11-01",
-          "code": "DM-REWARD",
+          "code": "DT-TRADE",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 1600,
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 1600,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1600,
-              "spent": 0,
-              "net": 1600
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1604188800002,
-          "chrono_index": 38
-        },
-        {
-          "title": "Tomb of Horrors pt. 1",
-          "date": "2020-10-31",
-          "code": "DDHC-TYP",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 600,
-          "gp_minus": 1600,
-          "gp_net": -1000,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 600,
-              "spent": 1600,
-              "net": -1000
-            },
-            "downtime": {
               "earned": 0,
               "spent": 0,
               "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Belt of Fire Giant Strength"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Bought 2 Scrolls of Death Ward, 1 Scroll of Revivify",
-          "chrono_timestamp": 1604102400000,
-          "chrono_index": 34
+          "notes": "",
+          "trade": {
+            "given": "Manual of Bodily Health",
+            "received": "Belt of Fire Giant Strength",
+            "counterpartyCharacter": "Lorien"
+          },
+          "chrono_timestamp": 1604188800002,
+          "chrono_index": 38
         },
         {
           "title": "Tomb of Horrors pt. 2",
@@ -14749,6 +14710,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1604102400000,
+          "chrono_index": 34
+        },
+        {
+          "title": "Tomb of Horrors pt. 1",
+          "date": "2020-10-31",
+          "code": "DDHC-TYP",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 600,
+          "gp_minus": 1600,
+          "gp_net": -1000,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 1600,
+              "net": -1000
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought 2 Scrolls of Death Ward, 1 Scroll of Revivify",
           "chrono_timestamp": 1604102400001,
           "chrono_index": 35
         },
@@ -15245,9 +15243,9 @@ window.DATA = {
           "chrono_index": 22
         },
         {
-          "title": "Find the Sword, GO!",
+          "title": "Star Sword, RETURN!",
           "date": "2020-05-14",
-          "code": "CCC-ANIME-01-02",
+          "code": "CCC-ANIME-01-03",
           "dm": "Jon K.",
           "kind": "adventure",
           "gp_plus": 0,
@@ -15272,13 +15270,13 @@ window.DATA = {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Shield +2"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [],
+          "story_awards": [
+            "To Suffer As Ilmater"
+          ],
           "notes": "",
           "chrono_timestamp": 1589414400000,
           "chrono_index": 19
@@ -15328,9 +15326,9 @@ window.DATA = {
           "chrono_index": 20
         },
         {
-          "title": "Star Sword, RETURN!",
+          "title": "Find the Sword, GO!",
           "date": "2020-05-14",
-          "code": "CCC-ANIME-01-03",
+          "code": "CCC-ANIME-01-02",
           "dm": "Jon K.",
           "kind": "adventure",
           "gp_plus": 0,
@@ -15355,53 +15353,16 @@ window.DATA = {
               "gained": 0
             }
           },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "To Suffer As Ilmater"
+          "perm_items": [
+            "Shield +2"
           ],
-          "notes": "",
-          "chrono_timestamp": 1589414400002,
-          "chrono_index": 21
-        },
-        {
-          "title": "Before the Hatch",
-          "date": "2020-04-12",
-          "code": "CCC-CNE-02",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1586649600000,
-          "chrono_index": 17
+          "chrono_timestamp": 1589414400002,
+          "chrono_index": 21
         },
         {
           "title": "The Treasure Beneath",
@@ -15438,6 +15399,43 @@ window.DATA = {
           "story_awards": [
             "Friends of the Shadow Watch Tribe"
           ],
+          "notes": "",
+          "chrono_timestamp": 1586649600000,
+          "chrono_index": 17
+        },
+        {
+          "title": "Before the Hatch",
+          "date": "2020-04-12",
+          "code": "CCC-CNE-02",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
           "notes": "",
           "chrono_timestamp": 1586649600001,
           "chrono_index": 18
@@ -15646,46 +15644,41 @@ window.DATA = {
           "chrono_index": 12
         },
         {
-          "title": "Trade",
+          "title": "Hellfire Requiem",
           "date": "2020-02-16",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
+          "code": "DDEP 09-02",
+          "dm": "Shannon",
+          "kind": "adventure",
+          "gp_plus": 120,
           "gp_minus": 0,
-          "gp_net": 0,
+          "gp_net": 120,
           "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
+          "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
+              "earned": 120,
               "spent": 0,
-              "net": 0
+              "net": 120
             },
             "downtime": {
               "earned": 0,
-              "spent": 15,
-              "net": -15
+              "spent": 0,
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Wand of Webs"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
-          "consumable_items": [],
+          "consumable_items": [
+            "Potion of Heroism"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Trident of Fish Command",
-            "received": "Wand of Webs",
-            "counterpartyCharacter": "Darrendrian"
-          },
           "chrono_timestamp": 1581811200000,
           "chrono_index": 9
         },
@@ -15727,41 +15720,46 @@ window.DATA = {
           "chrono_index": 10
         },
         {
-          "title": "Hellfire Requiem",
+          "title": "Trade",
           "date": "2020-02-16",
-          "code": "DDEP 09-02",
-          "dm": "Shannon",
-          "kind": "adventure",
-          "gp_plus": 120,
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 120,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
-            },
-            "downtime": {
               "earned": 0,
               "spent": 0,
               "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Heroism"
+          "perm_items": [
+            "Wand of Webs"
           ],
+          "lost_perm_item": [],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "trade": {
+            "given": "Trident of Fish Command",
+            "received": "Wand of Webs",
+            "counterpartyCharacter": "Darrendrian"
+          },
           "chrono_timestamp": 1581811200002,
           "chrono_index": 11
         },
@@ -15888,6 +15886,45 @@ window.DATA = {
           "chrono_index": 6
         },
         {
+          "title": "Best Friends Forever",
+          "date": "2020-02-07",
+          "code": "CCC-CIC-04",
+          "dm": "Jonathan C.",
+          "kind": "adventure",
+          "gp_plus": 60,
+          "gp_minus": 0,
+          "gp_net": 60,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Gratitude of the Von Finkelstein family - Scroll of Water Breathing"
+          ],
+          "notes": "",
+          "chrono_timestamp": 1581033600000,
+          "chrono_index": 3
+        },
+        {
           "title": "Trade",
           "date": "2020-02-07",
           "code": "DT-TRADE",
@@ -15928,8 +15965,8 @@ window.DATA = {
             "received": "Belt of Hill Giant Strength",
             "counterpartyCharacter": "Lorien"
           },
-          "chrono_timestamp": 1581033600001,
-          "chrono_index": 4
+          "chrono_timestamp": 1581033600002,
+          "chrono_index": 5
         },
         {
           "title": "Forgotten Traditions",
@@ -15967,47 +16004,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1581033600000,
-          "chrono_index": 3
-        },
-        {
-          "title": "Best Friends Forever",
-          "date": "2020-02-07",
-          "code": "CCC-CIC-04",
-          "dm": "Jonathan C.",
-          "kind": "adventure",
-          "gp_plus": 60,
-          "gp_minus": 0,
-          "gp_net": 60,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 60,
-              "spent": 0,
-              "net": 60
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Gratitude of the Von Finkelstein family - Scroll of Water Breathing"
-          ],
-          "notes": "",
-          "chrono_timestamp": 1581033600002,
-          "chrono_index": 5
+          "chrono_timestamp": 1581033600001,
+          "chrono_index": 4
         },
         {
           "title": "Rise of the Sea Dragon",
@@ -16052,50 +16050,6 @@ window.DATA = {
           "title": "Trade",
           "date": "2020-01-08",
           "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Gem of Water Elemental"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Choraller's Companion",
-            "received": "Gem of Water Elemental",
-            "counterpartyCharacter": "Darrendrian"
-          },
-          "chrono_timestamp": 1578441600000,
-          "chrono_index": 0
-        },
-        {
-          "title": "Trade",
-          "date": "2020-01-08",
-          "code": "DT-TRADE",
           "dm": "David T.",
           "kind": "Downtime Activity",
           "gp_plus": 0,
@@ -16132,6 +16086,50 @@ window.DATA = {
             "given": "Bag of Tricks",
             "received": "Choraller's Companion",
             "counterpartyCharacter": "Del"
+          },
+          "chrono_timestamp": 1578441600000,
+          "chrono_index": 0
+        },
+        {
+          "title": "Trade",
+          "date": "2020-01-08",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Gem of Water Elemental"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Choraller's Companion",
+            "received": "Gem of Water Elemental",
+            "counterpartyCharacter": "Darrendrian"
           },
           "chrono_timestamp": 1578441600001,
           "chrono_index": 1
@@ -16367,9 +16365,9 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 10,
+          "dtd_plus": 30,
           "dtd_minus": 0,
-          "dtd_net": 10,
+          "dtd_net": 30,
           "level_plus": 0,
           "totals": {
             "gp": {
@@ -16378,16 +16376,16 @@ window.DATA = {
               "net": 0
             },
             "downtime": {
-              "earned": 10,
+              "earned": 30,
               "spent": 0,
-              "net": 10
+              "net": 30
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Armor of Necrotic Resistance"
+            "Rod of Absorption"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16396,45 +16394,6 @@ window.DATA = {
           "notes": "",
           "chrono_timestamp": 1696377600000,
           "chrono_index": 110
-        },
-        {
-          "title": "DM Reward",
-          "date": "2023-10-04",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 2500,
-          "gp_minus": 0,
-          "gp_net": 2500,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 2500,
-              "spent": 0,
-              "net": 2500
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Sixth Sword"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1696377600001,
-          "chrono_index": 111
         },
         {
           "title": "DM Reward",
@@ -16472,6 +16431,45 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1696377600001,
+          "chrono_index": 111
+        },
+        {
+          "title": "DM Reward",
+          "date": "2023-10-04",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 2500,
+          "gp_minus": 0,
+          "gp_net": 2500,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 2500,
+              "spent": 0,
+              "net": 2500
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Sixth Sword"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1696377600002,
           "chrono_index": 112
         },
@@ -16484,9 +16482,9 @@ window.DATA = {
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
-          "dtd_plus": 30,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "dtd_net": 30,
+          "dtd_net": 10,
           "level_plus": 0,
           "totals": {
             "gp": {
@@ -16495,16 +16493,16 @@ window.DATA = {
               "net": 0
             },
             "downtime": {
-              "earned": 30,
+              "earned": 10,
               "spent": 0,
-              "net": 30
+              "net": 10
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Rod of Absorption"
+            "Armor of Necrotic Resistance"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -16643,46 +16641,39 @@ window.DATA = {
           "chrono_index": 107
         },
         {
-          "title": "Season 11b DM Rewards (UC x 3, R x 2, VR x 1)",
+          "title": "Scribing a Scroll",
           "date": "2023-01-20",
-          "code": "DM-REWARD",
+          "code": "DT-SCRIBE",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 100,
-          "dtd_minus": 0,
-          "dtd_net": 100,
+          "gp_minus": 250000,
+          "gp_net": -250000,
+          "dtd_plus": 0,
+          "dtd_minus": 240,
+          "dtd_net": -240,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 250000,
+              "net": -250000
             },
             "downtime": {
-              "earned": 100,
-              "spent": 0,
-              "net": 100
+              "earned": 0,
+              "spent": 240,
+              "net": -240
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Emerald Pen",
-            "Periapt of Health",
-            "Bag of Tricks (tan)",
-            "Dragon Wing Longbow",
-            "Gem of Seeing",
-            "Sapphire Buckler"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
+          "notes": "Spent 240 days and 250,000 gp to scribe a scroll of Wish.",
           "chrono_timestamp": 1674172800000,
           "chrono_index": 104
         },
@@ -16731,39 +16722,46 @@ window.DATA = {
           "chrono_index": 105
         },
         {
-          "title": "Scribing a Scroll",
+          "title": "Season 11b DM Rewards (UC x 3, R x 2, VR x 1)",
           "date": "2023-01-20",
-          "code": "DT-SCRIBE",
+          "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 250000,
-          "gp_net": -250000,
-          "dtd_plus": 0,
-          "dtd_minus": 240,
-          "dtd_net": -240,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 100,
+          "dtd_minus": 0,
+          "dtd_net": 100,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 250000,
-              "net": -250000
+              "spent": 0,
+              "net": 0
             },
             "downtime": {
-              "earned": 0,
-              "spent": 240,
-              "net": -240
+              "earned": 100,
+              "spent": 0,
+              "net": 100
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Emerald Pen",
+            "Periapt of Health",
+            "Bag of Tricks (tan)",
+            "Dragon Wing Longbow",
+            "Gem of Seeing",
+            "Sapphire Buckler"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Spent 240 days and 250,000 gp to scribe a scroll of Wish.",
+          "notes": "",
           "chrono_timestamp": 1674172800002,
           "chrono_index": 106
         },
@@ -16809,60 +16807,23 @@ window.DATA = {
           "chrono_index": 103
         },
         {
-          "title": "Dreamwalker: 18",
+          "title": "Death of Szass Tam",
           "date": "2022-09-14",
-          "code": "DT-DREAMWALKER",
-          "dm": "Kristy D.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 50,
-          "dtd_net": -50,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 50,
-              "net": -50
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Used Dreamwalker downtime activity to recieve a new portent: 18",
-          "chrono_timestamp": 1663113600000,
-          "chrono_index": 99
-        },
-        {
-          "title": "Fall the Cold Night",
-          "date": "2022-09-14",
-          "code": "DDAL-DRW19",
-          "dm": "Kristy D.",
+          "code": "DDAL-DRW20",
+          "dm": "Erik T.",
           "kind": "adventure",
-          "gp_plus": 87000,
-          "gp_minus": 10300,
-          "gp_net": 76700,
+          "gp_plus": 14000,
+          "gp_minus": 35000,
+          "gp_net": -21000,
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 87000,
-              "spent": 10300,
-              "net": 76700
+              "earned": 14000,
+              "spent": 35000,
+              "net": -21000
             },
             "downtime": {
               "earned": 10,
@@ -16874,20 +16835,21 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Gem Dragon Touched Focus",
-            "Sapphire Buckler"
+            "Blood Fury Tattoo",
+            "Kyrzin's Ooze"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Speed",
-            "Scroll of Daylight",
-            "Oil of Sharpness"
+            "Potion of Invisibility",
+            "Potion of Vitality"
           ],
           "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1663113600001,
-          "chrono_index": 100
+          "story_awards": [
+            "Scroll Eater"
+          ],
+          "notes": "Used 18 Dreamwalker portent",
+          "chrono_timestamp": 1663113600000,
+          "chrono_index": 99
         },
         {
           "title": "Trade",
@@ -16930,27 +16892,27 @@ window.DATA = {
             "received": "Pipe of Smoke Monsters (guardian)",
             "counterpartyCharacter": "Norixius"
           },
-          "chrono_timestamp": 1663113600002,
-          "chrono_index": 101
+          "chrono_timestamp": 1663113600001,
+          "chrono_index": 100
         },
         {
-          "title": "Death of Szass Tam",
+          "title": "Fall the Cold Night",
           "date": "2022-09-14",
-          "code": "DDAL-DRW20",
-          "dm": "Erik T.",
+          "code": "DDAL-DRW19",
+          "dm": "Kristy D.",
           "kind": "adventure",
-          "gp_plus": 14000,
-          "gp_minus": 35000,
-          "gp_net": -21000,
+          "gp_plus": 87000,
+          "gp_minus": 10300,
+          "gp_net": 76700,
           "dtd_plus": 10,
           "dtd_minus": 0,
           "dtd_net": 10,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 14000,
-              "spent": 35000,
-              "net": -21000
+              "earned": 87000,
+              "spent": 10300,
+              "net": 76700
             },
             "downtime": {
               "earned": 10,
@@ -16962,150 +16924,57 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Blood Fury Tattoo",
-            "Kyrzin's Ooze"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Invisibility",
-            "Potion of Vitality"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Scroll Eater"
-          ],
-          "notes": "Used 18 Dreamwalker portent",
-          "chrono_timestamp": 1663113600003,
-          "chrono_index": 102
-        },
-        {
-          "title": "Pools of Cerulean",
-          "date": "2022-09-04",
-          "code": "DDAL07-16",
-          "dm": "Bryce C.",
-          "kind": "adventure",
-          "gp_plus": 6000,
-          "gp_minus": 10000,
-          "gp_net": -4000,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 6000,
-              "spent": 10000,
-              "net": -4000
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Vorpal Scimitar"
+            "Gem Dragon Touched Focus",
+            "Sapphire Buckler"
           ],
           "lost_perm_item": [],
           "consumable_items": [
             "Potion of Speed",
-            "Scroll of Dominate Monster"
+            "Scroll of Daylight",
+            "Oil of Sharpness"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1662249600000,
-          "chrono_index": 95
+          "chrono_timestamp": 1663113600002,
+          "chrono_index": 101
         },
         {
-          "title": "Cauldron of Sapphire",
-          "date": "2022-09-04",
-          "code": "DDAL07-17",
-          "dm": "Bryce C.",
-          "kind": "adventure",
-          "gp_plus": 16000,
-          "gp_minus": 10800,
-          "gp_net": 5200,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
+          "title": "Dreamwalker: 18",
+          "date": "2022-09-14",
+          "code": "DT-DREAMWALKER",
+          "dm": "Kristy D.",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 50,
+          "dtd_net": -50,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 16000,
-              "spent": 10800,
-              "net": 5200
+              "earned": 0,
+              "spent": 0,
+              "net": 0
             },
             "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
+              "earned": 0,
+              "spent": 50,
+              "net": -50
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Staff of the Magi",
-            "Cap of Water Breathing"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
-          "consumable_items": [
-            "Scroll of Greater Restoration"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Atropal in a cage"
-          ],
-          "notes": "Permanently gave up 5 hit dice to power the opal pendant to hold an atropal",
-          "chrono_timestamp": 1662249600001,
-          "chrono_index": 96
-        },
-        {
-          "title": "Turn Back the Endless Night",
-          "date": "2022-09-04",
-          "code": "DDAL07-18",
-          "dm": "Bryce C.",
-          "kind": "adventure",
-          "gp_plus": 9000,
-          "gp_minus": 1000,
-          "gp_net": 8000,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 9000,
-              "spent": 1000,
-              "net": 8000
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Scarab of Protection"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Supreme Healing",
-            "Potion of Fly",
-            "Scroll of Teleport"
-          ],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1662249600002,
-          "chrono_index": 97
+          "notes": "Used Dreamwalker downtime activity to recieve a new portent: 18",
+          "chrono_timestamp": 1663113600003,
+          "chrono_index": 102
         },
         {
           "title": "Trade with Trading Post",
@@ -17148,6 +17017,135 @@ window.DATA = {
             "received": "Absorbing Tattoo (Force)",
             "counterpartyCharacter": "Trading Post"
           },
+          "chrono_timestamp": 1662249600000,
+          "chrono_index": 95
+        },
+        {
+          "title": "Turn Back the Endless Night",
+          "date": "2022-09-04",
+          "code": "DDAL07-18",
+          "dm": "Bryce C.",
+          "kind": "adventure",
+          "gp_plus": 9000,
+          "gp_minus": 1000,
+          "gp_net": 8000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 9000,
+              "spent": 1000,
+              "net": 8000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Scarab of Protection"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Supreme Healing",
+            "Potion of Fly",
+            "Scroll of Teleport"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1662249600001,
+          "chrono_index": 96
+        },
+        {
+          "title": "Cauldron of Sapphire",
+          "date": "2022-09-04",
+          "code": "DDAL07-17",
+          "dm": "Bryce C.",
+          "kind": "adventure",
+          "gp_plus": 16000,
+          "gp_minus": 10800,
+          "gp_net": 5200,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 16000,
+              "spent": 10800,
+              "net": 5200
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Staff of the Magi",
+            "Cap of Water Breathing"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Scroll of Greater Restoration"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Atropal in a cage"
+          ],
+          "notes": "Permanently gave up 5 hit dice to power the opal pendant to hold an atropal",
+          "chrono_timestamp": 1662249600002,
+          "chrono_index": 97
+        },
+        {
+          "title": "Pools of Cerulean",
+          "date": "2022-09-04",
+          "code": "DDAL07-16",
+          "dm": "Bryce C.",
+          "kind": "adventure",
+          "gp_plus": 6000,
+          "gp_minus": 10000,
+          "gp_net": -4000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 6000,
+              "spent": 10000,
+              "net": -4000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Vorpal Scimitar"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Speed",
+            "Scroll of Dominate Monster"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1662249600003,
           "chrono_index": 98
         },
@@ -17268,7 +17266,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Robe of the Archmage (gray)"
+            "Staff of the Magi"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17276,72 +17274,26 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Defender Longsword",
-            "received": "Robe of the Archmage (gray)",
-            "counterpartyCharacter": "Darrendrian"
+            "given": "Moon Blade",
+            "received": "Staff of the Magi",
+            "counterpartyCharacter": "Morty"
           },
           "chrono_timestamp": 1654646400000,
           "chrono_index": 87
         },
         {
-          "title": "Crypt of the Death Giants",
+          "title": "DM Reward",
           "date": "2022-06-08",
-          "code": "DDAL06-03",
-          "dm": "",
-          "kind": "adventure",
-          "gp_plus": 3100,
-          "gp_minus": 0,
-          "gp_net": 3100,
-          "dtd_plus": 0,
-          "dtd_minus": 200,
-          "dtd_net": -200,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3100,
-              "spent": 0,
-              "net": 3100
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 200,
-              "net": -200
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Belt of Storm Giant Strength"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Speed",
-            "Scroll of Project Image",
-            "Scroll of Antimagic Field",
-            "Scroll of Teleport"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Hall of Omens"
-          ],
-          "notes": "Spent 200 DTD in the Hall of Omens gaining an additional portent",
-          "chrono_timestamp": 1654646400001,
-          "chrono_index": 88
-        },
-        {
-          "title": "Trade",
-          "date": "2022-06-08",
-          "code": "DT-TRADE",
+          "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 3,
           "totals": {
             "gp": {
               "earned": 0,
@@ -17350,28 +17302,23 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 5,
-              "net": -5
+              "spent": 0,
+              "net": 0
             },
             "level": {
-              "gained": 0
+              "gained": 3
             }
           },
-          "perm_items": [
-            "Tome of the Stilled Tongue"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
-          "supernatural_gifts": [],
+          "supernatural_gifts": [
+            "Boon of High Magic"
+          ],
           "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Hide +3",
-            "received": "Tome of the Stilled Tongue",
-            "counterpartyCharacter": "Morty"
-          },
-          "chrono_timestamp": 1654646400002,
-          "chrono_index": 89
+          "notes": "Gained an additional 9th level spell slot",
+          "chrono_timestamp": 1654646400001,
+          "chrono_index": 88
         },
         {
           "title": "Trade",
@@ -17416,22 +17363,22 @@ window.DATA = {
             "received": "a Moon Blade",
             "counterpartyCharacter": "trade Blackrazor"
           },
-          "chrono_timestamp": 1654646400003,
-          "chrono_index": 90
+          "chrono_timestamp": 1654646400002,
+          "chrono_index": 89
         },
         {
-          "title": "DM Reward",
+          "title": "Trade",
           "date": "2022-06-08",
-          "code": "DM-REWARD",
+          "code": "DT-TRADE",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
           "gp_minus": 0,
           "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 3,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
@@ -17440,21 +17387,72 @@ window.DATA = {
             },
             "downtime": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 5,
+              "net": -5
             },
             "level": {
-              "gained": 3
+              "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Tome of the Stilled Tongue"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
-          "supernatural_gifts": [
-            "Boon of High Magic"
-          ],
+          "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Gained an additional 9th level spell slot",
+          "notes": "",
+          "trade": {
+            "given": "Hide +3",
+            "received": "Tome of the Stilled Tongue",
+            "counterpartyCharacter": "Morty"
+          },
+          "chrono_timestamp": 1654646400003,
+          "chrono_index": 90
+        },
+        {
+          "title": "Crypt of the Death Giants",
+          "date": "2022-06-08",
+          "code": "DDAL06-03",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 3100,
+          "gp_minus": 0,
+          "gp_net": 3100,
+          "dtd_plus": 0,
+          "dtd_minus": 200,
+          "dtd_net": -200,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3100,
+              "spent": 0,
+              "net": 3100
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 200,
+              "net": -200
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Belt of Storm Giant Strength"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Speed",
+            "Scroll of Project Image",
+            "Scroll of Antimagic Field",
+            "Scroll of Teleport"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Hall of Omens"
+          ],
+          "notes": "Spent 200 DTD in the Hall of Omens gaining an additional portent",
           "chrono_timestamp": 1654646400004,
           "chrono_index": 91
         },
@@ -17487,7 +17485,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Staff of the Magi"
+            "Robe of the Archmage (gray)"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17495,51 +17493,12 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Moon Blade",
-            "received": "Staff of the Magi",
-            "counterpartyCharacter": "Morty"
+            "given": "Defender Longsword",
+            "received": "Robe of the Archmage (gray)",
+            "counterpartyCharacter": "Darrendrian"
           },
           "chrono_timestamp": 1654646400005,
           "chrono_index": 92
-        },
-        {
-          "title": "Forgotten Foes",
-          "date": "2022-06-07",
-          "code": "DDAL00-02E",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 4800,
-          "gp_minus": 0,
-          "gp_net": 4800,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 4800,
-              "spent": 0,
-              "net": 4800
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Rod of Absorption"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1654560000000,
-          "chrono_index": 85
         },
         {
           "title": "The Darkest Vein",
@@ -17579,6 +17538,45 @@ window.DATA = {
             "Planar Secrets"
           ],
           "notes": "Can spend 50 downtime days to make a hidden demiplane or connect two demiplanes you have created.",
+          "chrono_timestamp": 1654560000000,
+          "chrono_index": 85
+        },
+        {
+          "title": "Forgotten Foes",
+          "date": "2022-06-07",
+          "code": "DDAL00-02E",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 4800,
+          "gp_minus": 0,
+          "gp_net": 4800,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 4800,
+              "spent": 0,
+              "net": 4800
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Rod of Absorption"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1654560000001,
           "chrono_index": 86
         },
@@ -17896,40 +17894,39 @@ window.DATA = {
           "chrono_index": 78
         },
         {
-          "title": "Season 11 DM Reward (R) x 6",
+          "title": "Season 11 DM Reward (UC) x 5",
           "date": "2022-02-28",
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 7500,
+          "gp_plus": 750,
           "gp_minus": 0,
-          "gp_net": 7500,
-          "dtd_plus": 60,
+          "gp_net": 750,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 60,
+          "dtd_net": 20,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 7500,
+              "earned": 750,
               "spent": 0,
-              "net": 7500
+              "net": 750
             },
             "downtime": {
-              "earned": 60,
+              "earned": 20,
               "spent": 0,
-              "net": 60
+              "net": 20
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Darkthorn arrows (5)",
-            "Faerie dragon's favor",
-            "Hag's clawblade",
-            "Siren's caress",
-            "Blink Dog's Guide to Transversing the Feywild",
-            "Sprite's rescue"
+            "Nereid Shawl",
+            "Night Queen's Eyes",
+            "Mariner's scale mail",
+            "Quiver of the Centaurs",
+            "Lathai's saddle"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -17982,39 +17979,40 @@ window.DATA = {
           "chrono_index": 76
         },
         {
-          "title": "Season 11 DM Reward (UC) x 5",
+          "title": "Season 11 DM Reward (R) x 6",
           "date": "2022-02-28",
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 750,
+          "gp_plus": 7500,
           "gp_minus": 0,
-          "gp_net": 750,
-          "dtd_plus": 20,
+          "gp_net": 7500,
+          "dtd_plus": 60,
           "dtd_minus": 0,
-          "dtd_net": 20,
+          "dtd_net": 60,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 750,
+              "earned": 7500,
               "spent": 0,
-              "net": 750
+              "net": 7500
             },
             "downtime": {
-              "earned": 20,
+              "earned": 60,
               "spent": 0,
-              "net": 20
+              "net": 60
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Nereid Shawl",
-            "Night Queen's Eyes",
-            "Mariner's scale mail",
-            "Quiver of the Centaurs",
-            "Lathai's saddle"
+            "Darkthorn arrows (5)",
+            "Faerie dragon's favor",
+            "Hag's clawblade",
+            "Siren's caress",
+            "Blink Dog's Guide to Transversing the Feywild",
+            "Sprite's rescue"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -18338,45 +18336,6 @@ window.DATA = {
           "chrono_index": 68
         },
         {
-          "title": "Season 11 DM Reward UC",
-          "date": "2021-11-21",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Winged Boots"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1637452800000,
-          "chrono_index": 66
-        },
-        {
           "title": "The City That Should Not Be",
           "date": "2021-11-21",
           "code": "DDAL-DRW14",
@@ -18420,6 +18379,45 @@ window.DATA = {
             "Bond of Fellowship"
           ],
           "notes": "Spent 14 days and 2150 gp copying spells from previously collected spellbooks. Bought scrolls of Arcane Eye and Tasha's Mind Whip and copied into spellbook for 2 days and 950 gp. Bought scrolls of Mold Earth and Passwall and copied them into my spell book during the adventure for 1325 gp. Received a scroll of teleportation circle and scribed it into my spellbook for 250 gp.",
+          "chrono_timestamp": 1637452800000,
+          "chrono_index": 66
+        },
+        {
+          "title": "Season 11 DM Reward UC",
+          "date": "2021-11-21",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Winged Boots"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1637452800001,
           "chrono_index": 67
         },
@@ -18615,6 +18613,43 @@ window.DATA = {
           "chrono_index": 62
         },
         {
+          "title": "DM Reward",
+          "date": "2021-10-26",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 1600,
+          "gp_minus": 0,
+          "gp_net": 1600,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1600,
+              "spent": 0,
+              "net": 1600
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1635206400000,
+          "chrono_index": 60
+        },
+        {
           "title": "The Handfasting",
           "date": "2021-10-26",
           "code": "CCC-RCC-01-06",
@@ -18654,43 +18689,6 @@ window.DATA = {
             "Minor Noble"
           ],
           "notes": "Killed 19 Thentian commoners in combat and told to lay low. No advertising the school for one year.",
-          "chrono_timestamp": 1635206400000,
-          "chrono_index": 60
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-10-26",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 1600,
-          "gp_minus": 0,
-          "gp_net": 1600,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1600,
-              "spent": 0,
-              "net": 1600
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1635206400001,
           "chrono_index": 61
         },
@@ -20089,6 +20087,47 @@ window.DATA = {
           "chrono_index": 27
         },
         {
+          "title": "White Plume Mountain pt. 1",
+          "date": "2020-10-25",
+          "code": "DDHC-TYP CH. 4",
+          "dm": "Cheryl F.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Goggles of Night",
+            "Stone of Good Luck",
+            "Chainmail +1"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1603584000000,
+          "chrono_index": 25
+        },
+        {
           "title": "White Plume Mountain pt. 2",
           "date": "2020-10-25",
           "code": "DDHC-TYP CH. 4",
@@ -20137,47 +20176,6 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Consumed 1 Mystery Key. Returned all 3 weapons. Spent 2 downtime days for Suyin (Nicole) and Figment (Jane) to scribe Steel Wind Strike.",
-          "chrono_timestamp": 1603584000000,
-          "chrono_index": 25
-        },
-        {
-          "title": "White Plume Mountain pt. 1",
-          "date": "2020-10-25",
-          "code": "DDHC-TYP CH. 4",
-          "dm": "Cheryl F.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Goggles of Night",
-            "Stone of Good Luck",
-            "Chainmail +1"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1603584000001,
           "chrono_index": 26
         },
@@ -20268,6 +20266,47 @@ window.DATA = {
           "chrono_index": 23
         },
         {
+          "title": "Forgotten Traditions",
+          "date": "2020-10-17",
+          "code": "DDAL 05-11",
+          "dm": "Jesse S.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 25,
+          "dtd_net": -25,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 25,
+              "net": -25
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Opal of the Ild Rune"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Dreamwalker"
+          ],
+          "notes": "Spent 25 downtime days on the Dreamwalker activity, portent received: 19",
+          "chrono_timestamp": 1602892800000,
+          "chrono_index": 20
+        },
+        {
           "title": "Trade",
           "date": "2020-10-17",
           "code": "DT-TRADE",
@@ -20308,8 +20347,8 @@ window.DATA = {
             "received": "Dagger of Blindsight",
             "counterpartyCharacter": "Lorien"
           },
-          "chrono_timestamp": 1602892800001,
-          "chrono_index": 21
+          "chrono_timestamp": 1602892800002,
+          "chrono_index": 22
         },
         {
           "title": "DM Reward",
@@ -20347,49 +20386,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1602892800000,
-          "chrono_index": 20
-        },
-        {
-          "title": "Forgotten Traditions",
-          "date": "2020-10-17",
-          "code": "DDAL 05-11",
-          "dm": "Jesse S.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 25,
-          "dtd_net": -25,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 25,
-              "net": -25
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Opal of the Ild Rune"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Dreamwalker"
-          ],
-          "notes": "Spent 25 downtime days on the Dreamwalker activity, portent received: 19",
-          "chrono_timestamp": 1602892800002,
-          "chrono_index": 22
+          "chrono_timestamp": 1602892800001,
+          "chrono_index": 21
         },
         {
           "title": "A House Divide",
@@ -20553,49 +20551,6 @@ window.DATA = {
           "chrono_index": 16
         },
         {
-          "title": "Murder at the Festival",
-          "date": "2020-09-23",
-          "code": "CCC-MAG01-02",
-          "dm": "Cheryl F.",
-          "kind": "adventure",
-          "gp_plus": 120,
-          "gp_minus": 50,
-          "gp_net": 70,
-          "dtd_plus": 0,
-          "dtd_minus": 1,
-          "dtd_net": -1,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 120,
-              "spent": 50,
-              "net": 70
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 1,
-              "net": -1
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Wand of Smiles",
-            "Tan Bag of Tricks",
-            "+2 Arrows"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Enmity of Etana"
-          ],
-          "notes": "Spent 1 day and 50gp learning Detect Thoughts from Zynn (Erik)",
-          "chrono_timestamp": 1600819200000,
-          "chrono_index": 13
-        },
-        {
           "title": "Trade",
           "date": "2020-09-23",
           "code": "DT-TRADE",
@@ -20636,8 +20591,8 @@ window.DATA = {
             "received": "Robe of Stars",
             "counterpartyCharacter": "Morty"
           },
-          "chrono_timestamp": 1600819200002,
-          "chrono_index": 15
+          "chrono_timestamp": 1600819200001,
+          "chrono_index": 14
         },
         {
           "title": "DM Reward",
@@ -20675,8 +20630,51 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1600819200001,
-          "chrono_index": 14
+          "chrono_timestamp": 1600819200000,
+          "chrono_index": 13
+        },
+        {
+          "title": "Murder at the Festival",
+          "date": "2020-09-23",
+          "code": "CCC-MAG01-02",
+          "dm": "Cheryl F.",
+          "kind": "adventure",
+          "gp_plus": 120,
+          "gp_minus": 50,
+          "gp_net": 70,
+          "dtd_plus": 0,
+          "dtd_minus": 1,
+          "dtd_net": -1,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 120,
+              "spent": 50,
+              "net": 70
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 1,
+              "net": -1
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Wand of Smiles",
+            "Tan Bag of Tricks",
+            "+2 Arrows"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Enmity of Etana"
+          ],
+          "notes": "Spent 1 day and 50gp learning Detect Thoughts from Zynn (Erik)",
+          "chrono_timestamp": 1600819200002,
+          "chrono_index": 15
         },
         {
           "title": "Trade",
@@ -21130,43 +21128,6 @@ window.DATA = {
           "chrono_index": 2
         },
         {
-          "title": "DM Reward (x2)",
-          "date": "2020-07-16",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 160,
-          "gp_minus": 0,
-          "gp_net": 160,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 2,
-          "totals": {
-            "gp": {
-              "earned": 160,
-              "spent": 0,
-              "net": 160
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 2
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1594857600000,
-          "chrono_index": 0
-        },
-        {
           "title": "To Be the Very Best",
           "date": "2020-07-16",
           "code": "CCC-KUMORI-02-04",
@@ -21202,6 +21163,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 30 gp worth of incense",
+          "chrono_timestamp": 1594857600000,
+          "chrono_index": 0
+        },
+        {
+          "title": "DM Reward (x2)",
+          "date": "2020-07-16",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 160,
+          "gp_minus": 0,
+          "gp_net": 160,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 2,
+          "totals": {
+            "gp": {
+              "earned": 160,
+              "spent": 0,
+              "net": 160
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 2
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1594857600001,
           "chrono_index": 1
         }
@@ -21279,6 +21277,45 @@ window.DATA = {
           "chrono_index": 70
         },
         {
+          "title": "DM Reward",
+          "date": "2025-05-14",
+          "code": "DM-REWARD",
+          "dm": "James",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 40,
+          "dtd_minus": 0,
+          "dtd_net": 40,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 40,
+              "spent": 0,
+              "net": 40
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Ring of Invisibility"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1747180800000,
+          "chrono_index": 68
+        },
+        {
           "title": "Roots, Bloody Roots",
           "date": "2025-05-14",
           "code": "PS-DC-GLITCH-01",
@@ -21317,45 +21354,6 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Blessing of Magic Resistance",
-          "chrono_timestamp": 1747180800000,
-          "chrono_index": 68
-        },
-        {
-          "title": "DM Reward",
-          "date": "2025-05-14",
-          "code": "DM-REWARD",
-          "dm": "James",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 40,
-          "dtd_minus": 0,
-          "dtd_net": 40,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 40,
-              "spent": 0,
-              "net": 40
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Ring of Invisibility"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1747180800001,
           "chrono_index": 69
         },
@@ -21815,49 +21813,6 @@ window.DATA = {
           "chrono_index": 57
         },
         {
-          "title": "Darkest Vein",
-          "date": "2020-10-15",
-          "code": "CCC-BMG-37-HULB-3-3",
-          "dm": "Jose S.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Dreamwhirl (Lance +3)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Scroll of Plane Shift"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Planar Studies"
-          ],
-          "notes": "",
-          "chrono_timestamp": 1602720000000,
-          "chrono_index": 55
-        },
-        {
           "title": "Trade",
           "date": "2020-10-15",
           "code": "DT-TRADE",
@@ -21898,6 +21853,49 @@ window.DATA = {
             "received": "Studded Leather +2",
             "counterpartyCharacter": "Morty"
           },
+          "chrono_timestamp": 1602720000000,
+          "chrono_index": 55
+        },
+        {
+          "title": "Darkest Vein",
+          "date": "2020-10-15",
+          "code": "CCC-BMG-37-HULB-3-3",
+          "dm": "Jose S.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Dreamwhirl (Lance +3)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Scroll of Plane Shift"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Planar Studies"
+          ],
+          "notes": "",
           "chrono_timestamp": 1602720000001,
           "chrono_index": 56
         },
@@ -22100,45 +22098,6 @@ window.DATA = {
           "chrono_index": 50
         },
         {
-          "title": "The Best Laid Plans of Gnomes",
-          "date": "2020-07-01",
-          "code": "CCC-SDREAM-03",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Vitality"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1593561600000,
-          "chrono_index": 48
-        },
-        {
           "title": "Trade",
           "date": "2020-07-01",
           "code": "DT-TRADE",
@@ -22179,6 +22138,45 @@ window.DATA = {
             "received": "Cloak of Many Fashions",
             "counterpartyCharacter": "Morty"
           },
+          "chrono_timestamp": 1593561600000,
+          "chrono_index": 48
+        },
+        {
+          "title": "The Best Laid Plans of Gnomes",
+          "date": "2020-07-01",
+          "code": "CCC-SDREAM-03",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Vitality"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1593561600001,
           "chrono_index": 49
         },
@@ -22545,6 +22543,45 @@ window.DATA = {
           "chrono_index": 39
         },
         {
+          "title": "A Tale of Two Towers",
+          "date": "2020-04-16",
+          "code": "CCC-FRS-003",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Aegis of the Raven Queen Shield +3"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "-1 minutes on Candle of Invocation",
+          "chrono_timestamp": 1586995200000,
+          "chrono_index": 37
+        },
+        {
           "title": "Trade",
           "date": "2020-04-16",
           "code": "DT-TRADE",
@@ -22585,45 +22622,6 @@ window.DATA = {
             "received": "Tome of Understanding",
             "counterpartyCharacter": "Darrendrian"
           },
-          "chrono_timestamp": 1586995200000,
-          "chrono_index": 37
-        },
-        {
-          "title": "A Tale of Two Towers",
-          "date": "2020-04-16",
-          "code": "CCC-FRS-003",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Aegis of the Raven Queen Shield +3"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "-1 minutes on Candle of Invocation",
           "chrono_timestamp": 1586995200001,
           "chrono_index": 38
         },
@@ -22970,49 +22968,6 @@ window.DATA = {
           "chrono_index": 28
         },
         {
-          "title": "The Swarmed Heart",
-          "date": "2020-02-14",
-          "code": "DDAL 09-13",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 600,
-          "gp_minus": 0,
-          "gp_net": 600,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 600,
-              "spent": 0,
-              "net": 600
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins",
-            "Soul Coins"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1581638400000,
-          "chrono_index": 26
-        },
-        {
           "title": "The Breath of Life",
           "date": "2020-02-14",
           "code": "DDAL 09-12",
@@ -23045,6 +23000,49 @@ window.DATA = {
           "consumable_items": [
             "Soul Coins",
             "Soul Coins",
+            "Soul Coins",
+            "Soul Coins",
+            "Soul Coins",
+            "Soul Coins",
+            "Soul Coins"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1581638400000,
+          "chrono_index": 26
+        },
+        {
+          "title": "The Swarmed Heart",
+          "date": "2020-02-14",
+          "code": "DDAL 09-13",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 600,
+          "gp_minus": 0,
+          "gp_net": 600,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 600,
+              "spent": 0,
+              "net": 600
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [
             "Soul Coins",
             "Soul Coins",
             "Soul Coins",
@@ -23223,6 +23221,43 @@ window.DATA = {
           "chrono_index": 22
         },
         {
+          "title": "Maze of Shadows Part 1",
+          "date": "2020-02-01",
+          "code": "DDAL-TOA-15",
+          "dm": "Jesse S.",
+          "kind": "adventure",
+          "gp_plus": 800,
+          "gp_minus": 2300,
+          "gp_net": -1500,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 2300,
+              "net": -1500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Purchased Revivify Scroll with components, Greater Restoration Scroll, Freedom of movement scroll. Bought Hag's Eye for 200 gp",
+          "chrono_timestamp": 1580515200000,
+          "chrono_index": 20
+        },
+        {
           "title": "Maze of Shadows Part 2",
           "date": "2020-02-01",
           "code": "DDAL-TOA-15",
@@ -23258,43 +23293,6 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Unlocked Oathbinder, in reserve until Tier 4",
-          "chrono_timestamp": 1580515200000,
-          "chrono_index": 20
-        },
-        {
-          "title": "Maze of Shadows Part 1",
-          "date": "2020-02-01",
-          "code": "DDAL-TOA-15",
-          "dm": "Jesse S.",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 2300,
-          "gp_net": -1500,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 800,
-              "spent": 2300,
-              "net": -1500
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Purchased Revivify Scroll with components, Greater Restoration Scroll, Freedom of movement scroll. Bought Hag's Eye for 200 gp",
           "chrono_timestamp": 1580515200001,
           "chrono_index": 21
         },
@@ -23343,45 +23341,6 @@ window.DATA = {
           "chrono_index": 19
         },
         {
-          "title": "Sub Rosa",
-          "date": "2020-01-23",
-          "code": "CCC-TRI-23",
-          "dm": "Ryan L.",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 0,
-          "gp_net": 800,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 800,
-              "spent": 0,
-              "net": 800
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Studded Leather +2"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1579737600000,
-          "chrono_index": 17
-        },
-        {
           "title": "Trade",
           "date": "2020-01-23",
           "code": "DT-TRADE",
@@ -23422,22 +23381,22 @@ window.DATA = {
             "received": "Bad of Devouring",
             "counterpartyCharacter": "Lorien"
           },
-          "chrono_timestamp": 1579737600001,
-          "chrono_index": 18
+          "chrono_timestamp": 1579737600000,
+          "chrono_index": 17
         },
         {
-          "title": "Zhentarim's Lament",
-          "date": "2020-01-22",
-          "code": "CCC-ROZK 01-02",
-          "dm": "Sambi C.",
+          "title": "Sub Rosa",
+          "date": "2020-01-23",
+          "code": "CCC-TRI-23",
+          "dm": "Ryan L.",
           "kind": "adventure",
           "gp_plus": 800,
           "gp_minus": 0,
           "gp_net": 800,
-          "dtd_plus": 20,
-          "dtd_minus": 50,
-          "dtd_net": -30,
-          "level_plus": 1,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 800,
@@ -23445,29 +23404,24 @@ window.DATA = {
               "net": 800
             },
             "downtime": {
-              "earned": 20,
-              "spent": 50,
-              "net": -30
+              "earned": 0,
+              "spent": 0,
+              "net": 0
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
           "perm_items": [
-            "Tome of Leadership",
-            "Influence"
+            "Studded Leather +2"
           ],
           "lost_perm_item": [],
-          "consumable_items": [
-            "Scroll of Forcecage"
-          ],
+          "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [
-            "Nature of the Weave"
-          ],
-          "notes": "Ring of Evasion from Zhentarim membership. Spent 50 DTD's learning nature of the weave, got expertise in Arcana.",
-          "chrono_timestamp": 1579651200000,
-          "chrono_index": 15
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1579737600001,
+          "chrono_index": 18
         },
         {
           "title": "Durlag’s Tower",
@@ -23510,49 +23464,52 @@ window.DATA = {
             "Quasit essence"
           ],
           "notes": "Bought silver cage for 100 gp (Soul Cage component). Bought 10x Find Familiar components for 100 gp.",
-          "chrono_timestamp": 1579651200001,
-          "chrono_index": 16
+          "chrono_timestamp": 1579651200000,
+          "chrono_index": 15
         },
         {
-          "title": "Best Friends Forever",
-          "date": "2020-01-20",
-          "code": "CCC-CIC-04",
-          "dm": "Corey F.",
+          "title": "Zhentarim's Lament",
+          "date": "2020-01-22",
+          "code": "CCC-ROZK 01-02",
+          "dm": "Sambi C.",
           "kind": "adventure",
-          "gp_plus": 120,
+          "gp_plus": 800,
           "gp_minus": 0,
-          "gp_net": 120,
+          "gp_net": 800,
           "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
+          "dtd_minus": 50,
+          "dtd_net": -30,
           "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 120,
+              "earned": 800,
               "spent": 0,
-              "net": 120
+              "net": 800
             },
             "downtime": {
               "earned": 20,
-              "spent": 0,
-              "net": 20
+              "spent": 50,
+              "net": -30
             },
             "level": {
               "gained": 1
             }
           },
           "perm_items": [
-            "Sending Stones"
+            "Tome of Leadership",
+            "Influence"
           ],
           "lost_perm_item": [],
-          "consumable_items": [],
+          "consumable_items": [
+            "Scroll of Forcecage"
+          ],
           "supernatural_gifts": [],
           "story_awards": [
-            "Gratitude of the Von Finkelsteins x2 - Scroll of Dream"
+            "Nature of the Weave"
           ],
-          "notes": "",
-          "chrono_timestamp": 1579478400000,
-          "chrono_index": 13
+          "notes": "Ring of Evasion from Zhentarim membership. Spent 50 DTD's learning nature of the weave, got expertise in Arcana.",
+          "chrono_timestamp": 1579651200001,
+          "chrono_index": 16
         },
         {
           "title": "Trade",
@@ -23594,22 +23551,22 @@ window.DATA = {
             "given": "Wand of Fireballs",
             "received": "Rod of the Pact Keeper +2"
           },
-          "chrono_timestamp": 1579478400001,
-          "chrono_index": 14
+          "chrono_timestamp": 1579478400000,
+          "chrono_index": 13
         },
         {
-          "title": "Tipping the Scales",
-          "date": "2020-01-18",
-          "code": "DDAL 09-10",
-          "dm": "Jane A.",
+          "title": "Best Friends Forever",
+          "date": "2020-01-20",
+          "code": "CCC-CIC-04",
+          "dm": "Corey F.",
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
           "gp_net": 120,
-          "dtd_plus": 0,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
           "totals": {
             "gp": {
               "earned": 120,
@@ -23617,24 +23574,26 @@ window.DATA = {
               "net": 120
             },
             "downtime": {
-              "earned": 0,
+              "earned": 20,
               "spent": 0,
-              "net": 0
+              "net": 20
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Soul Coin"
+          "perm_items": [
+            "Sending Stones"
           ],
+          "lost_perm_item": [],
+          "consumable_items": [],
           "supernatural_gifts": [],
-          "story_awards": [],
+          "story_awards": [
+            "Gratitude of the Von Finkelsteins x2 - Scroll of Dream"
+          ],
           "notes": "",
-          "chrono_timestamp": 1579305600000,
-          "chrono_index": 11
+          "chrono_timestamp": 1579478400001,
+          "chrono_index": 14
         },
         {
           "title": "In the Garden of Evil",
@@ -23672,35 +23631,35 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1579305600001,
-          "chrono_index": 12
+          "chrono_timestamp": 1579305600000,
+          "chrono_index": 11
         },
         {
-          "title": "Infernal Insurgency",
-          "date": "2020-01-17",
-          "code": "DDAL 09-06",
-          "dm": "Justin C.",
+          "title": "Tipping the Scales",
+          "date": "2020-01-18",
+          "code": "DDAL 09-10",
+          "dm": "Jane A.",
           "kind": "adventure",
           "gp_plus": 120,
-          "gp_minus": 25,
-          "gp_net": 95,
-          "dtd_plus": 20,
+          "gp_minus": 0,
+          "gp_net": 120,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
+          "dtd_net": 0,
+          "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 120,
-              "spent": 25,
-              "net": 95
+              "spent": 0,
+              "net": 120
             },
             "downtime": {
-              "earned": 20,
+              "earned": 0,
               "spent": 0,
-              "net": 20
+              "net": 0
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
           "perm_items": [],
@@ -23710,7 +23669,51 @@ window.DATA = {
           ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
+          "notes": "",
+          "chrono_timestamp": 1579305600001,
+          "chrono_index": 12
+        },
+        {
+          "title": "Trade",
+          "date": "2020-01-17",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Broom of Flying"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Wand of Webs",
+            "received": "Broom of Flying",
+            "counterpartyCharacter": "Darrendrian"
+          },
           "chrono_timestamp": 1579219200000,
           "chrono_index": 8
         },
@@ -23759,46 +23762,41 @@ window.DATA = {
           "chrono_index": 9
         },
         {
-          "title": "Trade",
+          "title": "Infernal Insurgency",
           "date": "2020-01-17",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
+          "code": "DDAL 09-06",
+          "dm": "Justin C.",
+          "kind": "adventure",
+          "gp_plus": 120,
+          "gp_minus": 25,
+          "gp_net": 95,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
+              "earned": 120,
+              "spent": 25,
+              "net": 95
             },
             "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
+              "earned": 20,
+              "spent": 0,
+              "net": 20
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
-          "perm_items": [
-            "Broom of Flying"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
-          "consumable_items": [],
+          "consumable_items": [
+            "Soul Coin"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Wand of Webs",
-            "received": "Broom of Flying",
-            "counterpartyCharacter": "Darrendrian"
-          },
+          "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
           "chrono_timestamp": 1579219200002,
           "chrono_index": 10
         },
@@ -23842,43 +23840,6 @@ window.DATA = {
           "chrono_index": 7
         },
         {
-          "title": "Shadows Over the Moonsea",
-          "date": "2020-01-15",
-          "code": "DDEX 1-3",
-          "dm": "Paul",
-          "kind": "adventure",
-          "gp_plus": 100,
-          "gp_minus": 0,
-          "gp_net": 100,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 100,
-              "spent": 0,
-              "net": 100
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1579046400000,
-          "chrono_index": 5
-        },
-        {
           "title": "Trade",
           "date": "2020-01-15",
           "code": "DT-TRADE",
@@ -23919,6 +23880,43 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Abserd"
           },
+          "chrono_timestamp": 1579046400000,
+          "chrono_index": 5
+        },
+        {
+          "title": "Shadows Over the Moonsea",
+          "date": "2020-01-15",
+          "code": "DDEX 1-3",
+          "dm": "Paul",
+          "kind": "adventure",
+          "gp_plus": 100,
+          "gp_minus": 0,
+          "gp_net": 100,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 100,
+              "spent": 0,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1579046400001,
           "chrono_index": 6
         },
@@ -23962,43 +23960,6 @@ window.DATA = {
           "chrono_index": 4
         },
         {
-          "title": "Tier up with DTD's",
-          "date": "2020-01-10",
-          "code": "DT-LEVEL-UP",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 20,
-          "dtd_net": 0,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 20,
-              "net": 0
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1578614400000,
-          "chrono_index": 2
-        },
-        {
           "title": "Stopped at the Gate",
           "date": "2020-01-10",
           "code": "DDAL 09-02",
@@ -24032,6 +23993,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 50gp on 5x Find Familiar components",
+          "chrono_timestamp": 1578614400000,
+          "chrono_index": 2
+        },
+        {
+          "title": "Tier up with DTD's",
+          "date": "2020-01-10",
+          "code": "DT-LEVEL-UP",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 20,
+          "dtd_minus": 20,
+          "dtd_net": 0,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 20,
+              "net": 0
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1578614400001,
           "chrono_index": 3
         },
@@ -24279,7 +24277,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Efreeti Chain"
+            "Ioun Stone of Mastery"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -24287,8 +24285,8 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Belt of Storm Giant Strength",
-            "received": "Efreeti Chain",
+            "given": "Holy Avenger Longsword",
+            "received": "Ioun Stone of Mastery",
             "counterpartyCharacter": "Darrendrian"
           },
           "chrono_timestamp": 1633219200000,
@@ -24323,7 +24321,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Ioun Stone of Mastery"
+            "Efreeti Chain"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -24331,51 +24329,12 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Holy Avenger Longsword",
-            "received": "Ioun Stone of Mastery",
+            "given": "Belt of Storm Giant Strength",
+            "received": "Efreeti Chain",
             "counterpartyCharacter": "Darrendrian"
           },
           "chrono_timestamp": 1633219200001,
           "chrono_index": 51
-        },
-        {
-          "title": "Mysterious Isle",
-          "date": "2021-05-26",
-          "code": "DDAL05-18",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 2000,
-          "gp_net": 1000,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3000,
-              "spent": 2000,
-              "net": 1000
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Robe of Stars"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought 2 Scrolls of Holy Weapon",
-          "chrono_timestamp": 1621987200000,
-          "chrono_index": 48
         },
         {
           "title": "Trade",
@@ -24418,27 +24377,27 @@ window.DATA = {
             "received": "Belt of Storm Giant Strength",
             "counterpartyCharacter": "Darrendrian"
           },
-          "chrono_timestamp": 1621987200001,
-          "chrono_index": 49
+          "chrono_timestamp": 1621987200000,
+          "chrono_index": 48
         },
         {
-          "title": "Streams of Crimson",
-          "date": "2021-04-10",
-          "code": "DDAL07-15",
-          "dm": "Violet F.",
+          "title": "Mysterious Isle",
+          "date": "2021-05-26",
+          "code": "DDAL05-18",
+          "dm": "Erik T.",
           "kind": "adventure",
-          "gp_plus": 4500,
-          "gp_minus": 8000,
-          "gp_net": -3500,
+          "gp_plus": 3000,
+          "gp_minus": 2000,
+          "gp_net": 1000,
           "dtd_plus": 20,
           "dtd_minus": 0,
           "dtd_net": 20,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 4500,
-              "spent": 8000,
-              "net": -3500
+              "earned": 3000,
+              "spent": 2000,
+              "net": 1000
             },
             "downtime": {
               "earned": 20,
@@ -24450,15 +24409,15 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Efreeti Chain"
+            "Robe of Stars"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1618012800000,
-          "chrono_index": 46
+          "notes": "Bought 2 Scrolls of Holy Weapon",
+          "chrono_timestamp": 1621987200001,
+          "chrono_index": 49
         },
         {
           "title": "Trade",
@@ -24501,6 +24460,45 @@ window.DATA = {
             "received": "Holy Avenger Longsword",
             "counterpartyCharacter": "Darrendrian"
           },
+          "chrono_timestamp": 1618012800000,
+          "chrono_index": 46
+        },
+        {
+          "title": "Streams of Crimson",
+          "date": "2021-04-10",
+          "code": "DDAL07-15",
+          "dm": "Violet F.",
+          "kind": "adventure",
+          "gp_plus": 4500,
+          "gp_minus": 8000,
+          "gp_net": -3500,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 4500,
+              "spent": 8000,
+              "net": -3500
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Efreeti Chain"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1618012800001,
           "chrono_index": 47
         },
@@ -24577,7 +24575,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Manual of Bodily Health"
+            "Flying Carpet"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -24585,8 +24583,8 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Belt of Fire Giant Strength",
-            "received": "Manual of Bodily Health",
+            "given": "Aegis of the Raven Queen Shield",
+            "received": "Flying Carpet",
             "counterpartyCharacter": "Arvistan"
           },
           "chrono_timestamp": 1604188800000,
@@ -24621,7 +24619,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Flying Carpet"
+            "Manual of Bodily Health"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -24629,8 +24627,8 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Aegis of the Raven Queen Shield",
-            "received": "Flying Carpet",
+            "given": "Belt of Fire Giant Strength",
+            "received": "Manual of Bodily Health",
             "counterpartyCharacter": "Arvistan"
           },
           "chrono_timestamp": 1604188800001,
@@ -24769,6 +24767,43 @@ window.DATA = {
           "chrono_index": 40
         },
         {
+          "title": "DM Rewards x3",
+          "date": "2020-07-13",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 18000,
+          "gp_minus": 0,
+          "gp_net": 18000,
+          "dtd_plus": 60,
+          "dtd_minus": 0,
+          "dtd_net": 60,
+          "level_plus": 3,
+          "totals": {
+            "gp": {
+              "earned": 18000,
+              "spent": 0,
+              "net": 18000
+            },
+            "downtime": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "level": {
+              "gained": 3
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1594598400000,
+          "chrono_index": 38
+        },
+        {
           "title": "Twice as Nice for Half the Price",
           "date": "2020-07-13",
           "code": "DDAL00-11F",
@@ -24806,43 +24841,6 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 3 Scrolls of Holy Weapon, 2 Scrolls of Find Greater Steed, and 10 Potions of Greater Healing. Used 1 DTD to cast spells. Spent 1 Soul Coin",
-          "chrono_timestamp": 1594598400000,
-          "chrono_index": 38
-        },
-        {
-          "title": "DM Rewards x3",
-          "date": "2020-07-13",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 18000,
-          "gp_minus": 0,
-          "gp_net": 18000,
-          "dtd_plus": 60,
-          "dtd_minus": 0,
-          "dtd_net": 60,
-          "level_plus": 3,
-          "totals": {
-            "gp": {
-              "earned": 18000,
-              "spent": 0,
-              "net": 18000
-            },
-            "downtime": {
-              "earned": 60,
-              "spent": 0,
-              "net": 60
-            },
-            "level": {
-              "gained": 3
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1594598400001,
           "chrono_index": 39
         },
@@ -25082,28 +25080,28 @@ window.DATA = {
           "chrono_index": 32
         },
         {
-          "title": "The Vast Emptiness of Grace",
+          "title": "The Breath of Life",
           "date": "2020-03-21",
-          "code": "DDAL09-14",
-          "dm": "Jon K.",
+          "code": "DDAL09-12",
+          "dm": "Jesse S.",
           "kind": "adventure",
           "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
+          "gp_minus": 1600,
+          "gp_net": -1600,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 1600,
+              "net": -1600
             },
             "downtime": {
               "earned": 0,
-              "spent": 0,
-              "net": 0
+              "spent": 5,
+              "net": -5
             },
             "level": {
               "gained": 0
@@ -25114,7 +25112,7 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
+          "notes": "Spent 800gp for Splint barding. Spent 300gp and 1 soul coin to make a Hag's daughters stop haunting my dreams. Spent 500gp and 5 DTD's in a bargain with Mahadi.",
           "chrono_timestamp": 1584748800000,
           "chrono_index": 29
         },
@@ -25159,28 +25157,28 @@ window.DATA = {
           "chrono_index": 30
         },
         {
-          "title": "The Breath of Life",
+          "title": "The Vast Emptiness of Grace",
           "date": "2020-03-21",
-          "code": "DDAL09-12",
-          "dm": "Jesse S.",
+          "code": "DDAL09-14",
+          "dm": "Jon K.",
           "kind": "adventure",
           "gp_plus": 0,
-          "gp_minus": 1600,
-          "gp_net": -1600,
+          "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
+          "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 1600,
-              "net": -1600
+              "spent": 0,
+              "net": 0
             },
             "downtime": {
               "earned": 0,
-              "spent": 5,
-              "net": -5
+              "spent": 0,
+              "net": 0
             },
             "level": {
               "gained": 0
@@ -25191,7 +25189,7 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Spent 800gp for Splint barding. Spent 300gp and 1 soul coin to make a Hag's daughters stop haunting my dreams. Spent 500gp and 5 DTD's in a bargain with Mahadi.",
+          "notes": "",
           "chrono_timestamp": 1584748800002,
           "chrono_index": 31
         },
@@ -25280,6 +25278,50 @@ window.DATA = {
           "chrono_index": 27
         },
         {
+          "title": "Trade",
+          "date": "2020-02-26",
+          "code": "DT-TRADE",
+          "dm": "Craig H.",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Shield +3"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Staff of Thunder and Lightning",
+            "received": "Shield +3",
+            "counterpartyCharacter": "Warden"
+          },
+          "chrono_timestamp": 1582675200000,
+          "chrono_index": 25
+        },
+        {
           "title": "Tomb of Horror",
           "date": "2020-02-26",
           "code": "DDHC TYP",
@@ -25326,50 +25368,6 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1582675200000,
-          "chrono_index": 25
-        },
-        {
-          "title": "Trade",
-          "date": "2020-02-26",
-          "code": "DT-TRADE",
-          "dm": "Craig H.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Shield +3"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Staff of Thunder and Lightning",
-            "received": "Shield +3",
-            "counterpartyCharacter": "Warden"
-          },
           "chrono_timestamp": 1582675200001,
           "chrono_index": 26
         },
@@ -25502,50 +25500,6 @@ window.DATA = {
           "title": "Trade",
           "date": "2020-02-12",
           "code": "DT-TRADE",
-          "dm": "David T.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Plate +2"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Traded Tome of Understanding to for Plate +2",
-          "trade": {
-            "given": "Tome of Understanding",
-            "received": "Plate +2",
-            "counterpartyPlayer": "David T."
-          },
-          "chrono_timestamp": 1581465600000,
-          "chrono_index": 20
-        },
-        {
-          "title": "Trade",
-          "date": "2020-02-12",
-          "code": "DT-TRADE",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
@@ -25583,8 +25537,91 @@ window.DATA = {
             "received": "Sun Blade",
             "counterpartyCharacter": "Anfer"
           },
+          "chrono_timestamp": 1581465600000,
+          "chrono_index": 20
+        },
+        {
+          "title": "Trade",
+          "date": "2020-02-12",
+          "code": "DT-TRADE",
+          "dm": "David T.",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Plate +2"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Traded Tome of Understanding to for Plate +2",
+          "trade": {
+            "given": "Tome of Understanding",
+            "received": "Plate +2",
+            "counterpartyPlayer": "David T."
+          },
           "chrono_timestamp": 1581465600001,
           "chrono_index": 21
+        },
+        {
+          "title": "Enemy of my Enemy",
+          "date": "2020-02-11",
+          "code": "CCC-BMG-13 PHLAN1-2",
+          "dm": "CharisSophia",
+          "kind": "adventure",
+          "gp_plus": 800,
+          "gp_minus": 500,
+          "gp_net": 300,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 500,
+              "net": 300
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Tome of Understanding"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought Scroll of Find Greater Steed for 500 gp, cast for Pegasus mount",
+          "chrono_timestamp": 1581379200000,
+          "chrono_index": 18
         },
         {
           "title": "Trade",
@@ -25627,45 +25664,6 @@ window.DATA = {
             "received": "+3 Longsword",
             "counterpartyCharacter": "Morinth"
           },
-          "chrono_timestamp": 1581379200000,
-          "chrono_index": 18
-        },
-        {
-          "title": "Enemy of my Enemy",
-          "date": "2020-02-11",
-          "code": "CCC-BMG-13 PHLAN1-2",
-          "dm": "CharisSophia",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 500,
-          "gp_net": 300,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 800,
-              "spent": 500,
-              "net": 300
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Tome of Understanding"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought Scroll of Find Greater Steed for 500 gp, cast for Pegasus mount",
           "chrono_timestamp": 1581379200001,
           "chrono_index": 19
         },
@@ -25925,45 +25923,6 @@ window.DATA = {
           "chrono_index": 12
         },
         {
-          "title": "Let's Find the Sword, GO!",
-          "date": "2020-01-02",
-          "code": "CCC-ANIME-1-2",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 30,
-          "gp_minus": 0,
-          "gp_net": 30,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 30,
-              "spent": 0,
-              "net": 30
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Shield +2"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1577923200000,
-          "chrono_index": 10
-        },
-        {
           "title": "Infernal Insurgency",
           "date": "2020-01-02",
           "code": "DDAL 09-06",
@@ -25999,6 +25958,45 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped +1 Shield",
+          "chrono_timestamp": 1577923200000,
+          "chrono_index": 10
+        },
+        {
+          "title": "Let's Find the Sword, GO!",
+          "date": "2020-01-02",
+          "code": "CCC-ANIME-1-2",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 30,
+          "gp_minus": 0,
+          "gp_net": 30,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 30,
+              "spent": 0,
+              "net": 30
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Shield +2"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1577923200001,
           "chrono_index": 11
         },
@@ -26255,41 +26253,43 @@ window.DATA = {
           "chrono_index": 4
         },
         {
-          "title": "The Broken One",
+          "title": "Bleeding Gate: Amalgamation",
           "date": "2019-10-19",
-          "code": "DDAL 04-08",
-          "dm": "Van T.",
+          "code": "CCC-BLD 01-02",
+          "dm": "Ryan M.",
           "kind": "adventure",
-          "gp_plus": 120,
-          "gp_minus": 0,
-          "gp_net": 120,
-          "dtd_plus": 20,
+          "gp_plus": 119,
+          "gp_minus": 200,
+          "gp_net": -81,
+          "dtd_plus": 30,
           "dtd_minus": 20,
-          "dtd_net": 0,
-          "level_plus": 1,
+          "dtd_net": 10,
+          "level_plus": 2,
           "totals": {
             "gp": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
+              "earned": 119,
+              "spent": 200,
+              "net": -81
             },
             "downtime": {
-              "earned": 20,
+              "earned": 30,
               "spent": 20,
-              "net": 0
+              "net": 10
             },
             "level": {
-              "gained": 1
+              "gained": 2
             }
           },
           "perm_items": [
-            "Ring of Spell Storing"
+            "Winged Boots"
           ],
-          "lost_perm_item": [],
+          "lost_perm_item": [
+            "longsword and chainmail for 39 gp"
+          ],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Used 20 DTD's to escape Ravenloft, dropped Bowl of Commanding Water Elementals",
+          "notes": "Dropped Amulet of Proof vs Det. Used 20 DTD's to level up. Longsword +1 renown item. Sold longsword and chainmail for 39 gp, bought splint for 200 gp.",
           "chrono_timestamp": 1571443200000,
           "chrono_index": 1
         },
@@ -26333,43 +26333,41 @@ window.DATA = {
           "chrono_index": 2
         },
         {
-          "title": "Bleeding Gate: Amalgamation",
+          "title": "The Broken One",
           "date": "2019-10-19",
-          "code": "CCC-BLD 01-02",
-          "dm": "Ryan M.",
+          "code": "DDAL 04-08",
+          "dm": "Van T.",
           "kind": "adventure",
-          "gp_plus": 119,
-          "gp_minus": 200,
-          "gp_net": -81,
-          "dtd_plus": 30,
+          "gp_plus": 120,
+          "gp_minus": 0,
+          "gp_net": 120,
+          "dtd_plus": 20,
           "dtd_minus": 20,
-          "dtd_net": 10,
-          "level_plus": 2,
+          "dtd_net": 0,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 119,
-              "spent": 200,
-              "net": -81
+              "earned": 120,
+              "spent": 0,
+              "net": 120
             },
             "downtime": {
-              "earned": 30,
+              "earned": 20,
               "spent": 20,
-              "net": 10
+              "net": 0
             },
             "level": {
-              "gained": 2
+              "gained": 1
             }
           },
           "perm_items": [
-            "Winged Boots"
+            "Ring of Spell Storing"
           ],
-          "lost_perm_item": [
-            "longsword and chainmail for 39 gp"
-          ],
+          "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Dropped Amulet of Proof vs Det. Used 20 DTD's to level up. Longsword +1 renown item. Sold longsword and chainmail for 39 gp, bought splint for 200 gp.",
+          "notes": "Used 20 DTD's to escape Ravenloft, dropped Bowl of Commanding Water Elementals",
           "chrono_timestamp": 1571443200002,
           "chrono_index": 3
         },
@@ -26672,50 +26670,6 @@ window.DATA = {
           "title": "Trade",
           "date": "2022-06-12",
           "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Belt of Storm Giant Strength"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Robe of the Archmage (White)",
-            "received": "Belt of Storm GIant Strength",
-            "counterpartyCharacter": "Zandarax"
-          },
-          "chrono_timestamp": 1654992000000,
-          "chrono_index": 87
-        },
-        {
-          "title": "Trade",
-          "date": "2022-06-12",
-          "code": "DT-TRADE",
           "dm": "Dario C.",
           "kind": "Downtime Activity",
           "gp_plus": 0,
@@ -26753,6 +26707,50 @@ window.DATA = {
             "received": "Robe of the Archmagi (white)",
             "counterpartyCharacter": "Valenor Vyshaan",
             "counterpartyPlayer": "Dario C."
+          },
+          "chrono_timestamp": 1654992000000,
+          "chrono_index": 87
+        },
+        {
+          "title": "Trade",
+          "date": "2022-06-12",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Belt of Storm Giant Strength"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Robe of the Archmage (White)",
+            "received": "Belt of Storm GIant Strength",
+            "counterpartyCharacter": "Zandarax"
           },
           "chrono_timestamp": 1654992000001,
           "chrono_index": 88
@@ -27063,50 +27061,6 @@ window.DATA = {
           "chrono_index": 80
         },
         {
-          "title": "Trade",
-          "date": "2021-10-13",
-          "code": "DT-TRADE",
-          "dm": "Corey F.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Rod of Absorption"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Oathbow",
-            "received": "Rod of Absorption",
-            "counterpartyCharacter": "Aramil"
-          },
-          "chrono_timestamp": 1634083200000,
-          "chrono_index": 78
-        },
-        {
           "title": "Pools of Cerulean",
           "date": "2021-10-13",
           "code": "DDAL 07-16",
@@ -27147,8 +27101,267 @@ window.DATA = {
             "The Opal Pendant"
           ],
           "notes": "",
+          "chrono_timestamp": 1634083200000,
+          "chrono_index": 78
+        },
+        {
+          "title": "Trade",
+          "date": "2021-10-13",
+          "code": "DT-TRADE",
+          "dm": "Corey F.",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Rod of Absorption"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Oathbow",
+            "received": "Rod of Absorption",
+            "counterpartyCharacter": "Aramil"
+          },
           "chrono_timestamp": 1634083200001,
           "chrono_index": 79
+        },
+        {
+          "title": "Trade",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Holy Avenger Longsword"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Ioun Stone of Mastery",
+            "received": "Holy Avenger Longsword",
+            "counterpartyCharacter": "Lorien"
+          },
+          "chrono_timestamp": 1633219200000,
+          "chrono_index": 72
+        },
+        {
+          "title": "Trade",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Belt of Storm Giant Strength"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Efreeti Chain barding",
+            "received": "Belt of Storm GIant Strength",
+            "counterpartyCharacter": "Lorien"
+          },
+          "chrono_timestamp": 1633219200001,
+          "chrono_index": 73
+        },
+        {
+          "title": "Trade",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Broom of Flying"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Eyes of the Eagle",
+            "received": "Broom of Flying",
+            "counterpartyCharacter": "Orakhar"
+          },
+          "chrono_timestamp": 1633219200002,
+          "chrono_index": 74
+        },
+        {
+          "title": "DM Reward",
+          "date": "2021-10-03",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Wand of Lightning Bolts"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1633219200003,
+          "chrono_index": 75
+        },
+        {
+          "title": "Trade",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 5,
+          "dtd_net": -5,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 5,
+              "net": -5
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Periapt of Proof Against Poison"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Wand of Lightning Bolts",
+            "received": "Periapt of Proof Against Poison",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "chrono_timestamp": 1633219200004,
+          "chrono_index": 76
         },
         {
           "title": "The Harrowing of Hell",
@@ -27193,221 +27406,6 @@ window.DATA = {
             "Knight of the Giant Queen"
           ],
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
-          "chrono_timestamp": 1633219200000,
-          "chrono_index": 72
-        },
-        {
-          "title": "Trade",
-          "date": "2021-10-03",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Periapt of Proof Against Poison"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Wand of Lightning Bolts",
-            "received": "Periapt of Proof Against Poison",
-            "counterpartyCharacter": "Zandarax"
-          },
-          "chrono_timestamp": 1633219200001,
-          "chrono_index": 73
-        },
-        {
-          "title": "DM Reward",
-          "date": "2021-10-03",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Wand of Lightning Bolts"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1633219200002,
-          "chrono_index": 74
-        },
-        {
-          "title": "Trade",
-          "date": "2021-10-03",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Broom of Flying"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Eyes of the Eagle",
-            "received": "Broom of Flying",
-            "counterpartyCharacter": "Orakhar"
-          },
-          "chrono_timestamp": 1633219200003,
-          "chrono_index": 75
-        },
-        {
-          "title": "Trade",
-          "date": "2021-10-03",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Belt of Storm Giant Strength"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Efreeti Chain barding",
-            "received": "Belt of Storm GIant Strength",
-            "counterpartyCharacter": "Lorien"
-          },
-          "chrono_timestamp": 1633219200004,
-          "chrono_index": 76
-        },
-        {
-          "title": "Trade",
-          "date": "2021-10-03",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 5,
-          "dtd_net": -5,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 5,
-              "net": -5
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Holy Avenger Longsword"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Ioun Stone of Mastery",
-            "received": "Holy Avenger Longsword",
-            "counterpartyCharacter": "Lorien"
-          },
           "chrono_timestamp": 1633219200005,
           "chrono_index": 77
         },
@@ -27629,48 +27627,6 @@ window.DATA = {
           "chrono_index": 67
         },
         {
-          "title": "Where Devils Fear to Tread",
-          "date": "2020-09-05",
-          "code": "DDAL 09-20",
-          "dm": "Ashton M.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 0,
-          "gp_net": 3000,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3000,
-              "spent": 0,
-              "net": 3000
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Death Shield Defender Greatsword",
-            "Rod of the Pact Keeper +2"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Thanks of Ilmater"
-          ],
-          "notes": "",
-          "chrono_timestamp": 1599264000000,
-          "chrono_index": 65
-        },
-        {
           "title": "Fang and Claw",
           "date": "2020-09-05",
           "code": "DDAL 09-19",
@@ -27711,6 +27667,48 @@ window.DATA = {
             "Ice Pact"
           ],
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
+          "chrono_timestamp": 1599264000000,
+          "chrono_index": 65
+        },
+        {
+          "title": "Where Devils Fear to Tread",
+          "date": "2020-09-05",
+          "code": "DDAL 09-20",
+          "dm": "Ashton M.",
+          "kind": "adventure",
+          "gp_plus": 3000,
+          "gp_minus": 0,
+          "gp_net": 3000,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 0,
+              "net": 3000
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Death Shield Defender Greatsword",
+            "Rod of the Pact Keeper +2"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Thanks of Ilmater"
+          ],
+          "notes": "",
           "chrono_timestamp": 1599264000001,
           "chrono_index": 66
         },
@@ -27802,43 +27800,6 @@ window.DATA = {
           "chrono_index": 63
         },
         {
-          "title": "Moving Day!",
-          "date": "2020-06-26",
-          "code": "DDAL08-18",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 1300,
-          "gp_net": 1700,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3000,
-              "spent": 1300,
-              "net": 1700
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
-          "chrono_timestamp": 1593129600000,
-          "chrono_index": 61
-        },
-        {
           "title": "DM Reward",
           "date": "2020-06-26",
           "code": "DM-REWARD",
@@ -27874,6 +27835,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "chrono_timestamp": 1593129600000,
+          "chrono_index": 61
+        },
+        {
+          "title": "Moving Day!",
+          "date": "2020-06-26",
+          "code": "DDAL08-18",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 3000,
+          "gp_minus": 1300,
+          "gp_net": 1700,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 1300,
+              "net": 1700
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
           "chrono_timestamp": 1593129600001,
           "chrono_index": 62
         },
@@ -28089,48 +28087,6 @@ window.DATA = {
           "chrono_index": 56
         },
         {
-          "title": "Cauldron of Sapphire",
-          "date": "2020-03-15",
-          "code": "DDAL 07-17",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 6800,
-          "gp_net": -3800,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3000,
-              "spent": 6800,
-              "net": -3800
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Staff of the Magi"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [
-            "Resistance to Lightning",
-            "Resistance to Acid"
-          ],
-          "story_awards": [],
-          "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
-          "chrono_timestamp": 1584230400000,
-          "chrono_index": 54
-        },
-        {
           "title": "Trade",
           "date": "2020-03-15",
           "code": "DT-TRADE",
@@ -28171,6 +28127,48 @@ window.DATA = {
             "received": "Longsword +3",
             "counterpartyCharacter": "Lorien"
           },
+          "chrono_timestamp": 1584230400000,
+          "chrono_index": 54
+        },
+        {
+          "title": "Cauldron of Sapphire",
+          "date": "2020-03-15",
+          "code": "DDAL 07-17",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 3000,
+          "gp_minus": 6800,
+          "gp_net": -3800,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 6800,
+              "net": -3800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Staff of the Magi"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [
+            "Resistance to Lightning",
+            "Resistance to Acid"
+          ],
+          "story_awards": [],
+          "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
           "chrono_timestamp": 1584230400001,
           "chrono_index": 55
         },
@@ -28303,46 +28301,39 @@ window.DATA = {
           "chrono_index": 51
         },
         {
-          "title": "Trade",
+          "title": "DM Reward",
           "date": "2020-03-06",
-          "code": "DT-TRADE",
-          "dm": "Eduardo R.",
+          "code": "DM-REWARD",
+          "dm": "",
           "kind": "Downtime Activity",
-          "gp_plus": 0,
+          "gp_plus": 6000,
           "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
+          "gp_net": 6000,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
+              "earned": 6000,
               "spent": 0,
-              "net": 0
+              "net": 6000
             },
             "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
+              "earned": 20,
+              "spent": 0,
+              "net": 20
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Ioun Stone of Insight"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "trade": {
-            "given": "Staff of Power",
-            "received": "Ioun Stone of Insight",
-            "counterpartyCharacter": "Winkle Paddlegear"
-          },
           "chrono_timestamp": 1583452800000,
           "chrono_index": 48
         },
@@ -28391,39 +28382,46 @@ window.DATA = {
           "chrono_index": 49
         },
         {
-          "title": "DM Reward",
+          "title": "Trade",
           "date": "2020-03-06",
-          "code": "DM-REWARD",
-          "dm": "",
+          "code": "DT-TRADE",
+          "dm": "Eduardo R.",
           "kind": "Downtime Activity",
-          "gp_plus": 6000,
+          "gp_plus": 0,
           "gp_minus": 0,
-          "gp_net": 6000,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 6000,
+              "earned": 0,
               "spent": 0,
-              "net": 6000
+              "net": 0
             },
             "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Ioun Stone of Insight"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "trade": {
+            "given": "Staff of Power",
+            "received": "Ioun Stone of Insight",
+            "counterpartyCharacter": "Winkle Paddlegear"
+          },
           "chrono_timestamp": 1583452800002,
           "chrono_index": 50
         },
@@ -28509,6 +28507,47 @@ window.DATA = {
           "chrono_index": 46
         },
         {
+          "title": "Crypt of the Death Giants",
+          "date": "2020-02-29",
+          "code": "DDAL 06-03",
+          "dm": "Darrian D.",
+          "kind": "adventure",
+          "gp_plus": 3000,
+          "gp_minus": 2900,
+          "gp_net": 100,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 3000,
+              "spent": 2900,
+              "net": 100
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Belt of Storm Giant Strength"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Speed"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1582934400000,
+          "chrono_index": 44
+        },
+        {
           "title": "Trade",
           "date": "2020-02-29",
           "code": "DT-TRADE",
@@ -28549,47 +28588,6 @@ window.DATA = {
             "received": "Scarab of Protection",
             "counterpartyCharacter": "Snowball"
           },
-          "chrono_timestamp": 1582934400000,
-          "chrono_index": 44
-        },
-        {
-          "title": "Crypt of the Death Giants",
-          "date": "2020-02-29",
-          "code": "DDAL 06-03",
-          "dm": "Darrian D.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 2900,
-          "gp_net": 100,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 3000,
-              "spent": 2900,
-              "net": 100
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Belt of Storm Giant Strength"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Speed"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1582934400001,
           "chrono_index": 45
         },
@@ -28682,50 +28680,46 @@ window.DATA = {
           "chrono_index": 42
         },
         {
-          "title": "Trust and Understanding",
+          "title": "Trade",
           "date": "2020-02-17",
-          "code": "DDAL 00-10",
-          "dm": "Mike R.",
-          "kind": "adventure",
-          "gp_plus": 3000,
-          "gp_minus": 2300,
-          "gp_net": 700,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 3000,
-              "spent": 2300,
-              "net": 700
+              "earned": 0,
+              "spent": 0,
+              "net": 0
             },
             "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
-              "gained": 1
+              "gained": 0
             }
           },
           "perm_items": [
-            "Ioun Stone of Greater Absorbtion"
+            "Wand of Webs"
           ],
-          "lost_perm_item": [
-            "White Dragon Scalemail"
-          ],
-          "consumable_items": [
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Greater Healing",
-            "Potion of Superior Healing"
-          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
+          "notes": "",
+          "trade": {
+            "given": "Trident of Fish Command",
+            "received": "Wand of Webs",
+            "counterpartyCharacter": "Arvistan Brightwave"
+          },
           "chrono_timestamp": 1581897600000,
           "chrono_index": 39
         },
@@ -28774,92 +28768,52 @@ window.DATA = {
           "chrono_index": 40
         },
         {
-          "title": "Trade",
+          "title": "Trust and Understanding",
           "date": "2020-02-17",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
+          "code": "DDAL 00-10",
+          "dm": "Mike R.",
+          "kind": "adventure",
+          "gp_plus": 3000,
+          "gp_minus": 2300,
+          "gp_net": 700,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
+              "earned": 3000,
+              "spent": 2300,
+              "net": 700
             },
             "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
+              "earned": 20,
+              "spent": 0,
+              "net": 20
             },
             "level": {
-              "gained": 0
+              "gained": 1
             }
           },
           "perm_items": [
-            "Wand of Webs"
+            "Ioun Stone of Greater Absorbtion"
           ],
-          "lost_perm_item": [],
-          "consumable_items": [],
+          "lost_perm_item": [
+            "White Dragon Scalemail"
+          ],
+          "consumable_items": [
+            "Potion of Greater Healing",
+            "Potion of Greater Healing",
+            "Potion of Greater Healing",
+            "Potion of Greater Healing",
+            "Potion of Greater Healing",
+            "Potion of Superior Healing"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Trident of Fish Command",
-            "received": "Wand of Webs",
-            "counterpartyCharacter": "Arvistan Brightwave"
-          },
+          "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
           "chrono_timestamp": 1581897600002,
           "chrono_index": 41
-        },
-        {
-          "title": "Trade",
-          "date": "2020-02-16",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Trident of Fish Command"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "Wand of Webs",
-            "received": "Trident of Fish Command",
-            "counterpartyCharacter": "Arvistan Brightwave"
-          },
-          "chrono_timestamp": 1581811200000,
-          "chrono_index": 37
         },
         {
           "title": "Twice as Nice for Half the Price",
@@ -28912,6 +28866,50 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
+          "chrono_timestamp": 1581811200000,
+          "chrono_index": 37
+        },
+        {
+          "title": "Trade",
+          "date": "2020-02-16",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Trident of Fish Command"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "trade": {
+            "given": "Wand of Webs",
+            "received": "Trident of Fish Command",
+            "counterpartyCharacter": "Arvistan Brightwave"
+          },
           "chrono_timestamp": 1581811200001,
           "chrono_index": 38
         },
@@ -29085,6 +29083,49 @@ window.DATA = {
           "chrono_index": 33
         },
         {
+          "title": "To Wake the Leviathan",
+          "date": "2020-01-04",
+          "code": "DDHC-MORD-03",
+          "dm": "Van T.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "White Dragon Scalemail",
+            "Gem of Water Elemental",
+            "Sentinel Shield",
+            "Ring of Cold Resistance",
+            "(Boots of Winterland)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1578096000000,
+          "chrono_index": 31
+        },
+        {
           "title": "Zhentarrim's Lament",
           "date": "2020-01-04",
           "code": "CCC-ROZK-0102",
@@ -29125,88 +29166,8 @@ window.DATA = {
             "Nature of the Weave"
           ],
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
-          "chrono_timestamp": 1578096000000,
-          "chrono_index": 31
-        },
-        {
-          "title": "To Wake the Leviathan",
-          "date": "2020-01-04",
-          "code": "DDHC-MORD-03",
-          "dm": "Van T.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "White Dragon Scalemail",
-            "Gem of Water Elemental",
-            "Sentinel Shield",
-            "Ring of Cold Resistance",
-            "(Boots of Winterland)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
           "chrono_timestamp": 1578096000001,
           "chrono_index": 32
-        },
-        {
-          "title": "Whispers from the Deep",
-          "date": "2019-12-21",
-          "code": "HULB 4-1",
-          "dm": "Jesse S.",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1576886400000,
-          "chrono_index": 29
         },
         {
           "title": "Darkest Vein",
@@ -29243,6 +29204,43 @@ window.DATA = {
           "story_awards": [
             "Planar Studies"
           ],
+          "notes": "",
+          "chrono_timestamp": 1576886400000,
+          "chrono_index": 29
+        },
+        {
+          "title": "Whispers from the Deep",
+          "date": "2019-12-21",
+          "code": "HULB 4-1",
+          "dm": "Jesse S.",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
           "notes": "",
           "chrono_timestamp": 1576886400001,
           "chrono_index": 30
@@ -29331,45 +29329,6 @@ window.DATA = {
           "chrono_index": 27
         },
         {
-          "title": "Winds of Rot",
-          "date": "2019-12-12",
-          "code": "CCC-GOC-01-03",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 0,
-          "gp_net": 800,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 800,
-              "spent": 0,
-              "net": 800
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Carpet of Flying (5x7)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
-          "chrono_timestamp": 1576108800000,
-          "chrono_index": 25
-        },
-        {
           "title": "Trade",
           "date": "2019-12-12",
           "code": "DT-TRADE",
@@ -29410,6 +29369,45 @@ window.DATA = {
             "received": "Elven Chain",
             "counterpartyCharacter": "Anfer"
           },
+          "chrono_timestamp": 1576108800000,
+          "chrono_index": 25
+        },
+        {
+          "title": "Winds of Rot",
+          "date": "2019-12-12",
+          "code": "CCC-GOC-01-03",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 800,
+          "gp_minus": 0,
+          "gp_net": 800,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 800,
+              "spent": 0,
+              "net": 800
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Carpet of Flying (5x7)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
           "chrono_timestamp": 1576108800001,
           "chrono_index": 26
         },
@@ -29525,7 +29523,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Belt of Fire Giant Strength"
+            "Shield +3"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -29533,9 +29531,9 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Skaggoxx",
-            "received": "Belt of Fire Giant Strength",
-            "counterpartyCharacter": "Thelma Scrollroller"
+            "given": "Staff of Thunder and Lightning",
+            "received": "+3 Shield",
+            "counterpartyCharacter": "Marina"
           },
           "chrono_timestamp": 1575244800000,
           "chrono_index": 20
@@ -29613,7 +29611,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Shield +3"
+            "Belt of Fire Giant Strength"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -29621,9 +29619,9 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Staff of Thunder and Lightning",
-            "received": "+3 Shield",
-            "counterpartyCharacter": "Marina"
+            "given": "Skaggoxx",
+            "received": "Belt of Fire Giant Strength",
+            "counterpartyCharacter": "Thelma Scrollroller"
           },
           "chrono_timestamp": 1575244800002,
           "chrono_index": 22
@@ -29707,46 +29705,39 @@ window.DATA = {
           "chrono_index": 18
         },
         {
-          "title": "Trade",
+          "title": "Unusual Opposition",
           "date": "2019-11-20",
-          "code": "DT-TRADE",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
+          "code": "DDAL 07-09",
+          "dm": "Dave N.",
+          "kind": "adventure",
+          "gp_plus": 800,
+          "gp_minus": 200,
+          "gp_net": 600,
           "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
+          "dtd_minus": 0,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
+              "earned": 800,
+              "spent": 200,
+              "net": 600
             },
             "downtime": {
               "earned": 0,
-              "spent": 15,
-              "net": -15
+              "spent": 0,
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Shield +1"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "trade": {
-            "given": "mithral splintmail",
-            "received": "+1 Shield",
-            "counterpartyCharacter": "Rolyn"
-          },
+          "notes": "Spent 200gp on Heroe's Feast",
           "chrono_timestamp": 1574208000000,
           "chrono_index": 15
         },
@@ -29795,39 +29786,46 @@ window.DATA = {
           "chrono_index": 16
         },
         {
-          "title": "Unusual Opposition",
+          "title": "Trade",
           "date": "2019-11-20",
-          "code": "DDAL 07-09",
-          "dm": "Dave N.",
-          "kind": "adventure",
-          "gp_plus": 800,
-          "gp_minus": 200,
-          "gp_net": 600,
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
           "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 800,
-              "spent": 200,
-              "net": 600
-            },
-            "downtime": {
               "earned": 0,
               "spent": 0,
               "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Shield +1"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Spent 200gp on Heroe's Feast",
+          "notes": "",
+          "trade": {
+            "given": "mithral splintmail",
+            "received": "+1 Shield",
+            "counterpartyCharacter": "Rolyn"
+          },
           "chrono_timestamp": 1574208000002,
           "chrono_index": 17
         },
@@ -29958,10 +29956,10 @@ window.DATA = {
           "chrono_index": 12
         },
         {
-          "title": "Blood Above Blood Below",
+          "title": "Drums of the Dead: Book 2",
           "date": "2019-11-10",
-          "code": "DDEP 03",
-          "dm": "Michael F.",
+          "code": "DDEP 07-02",
+          "dm": "AC",
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
@@ -29985,14 +29983,12 @@ window.DATA = {
               "gained": 1
             }
           },
-          "perm_items": [
-            "Rimesplitter (+2 Greataxe)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Dropped +1 Longsword.",
+          "notes": "",
           "chrono_timestamp": 1573344000000,
           "chrono_index": 9
         },
@@ -30041,10 +30037,10 @@ window.DATA = {
           "chrono_index": 10
         },
         {
-          "title": "Drums of the Dead: Book 2",
+          "title": "Blood Above Blood Below",
           "date": "2019-11-10",
-          "code": "DDEP 07-02",
-          "dm": "AC",
+          "code": "DDEP 03",
+          "dm": "Michael F.",
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
@@ -30068,51 +30064,16 @@ window.DATA = {
               "gained": 1
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Rimesplitter (+2 Greataxe)"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
+          "notes": "Dropped +1 Longsword.",
           "chrono_timestamp": 1573344000002,
           "chrono_index": 11
-        },
-        {
-          "title": "The Red War",
-          "date": "2019-11-09",
-          "code": "DDEP 00-01",
-          "dm": "Rob M.",
-          "kind": "adventure",
-          "gp_plus": 120,
-          "gp_minus": 0,
-          "gp_net": 120,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 120,
-              "spent": 0,
-              "net": 120
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1573257600000,
-          "chrono_index": 7
         },
         {
           "title": "Infernal Pursuits",
@@ -30151,14 +30112,14 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Epic reward: Fizzlebottom",
-          "chrono_timestamp": 1573257600001,
-          "chrono_index": 8
+          "chrono_timestamp": 1573257600000,
+          "chrono_index": 7
         },
         {
-          "title": "A Dish Best Served Cold",
-          "date": "2019-11-07",
-          "code": "DDAL 05-05",
-          "dm": "John K.",
+          "title": "The Red War",
+          "date": "2019-11-09",
+          "code": "DDEP 00-01",
+          "dm": "Rob M.",
           "kind": "adventure",
           "gp_plus": 120,
           "gp_minus": 0,
@@ -30182,16 +30143,14 @@ window.DATA = {
               "gained": 1
             }
           },
-          "perm_items": [
-            "Cloak of Displacement"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Dropped Winged Boots",
-          "chrono_timestamp": 1573084800000,
-          "chrono_index": 5
+          "notes": "",
+          "chrono_timestamp": 1573257600001,
+          "chrono_index": 8
         },
         {
           "title": "In Dire Need",
@@ -30235,27 +30194,27 @@ window.DATA = {
             "Ire of the Front Giants"
           ],
           "notes": "Bought cold weather gear for 5gp, sold Longsword and Chainmail for 44gp. +1 Longsword renown item.",
-          "chrono_timestamp": 1573084800001,
-          "chrono_index": 6
+          "chrono_timestamp": 1573084800000,
+          "chrono_index": 5
         },
         {
-          "title": "Day of the Devil",
-          "date": "2019-11-02",
-          "code": "DDAL 09-04",
-          "dm": "Tom H.",
+          "title": "A Dish Best Served Cold",
+          "date": "2019-11-07",
+          "code": "DDAL 05-05",
+          "dm": "John K.",
           "kind": "adventure",
-          "gp_plus": 80,
+          "gp_plus": 120,
           "gp_minus": 0,
-          "gp_net": 80,
+          "gp_net": 120,
           "dtd_plus": 20,
           "dtd_minus": 0,
           "dtd_net": 20,
           "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 80,
+              "earned": 120,
               "spent": 0,
-              "net": 80
+              "net": 120
             },
             "downtime": {
               "earned": 20,
@@ -30266,7 +30225,48 @@ window.DATA = {
               "gained": 1
             }
           },
-          "perm_items": [],
+          "perm_items": [
+            "Cloak of Displacement"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Dropped Winged Boots",
+          "chrono_timestamp": 1573084800001,
+          "chrono_index": 6
+        },
+        {
+          "title": "Stopped at the Gate",
+          "date": "2019-11-02",
+          "code": "DDAL 09-02",
+          "dm": "Darrian D.",
+          "kind": "adventure",
+          "gp_plus": 60,
+          "gp_minus": 0,
+          "gp_net": 60,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 60,
+              "spent": 0,
+              "net": 60
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Eyes of the Eagle"
+          ],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -30359,36 +30359,34 @@ window.DATA = {
           "chrono_index": 2
         },
         {
-          "title": "Stopped at the Gate",
+          "title": "Day of the Devil",
           "date": "2019-11-02",
-          "code": "DDAL 09-02",
-          "dm": "Darrian D.",
+          "code": "DDAL 09-04",
+          "dm": "Tom H.",
           "kind": "adventure",
-          "gp_plus": 60,
+          "gp_plus": 80,
           "gp_minus": 0,
-          "gp_net": 60,
-          "dtd_plus": 10,
+          "gp_net": 80,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 10,
+          "dtd_net": 20,
           "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 60,
+              "earned": 80,
               "spent": 0,
-              "net": 60
+              "net": 80
             },
             "downtime": {
-              "earned": 10,
+              "earned": 20,
               "spent": 0,
-              "net": 10
+              "net": 20
             },
             "level": {
               "gained": 1
             }
           },
-          "perm_items": [
-            "Eyes of the Eagle"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [],
           "supernatural_gifts": [],
@@ -30489,7 +30487,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Hide +3"
+            "Moon Blade"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -30497,8 +30495,8 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Tome of the Stilled Tongue",
-            "received": "Hide +3",
+            "given": "Staff of the Magi",
+            "received": "Moon Blade",
             "counterpartyCharacter": "Zandarax"
           },
           "chrono_timestamp": 1654646400000,
@@ -30533,7 +30531,7 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Moon Blade"
+            "Hide +3"
           ],
           "lost_perm_item": [],
           "consumable_items": [],
@@ -30541,53 +30539,12 @@ window.DATA = {
           "story_awards": [],
           "notes": "",
           "trade": {
-            "given": "Staff of the Magi",
-            "received": "Moon Blade",
+            "given": "Tome of the Stilled Tongue",
+            "received": "Hide +3",
             "counterpartyCharacter": "Zandarax"
           },
           "chrono_timestamp": 1654646400001,
           "chrono_index": 45
-        },
-        {
-          "title": "Streams of Crimson",
-          "date": "2021-01-23",
-          "code": "DDAL07-15",
-          "dm": "Jon K.",
-          "kind": "adventure",
-          "gp_plus": 5250,
-          "gp_minus": 1500,
-          "gp_net": 3750,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 5250,
-              "spent": 1500,
-              "net": 3750
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Efreeti Chain (Pegasus Barding)"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Opal Pendant"
-          ],
-          "notes": "Bought 15 Potions of Greater Healing",
-          "chrono_timestamp": 1611360000000,
-          "chrono_index": 42
         },
         {
           "title": "Trade",
@@ -30628,6 +30585,47 @@ window.DATA = {
             "received": "Shield +3",
             "counterpartyCharacter": "Darrendrian"
           },
+          "chrono_timestamp": 1611360000000,
+          "chrono_index": 42
+        },
+        {
+          "title": "Streams of Crimson",
+          "date": "2021-01-23",
+          "code": "DDAL07-15",
+          "dm": "Jon K.",
+          "kind": "adventure",
+          "gp_plus": 5250,
+          "gp_minus": 1500,
+          "gp_net": 3750,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 5250,
+              "spent": 1500,
+              "net": 3750
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Efreeti Chain (Pegasus Barding)"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Opal Pendant"
+          ],
+          "notes": "Bought 15 Potions of Greater Healing",
           "chrono_timestamp": 1611360000001,
           "chrono_index": 43
         },
@@ -31098,6 +31096,43 @@ window.DATA = {
           "code": "DM-REWARD",
           "dm": "",
           "kind": "Downtime Activity",
+          "gp_plus": 1600,
+          "gp_minus": 0,
+          "gp_net": 1600,
+          "dtd_plus": 20,
+          "dtd_minus": 0,
+          "dtd_net": 20,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1600,
+              "spent": 0,
+              "net": 1600
+            },
+            "downtime": {
+              "earned": 20,
+              "spent": 0,
+              "net": 20
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
+          "chrono_timestamp": 1596844800000,
+          "chrono_index": 27
+        },
+        {
+          "title": "DM Reward",
+          "date": "2020-08-08",
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
           "gp_plus": 6000,
           "gp_minus": 0,
           "gp_net": 6000,
@@ -31126,8 +31161,8 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1596844800000,
-          "chrono_index": 27
+          "chrono_timestamp": 1596844800001,
+          "chrono_index": 28
         },
         {
           "title": "The Red War (Slot 0)",
@@ -31167,8 +31202,8 @@ window.DATA = {
             "Essence of Zsasz Tamm"
           ],
           "notes": "",
-          "chrono_timestamp": 1596844800001,
-          "chrono_index": 28
+          "chrono_timestamp": 1596844800002,
+          "chrono_index": 29
         },
         {
           "title": "DM Reward",
@@ -31188,43 +31223,6 @@ window.DATA = {
               "earned": 6000,
               "spent": 0,
               "net": 6000
-            },
-            "downtime": {
-              "earned": 20,
-              "spent": 0,
-              "net": 20
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1596844800002,
-          "chrono_index": 29
-        },
-        {
-          "title": "DM Reward",
-          "date": "2020-08-08",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 1600,
-          "gp_minus": 0,
-          "gp_net": 1600,
-          "dtd_plus": 20,
-          "dtd_minus": 0,
-          "dtd_net": 20,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1600,
-              "spent": 0,
-              "net": 1600
             },
             "downtime": {
               "earned": 20,
@@ -31619,6 +31617,47 @@ window.DATA = {
           "chrono_index": 18
         },
         {
+          "title": "Trade",
+          "date": "2020-06-09",
+          "code": "DT-TRADE",
+          "dm": "Edoardo R.",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 15,
+          "dtd_net": -15,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 15,
+              "net": -15
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Ioun Stone of Protection"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [
+            "Traded Mantle of Spell Resistance to Zwela Moonshadow for Ioun Stone of Protection"
+          ],
+          "notes": "",
+          "chrono_timestamp": 1591660800000,
+          "chrono_index": 16
+        },
+        {
           "title": "The Diabolical Dive",
           "date": "2020-06-09",
           "code": "DDAL09-07",
@@ -31655,47 +31694,6 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [
             "Savior of my Enemy's enemy"
-          ],
-          "notes": "",
-          "chrono_timestamp": 1591660800000,
-          "chrono_index": 16
-        },
-        {
-          "title": "Trade",
-          "date": "2020-06-09",
-          "code": "DT-TRADE",
-          "dm": "Edoardo R.",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 15,
-          "dtd_net": -15,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 15,
-              "net": -15
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Ioun Stone of Protection"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "Traded Mantle of Spell Resistance to Zwela Moonshadow for Ioun Stone of Protection"
           ],
           "notes": "",
           "chrono_timestamp": 1591660800001,
@@ -32136,28 +32134,28 @@ window.DATA = {
           "chrono_index": 5
         },
         {
-          "title": "Red War: Black Phoenix",
+          "title": "DM Reward",
           "date": "2020-03-25",
-          "code": "CCC-GAD-01-02",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 120,
+          "code": "DM-REWARD",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 80,
           "gp_minus": 0,
-          "gp_net": 120,
-          "dtd_plus": 20,
+          "gp_net": 80,
+          "dtd_plus": 10,
           "dtd_minus": 0,
-          "dtd_net": 20,
+          "dtd_net": 10,
           "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 120,
+              "earned": 80,
               "spent": 0,
-              "net": 120
+              "net": 80
             },
             "downtime": {
-              "earned": 20,
+              "earned": 10,
               "spent": 0,
-              "net": 20
+              "net": 10
             },
             "level": {
               "gained": 1
@@ -32168,7 +32166,7 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Received +1 Quarterstaff renown item",
+          "notes": "",
           "chrono_timestamp": 1585094400000,
           "chrono_index": 2
         },
@@ -32210,28 +32208,28 @@ window.DATA = {
           "chrono_index": 3
         },
         {
-          "title": "DM Reward",
+          "title": "Red War: Black Phoenix",
           "date": "2020-03-25",
-          "code": "DM-REWARD",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 80,
+          "code": "CCC-GAD-01-02",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 120,
           "gp_minus": 0,
-          "gp_net": 80,
-          "dtd_plus": 10,
+          "gp_net": 120,
+          "dtd_plus": 20,
           "dtd_minus": 0,
-          "dtd_net": 10,
+          "dtd_net": 20,
           "level_plus": 1,
           "totals": {
             "gp": {
-              "earned": 80,
+              "earned": 120,
               "spent": 0,
-              "net": 80
+              "net": 120
             },
             "downtime": {
-              "earned": 10,
+              "earned": 20,
               "spent": 0,
-              "net": 10
+              "net": 20
             },
             "level": {
               "gained": 1
@@ -32242,7 +32240,7 @@ window.DATA = {
           "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
+          "notes": "Received +1 Quarterstaff renown item",
           "chrono_timestamp": 1585094400002,
           "chrono_index": 4
         },
@@ -32354,11 +32352,11 @@ window.DATA = {
       "gifts_count": 1
     },
     "Chef Ture": {
-      "sessions": 10,
-      "net_gp": 6620,
-      "net_dtd": 33,
+      "sessions": 9,
+      "net_gp": 5170,
+      "net_dtd": 23,
       "level_ups": 4,
-      "perm_count": 20,
+      "perm_count": 18,
       "cons_count": 16,
       "gifts_count": 0
     },
@@ -32529,7 +32527,7 @@ window.DATA = {
       "net_gp": 4725,
       "net_dtd": 5,
       "level_ups": 10,
-      "perm_count": 36,
+      "perm_count": 37,
       "cons_count": 4,
       "gifts_count": 1
     },
@@ -32538,7 +32536,7 @@ window.DATA = {
       "net_gp": 54776,
       "net_dtd": 35,
       "level_ups": 19,
-      "perm_count": 162,
+      "perm_count": 161,
       "cons_count": 61,
       "gifts_count": 6
     },
@@ -32565,7 +32563,7 @@ window.DATA = {
       "net_gp": 75879,
       "net_dtd": 80,
       "level_ups": 19,
-      "perm_count": 62,
+      "perm_count": 63,
       "cons_count": 13,
       "gifts_count": 8
     },
@@ -32721,7 +32719,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2026-02-05T00:45:37.438Z",
+    "generated": "2026-02-05T00:47:55.881Z",
     "problems": []
   },
   "dm_allocations": []
