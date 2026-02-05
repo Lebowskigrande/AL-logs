@@ -1369,88 +1369,6 @@ window.DATA = {
       "identity": {},
       "adventures": [
         {
-          "title": "test",
-          "date": "2026-02-05",
-          "code": "",
-          "dm": "",
-          "kind": "adventure",
-          "gp_plus": 0,
-          "gp_minus": 0,
-          "gp_net": 0,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1770249600000,
-          "chrono_index": 18
-        },
-        {
-          "title": "Losing Fai",
-          "date": "2025-07-02",
-          "code": "DDAL09-11",
-          "dm": "Nicole F.",
-          "kind": "adventure",
-          "gp_plus": 1000,
-          "gp_minus": 315,
-          "gp_net": 685,
-          "dtd_plus": 0,
-          "dtd_minus": 0,
-          "dtd_net": 0,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 1000,
-              "spent": 315,
-              "net": 685
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 0,
-              "net": 0
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [
-            "Staff of Charming"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Poison of Growth",
-            "Potion of Poison",
-            "Soul Coin"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [
-            "No Exceptions: booted from Mahadi's"
-          ],
-          "notes": "",
-          "chrono_timestamp": 1751414400000,
-          "chrono_index": 16
-        },
-        {
           "title": "Bastion Turn",
           "date": "2025-07-02",
           "code": "DT-BASTION",
@@ -1488,49 +1406,53 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
-          "chrono_timestamp": 1751414400001,
-          "chrono_index": 17
+          "chrono_timestamp": 1751414400000,
+          "chrono_index": 16
         },
         {
-          "title": "Faces of Fortune",
-          "date": "2025-06-25",
-          "code": "DDAL09-05",
-          "dm": "Chris H.",
+          "title": "Losing Fai",
+          "date": "2025-07-02",
+          "code": "DDAL09-11",
+          "dm": "Nicole F.",
           "kind": "adventure",
           "gp_plus": 1000,
-          "gp_minus": 100,
-          "gp_net": 900,
-          "dtd_plus": 10,
+          "gp_minus": 150,
+          "gp_net": 850,
+          "dtd_plus": 0,
           "dtd_minus": 0,
-          "dtd_net": 10,
+          "dtd_net": 0,
           "level_plus": 0,
           "totals": {
             "gp": {
               "earned": 1000,
-              "spent": 100,
-              "net": 900
+              "spent": 150,
+              "net": 850
             },
             "downtime": {
-              "earned": 10,
+              "earned": 0,
               "spent": 0,
-              "net": 10
+              "net": 0
             },
             "level": {
               "gained": 0
             }
           },
           "perm_items": [
-            "Gem of Seeing"
+            "Staff of Charming"
           ],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Invulnerability"
+            "Potion of Poison of Growth",
+            "Potion of Poison",
+            "Soul Coin"
           ],
           "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
-          "chrono_timestamp": 1750809600000,
-          "chrono_index": 14
+          "story_awards": [
+            "No Exceptions: booted from Mahadi's"
+          ],
+          "notes": "",
+          "chrono_timestamp": 1751414400001,
+          "chrono_index": 17
         },
         {
           "title": "Bastion Turn",
@@ -1571,8 +1493,90 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
+          "chrono_timestamp": 1750809600000,
+          "chrono_index": 14
+        },
+        {
+          "title": "Faces of Fortune",
+          "date": "2025-06-25",
+          "code": "DDAL09-05",
+          "dm": "Chris H.",
+          "kind": "adventure",
+          "gp_plus": 1000,
+          "gp_minus": 100,
+          "gp_net": 900,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 100,
+              "net": 900
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [
+            "Gem of Seeing"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Invulnerability"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
           "chrono_timestamp": 1750809600001,
           "chrono_index": 15
+        },
+        {
+          "title": "Bastion Turn",
+          "date": "2025-06-18",
+          "code": "DT-BASTION",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 250,
+          "gp_net": -250,
+          "dtd_plus": 0,
+          "dtd_minus": 7,
+          "dtd_net": -7,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 250,
+              "net": -250
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 7,
+              "net": -7
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Healing",
+            "Malice",
+            "Burnt Othur Fumes"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
+          "chrono_timestamp": 1750204800000,
+          "chrono_index": 12
         },
         {
           "title": "Affair on the Concordant Express",
@@ -1620,18 +1624,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 3 vials of Oil of Slipperiness.",
-          "chrono_timestamp": 1750204800000,
-          "chrono_index": 12
+          "chrono_timestamp": 1750204800001,
+          "chrono_index": 13
         },
         {
           "title": "Bastion Turn",
-          "date": "2025-06-18",
+          "date": "2025-06-15",
           "code": "DT-BASTION",
           "dm": "",
           "kind": "Downtime Activity",
           "gp_plus": 0,
-          "gp_minus": 250,
-          "gp_net": -250,
+          "gp_minus": 150,
+          "gp_net": -150,
           "dtd_plus": 0,
           "dtd_minus": 7,
           "dtd_net": -7,
@@ -1639,8 +1643,8 @@ window.DATA = {
           "totals": {
             "gp": {
               "earned": 0,
-              "spent": 250,
-              "net": -250
+              "spent": 150,
+              "net": -150
             },
             "downtime": {
               "earned": 0,
@@ -1654,15 +1658,16 @@ window.DATA = {
           "perm_items": [],
           "lost_perm_item": [],
           "consumable_items": [
-            "Potion of Healing",
-            "Malice",
-            "Burnt Othur Fumes"
+            "Pale Tincture",
+            "Essence of Ether",
+            "Antitoxin",
+            "Antitoxin"
           ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
-          "chrono_timestamp": 1750204800001,
-          "chrono_index": 13
+          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
+          "chrono_timestamp": 1749945600000,
+          "chrono_index": 10
         },
         {
           "title": "Heroes for the Meek",
@@ -1705,50 +1710,48 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased book on history of Faerun (including culinary) for 200 gp. Spent 50 gp making 4 doses of Weapon Poison.",
-          "chrono_timestamp": 1749945600000,
-          "chrono_index": 10
+          "chrono_timestamp": 1749945600001,
+          "chrono_index": 11
         },
         {
-          "title": "Bastion Turn",
-          "date": "2025-06-15",
-          "code": "DT-BASTION",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 150,
-          "gp_net": -150,
-          "dtd_plus": 0,
-          "dtd_minus": 7,
-          "dtd_net": -7,
+          "title": "Vatras Besieged",
+          "date": "2025-06-11",
+          "code": "FR-DC-FET-01",
+          "dm": "Erik T.",
+          "kind": "adventure",
+          "gp_plus": 100,
+          "gp_minus": 0,
+          "gp_net": 100,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 0,
-              "spent": 150,
-              "net": -150
+              "earned": 100,
+              "spent": 0,
+              "net": 100
             },
             "downtime": {
-              "earned": 0,
-              "spent": 7,
-              "net": -7
+              "earned": 10,
+              "spent": 0,
+              "net": 10
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Pale Tincture",
-            "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
+          "perm_items": [
+            "Half plate +1 (guardian)",
+            "Rope of mending (temperate)"
           ],
+          "lost_perm_item": [],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
-          "chrono_timestamp": 1749945600001,
-          "chrono_index": 11
+          "notes": "",
+          "chrono_timestamp": 1749600000000,
+          "chrono_index": 8
         },
         {
           "title": "Bastion Turn",
@@ -1788,85 +1791,48 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (truth serum); Laboratory: Craft Poison (burnt othur fumes).",
-          "chrono_timestamp": 1749600000000,
-          "chrono_index": 8
+          "chrono_timestamp": 1749600000001,
+          "chrono_index": 9
         },
         {
-          "title": "Vatras Besieged",
-          "date": "2025-06-11",
-          "code": "FR-DC-FET-01",
-          "dm": "Erik T.",
-          "kind": "adventure",
-          "gp_plus": 100,
-          "gp_minus": 0,
-          "gp_net": 100,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
+          "title": "Bastion Turn",
+          "date": "2025-04-23",
+          "code": "DT-BASTION",
+          "dm": "",
+          "kind": "Downtime Activity",
+          "gp_plus": 0,
+          "gp_minus": 150,
+          "gp_net": -150,
+          "dtd_plus": 0,
+          "dtd_minus": 7,
+          "dtd_net": -7,
           "level_plus": 0,
           "totals": {
             "gp": {
-              "earned": 100,
-              "spent": 0,
-              "net": 100
+              "earned": 0,
+              "spent": 150,
+              "net": -150
             },
             "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
+              "earned": 0,
+              "spent": 7,
+              "net": -7
             },
             "level": {
               "gained": 0
             }
           },
-          "perm_items": [
-            "Half plate +1 (guardian)",
-            "Rope of mending (temperate)"
-          ],
+          "perm_items": [],
           "lost_perm_item": [],
-          "consumable_items": [],
+          "consumable_items": [
+            "Malice",
+            "Essence of Ether",
+            "Antitoxin",
+            "Antitoxin"
+          ],
           "supernatural_gifts": [],
           "story_awards": [],
-          "notes": "",
-          "chrono_timestamp": 1749600000001,
-          "chrono_index": 9
-        },
-        {
-          "title": "Whispers Beneath the Waves",
-          "date": "2025-04-23",
-          "code": "FR-DC-WCAG02-06",
-          "dm": "Jason R.",
-          "kind": "adventure",
-          "gp_plus": 1000,
-          "gp_minus": 0,
-          "gp_net": 1000,
-          "dtd_plus": 10,
-          "dtd_minus": 0,
-          "dtd_net": 10,
-          "level_plus": 1,
-          "totals": {
-            "gp": {
-              "earned": 1000,
-              "spent": 0,
-              "net": 1000
-            },
-            "downtime": {
-              "earned": 10,
-              "spent": 0,
-              "net": 10
-            },
-            "level": {
-              "gained": 1
-            }
-          },
-          "perm_items": [
-            "Periapt of Proof Against Poison"
-          ],
-          "lost_perm_item": [],
-          "consumable_items": [],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "",
+          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
           "chrono_timestamp": 1745366400000,
           "chrono_index": 5
         },
@@ -1908,52 +1874,10 @@ window.DATA = {
           "chrono_index": 6
         },
         {
-          "title": "Bastion Turn",
+          "title": "Whispers Beneath the Waves",
           "date": "2025-04-23",
-          "code": "DT-BASTION",
-          "dm": "",
-          "kind": "Downtime Activity",
-          "gp_plus": 0,
-          "gp_minus": 150,
-          "gp_net": -150,
-          "dtd_plus": 0,
-          "dtd_minus": 7,
-          "dtd_net": -7,
-          "level_plus": 0,
-          "totals": {
-            "gp": {
-              "earned": 0,
-              "spent": 150,
-              "net": -150
-            },
-            "downtime": {
-              "earned": 0,
-              "spent": 7,
-              "net": -7
-            },
-            "level": {
-              "gained": 0
-            }
-          },
-          "perm_items": [],
-          "lost_perm_item": [],
-          "consumable_items": [
-            "Malice",
-            "Essence of Ether",
-            "Antitoxin",
-            "Antitoxin"
-          ],
-          "supernatural_gifts": [],
-          "story_awards": [],
-          "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
-          "chrono_timestamp": 1745366400002,
-          "chrono_index": 7
-        },
-        {
-          "title": "Diabolical Dive",
-          "date": "2025-04-16",
-          "code": "DDAL 09-07",
-          "dm": "Nicole F.",
+          "code": "FR-DC-WCAG02-06",
+          "dm": "Jason R.",
           "kind": "adventure",
           "gp_plus": 1000,
           "gp_minus": 0,
@@ -1978,18 +1902,15 @@ window.DATA = {
             }
           },
           "perm_items": [
-            "Bowl of Commanding Water Elementals"
+            "Periapt of Proof Against Poison"
           ],
           "lost_perm_item": [],
-          "consumable_items": [
-            "Potion of Invisibility",
-            "Flask of Styx Water"
-          ],
+          "consumable_items": [],
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1744761600000,
-          "chrono_index": 3
+          "chrono_timestamp": 1745366400002,
+          "chrono_index": 7
         },
         {
           "title": "Trade",
@@ -2032,6 +1953,48 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Agatha"
           },
+          "chrono_timestamp": 1744761600000,
+          "chrono_index": 3
+        },
+        {
+          "title": "Diabolical Dive",
+          "date": "2025-04-16",
+          "code": "DDAL 09-07",
+          "dm": "Nicole F.",
+          "kind": "adventure",
+          "gp_plus": 1000,
+          "gp_minus": 0,
+          "gp_net": 1000,
+          "dtd_plus": 10,
+          "dtd_minus": 0,
+          "dtd_net": 10,
+          "level_plus": 1,
+          "totals": {
+            "gp": {
+              "earned": 1000,
+              "spent": 0,
+              "net": 1000
+            },
+            "downtime": {
+              "earned": 10,
+              "spent": 0,
+              "net": 10
+            },
+            "level": {
+              "gained": 1
+            }
+          },
+          "perm_items": [
+            "Bowl of Commanding Water Elementals"
+          ],
+          "lost_perm_item": [],
+          "consumable_items": [
+            "Potion of Invisibility",
+            "Flask of Styx Water"
+          ],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "",
           "chrono_timestamp": 1744761600001,
           "chrono_index": 4
         },
@@ -32349,8 +32312,8 @@ window.DATA = {
       "gifts_count": 1
     },
     "Chef Ture": {
-      "sessions": 10,
-      "net_gp": 5170,
+      "sessions": 9,
+      "net_gp": 5335,
       "net_dtd": 23,
       "level_ups": 4,
       "perm_count": 18,
@@ -32588,8 +32551,7 @@ window.DATA = {
       2026
     ],
     "Chef Ture": [
-      2025,
-      2026
+      2025
     ],
     "Wobbly Bobbly": [
       2025
@@ -32716,7 +32678,7 @@ window.DATA = {
   },
   "meta": {
     "source_file": "D&D AL Logsheets.xlsx",
-    "generated": "2026-02-05T00:50:35.174Z",
+    "generated": "2026-02-05T00:51:43.840Z",
     "problems": []
   },
   "dm_allocations": []
