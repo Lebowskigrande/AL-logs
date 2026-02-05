@@ -7,6 +7,24 @@ const corsHeaders = {
   'access-control-allow-methods': 'POST,OPTIONS'
 };
 
+const DEFAULT_DATA_PATH = 'data/data.js';
+
+const encodeGitHubPath = (inputPath) => {
+  const normalized = String(inputPath || '')
+    .replace(/^\/+/, '')
+    .trim();
+
+  if (!normalized) {
+    return null;
+  }
+
+  return normalized
+    .split('/')
+    .filter(Boolean)
+    .map((segment) => encodeURIComponent(segment))
+    .join('/');
+};
+
 const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
   const responseHeaders = { ...corsHeaders, ...headers };
   if (json) {
@@ -28,9 +46,14 @@ export default async function handler(req) {
   }
 
   try {
-    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = 'data.js' } = await req.json();
+    const { dataJs, branch = process.env.GH_BRANCH || 'work', path = DEFAULT_DATA_PATH } = await req.json();
     if (!dataJs || typeof dataJs !== 'string') {
       return respond({ error: 'dataJs (string) required' }, { status: 400 });
+    }
+
+    const encodedPath = encodeGitHubPath(path);
+    if (!encodedPath) {
+      return respond({ error: 'path must be a non-empty file path' }, { status: 400 });
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
@@ -44,7 +67,7 @@ export default async function handler(req) {
       return respond({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const base = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(path)}`;
+    const base = `https://api.github.com/repos/${repo}/contents/${encodedPath}`;
 
     // 1) Get current SHA (required to update an existing file)
     let sha = undefined;
