@@ -41,8 +41,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Automated save-data branch test",
+          "item_events": [],
           "chrono_timestamp": 1768867200000,
-          "chrono_index": 5
+          "chrono_index": 6
         },
         {
           "title": "Manual test entry",
@@ -78,8 +79,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Added via API test 2026-01-19T18:48:15.2589138-08:00",
+          "item_events": [],
           "chrono_timestamp": 1768780800000,
-          "chrono_index": 4
+          "chrono_index": 5
         },
         {
           "title": "Trade",
@@ -122,6 +124,31 @@ window.DATA = {
             "received": "Wand of Magic Missiles",
             "counterpartyCharacter": "Squelch"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1,
+              "counterparty_character": "Squelch"
+            },
+            {
+              "type": "acquire",
+              "item": "Eldritch Claw Tattoo",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Eldritch Claw Tattoo",
+              "quantity": 1,
+              "counterparty_character": "Squelch"
+            }
+          ],
           "chrono_timestamp": 1665187200000,
           "chrono_index": 1
         },
@@ -165,6 +192,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eldritch Claw Tattoo (temperate)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1665187200001,
           "chrono_index": 2
         },
@@ -202,6 +236,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1665187200002,
           "chrono_index": 3
         },
@@ -239,8 +274,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1663977600000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Squelch)",
+          "date": "2022-10-08",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Squelch",
+          "trade": {
+            "given": "Eldritch Claw tattoo (temperate)",
+            "received": "Wand of Magic Missiles",
+            "counterpartyCharacter": "Squelch"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eldritch Claw tattoo (temperate)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Eldritch Claw tattoo (temperate)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1665187200003,
+          "chrono_index": 4
         }
       ]
     },
@@ -294,6 +390,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nightcaller",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642377600000,
           "chrono_index": 2
         },
@@ -331,6 +434,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1638230400000,
           "chrono_index": 1
         },
@@ -375,6 +479,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shatterspike",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Entangle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1612742400000,
           "chrono_index": 0
         }
@@ -421,6 +537,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Added via edge function test",
+          "item_events": [],
           "chrono_timestamp": 1768780800000,
           "chrono_index": 21
         },
@@ -463,6 +580,18 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Djinn granted a Wish bestowing resistance to Force damage.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sending Stones",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1763510400000,
           "chrono_index": 20
         },
@@ -507,6 +636,31 @@ window.DATA = {
             "received": "Silver Dragon Shield +2/+2 Init",
             "counterpartyCharacter": "Madam Renata"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Silver Dragon Shield +2/+2 Init",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Silver Dragon Shield +2/+2 Init",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            },
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            }
+          ],
           "chrono_timestamp": 1762387200000,
           "chrono_index": 17
         },
@@ -549,9 +703,36 @@ window.DATA = {
           "trade": {
             "given": "Carpet (6x9)",
             "received": "Tome of Leadership and Influence",
-            "counterpartyCharacter": "Lorian",
+            "counterpartyCharacter": "Lorien",
             "counterpartyPlayer": "Bob C."
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Lorian",
+              "counterparty_player": "Bob C."
+            },
+            {
+              "type": "acquire",
+              "item": "Carpet (6x9)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Carpet (6x9)",
+              "quantity": 1,
+              "counterparty_character": "Lorian",
+              "counterparty_player": "Bob C."
+            }
+          ],
           "chrono_timestamp": 1762387200002,
           "chrono_index": 19
         },
@@ -596,6 +777,31 @@ window.DATA = {
             "received": "Carpet (6x9)",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Carpet (6x9)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Carpet (6x9)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon-Touched Focus (Wakened)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dragon-Touched Focus (Wakened)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1762387200001,
           "chrono_index": 18
         },
@@ -639,6 +845,33 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Killed an adult white dragon, it's claw was used to make Frost Brand Glaive.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bead of Force",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Boots of the Winterland",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Berserker Axe",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Wonder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Frost Brand Glaive",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1762214400000,
           "chrono_index": 16
         },
@@ -686,6 +919,72 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Spear (Wakened)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scaled Ornament (Wakened)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon Vessel (Wakened)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon-Touched Focus (Wakened)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Spear (Stirring)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Dragon's Wrath Spear (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scaled Ornament (Stirring)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Scaled Ornament (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon Vessel (Stirring)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Dragon Vessel (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon-touched focus (slumbering)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Dragon-touched focus (slumbering)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1761696000000,
           "chrono_index": 15
         },
@@ -735,6 +1034,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Acid Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Periapt of Wound Closure",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scale Mail of Acid Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mariner's Plate Armor",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Evasion",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Trident of Fish Command (Tideskewer)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Stone of Good Luck",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1761609600000,
           "chrono_index": 14
         },
@@ -778,6 +1114,33 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Found an elaborately decorated Shield covered with silver filigree, ornate Breastplate with several large gemstones embedded in the decoration, and ancient lyre whose arms are capped with dragon heads made of gold.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicious Greatsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cube of Summoning",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Silvered Spear",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Doss Lute",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Periapt of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1760486400000,
           "chrono_index": 13
         },
@@ -817,6 +1180,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions (Guardian)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1759968000000,
           "chrono_index": 12
         },
@@ -858,6 +1228,24 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Traded banned item at a Lord's Alliance outpost.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1759881600000,
           "chrono_index": 11
         },
@@ -900,6 +1288,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Folding Boat",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Moon Touched Rapier",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1759190400000,
           "chrono_index": 10
         },
@@ -944,6 +1344,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chest of Preserving",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1758672000000,
           "chrono_index": 9
         },
@@ -989,6 +1401,56 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Slew the misguided young brass dragon Ylagan and steeped three hoard items in his unstable hoard.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Spear (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scaled Ornament (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon Vessel (Stirring)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Weapon (slumbering)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Dragon's Wrath Weapon (slumbering)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scaled Ornament",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Scaled Ornament",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Slumbering Dragon Vessel",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Slumbering Dragon Vessel",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1755734400000,
           "chrono_index": 8
         },
@@ -1034,6 +1496,43 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 30 days training in Nature under the tutelage of Youngster Joey during journey to Aglarond. Killed the young brass dragon Ylagan in his lair and steeped all four of my hoard items to Stirring.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithral breastplate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Clockwork Amulet",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Jumping",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+1 Spear",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Stone of Controlling Earth Elementals",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1755561600000,
           "chrono_index": 7
         },
@@ -1073,6 +1572,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Crafted a Longhorn of Illusions with help from my Arcane Workshop hireling.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Instrument of Illusions (longhorn)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1755043200000,
           "chrono_index": 3
         },
@@ -1112,6 +1618,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Crafted an Enspelled Breastplate with the spell Armor of Agathys, using my existing breastplate, with help from my Smithy hireling.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Enspelled Breastplate (Armor of Agathys)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1755043200001,
           "chrono_index": 4
         },
@@ -1149,6 +1662,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1755043200002,
           "chrono_index": 5
         },
@@ -1186,6 +1700,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Moved into the temple of Sylvanus in the High Forest with Krock and Ashryn. Built an Arcane Workshop and a Smithy.",
+          "item_events": [],
           "chrono_timestamp": 1755043200003,
           "chrono_index": 6
         },
@@ -1240,6 +1755,75 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Performed a ritual for hire and sold Holy Water for 12 gp. Purchased Spell Scroll of Find Steed (200 gp) and successfully cast it, summoning the celestial elk Elenroch. Sold 2 Potions of Healing for 25 gp each.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithril plate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Adamantine breastplate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Secrets",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Whip +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Nature's Mantle",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Pearl of Power",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Weapon (slumbering)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon-touched focus (slumbering)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Shield +1 (background)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Holy Water for 12 gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Holy Water for 12 gp",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "2 Potions of Healing for 25 gp each",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "2 Potions of Healing for 25 gp each",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1754956800000,
           "chrono_index": 2
         },
@@ -1285,6 +1869,28 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gray Bag of Tricks",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Greataxe +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Baba Yaga's Dancing Broom",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Slumbering Dragon Vessel",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1754352000000,
           "chrono_index": 1
         },
@@ -1334,6 +1940,29 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Sold chain shirt for 25 gp, purchased Breastplate for 400 gp and 2 potions of healing for 45 gp each (sale).",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Leafwarden (Dragonslayer Longsword)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scaled Ornament",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "chain shirt for 25 gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "chain shirt for 25 gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1753142400000,
           "chrono_index": 0
         }
@@ -1406,6 +2035,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
+          "item_events": [],
           "chrono_timestamp": 1751414400000,
           "chrono_index": 16
         },
@@ -1451,6 +2081,13 @@ window.DATA = {
             "No Exceptions: booted from Mahadi's"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Charming",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1751414400001,
           "chrono_index": 17
         },
@@ -1493,6 +2130,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (Pale Tincture); Laboratory: Craft Poison (essence of ether).",
+          "item_events": [],
           "chrono_timestamp": 1750809600000,
           "chrono_index": 14
         },
@@ -1534,6 +2172,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought potion of fire resistance, ate at Infernal Rapture.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1750809600001,
           "chrono_index": 15
         },
@@ -1575,6 +2220,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (Malice); Laboratory: Craft Poison (burnt othur fumes).",
+          "item_events": [],
           "chrono_timestamp": 1750204800000,
           "chrono_index": 12
         },
@@ -1624,6 +2270,48 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 3 vials of Oil of Slipperiness.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missile",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Silver Horn of Valhalla",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Decanter of Endless Water",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mithril Chainmail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dimensional Shackles",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+2 Rod of the Pact Keeper",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+3 Silvered Great sword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "rare item of choice",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1750204800001,
           "chrono_index": 13
         },
@@ -1666,6 +2354,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (pale tincture); Laboratory: Craft Poison (essence of ether).",
+          "item_events": [],
           "chrono_timestamp": 1749945600000,
           "chrono_index": 10
         },
@@ -1710,6 +2399,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased book on history of Faerun (including culinary) for 200 gp. Spent 50 gp making 4 doses of Weapon Poison.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Luminous War Pick (beacon)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Hat of Wizardry",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1749945600001,
           "chrono_index": 11
         },
@@ -1750,6 +2451,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Half plate +1 (guardian)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rope of mending (temperate)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1749600000000,
           "chrono_index": 8
         },
@@ -1791,6 +2504,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (Athletics); Garden: Harvest Herbs (Potion of Healing); Greenhouse: Harvest Poison (truth serum); Laboratory: Craft Poison (burnt othur fumes).",
+          "item_events": [],
           "chrono_timestamp": 1749600000001,
           "chrono_index": 9
         },
@@ -1833,6 +2547,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Orders: Training area: Empower Training (stealth); Garden: Harvest Poison (antitoxin x 2); Greenhouse: Harvest Poison (malice); Laboratory: Craft Poison (essence of ether).",
+          "item_events": [],
           "chrono_timestamp": 1745366400000,
           "chrono_index": 5
         },
@@ -1870,6 +2585,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Basic Facilities: Cramped Kitchen, Roomy Dining Room. Expanded Kitchen to Roomy for 500 gp and 25 days (out of 200 alotted). Special Facilities: Garden, Greenhouose, Laboratory, Training Area.",
+          "item_events": [],
           "chrono_timestamp": 1745366400001,
           "chrono_index": 6
         },
@@ -1909,6 +2625,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1745366400002,
           "chrono_index": 7
         },
@@ -1953,6 +2676,31 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of the Python",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1744761600000,
           "chrono_index": 3
         },
@@ -1995,6 +2743,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bowl of Commanding Water Elementals",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1744761600001,
           "chrono_index": 4
         },
@@ -2036,6 +2791,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1743552000000,
           "chrono_index": 2
         },
@@ -2080,6 +2842,31 @@ window.DATA = {
             "received": "Belt of Hill Giant Strength",
             "counterpartyCharacter": "Noraggen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            },
+            {
+              "type": "acquire",
+              "item": "Lash of Immolation",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Lash of Immolation",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            }
+          ],
           "chrono_timestamp": 1742342400001,
           "chrono_index": 1
         },
@@ -2120,6 +2907,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Table trade for Heward's Handy Spicepouch",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lash of Immolation",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Hat of Wizardry",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1742342400000,
           "chrono_index": 0
         }
@@ -2168,6 +2967,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mariner's Scale Mail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1752624000000,
           "chrono_index": 4
         },
@@ -2207,6 +3013,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of the Ram",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1741737600000,
           "chrono_index": 3
         },
@@ -2246,6 +3059,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Arrow-catching Shield",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1740528000000,
           "chrono_index": 2
         },
@@ -2283,6 +3103,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1739664000000,
           "chrono_index": 0
         },
@@ -2320,6 +3141,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1739664000001,
           "chrono_index": 1
         }
@@ -2368,6 +3190,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Brightness",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1741132800000,
           "chrono_index": 8
         },
@@ -2407,6 +3236,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1741132800001,
           "chrono_index": 9
         },
@@ -2446,6 +3282,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Valkur's Raiment (Half-plate +1 waterborne)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1736899200000,
           "chrono_index": 6
         },
@@ -2485,6 +3328,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicious Glaive",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1736899200001,
           "chrono_index": 7
         },
@@ -2527,6 +3377,18 @@ window.DATA = {
             "Knowledge of House Toril"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Moon-Touched Rapier",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Web",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635724800000,
           "chrono_index": 5
         },
@@ -2566,6 +3428,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1632873600000,
           "chrono_index": 1
         },
@@ -2608,8 +3477,33 @@ window.DATA = {
           "trade": {
             "given": "Marvelous Pigments",
             "received": "Belt of Fire Giant Strength",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Marvelous Pigments",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Marvelous Pigments",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1632873600002,
           "chrono_index": 3
         },
@@ -2649,6 +3543,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Marvelous Pigments",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1632873600001,
           "chrono_index": 2
         },
@@ -2686,6 +3587,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1632873600003,
           "chrono_index": 4
         },
@@ -2723,6 +3625,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1632096000000,
           "chrono_index": 0
         }
@@ -2772,6 +3675,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Serpentine Scalemail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Serpent's Fang longsword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1689120000000,
           "chrono_index": 3
         },
@@ -2811,6 +3726,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Barrier Tattoo (rare)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1688601600000,
           "chrono_index": 1
         },
@@ -2850,6 +3772,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Hat of Disguise",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1688601600001,
           "chrono_index": 2
         },
@@ -2887,6 +3816,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1688428800000,
           "chrono_index": 0
         }
@@ -2938,8 +3868,20 @@ window.DATA = {
             "Promotion or Privateer?"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Astromancy Archive (Guardian)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Horn of Silent Alarm (Githyanki)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1674518400000,
-          "chrono_index": 6
+          "chrono_index": 7
         },
         {
           "title": "Trade",
@@ -2982,6 +3924,31 @@ window.DATA = {
             "received": "Eldritch Claw tattoo (temperate)",
             "counterpartyCharacter": "Squelch (prequel)"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eldritch Claw Tattoo (temperate)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Eldritch Claw tattoo (temperate)",
+              "quantity": 1,
+              "counterparty_character": "Squelch (prequel)"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1,
+              "counterparty_character": "Squelch (prequel)"
+            }
+          ],
           "chrono_timestamp": 1665187200000,
           "chrono_index": 5
         },
@@ -3024,6 +3991,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of the Bat",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Talking Doll",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1664928000000,
           "chrono_index": 4
         },
@@ -3063,6 +4042,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness of Action",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1664496000000,
           "chrono_index": 2
         },
@@ -3102,6 +4088,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1664496000001,
           "chrono_index": 3
         },
@@ -3143,6 +4136,13 @@ window.DATA = {
             "Wild Hunter"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1662508800000,
           "chrono_index": 1
         },
@@ -3180,8 +4180,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1662336000000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Squelch (prequel))",
+          "date": "2022-10-08",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Squelch (prequel)",
+          "trade": {
+            "given": "Wand of Magic Missiles",
+            "received": "Eldritch Claw Tattoo",
+            "counterpartyCharacter": "Squelch (prequel)"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Eldritch Claw Tattoo",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1665187200001,
+          "chrono_index": 6
         }
       ]
     },
@@ -3226,6 +4287,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Added via API verification (data/data.js)",
+          "item_events": [],
           "chrono_timestamp": 1768780800000,
           "chrono_index": 29
         },
@@ -3265,6 +4327,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Absorbed draconic magic from the soul of an ancient red dragon, gaining fire resistance (level 6 draconic sorcerer).",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Fire",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1760572800000,
           "chrono_index": 28
         },
@@ -3305,6 +4374,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon's Wrath Greatsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Acid Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1756252800000,
           "chrono_index": 27
         },
@@ -3349,6 +4430,31 @@ window.DATA = {
             "received": "Vicious Lance",
             "counterpartyCharacter": "Raguel"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicious Lance",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Vicious Lance",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            },
+            {
+              "type": "acquire",
+              "item": "Half-plate +1",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Half-plate +1",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            }
+          ],
           "chrono_timestamp": 1732060800000,
           "chrono_index": 26
         },
@@ -3388,6 +4494,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amethyst Dragonwing Longbow",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1729036800000,
           "chrono_index": 25
         },
@@ -3427,6 +4540,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon's Tail (Lash of Immolation)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1725062400000,
           "chrono_index": 23
         },
@@ -3469,6 +4589,28 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (1x Bless",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "2x Cure Wounds/Lesser Resto",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "2x Greater Resto",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "1x Wind Walk)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1725062400001,
           "chrono_index": 24
         },
@@ -3506,6 +4648,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1724198400000,
           "chrono_index": 22
         },
@@ -3550,6 +4693,31 @@ window.DATA = {
             "received": "Periapt of Proof Against Poison",
             "counterpartyCharacter": "Faramir Quickfoot"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1,
+              "counterparty_character": "Faramir Quickfoot"
+            },
+            {
+              "type": "acquire",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Faramir Quickfoot"
+            }
+          ],
           "chrono_timestamp": 1711152000001,
           "chrono_index": 21
         },
@@ -3589,6 +4757,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "The Sixth Sword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1711152000000,
           "chrono_index": 20
         },
@@ -3634,6 +4809,18 @@ window.DATA = {
             "Dinosaur Healer: can buy dinosaurs for 10 DTD"
           ],
           "notes": "Purchased Triceratops for 500 gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Half-plate +1 (Topaz scales)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Clothes of mending",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1685145600000,
           "chrono_index": 19
         },
@@ -3673,6 +4860,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1683676800000,
           "chrono_index": 18
         },
@@ -3715,6 +4909,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1681257600000,
           "chrono_index": 17
         },
@@ -3758,6 +4959,13 @@ window.DATA = {
             "Marked by the Fire of Imix"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Brazier of Commanding Fire Elementals",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1677024000000,
           "chrono_index": 16
         },
@@ -3802,6 +5010,31 @@ window.DATA = {
             "received": "Moon-Touched Greatsword",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Moon-Touched Greatsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Moon-Touched Greatsword",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Pipe of Smoke Monsters (Guardian)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Pipe of Smoke Monsters (Guardian)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1663113600000,
           "chrono_index": 15
         },
@@ -3847,6 +5080,23 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pipe of Smoke Monsters (Guardian)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bloodwell Vial +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Boots of Speed",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1661385600000,
           "chrono_index": 14
         },
@@ -3890,6 +5140,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rope of Entanglement",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1657411200000,
           "chrono_index": 12
         },
@@ -3935,6 +5192,33 @@ window.DATA = {
             "counterpartyCharacter": "Pruxx",
             "counterpartyPlayer": "Dave N."
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Necklace of Prayer Beads (4x Bless 1x Smite 1x Greater Restoration)",
+              "quantity": 1,
+              "counterparty_character": "Pruxx",
+              "counterparty_player": "Dave N."
+            },
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "counterparty_character": "Pruxx",
+              "counterparty_player": "Dave N."
+            }
+          ],
           "chrono_timestamp": 1657411200001,
           "chrono_index": 13
         },
@@ -3972,6 +5256,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1656460800000,
           "chrono_index": 11
         },
@@ -4013,6 +5298,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Arrow-Catching Shield",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1653177600000,
           "chrono_index": 10
         },
@@ -4050,6 +5342,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1652572800000,
           "chrono_index": 9
         },
@@ -4092,6 +5385,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of the Manta Ray",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1652313600000,
           "chrono_index": 8
         },
@@ -4133,6 +5438,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Scavenged plate and a greatsword",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1652227200000,
           "chrono_index": 7
         },
@@ -4175,6 +5487,28 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Learned Grippli",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Serpent Scale Mail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Serpent Fang longsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chime of Opening (5)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lantern of Revealing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1651622400000,
           "chrono_index": 6
         },
@@ -4214,6 +5548,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flametongue greatsword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1651449600000,
           "chrono_index": 4
         },
@@ -4253,6 +5594,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Giant slayer greatsword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1651449600001,
           "chrono_index": 5
         },
@@ -4297,6 +5645,31 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1650412800001,
           "chrono_index": 2
         },
@@ -4336,6 +5709,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1650412800000,
           "chrono_index": 1
         },
@@ -4375,6 +5755,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon slayer greatsword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1650412800002,
           "chrono_index": 3
         },
@@ -4412,6 +5799,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1650326400000,
           "chrono_index": 0
         }
@@ -4479,6 +5867,31 @@ window.DATA = {
             "received": "Winged Boots",
             "counterpartyCharacter": "Madam Renata"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            },
+            {
+              "type": "acquire",
+              "item": "Headband of Intellect",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Headband of Intellect",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            }
+          ],
           "chrono_timestamp": 1632441600000,
           "chrono_index": 9
         },
@@ -4519,6 +5932,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Studded Leather Armor for 45 gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Chardalyn Breastplate of Necrotic Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Pyrotechnics",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1615248000000,
           "chrono_index": 8
         },
@@ -4562,6 +5987,33 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicious Spear",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (Bless x3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cure x2)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+2 shortsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Winter Wolf Cloak (Hell Hound Cloak)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1613865600000,
           "chrono_index": 7
         },
@@ -4605,6 +6057,23 @@ window.DATA = {
             "Defender of Easthaven"
           ],
           "notes": "Successfully defended Easthaven",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Charlatan's Die",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bracers of Archery",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Headband of Intellect (earring)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1613174400000,
           "chrono_index": 6
         },
@@ -4645,6 +6114,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Grey Bag of Tricks",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Masquerade Tattoo",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1608940800000,
           "chrono_index": 4
         },
@@ -4684,6 +6165,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lantern of Tracking (Aberrations)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1608940800001,
           "chrono_index": 5
         },
@@ -4721,6 +6209,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1606953600000,
           "chrono_index": 3
         },
@@ -4764,6 +6253,13 @@ window.DATA = {
             "Blessing of the Morninglord"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606608000000,
           "chrono_index": 2
         },
@@ -4804,6 +6300,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought snow shoes and crampons",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Goggles of Night",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Illuminator's Tattoo",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605830400000,
           "chrono_index": 1
         },
@@ -4841,6 +6349,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1582243200000,
           "chrono_index": 0
         }
@@ -4894,6 +6403,31 @@ window.DATA = {
             "received": "Bracers of Defense",
             "counterpartyCharacter": "Ecthelion"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "counterparty_character": "Ecthelion"
+            },
+            {
+              "type": "acquire",
+              "item": "Silver Dragon Shield +2/+2 Init",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Silver Dragon Shield +2/+2 Init",
+              "quantity": 1,
+              "counterparty_character": "Ecthelion"
+            }
+          ],
           "chrono_timestamp": 1762387200000,
           "chrono_index": 14
         },
@@ -4938,6 +6472,31 @@ window.DATA = {
             "received": "Spider Staff",
             "counterpartyCharacter": "Raguel"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Spider Staff",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Spider Staff",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            }
+          ],
           "chrono_timestamp": 1732060800000,
           "chrono_index": 13
         },
@@ -4986,6 +6545,33 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Helm of Brilliance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Plate +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Silver Dragon Shield +2/+2 Init",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sentient Shortsword +1",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1648166400000,
           "chrono_index": 12
         },
@@ -5026,6 +6612,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 2 potions of healing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Doss Lute",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mace of Terror",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1646352000000,
           "chrono_index": 11
         },
@@ -5065,6 +6663,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Warmth",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1643328000000,
           "chrono_index": 10
         },
@@ -5102,6 +6707,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1642723200000,
           "chrono_index": 8
         },
@@ -5141,6 +6747,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dark Gift: +30 max hp, twitchy, can't give a straight answer to any question, covered in dark fur",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642723200001,
           "chrono_index": 9
         },
@@ -5180,6 +6793,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing (Harmonious)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1637280000000,
           "chrono_index": 7
         },
@@ -5222,6 +6842,13 @@ window.DATA = {
             "Trackless Travel"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wind Fan",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634860800000,
           "chrono_index": 6
         },
@@ -5265,6 +6892,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of Charming",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634256000000,
           "chrono_index": 5
         },
@@ -5304,6 +6938,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Hat of Disguise",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1633046400000,
           "chrono_index": 4
         },
@@ -5341,6 +6982,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1632441600000,
           "chrono_index": 0
         },
@@ -5385,6 +7027,31 @@ window.DATA = {
             "received": "Headband of Intellect",
             "counterpartyCharacter": "Jerry Garcia"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Headband of Intellect",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Headband of Intellect",
+              "quantity": 1,
+              "counterparty_character": "Jerry Garcia"
+            },
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "counterparty_character": "Jerry Garcia"
+            }
+          ],
           "chrono_timestamp": 1632441600002,
           "chrono_index": 2
         },
@@ -5424,6 +7091,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1632441600001,
           "chrono_index": 1
         },
@@ -5463,6 +7137,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Whip of Warning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1632441600003,
           "chrono_index": 3
         }
@@ -5516,8 +7197,33 @@ window.DATA = {
             "received": "Lash of Immolation",
             "counterpartyCharacter": "Chef Ture"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lash of Immolation",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Lash of Immolation",
+              "quantity": 1,
+              "counterparty_character": "Chef Ture"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Chef Ture"
+            }
+          ],
           "chrono_timestamp": 1742342400000,
-          "chrono_index": 16
+          "chrono_index": 19
         },
         {
           "title": "Donum Vitae",
@@ -5555,8 +7261,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Wonder",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1624320000000,
-          "chrono_index": 15
+          "chrono_index": 18
         },
         {
           "title": "Red War: Black Phoenix",
@@ -5598,8 +7311,15 @@ window.DATA = {
             "High Blade in Your Debt"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Saddle of the Cavalier",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1623110400000,
-          "chrono_index": 14
+          "chrono_index": 17
         },
         {
           "title": "Book of Cyllinders",
@@ -5635,8 +7355,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1622332800000,
-          "chrono_index": 13
+          "chrono_index": 16
         },
         {
           "title": "Red War: Embassy of Evil",
@@ -5676,8 +7397,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Thayvian Mantle of Spell Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1620172800000,
-          "chrono_index": 12
+          "chrono_index": 15
         },
         {
           "title": "The Heir of Orcus Verse IV",
@@ -5716,8 +7444,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Hat of Disguise",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Candle of the Deep",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1617235200000,
-          "chrono_index": 9
+          "chrono_index": 12
         },
         {
           "title": "DM Reward",
@@ -5753,8 +7493,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1617235200001,
-          "chrono_index": 10
+          "chrono_index": 13
         },
         {
           "title": "Trade",
@@ -5797,8 +7538,33 @@ window.DATA = {
             "received": "Splint +1",
             "counterpartyCharacter": "Sentient Hat"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Splint +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Splint +1",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            }
+          ],
           "chrono_timestamp": 1617235200002,
-          "chrono_index": 11
+          "chrono_index": 14
         },
         {
           "title": "Into the Dark, Black Forest",
@@ -5836,8 +7602,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Added spells to Ring of Spell Storing: Hex, Shield, Haste",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Whip of Warning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1611705600000,
-          "chrono_index": 8
+          "chrono_index": 9
         },
         {
           "title": "Trade",
@@ -5880,8 +7653,33 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Sookie Stackhouse"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing (harmonious)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Sookie Stackhouse"
+            },
+            {
+              "type": "acquire",
+              "item": "Plague Fly",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Plague Fly",
+              "quantity": 1,
+              "counterparty_character": "Sookie Stackhouse"
+            }
+          ],
           "chrono_timestamp": 1611446400001,
-          "chrono_index": 7
+          "chrono_index": 8
         },
         {
           "title": "A Sunk Cost",
@@ -5922,8 +7720,15 @@ window.DATA = {
             "Touched by the Fates"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plague Fly",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1611446400000,
-          "chrono_index": 6
+          "chrono_index": 7
         },
         {
           "title": "Champion of the People",
@@ -5963,6 +7768,13 @@ window.DATA = {
             "Friend of Phlan"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605657600000,
           "chrono_index": 1
         },
@@ -6007,8 +7819,33 @@ window.DATA = {
             "received": "Dwarven Thrower",
             "counterpartyCharacter": "Morty"
           },
-          "chrono_timestamp": 1605657600002,
-          "chrono_index": 3
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Thrower",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dwarven Thrower",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
+          "chrono_timestamp": 1605657600001,
+          "chrono_index": 2
         },
         {
           "title": "DM Reward",
@@ -6046,8 +7883,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
-          "chrono_timestamp": 1605657600001,
-          "chrono_index": 2
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1605657600002,
+          "chrono_index": 3
         },
         {
           "title": "DM Reward",
@@ -6083,6 +7927,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1605657600003,
           "chrono_index": 4
         },
@@ -6120,6 +7965,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1605657600004,
           "chrono_index": 5
         },
@@ -6159,8 +8005,195 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longbow +2 w/ Sentinel (Human)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602892800000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Buckley)",
+          "date": "2021-02-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Buckley",
+          "trade": {
+            "given": "Belt of Hill GIant Strength",
+            "received": "Ring of Spell Storing",
+            "counterpartyCharacter": "Buckley"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill GIant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Hill GIant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1613779200000,
+          "chrono_index": 10
+        },
+        {
+          "title": "Trade (reciprocal for Sentient Hat)",
+          "date": "2021-02-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Sentient Hat",
+          "trade": {
+            "given": "Ring of Spell Storing (Harmonius)",
+            "received": "Splint +1",
+            "counterpartyCharacter": "Sentient Hat"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing (Harmonius)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing (Harmonius)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Splint +1",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1614124800000,
+          "chrono_index": 11
+        },
+        {
+          "title": "Trade (reciprocal for Morty)",
+          "date": "2020-11-18",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Morty",
+          "trade": {
+            "given": "Tloque's Battleax",
+            "received": "Dwarven Thrower",
+            "counterpartyCharacter": "Morty"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleax",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tloque's Battleax",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dwarven Thrower",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1605657600005,
+          "chrono_index": 6
         }
       ]
     },
@@ -6215,6 +8248,31 @@ window.DATA = {
             "received": "Plague Fly",
             "counterpartyCharacter": "Noraggen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plague Fly",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plague Fly",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            }
+          ],
           "chrono_timestamp": 1611446400000,
           "chrono_index": 8
         },
@@ -6254,6 +8312,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing - harmonious",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1596240000000,
           "chrono_index": 7
         },
@@ -6293,6 +8358,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Boots of Elvenkind - bloody gore flavor",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1593820800000,
           "chrono_index": 5
         },
@@ -6330,6 +8402,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1593820800001,
           "chrono_index": 6
         },
@@ -6369,6 +8442,7 @@ window.DATA = {
             "Eye of the Bird - somewhere a bird things of me fondly for helping an agent. Aid of the Bergemaster - advantage when dealing with any Bergemaster in Barovia"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1592611200000,
           "chrono_index": 0
         },
@@ -6413,6 +8487,31 @@ window.DATA = {
             "received": "Helm of Telepathy",
             "counterpartyCharacter": "Jormund Khan"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Helm of Telepathy",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Helm of Telepathy",
+              "quantity": 1,
+              "counterparty_character": "Jormund Khan"
+            },
+            {
+              "type": "acquire",
+              "item": "Mithral Splintmail",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Mithral Splintmail",
+              "quantity": 1,
+              "counterparty_character": "Jormund Khan"
+            }
+          ],
           "chrono_timestamp": 1592611200002,
           "chrono_index": 2
         },
@@ -6452,6 +8551,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithral Splintmail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1592611200001,
           "chrono_index": 1
         },
@@ -6491,6 +8597,7 @@ window.DATA = {
             "Stuck in the Demiplane of Dread."
           ],
           "notes": "Bought cold weather gear",
+          "item_events": [],
           "chrono_timestamp": 1592611200003,
           "chrono_index": 3
         },
@@ -6528,6 +8635,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1592611200004,
           "chrono_index": 4
         }
@@ -6581,8 +8689,33 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Sentient Hat"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            },
+            {
+              "type": "acquire",
+              "item": "1 pot of Nulzor's Marvelous Pigments",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "1 pot of Nulzor's Marvelous Pigments",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            }
+          ],
           "chrono_timestamp": 1620950400000,
-          "chrono_index": 14
+          "chrono_index": 15
         },
         {
           "title": "The Mirror City of Gulthias",
@@ -6620,8 +8753,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Elvenkind",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1613779200000,
-          "chrono_index": 12
+          "chrono_index": 13
         },
         {
           "title": "Trade",
@@ -6664,8 +8804,33 @@ window.DATA = {
             "received": "Belt of Hill GIant Strength",
             "counterpartyCharacter": "Noraggen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Hill GIant Strength",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            }
+          ],
           "chrono_timestamp": 1613779200001,
-          "chrono_index": 13
+          "chrono_index": 14
         },
         {
           "title": "What History Leaves Behind",
@@ -6703,8 +8868,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1613520000000,
-          "chrono_index": 11
+          "chrono_index": 12
         },
         {
           "title": "A Mural of Arthyn",
@@ -6742,8 +8914,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "1 pot of Nolzur's Marvelous Pigments",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1613001600000,
-          "chrono_index": 10
+          "chrono_index": 11
         },
         {
           "title": "Rescue Down Under",
@@ -6781,8 +8960,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Folding Boat",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1611100800000,
-          "chrono_index": 9
+          "chrono_index": 10
         },
         {
           "title": "A Question Never Asked",
@@ -6824,6 +9010,18 @@ window.DATA = {
             "Wild Hunter"
           ],
           "notes": "Met Foxwere companion",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missile",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Selûne's Owl-Eye Glasses",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609027200000,
           "chrono_index": 7
         },
@@ -6868,6 +9066,31 @@ window.DATA = {
             "received": "Adamantine Plate Armor",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Adamantine Plate Armor",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Adamantine Plate Armor",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1609027200001,
           "chrono_index": 8
         },
@@ -6912,6 +9135,31 @@ window.DATA = {
             "received": "Maul +2",
             "counterpartyCharacter": "Fai Chen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Maul +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Maul +2",
+              "quantity": 1,
+              "counterparty_character": "Fai Chen"
+            },
+            {
+              "type": "acquire",
+              "item": "Portable Hole",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Portable Hole",
+              "quantity": 1,
+              "counterparty_character": "Fai Chen"
+            }
+          ],
           "chrono_timestamp": 1605312000000,
           "chrono_index": 6
         },
@@ -6951,6 +9199,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Portable Hole",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604448000000,
           "chrono_index": 5
         },
@@ -6998,6 +9253,18 @@ window.DATA = {
             "you feel assured that others will follow his example."
           ],
           "notes": "Paid 10 gp for healing services",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gloves of Thievery",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ilmater's Respite (Wand of Smiles)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1591833600000,
           "chrono_index": 4
         },
@@ -7039,6 +9306,24 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Received Ring of Protection faction item from UAW (custom faction), +1 Maul from the people I organized in Thundertree. Purchased splint for 100gp and sold Chain mail for 37gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Alchemy Jug",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chain mail for 37gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Chain mail for 37gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1584576000000,
           "chrono_index": 3
         },
@@ -7080,6 +9365,13 @@ window.DATA = {
             "Lingering Nightmare"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eversmoking Bottle of Hag's Breath",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1583539200000,
           "chrono_index": 2
         },
@@ -7117,6 +9409,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1583193600000,
           "chrono_index": 1
         },
@@ -7160,8 +9453,75 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1582070400000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2020-12-27",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Eyes of the Eagle",
+            "received": "Adamantine Armor",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Adamantine Armor",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1609027200002,
+          "chrono_index": 9
         }
       ]
     },
@@ -7213,6 +9573,31 @@ window.DATA = {
             "received": "Necklace of Fireballs",
             "counterpartyCharacter": "Lyrielle"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs (6)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Necklace of Fireballs",
+              "quantity": 1,
+              "counterparty_character": "Lyrielle"
+            },
+            {
+              "type": "acquire",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Lyrielle"
+            }
+          ],
           "chrono_timestamp": 1625529600000,
           "chrono_index": 16
         },
@@ -7250,6 +9635,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1595980800000,
           "chrono_index": 14
         },
@@ -7294,6 +9680,13 @@ window.DATA = {
             "it seems\nthe physical trait you manifested still\nlingers. This story award can only be\nremoved by a remove curse."
           ],
           "notes": "Used Dreamwalker portent",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1595980800001,
           "chrono_index": 15
         },
@@ -7336,6 +9729,13 @@ window.DATA = {
             "renewable with 25 day DTD activity"
           ],
           "notes": "Gained one portent from Dreamwalker: 1 (used)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1595462400000,
           "chrono_index": 13
         },
@@ -7380,6 +9780,31 @@ window.DATA = {
             "received": "the Sixth Sword",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sixth Sword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "the Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Necklace of Prayer Beads",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1595289600000,
           "chrono_index": 12
         },
@@ -7419,6 +9844,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1595116800000,
           "chrono_index": 10
         },
@@ -7458,6 +9890,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Received Ring of Protection from Force Grey",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1595116800001,
           "chrono_index": 11
         },
@@ -7497,6 +9936,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Received Renown Item Katana (Longsword) +1",
+          "item_events": [],
           "chrono_timestamp": 1594512000000,
           "chrono_index": 9
         },
@@ -7541,6 +9981,31 @@ window.DATA = {
             "received": "Dread Helm",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dread Helm",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dread Helm",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Ruby of the War Mage",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ruby of the War Mage",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1592956800001,
           "chrono_index": 8
         },
@@ -7585,6 +10050,31 @@ window.DATA = {
             "received": "Ruby of the War Mage",
             "counterpartyCharacter": "Zeras Brid"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ruby of the War Mage",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ruby of the War Mage",
+              "quantity": 1,
+              "counterparty_character": "Zeras Brid"
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1,
+              "counterparty_character": "Zeras Brid"
+            }
+          ],
           "chrono_timestamp": 1592956800000,
           "chrono_index": 7
         },
@@ -7633,6 +10123,13 @@ window.DATA = {
             "flat skull. You can remove this story award by casting lesser restoration on yourself."
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1592870400000,
           "chrono_index": 6
         },
@@ -7670,6 +10167,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1592092800000,
           "chrono_index": 5
         },
@@ -7707,6 +10205,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Recieved Stone of Golorr",
+          "item_events": [],
           "chrono_timestamp": 1591488000000,
           "chrono_index": 4
         },
@@ -7746,6 +10245,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1590278400000,
           "chrono_index": 3
         },
@@ -7785,6 +10285,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Boots of Evenkind",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1589673600000,
           "chrono_index": 2
         },
@@ -7822,6 +10329,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1588464000000,
           "chrono_index": 1
         },
@@ -7861,6 +10369,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Joined faction Force Grey (which I prefer to call Force Green)",
+          "item_events": [],
           "chrono_timestamp": 1587859200000,
           "chrono_index": 0
         }
@@ -7909,8 +10418,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rogue's Mantle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1696377600000,
-          "chrono_index": 9
+          "chrono_index": 10
         },
         {
           "title": "Trade",
@@ -7953,6 +10469,31 @@ window.DATA = {
             "received": "Mithral Splintmail",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithral splintmail",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Mithral Splintmail",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Shield +1",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Shield +1",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1574208000000,
           "chrono_index": 8
         },
@@ -7997,6 +10538,31 @@ window.DATA = {
             "received": "Shield +1",
             "counterpartyCharacter": "Fei Chen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Shield +1",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            },
+            {
+              "type": "acquire",
+              "item": "Sending Stones",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Sending Stones",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            }
+          ],
           "chrono_timestamp": 1573257600000,
           "chrono_index": 7
         },
@@ -8041,6 +10607,31 @@ window.DATA = {
             "received": "Gloves of Thievery",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gloves of Thievery",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Gloves of Thievery",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1572652800000,
           "chrono_index": 6
         },
@@ -8080,6 +10671,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sending Stones",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1570233600000,
           "chrono_index": 5
         },
@@ -8117,6 +10715,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1570147200000,
           "chrono_index": 4
         },
@@ -8156,6 +10755,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1569542400000,
           "chrono_index": 2
         },
@@ -8193,6 +10799,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1569542400001,
           "chrono_index": 3
         },
@@ -8232,6 +10839,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1569369600000,
           "chrono_index": 1
         },
@@ -8269,8 +10883,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1568937600000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2019-11-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "+1 Shield",
+            "received": "mithral splintmail",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "+1 Shield",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "+1 Shield",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "mithral splintmail",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1574208000001,
+          "chrono_index": 9
         }
       ]
     },
@@ -8322,6 +10997,25 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Sentient Hat"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "FOWP - Ivory Goats",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Sentient Hat"
+            }
+          ],
           "chrono_timestamp": 1614124800000,
           "chrono_index": 8
         },
@@ -8359,6 +11053,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1614124800001,
           "chrono_index": 9
         },
@@ -8403,6 +11098,31 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1581465600001,
           "chrono_index": 7
         },
@@ -8447,6 +11167,31 @@ window.DATA = {
             "received": "Sun Blade",
             "counterpartyCharacter": "Tifa Heartlock"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "counterparty_character": "Tifa Heartlock"
+            },
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Gem of Seeing",
+              "quantity": 1,
+              "counterparty_character": "Tifa Heartlock"
+            }
+          ],
           "chrono_timestamp": 1581465600000,
           "chrono_index": 6
         },
@@ -8491,6 +11236,31 @@ window.DATA = {
             "received": "Gem of Seeing",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Gem of Seeing",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1576886400000,
           "chrono_index": 5
         },
@@ -8535,6 +11305,31 @@ window.DATA = {
             "received": "Belt of Hill Giant Strength",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1576108800000,
           "chrono_index": 4
         },
@@ -8576,6 +11371,13 @@ window.DATA = {
             "Meteor Wrangler"
           ],
           "notes": "Longbow +1 renown item",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Elven Chainmail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1575417600000,
           "chrono_index": 3
         },
@@ -8613,6 +11415,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1573171200000,
           "chrono_index": 2
         },
@@ -8652,6 +11455,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1572566400000,
           "chrono_index": 1
         },
@@ -8689,8 +11499,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1572393600000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Sentient Hat)",
+          "date": "2021-02-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Sentient Hat",
+          "trade": {
+            "given": "Glamoured Studded Leather",
+            "received": "FOWP - Ivory Goats",
+            "counterpartyCharacter": "Sentient Hat"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "FOWP - Ivory Goats",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1614124800002,
+          "chrono_index": 10
         }
       ]
     },
@@ -8742,6 +11613,18 @@ window.DATA = {
             "A Lich's Secret"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of the Manta Ray (Sea Hag's Cloak)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ruby of the War Mage",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1648598400000,
           "chrono_index": 13
         },
@@ -8784,6 +11667,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cape of the Mountebank",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1645574400000,
           "chrono_index": 12
         },
@@ -8826,6 +11716,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of the Devout +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1645142400000,
           "chrono_index": 11
         },
@@ -8875,6 +11777,23 @@ window.DATA = {
             "Sunlit Pistolero"
           ],
           "notes": "Bought Scroll of Revivify",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Emotional Well-Being (Amulet of Health)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Yarnspinner's Cloak (Cloak of Arachnida)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Gleaming Scale",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1643760000000,
           "chrono_index": 10
         },
@@ -8914,6 +11833,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1643414400000,
           "chrono_index": 9
         },
@@ -8956,6 +11882,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pipes of Haunting",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642550400000,
           "chrono_index": 8
         },
@@ -8996,6 +11929,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flametongue Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Pearl of Power",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642291200000,
           "chrono_index": 7
         },
@@ -9040,6 +11985,31 @@ window.DATA = {
             "received": "Wand of the War Mage +3",
             "counterpartyCharacter": "Barbara Jean"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of the War Mage +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of the War Mage +3",
+              "quantity": 1,
+              "counterparty_character": "Barbara Jean"
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "counterparty_character": "Barbara Jean"
+            }
+          ],
           "chrono_timestamp": 1642204800002,
           "chrono_index": 6
         },
@@ -9084,6 +12054,31 @@ window.DATA = {
             "received": "Rod of the Pact Keeper +3",
             "counterpartyCharacter": "Amaretto"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "counterparty_character": "Amaretto"
+            },
+            {
+              "type": "acquire",
+              "item": "Nolzur's Pigments",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Nolzur's Pigments",
+              "quantity": 1,
+              "counterparty_character": "Amaretto"
+            }
+          ],
           "chrono_timestamp": 1642204800001,
           "chrono_index": 5
         },
@@ -9123,6 +12118,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nolzur's Pigments",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642204800000,
           "chrono_index": 4
         },
@@ -9166,6 +12168,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Greatsword of Warning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1641945600000,
           "chrono_index": 3
         },
@@ -9212,6 +12221,13 @@ window.DATA = {
             "A Bit of the Divine"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Doss Lute",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1641340800000,
           "chrono_index": 2
         },
@@ -9251,6 +12267,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Heward's Handy Haversack",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1639785600000,
           "chrono_index": 1
         },
@@ -9290,6 +12313,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "All-Purpose Tool +1",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1639699200000,
           "chrono_index": 0
         }
@@ -9338,6 +12368,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Krahharuan Fork (+3 Pike)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1742947200000,
           "chrono_index": 11
         },
@@ -9377,6 +12414,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragonhide Belt +3 (Harmonious)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1736553600000,
           "chrono_index": 10
         },
@@ -9420,6 +12464,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800000,
           "chrono_index": 0
         },
@@ -9464,6 +12515,31 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Madam Renata"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing (Harmonious)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            },
+            {
+              "type": "acquire",
+              "item": "Spider Staff",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Spider Staff",
+              "quantity": 1,
+              "counterparty_character": "Madam Renata"
+            }
+          ],
           "chrono_timestamp": 1732060800002,
           "chrono_index": 2
         },
@@ -9503,6 +12579,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Spider Staff",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800001,
           "chrono_index": 1
         },
@@ -9547,6 +12630,31 @@ window.DATA = {
             "received": "Half-plate +1",
             "counterpartyCharacter": "Norixius"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Half-plate +1 (Topaz scales)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Half-plate +1",
+              "quantity": 1,
+              "counterparty_character": "Norixius"
+            },
+            {
+              "type": "acquire",
+              "item": "Vicious Lance",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Vicious Lance",
+              "quantity": 1,
+              "counterparty_character": "Norixius"
+            }
+          ],
           "chrono_timestamp": 1732060800004,
           "chrono_index": 4
         },
@@ -9586,6 +12694,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicious Lance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800003,
           "chrono_index": 3
         },
@@ -9625,6 +12740,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vicioius Maul",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800005,
           "chrono_index": 5
         },
@@ -9670,6 +12792,36 @@ window.DATA = {
             "received": "Tome of Leadership and Influence",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Anstruth Harp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Anstruth Harp",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1732060800007,
           "chrono_index": 7
         },
@@ -9709,6 +12861,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Anstruth Harp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800006,
           "chrono_index": 6
         },
@@ -9748,6 +12907,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1732060800008,
           "chrono_index": 8
         },
@@ -9785,6 +12951,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1732060800009,
           "chrono_index": 9
         }
@@ -9853,8 +13020,33 @@ window.DATA = {
             "received": "Eyes of the Eagle",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1633219200000,
-          "chrono_index": 19
+          "chrono_index": 20
         },
         {
           "title": "Alkezaar's Appendix",
@@ -9904,8 +13096,40 @@ window.DATA = {
             "this charm vanishes from you. Charm of Lightning Resistance (10 days)"
           ],
           "notes": "Wished for resistance to Necrotic, spell was cast from a scroll with the help of Divine Intervention by Deneir called upon by Myka (Nicole)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Polymorph",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Animated Shield",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Horn of Blasting",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Withering",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+2 Longbow",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1630022400000,
-          "chrono_index": 16
+          "chrono_index": 17
         },
         {
           "title": "DM Reward",
@@ -9943,8 +13167,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1630022400001,
-          "chrono_index": 17
+          "chrono_index": 18
         },
         {
           "title": "DM Reward x 4",
@@ -9980,8 +13211,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630022400002,
-          "chrono_index": 18
+          "chrono_index": 19
         },
         {
           "title": "Trade",
@@ -10024,6 +13256,31 @@ window.DATA = {
             "received": "Ring of Telekenesis",
             "counterpartyCharacter": "Lyrielle"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Telekenesis",
+              "quantity": 1,
+              "counterparty_character": "Lyrielle"
+            },
+            {
+              "type": "acquire",
+              "item": "Scrimitar of Speed",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Scrimitar of Speed",
+              "quantity": 1,
+              "counterparty_character": "Lyrielle"
+            }
+          ],
           "chrono_timestamp": 1626393600000,
           "chrono_index": 14
         },
@@ -10063,6 +13320,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scimitar of Speed",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1626393600001,
           "chrono_index": 15
         },
@@ -10102,6 +13366,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Striking",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1624579200000,
           "chrono_index": 13
         },
@@ -10142,6 +13413,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cli Lyre",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dust of Disappearance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1623974400000,
           "chrono_index": 12
         },
@@ -10181,6 +13464,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Censor of Commanding Air Elementals (Djinni)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1623369600000,
           "chrono_index": 10
         },
@@ -10218,6 +13508,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1623369600001,
           "chrono_index": 11
         },
@@ -10257,6 +13548,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1622764800000,
           "chrono_index": 9
         },
@@ -10298,6 +13596,13 @@ window.DATA = {
             "Charm of Animal Conjuring (3 uses)"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1621555200000,
           "chrono_index": 7
         },
@@ -10337,6 +13642,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Scribed Counterspell from a scroll",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of Scintillating Colors",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1621555200001,
           "chrono_index": 8
         },
@@ -10374,6 +13686,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1620950400000,
           "chrono_index": 6
         },
@@ -10414,6 +13727,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Serpent Scale Mail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Serpent Fang (Longsword with +1d10 poison)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1620345600000,
           "chrono_index": 4
         },
@@ -10451,6 +13776,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1620345600001,
           "chrono_index": 5
         },
@@ -10490,6 +13816,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Helm of Comprehend Languages",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1617321600000,
           "chrono_index": 2
         },
@@ -10529,6 +13862,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs (6 Beads)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1617321600001,
           "chrono_index": 3
         },
@@ -10569,6 +13909,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flail +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Driftglobe",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1616716800000,
           "chrono_index": 0
         },
@@ -10606,8 +13958,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1616716800001,
           "chrono_index": 1
+        },
+        {
+          "title": "Trade (reciprocal for Lyrielle)",
+          "date": "2021-07-16",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lyrielle",
+          "trade": {
+            "given": "Scimitar of Speed",
+            "received": "Ring of Telekenesis",
+            "counterpartyCharacter": "Lyrielle"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scimitar of Speed",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Scimitar of Speed",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1626393600002,
+          "chrono_index": 16
         }
       ]
     },
@@ -10654,8 +14067,9 @@ window.DATA = {
             "House Moonstar Trade"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1750204800000,
-          "chrono_index": 37
+          "chrono_index": 38
         },
         {
           "title": "Barrows of Solina",
@@ -10693,8 +14107,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 15 elephants in Waterdeep and freed them",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sunblade",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1731110400000,
-          "chrono_index": 36
+          "chrono_index": 37
         },
         {
           "title": "Fathomless Pit of Ill Intent",
@@ -10734,8 +14155,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Helm of Brilliance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1674000000000,
-          "chrono_index": 35
+          "chrono_index": 36
         },
         {
           "title": "Unusual Opposition",
@@ -10773,8 +14201,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Frost Brand Rapier",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1659484800000,
-          "chrono_index": 34
+          "chrono_index": 35
         },
         {
           "title": "Champions of the Arena",
@@ -10816,8 +14251,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Brass Horn of Valhalla",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1656892800000,
-          "chrono_index": 32
+          "chrono_index": 33
         },
         {
           "title": "DM Reward",
@@ -10853,8 +14295,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1656892800001,
-          "chrono_index": 33
+          "chrono_index": 34
         },
         {
           "title": "Writhing in the Dark",
@@ -10892,8 +14335,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Scroll of Greater Restoration, Scroll of Revivify",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +2 (tentacled)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1649376000000,
-          "chrono_index": 31
+          "chrono_index": 32
         },
         {
           "title": "Trade",
@@ -10936,8 +14386,33 @@ window.DATA = {
             "received": "Iron Bands of Bilaro",
             "counterpartyCharacter": "Tengen Uzui"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Iron Bands of Bilaro",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Iron Bands of Bilaro",
+              "quantity": 1,
+              "counterparty_character": "Tengen Uzui"
+            },
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1,
+              "counterparty_character": "Tengen Uzui"
+            }
+          ],
           "chrono_timestamp": 1648598400000,
-          "chrono_index": 30
+          "chrono_index": 31
         },
         {
           "title": "Forgotten Traditions",
@@ -10977,8 +14452,15 @@ window.DATA = {
             "Dreamwalker portent: 2"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1647734400000,
-          "chrono_index": 29
+          "chrono_index": 30
         },
         {
           "title": "Augurs of Spring",
@@ -11014,8 +14496,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1647302400000,
-          "chrono_index": 28
+          "chrono_index": 29
         },
         {
           "title": "Breaking Umberlee's Resolve",
@@ -11057,8 +14540,15 @@ window.DATA = {
             "ally of Zehria D'Rian"
           ],
           "notes": "Purchased 2 castings of Greater Restoration to remove effects from 10/25/21",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Iron Bands of Bilaro",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1643414400000,
-          "chrono_index": 27
+          "chrono_index": 28
         },
         {
           "title": "Within the Tunnels of Dwarvenholm",
@@ -11101,8 +14591,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Adamantine chain armor",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1639526400000,
-          "chrono_index": 26
+          "chrono_index": 27
         },
         {
           "title": "Temple of the Beast",
@@ -11140,8 +14637,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Killed in the Shadowfell, raised by clerics of Shantea for 1500 gp, purchased Greater Restoration to clear Shadowfell Despair for 550 gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1637625600000,
-          "chrono_index": 25
+          "chrono_index": 26
         },
         {
           "title": "Poisoned Words",
@@ -11181,8 +14685,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather (black salmon leather)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1637107200000,
-          "chrono_index": 24
+          "chrono_index": 25
         },
         {
           "title": "Ice, Ice, Birdie",
@@ -11223,8 +14734,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Brooch of Shielding",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Charlatans Die",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635292800000,
-          "chrono_index": 23
+          "chrono_index": 24
         },
         {
           "title": "Layers Upon Layer",
@@ -11266,8 +14789,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Skin turned blue, hair turned purple, gained the flaw \"I am terrified of children.\"",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Boots of False Tracks",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sending Stones",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635120000000,
-          "chrono_index": 22
+          "chrono_index": 23
         },
         {
           "title": "Chapter 5",
@@ -11311,8 +14846,15 @@ window.DATA = {
             "Blessing of the Frostmaiden"
           ],
           "notes": "Purchased Studded Leather, cold weather gear, and 5 Potions of Superior Healing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Trident +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634601600000,
-          "chrono_index": 21
+          "chrono_index": 22
         },
         {
           "title": "White Plume Mountain",
@@ -11372,8 +14914,60 @@ window.DATA = {
             "Blessing of Protection"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Whelm",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Boots of Striding",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Springing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chain +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Goggles of Night",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (1 of each)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Protection",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Stone of Good Luck",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Armor of Vulnerability vs Slashing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1632528000000,
-          "chrono_index": 20
+          "chrono_index": 21
         },
         {
           "title": "Temple of the Sun",
@@ -11409,8 +15003,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630972800000,
-          "chrono_index": 19
+          "chrono_index": 20
         },
         {
           "title": "DM Reward x 2",
@@ -11446,8 +15041,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630713600000,
-          "chrono_index": 17
+          "chrono_index": 18
         },
         {
           "title": "Unsafe Harborage",
@@ -11483,8 +15079,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630713600001,
-          "chrono_index": 18
+          "chrono_index": 19
         },
         {
           "title": "DM Reward",
@@ -11520,8 +15117,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630022400000,
-          "chrono_index": 16
+          "chrono_index": 17
         },
         {
           "title": "The Occupation of Szith Morcane",
@@ -11557,8 +15155,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1629849600000,
-          "chrono_index": 15
+          "chrono_index": 16
         },
         {
           "title": "Hollow Hopes",
@@ -11594,8 +15193,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1628208000000,
-          "chrono_index": 14
+          "chrono_index": 15
         },
         {
           "title": "Lore of Lurue",
@@ -11633,8 +15233,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1628035200000,
-          "chrono_index": 13
+          "chrono_index": 14
         },
         {
           "title": "Fences and Swrods",
@@ -11670,8 +15277,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1627948800000,
-          "chrono_index": 12
+          "chrono_index": 13
         },
         {
           "title": "Trade",
@@ -11714,6 +15322,31 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Z'la'ssh"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Z'la'ssh"
+            },
+            {
+              "type": "acquire",
+              "item": "the Sixth Sword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "the Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Z'la'ssh"
+            }
+          ],
           "chrono_timestamp": 1626393600000,
           "chrono_index": 10
         },
@@ -11758,6 +15391,31 @@ window.DATA = {
             "received": "Scimitar of Speed",
             "counterpartyCharacter": "Orakhar"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scimitar of Speed",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Scimitar of Speed",
+              "quantity": 1,
+              "counterparty_character": "Orakhar"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Telekenesis",
+              "quantity": 1,
+              "counterparty_character": "Orakhar"
+            }
+          ],
           "chrono_timestamp": 1626393600001,
           "chrono_index": 11
         },
@@ -11795,6 +15453,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1626307200000,
           "chrono_index": 6
         },
@@ -11832,6 +15491,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1626307200001,
           "chrono_index": 7
         },
@@ -11871,6 +15531,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Fey Cloak of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1626307200002,
           "chrono_index": 8
         },
@@ -11914,6 +15581,24 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Scale Mail for 50 gp, sold Leather Armor for 5gp, Bruce was Awakened by Pwyl Pweeten (Tim H.)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Leather Armor for 5gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Leather Armor for 5gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1626307200003,
           "chrono_index": 9
         },
@@ -11951,6 +15636,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1626220800000,
           "chrono_index": 4
         },
@@ -11988,6 +15674,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Yeti horn recorder (Flute) in Baldur's Gate",
+          "item_events": [],
           "chrono_timestamp": 1626220800001,
           "chrono_index": 5
         },
@@ -12028,6 +15715,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Goggles of Night",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Swimming",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1625529600000,
           "chrono_index": 0
         },
@@ -12072,6 +15771,31 @@ window.DATA = {
             "received": "the Sixth Sword",
             "counterpartyCharacter": "Leonardo"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sixth Sword (+2 Rapier with +2 Init)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "the Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Leonardo"
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Necklace of Fireballs",
+              "quantity": 1,
+              "counterparty_character": "Leonardo"
+            }
+          ],
           "chrono_timestamp": 1625529600002,
           "chrono_index": 2
         },
@@ -12111,6 +15835,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1625529600001,
           "chrono_index": 1
         },
@@ -12148,8 +15879,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Bruce the Elephant for 200 gp",
+          "item_events": [],
           "chrono_timestamp": 1625529600003,
           "chrono_index": 3
+        },
+        {
+          "title": "Trade (reciprocal for Orakhar)",
+          "date": "2021-07-16",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Orakhar",
+          "trade": {
+            "given": "Ring of Telekenesis",
+            "received": "Scrimitar of Speed",
+            "counterpartyCharacter": "Orakhar"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Telekenesis",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Telekenesis",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Scrimitar of Speed",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1626393600002,
+          "chrono_index": 12
         }
       ]
     },
@@ -12196,8 +15988,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1747785600000,
-          "chrono_index": 48
+          "chrono_index": 50
         },
         {
           "title": "Breath of Fire",
@@ -12235,8 +16034,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Onyx Dog",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1745971200000,
-          "chrono_index": 47
+          "chrono_index": 49
         },
         {
           "title": "Echoes of the Fallen",
@@ -12279,8 +16085,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Kendrick Camaraderie story award. Purchased Heroes' Feast component (1000gp), 3 scrolls of Teleportation Circle (3000 gp)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Fate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Truth Telling",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1731542400000,
-          "chrono_index": 46
+          "chrono_index": 48
         },
         {
           "title": "Moonshot",
@@ -12316,8 +16134,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1684281600000,
-          "chrono_index": 45
+          "chrono_index": 47
         },
         {
           "title": "I Xamott - Tales of the Beholder Corps",
@@ -12353,8 +16172,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1680652800000,
-          "chrono_index": 44
+          "chrono_index": 46
         },
         {
           "title": "What We Reap",
@@ -12390,8 +16210,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1669766400000,
-          "chrono_index": 43
+          "chrono_index": 45
         },
         {
           "title": "The City that Should Not Be",
@@ -12436,8 +16257,20 @@ window.DATA = {
             "Xorvintroth Security (destroyed the pods)"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Stone Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1656720000000,
-          "chrono_index": 42
+          "chrono_index": 44
         },
         {
           "title": "Fun with Fey",
@@ -12475,8 +16308,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Displacement",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1652832000000,
-          "chrono_index": 41
+          "chrono_index": 43
         },
         {
           "title": "Fire, Ash, and Ruin",
@@ -12516,8 +16356,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pike +3 (Krahharuan Fork)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1648944000000,
-          "chrono_index": 40
+          "chrono_index": 42
         },
         {
           "title": "Arena of Champions",
@@ -12557,8 +16404,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1648771200000,
-          "chrono_index": 39
+          "chrono_index": 41
         },
         {
           "title": "Lich Queen's Begotten",
@@ -12600,8 +16448,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Saved the Lich Queen's Begotten (Janeane) because she's great and likes crepes. Plane Shifted to the House of Knowledge to let Oghma deal with her being a vessel for the Lich Queen. Stayed and performed many new stories and songs for Oghma.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1648512000000,
-          "chrono_index": 38
+          "chrono_index": 40
         },
         {
           "title": "Uprising",
@@ -12646,8 +16501,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 5 Scrolls of Mage Armor, bought 5 Scrolls of Holy Weapon, paid for Hero's Feast",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Evasion",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Woe (unique +3 longsword)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1644710400000,
-          "chrono_index": 37
+          "chrono_index": 39
         },
         {
           "title": "Maze of Shadows Pt. 3",
@@ -12691,8 +16558,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1636588800000,
-          "chrono_index": 36
+          "chrono_index": 38
         },
         {
           "title": "Durlag's Tower",
@@ -12736,8 +16615,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1636502400000,
-          "chrono_index": 35
+          "chrono_index": 37
         },
         {
           "title": "Maze of Shadows Pts. 1 & 2",
@@ -12779,8 +16670,25 @@ window.DATA = {
             "6 Destiny Points"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Oathbinder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Sustenaince",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lantern of Revealing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1636070400000,
-          "chrono_index": 34
+          "chrono_index": 36
         },
         {
           "title": "Thimblerigging",
@@ -12823,8 +16731,15 @@ window.DATA = {
             "Code Breaker - Success"
           ],
           "notes": "Bought 1 Scroll of Holy Weapon, Scroll of Revivify, Spent 1000 gp on Heroe's Feast",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Vitality",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635552000000,
-          "chrono_index": 33
+          "chrono_index": 35
         },
         {
           "title": "Dawn of the Raven Lord",
@@ -12860,8 +16775,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1630713600000,
-          "chrono_index": 32
+          "chrono_index": 34
         },
         {
           "title": "Raven Lord's Aerie",
@@ -12897,8 +16813,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1627776000000,
-          "chrono_index": 31
+          "chrono_index": 33
         },
         {
           "title": "Weakness of Rock",
@@ -12936,8 +16853,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 scrolls of Find Familiar and 2 scrolls of Mage Armor",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness of Action",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1627257600000,
-          "chrono_index": 30
+          "chrono_index": 32
         },
         {
           "title": "Forgotten Foes",
@@ -12975,8 +16899,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption (contains 6 levels)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1626825600000,
-          "chrono_index": 29
+          "chrono_index": 31
         },
         {
           "title": "Book of Inner Alchemy",
@@ -13012,8 +16943,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1626048000000,
-          "chrono_index": 28
+          "chrono_index": 30
         },
         {
           "title": "Zhentarrim's Lament",
@@ -13054,8 +16986,20 @@ window.DATA = {
             "Nature of the Weave: Spent 50 DTD's to have expertise in Arcana"
           ],
           "notes": "Bought 5 Scrolls of Mage Armor",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1624924800000,
-          "chrono_index": 27
+          "chrono_index": 29
         },
         {
           "title": "Contact",
@@ -13095,8 +17039,15 @@ window.DATA = {
             "Honorary Beholder Corps"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1622592000000,
-          "chrono_index": 26
+          "chrono_index": 28
         },
         {
           "title": "The Canopic Being",
@@ -13132,8 +17083,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1622332800000,
-          "chrono_index": 25
+          "chrono_index": 27
         },
         {
           "title": "Necromancer's Ascent",
@@ -13173,8 +17125,15 @@ window.DATA = {
             "You've got a friend in me"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Spellguard Shield",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1622246400000,
-          "chrono_index": 24
+          "chrono_index": 26
         },
         {
           "title": "Binder's Torment",
@@ -13217,8 +17176,15 @@ window.DATA = {
             "An Ally in the Ebon TIde"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of the War Mage +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1622160000000,
-          "chrono_index": 23
+          "chrono_index": 25
         },
         {
           "title": "Trade",
@@ -13261,8 +17227,33 @@ window.DATA = {
             "received": "1 pot of Nulzor's Marvelous Pigments",
             "counterpartyCharacter": "Buckley"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nolzur's Marvelous Pigments (1 pot)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "1 pot of Nulzor's Marvelous Pigments",
+              "quantity": 1,
+              "counterparty_character": "Buckley"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Buckley"
+            }
+          ],
           "chrono_timestamp": 1620950400000,
-          "chrono_index": 21
+          "chrono_index": 23
         },
         {
           "title": "The Vampire of Skullport",
@@ -13298,8 +17289,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought a pirate flag with a dragon skull and crossbones",
+          "item_events": [],
           "chrono_timestamp": 1620950400001,
-          "chrono_index": 22
+          "chrono_index": 24
         },
         {
           "title": "Claws of Fury",
@@ -13340,8 +17332,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 4 scrolls of Lesser Restoration",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1620777600000,
-          "chrono_index": 20
+          "chrono_index": 22
         },
         {
           "title": "A Night of Sorrows",
@@ -13379,8 +17378,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health (Obsideon Amulet infused with the Shadowfell)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1619568000000,
-          "chrono_index": 19
+          "chrono_index": 21
         },
         {
           "title": "The Secrets We Keep",
@@ -13421,8 +17427,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 1000 gp on Heroe's Feast",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dancing Sword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1618444800000,
-          "chrono_index": 18
+          "chrono_index": 20
         },
         {
           "title": "Death in the Ruins",
@@ -13462,8 +17475,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tyr's Justice (+2 Longsword +2 Init)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1618272000000,
-          "chrono_index": 17
+          "chrono_index": 19
         },
         {
           "title": "The Handfasting",
@@ -13505,8 +17525,15 @@ window.DATA = {
             "Minor Noble"
           ],
           "notes": "Bought 2 forked metal rods attuned to Material Plane and Plane of Knowledge",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1617753600000,
-          "chrono_index": 16
+          "chrono_index": 18
         },
         {
           "title": "It’s all in the Blood",
@@ -13544,8 +17571,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Traded +3 Arrow \"Ironfang\" in exchange for an enslaved Drow",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Regeneration",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1617408000000,
-          "chrono_index": 15
+          "chrono_index": 17
         },
         {
           "title": "Trade",
@@ -13588,8 +17622,33 @@ window.DATA = {
             "received": "Headband of Intellect",
             "counterpartyCharacter": "Bryce"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Headband of Intellect",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Headband of Intellect",
+              "quantity": 1,
+              "counterparty_character": "Bryce"
+            },
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Bryce"
+            }
+          ],
           "chrono_timestamp": 1616803200001,
-          "chrono_index": 13
+          "chrono_index": 14
         },
         {
           "title": "DM Reward",
@@ -13627,8 +17686,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1616803200000,
-          "chrono_index": 12
+          "chrono_index": 13
         },
         {
           "title": "Dead Canaries",
@@ -13670,8 +17736,15 @@ window.DATA = {
             "Charisma"
           ],
           "notes": "Cast Holy Weapon in Ring of Spell Storing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1616803200002,
-          "chrono_index": 14
+          "chrono_index": 15
         },
         {
           "title": "Mind Trip",
@@ -13712,8 +17785,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used +3 Arrow \"Deck of Many Things\"",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Regeneration",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1616544000000,
-          "chrono_index": 11
+          "chrono_index": 12
         },
         {
           "title": "Run for the Money",
@@ -13761,6 +17841,18 @@ window.DATA = {
             "Banned: Maladomini"
           ],
           "notes": "Spent 1 DTD casting Holy Weapon into the Ring of Spell Storing. Bought 5 Potions of Greater Healing (500 gp) and 3 diamonds (900 gp), spent 1000 gp on Hero's Feast. Table Trade of Rod of Rulership for Staff of Charming. Gave 200 gp to Pit Fiend in rare coins. Purchased 1500 gp worth of Ruby Dust (Forcecage component).",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pot of Awakening",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of Rulership",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614124800000,
           "chrono_index": 1
         },
@@ -13805,6 +17897,31 @@ window.DATA = {
             "received": "Ring of Spell Storing (Harmonius)",
             "counterpartyCharacter": "Noraggen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing (Harmonius)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing (Harmonius)",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            },
+            {
+              "type": "acquire",
+              "item": "Splint +1",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Splint +1",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            }
+          ],
           "chrono_timestamp": 1614124800002,
           "chrono_index": 3
         },
@@ -13844,6 +17961,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Splint +1",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614124800001,
           "chrono_index": 2
         },
@@ -13888,6 +18012,31 @@ window.DATA = {
             "received": "Glamoured Studded Leather",
             "counterpartyCharacter": "Anfer"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            },
+            {
+              "type": "acquire",
+              "item": "FOWP - Ivory Goats",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "FOWP - Ivory Goats",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            }
+          ],
           "chrono_timestamp": 1614124800004,
           "chrono_index": 5
         },
@@ -13927,6 +18076,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "FOWP - Ivory Goats",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614124800003,
           "chrono_index": 4
         },
@@ -13966,6 +18122,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614124800005,
           "chrono_index": 6
         },
@@ -14005,6 +18168,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cli Lyre",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614124800006,
           "chrono_index": 7
         },
@@ -14042,6 +18212,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1614124800007,
           "chrono_index": 8
         },
@@ -14079,6 +18250,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1614124800008,
           "chrono_index": 9
         },
@@ -14116,6 +18288,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1614124800009,
           "chrono_index": 10
         },
@@ -14155,8 +18328,135 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Deck of Illusions",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1577836800000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Noraggen)",
+          "date": "2021-04-01",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Noraggen",
+          "trade": {
+            "given": "Splint +1",
+            "received": "Ring of Spell Storing",
+            "counterpartyCharacter": "Noraggen"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Splint +1",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Splint +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1617235200000,
+          "chrono_index": 16
+        },
+        {
+          "title": "Trade (reciprocal for Anfer)",
+          "date": "2021-02-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Anfer",
+          "trade": {
+            "given": "Glamoured Studded Leather",
+            "received": "Glamoured Studded Leather",
+            "counterpartyCharacter": "Anfer"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1614124800010,
+          "chrono_index": 11
         }
       ]
     },
@@ -14208,8 +18508,33 @@ window.DATA = {
             "received": "Lance +3",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lance +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Lance +3",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Arcane Grimoire +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Arcane Grimoire +3",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1748390400001,
-          "chrono_index": 46
+          "chrono_index": 47
         },
         {
           "title": "DM Reward",
@@ -14250,8 +18575,20 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Arcane Grimoire +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Blessing of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1748390400000,
-          "chrono_index": 45
+          "chrono_index": 46
         },
         {
           "title": "Delusions of Grandeur",
@@ -14287,6 +18624,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1626134400000,
           "chrono_index": 44
         },
@@ -14328,6 +18666,13 @@ window.DATA = {
             "Banned from Maladomini"
           ],
           "notes": "Bought 2 Potions of Greater Healing. Spent 225 hiring Babyface Yoka",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "The Seventh Sword (Sun Blade)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609632000000,
           "chrono_index": 43
         },
@@ -14369,6 +18714,13 @@ window.DATA = {
             "Mental Fortitude"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609286400000,
           "chrono_index": 42
         },
@@ -14411,6 +18763,18 @@ window.DATA = {
             "Bert's Inside Angle"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Fireballs",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Clockwork Amulet",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609027200000,
           "chrono_index": 41
         },
@@ -14454,6 +18818,13 @@ window.DATA = {
             "Fenaria's Redemption"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cube of Force",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1607558400000,
           "chrono_index": 40
         },
@@ -14495,6 +18866,13 @@ window.DATA = {
             "Honorary Beholder Corps Member"
           ],
           "notes": "Bought 300 gp diamond, 166 gp for Hero's Feast",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606262400000,
           "chrono_index": 39
         },
@@ -14539,6 +18917,31 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1604188800000,
           "chrono_index": 36
         },
@@ -14583,6 +18986,31 @@ window.DATA = {
             "received": "Aegis of the Raven Queen Shield",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Flying Carpet",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Flying Carpet",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1604188800001,
           "chrono_index": 37
         },
@@ -14620,6 +19048,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1604188800002,
           "chrono_index": 38
         },
@@ -14657,6 +19086,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 Scrolls of Death Ward, 1 Scroll of Revivify",
+          "item_events": [],
           "chrono_timestamp": 1604102400000,
           "chrono_index": 34
         },
@@ -14707,6 +19137,53 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dedfender",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Spear of Back Biting",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sword of Vengeance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Berserker Axe",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "4x6 Carpet of Flying",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604102400001,
           "chrono_index": 35
         },
@@ -14751,6 +19228,31 @@ window.DATA = {
             "received": "Plate +2",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plate +2",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness and Action",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Manual of Quickness and Action",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1601596800000,
           "chrono_index": 33
         },
@@ -14791,6 +19293,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 3 Potions of Greater Healing for 300 gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Action",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1601510400000,
           "chrono_index": 32
         },
@@ -14836,6 +19350,36 @@ window.DATA = {
             "received": "Tome of Leadership and Influence",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Leadership",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Leadership",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1597104000001,
           "chrono_index": 31
         },
@@ -14875,6 +19419,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Leadership",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1597104000000,
           "chrono_index": 30
         },
@@ -14914,6 +19465,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought cold weather gear for 4gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gloves of Missile Snaring",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1595289600000,
           "chrono_index": 29
         },
@@ -14951,6 +19509,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1595030400000,
           "chrono_index": 28
         },
@@ -14990,6 +19549,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1594684800000,
           "chrono_index": 27
         },
@@ -15029,6 +19589,7 @@ window.DATA = {
             "Torm's Compassion"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1594080000000,
           "chrono_index": 26
         },
@@ -15068,6 +19629,7 @@ window.DATA = {
             "Torm's Honor"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1593475200000,
           "chrono_index": 25
         },
@@ -15107,6 +19669,7 @@ window.DATA = {
             "Friendship of Melvaunt City Watch"
           ],
           "notes": "Cast Find Greater Steed scroll for Griffon",
+          "item_events": [],
           "chrono_timestamp": 1592352000000,
           "chrono_index": 24
         },
@@ -15144,6 +19707,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1590537600000,
           "chrono_index": 23
         },
@@ -15199,6 +19763,28 @@ window.DATA = {
             "Wave"
           ],
           "notes": "Bought 300 gp diamond",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (Bless x3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cure Wounds",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "G.Resto",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Planar Ally)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1589587200000,
           "chrono_index": 22
         },
@@ -15238,6 +19824,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1589414400000,
           "chrono_index": 19
         },
@@ -15282,6 +19875,31 @@ window.DATA = {
             "received": "Belt of For Giant Strength",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of For Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "+3 Lance",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "+3 Lance",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1589414400001,
           "chrono_index": 20
         },
@@ -15321,6 +19939,7 @@ window.DATA = {
             "To Suffer As Ilmater"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1589414400002,
           "chrono_index": 21
         },
@@ -15358,6 +19977,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1586649600000,
           "chrono_index": 17
         },
@@ -15397,6 +20017,7 @@ window.DATA = {
             "Friends of the Shadow Watch Tribe"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1586649600001,
           "chrono_index": 18
         },
@@ -15436,6 +20057,7 @@ window.DATA = {
             "Magma mephit familiar"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1585958400000,
           "chrono_index": 16
         },
@@ -15480,6 +20102,25 @@ window.DATA = {
             "received": "Lance +3",
             "counterpartyCharacter": "Jareb"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lance +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Lance +3",
+              "quantity": 1,
+              "counterparty_character": "Jareb"
+            },
+            {
+              "type": "trade_out",
+              "item": "Berserker Axe",
+              "quantity": 1,
+              "counterparty_character": "Jareb"
+            }
+          ],
           "chrono_timestamp": 1583798400000,
           "chrono_index": 15
         },
@@ -15519,6 +20160,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Berserker Axe",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1583625600000,
           "chrono_index": 14
         },
@@ -15556,6 +20204,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1582848000000,
           "chrono_index": 13
         },
@@ -15600,6 +20249,31 @@ window.DATA = {
             "received": "Trident of Fish Command",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Trident of Fish Command",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Trident of Fish Command",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1581897600000,
           "chrono_index": 12
         },
@@ -15644,6 +20318,25 @@ window.DATA = {
             "received": "Wand of Webs",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Webs",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "trade_out",
+              "item": "Trident of Fish Command",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1581811200000,
           "chrono_index": 9
         },
@@ -15681,6 +20374,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581811200001,
           "chrono_index": 10
         },
@@ -15720,6 +20414,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581811200002,
           "chrono_index": 11
         },
@@ -15757,6 +20452,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581724800000,
           "chrono_index": 8
         },
@@ -15801,6 +20497,31 @@ window.DATA = {
             "received": "Sun Blade",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1581552000000,
           "chrono_index": 7
         },
@@ -15842,6 +20563,13 @@ window.DATA = {
             "Protector of the Gifted"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581465600000,
           "chrono_index": 6
         },
@@ -15886,6 +20614,31 @@ window.DATA = {
             "received": "Belt of Hill Giant Strength",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1581033600001,
           "chrono_index": 4
         },
@@ -15925,6 +20678,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581033600000,
           "chrono_index": 3
         },
@@ -15964,6 +20724,7 @@ window.DATA = {
             "Gratitude of the Von Finkelstein family - Scroll of Water Breathing"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581033600002,
           "chrono_index": 5
         },
@@ -16003,6 +20764,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Rapier +1 renown item",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Candle of the Deep",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579478400000,
           "chrono_index": 2
         },
@@ -16047,6 +20815,31 @@ window.DATA = {
             "received": "Gem of Water Elemental",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Water Elemental",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Gem of Water Elemental",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Choraller's Companion",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Choraller's Companion",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1578441600000,
           "chrono_index": 0
         },
@@ -16091,8 +20884,93 @@ window.DATA = {
             "received": "Choraller's Companion",
             "counterpartyCharacter": "Del"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Choraller's Companion",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Choraller's Companion",
+              "quantity": 1,
+              "counterparty_character": "Del"
+            },
+            {
+              "type": "acquire",
+              "item": "Bag of Tricks",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bag of Tricks",
+              "quantity": 1,
+              "counterparty_character": "Del"
+            }
+          ],
           "chrono_timestamp": 1578441600001,
           "chrono_index": 1
+        },
+        {
+          "title": "Trade (reciprocal for Gnat)",
+          "date": "2021-09-29",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Gnat",
+          "trade": {
+            "given": "Belt of Fire Giant Strength",
+            "received": "Marvelous Pigments",
+            "counterpartyCharacter": "Gnat"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Marvelous Pigments",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1632873600000,
+          "chrono_index": 45
         }
       ]
     },
@@ -16144,8 +21022,33 @@ window.DATA = {
             "received": "Dragon-Touched Focus (Wakened)",
             "counterpartyCharacter": "Ecthelion"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dragon-Touched Focus (Wakened)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dragon-Touched Focus (Wakened)",
+              "quantity": 1,
+              "counterparty_character": "Ecthelion"
+            },
+            {
+              "type": "acquire",
+              "item": "Carpet (6x9)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Carpet (6x9)",
+              "quantity": 1,
+              "counterparty_character": "Ecthelion"
+            }
+          ],
           "chrono_timestamp": 1762387200000,
-          "chrono_index": 118
+          "chrono_index": 122
         },
         {
           "title": "Trade",
@@ -16188,8 +21091,33 @@ window.DATA = {
             "received": "Staff of the Magi",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1761004800000,
-          "chrono_index": 117
+          "chrono_index": 121
         },
         {
           "title": "Dreamwalker: 5",
@@ -16225,8 +21153,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used Dreamwalker downtime activity to receive a new portent: 5",
+          "item_events": [],
           "chrono_timestamp": 1750982400000,
-          "chrono_index": 116
+          "chrono_index": 120
         },
         {
           "title": "Trade",
@@ -16267,10 +21196,35 @@ window.DATA = {
           "trade": {
             "given": "Lance +3",
             "received": "Arcane Grimoire +3",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Arcane Grimoire +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Arcane Grimoire +3",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Lance +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Lance +3",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1748390400000,
-          "chrono_index": 115
+          "chrono_index": 119
         },
         {
           "title": "Trade",
@@ -16313,8 +21267,27 @@ window.DATA = {
             "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
             "counterpartyCharacter": "Eriol Quickfoot"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1,
+              "counterparty_character": "Eriol Quickfoot"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "counterparty_character": "Eriol Quickfoot"
+            }
+          ],
           "chrono_timestamp": 1711152000000,
-          "chrono_index": 114
+          "chrono_index": 118
         },
         {
           "title": "DM Reward",
@@ -16352,8 +21325,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Armor of Necrotic Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1696377600000,
-          "chrono_index": 110
+          "chrono_index": 114
         },
         {
           "title": "DM Reward",
@@ -16391,8 +21371,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sixth Sword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1696377600001,
-          "chrono_index": 111
+          "chrono_index": 115
         },
         {
           "title": "DM Reward",
@@ -16430,8 +21417,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Kagonesti Forest Shroud",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1696377600002,
-          "chrono_index": 112
+          "chrono_index": 116
         },
         {
           "title": "DM Reward",
@@ -16469,8 +21463,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1696377600003,
-          "chrono_index": 113
+          "chrono_index": 117
         },
         {
           "title": "A Grim and Ravenous Arrival",
@@ -16513,8 +21514,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Kaxora (Ryan L.) Wished for Bludgeoning resistance",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cubic Gate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1686096000000,
-          "chrono_index": 109
+          "chrono_index": 113
         },
         {
           "title": "Streams of Crimson",
@@ -16552,8 +21560,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Iron Golem destroyed",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1685232000000,
-          "chrono_index": 108
+          "chrono_index": 112
         },
         {
           "title": "The Harrowing of Hell",
@@ -16597,8 +21612,25 @@ window.DATA = {
             "Knight of the Giant Queen"
           ],
           "notes": "Wren (Erik T.) cast Scroll of Wish for Slashing resistance. Bought scroll of Death Ward.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection (Maelstrom flavor)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Oathbow (Infernal flavor)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chime of Opening (8 charges)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1674259200000,
-          "chrono_index": 107
+          "chrono_index": 111
         },
         {
           "title": "Season 11b DM Rewards (UC x 3, R x 2, VR x 1)",
@@ -16641,8 +21673,40 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Emerald Pen",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Periapt of Health",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bag of Tricks (tan)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dragon Wing Longbow",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sapphire Buckler",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1674172800000,
-          "chrono_index": 104
+          "chrono_index": 108
         },
         {
           "title": "Season 12a DM Rewards (UC x 3, R x 3)",
@@ -16685,8 +21749,40 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pistol +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Spellwrought Tattoo (3rd)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wildspace Orrery",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Armor of Radiant Resistant Halfplate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mace of Smiting",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1674172800001,
-          "chrono_index": 105
+          "chrono_index": 109
         },
         {
           "title": "Scribing a Scroll",
@@ -16722,8 +21818,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 240 days and 250,000 gp to scribe a scroll of Wish.",
+          "item_events": [],
           "chrono_timestamp": 1674172800002,
-          "chrono_index": 106
+          "chrono_index": 110
         },
         {
           "title": "Beyond This Portal",
@@ -16763,8 +21860,25 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption (10 charges)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Potion of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Potion of Supreme Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1667952000000,
-          "chrono_index": 103
+          "chrono_index": 107
         },
         {
           "title": "Dreamwalker: 18",
@@ -16800,8 +21914,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used Dreamwalker downtime activity to recieve a new portent: 18",
+          "item_events": [],
           "chrono_timestamp": 1663113600000,
-          "chrono_index": 99
+          "chrono_index": 103
         },
         {
           "title": "Fall the Cold Night",
@@ -16844,8 +21959,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem Dragon Touched Focus",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sapphire Buckler",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1663113600001,
-          "chrono_index": 100
+          "chrono_index": 104
         },
         {
           "title": "Trade",
@@ -16888,8 +22015,33 @@ window.DATA = {
             "received": "Pipe of Smoke Monsters (guardian)",
             "counterpartyCharacter": "Norixius"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Pipe of Smoke Monsters (Guardian)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Pipe of Smoke Monsters (guardian)",
+              "quantity": 1,
+              "counterparty_character": "Norixius"
+            },
+            {
+              "type": "acquire",
+              "item": "Moon-Touched Greatsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Moon-Touched Greatsword",
+              "quantity": 1,
+              "counterparty_character": "Norixius"
+            }
+          ],
           "chrono_timestamp": 1663113600002,
-          "chrono_index": 101
+          "chrono_index": 105
         },
         {
           "title": "Death of Szass Tam",
@@ -16933,8 +22085,20 @@ window.DATA = {
             "Scroll Eater"
           ],
           "notes": "Used 18 Dreamwalker portent",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Blood Fury Tattoo",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Kyrzin's Ooze",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1663113600003,
-          "chrono_index": 102
+          "chrono_index": 106
         },
         {
           "title": "Pools of Cerulean",
@@ -16975,8 +22139,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vorpal Scimitar",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1662249600000,
-          "chrono_index": 95
+          "chrono_index": 99
         },
         {
           "title": "Cauldron of Sapphire",
@@ -17019,8 +22190,20 @@ window.DATA = {
             "Atropal in a cage"
           ],
           "notes": "Permanently gave up 5 hit dice to power the opal pendant to hold an atropal",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cap of Water Breathing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1662249600001,
-          "chrono_index": 96
+          "chrono_index": 100
         },
         {
           "title": "Turn Back the Endless Night",
@@ -17062,8 +22245,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1662249600002,
-          "chrono_index": 97
+          "chrono_index": 101
         },
         {
           "title": "Trade with Trading Post",
@@ -17106,8 +22296,33 @@ window.DATA = {
             "received": "Absorbing Tattoo (Force)",
             "counterpartyCharacter": "Trading Post"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Absorbing Tattoo (Force)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Absorbing Tattoo (Force)",
+              "quantity": 1,
+              "counterparty_character": "Trading Post"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Regeneration",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Regeneration",
+              "quantity": 1,
+              "counterparty_character": "Trading Post"
+            }
+          ],
           "chrono_timestamp": 1662249600003,
-          "chrono_index": 98
+          "chrono_index": 102
         },
         {
           "title": "Trade",
@@ -17150,8 +22365,33 @@ window.DATA = {
             "received": "Vorpal Longsword",
             "counterpartyCharacter": "S'arrok"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vorpal Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Vorpal Longsword",
+              "quantity": 1,
+              "counterparty_character": "S'arrok"
+            },
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmagi (Gray)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of the Archmagi (Gray)",
+              "quantity": 1,
+              "counterparty_character": "S'arrok"
+            }
+          ],
           "chrono_timestamp": 1655251200000,
-          "chrono_index": 94
+          "chrono_index": 98
         },
         {
           "title": "Trade",
@@ -17194,8 +22434,33 @@ window.DATA = {
             "received": "Robe of the Archmagi (White)",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmagi (White)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmagi (White)",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1654992000000,
-          "chrono_index": 93
+          "chrono_index": 96
         },
         {
           "title": "Trade",
@@ -17238,8 +22503,33 @@ window.DATA = {
             "received": "Robe of the Archmage (gray)",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmage (gray)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmage (gray)",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Defender Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Defender Longsword",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1654646400000,
-          "chrono_index": 87
+          "chrono_index": 90
         },
         {
           "title": "Crypt of the Death Giants",
@@ -17284,8 +22574,15 @@ window.DATA = {
             "Hall of Omens"
           ],
           "notes": "Spent 200 DTD in the Hall of Omens gaining an additional portent",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1654646400001,
-          "chrono_index": 88
+          "chrono_index": 91
         },
         {
           "title": "Trade",
@@ -17328,8 +22625,33 @@ window.DATA = {
             "received": "Tome of the Stilled Tongue",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Hide +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Hide +3",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1654646400002,
-          "chrono_index": 89
+          "chrono_index": 92
         },
         {
           "title": "Trade",
@@ -17374,8 +22696,44 @@ window.DATA = {
             "received": "a Moon Blade",
             "counterpartyCharacter": "trade Blackrazor"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Moon Blade",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Blackrazor",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Blackrazor",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "a Moon Blade",
+              "quantity": 1,
+              "counterparty_character": "trade Blackrazor"
+            },
+            {
+              "type": "acquire",
+              "item": "Downtime Activity",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Downtime Activity",
+              "quantity": 1,
+              "counterparty_character": "trade Blackrazor"
+            }
+          ],
           "chrono_timestamp": 1654646400003,
-          "chrono_index": 90
+          "chrono_index": 93
         },
         {
           "title": "DM Reward",
@@ -17413,8 +22771,9 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Gained an additional 9th level spell slot",
+          "item_events": [],
           "chrono_timestamp": 1654646400004,
-          "chrono_index": 91
+          "chrono_index": 94
         },
         {
           "title": "Trade",
@@ -17457,8 +22816,27 @@ window.DATA = {
             "received": "Staff of the Magi",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "trade_out",
+              "item": "Moon Blade",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1654646400005,
-          "chrono_index": 92
+          "chrono_index": 95
         },
         {
           "title": "Forgotten Foes",
@@ -17496,8 +22874,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1654560000000,
-          "chrono_index": 85
+          "chrono_index": 88
         },
         {
           "title": "The Darkest Vein",
@@ -17537,8 +22922,15 @@ window.DATA = {
             "Planar Secrets"
           ],
           "notes": "Can spend 50 downtime days to make a hidden demiplane or connect two demiplanes you have created.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dreamwhirl +3 Lance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1654560000001,
-          "chrono_index": 86
+          "chrono_index": 89
         },
         {
           "title": "Canopic Being",
@@ -17583,8 +22975,50 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Crystal Ball of True Seeing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Fate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ioune Stone of Awareness",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Watchful Helm",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Hat of Disguise",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Eyes of Minute Seeing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1654128000000,
-          "chrono_index": 84
+          "chrono_index": 86
         },
         {
           "title": "Trade",
@@ -17627,8 +23061,33 @@ window.DATA = {
             "received": "Plate Barding +1",
             "counterpartyCharacter": "AL Trading Post"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate Barding +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plate Barding +1",
+              "quantity": 1,
+              "counterparty_character": "AL Trading Post"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Feather Falling",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Feather Falling",
+              "quantity": 1,
+              "counterparty_character": "AL Trading Post"
+            }
+          ],
           "chrono_timestamp": 1653782400000,
-          "chrono_index": 83
+          "chrono_index": 85
         },
         {
           "title": "Against the Machine",
@@ -17674,8 +23133,20 @@ window.DATA = {
             "On the Run"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Anstruth Harp",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs (9)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1653523200000,
-          "chrono_index": 82
+          "chrono_index": 84
         },
         {
           "title": "Trade",
@@ -17716,10 +23187,35 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Ring of Shooting Stars",
-            "counterpartyCharacter": "Sir Norixius"
+            "counterpartyCharacter": "Norixius"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Shooting Stars",
+              "quantity": 1,
+              "counterparty_character": "Sir Norixius"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Sir Norixius"
+            }
+          ],
           "chrono_timestamp": 1650412800000,
-          "chrono_index": 81
+          "chrono_index": 83
         },
         {
           "title": "Expedition to the Supreme Forge",
@@ -17761,8 +23257,25 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 death ward scrolls, 1 greater restoration scroll, 1 heroes feast",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Portable Hole",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ioune Stone of Intellect",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Moontouched Greatsword",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1649203200000,
-          "chrono_index": 80
+          "chrono_index": 82
         },
         {
           "title": "Claws of Fury",
@@ -17805,8 +23318,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 Scrolls of Revivify, paid Solar for help in battle and to resurrect 3 Tortle villagers",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1647907200000,
-          "chrono_index": 79
+          "chrono_index": 81
         },
         {
           "title": "Arena of Champions",
@@ -17850,8 +23370,15 @@ window.DATA = {
             "Champion of the Arena"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Brass Horn of Valhalla",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1647388800000,
-          "chrono_index": 78
+          "chrono_index": 80
         },
         {
           "title": "Season 11 DM Reward (R) x 6",
@@ -17894,8 +23421,40 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Darkthorn arrows (5)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Faerie dragon's favor",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Hag's clawblade",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Siren's caress",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Blink Dog's Guide to Transversing the Feywild",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sprite's rescue",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1646006400000,
-          "chrono_index": 75
+          "chrono_index": 77
         },
         {
           "title": "Season 11 DM Reward (VR) x 4",
@@ -17936,8 +23495,30 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Haregon's Freedom",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wildmane's shoes",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Grig fiddle",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Daphnaie armor",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1646006400001,
-          "chrono_index": 76
+          "chrono_index": 78
         },
         {
           "title": "Season 11 DM Reward (UC) x 5",
@@ -17979,8 +23560,35 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nereid Shawl",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Night Queen's Eyes",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mariner's scale mail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Quiver of the Centaurs",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lathai's saddle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1646006400002,
-          "chrono_index": 77
+          "chrono_index": 79
         },
         {
           "title": "Uprising",
@@ -18026,8 +23634,20 @@ window.DATA = {
             "Compromised: Suspect of Thay"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "\"Woe\" +3 Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Evasion",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1645401600000,
-          "chrono_index": 74
+          "chrono_index": 76
         },
         {
           "title": "Frozen Whispers",
@@ -18068,8 +23688,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "\"Discord\" +2 Plate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Regeneration",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1645315200000,
-          "chrono_index": 73
+          "chrono_index": 75
         },
         {
           "title": "Trade",
@@ -18112,8 +23744,27 @@ window.DATA = {
             "received": "Ghost Step Tattoo",
             "counterpartyCharacter": "AL Trading Post"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ghost Step Tattoo",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ghost Step Tattoo",
+              "quantity": 1,
+              "counterparty_character": "AL Trading Post"
+            },
+            {
+              "type": "trade_out",
+              "item": "Grig Fiddle",
+              "quantity": 1,
+              "counterparty_character": "AL Trading Post"
+            }
+          ],
           "chrono_timestamp": 1645228800000,
-          "chrono_index": 72
+          "chrono_index": 74
         },
         {
           "title": "Alkazar's Appendix",
@@ -18167,8 +23818,50 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Used Scroll of Wish (Quinlin wished for Necrotic Resistance)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Acid Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Animated Shield",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Withering",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Longbow +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Polymorph",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Red Elemental Gem",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1644364800000,
-          "chrono_index": 71
+          "chrono_index": 73
         },
         {
           "title": "Trade",
@@ -18211,8 +23904,33 @@ window.DATA = {
             "received": "Grig Fiddle",
             "counterpartyCharacter": "Sir John of Cormanthor"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Grig Fiddle",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Grig Fiddle",
+              "quantity": 1,
+              "counterparty_character": "Sir John of Cormanthor"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Stone Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Stone Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Sir John of Cormanthor"
+            }
+          ],
           "chrono_timestamp": 1643500800000,
-          "chrono_index": 70
+          "chrono_index": 72
         },
         {
           "title": "Unusual Opposition",
@@ -18253,8 +23971,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Gave up Wand of Smiles and Stygian Scale Mail to a hag in exchange for a magic elixer.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bitter Wraith (Frostbrand Rapier)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1643155200000,
-          "chrono_index": 69
+          "chrono_index": 71
         },
         {
           "title": "Mysterious Isle",
@@ -18292,8 +24017,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Greatsword +3",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1641513600000,
-          "chrono_index": 68
+          "chrono_index": 70
         },
         {
           "title": "Season 11 DM Reward UC",
@@ -18331,8 +24063,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1637452800000,
-          "chrono_index": 66
+          "chrono_index": 68
         },
         {
           "title": "The City That Should Not Be",
@@ -18378,8 +24117,20 @@ window.DATA = {
             "Bond of Fellowship"
           ],
           "notes": "Spent 14 days and 2150 gp copying spells from previously collected spellbooks. Bought scrolls of Arcane Eye and Tasha's Mind Whip and copied into spellbook for 2 days and 950 gp. Bought scrolls of Mold Earth and Passwall and copied them into my spell book during the adventure for 1325 gp. Received a scroll of teleportation circle and scribed it into my spellbook for 250 gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Stone Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1637452800001,
-          "chrono_index": 67
+          "chrono_index": 69
         },
         {
           "title": "Downtime activities",
@@ -18415,8 +24166,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased components and cast clone, spent 120 days and 100,000 gp using Manual of Iron Golems, clone reached maturity.",
+          "item_events": [],
           "chrono_timestamp": 1636329600000,
-          "chrono_index": 65
+          "chrono_index": 67
         },
         {
           "title": "Death in the Ruins",
@@ -18456,8 +24208,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Captured by Yuan Ti for 61 days",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tyr's Justice",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1636243200000,
-          "chrono_index": 64
+          "chrono_index": 66
         },
         {
           "title": "Tomb of Horrors",
@@ -18523,8 +24282,70 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased 3 Potions of Supreme Healing, 2 Potions of Superior Healing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Defender Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sword of Vengeance (Rapier)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Berserker Axe",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Spear of Backbiting",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Regenderation",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Carpet (6x9)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Candle of Invocation (Neutral)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Fire Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Flail +1",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635984000000,
-          "chrono_index": 63
+          "chrono_index": 65
         },
         {
           "title": "A Light in the Dark",
@@ -18569,8 +24390,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Purchased component for Draconic Transformation for 500 and spent 200 for Heroe's Feast. Opened Efreeti Bottle, DM rolled 96 granting three Wishes. Wished for Resistance to Force, Necrotic, and Bludgeoning.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Bottle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635897600000,
-          "chrono_index": 62
+          "chrono_index": 64
         },
         {
           "title": "The Handfasting",
@@ -18612,8 +24440,15 @@ window.DATA = {
             "Minor Noble"
           ],
           "notes": "Killed 19 Thentian commoners in combat and told to lay low. No advertising the school for one year.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1635206400000,
-          "chrono_index": 60
+          "chrono_index": 62
         },
         {
           "title": "DM Reward",
@@ -18649,8 +24484,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1635206400001,
-          "chrono_index": 61
+          "chrono_index": 63
         },
         {
           "title": "Trade",
@@ -18693,8 +24529,33 @@ window.DATA = {
             "received": "Manual of Iron Golems",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Iron Golems",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Manual of Iron Golems",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1635033600000,
-          "chrono_index": 59
+          "chrono_index": 61
         },
         {
           "title": "Scrivner's Tale",
@@ -18736,8 +24597,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Met Caustilancer the Black Dragon (adult) and arranged a teaching position for him. Copied Synaptic Static from Nibbler (Chuck G.)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of Eyes",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Awareness",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634428800000,
-          "chrono_index": 58
+          "chrono_index": 60
         },
         {
           "title": "Zhentarrim's Lament",
@@ -18784,8 +24657,20 @@ window.DATA = {
             "Nature of the Weave (Expertise in Arcana)"
           ],
           "notes": "Acquired vial of dust from the rotted corpse of a clone of Manshoon.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1633996800000,
-          "chrono_index": 57
+          "chrono_index": 59
         },
         {
           "title": "Trade",
@@ -18828,8 +24713,33 @@ window.DATA = {
             "received": "a Crystal Ball",
             "counterpartyCharacter": "Jasmine"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Crystal Ball",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "a Crystal Ball",
+              "quantity": 1,
+              "counterparty_character": "Jasmine"
+            },
+            {
+              "type": "acquire",
+              "item": "Angel Sting",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Angel Sting",
+              "quantity": 1,
+              "counterparty_character": "Jasmine"
+            }
+          ],
           "chrono_timestamp": 1633910400000,
-          "chrono_index": 56
+          "chrono_index": 58
         },
         {
           "title": "The Heart of Shadow",
@@ -18870,8 +24780,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Revivify scroll (already had diamond) for 300 gp. Spent 2000 gold and 20 DTD purchasing an estate in the Little Moonsea neighborhood of Fangjaws Hold. Copied Catnap from Fotia (Bryce). Copied spells from previously collected spellbooks.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Angel Sting (Dancing Rapier)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1633824000000,
-          "chrono_index": 55
+          "chrono_index": 57
         },
         {
           "title": "Trade",
@@ -18914,8 +24831,33 @@ window.DATA = {
             "received": "Wand of Lightning Bolts",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poitson",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Periapt of Proof Against Poitson",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1633219200000,
-          "chrono_index": 54
+          "chrono_index": 55
         },
         {
           "title": "Weakness of Rock",
@@ -18953,8 +24895,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness of Action",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1624147200000,
-          "chrono_index": 53
+          "chrono_index": 54
         },
         {
           "title": "Save the Dragon part 2",
@@ -18996,8 +24945,20 @@ window.DATA = {
             "Waterdeep Estate"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sunblade",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mithril Chain Shirt",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1620691200000,
-          "chrono_index": 52
+          "chrono_index": 53
         },
         {
           "title": "Save the Dragon part 1",
@@ -19035,8 +24996,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of the Bat",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1620086400000,
-          "chrono_index": 51
+          "chrono_index": 52
         },
         {
           "title": "The Best Laid Plans of Gnomes",
@@ -19074,8 +25042,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rolisa's Portable Factory (Daern's Instant Fortress)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614729600000,
-          "chrono_index": 50
+          "chrono_index": 51
         },
         {
           "title": "Of Gods and Monsters",
@@ -19119,8 +25094,15 @@ window.DATA = {
             "Membership in the Royal Order of Terrasque Herders"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nine Lives Stealer Scimitar",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1614384000000,
-          "chrono_index": 49
+          "chrono_index": 50
         },
         {
           "title": "The Archmage's New Robes",
@@ -19161,8 +25143,20 @@ window.DATA = {
             "These Boots were Made for Walking"
           ],
           "notes": "Bought 5 potions of Greater Healing for 500 gp. Spent 25 DTD's Dreamwalking, received an 18 Dreamwalker Portent. Spend 2 DTD's for Krus to copy Crown of Stars",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Boots of Levitation (Gleaming)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Smiles",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1612310400000,
-          "chrono_index": 48
+          "chrono_index": 49
         },
         {
           "title": "Durlog's Tower",
@@ -19208,8 +25202,20 @@ window.DATA = {
             "Vergadain's Fire Spirits activity for 60 DTDs"
           ],
           "notes": "Spent 2 DTD's while Cassandra scribed Steel Wind Strike",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1611878400000,
-          "chrono_index": 47
+          "chrono_index": 48
         },
         {
           "title": "Delusions of Grandeur, Dreams of Revenge",
@@ -19250,8 +25256,15 @@ window.DATA = {
             "Learn the Culture"
           ],
           "notes": "Gave up Ring of Protection to Efreeti, must wait one adventure before acquiring a new faction Ring",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1610755200000,
-          "chrono_index": 46
+          "chrono_index": 47
         },
         {
           "title": "Ancient Rivals",
@@ -19289,8 +25302,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Found the Demilich Fyndulaas's Spellbook",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1610582400000,
-          "chrono_index": 45
+          "chrono_index": 46
         },
         {
           "title": "Enemy of my Enemy",
@@ -19328,8 +25348,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609891200000,
-          "chrono_index": 44
+          "chrono_index": 45
         },
         {
           "title": "A Negotiated Heist",
@@ -19373,8 +25400,15 @@ window.DATA = {
             "Banned from Maladomini"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Paralysis",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609286400000,
-          "chrono_index": 43
+          "chrono_index": 44
         },
         {
           "title": "Thimblerigging",
@@ -19415,8 +25449,20 @@ window.DATA = {
             "Code Breaker"
           ],
           "notes": "Offered a spellbook (collected 9/22/2020) as payment to enter Candlekeep",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Vitality",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads (Blessing, Curing, Favor, Wind walking)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1608768000000,
-          "chrono_index": 42
+          "chrono_index": 43
         },
         {
           "title": "Tales of Estirwald: The Fun House",
@@ -19460,8 +25506,15 @@ window.DATA = {
             "My Teddy Bear Has Claws"
           ],
           "notes": "Copied True Seeing from Whirl for 300 gp and 1 DTD",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1608681600000,
-          "chrono_index": 41
+          "chrono_index": 42
         },
         {
           "title": "Trade",
@@ -19504,8 +25557,27 @@ window.DATA = {
             "received": "Flying Carpet (4x6)",
             "counterpartyCharacter": "Lorien"
           },
-          "chrono_timestamp": 1608595200001,
-          "chrono_index": 40
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flying Carpet (4x6)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Flying Carpet (4x6)",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dwarven Plate",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
+          "chrono_timestamp": 1608595200000,
+          "chrono_index": 39
         },
         {
           "title": "Contact",
@@ -19548,8 +25620,15 @@ window.DATA = {
             "Honorary Member of the Beholder Corps - Science Officer"
           ],
           "notes": "Copied Chain Lightning from Lasharra's spellbook. Joined the Mug Club for 5 gp. Bought a 300 gp diamond. Found Necromancer's Spellbook.",
-          "chrono_timestamp": 1608595200000,
-          "chrono_index": 39
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1608595200001,
+          "chrono_index": 40
         },
         {
           "title": "Dead Canaries",
@@ -19591,6 +25670,13 @@ window.DATA = {
             "Mental Fortitude"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1608336000000,
           "chrono_index": 38
         },
@@ -19630,6 +25716,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cosmic Chausible",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1607558400000,
           "chrono_index": 37
         },
@@ -19670,6 +25763,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Lightning Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1607126400000,
           "chrono_index": 36
         },
@@ -19711,6 +25816,23 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dark Shard Amulet",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Charlatan's Die",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606867200000,
           "chrono_index": 35
         },
@@ -19753,6 +25875,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606780800000,
           "chrono_index": 34
         },
@@ -19795,6 +25924,13 @@ window.DATA = {
             "Helping a Champion of Hillsfar"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Fireballs",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605916800000,
           "chrono_index": 33
         },
@@ -19834,6 +25970,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Yellow Elemental Gem",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605744000000,
           "chrono_index": 32
         },
@@ -19876,6 +26019,18 @@ window.DATA = {
             "Friend of the Griffon"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Nettle",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605312000000,
           "chrono_index": 31
         },
@@ -19915,6 +26070,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1605139200000,
           "chrono_index": 30
         },
@@ -19958,6 +26120,23 @@ window.DATA = {
             "Banned in Stygia"
           ],
           "notes": "Spent 150gp and 1 DTD scribing Leomund's Tiny Hut in library in Stygia. Used Dreamwalker Portent (19)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Alchemy Jug",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Stygian Scale Mail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604188800000,
           "chrono_index": 29
         },
@@ -20001,6 +26180,13 @@ window.DATA = {
             "Noble of Fangjaws Hold"
           ],
           "notes": "Found 100 gp worth of spell incense (Find Familiar)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1603929600000,
           "chrono_index": 28
         },
@@ -20043,6 +26229,7 @@ window.DATA = {
             "I Have Felt Him"
           ],
           "notes": "Played Liar's Night Wave 3, received Candy Corn Calico Cat Construct Pet/Familiar",
+          "item_events": [],
           "chrono_timestamp": 1603843200000,
           "chrono_index": 27
         },
@@ -20095,6 +26282,29 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Consumed 1 Mystery Key. Returned all 3 weapons. Spent 2 downtime days for Suyin (Nicole) and Figment (Jane) to scribe Steel Wind Strike.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Armor of Vulnerability (slashing)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Blackrazor",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "1 Mystery Key",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "1 Mystery Key",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1603584000000,
           "chrono_index": 25
         },
@@ -20136,6 +26346,23 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Goggles of Night",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Stone of Good Luck",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chainmail +1",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1603584000001,
           "chrono_index": 26
         },
@@ -20180,6 +26407,23 @@ window.DATA = {
             "Rashemi Regard"
           ],
           "notes": "Cloak of the Bat and Mysterey Key from Liar's Night Wave 2. Copied Scrying from a Traveling Spellbook for 1 DTD and 125 gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of the Bat",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mystery Key",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1603324800000,
           "chrono_index": 24
         },
@@ -20222,6 +26466,13 @@ window.DATA = {
             "Touched by the Fates"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plague Fly (FoWP - Ebony Fly)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1603238400000,
           "chrono_index": 23
         },
@@ -20266,6 +26517,31 @@ window.DATA = {
             "received": "Dagger of Blindsight",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Cape of the Mountebank",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Cape of the Mountebank",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1602892800001,
           "chrono_index": 21
         },
@@ -20305,6 +26581,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cape of the Mountebank",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602892800000,
           "chrono_index": 20
         },
@@ -20346,6 +26629,13 @@ window.DATA = {
             "Dreamwalker"
           ],
           "notes": "Spent 25 downtime days on the Dreamwalker activity, portent received: 19",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602892800002,
           "chrono_index": 22
         },
@@ -20385,6 +26675,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword of Warning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602633600000,
           "chrono_index": 19
         },
@@ -20429,6 +26726,13 @@ window.DATA = {
             "Friend of Rashemen"
           ],
           "notes": "Picked up an amulet with the holy symbol of Mystra. Found Lasharra's Spellbook. Spent 1 day and 275gp learning Rary's Telepathic Bond and Water Breathing. Played Liar's Night Wave 1",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Displacement",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602547200000,
           "chrono_index": 18
         },
@@ -20468,6 +26772,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Portable Hole",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602374400000,
           "chrono_index": 17
         },
@@ -20507,6 +26818,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Decanter of Endless Water",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602028800000,
           "chrono_index": 16
         },
@@ -20550,6 +26868,23 @@ window.DATA = {
             "Enmity of Etana"
           ],
           "notes": "Spent 1 day and 50gp learning Detect Thoughts from Zynn (Erik)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Smiles",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Tan Bag of Tricks",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "+2 Arrows",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1600819200000,
           "chrono_index": 13
         },
@@ -20594,6 +26929,31 @@ window.DATA = {
             "received": "Robe of Stars",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of Stars",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of Stars",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Bracelet of Rock Magic",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bracelet of Rock Magic",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1600819200002,
           "chrono_index": 15
         },
@@ -20633,6 +26993,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracelet of Rock Magic",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1600819200001,
           "chrono_index": 14
         },
@@ -20677,6 +27044,25 @@ window.DATA = {
             "received": "Mace of Smiting",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mace of Smiting",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Mace of Smiting",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1600732800001,
           "chrono_index": 12
         },
@@ -20717,6 +27103,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Collected 3 Spellbooks, turned in 1 for 100 pp distributed to each party member for 120 gp each. Bought 2x Find Familiar incense for 20gp and paid for a boat ride for 5gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of the Manta Ray",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1600732800000,
           "chrono_index": 11
         },
@@ -20759,6 +27157,13 @@ window.DATA = {
             "Wild Hunter"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Magic Missiles",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1600214400000,
           "chrono_index": 10
         },
@@ -20800,6 +27205,13 @@ window.DATA = {
             "Woodland Hospitality"
           ],
           "notes": "Spent 1 day and 200gp exchanging spells with Cassandra (Jon)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "The Choralier’s Companion - Saddle of the Cavalier",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599955200000,
           "chrono_index": 9
         },
@@ -20839,6 +27251,7 @@ window.DATA = {
             "Season 9 DM Reward"
           ],
           "notes": "Can summon a Tressym familiar",
+          "item_events": [],
           "chrono_timestamp": 1599782400000,
           "chrono_index": 8
         },
@@ -20879,6 +27292,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 2 days and 375gp exchanging spells with Skippio (Angel)",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Deck of Illusions",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mystery Key",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599696000000,
           "chrono_index": 7
         },
@@ -20918,6 +27343,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599523200000,
           "chrono_index": 6
         },
@@ -20962,6 +27394,31 @@ window.DATA = {
             "received": "Staff of Power",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1599436800001,
           "chrono_index": 5
         },
@@ -21001,6 +27458,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599436800000,
           "chrono_index": 4
         },
@@ -21044,6 +27508,18 @@ window.DATA = {
             "Chaos"
           ],
           "notes": "Met Jim Jar the Deep Gnome. Visited Duergar city of Duerradain and saw Mindflayer technology modify Simulacrum spell",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Brightness",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599091200000,
           "chrono_index": 3
         },
@@ -21084,6 +27560,7 @@ window.DATA = {
             "Faction's Favor"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596758400000,
           "chrono_index": 2
         },
@@ -21121,6 +27598,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1594857600000,
           "chrono_index": 0
         },
@@ -21160,8 +27638,255 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 30 gp worth of incense",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Deck of Illusions",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1594857600001,
           "chrono_index": 1
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2020-12-22",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "Dwarven Plate",
+            "received": "Flying Carpet",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Flying Carpet",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1608595200002,
+          "chrono_index": 41
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2022-06-12",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Belt of Storm GIant Strength",
+            "received": "Robe of the Archmage (White)",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmage (White)",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1654992000001,
+          "chrono_index": 97
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2022-06-06",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Defender Longsword",
+            "received": "Robe of the Archmage (Gray)",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Defender Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Defender Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmage (Gray)",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1654473600000,
+          "chrono_index": 87
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Periapt of Proof Against Poison",
+            "received": "Wand of Lightning Bolts",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1633219200001,
+          "chrono_index": 56
         }
       ],
       "consumable_uses": {
@@ -21233,8 +27958,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1748131200000,
-          "chrono_index": 70
+          "chrono_index": 71
         },
         {
           "title": "Roots, Bloody Roots",
@@ -21275,8 +28007,20 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Blessing of Magic Resistance",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Iron Horn of Valhalla",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Conducting",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1747180800000,
-          "chrono_index": 68
+          "chrono_index": 69
         },
         {
           "title": "DM Reward",
@@ -21314,8 +28058,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Invisibility",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1747180800001,
-          "chrono_index": 69
+          "chrono_index": 70
         },
         {
           "title": "Trade",
@@ -21358,8 +28109,33 @@ window.DATA = {
             "received": "Staff of the Python",
             "counterpartyCharacter": "Chef Ture"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Python",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of the Python",
+              "quantity": 1,
+              "counterparty_character": "Chef Ture"
+            },
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Chef Ture"
+            }
+          ],
           "chrono_timestamp": 1744761600000,
-          "chrono_index": 67
+          "chrono_index": 68
         },
         {
           "title": "Trade",
@@ -21402,8 +28178,33 @@ window.DATA = {
             "received": "Anstruth Harp",
             "counterpartyCharacter": "Raguel"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Anstruth Harp",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Anstruth Harp",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Raguel"
+            }
+          ],
           "chrono_timestamp": 1732060800000,
-          "chrono_index": 66
+          "chrono_index": 67
         },
         {
           "title": "DM Reward",
@@ -21439,8 +28240,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1726012800000,
-          "chrono_index": 65
+          "chrono_index": 66
         },
         {
           "title": "Frozen Whispers",
@@ -21482,8 +28284,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 10 scrolls of Hex",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Regeneration",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Plate +2 (unique)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1642809600000,
-          "chrono_index": 64
+          "chrono_index": 65
         },
         {
           "title": "The Handfasting",
@@ -21525,8 +28339,15 @@ window.DATA = {
             "Minor Noble"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1640131200000,
-          "chrono_index": 63
+          "chrono_index": 64
         },
         {
           "title": "Contact",
@@ -21567,8 +28388,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used Mental Fortitude - Int save",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634342400000,
-          "chrono_index": 62
+          "chrono_index": 63
         },
         {
           "title": "Dream Walkers",
@@ -21606,8 +28434,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 3 potions of greater healing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of the War Mage +3",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1628380800000,
-          "chrono_index": 61
+          "chrono_index": 62
         },
         {
           "title": "Gallery of the Nightmare Artist",
@@ -21647,8 +28482,15 @@ window.DATA = {
             "Banned from Maladomini"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Daern's Instant Fortress",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1609977600000,
-          "chrono_index": 60
+          "chrono_index": 61
         },
         {
           "title": "Lich Queen's Begotten",
@@ -21686,8 +28528,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 scrolls of Tongues",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606089600000,
-          "chrono_index": 59
+          "chrono_index": 60
         },
         {
           "title": "Arena of Champions",
@@ -21729,8 +28578,15 @@ window.DATA = {
             "Champion of the Arena"
           ],
           "notes": "Bought 10 potions of greater healing for 50 gp each.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Brass Horn of Valhalla",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604793600000,
-          "chrono_index": 58
+          "chrono_index": 59
         },
         {
           "title": "The Dark of the Hive",
@@ -21769,8 +28625,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Read three books about the Far Realm",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604707200000,
-          "chrono_index": 57
+          "chrono_index": 58
         },
         {
           "title": "Darkest Vein",
@@ -21812,8 +28680,15 @@ window.DATA = {
             "Planar Studies"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dreamwhirl (Lance +3)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602720000000,
-          "chrono_index": 55
+          "chrono_index": 56
         },
         {
           "title": "Trade",
@@ -21856,8 +28731,27 @@ window.DATA = {
             "received": "Studded Leather +2",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Studded Leather +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Studded Leather +2",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Clear Thought",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1602720000001,
-          "chrono_index": 56
+          "chrono_index": 57
         },
         {
           "title": "Dead Canaries",
@@ -21899,8 +28793,15 @@ window.DATA = {
             "Mental Fortitude"
           ],
           "notes": "Advantage on each save once: WIS, INT, CHA",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602115200000,
-          "chrono_index": 54
+          "chrono_index": 55
         },
         {
           "title": "Breath of Fire",
@@ -21939,8 +28840,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "FOWP - Onyx Dog",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Dark Shard Amulet",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1597795200000,
-          "chrono_index": 53
+          "chrono_index": 54
         },
         {
           "title": "The Royal We",
@@ -21980,8 +28893,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tyr's Blessing of Luck",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1597276800000,
-          "chrono_index": 52
+          "chrono_index": 53
         },
         {
           "title": "Call of the Deep",
@@ -22017,8 +28937,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Find Familiar components x10",
+          "item_events": [],
           "chrono_timestamp": 1594771200000,
-          "chrono_index": 51
+          "chrono_index": 52
         },
         {
           "title": "Voices from the Deep",
@@ -22054,8 +28975,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1594166400000,
-          "chrono_index": 50
+          "chrono_index": 51
         },
         {
           "title": "The Best Laid Plans of Gnomes",
@@ -22093,8 +29015,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1593561600000,
-          "chrono_index": 48
+          "chrono_index": 49
         },
         {
           "title": "Trade",
@@ -22137,8 +29060,33 @@ window.DATA = {
             "received": "Cloak of Many Fashions",
             "counterpartyCharacter": "Morty"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Pyrotecnics",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Pyrotecnics",
+              "quantity": 1,
+              "counterparty_character": "Morty"
+            }
+          ],
           "chrono_timestamp": 1593561600001,
-          "chrono_index": 49
+          "chrono_index": 50
         },
         {
           "title": "In the Hand",
@@ -22178,8 +29126,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1592265600000,
-          "chrono_index": 47
+          "chrono_index": 48
         },
         {
           "title": "Binder's Torment",
@@ -22222,8 +29171,9 @@ window.DATA = {
             "and his Ebon Tide may prove useful someday soon."
           ],
           "notes": "Purchased 2 Scrolls of Catnap for 600gp. Won a free beer every day for a year at the Laughing Goblin in Phlan",
+          "item_events": [],
           "chrono_timestamp": 1591747200000,
-          "chrono_index": 46
+          "chrono_index": 47
         },
         {
           "title": "A Night of Sorrows",
@@ -22261,8 +29211,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1591142400000,
-          "chrono_index": 45
+          "chrono_index": 46
         },
         {
           "title": "Left Black and Blue, a Red War Story",
@@ -22298,8 +29255,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1588723200000,
-          "chrono_index": 44
+          "chrono_index": 45
         },
         {
           "title": "Tales of Estirwald: The Fun House",
@@ -22335,8 +29293,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1588636800000,
-          "chrono_index": 43
+          "chrono_index": 44
         },
         {
           "title": "Lost Tales of Myth Drannor: Forgotten Foes",
@@ -22372,8 +29331,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1588032000000,
-          "chrono_index": 42
+          "chrono_index": 43
         },
         {
           "title": "Of Gods and Monsters",
@@ -22413,8 +29373,9 @@ window.DATA = {
             "Royal Order of Terrasque Herders"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1587600000000,
-          "chrono_index": 41
+          "chrono_index": 42
         },
         {
           "title": "Unusual Opposition",
@@ -22458,8 +29419,9 @@ window.DATA = {
             "and Charisma (Deception or Persuasion) checks."
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1587513600000,
-          "chrono_index": 40
+          "chrono_index": 41
         },
         {
           "title": "Necromancer's Ascent",
@@ -22499,8 +29461,9 @@ window.DATA = {
             "You've Got a Friend in Me"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1587168000000,
-          "chrono_index": 39
+          "chrono_index": 40
         },
         {
           "title": "Trade",
@@ -22543,8 +29506,33 @@ window.DATA = {
             "received": "Tome of Understanding",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1586995200000,
-          "chrono_index": 37
+          "chrono_index": 38
         },
         {
           "title": "A Tale of Two Towers",
@@ -22582,8 +29570,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "-1 minutes on Candle of Invocation",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Aegis of the Raven Queen Shield +3",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1586995200001,
-          "chrono_index": 38
+          "chrono_index": 39
         },
         {
           "title": "Siege of the Yellow Rose",
@@ -22621,8 +29616,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of Stars (Cosmic Chasuble)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1586304000000,
-          "chrono_index": 36
+          "chrono_index": 37
         },
         {
           "title": "Death in the Ruins",
@@ -22658,8 +29660,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1585699200000,
-          "chrono_index": 35
+          "chrono_index": 36
         },
         {
           "title": "Weakness of Rock",
@@ -22697,8 +29700,9 @@ window.DATA = {
             "Hangin' with Hags"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1585267200000,
-          "chrono_index": 34
+          "chrono_index": 35
         },
         {
           "title": "The Soft Touch",
@@ -22734,8 +29738,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1584144000000,
-          "chrono_index": 33
+          "chrono_index": 34
         },
         {
           "title": "The Risen Mists",
@@ -22773,8 +29778,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 1 scroll of greater restoration. Unlocked Spare (legendary flame tongue Longsword that casts Vicious Mockery) available at Tier 4.",
+          "item_events": [],
           "chrono_timestamp": 1583539200000,
-          "chrono_index": 32
+          "chrono_index": 33
         },
         {
           "title": "A Lesson in Love",
@@ -22810,8 +29816,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1583452800000,
-          "chrono_index": 31
+          "chrono_index": 32
         },
         {
           "title": "Reeducation",
@@ -22847,8 +29854,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1582761600000,
-          "chrono_index": 30
+          "chrono_index": 31
         },
         {
           "title": "The Secrets We Keep",
@@ -22884,8 +29892,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1582156800000,
-          "chrono_index": 29
+          "chrono_index": 30
         },
         {
           "title": "The Vast Emptiness of Grace",
@@ -22924,8 +29933,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581724800000,
-          "chrono_index": 28
+          "chrono_index": 29
         },
         {
           "title": "The Swarmed Heart",
@@ -22967,8 +29977,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581638400000,
-          "chrono_index": 26
+          "chrono_index": 27
         },
         {
           "title": "The Breath of Life",
@@ -23012,8 +30023,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1581638400001,
-          "chrono_index": 27
+          "chrono_index": 28
         },
         {
           "title": "Knight Errand",
@@ -23049,8 +30061,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1580947200000,
-          "chrono_index": 25
+          "chrono_index": 26
         },
         {
           "title": "Trade",
@@ -23094,8 +30107,38 @@ window.DATA = {
             "received": "Staff of Thunder and Lightning",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1580688000001,
-          "chrono_index": 24
+          "chrono_index": 25
         },
         {
           "title": "Claws of Fury",
@@ -23133,8 +30176,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Ring of Evasion",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1580688000000,
-          "chrono_index": 23
+          "chrono_index": 24
         },
         {
           "title": "Trade",
@@ -23177,8 +30227,27 @@ window.DATA = {
             "received": "Rod of the Pact Keeper +3",
             "counterpartyCharacter": "Audra Illumine"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "counterparty_character": "Audra Illumine"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_character": "Audra Illumine"
+            }
+          ],
           "chrono_timestamp": 1580601600000,
-          "chrono_index": 22
+          "chrono_index": 23
         },
         {
           "title": "Maze of Shadows Part 2",
@@ -23216,8 +30285,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Unlocked Oathbinder, in reserve until Tier 4",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1580515200000,
-          "chrono_index": 20
+          "chrono_index": 21
         },
         {
           "title": "Maze of Shadows Part 1",
@@ -23253,8 +30329,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Revivify Scroll with components, Greater Restoration Scroll, Freedom of movement scroll. Bought Hag's Eye for 200 gp",
+          "item_events": [],
           "chrono_timestamp": 1580515200001,
-          "chrono_index": 21
+          "chrono_index": 22
         },
         {
           "title": "Trade",
@@ -23297,8 +30374,27 @@ window.DATA = {
             "received": "Staff of Power",
             "counterpartyCharacter": "Bilbo Baggins"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Bilbo Baggins"
+            },
+            {
+              "type": "trade_out",
+              "item": "Studded Leather +2",
+              "quantity": 1,
+              "counterparty_character": "Bilbo Baggins"
+            }
+          ],
           "chrono_timestamp": 1580256000000,
-          "chrono_index": 19
+          "chrono_index": 20
         },
         {
           "title": "Sub Rosa",
@@ -23336,6 +30432,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Studded Leather +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579737600000,
           "chrono_index": 17
         },
@@ -23380,6 +30483,25 @@ window.DATA = {
             "received": "Bad of Devouring",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Bad of Devouring",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1579737600001,
           "chrono_index": 18
         },
@@ -23424,6 +30546,18 @@ window.DATA = {
             "Nature of the Weave"
           ],
           "notes": "Ring of Evasion from Zhentarim membership. Spent 50 DTD's learning nature of the weave, got expertise in Arcana.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579651200000,
           "chrono_index": 15
         },
@@ -23468,6 +30602,18 @@ window.DATA = {
             "Quasit essence"
           ],
           "notes": "Bought silver cage for 100 gp (Soul Cage component). Bought 10x Find Familiar components for 100 gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579651200001,
           "chrono_index": 16
         },
@@ -23509,6 +30655,13 @@ window.DATA = {
             "Gratitude of the Von Finkelsteins x2 - Scroll of Dream"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sending Stones",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579478400000,
           "chrono_index": 13
         },
@@ -23552,6 +30705,29 @@ window.DATA = {
             "given": "Wand of Fireballs",
             "received": "Rod of the Pact Keeper +2"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Rod of the Pact Keeper +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Fireballs",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Fireballs",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579478400001,
           "chrono_index": 14
         },
@@ -23591,6 +30767,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1579305600000,
           "chrono_index": 11
         },
@@ -23630,6 +30807,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1579305600001,
           "chrono_index": 12
         },
@@ -23669,6 +30847,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Purchased Hellhound Puppy for 25gp and fed it to Ördög",
+          "item_events": [],
           "chrono_timestamp": 1579219200000,
           "chrono_index": 8
         },
@@ -23713,6 +30892,31 @@ window.DATA = {
             "received": "Wand of Fireballs",
             "counterpartyCharacter": "Sister Edwina"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Fireballs",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Fireballs",
+              "quantity": 1,
+              "counterparty_character": "Sister Edwina"
+            },
+            {
+              "type": "acquire",
+              "item": "Rope of Entanglement",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Rope of Entanglement",
+              "quantity": 1,
+              "counterparty_character": "Sister Edwina"
+            }
+          ],
           "chrono_timestamp": 1579219200001,
           "chrono_index": 9
         },
@@ -23757,6 +30961,31 @@ window.DATA = {
             "received": "Broom of Flying",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1579219200002,
           "chrono_index": 10
         },
@@ -23796,6 +31025,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rope of Entanglement",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1579132800000,
           "chrono_index": 7
         },
@@ -23833,6 +31069,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1579046400000,
           "chrono_index": 5
         },
@@ -23877,6 +31114,31 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Abserd"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Abserd"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Wonder",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Wonder",
+              "quantity": 1,
+              "counterparty_character": "Abserd"
+            }
+          ],
           "chrono_timestamp": 1579046400001,
           "chrono_index": 6
         },
@@ -23916,6 +31178,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought studded leather. +1 Rod of the Pact Keeper renown item.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Wonder",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1578960000000,
           "chrono_index": 4
         },
@@ -23953,6 +31222,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1578614400000,
           "chrono_index": 2
         },
@@ -23990,6 +31260,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 50gp on 5x Find Familiar components",
+          "item_events": [],
           "chrono_timestamp": 1578614400001,
           "chrono_index": 3
         },
@@ -24029,6 +31300,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1578441600000,
           "chrono_index": 1
         },
@@ -24068,8 +31340,75 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Web",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1578009600000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2020-01-23",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "Staff of Thunder and Lightning",
+            "received": "Bag of Devouring",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1579737600002,
+          "chrono_index": 19
         }
       ]
     },
@@ -24116,8 +31455,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Lance of Warning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1706659200000,
-          "chrono_index": 54
+          "chrono_index": 61
         },
         {
           "title": "Trade",
@@ -24161,8 +31507,38 @@ window.DATA = {
             "received": "Tome of Leadership and Influence",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Iron Golems",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Manual of Iron Golems",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1635033600001,
-          "chrono_index": 53
+          "chrono_index": 60
         },
         {
           "title": "Trade",
@@ -24205,8 +31581,33 @@ window.DATA = {
             "received": "Manual of Iron Golems",
             "counterpartyCharacter": "Samus"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Iron Golems",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Manual of Iron Golems",
+              "quantity": 1,
+              "counterparty_character": "Samus"
+            },
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "counterparty_character": "Samus"
+            }
+          ],
           "chrono_timestamp": 1635033600000,
-          "chrono_index": 52
+          "chrono_index": 59
         },
         {
           "title": "Trade",
@@ -24249,8 +31650,33 @@ window.DATA = {
             "received": "Efreeti Chain",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Efreeti Chain",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1633219200000,
-          "chrono_index": 50
+          "chrono_index": 56
         },
         {
           "title": "Trade",
@@ -24293,8 +31719,33 @@ window.DATA = {
             "received": "Ioun Stone of Mastery",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1633219200001,
-          "chrono_index": 51
+          "chrono_index": 57
         },
         {
           "title": "Mysterious Isle",
@@ -24332,8 +31783,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 2 Scrolls of Holy Weapon",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of Stars",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1621987200000,
-          "chrono_index": 48
+          "chrono_index": 54
         },
         {
           "title": "Trade",
@@ -24376,8 +31834,27 @@ window.DATA = {
             "received": "Belt of Storm Giant Strength",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "trade_out",
+              "item": "Efreeti Chain",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1621987200001,
-          "chrono_index": 49
+          "chrono_index": 55
         },
         {
           "title": "Streams of Crimson",
@@ -24415,8 +31892,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1618012800000,
-          "chrono_index": 46
+          "chrono_index": 51
         },
         {
           "title": "Trade",
@@ -24459,8 +31943,27 @@ window.DATA = {
             "received": "Holy Avenger Longsword",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1618012800001,
-          "chrono_index": 47
+          "chrono_index": 52
         },
         {
           "title": "Trade",
@@ -24503,8 +32006,33 @@ window.DATA = {
             "received": "Dwarven Plate",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dwarven Plate",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Flying Carpet",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Flying Carpet",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1608595200000,
-          "chrono_index": 45
+          "chrono_index": 49
         },
         {
           "title": "Trade",
@@ -24545,10 +32073,35 @@ window.DATA = {
           "trade": {
             "given": "Belt of Fire Giant Strength",
             "received": "Manual of Bodily Health",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1604188800000,
-          "chrono_index": 43
+          "chrono_index": 47
         },
         {
           "title": "Trade",
@@ -24589,10 +32142,35 @@ window.DATA = {
           "trade": {
             "given": "Aegis of the Raven Queen Shield",
             "received": "Flying Carpet",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flying Carpet",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Flying Carpet",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1604188800001,
-          "chrono_index": 44
+          "chrono_index": 48
         },
         {
           "title": "Trade",
@@ -24633,10 +32211,35 @@ window.DATA = {
           "trade": {
             "given": "Plate +2",
             "received": "Manual of Quickness and Action",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Quickness of Action",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Manual of Quickness and Action",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Plate +2",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Plate +2",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1601596800000,
-          "chrono_index": 42
+          "chrono_index": 45
         },
         {
           "title": "Trade",
@@ -24679,8 +32282,33 @@ window.DATA = {
             "received": "Dagger of Blindsight",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Mace of Smiting",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Mace of Smiting",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1600732800000,
-          "chrono_index": 41
+          "chrono_index": 44
         },
         {
           "title": "Trade",
@@ -24723,8 +32351,33 @@ window.DATA = {
             "received": "Tloque's Battleaxe",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleax",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1599436800000,
-          "chrono_index": 40
+          "chrono_index": 43
         },
         {
           "title": "Twice as Nice for Half the Price",
@@ -24764,8 +32417,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 3 Scrolls of Holy Weapon, 2 Scrolls of Find Greater Steed, and 10 Potions of Greater Healing. Used 1 DTD to cast spells. Spent 1 Soul Coin",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1594598400000,
-          "chrono_index": 38
+          "chrono_index": 41
         },
         {
           "title": "DM Rewards x3",
@@ -24801,8 +32461,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1594598400001,
-          "chrono_index": 39
+          "chrono_index": 42
         },
         {
           "title": "Level 21",
@@ -24840,8 +32501,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mace of Smiting +1",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1594339200000,
-          "chrono_index": 37
+          "chrono_index": 40
         },
         {
           "title": "The Best Laid Plans of Gnomes",
@@ -24879,8 +32547,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rolisa's Portable Factory (Daern's Instant Fortress)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1593561600000,
-          "chrono_index": 36
+          "chrono_index": 39
         },
         {
           "title": "Necromancer's Ascent",
@@ -24916,8 +32591,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Scroll of Catnap for 300gp",
+          "item_events": [],
           "chrono_timestamp": 1592956800000,
-          "chrono_index": 35
+          "chrono_index": 38
         },
         {
           "title": "Maddening Screams",
@@ -24953,8 +32629,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1591056000000,
-          "chrono_index": 34
+          "chrono_index": 37
         },
         {
           "title": "A Night of Sorrows",
@@ -24992,8 +32669,21 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Sold Splint Barding for 400 gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Splint Barding for 400 gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Splint Barding for 400 gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1588377600000,
-          "chrono_index": 33
+          "chrono_index": 36
         },
         {
           "title": "Trade",
@@ -25036,8 +32726,33 @@ window.DATA = {
             "received": "Plate Barding +2",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate Barding +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plate Barding +2",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Shield +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Shield +3",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1586044800000,
-          "chrono_index": 32
+          "chrono_index": 35
         },
         {
           "title": "The Vast Emptiness of Grace",
@@ -25073,8 +32788,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1584748800000,
-          "chrono_index": 29
+          "chrono_index": 32
         },
         {
           "title": "The Swarmed Heart",
@@ -25113,8 +32829,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1584748800001,
-          "chrono_index": 30
+          "chrono_index": 33
         },
         {
           "title": "The Breath of Life",
@@ -25150,8 +32867,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 800gp for Splint barding. Spent 300gp and 1 soul coin to make a Hag's daughters stop haunting my dreams. Spent 500gp and 5 DTD's in a bargain with Mahadi.",
+          "item_events": [],
           "chrono_timestamp": 1584748800002,
-          "chrono_index": 31
+          "chrono_index": 34
         },
         {
           "title": "Trade",
@@ -25194,8 +32912,33 @@ window.DATA = {
             "received": "Staff of Power",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Longsword +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Longsword +3",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1584230400000,
-          "chrono_index": 28
+          "chrono_index": 31
         },
         {
           "title": "Zhentarim's Lament",
@@ -25234,8 +32977,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 1 Scroll of Find Greater Steed, 2 Scrolls of Revivify, 3 Scrolls of Enlarge/Reduce, 3 Scrolls of Alter Self. Dropped Ring of Protection",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1583798400000,
-          "chrono_index": 27
+          "chrono_index": 30
         },
         {
           "title": "Tomb of Horror",
@@ -25284,8 +33039,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1582675200000,
-          "chrono_index": 25
+          "chrono_index": 28
         },
         {
           "title": "Trade",
@@ -25328,8 +33090,33 @@ window.DATA = {
             "received": "Shield +3",
             "counterpartyCharacter": "Warden"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Shield +3",
+              "quantity": 1,
+              "counterparty_character": "Warden"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Warden"
+            }
+          ],
           "chrono_timestamp": 1582675200001,
-          "chrono_index": 26
+          "chrono_index": 29
         },
         {
           "title": "Durlog's Tower",
@@ -25368,8 +33155,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought scroll of Find Greater Steed",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1582588800000,
-          "chrono_index": 24
+          "chrono_index": 27
         },
         {
           "title": "A Fire Grows in Cania",
@@ -25409,8 +33208,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Frost",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581724800000,
-          "chrono_index": 23
+          "chrono_index": 26
         },
         {
           "title": "Trade",
@@ -25453,8 +33259,33 @@ window.DATA = {
             "received": "Bracers of Defense",
             "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracers of Defense",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Bracers of Defense",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            },
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            }
+          ],
           "chrono_timestamp": 1581552000000,
-          "chrono_index": 22
+          "chrono_index": 25
         },
         {
           "title": "Trade",
@@ -25497,8 +33328,33 @@ window.DATA = {
             "received": "Plate +2",
             "counterpartyPlayer": "David T."
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plate +2",
+              "quantity": 1,
+              "counterparty_player": "David T."
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_player": "David T."
+            }
+          ],
           "chrono_timestamp": 1581465600000,
-          "chrono_index": 20
+          "chrono_index": 23
         },
         {
           "title": "Trade",
@@ -25541,8 +33397,33 @@ window.DATA = {
             "received": "Sun Blade",
             "counterpartyCharacter": "Anfer"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sun Blade",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Sun Blade",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            },
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            }
+          ],
           "chrono_timestamp": 1581465600001,
-          "chrono_index": 21
+          "chrono_index": 24
         },
         {
           "title": "Trade",
@@ -25585,8 +33466,33 @@ window.DATA = {
             "received": "+3 Longsword",
             "counterpartyCharacter": "Morinth"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+3 Longsword",
+              "quantity": 1,
+              "counterparty_character": "Morinth"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Morinth"
+            }
+          ],
           "chrono_timestamp": 1581379200000,
-          "chrono_index": 18
+          "chrono_index": 21
         },
         {
           "title": "Enemy of my Enemy",
@@ -25624,8 +33530,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Scroll of Find Greater Steed for 500 gp, cast for Pegasus mount",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581379200001,
-          "chrono_index": 19
+          "chrono_index": 22
         },
         {
           "title": "Claws of Fury",
@@ -25663,8 +33576,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581206400000,
-          "chrono_index": 17
+          "chrono_index": 20
         },
         {
           "title": "Trade",
@@ -25705,10 +33625,35 @@ window.DATA = {
           "trade": {
             "given": "Belt of Hill Giant Strength",
             "received": "Opal of the Ild Rune",
-            "counterpartyCharacter": "Arvistan"
+            "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Opal of the Ild Rune",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Arvistan"
+            }
+          ],
           "chrono_timestamp": 1581033600000,
-          "chrono_index": 16
+          "chrono_index": 19
         },
         {
           "title": "Trade",
@@ -25751,8 +33696,33 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1580688000000,
-          "chrono_index": 15
+          "chrono_index": 18
         },
         {
           "title": "Trade",
@@ -25796,8 +33766,38 @@ window.DATA = {
             "received": "Staff of Thunder and Lightning",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Lightning",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bag of Devouring",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1579737600000,
-          "chrono_index": 14
+          "chrono_index": 16
         },
         {
           "title": "On the Baron's Trail",
@@ -25835,8 +33835,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Longsword +1 renown item.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bag of Devouring",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1578528000000,
-          "chrono_index": 13
+          "chrono_index": 15
         },
         {
           "title": "Trade",
@@ -25879,8 +33886,33 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Wandering Swordsman"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Wandering Swordsman"
+            },
+            {
+              "type": "acquire",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "counterparty_character": "Wandering Swordsman"
+            }
+          ],
           "chrono_timestamp": 1578441600000,
-          "chrono_index": 12
+          "chrono_index": 14
         },
         {
           "title": "Let's Find the Sword, GO!",
@@ -25918,8 +33950,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1577923200000,
-          "chrono_index": 10
+          "chrono_index": 12
         },
         {
           "title": "Infernal Insurgency",
@@ -25957,8 +33996,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped +1 Shield",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamored Studded Leather",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1577923200001,
-          "chrono_index": 11
+          "chrono_index": 13
         },
         {
           "title": "Trade",
@@ -26001,8 +34047,33 @@ window.DATA = {
             "received": "Belt of Hill Giant Strength",
             "counterpartyCharacter": "Anfer"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            },
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Gem of Seeing",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            }
+          ],
           "chrono_timestamp": 1576886400001,
-          "chrono_index": 9
+          "chrono_index": 11
         },
         {
           "title": "Faces of Fortune",
@@ -26040,8 +34111,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Winged Boots, +1 Shield renown item",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gem of Seeing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1576886400000,
-          "chrono_index": 8
+          "chrono_index": 10
         },
         {
           "title": "Trade",
@@ -26084,8 +34162,33 @@ window.DATA = {
             "received": "+2 Longsword",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "+1 plate",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "+1 plate",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1574467200001,
-          "chrono_index": 7
+          "chrono_index": 9
         },
         {
           "title": "Trade",
@@ -26128,8 +34231,33 @@ window.DATA = {
             "received": "+1 plate",
             "counterpartyCharacter": "Fei Chen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+1 plate",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            },
+            {
+              "type": "acquire",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            }
+          ],
           "chrono_timestamp": 1574467200000,
-          "chrono_index": 6
+          "chrono_index": 8
         },
         {
           "title": "Trade",
@@ -26172,6 +34300,25 @@ window.DATA = {
             "received": "Elven Chain",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Elven Chain",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1573776000000,
           "chrono_index": 5
         },
@@ -26209,6 +34356,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1571702400000,
           "chrono_index": 4
         },
@@ -26248,6 +34396,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used 20 DTD's to escape Ravenloft, dropped Bowl of Commanding Water Elementals",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1571443200000,
           "chrono_index": 1
         },
@@ -26287,6 +34442,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Learned proficiency with the Lyre",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bowl of Commanding Water Elementals",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1571443200001,
           "chrono_index": 2
         },
@@ -26328,6 +34490,24 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Amulet of Proof vs Det. Used 20 DTD's to level up. Longsword +1 renown item. Sold longsword and chainmail for 39 gp, bought splint for 200 gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "longsword and chainmail for 39 gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "longsword and chainmail for 39 gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1571443200002,
           "chrono_index": 3
         },
@@ -26367,8 +34547,495 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Proof Against Detection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1571356800000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Zandarax)",
+          "date": "2020-12-22",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Zandarax",
+          "trade": {
+            "given": "Flying Carpet (4x6)",
+            "received": "Dwarven Plate",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Flying Carpet (4x6)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Flying Carpet (4x6)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1608595200001,
+          "chrono_index": 50
+        },
+        {
+          "title": "Trade (reciprocal for Zandarax)",
+          "date": "2020-10-17",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Zandarax",
+          "trade": {
+            "given": "Dagger of Blindsight",
+            "received": "Cape of the Mountebank",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dagger of Blindsight",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dagger of Blindsight",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Cape of the Mountebank",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1602892800000,
+          "chrono_index": 46
+        },
+        {
+          "title": "Trade (reciprocal for Agatha)",
+          "date": "2020-01-23",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Agatha",
+          "trade": {
+            "given": "Bad of Devouring",
+            "received": "Staff of Thunder and Lightning",
+            "counterpartyCharacter": "Agatha"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bad of Devouring",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Bad of Devouring",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1579737600001,
+          "chrono_index": 17
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Belt of Storm GIant Strength",
+            "received": "Efreeti Chain barding",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Efreeti Chain barding",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1633219200002,
+          "chrono_index": 58
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2021-04-10",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Ioun Stone of Mastery",
+            "received": "Holy Avenger",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Holy Avenger",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1618012800002,
+          "chrono_index": 53
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2019-11-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "+1 plate",
+            "received": "+2 Longsword",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "+1 plate",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "+1 plate",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+2 Longsword",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1574208000000,
+          "chrono_index": 7
+        },
+        {
+          "title": "Trade (reciprocal for Darrendrian)",
+          "date": "2019-11-15",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Darrendrian",
+          "trade": {
+            "given": "Ring of Spell Storing",
+            "received": "Elven chainmail",
+            "counterpartyCharacter": "Darrendrian"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Elven chainmail",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1573776000001,
+          "chrono_index": 6
+        },
+        {
+          "title": "Trade (reciprocal for Ecthelion)",
+          "date": "2025-11-06",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Ecthelion",
+          "trade": {
+            "given": "Tome of Leadership and Influence",
+            "received": "Carpet (6x9)",
+            "counterpartyCharacter": "Ecthelion"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Carpet (6x9)",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1762387200000,
+          "chrono_index": 62
         }
       ]
     },
@@ -26420,8 +35087,33 @@ window.DATA = {
             "received": "Ascendent Dragon's Wrath Longsword (Amethyst)",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ascendent Dragon's Wrath Longsword (Amethyst)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1761004800000,
-          "chrono_index": 94
+          "chrono_index": 106
         },
         {
           "title": "War of the Roses",
@@ -26459,8 +35151,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sword of Answering (unbreakable)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1748131200000,
-          "chrono_index": 93
+          "chrono_index": 105
         },
         {
           "title": "Rocky Road",
@@ -26501,8 +35200,20 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Half-plate of Gleaming",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1738108800000,
-          "chrono_index": 92
+          "chrono_index": 104
         },
         {
           "title": "My Shattered Heart",
@@ -26542,8 +35253,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +3 (Crystal)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1714003200000,
-          "chrono_index": 91
+          "chrono_index": 103
         },
         {
           "title": "The Death of Szazz Tam",
@@ -26582,8 +35300,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Blood Fury Tattoo",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Kyrzin's Ooze",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1662249600000,
-          "chrono_index": 90
+          "chrono_index": 102
         },
         {
           "title": "The Tower of Ahghairon",
@@ -26623,8 +35353,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Bought 4 potions of supreme healing and 2 scrolls of holy weapon. Morn (Ryan L.) cast Wish for Force resistance.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cubic Gate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1660694400000,
-          "chrono_index": 89
+          "chrono_index": 101
         },
         {
           "title": "Trade",
@@ -26667,8 +35404,33 @@ window.DATA = {
             "received": "Belt of Storm GIant Strength",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmage (White)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of the Archmage (White)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1654992000000,
-          "chrono_index": 87
+          "chrono_index": 98
         },
         {
           "title": "Trade",
@@ -26712,8 +35474,35 @@ window.DATA = {
             "counterpartyCharacter": "Valenor Vyshaan",
             "counterpartyPlayer": "Dario C."
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmagi (White)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmagi (white)",
+              "quantity": 1,
+              "counterparty_character": "Valenor Vyshaan",
+              "counterparty_player": "Dario C."
+            },
+            {
+              "type": "acquire",
+              "item": "Ascendant Dragon-Touched Focus",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ascendant Dragon-Touched Focus",
+              "quantity": 1,
+              "counterparty_character": "Valenor Vyshaan",
+              "counterparty_player": "Dario C."
+            }
+          ],
           "chrono_timestamp": 1654992000001,
-          "chrono_index": 88
+          "chrono_index": 99
         },
         {
           "title": "Trade",
@@ -26756,8 +35545,33 @@ window.DATA = {
             "received": "Holy Avenger Longsword",
             "counterpartyCharacter": "Duke"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Duke"
+            },
+            {
+              "type": "acquire",
+              "item": "Hide Armor +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Hide Armor +3",
+              "quantity": 1,
+              "counterparty_character": "Duke"
+            }
+          ],
           "chrono_timestamp": 1654646400001,
-          "chrono_index": 86
+          "chrono_index": 96
         },
         {
           "title": "Trade",
@@ -26800,8 +35614,27 @@ window.DATA = {
             "received": "Hide Armor +3",
             "counterpartyCharacter": "Duke"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Hide Armor +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Hide Armor +3",
+              "quantity": 1,
+              "counterparty_character": "Duke"
+            },
+            {
+              "type": "trade_out",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Duke"
+            }
+          ],
           "chrono_timestamp": 1654646400000,
-          "chrono_index": 85
+          "chrono_index": 95
         },
         {
           "title": "Trade",
@@ -26844,8 +35677,33 @@ window.DATA = {
             "received": "Defender Longsword",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Defender Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Defender Longsword",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmage (Gray)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of the Archmage (Gray)",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1654473600001,
-          "chrono_index": 84
+          "chrono_index": 94
         },
         {
           "title": "Trade",
@@ -26888,8 +35746,27 @@ window.DATA = {
             "received": "Robe of the Archmage (Gray)",
             "counterpartyCharacter": "Aiden Moonshadow"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmage (Gray)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Robe of the Archmage (Gray)",
+              "quantity": 1,
+              "counterparty_character": "Aiden Moonshadow"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Aiden Moonshadow"
+            }
+          ],
           "chrono_timestamp": 1654473600000,
-          "chrono_index": 83
+          "chrono_index": 93
         },
         {
           "title": "Fall the Cold Night",
@@ -26932,8 +35809,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ascendent Gem Dragon-Touched Focus",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sapphire Buckler",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1653868800000,
-          "chrono_index": 82
+          "chrono_index": 92
         },
         {
           "title": "Beyond This Portal",
@@ -26973,8 +35862,25 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption (10 charges)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Potion of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Potion of Supreme Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1653782400000,
-          "chrono_index": 81
+          "chrono_index": 91
         },
         {
           "title": "Trade",
@@ -27017,8 +35923,33 @@ window.DATA = {
             "received": "Blood Fury Tattoo",
             "counterpartyCharacter": "Jillian"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Blood Fury Tattoo",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Blood Fury Tattoo",
+              "quantity": 1,
+              "counterparty_character": "Jillian"
+            },
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Scarab of Protection",
+              "quantity": 1,
+              "counterparty_character": "Jillian"
+            }
+          ],
           "chrono_timestamp": 1653696000000,
-          "chrono_index": 80
+          "chrono_index": 90
         },
         {
           "title": "Trade",
@@ -27061,8 +35992,33 @@ window.DATA = {
             "received": "Rod of Absorption",
             "counterpartyCharacter": "Aramil"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Absorption",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Rod of Absorption",
+              "quantity": 1,
+              "counterparty_character": "Aramil"
+            },
+            {
+              "type": "acquire",
+              "item": "Oathbow",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Oathbow",
+              "quantity": 1,
+              "counterparty_character": "Aramil"
+            }
+          ],
           "chrono_timestamp": 1634083200000,
-          "chrono_index": 78
+          "chrono_index": 88
         },
         {
           "title": "Pools of Cerulean",
@@ -27105,8 +36061,15 @@ window.DATA = {
             "The Opal Pendant"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vorpal Scimitar",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1634083200001,
-          "chrono_index": 79
+          "chrono_index": 89
         },
         {
           "title": "The Harrowing of Hell",
@@ -27151,8 +36114,25 @@ window.DATA = {
             "Knight of the Giant Queen"
           ],
           "notes": "Bought 1 Potions of Supreme Healing, 6 Scrolls of Holy Weapon",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Oathbow",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Chime of Opening",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1633219200000,
-          "chrono_index": 72
+          "chrono_index": 80
         },
         {
           "title": "Trade",
@@ -27195,8 +36175,33 @@ window.DATA = {
             "received": "Periapt of Proof Against Poison",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1633219200001,
-          "chrono_index": 73
+          "chrono_index": 81
         },
         {
           "title": "DM Reward",
@@ -27234,8 +36239,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1633219200002,
-          "chrono_index": 74
+          "chrono_index": 82
         },
         {
           "title": "Trade",
@@ -27278,8 +36290,33 @@ window.DATA = {
             "received": "Broom of Flying",
             "counterpartyCharacter": "Orakhar"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Orakhar"
+            },
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "counterparty_character": "Orakhar"
+            }
+          ],
           "chrono_timestamp": 1633219200003,
-          "chrono_index": 75
+          "chrono_index": 83
         },
         {
           "title": "Trade",
@@ -27322,8 +36359,33 @@ window.DATA = {
             "received": "Belt of Storm GIant Strength",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm GIant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain barding",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Efreeti Chain barding",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1633219200004,
-          "chrono_index": 76
+          "chrono_index": 84
         },
         {
           "title": "Trade",
@@ -27366,8 +36428,33 @@ window.DATA = {
             "received": "Holy Avenger Longsword",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1633219200005,
-          "chrono_index": 77
+          "chrono_index": 85
         },
         {
           "title": "Trade",
@@ -27410,8 +36497,27 @@ window.DATA = {
             "received": "Efreeti Chain",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Efreeti Chain",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1621987200000,
-          "chrono_index": 71
+          "chrono_index": 79
         },
         {
           "title": "Trade",
@@ -27454,8 +36560,33 @@ window.DATA = {
             "received": "Ioun Stone of Mastery",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Holy Avenger",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Holy Avenger",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1618012800000,
-          "chrono_index": 70
+          "chrono_index": 77
         },
         {
           "title": "Trade",
@@ -27498,8 +36629,33 @@ window.DATA = {
             "received": "Eyes of the Eagle",
             "counterpartyCharacter": "Buckley"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Eyes of the Eagle",
+              "quantity": 1,
+              "counterparty_character": "Buckley"
+            },
+            {
+              "type": "acquire",
+              "item": "Adamantine Armor",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Adamantine Armor",
+              "quantity": 1,
+              "counterparty_character": "Buckley"
+            }
+          ],
           "chrono_timestamp": 1609027200000,
-          "chrono_index": 69
+          "chrono_index": 74
         },
         {
           "title": "Window to the Past",
@@ -27542,8 +36698,20 @@ window.DATA = {
             "Enmity of Thay"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rod of Security",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Adamantine Plate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1606435200000,
-          "chrono_index": 68
+          "chrono_index": 73
         },
         {
           "title": "Streams of Crimson",
@@ -27583,8 +36751,15 @@ window.DATA = {
             "The Opal Pendant"
           ],
           "notes": "Bought 4 Scrolls of Freedom of Movement, 2 Scrolls of Holy Weapon, 1 Scroll of Revivify, 4 Scrolls of Death Ward, 2 Scrolls of Greater Restoration, 1 Scroll of Find Greater Steed, and 2 Scrolls of Enlarge/Reduce for a total of 9100 gp.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1604016000000,
-          "chrono_index": 67
+          "chrono_index": 72
         },
         {
           "title": "Where Devils Fear to Tread",
@@ -27625,8 +36800,20 @@ window.DATA = {
             "Thanks of Ilmater"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Death Shield Defender Greatsword",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599264000000,
-          "chrono_index": 65
+          "chrono_index": 70
         },
         {
           "title": "Fang and Claw",
@@ -27669,8 +36856,20 @@ window.DATA = {
             "Ice Pact"
           ],
           "notes": "Bought 2 Scrolls of Find Greater Steed, 6 Scrolls of Holy Weapon",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599264000001,
-          "chrono_index": 66
+          "chrono_index": 71
         },
         {
           "title": "Trade",
@@ -27713,8 +36912,27 @@ window.DATA = {
             "received": "Whip +2",
             "counterpartyCharacter": "Indy"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Whip +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Whip +2",
+              "quantity": 1,
+              "counterparty_character": "Indy"
+            },
+            {
+              "type": "trade_out",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1,
+              "counterparty_character": "Indy"
+            }
+          ],
           "chrono_timestamp": 1594684800000,
-          "chrono_index": 64
+          "chrono_index": 69
         },
         {
           "title": "Hecatomb",
@@ -27756,8 +36974,15 @@ window.DATA = {
             "Lost Lore of the Illithilich"
           ],
           "notes": "Bought Poition of Supreme Healing for 5,000 gp, 20 Potions of Greater Healing for 2,000 gp, 3 Scrolls of Holy Weapon for 3,000 gp, 2 Scrolls of Freedom of Movement",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Blessing of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1593907200000,
-          "chrono_index": 63
+          "chrono_index": 68
         },
         {
           "title": "Moving Day!",
@@ -27793,8 +37018,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought Scroll of Holy Weapon for 1000gp, 2 Scrolls of Catnap for 300gp.",
+          "item_events": [],
           "chrono_timestamp": 1593129600000,
-          "chrono_index": 61
+          "chrono_index": 66
         },
         {
           "title": "DM Reward",
@@ -27832,8 +37058,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cape of the Mountbank",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1593129600001,
-          "chrono_index": 62
+          "chrono_index": 67
         },
         {
           "title": "Lost Tales of Myth Drannor: Definition of Heroism",
@@ -27869,8 +37102,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 4 potions of Greater Healing for 400.",
+          "item_events": [],
           "chrono_timestamp": 1587168000000,
-          "chrono_index": 60
+          "chrono_index": 63
         },
         {
           "title": "Trade",
@@ -27913,8 +37147,33 @@ window.DATA = {
             "received": "Aegis of the Raven Queen Shield",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Aegis of the Raven Queen Shield",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1586995200000,
-          "chrono_index": 59
+          "chrono_index": 62
         },
         {
           "title": "Trade",
@@ -27957,8 +37216,33 @@ window.DATA = {
             "received": "Tome of Understanding",
             "counterpartyCharacter": "Sibila"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_character": "Sibila"
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Rod of the Pact Keeper +3",
+              "quantity": 1,
+              "counterparty_character": "Sibila"
+            }
+          ],
           "chrono_timestamp": 1586217600000,
-          "chrono_index": 58
+          "chrono_index": 61
         },
         {
           "title": "Trade",
@@ -28001,8 +37285,33 @@ window.DATA = {
             "received": "Shield +3",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Shield +3",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Plate Barding +2",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Plate Barding +2",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1586044800000,
-          "chrono_index": 57
+          "chrono_index": 60
         },
         {
           "title": "The Mysterious Isle",
@@ -28043,8 +37352,20 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Shield +3 and Staff of the Magi",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate Barding +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of the Pact Keeper +2",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1585958400000,
-          "chrono_index": 56
+          "chrono_index": 59
         },
         {
           "title": "Cauldron of Sapphire",
@@ -28085,8 +37406,15 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Spent 6800 on 2 Scrolls of Revivify, 2 Scrolls of Holy Weapon, 2 Scrolls of Greater Invisibility, 2 Scrolls of Greater Restoration, and 4 Scrolls of Alter Self. Wish spells granted resistance to Lightning and Acid damage",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1584230400000,
-          "chrono_index": 54
+          "chrono_index": 57
         },
         {
           "title": "Trade",
@@ -28129,8 +37457,33 @@ window.DATA = {
             "received": "Longsword +3",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Longsword +3",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1584230400001,
-          "chrono_index": 55
+          "chrono_index": 58
         },
         {
           "title": "Eye of Xxiphu",
@@ -28170,8 +37523,25 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Eye of Xxiphu",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1584057600000,
-          "chrono_index": 53
+          "chrono_index": 56
         },
         {
           "title": "Trade",
@@ -28214,8 +37584,33 @@ window.DATA = {
             "received": "Plate +3",
             "counterpartyCharacter": "Portia Porridgepot"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Plate +3",
+              "quantity": 1,
+              "counterparty_character": "Portia Porridgepot"
+            },
+            {
+              "type": "acquire",
+              "item": "Ollamh Harp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ollamh Harp",
+              "quantity": 1,
+              "counterparty_character": "Portia Porridgepot"
+            }
+          ],
           "chrono_timestamp": 1583798400000,
-          "chrono_index": 52
+          "chrono_index": 55
         },
         {
           "title": "Devil's Song",
@@ -28257,8 +37652,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ollamh Harp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1583539200000,
-          "chrono_index": 51
+          "chrono_index": 54
         },
         {
           "title": "Trade",
@@ -28301,8 +37703,27 @@ window.DATA = {
             "received": "Ioun Stone of Insight",
             "counterpartyCharacter": "Winkle Paddlegear"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Insight",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ioun Stone of Insight",
+              "quantity": 1,
+              "counterparty_character": "Winkle Paddlegear"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Winkle Paddlegear"
+            }
+          ],
           "chrono_timestamp": 1583452800000,
-          "chrono_index": 48
+          "chrono_index": 51
         },
         {
           "title": "Trade",
@@ -28345,8 +37766,33 @@ window.DATA = {
             "received": "Cloak of Invisibility",
             "counterpartyCharacter": "Missmeseeks"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Invisibility",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Cloak of Invisibility",
+              "quantity": 1,
+              "counterparty_character": "Missmeseeks"
+            },
+            {
+              "type": "acquire",
+              "item": "Oathbinder",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Oathbinder",
+              "quantity": 1,
+              "counterparty_character": "Missmeseeks"
+            }
+          ],
           "chrono_timestamp": 1583452800001,
-          "chrono_index": 49
+          "chrono_index": 52
         },
         {
           "title": "DM Reward",
@@ -28382,8 +37828,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1583452800002,
-          "chrono_index": 50
+          "chrono_index": 53
         },
         {
           "title": "Trade",
@@ -28426,8 +37873,27 @@ window.DATA = {
             "received": "Holy Avenger Longsword",
             "counterpartyCharacter": "Darnys"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "counterparty_character": "Darnys"
+            },
+            {
+              "type": "trade_out",
+              "item": "Scarab of Protection",
+              "quantity": 1,
+              "counterparty_character": "Darnys"
+            }
+          ],
           "chrono_timestamp": 1583280000000,
-          "chrono_index": 47
+          "chrono_index": 50
         },
         {
           "title": "DM Reward",
@@ -28463,8 +37929,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1583193600000,
-          "chrono_index": 46
+          "chrono_index": 49
         },
         {
           "title": "Trade",
@@ -28507,8 +37974,33 @@ window.DATA = {
             "received": "Scarab of Protection",
             "counterpartyCharacter": "Snowball"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Scarab of Protection",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Scarab of Protection",
+              "quantity": 1,
+              "counterparty_character": "Snowball"
+            },
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Greater Absorption",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Greater Absorption",
+              "quantity": 1,
+              "counterparty_character": "Snowball"
+            }
+          ],
           "chrono_timestamp": 1582934400000,
-          "chrono_index": 44
+          "chrono_index": 47
         },
         {
           "title": "Crypt of the Death Giants",
@@ -28548,8 +38040,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1582934400001,
-          "chrono_index": 45
+          "chrono_index": 48
         },
         {
           "title": "Trade",
@@ -28592,8 +38091,33 @@ window.DATA = {
             "received": "Manual of Bodily Health",
             "counterpartyCharacter": "Yongbi"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Manual of Bodily Health",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Manual of Bodily Health",
+              "quantity": 1,
+              "counterparty_character": "Yongbi"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Yongbi"
+            }
+          ],
           "chrono_timestamp": 1582329600000,
-          "chrono_index": 43
+          "chrono_index": 46
         },
         {
           "title": "Trade",
@@ -28636,8 +38160,33 @@ window.DATA = {
             "received": "Periapt of Proof Against Poison",
             "counterpartyCharacter": "Zelene Silrathas"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Periapt of Proof Against Poison",
+              "quantity": 1,
+              "counterparty_character": "Zelene Silrathas"
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Zelene Silrathas"
+            }
+          ],
           "chrono_timestamp": 1582156800000,
-          "chrono_index": 42
+          "chrono_index": 45
         },
         {
           "title": "Trust and Understanding",
@@ -28684,8 +38233,26 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 5 potions of Greater Healing for 500. Bought 3 scrolls of Revivify with components for 1800 gp. Dropped White Dragon Scale Mail",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Greater Absorbtion",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "White Dragon Scalemail",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "White Dragon Scalemail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581897600000,
-          "chrono_index": 39
+          "chrono_index": 42
         },
         {
           "title": "Trade",
@@ -28728,8 +38295,27 @@ window.DATA = {
             "received": "Belt of Storm Giant Strength",
             "counterpartyCharacter": "Brielle Akamiir"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Brielle Akamiir"
+            },
+            {
+              "type": "trade_out",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1,
+              "counterparty_character": "Brielle Akamiir"
+            }
+          ],
           "chrono_timestamp": 1581897600001,
-          "chrono_index": 40
+          "chrono_index": 43
         },
         {
           "title": "Trade",
@@ -28772,8 +38358,33 @@ window.DATA = {
             "received": "Wand of Webs",
             "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Webs",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            },
+            {
+              "type": "acquire",
+              "item": "Trident of Fish Command",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Trident of Fish Command",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            }
+          ],
           "chrono_timestamp": 1581897600002,
-          "chrono_index": 41
+          "chrono_index": 44
         },
         {
           "title": "Trade",
@@ -28816,8 +38427,27 @@ window.DATA = {
             "received": "Trident of Fish Command",
             "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Trident of Fish Command",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Trident of Fish Command",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            }
+          ],
           "chrono_timestamp": 1581811200000,
-          "chrono_index": 37
+          "chrono_index": 40
         },
         {
           "title": "Twice as Nice for Half the Price",
@@ -28870,8 +38500,20 @@ window.DATA = {
           ],
           "story_awards": [],
           "notes": "Bought 10 protions of greater healing for 1000 gp. Bought Hero's snack from Fai Chen for 150 gp. Pegasus Mr. Fizzlebottom died, summoned Nightmare named Mr. Sizzlebottom while in Nessus. Table Wish spells by Wren (Erik Tukey) granted resistance to Fire and Necrotic damage.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1581811200001,
-          "chrono_index": 38
+          "chrono_index": 41
         },
         {
           "title": "A Change of Address",
@@ -28907,8 +38549,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1579305600000,
-          "chrono_index": 36
+          "chrono_index": 39
         },
         {
           "title": "Trade",
@@ -28951,8 +38594,27 @@ window.DATA = {
             "received": "Wand of Webs",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Webs",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Webs",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "trade_out",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1579219200001,
-          "chrono_index": 35
+          "chrono_index": 38
         },
         {
           "title": "Trade",
@@ -28995,8 +38657,33 @@ window.DATA = {
             "received": "Broom of Flying",
             "counterpartyCharacter": "Don Karnage"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Broom of Flying",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Broom of Flying",
+              "quantity": 1,
+              "counterparty_character": "Don Karnage"
+            },
+            {
+              "type": "acquire",
+              "item": "Sentinel Shield",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Sentinel Shield",
+              "quantity": 1,
+              "counterparty_character": "Don Karnage"
+            }
+          ],
           "chrono_timestamp": 1579219200000,
-          "chrono_index": 34
+          "chrono_index": 37
         },
         {
           "title": "Trade",
@@ -29039,8 +38726,33 @@ window.DATA = {
             "received": "Choraller's Companion",
             "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Choraller's Companion",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Choraller's Companion",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            },
+            {
+              "type": "acquire",
+              "item": "Gem of Water Elemental",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Gem of Water Elemental",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            }
+          ],
           "chrono_timestamp": 1578441600000,
-          "chrono_index": 33
+          "chrono_index": 36
         },
         {
           "title": "Zhentarrim's Lament",
@@ -29083,8 +38795,9 @@ window.DATA = {
             "Nature of the Weave"
           ],
           "notes": "Bought 4 healing potions for 200 gp. Bought 4th level spell scroll for 500 gp, cast Find Greater Steed to summon Mr. Fizzlebottom",
+          "item_events": [],
           "chrono_timestamp": 1578096000000,
-          "chrono_index": 31
+          "chrono_index": 34
         },
         {
           "title": "To Wake the Leviathan",
@@ -29126,8 +38839,41 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "White Dragon Scalemail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Gem of Water Elemental",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Sentinel Shield",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Ring of Cold Resistance",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Boots of Winterland",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Boots of Winterland",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1578096000001,
-          "chrono_index": 32
+          "chrono_index": 35
         },
         {
           "title": "Whispers from the Deep",
@@ -29163,8 +38909,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1576886400000,
-          "chrono_index": 29
+          "chrono_index": 32
         },
         {
           "title": "Darkest Vein",
@@ -29202,8 +38949,9 @@ window.DATA = {
             "Planar Studies"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1576886400001,
-          "chrono_index": 30
+          "chrono_index": 33
         },
         {
           "title": "Contact",
@@ -29241,8 +38989,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Plate +1",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Plate",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1576713600000,
-          "chrono_index": 28
+          "chrono_index": 31
         },
         {
           "title": "Trade",
@@ -29285,8 +39040,33 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Marina"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Marina"
+            },
+            {
+              "type": "acquire",
+              "item": "Carpet of Flying",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Carpet of Flying",
+              "quantity": 1,
+              "counterparty_character": "Marina"
+            }
+          ],
           "chrono_timestamp": 1576281600000,
-          "chrono_index": 27
+          "chrono_index": 30
         },
         {
           "title": "Winds of Rot",
@@ -29324,8 +39104,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Elven Chain to pick up Carpet of Flying.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Carpet of Flying (5x7)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1576108800000,
-          "chrono_index": 25
+          "chrono_index": 28
         },
         {
           "title": "Trade",
@@ -29368,8 +39155,33 @@ window.DATA = {
             "received": "Elven Chain",
             "counterpartyCharacter": "Anfer"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Elven chainmail",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            },
+            {
+              "type": "acquire",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Hill Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Anfer"
+            }
+          ],
           "chrono_timestamp": 1576108800001,
-          "chrono_index": 26
+          "chrono_index": 29
         },
         {
           "title": "Trade",
@@ -29412,8 +39224,33 @@ window.DATA = {
             "received": "CHA tome",
             "counterpartyCharacter": "Agnes Illumine"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "CHA tome",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "CHA tome",
+              "quantity": 1,
+              "counterparty_character": "Agnes Illumine"
+            },
+            {
+              "type": "acquire",
+              "item": "DEX tome",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "DEX tome",
+              "quantity": 1,
+              "counterparty_character": "Agnes Illumine"
+            }
+          ],
           "chrono_timestamp": 1575763200000,
-          "chrono_index": 24
+          "chrono_index": 27
         },
         {
           "title": "Weakness of Rock",
@@ -29451,8 +39288,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped +1 Shield",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "DEX tome",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1575676800000,
-          "chrono_index": 23
+          "chrono_index": 26
         },
         {
           "title": "Trade",
@@ -29495,8 +39339,33 @@ window.DATA = {
             "received": "Belt of Fire Giant Strength",
             "counterpartyCharacter": "Thelma Scrollroller"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Thelma Scrollroller"
+            },
+            {
+              "type": "acquire",
+              "item": "Skaggoxx",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Skaggoxx",
+              "quantity": 1,
+              "counterparty_character": "Thelma Scrollroller"
+            }
+          ],
           "chrono_timestamp": 1575244800000,
-          "chrono_index": 20
+          "chrono_index": 23
         },
         {
           "title": "Trade",
@@ -29539,8 +39408,27 @@ window.DATA = {
             "received": "Staff of Power",
             "counterpartyCharacter": "Goombus"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Power",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of Power",
+              "quantity": 1,
+              "counterparty_character": "Goombus"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of Fire Giant Strength",
+              "quantity": 1,
+              "counterparty_character": "Goombus"
+            }
+          ],
           "chrono_timestamp": 1575244800001,
-          "chrono_index": 21
+          "chrono_index": 24
         },
         {
           "title": "Trade",
@@ -29583,8 +39471,33 @@ window.DATA = {
             "received": "+3 Shield",
             "counterpartyCharacter": "Marina"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+3 Shield",
+              "quantity": 1,
+              "counterparty_character": "Marina"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of Thunder and Lightning",
+              "quantity": 1,
+              "counterparty_character": "Marina"
+            }
+          ],
           "chrono_timestamp": 1575244800002,
-          "chrono_index": 22
+          "chrono_index": 25
         },
         {
           "title": "Durlog's Tomb",
@@ -29622,8 +39535,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Skaggoxx (+3 battleaxe)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1575072000000,
-          "chrono_index": 19
+          "chrono_index": 22
         },
         {
           "title": "Of Gods and Monsters",
@@ -29661,8 +39581,15 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Fronstbrand Scimitar",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "9 Lives Stealer Scimitar",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1574812800000,
-          "chrono_index": 18
+          "chrono_index": 21
         },
         {
           "title": "Trade",
@@ -29705,8 +39632,33 @@ window.DATA = {
             "received": "+1 Shield",
             "counterpartyCharacter": "Rolyn"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+1 Shield",
+              "quantity": 1,
+              "counterparty_character": "Rolyn"
+            },
+            {
+              "type": "acquire",
+              "item": "mithral splintmail",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "mithral splintmail",
+              "quantity": 1,
+              "counterparty_character": "Rolyn"
+            }
+          ],
           "chrono_timestamp": 1574208000000,
-          "chrono_index": 15
+          "chrono_index": 16
         },
         {
           "title": "Trade",
@@ -29749,8 +39701,33 @@ window.DATA = {
             "received": "+1 plate",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Plate +1",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+1 plate",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "acquire",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1574208000001,
-          "chrono_index": 16
+          "chrono_index": 17
         },
         {
           "title": "Unusual Opposition",
@@ -29786,8 +39763,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 200gp on Heroe's Feast",
+          "item_events": [],
           "chrono_timestamp": 1574208000002,
-          "chrono_index": 17
+          "chrono_index": 18
         },
         {
           "title": "Durlog's Tower",
@@ -29827,8 +39805,15 @@ window.DATA = {
             "Vergadain's Spirits"
           ],
           "notes": "Spent 60 DTD's and 100gp to brew 1 barrel of Vergadain's Firespirits",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Thunder & Lightning",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573862400000,
-          "chrono_index": 14
+          "chrono_index": 15
         },
         {
           "title": "Trade",
@@ -29871,6 +39856,25 @@ window.DATA = {
             "received": "Ring of Spell Storing",
             "counterpartyCharacter": "Lorien"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            },
+            {
+              "type": "trade_out",
+              "item": "Elven chainmail",
+              "quantity": 1,
+              "counterparty_character": "Lorien"
+            }
+          ],
           "chrono_timestamp": 1573776000000,
           "chrono_index": 13
         },
@@ -29912,6 +39916,13 @@ window.DATA = {
             "Meteor Wrangler"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Elven Chainmail",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573689600000,
           "chrono_index": 12
         },
@@ -29951,6 +39962,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped +1 Longsword.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Rimesplitter (+2 Greataxe)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573344000000,
           "chrono_index": 9
         },
@@ -29995,6 +40013,31 @@ window.DATA = {
             "received": "+2 Longsword",
             "counterpartyCharacter": "Fei Chen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Longsword +2",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            },
+            {
+              "type": "acquire",
+              "item": "Rimesplitter",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Rimesplitter",
+              "quantity": 1,
+              "counterparty_character": "Fei Chen"
+            }
+          ],
           "chrono_timestamp": 1573344000001,
           "chrono_index": 10
         },
@@ -30032,6 +40075,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1573344000002,
           "chrono_index": 11
         },
@@ -30069,6 +40113,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1573257600000,
           "chrono_index": 7
         },
@@ -30109,6 +40154,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Epic reward: Fizzlebottom",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Adaptation",
+              "quantity": 1
+            },
+            {
+              "type": "lose",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573257600001,
           "chrono_index": 8
         },
@@ -30148,6 +40205,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Dropped Winged Boots",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Displacement",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573084800000,
           "chrono_index": 5
         },
@@ -30193,6 +40257,24 @@ window.DATA = {
             "Ire of the Front Giants"
           ],
           "notes": "Bought cold weather gear for 5gp, sold Longsword and Chainmail for 44gp. +1 Longsword renown item.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithral splintmail",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Longsword and Chainmail for 44gp",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "lose",
+              "item": "Longsword and Chainmail for 44gp",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1573084800001,
           "chrono_index": 6
         },
@@ -30230,6 +40312,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1572652800000,
           "chrono_index": 1
         },
@@ -30274,6 +40357,31 @@ window.DATA = {
             "received": "Winged Boots",
             "counterpartyCharacter": "Rolyn"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Winged Boots",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Winged Boots",
+              "quantity": 1,
+              "counterparty_character": "Rolyn"
+            },
+            {
+              "type": "acquire",
+              "item": "Gloves of Thievery",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Gloves of Thievery",
+              "quantity": 1,
+              "counterparty_character": "Rolyn"
+            }
+          ],
           "chrono_timestamp": 1572652800002,
           "chrono_index": 3
         },
@@ -30313,6 +40421,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Gloves of Thievery",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1572652800001,
           "chrono_index": 2
         },
@@ -30352,6 +40467,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1572652800003,
           "chrono_index": 4
         },
@@ -30389,8 +40511,729 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1572134400000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Buckley)",
+          "date": "2020-12-27",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Buckley",
+          "trade": {
+            "given": "Adamantine Plate Armor",
+            "received": "Eyes of the Eagle",
+            "counterpartyCharacter": "Buckley"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Adamantine Plate Armor",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Adamantine Plate Armor",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Eyes of the Eagle",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1609027200001,
+          "chrono_index": 75
+        },
+        {
+          "title": "Trade (reciprocal for Leonardo)",
+          "date": "2020-06-24",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Leonardo",
+          "trade": {
+            "given": "Dread Helm",
+            "received": "Ruby of the War Mage",
+            "counterpartyCharacter": "Leonardo"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dread Helm",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dread Helm",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ruby of the War Mage",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1592956800000,
+          "chrono_index": 65
+        },
+        {
+          "title": "Trade (reciprocal for Rolyn)",
+          "date": "2019-11-20",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Rolyn",
+          "trade": {
+            "given": "Mithral Splintmail",
+            "received": "Shield +1",
+            "counterpartyCharacter": "Rolyn"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mithral Splintmail",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Mithral Splintmail",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Shield +1",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1574208000003,
+          "chrono_index": 19
+        },
+        {
+          "title": "Trade (reciprocal for Arvistan Brightwave)",
+          "date": "2020-05-14",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Arvistan Brightwave",
+          "trade": {
+            "given": "Belt of For Giant Strength",
+            "received": "+3 Lance",
+            "counterpartyCharacter": "Arvistan Brightwave"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Belt of For Giant Strength",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Belt of For Giant Strength",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+3 Lance",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1589414400000,
+          "chrono_index": 64
+        },
+        {
+          "title": "Trade (reciprocal for Zandarax)",
+          "date": "2022-06-12",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Zandarax",
+          "trade": {
+            "given": "Robe of the Archmagi (White)",
+            "received": "Belt of Storm Giant Strength",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmagi (White)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of the Archmagi (White)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1654992000002,
+          "chrono_index": 100
+        },
+        {
+          "title": "Trade (reciprocal for Zandarax)",
+          "date": "2022-06-08",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Zandarax",
+          "trade": {
+            "given": "Robe of the Archmage (gray)",
+            "received": "Defender Longsword",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Robe of the Archmage (gray)",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of the Archmage (gray)",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Defender Longsword",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1654646400002,
+          "chrono_index": 97
+        },
+        {
+          "title": "Trade (reciprocal for Zandarax)",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Zandarax",
+          "trade": {
+            "given": "Wand of Lightning Bolts",
+            "received": "Periapt of Proof Against Poitson",
+            "counterpartyCharacter": "Zandarax"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Wand of Lightning Bolts",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Periapt of Proof Against Poitson",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1633219200006,
+          "chrono_index": 86
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2021-10-03",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "Efreeti Chain",
+            "received": "Belt of Storm Giant Strength",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Efreeti Chain",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Belt of Storm Giant Strength",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1633219200007,
+          "chrono_index": 87
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2021-04-10",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "Holy Avenger Longsword",
+            "received": "Ioun Stone of Mastery",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Holy Avenger Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ioun Stone of Mastery",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1618012800001,
+          "chrono_index": 78
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2019-11-23",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "+2 Longsword",
+            "received": "+1 plate",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "+2 Longsword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "+2 Longsword",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "+1 plate",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1574467200000,
+          "chrono_index": 20
+        },
+        {
+          "title": "Trade (reciprocal for Lorien)",
+          "date": "2019-11-15",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Lorien",
+          "trade": {
+            "given": "Elven Chain",
+            "received": "Ring of Spell Storing",
+            "counterpartyCharacter": "Lorien"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Elven Chain",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Elven Chain",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ring of Spell Storing",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1573776000001,
+          "chrono_index": 14
+        },
+        {
+          "title": "Trade (reciprocal for Morty)",
+          "date": "2021-01-23",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Morty",
+          "trade": {
+            "given": "Shield +3",
+            "received": "Tloque's Battleaxe",
+            "counterpartyCharacter": "Morty"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Shield +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Shield +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1611360000000,
+          "chrono_index": 76
         }
       ],
       "inventory_state": {
@@ -30459,8 +41302,33 @@ window.DATA = {
             "received": "Hide +3",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Hide +3",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Hide +3",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1654646400000,
-          "chrono_index": 44
+          "chrono_index": 45
         },
         {
           "title": "Trade",
@@ -30503,8 +41371,33 @@ window.DATA = {
             "received": "Moon Blade",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Moon Blade",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Moon Blade",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Staff of the Magi",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1654646400001,
-          "chrono_index": 45
+          "chrono_index": 46
         },
         {
           "title": "Streams of Crimson",
@@ -30544,8 +41437,15 @@ window.DATA = {
             "Opal Pendant"
           ],
           "notes": "Bought 15 Potions of Greater Healing",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Efreeti Chain (Pegasus Barding)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1611360000000,
-          "chrono_index": 42
+          "chrono_index": 43
         },
         {
           "title": "Trade",
@@ -30586,8 +41486,28 @@ window.DATA = {
             "received": "Shield +3",
             "counterpartyCharacter": "Darrendrian"
           },
+          "item_events": [
+            {
+              "type": "trade_in",
+              "item": "Shield +3",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            },
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1,
+              "counterparty_character": "Darrendrian"
+            }
+          ],
           "chrono_timestamp": 1611360000001,
-          "chrono_index": 43
+          "chrono_index": 44
         },
         {
           "title": "A Convergance of Gods",
@@ -30623,8 +41543,9 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1610409600000,
-          "chrono_index": 41
+          "chrono_index": 42
         },
         {
           "title": "Windows to the Past",
@@ -30665,8 +41586,20 @@ window.DATA = {
             "Ally of Thay"
           ],
           "notes": "Bought 8 Potions of Superior Healing and 2 Potions of Supreme Healing and 1 Scroll of Greater Restoration",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Adamantine Plate",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Rod of Security",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1610064000000,
-          "chrono_index": 40
+          "chrono_index": 41
         },
         {
           "title": "Trade",
@@ -30709,6 +41642,31 @@ window.DATA = {
             "received": "Tloque's Battleax",
             "counterpartyCharacter": "Noraggen"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tloque's Battleax",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            },
+            {
+              "type": "acquire",
+              "item": "Dwarven Thrower",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dwarven Thrower",
+              "quantity": 1,
+              "counterparty_character": "Noraggen"
+            }
+          ],
           "chrono_timestamp": 1605657600001,
           "chrono_index": 39
         },
@@ -30753,6 +41711,31 @@ window.DATA = {
             "received": "Dwarven Thrower",
             "counterpartyCharacter": "Kiernan"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Thrower",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Dwarven Thrower",
+              "quantity": 1,
+              "counterparty_character": "Kiernan"
+            },
+            {
+              "type": "acquire",
+              "item": "Glaive +3",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Glaive +3",
+              "quantity": 1,
+              "counterparty_character": "Kiernan"
+            }
+          ],
           "chrono_timestamp": 1605657600000,
           "chrono_index": 38
         },
@@ -30794,6 +41777,13 @@ window.DATA = {
             "Atropal in a Cage"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Magi",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1602979200000,
           "chrono_index": 37
         },
@@ -30838,6 +41828,31 @@ window.DATA = {
             "received": "Tome of Clear Thought",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Clear Thought",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Studded Leather +2",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Studded Leather +2",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1602720000000,
           "chrono_index": 36
         },
@@ -30877,6 +41892,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Spent 100 gp on spell components",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Vorpal Scimitar",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1601683200000,
           "chrono_index": 35
         },
@@ -30921,6 +41943,31 @@ window.DATA = {
             "received": "Bracelet of Rock Magic",
             "counterpartyCharacter": "Zandarax"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Bracelet of Rock Magic",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Bracelet of Rock Magic",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            },
+            {
+              "type": "acquire",
+              "item": "Robe of Stars",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Robe of Stars",
+              "quantity": 1,
+              "counterparty_character": "Zandarax"
+            }
+          ],
           "chrono_timestamp": 1600819200000,
           "chrono_index": 34
         },
@@ -30964,6 +42011,33 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Half plate +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Studded Leather +2",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Horn of Valhalla (Bronze)",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Glaive +3",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Robe of Stars",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599436800000,
           "chrono_index": 33
         },
@@ -31003,6 +42077,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Bought 3 Scrolls of Greater Restoration, 3 Scrolls of Freedom of Movement",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of the Stilled Tongue",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1599177600000,
           "chrono_index": 32
         },
@@ -31047,6 +42128,31 @@ window.DATA = {
             "received": "Ioun Stone of Leadership",
             "counterpartyCharacter": "Arvistan Brightwave"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Ioun Stone of Leadership",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            },
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Leadership and Influence",
+              "quantity": 1,
+              "counterparty_character": "Arvistan Brightwave"
+            }
+          ],
           "chrono_timestamp": 1597104000000,
           "chrono_index": 31
         },
@@ -31084,6 +42190,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596844800000,
           "chrono_index": 27
         },
@@ -31125,6 +42232,7 @@ window.DATA = {
             "Essence of Zsasz Tamm"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596844800001,
           "chrono_index": 28
         },
@@ -31162,6 +42270,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596844800002,
           "chrono_index": 29
         },
@@ -31199,6 +42308,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596844800003,
           "chrono_index": 30
         },
@@ -31236,6 +42346,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596758400000,
           "chrono_index": 26
         },
@@ -31281,6 +42392,13 @@ window.DATA = {
             "Scyth of the Six Fingered Lord (babau)."
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of Healing",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1596585600000,
           "chrono_index": 25
         },
@@ -31320,6 +42438,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1596240000000,
           "chrono_index": 24
         },
@@ -31364,6 +42483,25 @@ window.DATA = {
             "received": "Tome of Understanding",
             "counterpartyCharacter": "Lim Dul"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Understanding",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tome of Understanding",
+              "quantity": 1,
+              "counterparty_character": "Lim Dul"
+            },
+            {
+              "type": "trade_out",
+              "item": "Tome of Clear Thought",
+              "quantity": 1,
+              "counterparty_character": "Lim Dul"
+            }
+          ],
           "chrono_timestamp": 1596153600000,
           "chrono_index": 23
         },
@@ -31403,6 +42541,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Paid Planatar 200 gp (1000 total) to cast Raise Dead",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Clear Thought",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1596067200000,
           "chrono_index": 22
         },
@@ -31447,6 +42592,31 @@ window.DATA = {
             "received": "Necklace of Prayer Beads",
             "counterpartyCharacter": "Leonardo"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Necklace of Prayer Beads",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Necklace of Prayer Beads",
+              "quantity": 1,
+              "counterparty_character": "Leonardo"
+            },
+            {
+              "type": "acquire",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "The Sixth Sword",
+              "quantity": 1,
+              "counterparty_character": "Leonardo"
+            }
+          ],
           "chrono_timestamp": 1595289600000,
           "chrono_index": 21
         },
@@ -31487,6 +42657,18 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tome of Leadership",
+              "quantity": 1
+            },
+            {
+              "type": "acquire",
+              "item": "Influence",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1594252800000,
           "chrono_index": 20
         },
@@ -31529,6 +42711,13 @@ window.DATA = {
             "a Note"
           ],
           "notes": "Bought Scroll of Catnap for 300gp",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Sixth Sword (+2 Rapier +2 Init)",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1593648000000,
           "chrono_index": 19
         },
@@ -31573,6 +42762,31 @@ window.DATA = {
             "received": "Wand of Pyrotecnics",
             "counterpartyCharacter": "Agatha"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Wand of Pyrotechnics",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Wand of Pyrotecnics",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            },
+            {
+              "type": "acquire",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Cloak of Many Fashions",
+              "quantity": 1,
+              "counterparty_character": "Agatha"
+            }
+          ],
           "chrono_timestamp": 1593561600000,
           "chrono_index": 18
         },
@@ -31615,6 +42829,7 @@ window.DATA = {
             "Savior of my Enemy's enemy"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1591660800000,
           "chrono_index": 16
         },
@@ -31656,6 +42871,13 @@ window.DATA = {
             "Traded Mantle of Spell Resistance to Zwela Moonshadow for Ioun Stone of Protection"
           ],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Ioun Stone of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1591660800001,
           "chrono_index": 17
         },
@@ -31695,6 +42917,7 @@ window.DATA = {
             "Magma Mephit familiar"
           ],
           "notes": "Met a Koala named Eugene and Awakened him.",
+          "item_events": [],
           "chrono_timestamp": 1591228800000,
           "chrono_index": 15
         },
@@ -31732,6 +42955,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Thora Birch left the adventure after nearly being killed. Awakened a new tree named Elijah Wood.",
+          "item_events": [],
           "chrono_timestamp": 1590624000000,
           "chrono_index": 14
         },
@@ -31769,6 +42993,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used 1 DTD to Awaken Ripple's (Hal's) raptor.",
+          "item_events": [],
           "chrono_timestamp": 1589932800000,
           "chrono_index": 13
         },
@@ -31816,6 +43041,13 @@ window.DATA = {
             "penchant for staring into flames."
           ],
           "notes": "Purchased Infernal Kitty and Infernal Puppy for 25 gp each. Cast Awaken on the Kitty.",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Glamoured Studded Leather",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1589846400000,
           "chrono_index": 12
         },
@@ -31855,6 +43087,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used 1 DTD to Awaken a tree named Thora Birch. Dropped Tan Bag of Tricks",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Mantle of Spell Resistance",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1589328000000,
           "chrono_index": 11
         },
@@ -31892,6 +43131,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used 1 DTD to Awaken a tree named Chris Pine",
+          "item_events": [],
           "chrono_timestamp": 1586908800000,
           "chrono_index": 10
         },
@@ -31931,6 +43171,7 @@ window.DATA = {
             "Favor of Gwyrrn"
           ],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1586822400000,
           "chrono_index": 9
         },
@@ -31968,6 +43209,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Met Bitter Blossom and learned the story of Bitter Root",
+          "item_events": [],
           "chrono_timestamp": 1586390400000,
           "chrono_index": 8
         },
@@ -32007,6 +43249,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Used one DTD to Awaken a tree named Mr. Oak",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Tan Bag of Tricks",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1586217600000,
           "chrono_index": 7
         },
@@ -32051,6 +43300,31 @@ window.DATA = {
             "received": "Staff of the Woodlands",
             "counterpartyCharacter": "Dino"
           },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Staff of the Woodlands",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Staff of the Woodlands",
+              "quantity": 1,
+              "counterparty_character": "Dino"
+            },
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred prior acquisition"
+            },
+            {
+              "type": "trade_out",
+              "item": "Amulet of Health",
+              "quantity": 1,
+              "counterparty_character": "Dino"
+            }
+          ],
           "chrono_timestamp": 1585872000000,
           "chrono_index": 6
         },
@@ -32090,6 +43364,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Amulet of Health",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1585612800000,
           "chrono_index": 5
         },
@@ -32127,6 +43408,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "Received +1 Quarterstaff renown item",
+          "item_events": [],
           "chrono_timestamp": 1585094400000,
           "chrono_index": 2
         },
@@ -32164,6 +43446,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1585094400001,
           "chrono_index": 3
         },
@@ -32201,6 +43484,7 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1585094400002,
           "chrono_index": 4
         },
@@ -32240,6 +43524,13 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Cloak of Protection",
+              "quantity": 1
+            }
+          ],
           "chrono_timestamp": 1585008000000,
           "chrono_index": 1
         },
@@ -32277,8 +43568,69 @@ window.DATA = {
           "supernatural_gifts": [],
           "story_awards": [],
           "notes": "",
+          "item_events": [],
           "chrono_timestamp": 1582070400000,
           "chrono_index": 0
+        },
+        {
+          "title": "Trade (reciprocal for Noraggen)",
+          "date": "2020-11-18",
+          "code": "DT-TRADE",
+          "dm": "",
+          "kind": "adventure",
+          "gp_plus": 0,
+          "gp_minus": 0,
+          "gp_net": 0,
+          "dtd_plus": 0,
+          "dtd_minus": 0,
+          "dtd_net": 0,
+          "level_plus": 0,
+          "totals": {
+            "gp": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "downtime": {
+              "earned": 0,
+              "spent": 0,
+              "net": 0
+            },
+            "level": {
+              "gained": 0
+            }
+          },
+          "perm_items": [],
+          "lost_perm_item": [],
+          "consumable_items": [],
+          "supernatural_gifts": [],
+          "story_awards": [],
+          "notes": "cleanup:auto generated reciprocal trade entry for Noraggen",
+          "trade": {
+            "given": "Dwarven Thrower",
+            "received": "Tloque's Battleaxe",
+            "counterpartyCharacter": "Noraggen"
+          },
+          "item_events": [
+            {
+              "type": "acquire",
+              "item": "Dwarven Thrower",
+              "quantity": 1,
+              "notes": "cleanup:auto inferred pre-trade ownership"
+            },
+            {
+              "type": "trade_out",
+              "item": "Dwarven Thrower",
+              "quantity": 1
+            },
+            {
+              "type": "trade_in",
+              "item": "Tloque's Battleaxe",
+              "quantity": 1
+            }
+          ],
+          "chrono_timestamp": 1605657600002,
+          "chrono_index": 40
         }
       ]
     }

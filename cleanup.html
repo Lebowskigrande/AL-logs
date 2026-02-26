@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AL Logs Data Cleanup</title>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --panel:#ffffff;
+      --ink:#131a2b;
+      --muted:#64708a;
+      --accent:#1359d7;
+      --error:#b42318;
+      --warn:#b54708;
+      --line:#d8dfed;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(160deg,#f6f7fb,#eef2fb);
+    }
+    .page{
+      max-width:1400px;
+      margin:0 auto;
+      padding:20px;
+      display:grid;
+      gap:16px;
+    }
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+    }
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .toolbar input,.toolbar select,.toolbar button{
+      font:inherit;
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:8px 10px;
+      background:#fff;
+      color:var(--ink);
+    }
+    .toolbar button{
+      cursor:pointer;
+      background:#f4f7ff;
+    }
+    .toolbar button.primary{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
+    }
+    #status[data-state="error"]{color:var(--error)}
+    #status[data-state="ok"]{color:#106835}
+    .split{
+      display:grid;
+      grid-template-columns:minmax(300px,38%) minmax(400px,1fr);
+      gap:16px;
+    }
+    .issue-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      gap:8px;
+      max-height:70vh;
+      overflow:auto;
+    }
+    .issue-item{
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      background:#fff;
+    }
+    .issue-item[data-severity="error"]{border-color:#f7d0cd;background:#fff8f7}
+    .issue-item[data-severity="warning"]{border-color:#f7e3c6;background:#fffaf2}
+    .issue-item.empty{color:var(--muted)}
+    .issue-select{
+      font:inherit;
+      border:0;
+      background:transparent;
+      color:var(--accent);
+      cursor:pointer;
+      padding:0;
+      text-align:left;
+      width:100%;
+      font-weight:600;
+    }
+    .issue-message{
+      margin:6px 0 0;
+      font-size:13px;
+      color:var(--muted);
+    }
+    #issue-meta{
+      white-space:pre-line;
+      color:var(--muted);
+      font-size:13px;
+      margin:0 0 10px;
+    }
+    #adventure-editor{
+      width:100%;
+      min-height:58vh;
+      font:12px/1.45 ui-monospace,Consolas,Menlo,monospace;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px;
+      resize:vertical;
+    }
+    .editor-actions{
+      display:flex;
+      gap:8px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    @media (max-width: 980px){
+      .split{grid-template-columns:1fr}
+      #adventure-editor{min-height:42vh}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="panel">
+      <h1 style="margin:0 0 8px">Data Cleanup Tool</h1>
+      <div id="issue-summary" style="margin-bottom:6px;color:#24314f"></div>
+      <div id="status" data-state="ok"></div>
+      <div class="toolbar" style="margin-top:12px">
+        <label>Code:
+          <select id="code-filter">
+            <option value="all">All</option>
+          </select>
+        </label>
+        <label>Search:
+          <input id="search-filter" type="search" placeholder="char, message, path">
+        </label>
+        <button id="revalidate" type="button">Revalidate</button>
+        <button id="auto-fix" type="button">Auto-fix Selected</button>
+        <button id="auto-fix-all-missing" type="button">Auto-fix Missing Acquisition</button>
+        <button id="download-data" type="button">Download data.js</button>
+        <button id="save-data" class="primary" type="button">Save to data/data.js</button>
+      </div>
+    </section>
+
+    <section class="split">
+      <article class="panel">
+        <h2 style="margin-top:0">Issues</h2>
+        <ul id="issue-list" class="issue-list"></ul>
+      </article>
+
+      <article class="panel">
+        <h2 style="margin-top:0">Entry Editor</h2>
+        <p id="issue-meta">Select an issue to inspect.</p>
+        <textarea id="adventure-editor" spellcheck="false"></textarea>
+        <div class="editor-actions">
+          <button id="apply-editor" type="button">Apply JSON Edits</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="scripts/data-pipeline.js"></script>
+  <script src="scripts/data-save-service.js"></script>
+  <script src="data/data.js"></script>
+  <script src="scripts/data-cleanup-ui.js"></script>
+</body>
+</html>

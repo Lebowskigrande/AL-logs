@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-02-26T22:31:22.202Z",
+  "source": "data/data.js",
+  "totals": {
+    "allIssues": 57,
+    "normalizeIssues": 0,
+    "schemaIssues": 0,
+    "integrityIssues": 57
+  },
+  "severity": {
+    "warning": 57
+  },
+  "byCode": [
+    {
+      "code": "trade_counterparty_unknown",
+      "count": 57
+    }
+  ],
+  "examples": {
+    "missing_acquisition_path": [],
+    "trade_reciprocity_unmatched": []
+  }
+}

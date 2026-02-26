@@ -4,6 +4,11 @@
   const GLOBAL_SCOPE = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : global);
   const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   const ALLOWED_KINDS = new Set(['adventure','Downtime Activity']);
+  const ITEM_EVENT_TYPES = new Set([
+    'acquire','trade_in','trade_out','consume','sell','destroy','lose','gift_in','gift_out'
+  ]);
+  const ITEM_EVENT_INCOMING_TYPES = new Set(['acquire','trade_in','gift_in']);
+  const ITEM_EVENT_OUTGOING_TYPES = new Set(['trade_out','consume','sell','destroy','lose','gift_out']);
   let adventureUidCounter = 0;
 
   function nextAdventureUid(){
@@ -491,6 +496,151 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     return Object.keys(trade).length ? trade : null;
   }
 
+  function parseItemEventQuantity(value){
+    if(value == null || value === ''){
+      return 1;
+    }
+    const numeric = Number(value);
+    if(!Number.isFinite(numeric)){
+      return NaN;
+    }
+    if(numeric <= 0){
+      return NaN;
+    }
+    return numeric;
+  }
+
+  function normalizeItemEventObject(rawEvent){
+    if(!rawEvent || typeof rawEvent !== 'object' || Array.isArray(rawEvent)){
+      return { type:'', item:'' };
+    }
+    const event = {};
+    event.type = coerceString(rawEvent.type,{ fallback:'' }).toLowerCase();
+    event.item = coerceString(rawEvent.item,{ fallback:'' });
+    const quantity = parseItemEventQuantity(rawEvent.quantity);
+    event.quantity = Number.isFinite(quantity) ? quantity : rawEvent.quantity;
+
+    const tradeId = coerceString(rawEvent.trade_id != null ? rawEvent.trade_id : rawEvent.tradeId,{ fallback:'' });
+    if(tradeId){
+      event.trade_id = tradeId;
+    }
+    const counterpartyCharacter = coerceString(
+      rawEvent.counterparty_character != null ? rawEvent.counterparty_character : rawEvent.counterpartyCharacter,
+      { fallback:'' }
+    );
+    if(counterpartyCharacter){
+      event.counterparty_character = counterpartyCharacter;
+    }
+    const counterpartyPlayer = coerceString(
+      rawEvent.counterparty_player != null ? rawEvent.counterparty_player : rawEvent.counterpartyPlayer,
+      { fallback:'' }
+    );
+    if(counterpartyPlayer){
+      event.counterparty_player = counterpartyPlayer;
+    }
+    const notes = coerceMultiline(rawEvent.notes);
+    if(notes){
+      event.notes = notes;
+    }
+    return event;
+  }
+
+  function normalizeItemEventsForAdventure(rawAdventure, normalizedAdventure){
+    const source = rawAdventure && typeof rawAdventure === 'object' ? rawAdventure : {};
+    const normalizedSource = normalizedAdventure && typeof normalizedAdventure === 'object' ? normalizedAdventure : {};
+    const explicitEvents = Array.isArray(source.item_events) ? source.item_events : null;
+    if(explicitEvents){
+      return explicitEvents.map((entry)=>normalizeItemEventObject(entry));
+    }
+
+    const events = [];
+    const pushEvent = (type,item,extra)=>{
+      const cleanItem = coerceString(item,{ fallback:'' });
+      if(!cleanItem) return;
+      const event = {
+        type,
+        item: cleanItem,
+        quantity: 1
+      };
+      if(extra && typeof extra === 'object'){
+        Object.entries(extra).forEach(([key,val])=>{
+          const clean = coerceString(val,{ fallback:'' });
+          if(clean){
+            event[key] = clean;
+          }
+        });
+      }
+      events.push(event);
+    };
+
+    parseItemList(normalizedSource.perm_items).forEach((entry)=>{
+      const parsed = parseAcquisitionName(entry);
+      if(parsed.acquired){
+        pushEvent('acquire',parsed.name);
+      }else{
+        pushEvent('lose',parsed.name);
+      }
+    });
+
+    parseItemList(normalizedSource.lost_perm_item).forEach((entry)=>{
+      pushEvent('lose',entry);
+    });
+
+    const tradeSource = (source.trade && typeof source.trade === 'object')
+      ? source.trade
+      : (normalizedSource.trade && typeof normalizedSource.trade === 'object' ? normalizedSource.trade : null);
+    const tradeId = coerceString(
+      source.trade_id != null ? source.trade_id : (
+        tradeSource && (tradeSource.trade_id != null ? tradeSource.trade_id : tradeSource.tradeId)
+      ),
+      { fallback:'' }
+    );
+    const counterpartyCharacter = coerceString(
+      tradeSource && (
+        tradeSource.counterpartyCharacter != null
+          ? tradeSource.counterpartyCharacter
+          : tradeSource.counterparty_character
+      ),
+      { fallback:'' }
+    );
+    const counterpartyPlayer = coerceString(
+      tradeSource && (
+        tradeSource.counterpartyPlayer != null
+          ? tradeSource.counterpartyPlayer
+          : tradeSource.counterparty_player
+      ),
+      { fallback:'' }
+    );
+    const tradeEventExtras = {};
+    if(tradeId){
+      tradeEventExtras.trade_id = tradeId;
+    }
+    if(counterpartyCharacter){
+      tradeEventExtras.counterparty_character = counterpartyCharacter;
+    }
+    if(counterpartyPlayer){
+      tradeEventExtras.counterparty_player = counterpartyPlayer;
+    }
+
+    if(tradeSource){
+      parseItemList(tradeSource.received).forEach((entry)=>{
+        pushEvent('trade_in',entry,tradeEventExtras);
+      });
+      parseItemList(tradeSource.given).forEach((entry)=>{
+        pushEvent('trade_out',entry,tradeEventExtras);
+      });
+    }
+
+    parseItemList(source.traded_item).forEach((entry)=>{
+      pushEvent('trade_out',entry,tradeEventExtras);
+    });
+    parseItemList(source.itemTraded).forEach((entry)=>{
+      pushEvent('trade_out',entry,tradeEventExtras);
+    });
+
+    return events;
+  }
+
   function normalizeAdventure(raw,{ charKey, index, issues }){
     const pathBase = `characters.${charKey}.adventures[${index}]`;
     const adventureId = (raw && typeof raw === 'object' && typeof raw.__uid === 'string') ? raw.__uid : nextAdventureUid();
@@ -613,6 +763,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     if(trade){
       adv.trade = trade;
     }
+
+    adv.item_events = normalizeItemEventsForAdventure(raw,adv);
 
     if(raw && typeof raw === 'object'){
       const passthroughKeys = ['custom','season','tier','location','__meta'];
@@ -869,6 +1021,115 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     });
   }
 
+  function validateItemEventShape(event,issues,{ path, charKey=null, adventureIndex=null, eventIndex=null }){
+    if(!isPlainObject(event)){
+      pushSchemaIssue(issues,{
+        code:'invalid_item_event_shape',
+        message:'item_events entries must be objects.',
+        path,
+        charKey,
+        adventureIndex,
+        field:'item_events'
+      });
+      return;
+    }
+
+    if(typeof event.type !== 'string' || !ITEM_EVENT_TYPES.has(event.type)){
+      pushSchemaIssue(issues,{
+        code:'invalid_item_event_type',
+        message:'item_events.type must be a supported event type.',
+        path:`${path}.type`,
+        charKey,
+        adventureIndex,
+        field:'item_events.type'
+      });
+    }
+    if(typeof event.item !== 'string' || !event.item.trim()){
+      pushSchemaIssue(issues,{
+        code:'invalid_item_event_item',
+        message:'item_events.item must be a non-empty string.',
+        path:`${path}.item`,
+        charKey,
+        adventureIndex,
+        field:'item_events.item'
+      });
+    }
+
+    const quantity = event.quantity;
+    if(typeof quantity !== 'number' || !Number.isFinite(quantity) || quantity <= 0){
+      pushSchemaIssue(issues,{
+        code:'invalid_item_event_quantity',
+        message:'item_events.quantity must be a positive number.',
+        path:`${path}.quantity`,
+        charKey,
+        adventureIndex,
+        field:'item_events.quantity'
+      });
+    }
+
+    const optionalStringFields = [
+      'trade_id','counterparty_character','counterparty_player','notes'
+    ];
+    optionalStringFields.forEach((field)=>{
+      if(!Object.prototype.hasOwnProperty.call(event,field)){
+        return;
+      }
+      if(typeof event[field] !== 'string' || !event[field].trim()){
+        pushSchemaIssue(issues,{
+          code:'invalid_item_event_field',
+          message:`item_events.${field} must be a non-empty string when present.`,
+          path:`${path}.${field}`,
+          charKey,
+          adventureIndex,
+          field:`item_events.${field}`
+        });
+      }
+    });
+
+    Object.keys(event).forEach((field)=>{
+      if(
+        field !== 'type' &&
+        field !== 'item' &&
+        field !== 'quantity' &&
+        field !== 'trade_id' &&
+        field !== 'counterparty_character' &&
+        field !== 'counterparty_player' &&
+        field !== 'notes'
+      ){
+        pushSchemaIssue(issues,{
+          code:'invalid_item_event_field',
+          message:`item_events field "${field}" is not allowed.`,
+          path:`${path}.${field}`,
+          charKey,
+          adventureIndex,
+          field:'item_events'
+        });
+      }
+    });
+  }
+
+  function validateItemEventsShape(itemEvents,issues,{ path, charKey=null, adventureIndex=null }){
+    if(!Array.isArray(itemEvents)){
+      pushSchemaIssue(issues,{
+        code:'invalid_item_events',
+        message:'item_events must be an array.',
+        path,
+        charKey,
+        adventureIndex,
+        field:'item_events'
+      });
+      return;
+    }
+    itemEvents.forEach((event,eventIndex)=>{
+      validateItemEventShape(event,issues,{
+        path:`${path}[${eventIndex}]`,
+        charKey,
+        adventureIndex,
+        eventIndex
+      });
+    });
+  }
+
   function validateInventoryStateShape(inventoryState,issues,{ path, charKey=null }){
     if(inventoryState == null){
       return;
@@ -988,7 +1249,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
         }
         const requiredFields = [
           'title','date','kind','gp_plus','gp_minus','gp_net','dtd_plus','dtd_minus','dtd_net',
-          'level_plus','perm_items','lost_perm_item','consumable_items','supernatural_gifts','story_awards','notes'
+          'level_plus','perm_items','lost_perm_item','consumable_items','supernatural_gifts','story_awards','notes','item_events'
         ];
         requiredFields.forEach((field)=>{
           if(!Object.prototype.hasOwnProperty.call(adventure,field)){
@@ -1124,6 +1385,11 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
           charKey,
           adventureIndex
         });
+        validateItemEventsShape(adventure.item_events,issues,{
+          path:`${advPath}.item_events`,
+          charKey,
+          adventureIndex
+        });
       });
     });
 
@@ -1196,6 +1462,283 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     return scrub(data);
   }
 
+  function stringifyItemCountMap(map){
+    return JSON.stringify(Array.from(map.entries()).sort((a,b)=>{
+      if(a[0] < b[0]) return -1;
+      if(a[0] > b[0]) return 1;
+      return 0;
+    }));
+  }
+
+  function canonicalCharKey(value){
+    return coerceString(value,{ fallback:'' }).trim().toLowerCase();
+  }
+
+  function normalizedNameToken(value){
+    return canonicalCharKey(value).replace(/[^a-z0-9]+/g,'');
+  }
+
+  function canonicalItemListKey(value){
+    const counts = new Map();
+    parseItemList(value).forEach((entry)=>{
+      const key = coerceString(entry,{ fallback:'' }).trim().toLowerCase();
+      if(!key) return;
+      counts.set(key,(counts.get(key)||0)+1);
+    });
+    return stringifyItemCountMap(counts);
+  }
+
+  function validateItemEventIntegrity(data,{ severity='warning' }={}){
+    const issues = [];
+    if(!isPlainObject(data) || !isPlainObject(data.characters)){
+      return { issues };
+    }
+
+    const tradeLegsById = new Map();
+    const legacyTradeLegs = [];
+    const knownCharacterByToken = new Map();
+
+    Object.keys(data.characters || {}).forEach((key)=>{
+      const canonical = canonicalCharKey(key);
+      const token = normalizedNameToken(key);
+      if(canonical && !knownCharacterByToken.has(canonical)){
+        knownCharacterByToken.set(canonical,key);
+      }
+      if(token && !knownCharacterByToken.has(token)){
+        knownCharacterByToken.set(token,key);
+      }
+    });
+
+    const resolveCharacterKey = (raw)=>{
+      const canonical = canonicalCharKey(raw);
+      if(!canonical){
+        return '';
+      }
+      if(knownCharacterByToken.has(canonical)){
+        return knownCharacterByToken.get(canonical) || '';
+      }
+      const token = normalizedNameToken(raw);
+      if(token && knownCharacterByToken.has(token)){
+        return knownCharacterByToken.get(token) || '';
+      }
+      return '';
+    };
+
+    const getLowerItem = (value)=>coerceString(value,{ fallback:'' }).toLowerCase();
+    const incrementCount = (map,key,count)=>{
+      if(!key || !Number.isFinite(count) || count <= 0) return;
+      map.set(key,(map.get(key)||0)+count);
+    };
+
+    Object.entries(data.characters).forEach(([charKey,character])=>{
+      if(!character || typeof character !== 'object' || !Array.isArray(character.adventures)){
+        return;
+      }
+      const inventory = new Map();
+      character.adventures.forEach((adventure,adventureIndex)=>{
+        if(!adventure || typeof adventure !== 'object'){
+          return;
+        }
+        const advPath = `characters.${charKey}.adventures[${adventureIndex}]`;
+        if(
+          adventure.trade &&
+          typeof adventure.trade === 'object' &&
+          adventure.trade.counterpartyCharacter
+        ){
+          const given = canonicalItemListKey(adventure.trade.given);
+          const received = canonicalItemListKey(adventure.trade.received);
+          if(given || received){
+            const resolvedCounterpartyKey = resolveCharacterKey(adventure.trade.counterpartyCharacter);
+            legacyTradeLegs.push({
+              charKey,
+              adventureIndex,
+              counterpartyCharacter: canonicalCharKey(adventure.trade.counterpartyCharacter),
+              resolvedCounterpartyKey,
+              date: coerceString(adventure.date,{ fallback:'' }),
+              given,
+              received,
+              path: `${advPath}.trade`,
+              matched: false
+            });
+          }
+        }
+
+        if(!Array.isArray(adventure.item_events)){
+          return;
+        }
+        adventure.item_events.forEach((event,eventIndex)=>{
+          const eventPath = `${advPath}.item_events[${eventIndex}]`;
+          if(!event || typeof event !== 'object'){
+            pushIssue(issues,{
+              severity,
+              code:'item_event_shape_warning',
+              message:'item_events entries should be objects.',
+              path:eventPath,
+              charKey,
+              adventureIndex,
+              field:'item_events'
+            });
+            return;
+          }
+
+          const eventType = coerceString(event.type,{ fallback:'' }).toLowerCase();
+          const itemKey = getLowerItem(event.item);
+          const quantity = Number(event.quantity);
+          const parsedQuantity = Number.isFinite(quantity) && quantity > 0 ? quantity : 1;
+
+          if(!ITEM_EVENT_TYPES.has(eventType) || !itemKey){
+            pushIssue(issues,{
+              severity,
+              code:'item_event_format_warning',
+              message:'item_events entries should include supported type and item values.',
+              path:eventPath,
+              charKey,
+              adventureIndex,
+              field:'item_events'
+            });
+            return;
+          }
+
+          if(ITEM_EVENT_OUTGOING_TYPES.has(eventType)){
+            const currentCount = inventory.get(itemKey) || 0;
+            if(currentCount < parsedQuantity){
+              pushIssue(issues,{
+                severity,
+                code:'missing_acquisition_path',
+                message:`Outgoing item event "${eventType}" for "${event.item}" has no prior incoming inventory path.`,
+                path:eventPath,
+                charKey,
+                adventureIndex,
+                field:'item_events'
+              });
+            }
+          }
+
+          if(ITEM_EVENT_INCOMING_TYPES.has(eventType)){
+            incrementCount(inventory,itemKey,parsedQuantity);
+          }else if(ITEM_EVENT_OUTGOING_TYPES.has(eventType)){
+            const currentCount = inventory.get(itemKey) || 0;
+            const nextCount = currentCount - parsedQuantity;
+            if(nextCount > 0){
+              inventory.set(itemKey,nextCount);
+            }else{
+              inventory.delete(itemKey);
+            }
+          }
+
+          const tradeId = coerceString(event.trade_id,{ fallback:'' });
+          if(!tradeId || (eventType !== 'trade_in' && eventType !== 'trade_out')){
+            return;
+          }
+          if(!tradeLegsById.has(tradeId)){
+            tradeLegsById.set(tradeId,new Map());
+          }
+          const byLeg = tradeLegsById.get(tradeId);
+          const legKey = `${charKey}::${adventureIndex}`;
+          if(!byLeg.has(legKey)){
+            byLeg.set(legKey,{
+              charKey,
+              adventureIndex,
+              inCounts: new Map(),
+              outCounts: new Map()
+            });
+          }
+          const leg = byLeg.get(legKey);
+          if(eventType === 'trade_in'){
+            incrementCount(leg.inCounts,itemKey,parsedQuantity);
+          }else{
+            incrementCount(leg.outCounts,itemKey,parsedQuantity);
+          }
+        });
+      });
+    });
+
+    tradeLegsById.forEach((legs,tradeId)=>{
+      const legList = Array.from(legs.values());
+      if(legList.length !== 2){
+        pushIssue(issues,{
+          severity,
+          code:'trade_reciprocity_leg_count',
+          message:`Trade "${tradeId}" should have exactly two legs; found ${legList.length}.`,
+          path:`trade_id:${tradeId}`,
+          field:'item_events.trade_id'
+        });
+        return;
+      }
+      const first = legList[0];
+      const second = legList[1];
+      const outInMatch = stringifyItemCountMap(first.outCounts) === stringifyItemCountMap(second.inCounts);
+      const inOutMatch = stringifyItemCountMap(first.inCounts) === stringifyItemCountMap(second.outCounts);
+      if(!outInMatch || !inOutMatch){
+        pushIssue(issues,{
+          severity,
+          code:'trade_reciprocity_mismatch',
+          message:`Trade "${tradeId}" does not have inverse reciprocal legs.`,
+          path:`trade_id:${tradeId}`,
+          field:'item_events.trade_id'
+        });
+      }
+    });
+
+    for(let i=0;i<legacyTradeLegs.length;i+=1){
+      const leg = legacyTradeLegs[i];
+      if(leg.matched){
+        continue;
+      }
+      if(!leg.resolvedCounterpartyKey){
+        pushIssue(issues,{
+          severity,
+          code:'trade_counterparty_unknown',
+          message:'Trade counterparty is not a known character in this dataset; reciprocity cannot be verified automatically.',
+          path:leg.path,
+          charKey:leg.charKey,
+          adventureIndex: Number.isFinite(leg.adventureIndex) ? leg.adventureIndex : null,
+          field:'trade.counterpartyCharacter'
+        });
+        continue;
+      }
+      let matched = false;
+      for(let j=i+1;j<legacyTradeLegs.length;j+=1){
+        const other = legacyTradeLegs[j];
+        if(other.matched){
+          continue;
+        }
+        if(leg.date !== other.date){
+          continue;
+        }
+        if(leg.resolvedCounterpartyKey !== other.charKey){
+          continue;
+        }
+        if(!other.resolvedCounterpartyKey || other.resolvedCounterpartyKey !== leg.charKey){
+          continue;
+        }
+        if(leg.given !== other.received){
+          continue;
+        }
+        if(leg.received !== other.given){
+          continue;
+        }
+        leg.matched = true;
+        other.matched = true;
+        matched = true;
+        break;
+      }
+      if(!matched){
+        pushIssue(issues,{
+          severity,
+          code:'trade_reciprocity_unmatched',
+          message:'Trade entry is missing a reciprocal inverse entry on the counterparty record.',
+          path:leg.path,
+          charKey:leg.charKey,
+          adventureIndex: Number.isFinite(leg.adventureIndex) ? leg.adventureIndex : null,
+          field:'trade'
+        });
+      }
+    }
+
+    return { issues };
+  }
+
   function validateData(data){
     if(!data || typeof data !== 'object'){
       return { issues:[{ severity:'error', code:'invalid_data', message:'Data is empty.', path:'' }] };
@@ -1203,7 +1746,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     try{
       const result = normalizeData(data);
       const schema = validateNormalizedData(result.data);
-      return { issues: result.issues.concat(schema.issues || []) };
+      const integrity = validateItemEventIntegrity(result.data,{ severity:'warning' });
+      return { issues: result.issues.concat(schema.issues || []).concat(integrity.issues || []) };
     }catch(err){
       return { issues:[{ severity:'error', code:'validation_failure', message: String(err) }] };
     }
@@ -1212,6 +1756,7 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
   const api = {
     normalizeData,
     normalizeTrade,
+    normalizeItemEventsForAdventure,
     parseAcquisitionName,
     parseItemList,
     buildAdventureInventoryOperation,
@@ -1219,7 +1764,8 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     buildAdventureSearchText,
     prepareForSave,
     validateData,
-    validateNormalizedData
+    validateNormalizedData,
+    validateItemEventIntegrity
   };
 
   Object.defineProperty(api,'tokenize',{ value:tokenize, enumerable:true });
