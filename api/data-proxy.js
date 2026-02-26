@@ -1,4 +1,7 @@
-export const config = { runtime: 'edge' };
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+
+export const config = { runtime: 'nodejs' };
 
 const corsHeaders = {
   'access-control-allow-origin': '*',
@@ -74,6 +77,25 @@ const determineBranch = async ({ repo, headers }) => {
   };
 };
 
+
+const readLocalDataFile = async (inputPath) => {
+  const cwd = process.cwd();
+  const targetPath = path.resolve(cwd, String(inputPath || DEFAULT_DATA_PATH));
+  const relativeTarget = path.relative(cwd, targetPath);
+  if (relativeTarget.startsWith('..') || path.isAbsolute(relativeTarget)) {
+    return { error: { status: 400, message: 'Resolved data path escapes repository root.' } };
+  }
+  try {
+    const body = await fs.readFile(targetPath, 'utf8');
+    return { body };
+  } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      return { error: { status: 404, message: `Could not locate ${inputPath}.` } };
+    }
+    return { error: { status: 500, message: 'Failed to read local data file.', details: String(error && error.message ? error.message : error) } };
+  }
+};
+
 const resolveCommitShaForRef = async ({ repo, ref, headers }) => {
   const normalizedRef = String(ref || '').trim();
   if (!normalizedRef) {
@@ -135,19 +157,7 @@ export default async function handler(req) {
 
   try {
     const repo = process.env.GH_REPO;
-    if (!repo) {
-      return respond({ error: 'GH_REPO not set' }, { status: 500 });
-    }
-
     const token = process.env.GH_TOKEN;
-    if (!token) {
-      return respond({ error: 'GH_TOKEN not set' }, { status: 500 });
-    }
-
-    const authHeaders = {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github.v3.raw'
-    };
 
     const url = new URL(req.url);
     const params = url.searchParams;
@@ -158,6 +168,30 @@ export default async function handler(req) {
     if (!encodedPath) {
       return respond({ error: 'Invalid or empty data path provided.' }, { status: 400 });
     }
+
+    if (!repo || !token) {
+      const localResult = await readLocalDataFile(pathParam);
+      if (localResult.error) {
+        return respond({ error: localResult.error.message, details: localResult.error.details || null }, {
+          status: localResult.error.status || 500
+        });
+      }
+      return respond(localResult.body, {
+        json: false,
+        headers: {
+          'content-type': 'application/javascript; charset=utf-8',
+          'cache-control': cacheBustToken ? 'no-store, max-age=0' : 'public, max-age=5',
+          'x-data-path': pathParam,
+          'x-data-ref': 'local-file',
+          'x-data-ref-source': 'filesystem'
+        }
+      });
+    }
+
+    const authHeaders = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github.v3.raw'
+    };
 
     const requestedRef = (params.get('ref') || params.get('v') || '').trim();
     let refToUse = requestedRef;
