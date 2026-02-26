@@ -4588,6 +4588,10 @@
 
   <script src="scripts/legacy-data-loader.js"></script>
   <script src="scripts/data-pipeline.js"></script>
+  <script src="scripts/allocation-utils.js"></script>
+  <script src="scripts/dm-season-utils.js"></script>
+  <script src="scripts/data-save-service.js"></script>
+  <script src="scripts/chronology-utils.js"></script>
   <script id="dataScript" data-loader="data">
     const KEY = 'al_logs_data_version';
     window.AL_DATA_VERSION_KEY = KEY;
@@ -5111,6 +5115,14 @@
 
     function getSerializableData() {
       const pipeline = getDataPipeline();
+      const dataSaveService = (typeof window === 'undefined') ? null : (window.AL_DATA_SAVE_SERVICE || null);
+      if (dataSaveService && typeof dataSaveService.resolveSerializableData === 'function') {
+        try {
+          return dataSaveService.resolveSerializableData(DATA, pipeline);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       if (pipeline) {
         const canNormalize = typeof pipeline.normalizeData === 'function';
         const canPrepare = typeof pipeline.prepareForSave === 'function';
@@ -5142,6 +5154,15 @@
     }
 
     function buildDataJsPayload() {
+      const pipeline = getDataPipeline();
+      const dataSaveService = (typeof window === 'undefined') ? null : (window.AL_DATA_SAVE_SERVICE || null);
+      if (dataSaveService && typeof dataSaveService.buildDataJsPayload === 'function') {
+        try {
+          return dataSaveService.buildDataJsPayload(DATA, pipeline);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       const serializable = getSerializableData();
       return 'window.DATA = ' + JSON.stringify(serializable, null, 2) + ';';
     }
@@ -6913,17 +6934,26 @@
     const DM_SEASON_DATALIST_ID = 'dm-allocation-season-options';
 
     function getKnownDmSeasonLabels() {
+      const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
+      const normalizeSeasonLabel = (label) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmNormalizeSeasonLabel === 'function') {
+          try { return dmSeasonUtils.dmNormalizeSeasonLabel(label); }
+          catch (err) { /* no-op */ }
+        }
+        const text = (label == null ? '' : String(label)).trim();
+        return text || 'Unlabeled season';
+      };
       const seasons = new Set();
       if (DM_DATA && DM_DATA.seasonal && typeof DM_DATA.seasonal === 'object') {
         Object.keys(DM_DATA.seasonal).forEach(label => {
-          const normalized = dmNormalizeSeasonLabel(label);
+          const normalized = normalizeSeasonLabel(label);
           if (normalized) seasons.add(normalized);
         });
       }
       if (Array.isArray(DM_ENTRIES)) {
         DM_ENTRIES.forEach(entry => {
           if (entry && entry.season) {
-            const normalized = dmNormalizeSeasonLabel(entry.season);
+            const normalized = normalizeSeasonLabel(entry.season);
             if (normalized) seasons.add(normalized);
           }
         });
@@ -6931,7 +6961,7 @@
       if (DATA && Array.isArray(DATA.dm_allocations)) {
         DATA.dm_allocations.forEach(alloc => {
           if (alloc && alloc.season) {
-            const normalized = dmNormalizeSeasonLabel(alloc.season);
+            const normalized = normalizeSeasonLabel(alloc.season);
             if (normalized) seasons.add(normalized);
           }
         });
@@ -6981,10 +7011,19 @@
     }
 
     function resolveDefaultDmSeason() {
+      const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
+      const normalizeSeasonLabel = (label) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmNormalizeSeasonLabel === 'function') {
+          try { return dmSeasonUtils.dmNormalizeSeasonLabel(label); }
+          catch (err) { /* no-op */ }
+        }
+        const text = (label == null ? '' : String(label)).trim();
+        return text || 'Unlabeled season';
+      };
       if (Array.isArray(DM_ENTRIES) && DM_ENTRIES.length) {
         const latest = DM_ENTRIES.find(entry => entry && entry.season);
         if (latest && latest.season) {
-          return dmNormalizeSeasonLabel(latest.season);
+          return normalizeSeasonLabel(latest.season);
         }
       }
       const knownSeasons = getKnownDmSeasonLabels();
@@ -7307,7 +7346,15 @@
           summaryArea.focus();
           return;
         }
-        const seasonValue = dmNormalizeSeasonLabel(seasonInput.value.trim());
+        const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
+        const seasonValue = (() => {
+          const raw = seasonInput.value.trim();
+          if (dmSeasonUtils && typeof dmSeasonUtils.dmNormalizeSeasonLabel === 'function') {
+            try { return dmSeasonUtils.dmNormalizeSeasonLabel(raw); }
+            catch (err) { /* fall through to local fallback */ }
+          }
+          return raw || 'Unlabeled season';
+        })();
         const dateValue = (dateInput && dateInput.value) ? dateInput.value.trim() : '';
         let rewardDateOnly = '';
         if (dateValue) {
@@ -7350,7 +7397,17 @@
 
         const rewardDateIso = computeCharacterEntryDate({ charKey, rawDate: rewardDateOnly, wasNew: true }) || rewardDateOnly;
         const dmAllocationCollection = Array.isArray(DATA.dm_allocations) ? DATA.dm_allocations : null;
-        const dmDateIso = computeChronologicalDate(rewardDateOnly, { collection: dmAllocationCollection, wasNew: true }) || rewardDateIso || '';
+        const dmDateIso = (() => {
+          const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+          if (chronologyUtils && typeof chronologyUtils.computeChronologicalDate === 'function') {
+            try {
+              return chronologyUtils.computeChronologicalDate(rewardDateOnly, { collection: dmAllocationCollection, wasNew: true }) || rewardDateIso || '';
+            } catch (err) {
+              /* fall through to local fallback */
+            }
+          }
+          return String(rewardDateOnly || '').trim() || rewardDateIso || '';
+        })();
 
         const allocationId = createDmAllocationId();
 
@@ -7673,6 +7730,15 @@
     }
 
     function touchDataMetaTimestamp() {
+      const dataSaveService = (typeof window === 'undefined') ? null : (window.AL_DATA_SAVE_SERVICE || null);
+      if (dataSaveService && typeof dataSaveService.touchDataMetaTimestamp === 'function') {
+        try {
+          dataSaveService.touchDataMetaTimestamp(DATA);
+          return;
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       if (!DATA || typeof DATA !== 'object') return;
       const meta = DATA.meta;
       if (meta && typeof meta === 'object') {
@@ -8804,137 +8870,6 @@
     }
 
     /* --- utils --- */
-    function fmtDate(value) {
-      if (!value) return '—';
-      const text = String(value).trim();
-      if (!text) return '—';
-      let dateObj = null;
-      const dateOnlyMatch = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      if (dateOnlyMatch) {
-        const year = Number(dateOnlyMatch[1]);
-        const month = Number(dateOnlyMatch[2]);
-        const day = Number(dateOnlyMatch[3]);
-        if (Number.isFinite(year) && Number.isFinite(month) && Number.isFinite(day)) {
-          dateObj = new Date(Date.UTC(year, month - 1, day));
-        }
-      }
-      if (!dateObj) {
-        dateObj = new Date(text);
-      }
-      if (Number.isNaN(dateObj.getTime())) {
-        return String(value);
-      }
-      return dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-    }
-
-    const PACIFIC_TIME_ZONE = 'America/Los_Angeles';
-    let pacificDateFormatter = null;
-    function getPacificDateFormatter() {
-      if (pacificDateFormatter) return pacificDateFormatter;
-      if (typeof Intl !== 'object' || typeof Intl.DateTimeFormat !== 'function') return null;
-      try {
-        pacificDateFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: PACIFIC_TIME_ZONE,
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        });
-      } catch (err) {
-        pacificDateFormatter = null;
-      }
-      return pacificDateFormatter;
-    }
-    function parseYmdString(value) {
-      if (!value) return null;
-      const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      if (!match) return null;
-      const year = Number(match[1]);
-      const month = Number(match[2]);
-      const day = Number(match[3]);
-      if (!Number.isFinite(year) || !Number.isFinite(month) || !Number.isFinite(day)) return null;
-      if (month < 1 || month > 12) return null;
-      if (day < 1 || day > 31) return null;
-      return { year, month, day };
-    }
-    function resolvePacificOffsetHours(parts) {
-      const formatter = getPacificDateFormatter();
-      if (!formatter) return null;
-      const approx = new Date(Date.UTC(parts.year, parts.month - 1, parts.day, 12, 0, 0));
-      if (Number.isNaN(approx.getTime())) return null;
-      const formattedParts = {};
-      formatter.formatToParts(approx).forEach((part) => {
-        if (part && part.type && part.type !== 'literal') {
-          formattedParts[part.type] = part.value;
-        }
-      });
-      const fYear = Number(formattedParts.year);
-      const fMonth = Number(formattedParts.month);
-      const fDay = Number(formattedParts.day);
-      const fHour = Number(formattedParts.hour);
-      const fMinute = Number(formattedParts.minute);
-      const fSecond = Number(formattedParts.second);
-      if ([fYear, fMonth, fDay, fHour, fMinute, fSecond].some(num => !Number.isFinite(num))) {
-        return null;
-      }
-      const pacificUtc = Date.UTC(fYear, fMonth - 1, fDay, fHour, fMinute, fSecond);
-      const offsetMs = pacificUtc - approx.getTime();
-      return offsetMs / 3600000;
-    }
-    function pacificBaseTimestamp(dayKey, { baseHour = 9 } = {}) {
-      const parts = parseYmdString(dayKey);
-      if (!parts) return NaN;
-      const offsetHours = resolvePacificOffsetHours(parts);
-      const baseUtc = Date.UTC(parts.year, parts.month - 1, parts.day, baseHour, 0, 0);
-      if (Number.isFinite(offsetHours)) {
-        return baseUtc - (offsetHours * 3600000);
-      }
-      return baseUtc;
-    }
-    function gatherSameDayTimes(collection, dayKey, exclude) {
-      const times = [];
-      if (!Array.isArray(collection) || !dayKey) return times;
-      collection.forEach((item) => {
-        if (!item || item === exclude) return;
-        const raw = item.date;
-        if (!raw) return;
-        const prefix = String(raw).slice(0, 10);
-        if (prefix !== dayKey) return;
-        const ts = new Date(raw).getTime();
-        if (Number.isFinite(ts)) times.push(ts);
-      });
-      return times;
-    }
-    function computeChronologicalDate(rawDate, { collection = null, exclude = null, wasNew = false, currentValue = null, baseHour = 9, stepHours = 1 } = {}) {
-      const normalized = String(rawDate || '').trim();
-      if (!normalized) return '';
-      if (normalized.includes('T')) return normalized;
-      const dayKey = normalized.slice(0, 10);
-      const baseMs = pacificBaseTimestamp(dayKey, { baseHour });
-      if (!Number.isFinite(baseMs)) return normalized;
-      if (!wasNew) {
-        const currentStr = String(currentValue || '').trim();
-        if (currentStr && currentStr.includes('T') && currentStr.slice(0, 10) === dayKey) {
-          const currentTs = new Date(currentStr).getTime();
-          if (Number.isFinite(currentTs)) {
-            return new Date(currentTs).toISOString();
-          }
-        }
-      }
-      const existingTimes = gatherSameDayTimes(collection, dayKey, exclude);
-      if (existingTimes.length) {
-        const maxExisting = Math.max(...existingTimes);
-        if (Number.isFinite(maxExisting) && maxExisting >= baseMs) {
-          const stepMs = Math.max(1, Number(stepHours || 1)) * 3600000;
-          const assigned = Math.max(baseMs, maxExisting + stepMs);
-          return new Date(assigned).toISOString();
-        }
-      }
-      return new Date(baseMs).toISOString();
-    }
     function computeCharacterEntryDate({ charKey, rawDate, entry = null, wasNew = false } = {}) {
       const normalized = String(rawDate || '').trim();
       if (!normalized) return '';
@@ -8942,7 +8877,15 @@
       const charData = (characters && characters[charKey]) || null;
       const collection = (charData && Array.isArray(charData.adventures)) ? charData.adventures : null;
       const currentValue = entry ? entry.date : null;
-      return computeChronologicalDate(normalized, { collection, exclude: entry || null, wasNew, currentValue });
+      const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+      if (chronologyUtils && typeof chronologyUtils.computeChronologicalDate === 'function') {
+        try {
+          return chronologyUtils.computeChronologicalDate(normalized, { collection, exclude: entry || null, wasNew, currentValue });
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
+      return normalized;
     }
     function fmtNumber(n, { signed = false } = {}) {
       if (n == null) return '0';
@@ -9607,173 +9550,64 @@
     }
 
     /* --- DM log helpers --- */
-    function dmNormalizeSeasonLabel(label) {
-      const text = (label == null ? '' : String(label)).trim();
-      return text || 'Unlabeled season';
-    }
-    function normalizeSeasonGroup(label) {
-      const text = (label == null ? '' : String(label)).trim().toLowerCase();
-      if (!text) return '';
-      if (text.startsWith('seasonal')) return 'seasonal';
-      const seasonMatch = text.match(/^season\s*(\d+)([a-z])?/);
-      if (seasonMatch) {
-        return `season-${seasonMatch[1]}`;
-      }
-      const anniversaryMatch = text.match(/(\d{1,3})(st|nd|rd|th)\s+anniversary\s+season/);
-      if (anniversaryMatch) {
-        return `${anniversaryMatch[1]}th-anniversary-season`;
-      }
-      return text;
-    }
-    function extractSeasonLabel(text) {
-      if (!text) return '';
-      const value = String(text);
-      const anniversary = value.match(/(\d{1,3})(st|nd|rd|th)\s+Anniversary\s+Season\s+([A-Za-z])/i);
-      if (anniversary) {
-        const ordinal = `${anniversary[1]}${anniversary[2]}`;
-        const seasonLetter = anniversary[3].toUpperCase();
-        return `${ordinal} Anniversary Season ${seasonLetter}`;
-      }
-      const seasonal = value.match(/Seasonal\s*\(([^)]+)\)/i);
-      if (seasonal) {
-        return `Seasonal (${seasonal[1].trim()})`;
-      }
-      const detailed = value.match(/Season\s*(\d+)\s*([A-Za-z])?/i);
-      if (detailed) {
-        const seasonNumber = detailed[1];
-        const letter = (detailed[2] || '').trim();
-        if (letter) {
-          return `Season ${seasonNumber}${letter.toLowerCase()}`;
-        }
-        return `Season ${seasonNumber}`;
-      }
-      return '';
-    }
-    function inferSeasonFromReward(adv) {
-      if (!adv || typeof adv !== 'object') return '';
-      const direct = extractSeasonLabel(adv.season);
-      if (direct) return dmNormalizeSeasonLabel(direct);
-      const fromTitle = extractSeasonLabel(adv.title);
-      if (fromTitle) return dmNormalizeSeasonLabel(fromTitle);
-      const fromNotes = extractSeasonLabel(adv.notes);
-      if (fromNotes) return dmNormalizeSeasonLabel(fromNotes);
-      return '';
-    }
-    function dmToNullableNumber(value) {
-      const num = Number(value);
-      return Number.isFinite(num) ? num : null;
-    }
-    function dmToNumber(value) {
-      const num = Number(value);
-      return Number.isFinite(num) ? num : 0;
-    }
-    function dmTimestamp(value) {
-      if (!value) return Number.NEGATIVE_INFINITY;
-      const t = new Date(value).getTime();
-      return Number.isFinite(t) ? t : Number.NEGATIVE_INFINITY;
-    }
-    function dmDateCountsTowardHoursPool(date) {
-      const ts = dmTimestamp(date);
-      return ts >= DM_HOURS_POOL_START_TS;
-    }
-    function parseSeasonNumber(label) {
-      if (!label) return null;
-      const match = String(label).match(/season\s*(\d+)/i);
-      if (!match) return null;
-      const num = Number(match[1]);
-      return Number.isFinite(num) ? num : null;
-    }
-    function escapeRegExp(str) {
-      const re = /[.*+?^${}()|[\]\\]/g;
-      return String(str).replace(re, '\\$&');
-    }
-    function allocationSeasonEligibleForLevelAccrual(seasonLabel) {
-      if (!seasonLabel) return true;
-      const normalized = String(seasonLabel).toLowerCase();
-      if (normalized.includes('pre-season 11') || normalized.includes('pre season 11')) {
-        return false;
-      }
-      const seasonNumber = parseSeasonNumber(seasonLabel);
-      if (seasonNumber == null) return true;
-      return seasonNumber >= 11;
-    }
-    function isLevelOnlyAllocation(allocationText, parsed) {
-      const detail = parsed || interpretAllocationDetails(allocationText);
-      if (!detail || detail.levelsSpent == null || !Number.isFinite(detail.levelsSpent) || detail.levelsSpent <= 0) {
-        return false;
-      }
-      if (detail.itemTokens && detail.itemTokens.length) {
-        return false;
-      }
-      if (detail.downtimeSpent != null && detail.downtimeSpent > 0) {
-        return false;
-      }
-      if (detail.goldSpent != null && detail.goldSpent > 0) {
-        return false;
-      }
-      let working = String(allocationText || '').toLowerCase();
-      if (!working.trim()) return false;
-      if (Array.isArray(detail.recipients)) {
-        detail.recipients.forEach(name => {
-          if (!name) return;
-          const lowered = String(name).toLowerCase().trim();
-          if (!lowered) return;
-          const pattern = new RegExp(escapeRegExp(lowered), 'g');
-          working = working.replace(pattern, ' ');
-        });
-      }
-      working = working.replace(/\b\d+\s*(?:levels?|lvl)\b/g, ' ');
-      working = working.replace(/\blevels?\b/g, ' ');
-      working = working.replace(/\bplayer\b/g, ' ');
-      working = working.replace(/\brewards?\b/g, ' ');
-      working = working.replace(/\band\b/g, ' ');
-      working = working.replace(/\bbonus\b/g, ' ');
-      working = working.replace(/\bto\b/g, ' ');
-      working = working.replace(/[+,&:()]/g, ' ');
-      working = working.replace(/\s+/g, ' ').trim();
-      return !working;
-    }
-    function allocationHasNonLevelReward(allocationText, parsed) {
-      const detail = parsed || interpretAllocationDetails(allocationText);
-      if (!detail) return false;
-      if (detail.downtimeSpent != null && detail.downtimeSpent > 0) {
-        return true;
-      }
-      if (detail.goldSpent != null && detail.goldSpent > 0) {
-        return true;
-      }
-      if (detail.itemTokens && detail.itemTokens.some(token => token && !/(?:loss|period|expire|expiration|forfeit|penalty)/i.test(token))) {
-        return true;
-      }
-      const raw = String(allocationText || '').toLowerCase();
-      if (!raw.trim()) return false;
-      if (/\b(loss|forfeit|expire|expiration|penalty)\b/.test(raw)) {
-        return false;
-      }
-      if (/\b(?:reward|item|potion|tattoo|wand|staff|amulet|boots|armor|shield|ring|stone|cloak|rod|scroll|saddle|quiver|caress|fiddle|maul|sword|bow|splint|mace|gem|guide|arrows|favor|rescue|saddle|boots|gloves|cowl|blade|tome|pen|shawl|sling|cloak)\b/.test(raw)) {
-        return true;
-      }
-      if (raw.includes('+')) {
-        return true;
-      }
-      return false;
-    }
-    function allocationGrantsLevelToPool(seasonLabel, allocationText, parsed) {
-      if (!allocationSeasonEligibleForLevelAccrual(seasonLabel)) {
-        return false;
-      }
-      if (isLevelOnlyAllocation(allocationText, parsed)) {
-        return false;
-      }
-      return allocationHasNonLevelReward(allocationText, parsed);
-    }
     function buildDmEntries() {
       DM_ENTRIES = [];
       DM_SUMMARY = { runs: 0, allocations: 0, earnedHours: 0, earnedBonus: 0, allocatedHours: 0, allocatedBonus: 0, allocatedCost: 0, earnedLevels: 0, spentLevels: 0, entries: 0 };
       DM_PRE_ITEMS = [];
       const customAllocations = (DATA && Array.isArray(DATA.dm_allocations)) ? DATA.dm_allocations : [];
+      const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
       let sortIndex = 0;
-      const normalizeSeason = (raw) => dmNormalizeSeasonLabel(raw);
+      const normalizeSeason = (raw) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmNormalizeSeasonLabel === 'function') {
+          try { return dmSeasonUtils.dmNormalizeSeasonLabel(raw); }
+          catch (err) { /* no-op */ }
+        }
+        const text = (raw == null ? '' : String(raw)).trim();
+        return text || 'Unlabeled season';
+      };
+      const normalizeSeasonGroup = (label) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.normalizeSeasonGroup === 'function') {
+          try { return dmSeasonUtils.normalizeSeasonGroup(label); }
+          catch (err) { /* no-op */ }
+        }
+        return String(label || '').trim().toLowerCase();
+      };
+      const toNullableNumber = (value) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmToNullableNumber === 'function') {
+          try { return dmSeasonUtils.dmToNullableNumber(value); }
+          catch (err) { /* no-op */ }
+        }
+        const num = Number(value);
+        return Number.isFinite(num) ? num : null;
+      };
+      const toDmTimestamp = (value) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmTimestamp === 'function') {
+          try { return dmSeasonUtils.dmTimestamp(value); }
+          catch (err) { /* no-op */ }
+        }
+        return Number.NEGATIVE_INFINITY;
+      };
+      const countsTowardHoursPool = (date) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmDateCountsTowardHoursPool === 'function') {
+          try { return dmSeasonUtils.dmDateCountsTowardHoursPool(date, DM_HOURS_POOL_START_TS); }
+          catch (err) { /* no-op */ }
+        }
+        return false;
+      };
+      const seasonEligibleForLevelAccrual = (seasonLabel) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.allocationSeasonEligibleForLevelAccrual === 'function') {
+          try { return dmSeasonUtils.allocationSeasonEligibleForLevelAccrual(seasonLabel); }
+          catch (err) { /* no-op */ }
+        }
+        return true;
+      };
+      const grantsLevelToPool = (seasonLabel, allocationText, parsed) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.allocationGrantsLevelToPool === 'function') {
+          try { return dmSeasonUtils.allocationGrantsLevelToPool(seasonLabel, allocationText, parsed, { interpretAllocationDetails }); }
+          catch (err) { /* no-op */ }
+        }
+        return false;
+      };
       const cloneSimple = (value) => {
         if (value == null) return null;
         if (typeof structuredClone === 'function') {
@@ -9792,12 +9626,12 @@
       };
       const addRun = (seasonLabel, run) => {
         const season = normalizeSeason(seasonLabel);
-        const hoursVal = dmToNullableNumber(run.hours);
-        const bonusVal = dmToNullableNumber(run.extra_hours);
-        const levelsPlus = dmToNullableNumber(run.levels_plus);
-        const levelsMinus = dmToNullableNumber(run.levels_minus);
-        const countsTowardHoursPool = dmDateCountsTowardHoursPool(run.date);
-        const countsTowardLevelPool = allocationSeasonEligibleForLevelAccrual(season);
+        const hoursVal = toNullableNumber(run.hours);
+        const bonusVal = toNullableNumber(run.extra_hours);
+        const levelsPlus = toNullableNumber(run.levels_plus);
+        const levelsMinus = toNullableNumber(run.levels_minus);
+        const includeHoursPool = countsTowardHoursPool(run.date);
+        const countsTowardLevelPool = seasonEligibleForLevelAccrual(season);
         pushEntry({
           type: 'run',
           season,
@@ -9815,7 +9649,7 @@
           allocation: run.allocation || ''
         });
         DM_SUMMARY.runs += 1;
-        if (countsTowardHoursPool) {
+        if (includeHoursPool) {
           if (hoursVal != null) DM_SUMMARY.earnedHours += hoursVal;
           if (bonusVal != null) DM_SUMMARY.earnedBonus += bonusVal;
         }
@@ -9832,8 +9666,8 @@
         if (Number.isFinite(parsedLevelsSpent) && parsedLevelsSpent > 0) {
           levelsSpent = parsedLevelsSpent;
         } else {
-          const fallbackMinus = dmToNullableNumber(entry.levels_minus);
-          const fallbackPlus = dmToNullableNumber(entry.levels_plus);
+          const fallbackMinus = toNullableNumber(entry.levels_minus);
+          const fallbackPlus = toNullableNumber(entry.levels_plus);
           const fallbackLevel = (Number.isFinite(fallbackMinus) && fallbackMinus > 0)
             ? fallbackMinus
             : ((Number.isFinite(fallbackPlus) && fallbackPlus > 0) ? fallbackPlus : null);
@@ -9859,7 +9693,7 @@
           item: entry.item || '',
           allocation: entry.allocation || ''
         });
-        const countsTowardLevelPool = allocationSeasonEligibleForLevelAccrual(season);
+        const countsTowardLevelPool = seasonEligibleForLevelAccrual(season);
         if (countsTowardLevelPool) {
           if (entryLevelsPlus != null) DM_SUMMARY.earnedLevels += entryLevelsPlus;
           if (entryLevelsMinus != null) DM_SUMMARY.spentLevels += entryLevelsMinus;
@@ -9878,13 +9712,13 @@
       };
       const addAllocation = (seasonLabel, alloc = {}) => {
         const season = normalizeSeason(seasonLabel);
-        const hoursVal = dmToNullableNumber(alloc.hours);
-        const bonusVal = dmToNullableNumber(alloc.extra_hours);
-        const baseCost = dmToNullableNumber(alloc.cost);
+        const hoursVal = toNullableNumber(alloc.hours);
+        const bonusVal = toNullableNumber(alloc.extra_hours);
+        const baseCost = toNullableNumber(alloc.cost);
         const allocationText = alloc.allocation;
         const parsed = interpretAllocationDetails(allocationText);
         const parsedLevelsSpent = (parsed && parsed.levelsSpent != null) ? parsed.levelsSpent : null;
-        const rawLevelsSpent = dmToNullableNumber(alloc.levels_plus);
+        const rawLevelsSpent = toNullableNumber(alloc.levels_plus);
         const hasLevelKeyword = /\b(?:levels?|lvl)\b/i.test(String(allocationText || ''));
         const levelAssignmentHint = /\blevels?\s+to\b/i.test(String(allocationText || '')) || /\blvl\s+to\b/i.test(String(allocationText || ''));
         let levelsSpent = (Number.isFinite(parsedLevelsSpent) && parsedLevelsSpent > 0) ? parsedLevelsSpent : null;
@@ -9899,13 +9733,13 @@
           effectiveCost = parsed.downtimeSpent;
         }
         const effectiveGold = (parsed && parsed.goldSpent != null) ? parsed.goldSpent : null;
-        let earnsLevel = allocationGrantsLevelToPool(season, allocationText, parsed);
+        let earnsLevel = grantsLevelToPool(season, allocationText, parsed);
         if (alloc && Object.prototype.hasOwnProperty.call(alloc, 'earns_level')) {
           earnsLevel = !!alloc.earns_level;
         }
         let levelsMinus = earnsLevel ? 1 : null;
         if (alloc && Object.prototype.hasOwnProperty.call(alloc, 'levels_minus')) {
-          const explicitMinus = dmToNullableNumber(alloc.levels_minus);
+          const explicitMinus = toNullableNumber(alloc.levels_minus);
           levelsMinus = Number.isFinite(explicitMinus) ? explicitMinus : null;
         }
         const entry = {
@@ -9939,9 +9773,9 @@
         }
         pushEntry(entry);
         DM_SUMMARY.allocations += 1;
-        const countsTowardHoursPool = dmDateCountsTowardHoursPool(entry.date);
-        const countsTowardLevelPool = allocationSeasonEligibleForLevelAccrual(season);
-        if (countsTowardHoursPool && entry.cost != null) DM_SUMMARY.allocatedCost += entry.cost;
+        const includeHoursPool = countsTowardHoursPool(entry.date);
+        const countsTowardLevelPool = seasonEligibleForLevelAccrual(season);
+        if (includeHoursPool && entry.cost != null) DM_SUMMARY.allocatedCost += entry.cost;
         if (countsTowardLevelPool && levelsSpent != null) DM_SUMMARY.spentLevels += levelsSpent;
         if (countsTowardLevelPool && levelsMinus != null) {
           DM_SUMMARY.earnedLevels += Math.max(0, levelsMinus);
@@ -9985,7 +9819,7 @@
         });
       }
       DM_ENTRIES.sort((a, b) => {
-        const diff = dmTimestamp(b.date) - dmTimestamp(a.date);
+        const diff = toDmTimestamp(b.date) - toDmTimestamp(a.date);
         if (diff !== 0) return diff;
         const orderA = (typeof a.__origIndex === 'number') ? a.__origIndex : 0;
         const orderB = (typeof b.__origIndex === 'number') ? b.__origIndex : 0;
@@ -9996,7 +9830,7 @@
       });
       DM_SUMMARY.entries = DM_ENTRIES.length;
       if (DM_PRE_ITEMS.length) {
-        DM_PRE_ITEMS.sort((a, b) => dmTimestamp(a.date) - dmTimestamp(b.date));
+        DM_PRE_ITEMS.sort((a, b) => toDmTimestamp(a.date) - toDmTimestamp(b.date));
       }
       updateDmSummaryBar();
     }
@@ -10005,6 +9839,14 @@
     let DM_REWARD_LINKS = new WeakMap();
 
     function normalizeDateString(value) {
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.normalizeDateString === 'function') {
+        try {
+          return allocationUtils.normalizeDateString(value);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       if (!value) return '';
       const text = String(value);
       if (/^\d{4}-\d{2}-\d{2}/.test(text)) {
@@ -10018,245 +9860,90 @@
     }
 
     function normalizeMatchToken(value) {
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.normalizeMatchToken === 'function') {
+        try {
+          return allocationUtils.normalizeMatchToken(value);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
     }
 
     function extractAllocationRecipientDetails(text) {
-      const raw = String(text || '');
-      if (!raw.trim()) return [];
-      const lower = raw.toLowerCase();
-      const firstToIdx = lower.indexOf(' to ');
-      if (firstToIdx === -1) return [];
-      const leadingSegment = raw.slice(0, firstToIdx);
-
-      const extractLevelishNumber = (segment) => {
-        if (!segment) return null;
-        const text = String(segment);
-        const regex = /([0-9]+)/g;
-        let match;
-        while ((match = regex.exec(text))) {
-          const num = Number(match[1]);
-          if (!Number.isFinite(num)) continue;
-          const after = text.slice(match.index + match[0].length);
-          const afterStripped = after.replace(/^\s+/, '');
-          if (!afterStripped) return num;
-          const nextChar = afterStripped[0];
-          if (nextChar === ',' || nextChar === '.' || nextChar === ')' || nextChar === ']') return num;
-          const lowered = afterStripped.toLowerCase();
-          for (const prefix of ['level', 'levels', 'lvl', 'to']) {
-            if (lowered.startsWith(prefix)) return num;
-          }
-          if (nextChar && /[a-z]/i.test(nextChar)) continue;
-          return num;
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.extractAllocationRecipientDetails === 'function') {
+        try {
+          return allocationUtils.extractAllocationRecipientDetails(text);
+        } catch (err) {
+          /* fall through to local fallback */
         }
-        return null;
-      };
-
-      const firstCountHint = extractLevelishNumber(leadingSegment);
-      let tail = raw.slice(firstToIdx + 4);
-      tail = tail.replace(/[,.;]+$/, '');
-      tail = tail.replace(/\band\b/gi, ',');
-      tail = tail.replace(/&/g, ',');
-      tail = tail.replace(/\//g, ',');
-      const extractNumber = (segment) => extractLevelishNumber(segment);
-      const results = [];
-      tail.split(',').map(part => part.trim()).filter(Boolean).forEach((part, index) => {
-        if (!part) return;
-        let working = part;
-        let countHint = null;
-        const innerToIdx = working.toLowerCase().lastIndexOf(' to ');
-        if (innerToIdx !== -1) {
-          const beforeInner = working.slice(0, innerToIdx);
-          const afterInner = working.slice(innerToIdx + 4).trim();
-          if (afterInner) working = afterInner;
-          const innerNumber = extractNumber(beforeInner);
-          if (innerNumber != null) countHint = innerNumber;
-        }
-        const prefixMatch = working.match(/^([0-9]+)\s*(?:levels?|lvl)?\b/i);
-        if (prefixMatch) {
-          countHint = Number(prefixMatch[1]);
-          working = working.slice(prefixMatch[0].length).trim();
-        }
-        const multiplierMatch = working.match(/\(x\s*([0-9]+)\s*\)/i);
-        if (multiplierMatch) {
-          countHint = Number(multiplierMatch[1]);
-          working = working.replace(multiplierMatch[0], '').trim();
-        }
-        const suffixMatch = working.match(/([0-9]+)\s*(?:levels?|lvl)\b/i);
-        if (suffixMatch) {
-          countHint = Number(suffixMatch[1]);
-          working = working.replace(suffixMatch[0], '').trim();
-        }
-        working = working.replace(/^[+&]+/, '').trim();
-        if (!working) return;
-        if (countHint == null && index === 0 && Number.isFinite(firstCountHint)) {
-          countHint = firstCountHint;
-        }
-        if (countHint == null) countHint = 1;
-        results.push({ name: working, count: countHint });
-      });
-      return results;
+      }
+      return [];
     }
     function parseAllocationRecipients(text) {
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.parseAllocationRecipients === 'function') {
+        try {
+          return allocationUtils.parseAllocationRecipients(text);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       return extractAllocationRecipientDetails(text).map(item => item.name).filter(Boolean);
     }
     function extractAllocationItemTokens(text) {
-      if (text && typeof text === 'object') {
-        if (Array.isArray(text.allocation_item_tokens)) {
-          return text.allocation_item_tokens.slice();
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.extractAllocationItemTokens === 'function') {
+        try {
+          return allocationUtils.extractAllocationItemTokens(text);
+        } catch (err) {
+          /* fall through to local fallback */
         }
-        text = text.allocation || '';
       }
-      const raw = String(text || '');
-      if (!raw) return [];
-      const idx = raw.toLowerCase().lastIndexOf(' to ');
-      const before = idx === -1 ? raw : raw.slice(0, idx);
-      const candidates = before.split(/[+,&/]/).map(part => normalizeMatchToken(part));
-      const tokens = new Set();
-      candidates.forEach(token => {
-        if (!token) return;
-        if (token.length < 4) return;
-        if (!/[a-z]/.test(token)) return;
-        if (/^(?:level|levels|hours|extra|bonus|dtd|gp)$/.test(token)) return;
-        if (/^\d/.test(token)) return;
-        tokens.add(token);
-      });
-      return Array.from(tokens);
+      return [];
     }
 
     function interpretAllocationDetails(text) {
-      const raw = String(text || '');
-      const recipientDetails = extractAllocationRecipientDetails(raw);
-      const recipients = recipientDetails.map(item => item.name);
-      const itemTokens = extractAllocationItemTokens(raw);
-      const tokens = new Set();
-      itemTokens.forEach(token => {
-        if (token) tokens.add(`item:${token}`);
-      });
-
-      const addNumericToken = (prefix, value) => {
-        if (value == null) return;
-        const rounded = value % 1 === 0 ? Math.trunc(value) : Number(value.toFixed(2));
-        tokens.add(`${prefix}:${rounded}`);
-      };
-
-      const normalizeNumber = (value, kFlag) => {
-        if (value == null) return null;
-        let cleaned = String(value).replace(/,/g, '');
-        if (!cleaned) return null;
-        const num = Number(cleaned);
-        if (!Number.isFinite(num)) return null;
-        return kFlag ? num * 1000 : num;
-      };
-
-      const detail = {
-        recipients,
-        itemTokens,
-        tokens: null,
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.interpretAllocationDetails === 'function') {
+        try {
+          return allocationUtils.interpretAllocationDetails(text);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
+      return {
+        recipients: [],
+        itemTokens: [],
+        tokens: [],
         levelsSpent: null,
         levelsGained: null,
         downtimeSpent: null,
         goldSpent: null
       };
-
-      if (Array.isArray(recipients)) {
-        recipients.forEach(rec => {
-          const normalized = normalizeMatchToken(rec);
-          if (normalized) tokens.add(`recipient:${normalized}`);
-        });
-      }
-
-      const explicitLevelMatches = [];
-      raw.replace(/(?:^|[\s,+/&-])([0-9]+)\s*(?:levels?|lvl)\b/gi, (match, value) => {
-        const parsed = normalizeNumber(value, false);
-        if (parsed != null) explicitLevelMatches.push(parsed);
-        return match;
-      });
-      const explicitLevelTotal = explicitLevelMatches.reduce((sum, val) => sum + val, 0);
-      const hasLevelKeyword = /\b(?:levels?|lvl)\b/i.test(raw);
-      const levelAssignmentHint = /\blevels?\s+to\b/i.test(raw) || /\blvl\s+to\b/i.test(raw);
-      const multiplierMatches = [];
-      raw.replace(/\(x\s*([0-9]+)\s*\)/gi, (match, value) => {
-        const parsed = normalizeNumber(value, false);
-        if (parsed != null) multiplierMatches.push(parsed);
-        return match;
-      });
-      if (hasLevelKeyword && levelAssignmentHint) {
-        const levelsFromRecipients = recipientDetails.reduce((sum, item) => {
-          const value = Number(item && item.count);
-          if (!Number.isFinite(value) || value <= 0) return sum;
-          return sum + value;
-        }, 0);
-        if (levelsFromRecipients > 0) {
-          detail.levelsSpent = levelsFromRecipients;
-        } else if (explicitLevelTotal > 0) {
-          detail.levelsSpent = explicitLevelTotal;
-        } else if (multiplierMatches.length > 0) {
-          const multiplierTotal = multiplierMatches.reduce((sum, val) => sum + val, 0);
-          if (multiplierTotal > 0) {
-            detail.levelsSpent = multiplierTotal;
-          }
-        } else if (recipientDetails.length > 0) {
-          detail.levelsSpent = recipientDetails.length;
-        } else {
-          detail.levelsSpent = 1;
-        }
-      }
-
-      const dtdMatches = [];
-      raw.replace(/([0-9][0-9,]*)(?:\s*(k))?\s*dtd\b/gi, (match, value, kFlag) => {
-        const parsed = normalizeNumber(value, kFlag);
-        if (parsed != null) dtdMatches.push(parsed);
-        return match;
-      });
-      if (dtdMatches.length > 0) {
-        const dtdTotal = dtdMatches.reduce((sum, val) => sum + val, 0);
-        if (dtdTotal > 0) detail.downtimeSpent = dtdTotal;
-      }
-
-      const gpMatches = [];
-      raw.replace(/([0-9][0-9,]*)(?:\s*(k))?\s*gp\b/gi, (match, value, kFlag) => {
-        const parsed = normalizeNumber(value, kFlag);
-        if (parsed != null) gpMatches.push(parsed);
-        return match;
-      });
-      if (gpMatches.length > 0) {
-        const gpTotal = gpMatches.reduce((sum, val) => sum + val, 0);
-        if (gpTotal > 0) detail.goldSpent = gpTotal;
-      }
-
-      if (detail.levelsSpent != null) addNumericToken('levels', detail.levelsSpent);
-      if (detail.downtimeSpent != null) addNumericToken('dtd', detail.downtimeSpent);
-      if (detail.goldSpent != null) addNumericToken('gp', detail.goldSpent);
-
-      detail.tokens = Array.from(tokens);
-      return detail;
     }
     function extractContentTokens(values) {
-      const tokens = new Set();
-      const stopWords = new Set(['and', 'the', 'for', 'with', 'from', 'into', 'onto', 'this', 'that', 'item', 'items', 'reward', 'rewards', 'entry', 'entries', 'log', 'card', 'cards', 'season', 'seasonal', 'dm', 'of', 'to', 'per', 'plus', 'minus', 'bonus', 'extra', 'cost', 'gp', 'hour', 'hours', 'level', 'levels', 'dtd', 'loss', 'spent', 'earned', 'player']);
-      const addFromValue = (val) => {
-        if (val == null) return;
-        if (Array.isArray(val)) {
-          val.forEach(addFromValue);
-          return;
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.extractContentTokens === 'function') {
+        try {
+          return allocationUtils.extractContentTokens(values);
+        } catch (err) {
+          /* fall through to local fallback */
         }
-        const text = String(val).toLowerCase();
-        if (!text.trim()) return;
-        text.split(/[^a-z0-9]+/).forEach(part => {
-          const cleaned = part.trim();
-          if (!cleaned) return;
-          if (cleaned.length < 3) return;
-          if (stopWords.has(cleaned)) return;
-          const normalized = normalizeMatchToken(cleaned);
-          if (!normalized) return;
-          tokens.add(normalized);
-        });
-      };
-      addFromValue(values);
-      return Array.from(tokens);
+      }
+      return [];
     }
     function buildAllocationItemSeasonIndex(entries) {
+      const allocationUtils = (typeof window === 'undefined') ? null : (window.AL_ALLOCATION_UTILS || null);
+      if (allocationUtils && typeof allocationUtils.buildAllocationItemSeasonIndex === 'function') {
+        try {
+          return allocationUtils.buildAllocationItemSeasonIndex(entries);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       const map = new Map();
       if (!Array.isArray(entries)) return map;
       entries.forEach(entry => {
@@ -10286,6 +9973,22 @@
       if (!charEntries.length) return;
 
       const itemSeasonIndex = buildAllocationItemSeasonIndex(DM_ENTRIES);
+      const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
+      const normalizeSeasonLabel = (label) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmNormalizeSeasonLabel === 'function') {
+          try { return dmSeasonUtils.dmNormalizeSeasonLabel(label); }
+          catch (err) { /* no-op */ }
+        }
+        const text = (label == null ? '' : String(label)).trim();
+        return text || 'Unlabeled season';
+      };
+      const normalizeSeasonGroup = (label) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.normalizeSeasonGroup === 'function') {
+          try { return dmSeasonUtils.normalizeSeasonGroup(label); }
+          catch (err) { /* no-op */ }
+        }
+        return String(label || '').trim().toLowerCase();
+      };
 
       const allocationById = new Map();
       DM_ENTRIES.forEach(entry => {
@@ -10379,7 +10082,13 @@
             }
             return;
           }
-          const inferredSeason = inferSeasonFromReward(adv);
+          const inferredSeason = (() => {
+            if (dmSeasonUtils && typeof dmSeasonUtils.inferSeasonFromReward === 'function') {
+              try { return dmSeasonUtils.inferSeasonFromReward(adv); }
+              catch (err) { /* no-op */ }
+            }
+            return '';
+          })();
           const meta = {
             charKey: key,
             adv,
@@ -10436,12 +10145,12 @@
             });
             const seasonsArray = Array.from(seasonsFromItems);
             if (seasonsArray.length === 1) {
-              if (!meta.season) meta.season = dmNormalizeSeasonLabel(seasonsArray[0]);
+              if (!meta.season) meta.season = normalizeSeasonLabel(seasonsArray[0]);
               meta.seasonGroup = normalizeSeasonGroup(meta.season);
             } else if (seasonsArray.length > 1) {
               const groups = Array.from(new Set(seasonsArray.map(normalizeSeasonGroup).filter(Boolean)));
               if (groups.length === 1) {
-                if (!meta.season) meta.season = dmNormalizeSeasonLabel(seasonsArray[0]);
+                if (!meta.season) meta.season = normalizeSeasonLabel(seasonsArray[0]);
                 meta.seasonGroup = groups[0];
               }
             }
@@ -10635,7 +10344,15 @@
             row.appendChild(name);
             const metaParts = [];
             if (item.date) {
-              const formatted = fmtDate(item.date);
+              const formatted = (() => {
+                const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+                if (chronologyUtils && typeof chronologyUtils.fmtDate === 'function') {
+                  try { return chronologyUtils.fmtDate(item.date); }
+                  catch (err) { /* fall through to local fallback */ }
+                }
+                const text = String(item.date || '').trim();
+                return text || '—';
+              })();
               if (formatted) metaParts.push(formatted);
             }
             if (item.code) { metaParts.push(item.code); }
@@ -10813,6 +10530,24 @@
     }
     function makeDmCard(entry, idx) {
       const isAllocation = entry.type === 'allocation';
+      const dmSeasonUtils = (typeof window === 'undefined') ? null : (window.AL_DM_SEASON_UTILS || null);
+      const toNullableNumber = (value) => {
+        if (dmSeasonUtils && typeof dmSeasonUtils.dmToNullableNumber === 'function') {
+          try { return dmSeasonUtils.dmToNullableNumber(value); }
+          catch (err) { /* no-op */ }
+        }
+        const num = Number(value);
+        return Number.isFinite(num) ? num : null;
+      };
+      const formatDate = (value) => {
+        const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+        if (chronologyUtils && typeof chronologyUtils.fmtDate === 'function') {
+          try { return chronologyUtils.fmtDate(value); }
+          catch (err) { /* fall through to local fallback */ }
+        }
+        const text = String(value || '').trim();
+        return text || '—';
+      };
       const card = document.createElement('article');
       card.className = 'card dm-card' + (isAllocation ? ' activity' : '');
       card.classList.add(isAllocation ? 'dm-card--allocation' : 'dm-card--session');
@@ -10913,7 +10648,7 @@
       dateEl.className = 'log-row-date';
       const dateDisplay = document.createElement('span');
       dateDisplay.className = 'display';
-      dateDisplay.textContent = fmtDate(entry.date);
+      dateDisplay.textContent = formatDate(entry.date);
       dateEl.appendChild(dateDisplay);
       dateEl.__display = dateDisplay;
       bindScrollableObserver(dateEl);
@@ -10978,8 +10713,8 @@
 
       if (isAllocation) {
         titleDisplay.textContent = 'Rewards allocated';
-        hoursVal = dmToNullableNumber(entry.hours);
-        bonusVal = dmToNullableNumber(entry.extra_hours);
+        hoursVal = toNullableNumber(entry.hours);
+        bonusVal = toNullableNumber(entry.extra_hours);
         const mentions = renderCharacterMentions(entry.allocation || '');
         if (mentions) {
           const chipLine = document.createElement('span');
@@ -10994,16 +10729,16 @@
             titleDisplay.appendChild(chipLine);
           }
         }
-        costVal = dmToNullableNumber(entry.cost);
-        levelsEarnedVal = dmToNullableNumber(entry.levels_minus);
-        levelsSpentVal = dmToNullableNumber(entry.levels_plus);
+        costVal = toNullableNumber(entry.cost);
+        levelsEarnedVal = toNullableNumber(entry.levels_minus);
+        levelsSpentVal = toNullableNumber(entry.levels_plus);
       } else {
         const sessionTitle = sanitizeTitle(entry.name || entry.code || 'DM Session');
         setElementTextWithCharacterChips(titleDisplay, sessionTitle, { label: 'DM Session', force: true });
-        hoursVal = dmToNullableNumber(entry.hours);
-        bonusVal = dmToNullableNumber(entry.extra_hours);
-        levelsEarnedVal = dmToNullableNumber(entry.levels_plus);
-        levelsSpentVal = dmToNullableNumber(entry.levels_minus);
+        hoursVal = toNullableNumber(entry.hours);
+        bonusVal = toNullableNumber(entry.extra_hours);
+        levelsEarnedVal = toNullableNumber(entry.levels_plus);
+        levelsSpentVal = toNullableNumber(entry.levels_minus);
       }
 
       const totalsChip = buildDmTotalsChip(hoursVal, bonusVal, costVal, levelsEarnedVal, levelsSpentVal);
@@ -11563,6 +11298,14 @@
     }
     function normItemName(s) { return (s || '').trim(); }
     function parseLostItemList(raw) {
+      const pipeline = getDataPipeline();
+      if (pipeline && typeof pipeline.parseItemList === 'function') {
+        try {
+          return pipeline.parseItemList(raw);
+        } catch (err) {
+          /* fall through to local parser */
+        }
+      }
       if (Array.isArray(raw)) {
         return raw.map(normItemName).filter(Boolean);
       }
@@ -11573,6 +11316,14 @@
       return tokens.length ? tokens : [normItemName(text)];
     }
     function parseAcquisitionName(s) {
+      const pipeline = getDataPipeline();
+      if (pipeline && typeof pipeline.parseAcquisitionName === 'function') {
+        try {
+          return pipeline.parseAcquisitionName(s);
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       const t = String(s || '').trim();
       if (!t) return { name: '', acquired: true };
       const wrappedRemoval = t.match(/^\((.*)\)$/);
@@ -11587,6 +11338,17 @@
     }
 
     function buildAdventureInventoryOperation(adv) {
+      const pipeline = getDataPipeline();
+      if (pipeline && typeof pipeline.buildAdventureInventoryOperation === 'function') {
+        try {
+          const operation = pipeline.buildAdventureInventoryOperation(adv);
+          if (operation && Array.isArray(operation.adds) && Array.isArray(operation.removes)) {
+            return operation;
+          }
+        } catch (err) {
+          /* fall through to local fallback */
+        }
+      }
       const operation = { adds: [], removes: [] };
       if (!adv || typeof adv !== 'object') return operation;
       const pushAddition = (raw) => {
@@ -11637,88 +11399,6 @@
       return __MIN_TIME;
     }
 
-    function cloneInventoryCounts(source) {
-      const clone = new Map();
-      if (!source) return clone;
-      source.forEach((value, key) => {
-        if (Number.isFinite(value) && value > 0) {
-          clone.set(key, value);
-        }
-      });
-      return clone;
-    }
-
-    function canApplyInventoryOperation(operation, inventory) {
-      if (!operation || !Array.isArray(operation.removes) || !operation.removes.length) return true;
-      const needed = new Map();
-      operation.removes.forEach((key) => {
-        const current = needed.get(key) || 0;
-        needed.set(key, current + 1);
-      });
-      for (const [key, count] of needed.entries()) {
-        if ((inventory.get(key) || 0) < count) {
-          return false;
-        }
-      }
-      return true;
-    }
-
-    function applyInventoryOperation(inventory, operation) {
-      if (!inventory || !operation) return;
-      if (Array.isArray(operation.removes)) {
-        operation.removes.forEach((key) => {
-          const current = inventory.get(key) || 0;
-          if (current <= 1) {
-            inventory.delete(key);
-          } else {
-            inventory.set(key, current - 1);
-          }
-        });
-      }
-      if (Array.isArray(operation.adds)) {
-        operation.adds.forEach((key) => {
-          const current = inventory.get(key) || 0;
-          inventory.set(key, current + 1);
-        });
-      }
-    }
-
-    function orderChronoGroup(entries, inventory) {
-      if (!Array.isArray(entries) || entries.length <= 1) {
-        return Array.isArray(entries) ? entries.slice() : [];
-      }
-      const nodes = entries.map(entry => ({
-        adv: entry.adv,
-        index: entry.index,
-        baseTime: entry.baseTime,
-        ops: entry.ops
-      }));
-      const sorted = nodes.slice().sort((a, b) => a.index - b.index);
-      const used = new Array(sorted.length).fill(false);
-      const sequence = [];
-      const attemptOrder = (currentInventory) => {
-        if (sequence.length === sorted.length) return true;
-        for (let i = 0; i < sorted.length; i += 1) {
-          if (used[i]) continue;
-          const candidate = sorted[i];
-          if (!canApplyInventoryOperation(candidate.ops, currentInventory)) continue;
-          used[i] = true;
-          sequence.push(candidate);
-          const nextInventory = cloneInventoryCounts(currentInventory);
-          applyInventoryOperation(nextInventory, candidate.ops);
-          if (attemptOrder(nextInventory)) return true;
-          sequence.pop();
-          used[i] = false;
-        }
-        return false;
-      };
-      const success = attemptOrder(cloneInventoryCounts(inventory));
-      if (success) {
-        return sequence.slice();
-      }
-      return sorted;
-    }
-
     function ensureCharacterChronology(charKey) {
       if (!DATA || !DATA.characters) return;
       const ch = DATA.characters[charKey];
@@ -11729,39 +11409,22 @@
       if (!needsChrono) {
         return;
       }
-      const decorated = ch.adventures.map((adv, idx) => ({
-        adv,
-        index: idx,
-        baseTime: adventureBaseTime(adv),
-        ops: buildAdventureInventoryOperation(adv)
-      }));
-      const groupsMap = new Map();
-      decorated.forEach((entry) => {
-        const key = Number.isFinite(entry.baseTime) ? String(entry.baseTime) : '__invalid__';
-        if (!groupsMap.has(key)) groupsMap.set(key, []);
-        groupsMap.get(key).push(entry);
-      });
-      const groups = Array.from(groupsMap.values()).sort((a, b) => {
-        const timeA = Math.min(...a.map(entry => Number.isFinite(entry.baseTime) ? entry.baseTime : __MIN_TIME));
-        const timeB = Math.min(...b.map(entry => Number.isFinite(entry.baseTime) ? entry.baseTime : __MIN_TIME));
-        if (timeA !== timeB) return timeA - timeB;
-        const idxA = Math.min(...a.map(entry => entry.index));
-        const idxB = Math.min(...b.map(entry => entry.index));
-        return idxA - idxB;
-      });
-      const inventory = new Map();
-      let chronoCounter = 0;
-      groups.forEach((group) => {
-        const ordered = orderChronoGroup(group, inventory);
-        ordered.forEach((entry, pos) => {
-          const base = Number.isFinite(entry.baseTime) ? entry.baseTime : __MIN_TIME;
-          const hint = Number.isFinite(base) ? base + pos : __MIN_TIME + pos;
-          if (entry.adv && typeof entry.adv === 'object') {
-            entry.adv.chrono_timestamp = hint;
-            entry.adv.chrono_index = chronoCounter++;
-          }
-          applyInventoryOperation(inventory, entry.ops);
-        });
+      const pipeline = getDataPipeline();
+      if (pipeline && typeof pipeline.stampCharacterChronology === 'function') {
+        try {
+          pipeline.stampCharacterChronology(ch.adventures);
+          return;
+        } catch (err) {
+          /* fall through to local chronology fallback */
+        }
+      }
+      const decorated = ch.adventures.map((adv, idx) => ({ adv, idx, baseTime: adventureBaseTime(adv) }))
+        .sort((a, b) => (a.baseTime - b.baseTime) || (a.idx - b.idx));
+      decorated.forEach((entry, order) => {
+        if (!entry.adv || typeof entry.adv !== 'object') return;
+        const base = Number.isFinite(entry.baseTime) ? entry.baseTime : __MIN_TIME;
+        entry.adv.chrono_timestamp = base + order;
+        entry.adv.chrono_index = order;
       });
     }
 
@@ -14928,7 +14591,15 @@
       let downtimeTag = null;
 
       const dateSpan = document.createElement('span'); dateSpan.className = 'log-row-date editable-inline';
-      const dateDisplay = document.createElement('span'); dateDisplay.className = 'display'; dateDisplay.textContent = fmtDate(a.date);
+      const dateDisplay = document.createElement('span'); dateDisplay.className = 'display'; dateDisplay.textContent = (() => {
+        const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+        if (chronologyUtils && typeof chronologyUtils.fmtDate === 'function') {
+          try { return chronologyUtils.fmtDate(a.date); }
+          catch (err) { /* fall through to local fallback */ }
+        }
+        const text = String(a.date || '').trim();
+        return text || '—';
+      })();
       const dateEditor = document.createElement('span'); dateEditor.className = 'editor';
       dateSpan.append(dateDisplay, dateEditor); dateSpan.__display = dateDisplay; dateSpan.__editor = dateEditor;
       dateEditorSlot = dateEditor; dateDisplayEl = dateDisplay;
@@ -15816,7 +15487,15 @@
         const dateValue = a.date ? String(a.date).slice(0, 10) : '';
         controls.date.value = dateValue;
         if (dateDisplayEl) {
-          dateDisplayEl.textContent = fmtDate(a.date);
+          dateDisplayEl.textContent = (() => {
+            const chronologyUtils = (typeof window === 'undefined') ? null : (window.AL_CHRONOLOGY_UTILS || null);
+            if (chronologyUtils && typeof chronologyUtils.fmtDate === 'function') {
+              try { return chronologyUtils.fmtDate(a.date); }
+              catch (err) { /* fall through to local fallback */ }
+            }
+            const text = String(a.date || '').trim();
+            return text || '—';
+          })();
           refreshScrollableWrapper(dateSpan);
         }
 
@@ -17056,3 +16735,8 @@
 </body>
 
 </html>
+
+
+
+
+

@@ -3,6 +3,7 @@
 
   const GLOBAL_SCOPE = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : global);
   const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  const ALLOWED_KINDS = new Set(['adventure','Downtime Activity']);
   let adventureUidCounter = 0;
 
   function nextAdventureUid(){
@@ -88,6 +89,10 @@ function pushIssue(issues,{ severity='error', code='unknown', message='', path='
     const match = text.match(/^\((.*)\)$/);
     if(match){
       return { name: match[1].trim(), acquired:false };
+    }
+    const prefixedRemoval = text.match(/^(?:-|lost\s*:|remove\s*:|traded\s*(?:away)?\s*:?)\s*(.+)$/i);
+    if(prefixedRemoval){
+      return { name: prefixedRemoval[1].trim(), acquired:false };
     }
     return { name: text.trim(), acquired:true };
   }
@@ -753,6 +758,378 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
     return { data: normalized, issues };
   }
 
+  function isPlainObject(value){
+    if(!value || typeof value !== 'object' || Array.isArray(value)){
+      return false;
+    }
+    const proto = Object.getPrototypeOf(value);
+    return proto === Object.prototype || proto === null;
+  }
+
+  function isValidIsoDateText(value){
+    if(typeof value !== 'string' || !ISO_DATE_RE.test(value)){
+      return false;
+    }
+    const parsed = new Date(value);
+    if(Number.isNaN(parsed.getTime())){
+      return false;
+    }
+    try{
+      return parsed.toISOString().slice(0,10) === value;
+    }catch(err){
+      return false;
+    }
+  }
+
+  function pushSchemaIssue(issues,{ code='schema_violation', message='', path='', charKey=null, adventureIndex=null, field=null }){
+    pushIssue(issues,{
+      severity:'error',
+      code,
+      message,
+      path,
+      charKey,
+      adventureIndex,
+      field
+    });
+  }
+
+  function validateStringArray(value,issues,{ path, code, message, charKey=null, adventureIndex=null, field=null }){
+    if(!Array.isArray(value)){
+      pushSchemaIssue(issues,{ code, message, path, charKey, adventureIndex, field });
+      return false;
+    }
+    let valid = true;
+    value.forEach((item,itemIndex)=>{
+      if(typeof item !== 'string' || !item.trim()){
+        valid = false;
+        pushSchemaIssue(issues,{
+          code:'invalid_array_item',
+          message:`${field || path} must contain non-empty strings.`,
+          path:`${path}[${itemIndex}]`,
+          charKey,
+          adventureIndex,
+          field
+        });
+      }
+    });
+    return valid;
+  }
+
+  function validateTradeShape(trade,issues,{ path, charKey=null, adventureIndex=null }){
+    if(trade == null){
+      return;
+    }
+    if(!isPlainObject(trade)){
+      pushSchemaIssue(issues,{
+        code:'invalid_trade_shape',
+        message:'trade must be an object when present.',
+        path,
+        charKey,
+        adventureIndex,
+        field:'trade'
+      });
+      return;
+    }
+    const allowedKeys = new Set(['given','received','counterpartyCharacter','counterpartyPlayer']);
+    const keys = Object.keys(trade);
+    if(!keys.length){
+      pushSchemaIssue(issues,{
+        code:'invalid_trade_shape',
+        message:'trade must include at least one field.',
+        path,
+        charKey,
+        adventureIndex,
+        field:'trade'
+      });
+      return;
+    }
+    keys.forEach((key)=>{
+      const keyPath = `${path}.${key}`;
+      if(!allowedKeys.has(key)){
+        pushSchemaIssue(issues,{
+          code:'invalid_trade_field',
+          message:`trade field "${key}" is not allowed.`,
+          path:keyPath,
+          charKey,
+          adventureIndex,
+          field:'trade'
+        });
+        return;
+      }
+      if(typeof trade[key] !== 'string' || !trade[key].trim()){
+        pushSchemaIssue(issues,{
+          code:'invalid_trade_shape',
+          message:'trade values must be non-empty strings.',
+          path:keyPath,
+          charKey,
+          adventureIndex,
+          field:'trade'
+        });
+      }
+    });
+  }
+
+  function validateInventoryStateShape(inventoryState,issues,{ path, charKey=null }){
+    if(inventoryState == null){
+      return;
+    }
+    if(!isPlainObject(inventoryState)){
+      pushSchemaIssue(issues,{
+        code:'invalid_inventory_state',
+        message:'inventory_state must be an object when present.',
+        path,
+        charKey,
+        field:'inventory_state'
+      });
+      return;
+    }
+    const activeOk = validateStringArray(inventoryState.active,issues,{
+      path:`${path}.active`,
+      code:'invalid_inventory_state',
+      message:'inventory_state.active must be an array of strings.',
+      charKey,
+      field:'inventory_state.active'
+    });
+    const attunedOk = validateStringArray(inventoryState.attuned,issues,{
+      path:`${path}.attuned`,
+      code:'invalid_inventory_state',
+      message:'inventory_state.attuned must be an array of strings.',
+      charKey,
+      field:'inventory_state.attuned'
+    });
+    validateStringArray(inventoryState.common,issues,{
+      path:`${path}.common`,
+      code:'invalid_inventory_state',
+      message:'inventory_state.common must be an array of strings.',
+      charKey,
+      field:'inventory_state.common'
+    });
+    if(attunedOk && inventoryState.attuned.length > 3){
+      pushSchemaIssue(issues,{
+        code:'invalid_inventory_state',
+        message:'inventory_state.attuned cannot contain more than 3 items.',
+        path:`${path}.attuned`,
+        charKey,
+        field:'inventory_state.attuned'
+      });
+    }
+    if(activeOk && attunedOk){
+      const active = new Set(inventoryState.active.map(item => item.toLowerCase()));
+      inventoryState.attuned.forEach((item,itemIndex)=>{
+        if(!active.has(item.toLowerCase())){
+          pushSchemaIssue(issues,{
+            code:'invalid_inventory_state',
+            message:'inventory_state.attuned items must also exist in inventory_state.active.',
+            path:`${path}.attuned[${itemIndex}]`,
+            charKey,
+            field:'inventory_state.attuned'
+          });
+        }
+      });
+    }
+  }
+
+  function validateNormalizedData(data){
+    const issues = [];
+    if(!isPlainObject(data)){
+      pushSchemaIssue(issues,{
+        code:'invalid_data',
+        message:'Data must be an object.',
+        path:''
+      });
+      return { issues };
+    }
+    if(!isPlainObject(data.characters)){
+      pushSchemaIssue(issues,{
+        code:'invalid_characters_object',
+        message:'characters must be an object keyed by character id.',
+        path:'characters',
+        field:'characters'
+      });
+      return { issues };
+    }
+
+    Object.entries(data.characters).forEach(([charKey,character])=>{
+      const charPath = `characters.${charKey}`;
+      if(!isPlainObject(character)){
+        pushSchemaIssue(issues,{
+          code:'invalid_character',
+          message:'Character payload must be an object.',
+          path:charPath,
+          charKey
+        });
+        return;
+      }
+      if(!Array.isArray(character.adventures)){
+        pushSchemaIssue(issues,{
+          code:'invalid_adventures_array',
+          message:'Character adventures must be an array.',
+          path:`${charPath}.adventures`,
+          charKey,
+          field:'adventures'
+        });
+        return;
+      }
+      validateInventoryStateShape(character.inventory_state,issues,{
+        path:`${charPath}.inventory_state`,
+        charKey
+      });
+      character.adventures.forEach((adventure,adventureIndex)=>{
+        const advPath = `${charPath}.adventures[${adventureIndex}]`;
+        if(!isPlainObject(adventure)){
+          pushSchemaIssue(issues,{
+            code:'invalid_adventure',
+            message:'Adventure payload must be an object.',
+            path:advPath,
+            charKey,
+            adventureIndex
+          });
+          return;
+        }
+        const requiredFields = [
+          'title','date','kind','gp_plus','gp_minus','gp_net','dtd_plus','dtd_minus','dtd_net',
+          'level_plus','perm_items','lost_perm_item','consumable_items','supernatural_gifts','story_awards','notes'
+        ];
+        requiredFields.forEach((field)=>{
+          if(!Object.prototype.hasOwnProperty.call(adventure,field)){
+            pushSchemaIssue(issues,{
+              code:'missing_required_field',
+              message:`Adventure missing required field "${field}".`,
+              path:`${advPath}.${field}`,
+              charKey,
+              adventureIndex,
+              field
+            });
+          }
+        });
+
+        if(typeof adventure.title !== 'string' || !adventure.title.trim()){
+          pushSchemaIssue(issues,{
+            code:'invalid_title',
+            message:'Adventure title must be a non-empty string.',
+            path:`${advPath}.title`,
+            charKey,
+            adventureIndex,
+            field:'title'
+          });
+        }
+        if(typeof adventure.date !== 'string' || !isValidIsoDateText(adventure.date)){
+          pushSchemaIssue(issues,{
+            code:'invalid_iso_date',
+            message:'Adventure date must be an ISO date string (YYYY-MM-DD).',
+            path:`${advPath}.date`,
+            charKey,
+            adventureIndex,
+            field:'date'
+          });
+        }
+        if(typeof adventure.kind !== 'string' || !ALLOWED_KINDS.has(adventure.kind)){
+          pushSchemaIssue(issues,{
+            code:'invalid_kind',
+            message:'Adventure kind must be one of: adventure, Downtime Activity.',
+            path:`${advPath}.kind`,
+            charKey,
+            adventureIndex,
+            field:'kind'
+          });
+        }
+
+        ['gp_plus','gp_minus','gp_net','dtd_plus','dtd_minus','dtd_net','level_plus'].forEach((field)=>{
+          const value = adventure[field];
+          if(typeof value !== 'number' || !Number.isFinite(value)){
+            pushSchemaIssue(issues,{
+              code:'invalid_number',
+              message:`Adventure field "${field}" must be a finite number.`,
+              path:`${advPath}.${field}`,
+              charKey,
+              adventureIndex,
+              field
+            });
+          }
+        });
+
+        validateStringArray(adventure.perm_items,issues,{
+          path:`${advPath}.perm_items`,
+          code:'invalid_item_array',
+          message:'perm_items must be an array of strings.',
+          charKey,
+          adventureIndex,
+          field:'perm_items'
+        });
+        validateStringArray(adventure.lost_perm_item,issues,{
+          path:`${advPath}.lost_perm_item`,
+          code:'invalid_item_array',
+          message:'lost_perm_item must be an array of strings.',
+          charKey,
+          adventureIndex,
+          field:'lost_perm_item'
+        });
+        validateStringArray(adventure.consumable_items,issues,{
+          path:`${advPath}.consumable_items`,
+          code:'invalid_item_array',
+          message:'consumable_items must be an array of strings.',
+          charKey,
+          adventureIndex,
+          field:'consumable_items'
+        });
+        validateStringArray(adventure.supernatural_gifts,issues,{
+          path:`${advPath}.supernatural_gifts`,
+          code:'invalid_item_array',
+          message:'supernatural_gifts must be an array of strings.',
+          charKey,
+          adventureIndex,
+          field:'supernatural_gifts'
+        });
+        validateStringArray(adventure.story_awards,issues,{
+          path:`${advPath}.story_awards`,
+          code:'invalid_item_array',
+          message:'story_awards must be an array of strings.',
+          charKey,
+          adventureIndex,
+          field:'story_awards'
+        });
+
+        if(typeof adventure.notes !== 'string'){
+          pushSchemaIssue(issues,{
+            code:'invalid_notes',
+            message:'Adventure notes must be a string.',
+            path:`${advPath}.notes`,
+            charKey,
+            adventureIndex,
+            field:'notes'
+          });
+        }
+        if(adventure.code != null && typeof adventure.code !== 'string'){
+          pushSchemaIssue(issues,{
+            code:'invalid_code',
+            message:'Adventure code must be a string when present.',
+            path:`${advPath}.code`,
+            charKey,
+            adventureIndex,
+            field:'code'
+          });
+        }
+        if(adventure.dm != null && typeof adventure.dm !== 'string'){
+          pushSchemaIssue(issues,{
+            code:'invalid_dm',
+            message:'Adventure dm must be a string when present.',
+            path:`${advPath}.dm`,
+            charKey,
+            adventureIndex,
+            field:'dm'
+          });
+        }
+        validateTradeShape(adventure.trade,issues,{
+          path:`${advPath}.trade`,
+          charKey,
+          adventureIndex
+        });
+      });
+    });
+
+    return { issues };
+  }
+
   function tokenize(value){
     if(value == null) return [];
     const text = Array.isArray(value) ? value.join(' ') : String(value);
@@ -821,11 +1198,12 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
 
   function validateData(data){
     if(!data || typeof data !== 'object'){
-      return { issues:[{ severity:'error', code:'invalid_data', message:'Data is empty.' }] };
+      return { issues:[{ severity:'error', code:'invalid_data', message:'Data is empty.', path:'' }] };
     }
     try{
       const result = normalizeData(data);
-      return { issues: result.issues };
+      const schema = validateNormalizedData(result.data);
+      return { issues: result.issues.concat(schema.issues || []) };
     }catch(err){
       return { issues:[{ severity:'error', code:'validation_failure', message: String(err) }] };
     }
@@ -834,9 +1212,14 @@ function normalizeDate(value,{ issues, charKey, adventureId, adventureIndex=null
   const api = {
     normalizeData,
     normalizeTrade,
+    parseAcquisitionName,
+    parseItemList,
+    buildAdventureInventoryOperation,
+    stampCharacterChronology,
     buildAdventureSearchText,
     prepareForSave,
-    validateData
+    validateData,
+    validateNormalizedData
   };
 
   Object.defineProperty(api,'tokenize',{ value:tokenize, enumerable:true });

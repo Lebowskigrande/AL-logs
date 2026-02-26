@@ -1,26 +1,30 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from textwrap import dedent
+from typing import Any, Dict, Iterable, List
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_JS_PATH = ROOT / "data" / "data.js"
 OUTPUT_PATH = Path(__file__).with_name("missing_adventure_codes.md")
 
-PREFIX = "export const DATA = "
+DATA_ASSIGNMENT_PATTERN = re.compile(
+    r"^\s*(?:window\.DATA|export\s+const\s+DATA)\s*=\s*(\{[\s\S]*\})\s*;?\s*$",
+    re.MULTILINE,
+)
+
 
 def load_data() -> dict:
     raw_text = DATA_JS_PATH.read_text(encoding="utf-8")
-    if not raw_text.startswith(PREFIX):
-        raise ValueError("Unexpected data/data.js format: missing expected prefix")
-    json_text = raw_text[len(PREFIX):].strip()
-    if json_text.endswith(";"):
-        json_text = json_text[:-1]
-    return json.loads(json_text)
+    match = DATA_ASSIGNMENT_PATTERN.search(raw_text)
+    if not match:
+        raise ValueError("Unexpected data/data.js format: missing DATA assignment")
+    return json.loads(match.group(1))
 
 
-def format_cell(value):
+def format_cell(value: Any) -> str:
     if value is None:
         return ""
     if isinstance(value, float):
@@ -28,50 +32,79 @@ def format_cell(value):
     return str(value).replace("\n", " ")
 
 
-def collect_missing_entries(data: dict) -> list[dict]:
-    entries: list[dict] = []
-    for character, info in sorted(data.get("characters", {}).items()):
-        for idx, log in enumerate(info.get("logs", []), start=1):
-            if log.get("adventureCode"):
+def read_first(entry: Dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        if key in entry and entry.get(key) not in (None, ""):
+            return entry.get(key)
+    return None
+
+
+def iter_character_entries(character_info: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
+    adventures = character_info.get("adventures")
+    if isinstance(adventures, list):
+        return adventures
+    logs = character_info.get("logs")
+    if isinstance(logs, list):
+        return logs
+    return []
+
+
+def collect_missing_entries(data: dict) -> List[dict]:
+    entries: List[dict] = []
+    characters = data.get("characters", {})
+    if not isinstance(characters, dict):
+        return entries
+
+    for character, info in sorted(characters.items()):
+        if not isinstance(info, dict):
+            continue
+        for idx, entry in enumerate(iter_character_entries(info), start=1):
+            if not isinstance(entry, dict):
+                continue
+            code = read_first(entry, "code", "adventureCode")
+            if code:
                 continue
             entries.append(
                 {
                     "character": character,
-                    "log_index": idx,
-                    "date": log.get("date"),
-                    "adventureName": log.get("adventureName"),
-                    "dm": log.get("dm"),
-                    "downtimePlus": log.get("downtimePlus"),
-                    "downtimeMinus": log.get("downtimeMinus"),
-                    "goldPlus": log.get("goldPlus"),
-                    "goldMinus": log.get("goldMinus"),
-                    "notes": log.get("notes"),
+                    "entry_index": idx,
+                    "date": read_first(entry, "date"),
+                    "title": read_first(entry, "title", "adventureName"),
+                    "dm": read_first(entry, "dm"),
+                    "downtime_plus": read_first(entry, "dtd_plus", "downtimePlus") or 0,
+                    "downtime_minus": read_first(entry, "dtd_minus", "downtimeMinus") or 0,
+                    "gold_plus": read_first(entry, "gp_plus", "goldPlus") or 0,
+                    "gold_minus": read_first(entry, "gp_minus", "goldMinus") or 0,
+                    "notes": read_first(entry, "notes"),
                 }
             )
     return entries
 
 
-def build_markdown(entries: list[dict]) -> str:
+def build_markdown(entries: List[dict]) -> str:
     header = dedent(
         """
         # Log Entries Missing Adventure Codes
 
-        The table below enumerates every log entry whose `adventureCode` field is empty. Use this list to manually review and classify each entry as an adventure or a downtime activity.
+        The table below enumerates entries whose adventure code is empty (`code` in the current schema, `adventureCode` in legacy data). Use this list to manually review and classify each entry as an adventure or downtime activity.
 
-        | Character | Log # | Date | Adventure Name | DM | Downtime (+/−) | Gold (+/−) | Notes |
+        | Character | Entry # | Date | Title | DM | Downtime (+/-) | Gold (+/-) | Notes |
         | --- | --- | --- | --- | --- | --- | --- | --- |
         """
     ).strip()
+    if not entries:
+        return header + "\n| (none) |  |  |  |  |  |  |  |\n"
+
     rows = []
     for entry in entries:
-        downtime = format_cell(entry["downtimePlus"]) + " / " + format_cell(entry["downtimeMinus"])
-        gold = format_cell(entry["goldPlus"]) + " / " + format_cell(entry["goldMinus"])
+        downtime = format_cell(entry["downtime_plus"]) + " / " + format_cell(entry["downtime_minus"])
+        gold = format_cell(entry["gold_plus"]) + " / " + format_cell(entry["gold_minus"])
         row = "| " + " | ".join(
             [
                 format_cell(entry["character"]),
-                format_cell(entry["log_index"]),
+                format_cell(entry["entry_index"]),
                 format_cell(entry["date"]),
-                format_cell(entry["adventureName"]),
+                format_cell(entry["title"]),
                 format_cell(entry["dm"]),
                 downtime,
                 gold,

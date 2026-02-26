@@ -1,23 +1,22 @@
 Type,Key,Required,Description
-Log Entry,date,Optional,"Session or activity date; any parseable date string is accepted."
-Log Entry,adventureCode,Optional,"Module code; used for display and as a fallback title if adventureName is missing."
-Log Entry,adventureName,Optional,"Module or activity name; preferred title text."
-Log Entry,dm,Optional,"Dungeon Master’s name."
-Log Entry,levelPlus,Optional,"Levels gained (numeric). Defaults to 0 if omitted."
-Log Entry,downtimePlus,Optional,"Downtime days earned (numeric). Defaults to 0 if omitted."
-Log Entry,downtimeMinus,Optional,"Downtime days spent (numeric). Defaults to 0 if omitted."
-Log Entry,goldPlus,Optional,"Gold earned (numeric). Defaults to 0 if omitted."
-Log Entry,goldMinus,Optional,"Gold spent (numeric). Defaults to 0 if omitted."
-Log Entry,permItems,Optional,"Array of permanent magic items awarded in the entry."
-Log Entry,consumables,Optional,"Array of consumable items awarded in the entry."
-Log Entry,storyRewards,Optional,"Array of story awards gained in the entry."
-Log Entry,supernaturalGiftsFoundHere,Optional,"Array of supernatural gifts granted during the entry."
-Log Entry,notes,Optional,"Free-form notes string; also used when no trade note is provided."
-Log Entry,lossesParsed,Optional,"Array of strings describing permanent items lost; concatenated into lost_perm_item if present."
-Log Entry,tradesParsed,Optional,"Array of trade objects; only the first element is rendered, but it must exist for trade handling."
-Log Entry,"entryKind / entryType / kind / category / type",Optional,"Any one of these may be supplied to hint the entry classification (adventure vs. Downtime Activity)."
-Trade Object,given,Optional,"Item the character gave up; legacy keys itemGiven/itemTraded are accepted during import."
-Trade Object,received,Optional,"Item received from the trade counterparty."
-Trade Object,counterpartyPlayer,Optional,"Name of the other player involved."
-Trade Object,counterpartyCharacter,Optional,"Name of the other character involved."
-Trade Object,notes,Optional,"Trade-specific notes; fills the entry’s notes field if it was otherwise empty."
+Character,display_name,Required,Display name for UI labels and summaries.
+Character,sheet,Required,Canonical sheet/character name.
+Character,adventures,Required,"Array of adventure or downtime entries (legacy `logs` is still accepted by some migration scripts)."
+Entry,date,Required,Session or activity date in ISO format (YYYY-MM-DD preferred).
+Entry,title,Required,"Module or activity name (legacy alias: `adventureName`)."
+Entry,code,Optional,"Module/activity code (legacy alias: `adventureCode`)."
+Entry,kind,Optional,"Entry classification; `adventure` or `Downtime Activity`."
+Entry,dm,Optional,Dungeon Master name.
+Entry,gp_plus,Optional,"Gold earned (legacy alias: `goldPlus`)."
+Entry,gp_minus,Optional,"Gold spent (legacy alias: `goldMinus`)."
+Entry,dtd_plus,Optional,"Downtime earned (legacy alias: `downtimePlus`)."
+Entry,dtd_minus,Optional,"Downtime spent (legacy alias: `downtimeMinus`)."
+Entry,level_plus,Optional,"Levels gained (legacy alias: `levelPlus`)."
+Entry,perm_items,Optional,Array of permanent items gained.
+Entry,lost_perm_item,Optional,Array of permanent items lost.
+Entry,consumable_items,Optional,Array of consumable items gained.
+Entry,supernatural_gifts,Optional,Array of supernatural gifts gained.
+Entry,story_awards,Optional,Array of story awards gained.
+Entry,notes,Optional,Free-form notes.
+Trade,trade,Optional,"Trade object for modern schema with keys `given`, `received`, `counterpartyCharacter`, `counterpartyPlayer`."
+Trade,trades,Optional,"Legacy trade array using `tradeItemGiven`, `tradeItemReceived`, `tradeCharacterName`, `tradePlayerName`, `tradeNotes`."

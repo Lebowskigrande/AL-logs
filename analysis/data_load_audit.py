@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inspect data.js and related bootstrap markup for loading issues."""
+"""Inspect data/data.js and related bootstrap markup for loading issues."""
 
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ def main() -> None:
     summary = summarise_data(data)
     html_diag = inspect_index_bootstrap()
 
-    print("Data.js summary:")
+    print("data/data.js summary:")
     print(f"  Characters: {summary.characters}")
     print(f"  Adventures: {summary.adventures}")
     print(f"  Characters missing adventures: {format_list(summary.empty_characters)}")

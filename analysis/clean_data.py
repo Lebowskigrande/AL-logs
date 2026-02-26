@@ -4,7 +4,7 @@ import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Iterable, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "data.js"
@@ -40,6 +40,7 @@ ADVENTURE_CODE_REMAP = {
     "dm rewards": "DM-REWARD",
 }
 
+
 @dataclass
 class ManualIssue:
     character: str
@@ -68,7 +69,7 @@ def load_data() -> Dict[str, Any]:
     prefix = _detect_prefix(raw)
     global _current_prefix
     _current_prefix = prefix
-    json_blob = raw[len(prefix):].strip()
+    json_blob = raw[len(prefix) :].strip()
     if json_blob.endswith(";"):
         json_blob = json_blob[:-1]
     return json.loads(json_blob)
@@ -78,6 +79,35 @@ def write_data(data: Dict[str, Any]) -> None:
     json_blob = json.dumps(data, indent=2, ensure_ascii=False)
     prefix = _current_prefix or DEFAULT_PREFIX
     DATA_PATH.write_text(f"{prefix}{json_blob};\n", encoding="utf-8")
+
+
+def iter_character_entries(character_info: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
+    adventures = character_info.get("adventures")
+    if isinstance(adventures, list):
+        return adventures
+    logs = character_info.get("logs")
+    if isinstance(logs, list):
+        return logs
+    return []
+
+
+def get_title(log: Dict[str, Any]) -> str:
+    return (log.get("title") or log.get("adventureName") or "").strip()
+
+
+def get_code(log: Dict[str, Any]) -> str:
+    return (log.get("code") or log.get("adventureCode") or "").strip()
+
+
+def set_code(log: Dict[str, Any], value: str) -> None:
+    if "code" in log or "adventureCode" not in log:
+        log["code"] = value
+    if "adventureCode" in log:
+        log["adventureCode"] = value
+
+
+def is_modern_entry(log: Dict[str, Any]) -> bool:
+    return "title" in log or "code" in log or "trade" in log
 
 
 def clean_trade_entry(
@@ -95,7 +125,7 @@ def clean_trade_entry(
         return
 
     prefix = raw_note[: match.start()].strip(" .;")
-    clause_and_after = raw_note[match.start():].strip()
+    clause_and_after = raw_note[match.start() :].strip()
 
     clause = clause_and_after
     remainder_parts: List[str] = []
@@ -114,16 +144,16 @@ def clean_trade_entry(
 
     lower_clause = clause.lower()
     if lower_clause.startswith("traded "):
-        body = clause[len("traded "):].strip()
+        body = clause[len("traded ") :].strip()
     elif lower_clause.startswith("trade "):
-        body = clause[len("trade "):].strip()
+        body = clause[len("trade ") :].strip()
     else:
         manual_issues.append(
             ManualIssue(
                 character,
                 index,
                 log.get("date"),
-                log.get("adventureName"),
+                get_title(log),
                 "Unrecognised trade phrasing",
                 raw_note,
             )
@@ -139,7 +169,7 @@ def clean_trade_entry(
                 character,
                 index,
                 log.get("date"),
-                log.get("adventureName"),
+                get_title(log),
                 "Could not parse trade structure",
                 raw_note,
             )
@@ -153,7 +183,7 @@ def clean_trade_entry(
                 character,
                 index,
                 log.get("date"),
-                log.get("adventureName"),
+                get_title(log),
                 "Trade note missing trading counterparty",
                 raw_note,
             )
@@ -177,7 +207,7 @@ def clean_trade_entry(
                 character,
                 index,
                 log.get("date"),
-                log.get("adventureName"),
+                get_title(log),
                 "Trade counterparty unresolved",
                 raw_note,
             )
@@ -190,7 +220,7 @@ def clean_trade_entry(
                 character,
                 index,
                 log.get("date"),
-                log.get("adventureName"),
+                get_title(log),
                 "Trade reward unresolved",
                 raw_note,
             )
@@ -199,28 +229,33 @@ def clean_trade_entry(
 
     trade_notes = " ".join(remainder_parts).strip() or None
 
-    trade = log.get("trades", [{}])
-    if trade:
-        first = trade[0]
+    if is_modern_entry(log):
+        trade = log.get("trade") if isinstance(log.get("trade"), dict) else {}
+        trade["given"] = given or ""
+        trade["received"] = received or ""
+        trade["counterpartyCharacter"] = counterparty or ""
+        if "counterpartyPlayer" not in trade:
+            trade["counterpartyPlayer"] = ""
+        log["trade"] = trade
     else:
-        first = {}
-        trade.append(first)
+        trades = log.get("trades", [{}])
+        first = trades[0] if trades else {}
+        first["tradeItemGiven"] = given or None
+        first["tradeItemReceived"] = received or None
+        first["tradeCharacterName"] = counterparty or None
+        first["tradePlayerName"] = first.get("tradePlayerName") or None
+        first["tradeNotes"] = trade_notes
+        log["trades"] = [first]
 
-    first["tradeItemGiven"] = given or None
-    first["tradeItemReceived"] = received or None
-    first["tradeCharacterName"] = counterparty or None
-    first["tradePlayerName"] = first.get("tradePlayerName") or None
-    first["tradeNotes"] = trade_notes
-
-    log["trades"] = [first]
     log["notes"] = trade_notes
 
 
 def normalise_adventure_code(log: Dict[str, Any]) -> Optional[str]:
-    code = log.get("adventureCode")
+    code = get_code(log)
     if code:
         return code
-    name = (log.get("adventureName") or "").strip()
+
+    name = get_title(log)
     lower = name.lower()
     if not name:
         return None
@@ -249,53 +284,81 @@ def normalise_adventure_code(log: Dict[str, Any]) -> Optional[str]:
     return None
 
 
+def clean_legacy_trades(log: Dict[str, Any]) -> None:
+    for trade in log.get("trades", []):
+        if not isinstance(trade, dict):
+            continue
+        given = trade.get("tradeItemGiven")
+        if isinstance(given, str):
+            trade["tradeItemGiven"] = ITEM_CORRECTIONS.get(given, given)
+        received = trade.get("tradeItemReceived")
+        if isinstance(received, str):
+            trade["tradeItemReceived"] = ITEM_CORRECTIONS.get(received, received)
+        counterparty = trade.get("tradeCharacterName")
+        if isinstance(counterparty, str):
+            trade["tradeCharacterName"] = COUNTERPARTY_CORRECTIONS.get(counterparty, counterparty)
+        notes = trade.get("tradeNotes")
+        if isinstance(notes, str) and not notes.strip():
+            trade["tradeNotes"] = None
+
+
+def clean_modern_trade(log: Dict[str, Any]) -> None:
+    trade = log.get("trade")
+    if not isinstance(trade, dict):
+        return
+
+    given = trade.get("given")
+    if isinstance(given, str):
+        trade["given"] = ITEM_CORRECTIONS.get(given, given)
+
+    received = trade.get("received")
+    if isinstance(received, str):
+        trade["received"] = ITEM_CORRECTIONS.get(received, received)
+
+    counterparty = trade.get("counterpartyCharacter")
+    if isinstance(counterparty, str):
+        trade["counterpartyCharacter"] = COUNTERPARTY_CORRECTIONS.get(counterparty, counterparty)
+
+
 def clean() -> None:
     data = load_data()
     manual: List[ManualIssue] = []
 
     for character, info in data.get("characters", {}).items():
-        for index, log in enumerate(info.get("logs", []), start=1):
-            # Standardise empty notes to None.
+        if not isinstance(info, dict):
+            continue
+        for index, log in enumerate(iter_character_entries(info), start=1):
+            if not isinstance(log, dict):
+                continue
+
+            # Standardise empty notes.
             if isinstance(log.get("notes"), str) and not log["notes"].strip():
-                log["notes"] = None
+                log["notes"] = "" if is_modern_entry(log) else None
 
             # Normalise trade structures.
             clean_trade_entry(character, index, log, manual)
 
             # Ensure any pre-existing trade records use the corrected spellings.
-            for trade in log.get("trades", []):
-                if not isinstance(trade, dict):
-                    continue
-                given = trade.get("tradeItemGiven")
-                if isinstance(given, str):
-                    trade["tradeItemGiven"] = ITEM_CORRECTIONS.get(given, given)
-                received = trade.get("tradeItemReceived")
-                if isinstance(received, str):
-                    trade["tradeItemReceived"] = ITEM_CORRECTIONS.get(received, received)
-                counterparty = trade.get("tradeCharacterName")
-                if isinstance(counterparty, str):
-                    trade["tradeCharacterName"] = COUNTERPARTY_CORRECTIONS.get(counterparty, counterparty)
-                notes = trade.get("tradeNotes")
-                if isinstance(notes, str) and not notes.strip():
-                    trade["tradeNotes"] = None
+            clean_legacy_trades(log)
+            clean_modern_trade(log)
 
             # Fill missing adventure codes when possible.
-            current_code = log.get("adventureCode")
-            if isinstance(current_code, str):
+            current_code = get_code(log)
+            if isinstance(current_code, str) and current_code:
                 remapped = ADVENTURE_CODE_REMAP.get(current_code.strip().lower())
                 if remapped:
-                    log["adventureCode"] = remapped
+                    set_code(log, remapped)
 
             code = normalise_adventure_code(log)
             if code:
-                log["adventureCode"] = code
-            elif not log.get("adventureCode"):
+                set_code(log, code)
+            elif not get_code(log):
                 manual.append(
                     ManualIssue(
                         character,
                         index,
                         log.get("date"),
-                        log.get("adventureName"),
+                        get_title(log),
                         "Adventure code still missing",
                         log.get("notes"),
                     )
@@ -309,9 +372,9 @@ def clean() -> None:
                 [
                     "# Manual Corrections Needed",
                     "",
-                    "The following log entries could not be automatically normalised.",
+                    "The following entries could not be automatically normalised.",
                     "",
-                    "| Character | Log # | Date | Adventure Name | Reason | Notes |",
+                    "| Character | Entry # | Date | Title | Reason | Notes |",
                     "| --- | --- | --- | --- | --- | --- |",
                     *[issue.to_markdown_row() for issue in manual],
                     "",
