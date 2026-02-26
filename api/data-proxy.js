@@ -11,6 +11,7 @@ const corsHeaders = {
 
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8';
 const DEFAULT_DATA_PATH = 'data/data.js';
+const DEFAULT_SUPABASE_TABLE = 'al_data_snapshots';
 
 const isLikelyGitObjectId = (value) => /^[0-9a-f]{40}$/i.test(String(value || '').trim());
 
@@ -39,6 +40,74 @@ const encodeGitHubPath = (inputPath) => {
     .filter(Boolean)
     .map((segment) => encodeURIComponent(segment))
     .join('/');
+};
+
+const getSupabaseConfig = () => {
+  const url = String(process.env.SUPABASE_URL || '').trim();
+  const serviceRoleKey = String(process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+  const table = String(process.env.SUPABASE_DATA_TABLE || DEFAULT_SUPABASE_TABLE).trim();
+  if (!(url && serviceRoleKey && table)) {
+    return null;
+  }
+  return { url, serviceRoleKey, table };
+};
+
+const buildSupabaseTableUrl = (config, params = null) => {
+  const base = `${config.url.replace(/\/+$/, '')}/rest/v1/${config.table}`;
+  if (!params) {
+    return base;
+  }
+  const query = params.toString();
+  return query ? `${base}?${query}` : base;
+};
+
+const readSupabaseDataFile = async ({ config, pathParam, ref, cacheBustToken }) => {
+  const params = new URLSearchParams();
+  params.set('select', 'path,data_js,version,updated_at');
+  params.set('path', `eq.${pathParam}`);
+  if (ref) {
+    params.set('version', `eq.${ref}`);
+  } else {
+    params.set('order', 'updated_at.desc.nullslast');
+  }
+  params.set('limit', '1');
+  if (cacheBustToken) {
+    params.set('cb', cacheBustToken);
+  }
+
+  const supaUrl = buildSupabaseTableUrl(config, params);
+  const supaRes = await fetch(supaUrl, {
+    headers: {
+      apikey: config.serviceRoleKey,
+      Authorization: `Bearer ${config.serviceRoleKey}`,
+      Accept: 'application/json'
+    },
+    cache: 'no-store'
+  });
+
+  if (!supaRes.ok) {
+    const text = await supaRes.text();
+    return { error: { status: supaRes.status, message: text || 'Failed to read from Supabase.' } };
+  }
+
+  const rows = await supaRes.json();
+  if (!Array.isArray(rows) || !rows.length) {
+    return { error: { status: 404, message: `Could not locate ${pathParam}${ref ? ` at version "${ref}"` : ''}.` } };
+  }
+
+  const row = rows[0] || {};
+  const dataJs = typeof row.data_js === 'string' ? row.data_js : '';
+  if (!dataJs) {
+    return { error: { status: 404, message: `No data_js payload found for ${pathParam}.` } };
+  }
+
+  return {
+    value: {
+      body: dataJs,
+      version: row.version ? String(row.version) : '',
+      source: 'supabase'
+    }
+  };
 };
 
 const determineBranch = async ({ repo, headers }) => {
@@ -163,10 +232,34 @@ export default async function handler(req) {
     const params = url.searchParams;
     const pathParam = params.get('path') || DEFAULT_DATA_PATH;
     const cacheBustToken = (params.get('cb') || params.get('cacheBust') || '').trim();
+    const requestedRef = (params.get('ref') || params.get('v') || '').trim();
     const encodedPath = encodeGitHubPath(pathParam);
 
     if (!encodedPath) {
       return respond({ error: 'Invalid or empty data path provided.' }, { status: 400 });
+    }
+
+    const supabaseConfig = getSupabaseConfig();
+    if (supabaseConfig) {
+      const supabaseResult = await readSupabaseDataFile({
+        config: supabaseConfig,
+        pathParam,
+        ref: requestedRef,
+        cacheBustToken
+      });
+      if (supabaseResult.error) {
+        return respond({ error: supabaseResult.error.message }, { status: supabaseResult.error.status || 500 });
+      }
+      return respond(supabaseResult.value.body, {
+        json: false,
+        headers: {
+          'content-type': 'application/javascript; charset=utf-8',
+          'cache-control': 'no-store, max-age=0',
+          'x-data-path': pathParam,
+          'x-data-ref': supabaseResult.value.version,
+          'x-data-ref-source': supabaseResult.value.source
+        }
+      });
     }
 
     if (!repo || !token) {
@@ -193,7 +286,6 @@ export default async function handler(req) {
       Accept: 'application/vnd.github.v3.raw'
     };
 
-    const requestedRef = (params.get('ref') || params.get('v') || '').trim();
     let refToUse = requestedRef;
     let refSource = requestedRef ? 'query' : null;
 

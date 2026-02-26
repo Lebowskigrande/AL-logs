@@ -33,6 +33,13 @@ validation so data-quality issues can be surfaced in the UI.
 When saving edits, the app normalizes first and then applies `prepareForSave`,
 so persisted output follows the same schema contract as the Node pipeline.
 
+Runtime storage backends:
+
+- Supabase mode (preferred): enabled when `SUPABASE_URL` and
+  `SUPABASE_SERVICE_ROLE_KEY` are configured for API handlers.
+- Fallback mode: existing GitHub/local-file behavior when Supabase env vars are
+  not set.
+
 ## Regenerating `data/data.js`
 
 ```bash
@@ -62,3 +69,8 @@ and top examples for the highest-priority cleanup categories.
 Open `cleanup.html` in the app to review integrity issues, apply guided fixes,
 edit individual adventure JSON entries, revalidate, and save back to
 `data/data.js`.
+
+## Supabase Deployment
+
+See `analysis/supabase-setup.md` for SQL schema, env vars, and verification
+steps.

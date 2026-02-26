@@ -10,6 +10,7 @@ const corsHeaders = {
 };
 
 const DEFAULT_DATA_PATH = 'data/data.js';
+const DEFAULT_SUPABASE_TABLE = 'al_data_snapshots';
 
 const encodeGitHubPath = (inputPath) => {
   const normalized = String(inputPath || '')
@@ -38,6 +39,79 @@ const respond = (body, { status = 200, headers = {}, json = true } = {}) => {
   return new Response(body, { status, headers: responseHeaders });
 };
 
+const getSupabaseConfig = () => {
+  const url = String(process.env.SUPABASE_URL || '').trim();
+  const serviceRoleKey = String(process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+  const table = String(process.env.SUPABASE_DATA_TABLE || DEFAULT_SUPABASE_TABLE).trim();
+  if (!(url && serviceRoleKey && table)) {
+    return null;
+  }
+  return { url, serviceRoleKey, table };
+};
+
+const buildSupabaseTableUrl = (config, extraParams = null) => {
+  const base = `${config.url.replace(/\/+$/, '')}/rest/v1/${config.table}`;
+  if (!extraParams) {
+    return base;
+  }
+  const query = extraParams.toString();
+  return query ? `${base}?${query}` : base;
+};
+
+const createVersion = () => {
+  if (typeof crypto !== 'undefined' && crypto && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return `v_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+};
+
+const saveToSupabase = async ({ config, path, dataJs, req }) => {
+  const savedAt = new Date().toISOString();
+  const version = createVersion();
+  const updatedByHeader = req.headers.get('x-updated-by');
+  const updatedByEnv = String(process.env.APP_INSTANCE || '').trim();
+  const updatedBy = String(updatedByHeader || updatedByEnv || 'dashboard').slice(0, 120);
+
+  const query = new URLSearchParams();
+  query.set('on_conflict', 'path');
+  const endpoint = buildSupabaseTableUrl(config, query);
+
+  const payload = {
+    path: String(path || DEFAULT_DATA_PATH),
+    data_js: dataJs,
+    updated_at: savedAt,
+    updated_by: updatedBy,
+    version,
+    commit_sha: null
+  };
+
+  const supaRes = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      apikey: config.serviceRoleKey,
+      Authorization: `Bearer ${config.serviceRoleKey}`,
+      'content-type': 'application/json',
+      Prefer: 'resolution=merge-duplicates,return=representation'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!supaRes.ok) {
+    const text = await supaRes.text();
+    return { error: { status: supaRes.status, message: text || 'Supabase save failed.' } };
+  }
+
+  return {
+    value: {
+      ok: true,
+      mode: 'supabase',
+      version,
+      path: String(path || DEFAULT_DATA_PATH),
+      savedAt
+    }
+  };
+};
+
 export default async function handler(req) {
   if (req.method === 'OPTIONS') {
     return respond(null, { json: false });
@@ -56,6 +130,26 @@ export default async function handler(req) {
     const encodedPath = encodeGitHubPath(path);
     if (!encodedPath) {
       return respond({ error: 'path must be a non-empty file path' }, { status: 400 });
+    }
+
+    // Optional: simple shared secret for client -> function
+    const clientKey = req.headers.get('x-save-key');
+    if (process.env.SAVE_KEY && clientKey !== process.env.SAVE_KEY) {
+      return respond({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const supabaseConfig = getSupabaseConfig();
+    if (supabaseConfig) {
+      const supabaseWrite = await saveToSupabase({
+        config: supabaseConfig,
+        path: String(path || DEFAULT_DATA_PATH),
+        dataJs,
+        req
+      });
+      if (supabaseWrite.error) {
+        return respond({ error: supabaseWrite.error.message }, { status: supabaseWrite.error.status || 500 });
+      }
+      return respond(supabaseWrite.value);
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
@@ -77,12 +171,6 @@ export default async function handler(req) {
         path: String(path || DEFAULT_DATA_PATH),
         savedAt: new Date().toISOString()
       });
-    }
-
-    // Optional: simple shared secret for client -> function
-    const clientKey = req.headers.get('x-save-key');
-    if (process.env.SAVE_KEY && clientKey !== process.env.SAVE_KEY) {
-      return respond({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const base = `https://api.github.com/repos/${repo}/contents/${encodedPath}`;
