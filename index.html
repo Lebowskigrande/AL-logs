@@ -6046,7 +6046,16 @@
     let saveQueueTail = Promise.resolve();
     const pendingDerivedUpdates = new Set();
     const inventoryStateAutoSaveQueue = new Set();
-    const SAVE_ENDPOINT = (typeof window !== 'undefined' && window.AL_SAVE_ENDPOINT) || 'https://al-logs.vercel.app/api/save-data';
+    const SAVE_ENDPOINT = (() => {
+      if (typeof window === 'undefined') return '/api/save-data';
+      if (window.AL_SAVE_ENDPOINT) return window.AL_SAVE_ENDPOINT;
+      const host = String(window.location && window.location.hostname || '').toLowerCase();
+      const protocol = String(window.location && window.location.protocol || '').toLowerCase();
+      if (host === 'localhost' || host === '127.0.0.1' || protocol === 'file:') {
+        return '/api/save-data';
+      }
+      return 'https://al-logs.vercel.app/api/save-data';
+    })();
     const SAVE_HEADERS = (typeof window !== 'undefined' && window.AL_SAVE_HEADERS) || null;
     const STORAGE_KEYS = {
       showActivities: 'al_logs_show_activities',
@@ -11559,18 +11568,23 @@
       }
       const text = String(raw || '').replace(/\r\n?/g, '\n').trim();
       if (!text) return [];
-      if (text.includes('\n')) {
-        return text.split('\n').map(normItemName).filter(Boolean);
-      }
-      if (text.includes(';')) {
-        return text.split(';').map(normItemName).filter(Boolean);
-      }
-      if (text.includes('•')) {
-        return text.split('•').map(normItemName).filter(Boolean);
-      }
-      return [normItemName(text)];
+      const separators = /\n|;|•|(?<!\d),(?!\d)/g;
+      const tokens = text.split(separators).map(normItemName).filter(Boolean);
+      return tokens.length ? tokens : [normItemName(text)];
     }
-    function parseAcquisitionName(s) { const t = String(s || '').trim(); const m = t.match(/^\((.*)\)$/); return m ? { name: m[1].trim(), acquired: false } : { name: t, acquired: true }; }
+    function parseAcquisitionName(s) {
+      const t = String(s || '').trim();
+      if (!t) return { name: '', acquired: true };
+      const wrappedRemoval = t.match(/^\((.*)\)$/);
+      if (wrappedRemoval) {
+        return { name: wrappedRemoval[1].trim(), acquired: false };
+      }
+      const prefixedRemoval = t.match(/^(?:-|lost\s*:|remove\s*:|traded\s*(?:away)?\s*:?)\s*(.+)$/i);
+      if (prefixedRemoval) {
+        return { name: prefixedRemoval[1].trim(), acquired: false };
+      }
+      return { name: t, acquired: true };
+    }
 
     function buildAdventureInventoryOperation(adv) {
       const operation = { adds: [], removes: [] };

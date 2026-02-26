@@ -1,5 +1,7 @@
-// Vercel Edge Function – commits data.js to your repo via GitHub API
-export const config = { runtime: 'edge' };
+import { promises as fs } from 'node:fs';
+import pathModule from 'node:path';
+
+export const config = { runtime: 'nodejs' };
 
 const corsHeaders = {
   'access-control-allow-origin': '*',
@@ -57,9 +59,25 @@ export default async function handler(req) {
     }
 
     const repo = process.env.GH_REPO;   // e.g. "Lebowskigrande/AL-logs"
-    if (!repo)  return respond({ error: 'GH_REPO not set' },  { status: 500 });
     const token = process.env.GH_TOKEN; // fine-grained PAT or GitHub App token
-    if (!token) return respond({ error: 'GH_TOKEN not set' }, { status: 500 });
+
+    if (!repo || !token) {
+      const cwd = process.cwd();
+      const targetPath = pathModule.resolve(cwd, String(path || DEFAULT_DATA_PATH));
+      const normalizedRoot = `${pathModuleResolveWithSlash(cwd)}`;
+      const normalizedTarget = pathModuleResolveWithSlash(targetPath);
+      if (!normalizedTarget.startsWith(normalizedRoot)) {
+        return respond({ error: 'Resolved save path escapes repository root.' }, { status: 400 });
+      }
+      await fs.mkdir(pathModule.dirname(targetPath), { recursive: true });
+      await fs.writeFile(targetPath, dataJs, 'utf8');
+      return respond({
+        ok: true,
+        mode: 'local-file',
+        path: String(path || DEFAULT_DATA_PATH),
+        savedAt: new Date().toISOString()
+      });
+    }
 
     // Optional: simple shared secret for client -> function
     const clientKey = req.headers.get('x-save-key');
@@ -107,4 +125,9 @@ export default async function handler(req) {
   } catch (e) {
     return respond({ error: String(e) }, { status: 500 });
   }
+}
+
+function pathModuleResolveWithSlash(value) {
+  const resolved = pathModule.resolve(String(value || ''));
+  return resolved.endsWith(pathModule.sep) ? resolved : `${resolved}${pathModule.sep}`;
 }
